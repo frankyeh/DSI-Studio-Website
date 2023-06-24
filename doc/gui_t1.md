@@ -8,13 +8,15 @@ DSI Studio accepts major image formats, including DICOM and NIFTI. The following
 
 ---
 
-First, rename DICOM files using [**Batch processing**][**Step B1a: Rename DICOM files**] or [**Batch processing**][**Step B1b: Rename DICOM in Subfolders**]. 
+To rename DICOM files in DSI Studio, you have two options: [Batch processing][Step B1a: Rename DICOM files] and [Batch processing][Step B1b: Rename DICOM in Subfolders].
 
-The former one needs to select all the DICOM files that are ready to be renamed, and then the file will be moved into its related folders. The latter one needs to assign a root folder containing all DICOM files to be sorted. DSI Studio will rename DICOM files and place them in different folders according to their pulse sequences (see figure to the right).
+For the former option, you need to select all the DICOM files that are ready to be renamed. Once selected, the files will be moved into their respective folders.
 
-After renaming DICOM files, use [**Batch processing**][**Step B2c: DICOM to SRC**] and select the root folder that contains all scan data to generate src.gz files for the next step.
+The latter option requires you to assign a root folder that contains all the DICOM files to be sorted. DSI Studio will then rename the DICOM files and place them in different folders based on their pulse sequences. You can refer to the figure on the right for a visual representation of this process.
 
-Another to convert DICOM to SRC is to use [**Diffusion MRI Analysis]**[**Step T1: Open Source Images**] in the main window and manually select all dMRI files. After parsing the DICOM files, DSI Studio will be presenting a new window with a b-value table, as shown in the figure.
+After renaming the DICOM files, you can proceed to generate src.gz files for the next step by using [Batch processing][Step B2c: DICOM to SRC]. Simply select the root folder that contains all the scan data.
+
+Alternatively, you can also convert DICOM to SRC by using [Diffusion MRI Analysis][Step T1: Open Source Images] in the main window. Manually select all the dMRI files, and DSI Studio will present a new window with a b-value table, as shown in the figure.
 
 ![](/images/t1_btable.png)
 
