@@ -7,7 +7,7 @@ DSI Studio has a high version turning rate, and occasionally the computation out
 ## Major revision
 
 - 2020/08/02: Major revision on QA calculation. nQA is now replacing QA (https://groups.google.com/g/dsi-studio/c/t-kSFxXrGFU)
-- 2023/06/28: Fiber tracking results will be different because step size = 0 has a different implementation. Older versions will randomly select between 0.5 and 1.5 voxel spacing. The updated version will select 1.0 to 3.0. To replicate older versions, set the step size to -1.
+- 2023/06/28: Fiber tracking results will change because the default step size = 0 has a different implementation. Older versions will randomly select between 0.5 and 1.5 voxel spacing. The updated version will select 1.0 to 3.0. To replicate older versions, set the step size to -1. Fiber tracking with nonzero step size and correlation tracking is not affected.
 
 ## Download Links
 
