@@ -11,9 +11,9 @@ Automatic fiber tracking maps individual bundles using deterministic fiber track
 dsi_studio --action=atk --source=*.fib.gz
 ```
 
-*Run fiber tracking on all fib.gz files to map all long projection pathways
+*Run fiber tracking on all fib.gz files to map corticospinal tracts (4 specifies "long projection pathways" atlas)
 ```
-dsi_studio --action=atk --source=*.fib.gz --tractography_atlas=4
+dsi_studio --action=atk --source=*.fib.gz --tractography_atlas=4 --track_id=corticospinal
 ```
 
 
