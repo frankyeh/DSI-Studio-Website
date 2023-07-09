@@ -22,8 +22,9 @@ dsi_studio --action=atk --source=*.fib.gz --export_template_trk=1
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
 | source |  | specify fib.gz files for automatic bundle tracking.  |
-| track_id | `Fasciculus,Cingulum,Aslant,Corticos,Thalamic_R,Reticular,Optic,Fornix,Corpus` | specify the id number or the name of the bundle. The id can be found in /atlas/ICBM152/HCP1065.tt.gz.txt . <p> This text file is included in DSI Studio package (For Mac, right-click on dsi_studio_64.app to find content). You can specify partial name of the bundle: <p>           example:<p>   for tracking left and right arcuate fasciculus, assign --track_id=0,1  or --track_id=arcuate    (DSI Studio will find bundles with names containing 'arcuate', case insensitive) <p>           example:<p>   for tracking left and right arcuate and cingulum, assign --track_id=0,1,2,3 or --track_id=arcuate,cingulum|
-| tolerance | `22,26,30` | the tolerance for the bundle recognition. The unit is in mm. Multiple values can be assigned using comma separator. A larger value may include larger track variation but also subject to more false results. |
+| tractography_atlas | 0 | specify the atlas.<p>    0: association pathway<p>    1:commisure pathways<p>    2:cerebellum pathways<p>    3:cranial nerves<p>    4:long projection pathways<p>    5:short projection pathways  |
+| track_id | | specify the id number or the name of the bundle. If no value is specified, then all tracts in the atlas will be mapped.<p>    example:<p>   for tracking left and right arcuate fasciculus, assign --track_id=arcuate    (DSI Studio will find bundles with names containing 'arcuate', case insensitive) <p>    example:<p>   for tracking left and right arcuate and cingulum, assign --track_id=arcuate,cingulum|
+| tolerance | `22,26,30` | the tolerance for bundle recognition. The unit is in mm. Multiple values can be assigned using comma separator. A larger value may include larger track variation but also subject to more false results. |
 | track_voxel_ratio | `2.0` | the track-voxel ratio for the total number of streamline count. A larger value gives better mapping with the expense of computation time. 
 | check_ending | `1` and `0` for cingulum | remove tracts if they terminate in high anisotropy locations. |
 | thread_count | hardware max | Specify number of CPU cores used in computation |
@@ -38,6 +39,6 @@ dsi_studio --action=atk --source=*.fib.gz --export_template_trk=1
 | output | the directory of the first file specified in --source | Specify the output directory | 
   
 Fiber tracking parameters such as --otsu_threshold, --fa_Threshold, --turning_angle, --step_size, --smoothing, --tip_iteration are also supported. 
-(--min_length and --max_length are not supported because the length constraint will be automaticalled determined from the atlas)
+(--min_length and --max_length are not supported because the length constraint will be automatically determined from the atlas)
 
   
