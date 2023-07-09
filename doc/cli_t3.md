@@ -56,7 +56,6 @@ call dsi_studio.exe --action=trk --source="%%x" --seed_count=1000000 --thread_co
 |:-----------------|:--------|:------------------------------------------------------------------------------|
 | source         |  | specify the fib file |                  
 | thread_count   | hardware max | specify the thread count. |
-| track_id       | (not assigned) | specify which ID of the track to track using automatic fiber tracking. The complete list of ID is found in ICBM152.tt.gz.txt in the DSI Studio package under the \atlas\ICBM152 folder (On Mac, right click to show content). |
 
 ## Conventional Tracking
 > Specify the tracking parameters below or replace them by using a single `--parameter_id`, which can be found at the method text under Step T3d after running fiber tracking.
@@ -127,6 +126,13 @@ The following settings are also included in `--parameter_id` but  usually the de
 ```
 --other_slices=mni_qa.nii.gz
 ```
+
+## Automated fiber tracking settings
+
+| Parameters            | Default | Description                                                                 |
+|:-----------------|:--------|:------------------------------------------------------------------------------|
+| tractography_atlas | 0 | specify the atlas.<p>    0: association pathway<p>    1:cerebellum pathways<p>    2:commissure pathways<p>    3:cranial nerves<p>    4:long projection pathways<p>    5:short projection pathways  |
+| track_id       | (not assigned) | Specify which ID of the track to track using automatic fiber tracking. |
 
 
 ## Tract-related post-processing and analysis
