@@ -91,6 +91,8 @@ The following settings are also included in `--parameter_id` but  usually the de
 | roa roa2 roa3 roa4 roa5 |  specify the roa files. |
 | end end2 |  specify the endpoint files. |
 | ter ter2 ter3 ter4 ter5 |  specify the terminative region. |
+| nend |  specify the file for non ending region. |
+| lim |  specify the file for limiting region. |
 | t1t2 | specify t1w or t2w images as the ROI reference image |
 
 > Multiple input is supported. You may use atlas regions as the roi, roa, end, or ter regions. Specify the atlas and region name (case sensitive!) as follows:
