@@ -109,6 +109,11 @@ The following settings are also included in `--parameter_id` but  usually the de
 --roi=multiplre_region_nifti.gz:1    # only loads regions with value=1
 ```
 
+> You can merge two regions, separated by a comma
+```
+--roi=region1.nii.gz+region2.nii.gz
+```
+
 > You can assign an MNI space NIFTI file. Just make sure to have MNI in the file name
 ```
 --roi=mni_broca1.nii.gz
