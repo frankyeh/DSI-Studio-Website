@@ -81,8 +81,8 @@ done
 
 | Parameters            | Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
-| mask | specify the mask file (.nii.gz) |
-| rev_pe | assign the NIFTI or SRC file of the reversed-phase encoding images for TOPUP/EDDY
+| mask | specify the mask file (.nii.gz). To use U-Net, specify --mask=unet |
+| rev_pe | specify the NIFTI or SRC file of the reversed-phase encoding images for TOPUP/EDDY
 | rotate_to  | specify a T1W or T2W for DSI Studio to rotate DWI to its space. (no scaling or shearing) |
 | align_to  | specify a T1W or T2W for DSI Studio to use affine transform to its space. (including scaling or shearing) |
 | other_image  | assign other image volumes (e.g., T1W, T2W image) to be wrapped with QSDR. --other_image=<label>:<file path>,<label>:<file path> |
