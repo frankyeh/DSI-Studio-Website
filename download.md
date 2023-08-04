@@ -1,4 +1,4 @@
-DSI Studio has a high version turning rate, and occasionally the computation outcome may be different between versions. I would recommend  keepping a local copy of DSI Studio for each research project and update DSI Studio every time if a new project is initiated.
+DSI Studio has a high version turning rate, and occasionally the computation outcome may be different between versions. I would recommend  keeping a local copy of DSI Studio for each research project and updating DSI Studio every time a new project is initiated.
 
 # Packages
 
@@ -36,15 +36,15 @@ docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $PWD
 ```
 $ singularity pull docker://dsistudio/dsistudio:latest     # This creates a singularity container *.sif file from the latest release of DSI Studio. Make sure you keep a copy of .sif file for your results
 $ singularity exec -B /var,/run -B /home/server/folder dsistudio_latest.sif dsi_studio  # Some cluster does not allow users to access host drive, and you may need to mount folder into singularity container
-$ singularity exec dsistudio_latest.sif dsi_studio   #  This invoke the graphic interface of DSI Studio 
+$ singularity exec dsistudio_latest.sif dsi_studio   #  This invokes the graphic interface of DSI Studio 
 $ singularity exec dsistudio_latest.sif dsi_studio --action=rec --source=my.src.gz # call DSI Studio command line interface in the singularity container  
 ```
 
 # License
 
-DSI Studio is dual licensed. You can pick one license or the other. 
+DSI Studio is dual-licensed. You can pick one license or the other. 
 
-## Academic Usge
+## Academic Usage
 
 DSI Studio is free for academic or research purposes under [Attribution-***NonCommercial***-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) license. 
 
@@ -56,10 +56,17 @@ For commercial use, the DSI Studio software and source code require a paid licen
 2. [Alases](https://github.com/frankyeh/DSI-Studio-atlas): each atlas includes its own license or usage agreement. Most of them are free for both academic and commercial usage/
 3. Certain algorithms and functions incorporated within DSI Studio may be protected by patents. Therefore, it is crucial to be aware of potential patent restrictions when using DSI Studio for commercial purposes. To avoid possible copyright or patent infringement, please consult Frank Yeh about the details.
 
-Depending on the functions and resources used, the commercial use may require licenses from different parties. 
+Depending on the functions and resources used, commercial use may require licenses from different parties. 
 To obtain the DSI Studio license for commercial use, please email frank.yeh@gmail.com. 
 
 # Hardware recommendation:
 
-To achieve the best performance, I would recommend a computer with a multi-core CPU (e.g. http://store.hp.com/us/en/mdp/business-solutions/z840-workstation). Minimum memory of 16GB is needed. To handle a large number of tracks or image volumes, DSI Studio will need 32GB of memory or more. 
+Here is an example of a workstation for DSI Studio tractography:
+
+1. Chassis: Dell Precision 7920 Tower
+2. Processor: two CPUs of Intel Xeon Gold 6230 (2.1GHz, 3.9GHz Turbo, 20 Cores)
+3. Memory: 128GB RAM
+4. Graphics Card: NVidia Quadro RTX4000, 8GB
+5. Hard drive: 2TB SSD
+6. Operating System: Windows
 
