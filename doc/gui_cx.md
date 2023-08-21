@@ -95,9 +95,9 @@ If a dialog prompts a warning about poor image quality (low R2), you may need to
 
 ## Step C3a: Load demographics
 
-The demographic file can be space-separated, tab-separated (.tsv), or comma-separated values (.csv)(recommended). The file should record any variables you would like to include in the regression model. The first row should be the name of the scalar values. The second row is the value for the first subject, and the rest follows. If there is any missing data, leave the field empty. DSI Studio will ignore subjects with missing data.
+The demographic file can be space-separated, tab-separated (.tsv), or comma-separated values (.csv)(recommended). The file should record any variables you would like to include in the regression model. The first row should be the name of the scalar values. The second row is the value for the first subject, and the rest follows. If there is any missing data, leave the field empty. DSI Studio will ignore subjects with missing data. You can supply only a subset of demographics or a demographics that contains additional subject information (available after 8/21/2023 version). DSI Studio will match the first row of the demographic with the subject name in the database.
 
-Example:
+Example of a demographic file in CSV format:
 ```
 ID,AGE,SEX
 SUB01,23,0
@@ -107,8 +107,17 @@ SUB04,36,0
 SUB05,35,1
 SUB06,27,1
 ```
-***IMPORTANT***
-Make sure the subject order is identical to the list in the connectometry database.
+
+For the longitudinal study that investigates the *change* of behavior scores, you should calculate the changes by (scores at follow-up)-(scores at baseline). The name of the behavior score should add "increased" to the front. See the following example:
+
+Example of a demographic file in CSV format:
+```
+ID,AGE,SEX,increased_score
+SUB01,23,0,13
+SUB02,31,1,-5
+SUB03,24,0,3
+```
+ 
 
 Click on the button labeled "open subjects demographics". Load the text file that records all the scalar values that will be included in the regression model. 
 
