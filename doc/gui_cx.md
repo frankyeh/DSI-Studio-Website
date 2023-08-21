@@ -71,13 +71,13 @@ Make sure that the baseline and follow-up scans of the same subject are stored c
 
 2. In the top menu, select [Tools][Longitudinal scans...] to bring up the subject matching window:
 
-![image](https://user-images.githubusercontent.com/275569/197028970-1ea713e2-cb7a-4331-8472-d70b83a2c664.png)
+![image](https://github.com/frankyeh/DSI-Studio-Website/assets/275569/ddd1fd56-cbc0-40c8-9658-a5feb3ee6cc9)
 
-Double-check to make sure the scans of the same subject are matched.
-
-You may also use a text file to match scans. The text file should be the consecutive numbers of the matching pairs. The first number will be used as the baseline, and the second number will be the study scans. For example, a text file with "0 1 2 3 4 5" will match scan 0 (base) and scan 1(study), scan 2 and scan 3, scan 4 and scan 5. Please note that the first scan in the database is labeled by 0, not 1.
+Check to make sure the scans of the same subject are matched. You may also use a text file to match scans. The text file should be the consecutive numbers of the matching pairs. The first number will be used as the baseline, and the second number will be the study scans. For example, a text file with "0 1 2 3 4 5" will match scan 0 (base) and scan 1(study), scan 2 and scan 3, scan 4 and scan 5. Please note that the first scan in the database is labeled by 0, not 1.
 
 The "metric" group box allows you to define how the difference is calculated. "scan2-scan1" calculates the difference (recommended), whereas "(scan2-scan1)/scan1" calculates the difference as a percentage of the first scan.
+
+The filter settings allow you to study increased metrics or decreased metrics. For most brain diseases, select [Study decreased value in the follow-up (scan2)].
 
 Click "Ok" to calculate the difference between scans and go back to the database window.
 
