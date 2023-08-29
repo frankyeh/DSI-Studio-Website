@@ -6,7 +6,7 @@
 
 [*Correlational tractography*](https://www.sciencedirect.com/science/article/pii/S1053811921009241#sec0038) tracks the tract segments that have anisotropy correlated with a study variable in the group studies, and [connectometry](/ref/Connectometry.pdf) is the statical method that uses a permutation test to get statistical inference for correlational tractography. 
 
-The implementation in DSI Studio use Spearman rank-based correlation to consider the nonlinear effect between the study variable and the diffusion measure. The other covariates will be considered using a linear regression model, and the diffusion metrics will be adjusted using partial correlation.
+The implementation in DSI Studio uses Spearman rank-based correlation to consider the nonlinear effect between the study variable and the diffusion measure. The other covariates will be considered using a linear regression model, and the diffusion metrics will be adjusted using partial correlation.
 
 This documentation introduces the steps to create a connectometry database for generating correlational tractography and testing its significance. 
 
@@ -16,9 +16,9 @@ A connectometry database aggregates multiple FIB files into a common template sp
 
 You will need FIB files generated from [Step T2: Reconstruction](https://dsi-studio.labsolver.org/doc/gui_t2.html) or MNI-space NIFTI files.
 
-The FIB file can be reconstructed using [Step T2b(1)][QSDR](**recommended**) or [Step T2b(1)][GQI] with the default setting. (1.25 sample legnth ratio for in-vivo and 0.6 for ex-vivo).
+The FIB file can be reconstructed using [Step T2b(1)][QSDR](**recommended**) or [Step T2b(1)][GQI] with the default setting. (1.25 sample length ratio for in-vivo and 0.6 for ex-vivo).
 
-**After 2022 June versions, DSI Studio can use all kinds of FIB files (not limited to QSDR FIB with ODF) to construct connectometry database.
+**After the 2022 June versions, DSI Studio can use all kinds of FIB files (not limited to QSDR FIB with ODF) to construct a connectometry database.
 
 Click on [Correlational Tractography][Step C1: Create a Connectometry Database] to bring up the following database dialog.
 
@@ -26,7 +26,7 @@ Click on [Correlational Tractography][Step C1: Create a Connectometry Database] 
 
 ## Step C1a: Open FIB or NIFTI files
 
-Use [Search in Directory] or [Add] button to load FIB files or MNI-space NIFTI files.
+Use the [Search in Directory] or [Add] button to load FIB files or MNI-space NIFTI files.
 
 You may need to make sure that the file orders match that of your demographic records. Use the "sort" function to sort the files.
 
@@ -34,9 +34,9 @@ If you are going to study the longitudinal change, make sure that you place base
 
 ## Step C1b: Select analysis metric and template
 
-The FIB file contains many diffusion metrics. The default choice is "QA" known as the quantitative anisotropy. You can also study other diffusion measures such as FA, AD, RD, MD, RDI, NRDI. Each metric will need its dedicated connectometry database file. To know more about their differences, refer to [here](\doc\how_to_interpret_dmri.html)
+The FIB file contains many diffusion metrics. The default choice is "QA" known as quantitative anisotropy. You can also study other diffusion measures such as FA, AD, RD, MD, RDI, and NRDI. Each metric will need its dedicated connectometry database file. To know more about their differences, refer to [here](\doc\how_to_interpret_dmri.html)
 
-If you use QSDR FIB files, DSI Studio will assign the corresponding template. If you use GQI FIB file, you may need to select the correct template.
+If you use QSDR FIB files, DSI Studio will assign the corresponding template. If you use a GQI FIB file, you may need to select the correct template.
 
 ***IMPORTANT***
 The anisotropy values in **ex-vivo** tissue are substantially affected by the fixation duration
@@ -46,7 +46,7 @@ source: Allan Johnson G, Wang N, Anderson RJ, Chen M, Cofer GP, Gee JC, Pratson 
 
 ## Step C1c: Create connecometry database
 
-Confirm the output file name and make sure to use file extension db.fib.gz
+Confirm the output file name and make sure to use the file extension db.fib.gz
 
 Click the "Create Database" button to create the connectometry database as a db.fib.gz file. You can add or remove subjects from the database using [Diffusion MRI Connectometry][Edit Connectometry Database]
 
@@ -95,7 +95,7 @@ If a dialog prompts a warning about poor image quality (low R2), you may need to
 
 ## Step C3a: Load demographics
 
-The demographic file can be space-separated, tab-separated (.tsv), or comma-separated values (.csv)(recommended). The file should record any variables you would like to include in the regression model. The first row should be the name of the scalar values. The second row is the value for the first subject, and the rest follows. If there is any missing data, leave the field empty. DSI Studio will ignore subjects with missing data. You can supply only a subset of demographics or a demographics that contains additional subject information (available after 8/21/2023 version). DSI Studio will match the first row of the demographic with the subject name in the database.
+The demographic file can be space-separated, tab-separated (.tsv), or comma-separated values (.csv)(recommended). The file should record any variables you would like to include in the regression model. The first row should be the name of the scalar values. The second row is the value for the first subject, and the rest follows. If there is any missing data, leave the field empty. DSI Studio will ignore subjects with missing data. You can supply only a subset of demographics or a demographics that contains additional subject information (available after the 8/21/2023 version). DSI Studio will match the first row of the demographic with the subject name in the database.
 
 Example of a demographic file in CSV format:
 ```
@@ -125,10 +125,10 @@ Click on the button labeled "open subjects demographics". Load the text file tha
 
 Choose the variables to be considered such as sex and age. DSI Studio will use linear regression to eliminate the effect of covariates from the diffusion measures.
 
-There are several tips in choosing the variables in the model:
+There are several tips for choosing the variables in the model:
 
 ***TIPS***
-If you have multiple study variables, including too many of them in the model may lead to over-fitting unless you have enough sample size. Otherwise, include basic variables like the sex and age with the one study variable at a time.
+If you have multiple study variables, including too many of them in the model may lead to over-fitting unless you have enough sample size. Otherwise, include basic variables like sex and age with one study variable at a time.
 
 If your study variables are highly correlated to each other, consider using a PCA to get the principal components. (see <https://www.sciencedirect.com/science/article/pii/S1875957218301797>). You will need to interpret the meaning of each principal component by checking its coefficient.
 
@@ -144,27 +144,27 @@ If your data are from a longitudinal study including controls/patients and want 
 
 | Parameters | Descriptions |
 |:-----------|:-------------|
-| FDR Control | If FDR control is checked, DSI Studio will output ONLY tracks with a significant correlation (i.e., FDR lower than the threshold). <br> If unchecked, DSI Studio will report the FDR value as the significance level to examine the hypothesis <br> My experience is that an FDR of 0.05 is highly confirmatory while 0.05~0.2 suggests a high possibility of positive findings. FDR is very different from the p-value. It is unreliable if the subject number is low (e.g., less than 10). Any findings with FDR lower than 0.2 may be worth reporting since the results have much more "true positive" findings than "false positive" findings. FDR is not sensitive to sample size. This is its strength (unlike p-value constantly improves with large sample size) and weakness (The result from small sample size may not be reliable even if the FDR is small). |
+| FDR Control | If FDR control is checked, DSI Studio will output ONLY tracks with a significant correlation (i.e., FDR lower than the threshold). <br> If unchecked, DSI Studio will report the FDR value as the significance level to examine the hypothesis <br> My experience is that an FDR of 0.05 is highly confirmatory while 0.05~0.2 suggests a high possibility of positive findings. FDR is very different from the p-value. It is unreliable if the subject number is low (e.g., less than 10). Any findings with FDR lower than 0.2 may be worth reporting since the results have much more "true positive" findings than "false positive" findings. FDR is not sensitive to sample size. This is its strength (unlike p-value constantly improves with a large sample size) and weakness (The result from a small sample size may not be reliable even if the FDR is small). |
 | Length Threshold | Different length thresholds correspond to different null hypotheses, and a longer length is usually more specific (less sensitive) and tends to achieve a lower FDR (with fewer findings). <br> The length threshold can be increased to achieve a better FDR (not always). |
-| T threshold | Higher values will map tracks with a more substantial correlation effect, whereas lower values for weak correlation. <br> I would recommend running separate analyses with different T-threshold (e.g., t=2, 2.5, and 3) to map different levels of correlation. Each threshold is viewed as a different hypothesis and will receive an FDR.|
+| T threshold | Higher values will map tracks with a more substantial correlation effect, whereas lower values for a weak correlation. <br> I would recommend running separate analyses with different T-thresholds (e.g., t=2, 2.5, and 3) to map different levels of correlation. Each threshold is viewed as a different hypothesis and will receive an FDR.|
 
-**study region (optional)**
+**Study region (optional)**
 
-Adding regions as constraints will also need to increase permutation count (e.g., 8000) to avoid the discrete error.
+Adding regions as constraints will also need to increase the permutation count (e.g., 8000) to avoid the discrete error.
 
-The default study region for connectometry is "whole brain," which means that connectometry will look at the whole-brain region. You can choose to use an ROI in the MNI space by loading a NIFTI file of the mask. You can also choose a region from the atlas. The region type can be ROI (select tracts passing the region), ROA (discard any track passing the region), End (select track ending in the region), Seed (Only start the seeds from the region). "Whole-brain" is most suitable for the exploratory purpose. If you have a specific region of interest, limiting the computation to an ROI can give a more specific result (e.g., assign cerebral peduncle as the ROI can investigate whether CST is affected). Using only one ROI is suitable for most cases unless for a specific need in the tracking routine.
+The default study region for connectometry is "whole brain," which means that connectometry will look at the whole-brain region. You can choose to use an ROI in the MNI space by loading a NIFTI file of the mask. You can also choose a region from the atlas. The region type can be ROI (select tracts passing the region), ROA (discard any track passing the region), End (select track ending in the region), or Seed (Only start the seeds from the region). "Whole brain" is most suitable for the exploratory purpose. If you have a specific region of interest, limiting the computation to an ROI can give a more specific result (e.g., assign cerebral peduncle as the ROI can investigate whether CST is affected). Using only one ROI is suitable for most cases unless for a specific need in the tracking routine.
 
-After assigning the regions, you may need to increase seed count because the regions setting will remove part or most of the findings and leave only sparse results. The best setting can be case-dependent. If the count is too low, it can risk no findings or get very sparse meaningless findings. On the other hand, a high seed count can flood findings with less significant results. There is a sweet range, and in most cases, the range is quite extensive, and as long as the value is not too low, the value does not make much of a difference.
+After assigning the regions, you may need to increase the seed count because the region setting will remove part or most of the findings and leave only sparse results. The best setting can be case-dependent. If the count is too low, it can risk no findings or get very sparse meaningless findings. On the other hand, a high seed count can flood findings with less significant results. There is a sweet range, and in most cases, the range is quite extensive, as long as the value is not too low, the value does not make much of a difference.
 
 You can exclude cerebellum regions by adding cerebellum white matter and cortex as terminative regions:
 
 ![](https://sites.google.com/a/labsolver.org/dsi-studio/_/rsrc/1573051180893/Manual/diffusion-mri-connectometry/no%20cerebellum%20on%20connectometry.png)
 
-**select cohort (optional)**
+**Select cohort (optional)**
 
-You can include/exclude a particular group of subjects in/from the analysis. Click on the [Select Cohort] button and select criteria to [Apply]. The criteria will be listed on the [Select If] line edit. You can use the [Check] button to visualize the selection results.
+You can include/exclude a particular group of subjects in/from the analysis. Click on the [Select Cohort] button and select criteria to [Apply]. The criteria will be listed on the [Select If] line edit. You can use the [Check] button to visualize the results.
 
-**advanced options**
+**Advanced options**
 
 | Parameters | Descriptions |
 |:-----------|:-------------|
@@ -179,21 +179,21 @@ After the analysis, DSI Studio will output several files to report the results. 
 
 **file outputs**
 
-Results for T-statistics is stored in a FIB file:
+Results for T-statistics are stored in a FIB file:
 
 | Output Files | Descriptions |
 |:------------|:-------------|
-| bmi.t_statistics.fib.gz | A FIB file storing the t-statistics and can be opened in [Step T3:fiber tracking] to visualize T-statistics with tracks. The T statistics for increased metrics is stored as "inc_t", whereas decreased metrics is stored as "dec_t" |
-| bmi.t2.fdr.jpg | the FDR with respect to tracking length. |
+| bmi.t_statistics.fib.gz | A FIB file storing the t-statistics can be opened in [Step T3:fiber tracking] to visualize T-statistics with tracks. The T statistics for increased metrics is stored as "inc_t", whereas decreased metrics is stored as "dec_t" |
+| bmi.t2.fdr.jpg | The FDR with respect to tracking length. |
 | bmi.t2.fdr_dist.values.txt | the FDR values with respect to length. |
 | demo.txt.length40.bmi.t20.report.html | HTML file reporting the connectometry results |
 
-Results for increased metrics associated with study variable will be saved with "inc" (for decreased metrics, "dec"):
+Results for increased metrics associated with the study variable will be saved with "inc" (for decreased metrics, "dec"):
 
 | Output Files | Descriptions |
 |:------------|:-------------|
 | bmi.t2.inc.dist.jpg | shows the histogram of track length.|
-| bmi.t2.inc.tt.gz | tractography file stores tracks that are increased metrics correlated with the study variable. It can be open with the t-statistics FIB file |
+| bmi.t2.inc.tt.gz | tractography file stores tracks that are increased metrics correlated with the study variable. It can be opened with the t-statistics FIB file |
 | bmi.t2.inc.jpg | figure showing the tracks in four different views. |
 
 
@@ -201,7 +201,7 @@ Results for increased metrics associated with study variable will be saved with 
 
 1. To change how DSI Studio visualizes tracks, open any FIB file in [Step T3 Fiber Tracking] and change [Step T3(c) Option]. After closing the fiber tracking window, DSI Studio will memorize the setting and apply it.
 
-2. There are several ways to improve the FDR, with the expense of losing sensitivity. You may increase the length threshold (e.g. 30 mm), increase the T threshold, increase pruning iterations in the advanced options.
+2. There are several ways to improve the FDR, with the expense of losing sensitivity. You may increase the length threshold (e.g. 30 mm), increase the T threshold, and increase pruning iterations in the advanced options.
 
 
 ***Troubleshooting***
@@ -217,11 +217,11 @@ Please note that correlation does not necessarily imply causality. The results c
 
 The following are the strategies to report results.
 
-1. report FDR at different T-scores gives an overview of finding from high sensitivity (low T) to high specificity (high T) 
+1. Report FDR at different T-scores gives an overview of findings from high sensitivity (low T) to high specificity (high T) 
 
 You can visualize the results at different T thresholds (see the next section about visualization). The FDR value will be different for different track lengths. An FDR < 0.05 indicates a highly confirmative finding. An FDR > 0.2 suggests that there are substantial amounts of false findings. The result is thus inconclusive and not reliable. An FDR between 0.05 and 0.2 covers a wide spectrum of reliability. 
 
-2. report FDR at different subject subgroups (e.g., male group versus female group)
+2. Report FDR at different subject subgroups (e.g., male group versus female group)
 
 3. Convert the finding to ROI using [Tracts][Tract to ROI] to track the entire pathways. This allows you to confirm the anatomical structure of the findings.
 
@@ -243,15 +243,15 @@ To do this, first, open the 3D interface at Step C4f or open *.t_statistics.fib.
 
 Segment findings into bundles as mentioned above. Get the length using [Tracts][Statistics]. If the length is 60mm, then the voxel distance is 30.
 
-Last, check the FDR values in *.fdr_dist.values.txt and look up the row with voxel distance=30 to get the FDR values. There is one FDR for increased metrics and one for decreased. Make sure you get the right one.
+Last, check the FDR values in *.fdr_dist.values.txt and look up the row with voxel distance=30 to get the FDR values. There is one FDR for increased metrics and one for decrease. Make sure you get the right one.
 
 ## 3. Scatter plots of bundle statistics and study variable
 
-We can further plot a scatter plot between the study variable and the diffusion variable (e.g. QA or nQA) averaged from the bundle.
+We can further plot a scatter plot between the study variable and the diffusion metrics (e.g. QA or the metrics stored in the .db.fib.gz file) averaged from the bundle.
 
-To do this, open the connectometry database (*.db.fib.gz) in [Step T3: Fiber Tracking] and load the tracks from *.**inc****.tt.gz **(track with increased metrics associated with the study variable)or ***.****dec****.tt.gz** (tracks with decreased metrics) using [Tracts][Open Tracts]. Then use [Tracts][Statistics] to get along tracks metrics for each subject in the connectometry database. The metric (here, use QA as an example) has raw QA or normalized QA (used if you check [normalize QA] in the advance option). This step will take a while.
+To do this, open the connectometry database (*.db.fib.gz) in [Step T3: Fiber Tracking] and load the tracks from tt.gz (i.e. tracks associated with the study variable) using [Tracts][Open Tracts]. Then use [Tracts][Statistics] to get along track metrics for each subject in the connectometry database. The metric (here, use QA as an example) has raw QA values (used if you check [normalize QA] in the advance option). This step will take a while.
 
-The QA value can be copied to the clipboard and pasted into an Excel sheet. We can place them with the demographics values in and plot a scatter plot.
+The QA value can be copied to the clipboard and pasted into an Excel sheet. We can place them with the demographics values and plot a scatter plot with other study variables.
 
 ![](https://sites.google.com/a/labsolver.org/dsi-studio/_/rsrc/1556206471892/Manual/diffusion-mri-connectometry/scatter%20plot.png)
 
@@ -259,15 +259,15 @@ The QA value can be copied to the clipboard and pasted into an Excel sheet. We c
 
 The finding can be visualized in slices using the following steps:
 
-1. Switch slice image to "T1w".
+1. Switch the slice image to "T1w".
 2. In the main menu, add tracks to ROI by [Tracks][Tracks to ROI]
 3. In the Options window (right upper corner), under the "Region Window" node. Change the slice layout to Mosaic 2
-4. Change the contrast of the slices using the slider on the top of the region window to enhance the tracks regions.
+4. Change the contrast of the slices using the slider on the top of the region window to enhance the track's regions.
 
 [![](https://sites.google.com/a/labsolver.org/dsi-studio/_/rsrc/1468760876407/Manual/diffusion-mri-connectometry/sleep4.jpg)](https://sites.google.com/a/labsolver.org/dsi-studio/Manual/diffusion-mri-connectometry/sleep4.jpg?attredirects=0)
 
 
 ## 5. Get SDF values along the track
 
-Once you get tracks that show significant difference or correlation. You can open the connectometry db at [STEP 3 Fiber tracking] and load the resulting tracks. Click on track statistics and you will get SDF values along the tracks for "each subject". This allows you to plot the difference between the groups.
+Once you get tracks that show significant differences or correlations. You can open the connectometry db at [STEP 3 Fiber tracking] and load the resulting tracks. Click on track statistics and you will get SDF values along the tracks for "each subject". This allows you to plot the difference between the groups.
 
