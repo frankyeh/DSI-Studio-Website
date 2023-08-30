@@ -21,7 +21,7 @@ dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts.tt.gz --roi=roi.
 dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts1.tt.gz --output=ROI.nii.gz
 ```
 
-*Generate tract density imaging of from a trk file.*
+*Generate tract density imaging from a trk file.*
 ```
 dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts1.tt.gz --export=tdi
 ```
@@ -58,7 +58,7 @@ dsi_studio --action=ana --source=my.fib.gz --regions=mni_space_roi.nii.gz
 dsi_studio --action=ana --source=my.fib.gz --regions=aparc+aseg.nii.gz --t1t2=subject_t1w.nii.gz
 ```
 
-*Get statistics from ROIs of atlas included in the DSI Studio package*
+*Get statistics from ROIs of the atlas included in the DSI Studio package*
 ```
 dsi_studio --action=ana --source=*.fib.gz --regions=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R,HCP842_tractography:Corpus_Callosum
 ```
@@ -78,20 +78,21 @@ dsi_studio --action=ana --source=my.fib.gz --atlas=FreeSurferDKT
   
 | Parameters  | Description                                                                 |
 |:------------|:------------------------------------------------------------------------------|
-| tract | specify the tract file |
-| output | use"--output=Tract.txt" to convert trk file to other format or ROI (assigned output file as NIFTI file) |
-| export | export additional information related to the fiber tracts |
+| tract | Specify the tract file |
+| output | Use"--output=Tract.txt" to convert the trk file to another format or ROI (assigned output file as NIFTI file) |
+| export | Export additional information related to the fiber tracts |
 
 ***Export tract density images***
-use `--export=tdi` to generate track density image in the diffusion space. To output in x2, x3, x4 resolution, use `tdi2`, `tdi3`, `tdi4` (also applied to the following commands).
-use `--export=tdi_color` to generate track color density image. 
-use `--export=tdi_end` to output only end point .
+- Use `--export=tdi` to generate a track density image in the diffusion space. To output in x2, x3, x4 resolution, use `tdi2`, `tdi3`, `tdi4` (also applied to the following commands).
+- Use `--export=tdi_color` to generate a track color density image. 
+- Use `--export=tdi_end` to output only the endpoint.
 
 ***Export tract profile***
 
-use `--export=stat` to export tracts statistics like along tract mean fa, adc, or morphology index such as volume, length, ... etc.
-use "--export=report:dti_fa:0:1" to export the tract reports on "fa" values with a profile style at x-direction "0" and a bandwidth of "1" 
-the profile style can be the following:
+- Use `--export=stat` to export tract statistics like along tract mean fa, adc, or morphology index such as volume, length, ... etc.
+- Use `--export=report:dti_fa:0:1` to export the tract reports on "fa" values with a profile style at x-direction "0" and a bandwidth of "1"
+
+The profile style can be the following:
   - `0`: x-direction
   - `1`: y-direction
   - `2`: z-direction
@@ -100,17 +101,17 @@ the profile style can be the following:
   
 You can export multiple outputs separated by ",". For example, 
 
-`--export=stat,tdi,tdi2` exports tract statistics, tract density images (TDI), subvoxel TDI, along tract qa values, and along tract gfa values.
+`--export=stat,tdi,tdi2` exports track statistics, tract density images (TDI), subvoxel TDI, along tract qa values, and along tract gfa values.
 
 ## Region Functions
 
-***Do not specify `--tract` if you want to use the region analysis fuction***
+***Do not specify `--tract` if you want to use the region analysis function ***
 
 | Parameters        | Description                                                                 |
 |:------------------|:------------------------------------------------------------------------------|
 | region or regions | specify the NIFTI file of a single ROI (--region) or multiple ROIs (--regions) to export region statistics. If the regions are in the MNI space, add "mni" to the file name (e.g. mni_regions.nii.gz) |
 | t1t2 | if the region is derived from a T1W, then specify the t1w image using --t1t2=t1w.nii.gz for registration with the DWI.|
-| atlas | specify the built-in atlas name for export region statistics | 
+| atlas | Specify the built-in atlas name for export region statistics | 
 
 Multiple files can be specified using "+" as the separator. The format can be a txt file or nifti file or from the atlas regions (e.g. --region=FreeSurferDKT:right_precentral+FreeSurferDKT:left_precentral)
 
