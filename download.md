@@ -44,20 +44,19 @@ $ singularity exec dsistudio_latest.sif dsi_studio --action=rec --source=my.src.
 
 DSI Studio is dual-licensed. You can pick one license or the other. 
 
-## Academic Usage
+## Academic License
 
 DSI Studio is free for academic or research purposes under [Attribution-***NonCommercial***-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) license. 
 
 ## Commercial License
 
-For commercial use, the DSI Studio software and source code require a paid license. It is important to note that the paid license does not cover third-party tools, resources, or patents owned by other entities, such as: 
+A commercial license is available for using DSI Studio source code or its compiled executive program (i.e. dsi_studio.exe or dsi_studio). This license does not cover third-party tools, resources, or patents owned by other entities, such as: 
 
-1. [TinyFSL](https://github.com/frankyeh/TinyFSL) is free for academic use under [FSL License](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Licence).
-2. [Alases](https://github.com/frankyeh/DSI-Studio-atlas): each atlas includes its own license or usage agreement. Most of them are free for both academic and commercial usage/
-3. Certain algorithms and functions incorporated within DSI Studio may be protected by patents. Therefore, it is crucial to be aware of potential patent restrictions when using DSI Studio for commercial purposes. To avoid possible copyright or patent infringement, please consult Frank Yeh about the details.
+1. Using [TinyFSL](https://github.com/frankyeh/TinyFSL) needs [FSL License](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Licence).
+2. [Alases](https://github.com/frankyeh/DSI-Studio-atlas): each atlas includes its own license or usage agreement. Most of them are free for both academic and commercial usage.
+3. Certain algorithms and functions within DSI Studio may be protected by patents. Therefore, it is crucial to be aware of potential patent restrictions when using DSI Studio for commercial purposes. To avoid possible copyright or patent infringement, please consult Frank Yeh about the details.
 
-Depending on the functions and resources used, commercial use may require licenses from different parties. 
-To obtain the DSI Studio license for commercial use, please email frank.yeh@gmail.com. 
+To obtain the DSI Studio license for commercial use, please email frank.yeh@gmail.com
 
 # Hardware recommendation:
 
