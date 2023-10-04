@@ -1,6 +1,6 @@
 # How to analyze dMRI
 
-![image](https://user-images.githubusercontent.com/275569/182761132-9bd68015-509a-4e11-9b11-c1f4c63ddcd6.png)
+<img src="https://user-images.githubusercontent.com/275569/182761132-9bd68015-509a-4e11-9b11-c1f4c63ddcd6.png" width=800/>
 
 
 The following are common preprocessing steps for almost all analysis in DSI Studio.
@@ -22,7 +22,7 @@ The followings are steps for each analytical approaches:
 
 ## Region-Based Analysis
 
-![image](https://user-images.githubusercontent.com/275569/147855916-ccd9a41d-fbfa-4011-9df9-92c4213e2fa3.png)
+<img src="https://user-images.githubusercontent.com/275569/147855916-ccd9a41d-fbfa-4011-9df9-92c4213e2fa3.png" width=800/>
 
 The simplest way to analyze diffusion data is to assign a region in the brain (either manual drawing or from an atlas) and get statistics on its diffusion indices. The following are the steps for ROI-based analysis in the subject space.
 
