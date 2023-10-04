@@ -14,7 +14,7 @@ The following are common preprocessing steps for almost all analysis in DSI Stud
 
 # Choices of Analytical Approaches
 
-![image](https://user-images.githubusercontent.com/275569/147861653-6f86b49c-143f-4297-a304-6b28680c1691.png)
+<img src="https://user-images.githubusercontent.com/275569/147861653-6f86b49c-143f-4297-a304-6b28680c1691.png" width=800/>
 
 I would also recommend checking out the [citation page](/citation.html) to see how other studies have used DSI Studio in their analysis.
 
