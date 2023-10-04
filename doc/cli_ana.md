@@ -1,10 +1,11 @@
 # Region and Tract Functions
 
-> use --action=`ana` to initiate region or tract functions in [Step T3 Fiber Tracking]
+> use --action=`ana` to initiate tract analysis, region analysis, or export functions in [Step T3 Fiber Tracking]
 
-The `ana` action can use any post-tracking functions listed under "--action=trk", including `delete_repeat`,`output`, `export`, `end_point`, `ref`, `connectivity`, `connectivity_type`, `connectivity_value`, and ROI related commands, such as `roi`, `roi2`, ...etc. Please check out `--action=trk` for details.
 
 ## Examples of Tract Functions: 
+
+The `ana` action can use any post-tracking functions listed under "--action=trk", including `delete_repeat`,`output`, `export`, `end_point`, `ref`, `connectivity`, `connectivity_type`, `connectivity_value`, and ROI related commands, such as `roi`, `roi2`, ...etc. Please check out `--action=trk` for details.
 
 *Convert trk file to txt file*
 ```
@@ -68,6 +69,26 @@ dsi_studio --action=ana --source=*.fib.gz --regions=HCP842_tractography:Cingulum
 dsi_studio --action=ana --source=my.fib.gz --atlas=FreeSurferDKT
 ```
 
+## Examples of Export Functions: 
+
+*Get the diffusion metrics from fib files*
+```
+dsi_studio --action=ana --source=*.gqi.1.25.fib.gz --export=qa,iso,dti_fa,rd,ad
+```
+
+*Export all fiber orientations in the fib file*
+
+```
+dsi_studio --action=ana --source=test.fib.gz --export=dirs
+```
+
+*Convert an SRC file to a 4D nifti file*
+```
+dsi_studio --action=ana --source=test.src.gz --export=4dnii
+```
+
+
+
 ## Core Functions
 
 | Parameters   | Description                                                                 |
@@ -119,6 +140,26 @@ The loaded regions can be modified using "smoothing", "erosion", "dilation",  "d
 
 For example, --region=region.nii.gz,dilate,smoothing --regions=multiple_regions.nii.gz,flipx
 
+## Export Functions
+If no tract or region is specified, then DSI Studio will export data from the FIB file or SRC file.
+
+use "--export=qa,iso,dti_fa,ad,rd,md" to export the diffusion metrics as nifti files. 
+
+use "--export=dirs" to export all fiber orientations as an 4D nifti file. The fiber orientations are unit vectors stored in the 4th dimension. Since each voxel may have multiple fiber orientations, each voxel can have, for example, 15 values, which is 5 fibers x 3 vector dimensions. The storage sequence is [x direction of 1st fiber][y direction of 1st fiber][z direction of 1st fiber][x direction of 2nd fiber][y direction of 2nd fiber]. You can also export the major fiber orientation only by --export=dir0 or the secondary by --export=dir1.
+
+use "--export=4dnii" to export DWI data and b table from an SRC file. The output is a 4d nifti file and text files recording the b-table.
+
+use the following matlab codes to get the values for x, y, and z directions:
+```
+I = load_nii('sample.dirs.nii.gz');
+dir_x = squeeze(I.img(:,:,:,1));
+dir_y = squeeze(I.img(:,:,:,2));
+dir_z = squeeze(I.img(:,:,:,3)); 
+```
+
+use "--export=dir0" to export only the 1st (primary) fiber orientation as an 4D nifti file. The fiber orientations are stored in the 4th dimension. The sequence is [x of 1st fiber][y of 1st fiber]. To export the 2nd fiber, use "--export=dir1".
+ 
+You can  combine multiple export targets. (e.g., --export=dirs,dir0,dir1,fa0,fa1)
 
 
 
