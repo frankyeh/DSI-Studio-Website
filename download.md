@@ -9,6 +9,7 @@ DSI Studio has a high version turning rate, and occasionally the computation out
 - 2020/08/02: Major revision on QA calculation. nQA is now replacing QA (https://groups.google.com/g/dsi-studio/c/t-kSFxXrGFU)
 - 2023/06/28: Fiber tracking results will change because the default step size = 0 has a different implementation. Older versions will randomly select between 0.5 and 1.5 voxel spacing. The updated version will be 1.0 voxel spacing. To replicate older versions, set the step size to -1 in the command line. Fiber tracking with nonzero step size and correlation tracking is not affected.
 - 2023/07/08: Tractography atlas is further separated into 5 sets of pathways. The GUI and command line interface for automated fiber tracking has been modified. The updated DSI Studio allows for using multiple tractography atlases.
+- 2023/10/02: The Otsu's threshold was updated to ignore zeros values in the background, as a result, the equivalent value will be slightly different if there are zeros in the background. The seeding region in automatic fiber tracking was updated to provide more comprehensive mapping. The previous version seeds within a more restricted region designated by the atlas, and some branches may not be fully covered. The updated version will have a much larger seeding region to get better coverage.
 
 ## Download Links
 
