@@ -81,18 +81,19 @@ done
 
 | Parameters            | Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
-| mask | specify the mask file (.nii.gz). To use U-Net, specify --mask=unet |
-| rev_pe | specify the NIFTI or SRC file of the reversed-phase encoding images for TOPUP/EDDY
-| rotate_to  | specify a T1W or T2W for DSI Studio to rotate DWI to its space. (no scaling or shearing) |
-| align_to  | specify a T1W or T2W for DSI Studio to use affine transform to its space. (including scaling or shearing) |
-| other_image  | assign other image volumes (e.g., T1W, T2W image) to be wrapped with QSDR. --other_image=<label>:<file path>,<label>:<file path> |
-| save_src | save preprocessed images to a new SRC file |
-| save_nii | save preprocessed images back to 4d NIFTI file |
-| motion_correction | apply rigid-body transformation to align DWI volumes. The b-table is also rotated accordingly |     
-| cmd  | specify any of the following commands for preprocessing. Use "+" to combine commands, and use "=" to assign value/parameters (e.g. --cmd="[Step T2][Corrections][EDDY]+[Step T2][Edit][Overwrite Voxel Size]=1.0" |
+| mask | Specify the mask file (.nii.gz). To use U-Net, specify --mask=unet |
+| rev_pe | Specify the NIFTI or SRC file of the reversed-phase encoding images for TOPUP/EDDY
+| rotate_to  | Specify a T1W or T2W for DSI Studio to rotate DWI to its space. (no scaling or shearing) |
+| align_to  | Specify a T1W or T2W for DSI Studio to use affine transform to its space. (including scaling or shearing) |
+| other_image  | Assign other image volumes (e.g., T1W, T2W image) to be wrapped with QSDR. --other_image=<label>:<file path>,<label>:<file path> |
+| save_src | Save preprocessed images to a new SRC file |
+| save_nii | Save preprocessed images back to 4d NIFTI file |
+| motion_correction | Apply rigid-body transformation to align DWI volumes. The b-table is also rotated accordingly |     
+| cmd  | Specify any of the following commands for preprocessing. Use "+" to combine commands, and use "=" to assign value/parameters (e.g. --cmd="[Step T2][Corrections][EDDY]+[Step T2][Edit][Overwrite Voxel Size]=1.0" |
            
      [Step T2][File][Save 4D NIFTI]
      [Step T2][File][Save Src File]
+     
      [Step T2][Edit][Image flip x]
      [Step T2][Edit][Image flip y]
      [Step T2][Edit][Image flip z]
@@ -101,18 +102,21 @@ done
      [Step T2][Edit][Image swap xz]
      [Step T2][Edit][Crop Background]
      [Step T2][Edit][Smooth Signals]
-     [Step T2][Edit][Align APPC]
-     [Step T2][Edit][Change b-table:flip bx]
-     [Step T2][Edit][Change b-table:flip by]
-     [Step T2][Edit][Change b-table:flip bz]
+     [Step T2][Edit][Align ACPC]
+     
+     [Step T2][B-table][flip bx]
+     [Step T2][B-table][flip by]
+     [Step T2][B-table][flip bz]
+     [Step T2][B-table][swap bxby]
+     [Step T2][B-table][swap bybz]
+     [Step T2][B-table][swap bxbz]
+     
      [Step T2][Edit][Overwrite Voxel Size]=1.0
      [Step T2][Edit][Resample]=1.0
      [Step T2][Edit][Overwrite Voxel Size]
-     [Step T2][B-table][flip bx]
-     [Step T2][B-table][flip by
      [Step T2][Corrections][TOPUP EDDY]
      [Step T2][Corrections][EDDY]
-     [Step T2][B-table][flip bz]
+     
      [Step T2a][Open]     # specify mask
      [Step T2a][Smoothing]
      [Step T2a][Defragment]
@@ -121,6 +125,8 @@ done
      [Step T2a][Negate]
      [Step T2a][Remove Background]
      [Step T2a][Threshold]=100      
+
+     [Step T2b(2)][Partial FOV]
      
 ## Accessory Functions
 
