@@ -65,31 +65,27 @@ done
 | source |  | specify the .src.gz file for reconstruction. |
 | method | `4` | specify the reconstruction methods.<br> 0:DSI, 1:DTI, 4:GQI 7:QSDR.|
 | param0 | `1.25` (in-vivo) or `0.6` (ex-vivo)| the diffusion sampling length ratio for GQI and QSDR reconstruction. |
-| align_acpc | `1` | rotate image volume to align ap-pc. |
-| check_btable | `1` | specify whether the b-table orientation will be checked and automatically flipped |
 | other_output | `fa,ad,rd,md,nqa,iso,rdi,nrdi` | specify what diffusion metrics to calculate. use `all` to get all of possible metrics |
 | record_odf | `0` | specify whether to output the ODF in the fib file (used in connectometry analysis). |
-
-
-| QSDR Parameters            | Default | Description                                                                 |
-|:-----------------|:--------|:------------------------------------------------------------------------------|
 | qsdr_reso | dwi resolution | specify output resolution for QSDR reconstruction |
 | template | `0` | specify the template for QSDR reconstruction:<br>`0`:ICBM152<br>`1`:CIVM_mouse<br>`2`:Neonate<br>`3`:INDI_rhesus<br>`4`:Pitt_Marmoset<br>`5`:WHS_SD_rat |
 
 
-## Optional Functions
+## Additional Operation
 
 | Parameters            | Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
+| align_acpc | Set --align_acpc=1.5 to rotate image volume to align ap-pc and resample volume to 1.5 mm. |
+| check_btable | Set --check_btable=1 to test b-table orientation and apply automatic flipping |
 | mask | Specify the mask file (.nii.gz). To use U-Net, specify --mask=unet |
-| rev_pe | Specify the NIFTI or SRC file of the reversed-phase encoding images for TOPUP/EDDY
+| motion_correction | Apply rigid-body transformation to align DWI volumes. The b-table is also rotated accordingly |     
+| cmd  | Specify any of the following commands for preprocessing. Use "+" to combine commands, and use "=" to assign value/parameters (e.g. --cmd="[Step T2][Corrections][EDDY]+[Step T2][Edit][Overwrite Voxel Size]=1.0" |
+| rev_pe | Specify the NIFTI or SRC file of the reversed-phase encoding images for TOPUP/EDDY |
 | rotate_to  | Specify a T1W or T2W for DSI Studio to rotate DWI to its space. (no scaling or shearing) |
 | align_to  | Specify a T1W or T2W for DSI Studio to use affine transform to its space. (including scaling or shearing) |
 | other_image  | Assign other image volumes (e.g., T1W, T2W image) to be wrapped with QSDR. --other_image=<label>:<file path>,<label>:<file path> |
 | save_src | Save preprocessed images to a new SRC file |
 | save_nii | Save preprocessed images back to 4d NIFTI file |
-| motion_correction | Apply rigid-body transformation to align DWI volumes. The b-table is also rotated accordingly |     
-| cmd  | Specify any of the following commands for preprocessing. Use "+" to combine commands, and use "=" to assign value/parameters (e.g. --cmd="[Step T2][Corrections][EDDY]+[Step T2][Edit][Overwrite Voxel Size]=1.0" |
            
      [Step T2][File][Save 4D NIFTI]
      [Step T2][File][Save Src File]
@@ -132,6 +128,6 @@ done
 
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
-| thread_count | system thread | number of multi-thread used to conduct reconstruction |
+| thread_count | system thread | number of multi-threads used to conduct reconstruction |
 | dti_no_high_b | `1` for human data, `0` for animal data |  specify whether the construction of DTI should ignore high b-value (b>1500) |
 | r2_weighted | `0` | specify whether GQI and QSDR uses r2-weighted to calculate SDF |
