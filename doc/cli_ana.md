@@ -7,9 +7,9 @@
 
 The `ana` action can use any post-tracking functions listed under "--action=trk", including `delete_repeat`,`output`, `export`, `end_point`, `ref`, `connectivity`, `connectivity_type`, `connectivity_value`, and ROI related commands, such as `roi`, `roi2`, ...etc. Please check out `--action=trk` for details.
 
-*Convert trk file to txt file*
+*Merge two trk files and save it to a txt file*
 ```
-dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts1.tt.gz--output=Tracts1.txt
+dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts1.tt.gz,Tract2.tt.gz --output=Tracts1.txt
 ```
 
 *Read track trk file, filter it by ROIs, and output as another trk file*
@@ -49,7 +49,7 @@ dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --connectivity=Fr
 dsi_studio --action=ana --source=my.fib.gz --regions=native_space_roi.nii.gz
 ```
 
-*Get the statistics of multiple MNI-space ROIs*
+*Get the statistics of multiple MNI-space ROIs (including 'mni' in the file name tells DSI Studio that this is an MNI space region)*
 ```
 dsi_studio --action=ana --source=my.fib.gz --regions=mni_space_roi.nii.gz
 ```
