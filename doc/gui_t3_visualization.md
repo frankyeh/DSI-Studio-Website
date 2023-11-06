@@ -4,9 +4,9 @@
 
 ---
 
-DSI Studio is able to render cortical surface and assist localization of the fiber tracts, and the cortical surface can be added by [Slices][Add Isosurface][Full]. You may try different thresholds to the best surface rendering. A higher threshold often results in the smaller surface object, while the lower threshold may lose structural detail. You may need to repeat this step several times until you get a satisfactory result.
+DSI Studio is able to render cortical surface and assist localization of the fiber tracts, and the cortical surface can be added by [Slices][Add Isosurface][Full]. You may try different thresholds to the best surface rendering. A higher threshold often results in a smaller surface object, while the lower threshold may lose structural detail. You may need to repeat this step several times until you get a satisfactory result.
 
-To use T1W as the surface, insert the T1W NIFTI file using [Slices][Insert Other images]. DSI Studio will register the image with MNI-space T1W and ask users for confirmation. If the registration is not perfect, you may adjust it using [Slice][Adjust Registration]. After registration, add the surface using [Slices][Add Isosurface][Full]. DSI Studio will ask for the confirmation of a registration result to remove the skull. After then, it will ask for the threshold for creating an isosurface. A higher threshold often results in the smaller surface object, while the lower threshold may lose structural detail. You may need to repeat this step several times until you get a satisfactory result.
+To use T1W as the surface, insert the T1W NIFTI file using [Slices][Insert Other images]. DSI Studio will register the image with MNI-space T1W and ask users for confirmation. If the registration is not perfect, you may adjust it using [Slice][Adjust Registration]. After registration, add the surface using [Slices][Add Isosurface][Full]. DSI Studio will ask for the confirmation of a registration result to remove the skull. After that, it will ask for the threshold for creating an isosurface. A higher threshold often results in a smaller surface object, while the lower threshold may lose structural detail. You may need to repeat this step several times until you get a satisfactory result.
 
 *The opacity of the isosurface can be adjusted in the [Surface Rendering] option in the right-upper window.*
 
@@ -29,7 +29,7 @@ DSI Studio provides line-art for coronal sections of regions using the following
 
 4. Load MNI-space regions using [Slices][Insert T1W/T2W images]
 
-5. On the middle top toolbar, select the region and change background color to white and foreground color to red/yellow, check overlay
+5. On the middle top toolbar, select the region and change the background color to white and the foreground color to red/yellow, check the overlay.
 
 # Slice visualization
 
@@ -203,7 +203,7 @@ There are several ways to reduce the size and facilitate sharing of the presenta
 
 ## Region view (left lower corner)
 
-Click on the brain buttons at the bottom row of the ROI window to switch between difference slice views
+Click on the brain buttons at the bottom row of the ROI window to switch between different slice views
 
 - **Q** and **A**: move sagittal slide
 - **W** and **S**: move coronal slide
@@ -211,6 +211,7 @@ Click on the brain buttons at the bottom row of the ROI window to switch between
 - **Z**: switch to sagittal view
 - **X**: switch to coronal view
 - **C**: switch to axial view
+- press **Shift** to change drawing to erase
 - Use **mouse wheel** to zoom in or zoom out in the left ROI window
 - **Right double click** in the ROI window to move slices to the pointed location.
 - **Middle mouse button** to drag a slice or a region in the ROI window to the left.
