@@ -14,32 +14,13 @@ The upper left corner shows a region list under [**Step T3a: Assign Regions**].�
 
 There are several ways to assign regions:
 
-## Load Regions from NIFTI Files
+## Load Regions From NIFTI Files
 
-***If your FIB file is in the native space (i.e., reconstructed by DTI or GQI):***
-
-1. If the image size of the NIFTI file matches the diffusion data, then no image resampling is applied. DSI Studio will load it directly.
-
-2. If the ROI file is originated from the subject's own T1W or T2W (e.g. a FreeSurfer segmentation in T1-weighted or T2-weighted image space), then you need to first insert the original structural image (e.g. T1-weighted or T2-weighted images) by [Slices][Insert T1/T2]. DSI Studio will work out a background registration, which may take 5 minutes to converge. After the registration is stabilized, load the ROI file, and DSI Studio will automatically apply the registration from the previous structural image. The transformation matrix in the nifti header will not be used here.
-
-3. If the NIFTI file is in the MNI space, use [Region][Load MNI Region] to import the region. A background nonlinear registration will be conducted that allows wrapping the ROI to the subject space.
-
-***If your FIB file is in the template space (i.e., reconstructed by QSDR):***
-
-1. If the dimension of the NIFTI file matches that of the raw diffusion data, DSI Studio will automatically warp the region to the QSDR space.
-
-2. If the NIFTI file was generated from T1W (e.g. manually drawing or from Freesurfer), the NIFTI file has to be converted to the original diffusion space. Then DSI Studio can load it and apply transformation automatically. DSI Studio can take the nifti file with multiple values as multiple ROIs. You can supply a label file with the nifti file. An example of the label file can be found under the "atlas" folder in the DSI Studio package.
+For details, please check out the [[Regions] menu section](/gui_t3_regions.html)
 
 ## Load Regions From Built-In Atlases
 
-DSI Studio provides a list of atlases that can be added to the region list. Users can add anatomical landmarks by clicking on the ![image](https://user-images.githubusercontent.com/275569/147854300-d08bfff8-0ef0-480e-893b-582c8ed9097b.png) button in [Step T3a]. DSI Studio will perform a nonlinear registration to bring atlas to the subject space.
-
-To use a customized atlas, please refer to the optional instructions at the bottom of this page.
-
-## Load Regions From Text Coordinate Files
-
-DSI Studio can load ROIs from a text file of the ROI coordinates. The coordinates should be integers (floating point will be rounded up) because the coordinates indicate the "voxel" of the seeding regions. Users should be noted that the actual seeding points are uniformly distributed "within" the seeding region. The coordinates here may not necessarily match the exact seeding points in the tracking algorithm.
-
+DSI Studio provides a list of atlases that can be added to the region list. Users can add anatomical landmarks by clicking on the ![image](https://user-images.githubusercontent.com/275569/147854300-d08bfff8-0ef0-480e-893b-582c8ed9097b.png) button in [Step T3a]. DSI Studio will perform a nonlinear registration to bring the atlas to the subject space.
 
 # Specify Region Types
 
@@ -47,12 +28,12 @@ DSI Studio can load ROIs from a text file of the ROI coordinates. The coordinate
 
 ---
 
-There are several region types available to control fiber tracking, including ROI, ROA, Seed, End, Terminative. Each of them is explained in the following sections.
+There are several region types available to control fiber tracking, including ROI, ROA, Seed, End, and Terminative. Each of them is explained in the following sections.
 
 | Type | Function |
 |:-----|:---------|
 | ***...*** | This region type is only used for visualization and parcellation. It has no effect on fiber tracking. |
-| ***Seed*** | *DO NOT* assign a seed region unless you want to speed up fiber tracking or refine tracking results. If no seed region is assigned, DSI Studio will use the whole brain region as the seed region. A common mistake is to assign cortical regions as seed regions. Consequently, DSI Studio will not initiate fiber tracking at the cortical region and resulting in poor tracking results. <br><br> The seed region are locations where the tracking algorithm will initiate fiber points. Ideally, it should be located in the white matter, and the algorithm will track in two opposite directions until reaching the cortex. The actual seeding points are "uniformly distributed" within the seeding voxel. For example, a seed voxel placed at (53,87,68) can have a subvoxel seeding point located within (52.5 to 53.5, 86.5 to 87.5, 67.5 to 68.5). Within the voxel region (52.5 to 53.5, 86.5 to 87.5, 67.5 to 68.5), DSI Studio draws a point within the voxel range using a uniform distribution. The point is then used as the starting point within the selected voxel. <br><br> To refine tracking result, a new seed region can be created from the tracks by [Tracts][Tract to ROI] function. I would also enlarge this new seed region by [Regions][Modify Region][Dilation]. <br><br> Users can specify a seeding point file to override the subvoxel seeding routine and guide the tracking algorithm to start at specific points. To do this, in the tracking parameter, assign "Voxel Center" to the "Seed Position" item and assign "Primary" to the "Seed Orientation". A text file storing a list of point coordinates is needed. For example, to start racking at (53.42, 87.34, 68.43), (53.41, 87.32, 68.32), and (53.67, 87.21, 68.21), you need to have a text file with the following content: <br><br>   > 5342 8734 6843 <br> > 5341 8732 6832 <br> > 5367 8721 6821 <br> > 100 -1 -1 <br><br> Here the coordinates are scaled by 100. The largest number accepted is 32767. The number of points will determine the number of tracks generated (In tracking parameters, please make sure that "Terminat if" has a number larger than your point count).|
+| ***Seed*** | *DO NOT* assign a seed region unless you want to speed up fiber tracking or refine tracking results. If no seed region is assigned, DSI Studio will use the whole brain region as the seed region. A common mistake is to assign cortical regions as seed regions. Consequently, DSI Studio will not initiate fiber tracking at the cortical region and resulting in poor tracking results. <br><br> The seed regions are locations where the tracking algorithm will initiate fiber points. Ideally, it should be located in the white matter, and the algorithm will track in two opposite directions until it reaches the cortex. The actual seeding points are "uniformly distributed" within the seeding voxel. For example, a seed voxel placed at (53,87,68) can have a subvoxel seeding point located within (52.5 to 53.5, 86.5 to 87.5, 67.5 to 68.5). Within the voxel region (52.5 to 53.5, 86.5 to 87.5, 67.5 to 68.5), DSI Studio draws a point within the voxel range using a uniform distribution. The point is then used as the starting point within the selected voxel. <br><br> To refine tracking result, a new seed region can be created from the tracks by [Tracts][Tract to ROI] function. I would also enlarge this new seed region by [Regions][Modify Region][Dilation]. <br><br> Users can specify a seeding point file to override the subvoxel seeding routine and guide the tracking algorithm to start at specific points. To do this, in the tracking parameter, assign "Voxel Center" to the "Seed Position" item and assign "Primary" to the "Seed Orientation". A text file storing a list of point coordinates is needed. For example, to start racking at (53.42, 87.34, 68.43), (53.41, 87.32, 68.32), and (53.67, 87.21, 68.21), you need to have a text file with the following content: <br><br>   > 5342 8734 6843 <br> > 5341 8732 6832 <br> > 5367 8721 6821 <br> > 100 -1 -1 <br><br> Here the coordinates are scaled by 100. The largest number accepted is 32767. The number of points will determine the number of tracks generated (In tracking parameters, please make sure that "Terminate if" has a number larger than your point count).|
 | ***ROI*** | The region-of-interest (ROI) is used to *filter* tracks. It is NOT the starting point of the fiber tracking algorithm. <br> If there are two ROIs, they will function together. The final track will have to pass both of them. |
 | ***ROA*** | The region-of-interest (ROA) is used used to *select* the tracks that pass through the region. It is NOT the starting point of the fiber tracking algorithm. <br><br>   A thin-slice `ROA` may have the *leap-across* problem. Fiber tracking can jump across a `ROA` slice if the step size is large. If this happens, enlarge the ROA. |
 | ***End*** | *DO NOT* assign an `End` region unless you have tried assigning it as `ROI`. <br><br> An "End" region selects tracts that are ended (not passing) in the "end" region. It is much more restrictive than `ROI` and often generates no results. <br><br> If one ending region is assigned, then only the tracks ended within the regions are preserved. <br> If two end regions are assigned, then the tracks ended in both regions are preserved.  <br><br>Please note that the "end" region, unlike the terminative region, does not affect the termination of the tracking algorithm. It simply selects the tracts that end in it. |
@@ -98,21 +79,16 @@ You can modify a region using [Regions Misc][Modify Regions] or [Move Regions].�
 
 The modifications includes moving the regions in the x, y, or z-direction. Flip x, flip y, or flip z correct the orientation problem. 
 
-There are also morphology operators that can dialte, smooth, or erode the regions.
+There are also morphology operators that can dilate, smooth, or erode the regions.
 
 [All Exclude First] will erase the location of the first region from all other regions.
 [First Excludes All] will erase other regions from the first region.
 [All Intercept First] will intercept all other regions with the first region.
-[All to First] wiill assign regions to the locations of the first region. This is often used in [creating a parcellation](https://twitter.com/FangChengYeh/status/1549549617699868677).
+[All to First] will assign regions to the locations of the first region. This is often used in [creating a parcellation](https://twitter.com/FangChengYeh/status/1549549617699868677).
 
 # Step T3d: Tracts
 
 Click on the [Fiber Tracking] button to start fiber tracking. Only the checked regions will affect tracking results.
-
-# (Optional) Region-Based Analysis 
-
-DSI Studio can export metrics associated with a region (e.g. size, location, FA, ADC, ...etc).
-[Regions][Statistics]. The exported information is a text file including the coordinates and the corresponding values for the indices.
 
 # (Optional) ROI files to FSL
 
@@ -125,7 +101,7 @@ The following steps will convert DSI Studio ROIs to FSL space.
 3. Select the DSI Studio ROI file
 4. Select the FSL mask or ROI file
 5. In the registration window, click on the [File] button on the left bottom corner and select [Save Transformed Image]
-6. Save converted ROI as a NIFTI file.
+6. Save the converted ROI as a NIFTI file.
 
 # (Optional) Add a new template
 
@@ -157,13 +133,13 @@ If you only have a T1W template (e.g. child or elder population), then you can w
 
 # (Optional) Add a new atlas
 
-An *atlas* is an integer-valued parcellations that record the location of each brain region. It usually has a corresponding value-name list in the text format.
+An *atlas* is an integer-valued parcellation that records the location of each brain region. It usually has a corresponding value-name list in the text format.
 
 1. **Prepare the atlas in NIFTI**: For other formats, please convert them to the NIFTI format as .nii.gz. 
 2. **A .txt text file records the labels**: An example of the text can be find [here](https://github.com/frankyeh/DSI-Studio-atlas/blob/main/ICBM152/HCP-MMP.txt). Each line has a value-name pair separated by a tab or space. The file name should match the atlas (e.g. HCP-MMP.nii.gz and HCP-MMP.txt)
 3. **Locate the target template folder**: A list of template space can be found [here](https://github.com/frankyeh/DSI-Studio-atlas), including ICBM152 (human young adult), neuonate, CIVM_mouse,...etc. You will find the same folders in the DSI Studio package. In windows, they are in under the \dsi_studio_64\atlas folder. In Mac, those folders are stored in the app package (Right-click on dsi_studio_64.app to open the DSI Studio package /Content/MacOS/atlas). 
 4. **Convert atlas to the target template space**: click on [Tools][R1: Linear Registration Toolbox], first select the atlas file (from step 1) and then select the [TEMPLATE NAME].QA.nii.gz in the template folder (identified in Step 3). Once the two volume matches, save the atlas using [Files][Save Transformed Image]
-5. **Copy atlas and its text labels to the template folder**: For human atlas, please copy the .nii.gz and correponding .txt files to the template folder (e.g., \atlas\ICBM152 in the dsi studio package). For animal atlas, please find the corresponding folder, such as the one for mouse, rat, marmoset, or rhesus. 
+5. **Copy atlas and its text labels to the template folder**: For the human atlas, please copy the .nii.gz and corresponding .txt files to the template folder (e.g., \atlas\ICBM152 in the dsi studio package). For animal atlas, please find the corresponding folder, such as the one for mouse, rat, marmoset, or rhesus. 
 
 After copying a new atlas to the template space folder, restart DSI Studio to see the new atlas added to the ICBM152 menu.
 
