@@ -16,7 +16,7 @@ There are several ways to assign regions:
 
 ## Load Regions From NIFTI Files
 
-For details, please check out the [[Regions] menu section](/gui_t3_regions.html)
+For details, please check out the [[Regions] menu section](/menu_regions.html)
 
 ## Load Regions From Built-In Atlases
 
