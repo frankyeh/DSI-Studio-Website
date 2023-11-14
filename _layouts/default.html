@@ -51,12 +51,12 @@
       <h4><a href="/doc/gui_cx.html">[Step C1-C3] Correlational Tractography</a></h4>
       </div>
       
-      <button type="button" class="collapsible">User Manual (GUI)</button>
+      <button type="button" class="collapsible">User Manual (Menu)</button>
       <div class="content">
-      <h4><a href="/doc/gui_t3_edit.html">[Edit] Menu</a></h4>
-      <h4><a href="/doc/gui_t3_regions.html">[Regions] Menu</a></h4>
-      <h4><a href="/doc/gui_t3_slices.html">[Slices] Menu</a></h4>
-      <h4><a href="/doc/gui_t3_slices.html">[Devices] Menu</a></h4>
+      <h4><a href="/doc/menu_edit.html">[Edit] Menu</a></h4>
+      <h4><a href="/doc/menu_regions.html">[Regions] Menu</a></h4>
+      <h4><a href="/doc/menu_slices.html">[Slices] Menu</a></h4>
+      <h4><a href="/doc/menu_slices.html">[Devices] Menu</a></h4>
       </div>
       
       <button type="button" class="collapsible">User Manual (CLI)</button>
@@ -92,7 +92,8 @@
           this.classList.toggle("active");
           this.nextElementSibling.style.maxHeight = (this.nextElementSibling.style.maxHeight) ? null : "500px";});
       {% if page.url contains 'gui' %}c[0].click();{% endif %}
-      {% if page.url contains 'cli' %}c[1].click();{% endif %}
+      {% if page.url contains 'menu' %}c[1].click();{% endif %}
+      {% if page.url contains 'cli' %}c[2].click();{% endif %}
       </script>
     </header>
 
