@@ -77,7 +77,7 @@ Check to make sure the scans of the same subject are matched. You may also use a
 
 The "metric" group box allows you to define how the difference is calculated. "scan2-scan1" calculates the difference (recommended), whereas "(scan2-scan1)/scan1" calculates the difference as a percentage of the first scan.
 
-The filter settings allow you to study increased metrics or decreased metrics. For most brain diseases, select [Study decreased value in the follow-up (scan2)].
+The filter settings allow you to study increased metrics or decreased metrics. The default is no filter applied, and the connectometry database will include both positive and negative change. This unfilter db can be used to test whether there are longitudinal changes in the later step. If there exists significant longitudinal change, a filtered version database can be created to investigate either the positive change or negative change. For most brain diseases, we [Study decreased value in the follow-up (scan2)].
 
 Click "Ok" to calculate the difference between scans and go back to the database window.
 
