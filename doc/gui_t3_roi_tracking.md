@@ -108,8 +108,8 @@ The following steps will convert DSI Studio ROIs to FSL space.
 A *template* is a population-average image volume that defines a standard space. To add a new space, DSI Studio will need an anisotropic map and an isotropic map, each of them should be named NAME_OF_TEMPLATE.QA.nii.gz and NAME_OF_TEMPLATE.ISO.nii.gz **The NIFTI header should correctly define the transformation to the standard space.**
 Then create a folder under the /atlas folder (e.g. /atlas/NAME_OF_TEMPLATE) and place those files under this folder. Additional modalities can be added, including NAME_OF_TEMPLATE.T1W.nii.gz NAME_OF_TEMPLATE.T2W.nii.gz NAME_OF_TEMPLATE.mask.nii.gz
 
-To create the QA and ISO templates, the recommended approach is to get QA and ISO maps of individuals and use [ANTs](https://github.com/ANTsX/ANTs)'s population normalization to get minimal deformation templates.
-Alternatively, you may use T1w to guidance the normalization and create normalized QA/ISO map and average across a population.
+To create the QA and ISO templates, the recommended approach is to get QA and ISO maps of individuals and use ANTs' [template construction](https://github.com/ntustison/TemplateBuildingExample) to get minimal deformation templates.
+Alternatively, you may use T1w to guide the normalization and create a normalized QA/ISO map and average across a population.
 
 # (Optional) Add a new atlas
 
