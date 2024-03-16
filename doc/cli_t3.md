@@ -10,10 +10,16 @@ For mapping individual bundle, please use [(automatic fiber tracking)](https://d
 
 ## Examples
 
-*Track the left arcuate fasciculus a fib files and save them in tractography*
+*Whole brain tracking on all fib files and save tractograms*
 ```
-dsi_studio --action=trk --source=*.fib.gz --track_id=Arcuate_Fasciculus_L --output=*.AF.tt.gz
+dsi_studio --action=trk --source=*.fib.gz --output=*.tt.gz
 ```
+
+*Track the left arcuate fasciculus of a fib file and save them in the t1w.nii.gz space*
+```
+dsi_studio --action=trk --source=subject01.fib.gz --track_id=Arcuate_Fasciculus_L --output=subject01.t1w.AF.tt.gz --ref=t1w.nii.gz
+```
+
 *Perform fiber tracking with all fiber tracking parameters assigned by a parameter ID*
 ```
 dsi_studio --action=trk --source=subject001.fib.gz --parameter_id=c9A99193Fba3F2EFF013Fcb2041b96438813dcb
@@ -147,12 +153,12 @@ The following settings are also included in `--parameter_id` but  usually the de
 | Parameters            | Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
 | delete_repeat  | assign the distance for removing repeat tracks (e.g. --delete_repeat=1 removes repeat tracks with distance smaller than 1 mm) |
-| output | specify the output directory or output file name (tt.gz, trk.gz, or nii.gz ). Specify `no_file` to disable tractography output. <br> To output coordinates to the t1w space, specify --ref=T1w.nii.gz|
+| output | specify the output directory or output file name (tt.gz, trk.gz, or nii.gz ). Specify `no_file` to disable tractography output. <br> To output coordinates to the t1w space, specify `--ref=T1w.nii.gz`|
+| ref | specify the file name (e.g. t1w.nii.gz) for output tracts in the that space |
 | end_point | specify file name for output endpoint coordinates (.txt or .mat) |
 | end_point1 | specify file name for output the first endpoint region in NIFTI format |
 | end_point2 | specify file name for output the second endpoint region in the NIFTI format |
 | template_track | specify file name for output tracts in the template space |
-| ref | specify the file name (e.g. t1w.nii.gz) for output tracts in the that space |
 | other_slices | specify the file name of the other image modality for analysis. <br> Multiple files can be assigned by using comma separator (e.g. --other_slices=t1w.nii.gz,t2w.nii.gz). <br> Wildcard supported (e.g., --other_slices=*.nii.gz) <br> If the image is already registered, to avoid registration, the other image modality should have the same dimension as the DWI, and the file name should include "reg" (e.g. --other_slices=t1w_reg.nii.gz) |
 | export |  export additional information related to the fiber tracts <br> use "--export=tdi" to generate track density image in the diffusion space. <br> use "--export=tdi2" to generate track density image in the subvoxel diffusion space. <br> use "--export=tdi_t1t2" to generate track density image in the t1w space specified by --t1t2=t1w.nii.gz.  <br> use "--export=tdi_color" or "--export=tdi2_color" to generate track color density image. <br> use "--export=stat" to export tracts statistics like along tract mean fa, adc, or morphology index such as volume, length, ... etc. <br> To export TDI endpoints, use tdi_end or tdi2_end. <br> use "--export=report:dti_fa:0:1" to export the tract reports on "fa" values with a profile style at x-direction "0" and a bandwidth of "1" <br> the profile style can be the following: <br> 0 x-direction <br> 1 y-direction <br> 2 z-direction <br> 3 along tracts <br> 4 mean of each tract <br> You can export multiple outputs separated by ",". For example, <br> --export=stat,tdi,tdi2 exports tract statistics, tract density images (TDI), subvoxel TDI, along tract qa values, and along tract gfa values. |
 
