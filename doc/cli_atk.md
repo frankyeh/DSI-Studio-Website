@@ -1,6 +1,6 @@
 # Automatic Fiber Tracking
 
-> use --action=`atk` to initiate automatic fiber tracking
+> Use --action=`atk` to initiate automatic fiber tracking
 
 Automatic fiber tracking maps individual bundles using deterministic fiber tracking and tract recognition. The implementation is detailed in Yeh, Fang-Cheng. "Shape analysis of the human association pathways." Neuroimage 223 (2020): 117329.
 
@@ -11,9 +11,9 @@ Automatic fiber tracking maps individual bundles using deterministic fiber track
 dsi_studio --action=atk --source=*.fib.gz
 ```
 
-*Run fiber tracking on all fib.gz files to map corticospinal tracts (4 specifies "long projection pathways" atlas)
+*Run fiber tracking on all fib.gz files to map corticospinal tracts and optic radiation
 ```
-dsi_studio --action=atk --source=*.fib.gz --tractography_atlas=4 --track_id=corticospinal
+dsi_studio --action=atk --source=*.fib.gz --track_id=Corticos,Optic
 ```
 
 
@@ -27,18 +27,18 @@ dsi_studio --action=atk --source=*.fib.gz --export_template_trk=1
 
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
-| source |  | specify fib.gz files for automatic bundle tracking.  |
-| tractography_atlas | 0 | specify the atlas.<p>    0: association pathway<p>    1:cerebellum pathways<p>    2:commissure pathways<p>    3:cranial nerves<p>    4:long projection pathways<p>    5:short projection pathways  |
-| track_id | | specify the id number or the name of the bundle. If no value is specified, then all tracts in the atlas will be mapped.<p>    example:<p>   for tracking left and right arcuate fasciculus, assign --track_id=arcuate    (DSI Studio will find bundles with names containing 'arcuate', case insensitive) <p>    example:<p>   for tracking left and right arcuate and cingulum, assign --track_id=arcuate,cingulum|
-| tolerance | `22,26,30` | the tolerance for bundle recognition. The unit is in mm. Multiple values can be assigned using comma separator. A larger value may include larger track variation but also subject to more false results. |
-| track_voxel_ratio | `2.0` | the track-voxel ratio for the total number of streamline count. A larger value gives better mapping with the expense of computation time. 
+| source |  | Specify fib.gz files for automatic bundle tracking.  |
+| track_id | | Specify the name or the bundles separated by commas. The complete list of available pathway can be found [here](https://github.com/frankyeh/DSI-Studio-atlas/blob/main/ICBM152_adult/ICBM152_adult.tt.gz.txt)<p>    example:<p>   for tracking left and right arcuate fasciculus, assign --track_id=arcuate    (DSI Studio will find bundles with names containing 'arcuate', case insensitive) <p>    example:<p>   for tracking left and right arcuate and cingulum, assign --track_id=arcuate,cingulum|
+| template | 0 | Specify the template. Current DSI Studio only has atk for ICBM152,INDI_rhesus,Pitt_Marmoset :<br>`0`:ICBM152<br>`1`:CIVM_mouse<br>`2`:Neonate<br>`3`:INDI_rhesus<br>`4`:Pitt_Marmoset<br>`5`:WHS_SD_rat |
+| tolerance | `22,26,30` | the tolerance for bundle recognition. The unit is in mm. Multiple values can be assigned using a comma separator. A larger value may include larger track variation but also subject to more false results. |
+| track_voxel_ratio | `2.0` | the track-voxel ratio for the total number of the streamline count. A larger value gives better mapping at the expense of computation time. 
 | check_ending | `1` and `0` for cingulum | remove tracts if they terminate in high anisotropy locations. |
-| thread_count | hardware max | Specify number of CPU cores used in computation |
-| yield_rate | '0.00001' | This rate will be used to terminate tracking early if DSI Studio find the fiber trackings is not generating results |
-| default_mask | `0` | Specify whether default mask is used. |
+| thread_count | hardware max | Specify the number of CPU cores used in computation |
+| yield_rate | '0.00001' | This rate will be used to terminate tracking early if DSI Studio finds the fiber trackings are not generating results |
+| default_mask | `0` | Specify whether the default mask is used. |
 | overwrite | `0` | Specify whether to overwrite existing files. |
 | export_stat | `1` | Specify whether to output track statistics. |
-| export_trk | `1` | Specify whether to output tractography file. |
+| export_trk | `1` | Specify whether to output the tractography file. |
 | export_template_trk | `0` | Specify whether to output tractography in the template space. |
 | trk_format | `tt.gz` | Specify the postfix and the output format of the tractography. Supported formats include tt.gz trk trk.gz tck txt mat nii nii.gz. It also allows for changing the postfix of the filename |
 | stat_format | `stat.txt` | Specify the postfix for the statistics text file (has to be in text format).  |
