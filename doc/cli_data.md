@@ -231,7 +231,7 @@ The following is a list of matrix used in TT file:
 ```matlab
 function track = parse_tt(track)
 buf1 = uint8(track);
-buf2 = int8(track);
+buf2 = typecast(buf1,'int8');
 pos = [];
 i = 1;
 while(i <= length(track))
