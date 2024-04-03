@@ -14,11 +14,6 @@ dsi_studio --action=exp --source=subject1.fib.gz --export=dti_fa,ad,md
 dsi_studio --action=exp --source=*.fib.gz --export=qa,iso
 ```
 
-*Export tract data into a TT file
-```
-dsi_studio --action=exp --source=af.trk.gz --output=af.tt.gz
-```
-
 
 ## Core Functions
 
@@ -33,9 +28,14 @@ dsi_studio --action=exp --source=af.trk.gz --output=af.tt.gz
 
 ## Examples
 
-*Export tract data into a TT file
+*Export TRK's tract data into a TT file
 ```
 dsi_studio --action=exp --source=af.trk.gz --output=af.tt.gz
+```
+
+*Export all TT's tract data into TRK files
+```
+dsi_studio --action=exp --source=*.tt.gz --output=*.trk.gz
 ```
 
 ## Core Functions
