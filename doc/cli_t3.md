@@ -127,12 +127,21 @@ The following settings are also included in `--parameter_id` but  usually the de
 
 ## Differential tracking settings
 
+## Examples
+
+*Differential fiber tracking on all patient's fib files against HCP1065 NQA MNI-space template to map pathways with 20% decreases (The QA nifti file needs to have mni in the file name to enable warping
+```
+dsi_studio --action=trk --source=*.fib.gz --other_slices=HCP1065_nqa_mni.nii.gz --dt_metric2=qa --dt_metric1=HCP1065_nqa_mni --dt_threshold=0.2
+```
+
+
+
 | Parameters            | Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
 | other_slices     | [option 1] specify the NIFTI file or to be inserted for differential tractography (e.g., --other_slices=pre.nii.gz,post.nii.gz)<br> [option 2]  specify a connectometry database with built-in demographics and specify subject's demographics using --subject_demo (e.g., --other_slices=study.db.fib.gz --subject_demo=62,1)<br>If the image is in the MNI space, add `mni` in the filename (e.g. xxx.mni.nii.gz).<br>To disable registration, add `native` in the file name (e.g. qa.native.nii.gz). |
-| dt_threshold | assign percentage threshold for differential tractography. assign --dt_threshold=0.1 to detect more than 10% change. |
-| dt_metric1 | specify the first metrics for differential tracking |
-| dt_metric2 | specify the second metrics for differential tracking |
+| dt_threshold | Assign percentage threshold for differential tractography. assign --dt_threshold=0.1 to detect more than 10% change. |
+| dt_metric1 | Specify the first metrics for differential tracking |
+| dt_metric2 | Specify the second metrics for differential tracking |
 | dt_threshold_type | specify the calculation of the differences. 0: (m1-m2)/m1 1: (m1-m2)/m2 2:(m1-m2) | 
 
 > To load slices as "MNI images", please include "mni" in the file name
