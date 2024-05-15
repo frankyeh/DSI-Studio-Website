@@ -32,6 +32,11 @@ dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts1.tt.gz --export=
 dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --export=stat    
 ```
 
+*Get track statistics from a mni-space track file*
+```
+dsi_studio --action=ana --source=my.fib.gz --tract=tract_mni.tt.gz --export=stat    
+```
+
 *Get track DKI and ODI statistics from a track file*
 ```
 dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --other_slices=DKI.nii.gz,ODI.nii.gz --export=stat    
@@ -99,7 +104,7 @@ dsi_studio --action=ana --source=test.src.gz --export=4dnii
   
 | Parameters  | Description                                                                 |
 |:------------|:------------------------------------------------------------------------------|
-| tract | Specify the tract file |
+| tract | Specify the tract file | Specify tractography file (*.trk.gz *.tt.gz). If the tracts are in the MNI-space, include `mni` in the file name (e.g. tract_mni.tt.gz) |
 | output | Use"--output=Tract.txt" to convert the trk file to another format or ROI (assigned output file as NIFTI file) |
 | export | Export additional information related to the fiber tracts |
 
