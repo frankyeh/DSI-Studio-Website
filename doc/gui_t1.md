@@ -82,7 +82,7 @@ To do this, use [**Diffusion MRI Analysis**][**Step T1a: Quality Control**] and 
 
 <img src="https://github.com/frankyeh/DSI-Studio-Website/assets/275569/daf1e77f-5774-4284-9211-480c6a37a08a" width="600"/>
 
-- Check consistency in image dimension, resolution, DWI count, shell count. It is likely that certain scans are incomplete, and the total DWI count will be different (see subject 102008 in the example).
+- Check consistency in image dimension, resolution, DWI count, and shell count. Certain scans are likely incomplete, and the total DWI count will be different.
 
 - Check if there is a `low-quality outlier` label. DSI Studio will examine 'neighboring DWI correlation', which decreases if there is a prominent eddy current artifact, head motion, or any head coil issues that may impact the diffusion signals.
 
