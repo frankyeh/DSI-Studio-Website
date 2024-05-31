@@ -47,9 +47,13 @@ The purpose of the mask is to filter out the background region, increase the rec
 Recommendation steps include thresholding, smoothing, and defragment.
 You can open/save the mask to a txt file or nifti file.
 
-# Preprocessing (Human Data)
+# Preprocessing Steps
 
-***If you have reverse-phase encoding acquisition:***
+Please follow each of the steps to preprocess DWI data.
+
+## 1. TOPUP/EDDY
+
+ ***If you have reverse-phase encoding acquisition:***
 1. On the top menu, click on [Corrections][TOPUP/EDDY]
 2. Select the reverse phase encoding acquisition (nii.gz or src.gz). If you are not sure how to identify it, please refer to the [video tutorial](https://www.youtube.com/watch?v=-J8qBMiHQHk&t=130s)
 3. DSI Studio will call FSL's topup and eddy to handle susceptibility artifact and eddy current distortion.
@@ -62,47 +66,41 @@ You can open/save the mask to a txt file or nifti file.
 **After the correction, it is recommended to save a new SRC file**
 **When a user load the SRC file, DSI Studio will check if there are previous TOPUP/EDDY correction results and will load them if users request the TOPUP/EDDY again**
 
-# Preprocessing (Animal Data)
 
+## 2. Correct image orientations (animal scans)
 
-1. Correct image orientation
+Most animal scans are likely to be acquired with an orientation different from the animal template in DSI Studio. Therefore, it is necessary to rotate the image volume to match the template. This will ensure the b-table checking functions correctly and the atlas function in Step T3 works properly.
 
-
-    Most animal scans are likely to be acquired at an orientation different from the animal template in DSI Studio. You will need to rotate the image volume to match the template so that the atlas function can be used in Step T3. The following is the template orientation for mouse/marmoset/rhesus data.
+The following is the template orientation for mouse, marmoset, and rhesus data.
    
-    ![](/images/t2_default_template.png)
+![](/images/t2_default_template.png)
    
-    Moving the sliding bar to the "right" should go to the "top" of the brain. For rhesus and marmoset scans, the slices should be oriented in axial view, which top slice position on the right of the sliding bar.
+Moving the sliding bar to the "right" should go to the "top" of the brain. For rhesus and marmoset scans, the slices should be oriented in the axial view, with the top slice position on the right of the sliding bar.
 
-    ![image](https://user-images.githubusercontent.com/275569/149644623-ee22e1d3-d8a6-4650-b2ae-ce10d93e11f2.png)
+![image](https://user-images.githubusercontent.com/275569/149644623-ee22e1d3-d8a6-4650-b2ae-ce10d93e11f2.png)
 
-    Use [**Edit**][**Image Flip**] or [**Image Swap**] to make sure your image volume matches that of the template. Note that either "Image Flip" or "Image Swap" will create a mirrored image, and thus you may need either 2 or 4 flip/swap operations to avoid creating mirrow images. ***you can always add an additional left-right flip to ensure an even number of operations***.
-    
-    For correcting oblique angles, use [**Edit**][**Rotate...**] 
+Use [**Edit**][**Image Flip**] or [**Image Swap**] to ensure your image volume matches the template orientation. Note that either "Image Flip" or "Image Swap" will create a mirrored image, so you may need either 2 or 4 flip/swap operations to avoid creating mirrored images. ***You can always add an additional left-right flip to ensure an even number of operations***.
+      
+## 3. Remove background signals or crop image volume (optional, recommended for animal studies)
+
+Animal scans often include signals from tissues outside the brain, and they can cause a problem in the atlas or template-related analysis.
+ 
+This can be tackled by using [**Edit**][**Erase Background Signals**] to eliminate the signals outside the mask.
    
-2. remove background signals or crop image volume (optional, recommended)
+Also use [**Edit**][**Crop Background**] to reduce image volume,
 
-    Animal scans often include signals from tissues outside the brain, and they can cause a problem in the atlas or template-related analysis.
-   
-    This can be tackled by using [**Edit**][**Erase Background Signals**] to eliminate the signals outside the mask.
-   
-    Also use [**Edit**][**Crop Background**] to reduce image volume,
-   
-3. Reduce FOV (optional)
+## 4. Check b-table orientation (animal scans)
 
-    After removing background signals, there could be a large empty background. The FOV can be reduced to fit the mask by [**Edit**][**Crop background**].
+If your analysis does not consider fiber orientation (e.g. just analyze FA, ADC...etc.) You can ignore the b-table flipping problem. Otherwise, you will need to pay attention to the reconstructed fiber orientations.
 
-4. Make isotropic (optional)
+Apply [**B-table**][**Check b-table**] to check b-table orientation. The b-table checking function will examine a total of 24 different flip and swap conditions and figure out the one that gives the best fiber coherence. 
 
-    Many animal scans may have a non-isotropic resolution, and sometimes it can cause registration problems.
+The b-table checking function may fail if the SNR is low. In such cases, you might need to manually test different b-table flip/swap configurations to determine which one provides the correct fiber orientations.. 
 
-    The data can be interpolated using [Edit][Make isotropic]
+## 5. Make isotropic (optional)
 
-5. Check [Check b-table] at Step T2b(2)
+Many scans have non-isotropic resolution, which can cause registration problems. You can interpolate the data to make it isotropic using [**Edit**][**Make isotropic**]
 
-    If your analysis does not consider fiber orientation (e.g. just analyze FA, ADC...etc.) You can ignore the b-table flipping problem. Otherwise, you will need to pay attention to the reconstructed fiber orientations.
-
-    The b-table from animal scans are often flipped in the image dimension, and DSI Studio can help correct it if users check the [**Step T2b(2)**][**Check b-table**]. This b-table checking function will examine a total of 24 different flip and swap conditions and figure out the one that gives the best fiber coherence. However, the b-table checking function may fail if the SNR is not good, and the reconstructed fiber orientations may be flipped. If this happens, you may need to uncheck this function, and manually flip or swap b-table using the [**B-table**][**flip**] function.
 
 # Step T2b(1): Select a Reconstruction Method
 
