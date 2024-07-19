@@ -67,8 +67,9 @@ done
 | param0 | `1.25` (in-vivo) or `0.6` (ex-vivo)| the diffusion sampling length ratio for GQI and QSDR reconstruction. |
 | other_output | `fa,ad,rd,md,nqa,iso,rdi,nrdi` | specify what diffusion metrics to calculate. use `all` to get all of possible metrics |
 | record_odf | `0` | specify whether to output the ODF in the fib file (used in connectometry analysis). |
-| qsdr_reso | dwi resolution | specify output resolution for QSDR reconstruction |
+| qsdr_reso | `2.0` | specify output resolution for QSDR reconstruction |
 | template | `0` | specify the template for QSDR reconstruction:<br>`0`:ICBM152<br>`1`:CIVM_mouse<br>`2`:Neonate<br>`3`:INDI_rhesus<br>`4`:Pitt_Marmoset<br>`5`:WHS_SD_rat |
+| make_isotropic | `2.0` for human scans or slice thickness for nonhuman | Resample DWI to an isotropic resolution of the specified resolution (i.e. --make_isotropic=2.0) |
 
 
 ## Additional Operation
@@ -80,7 +81,7 @@ done
 | mask | Specify the mask file (.nii.gz). To use U-Net, specify --mask=unet |
 | motion_correction | Apply rigid-body transformation to align DWI volumes. The b-table is also rotated accordingly |     
 | cmd  | Specify any of the following commands for preprocessing. Use "+" to combine commands, and use "=" to assign value/parameters (e.g. --cmd="[Step T2][Corrections][EDDY]+[Step T2][Edit][Overwrite Voxel Size]=1.0" |
-| rev_pe | Specify the NIFTI or SRC file of the reversed-phase encoding images for TOPUP/EDDY |
+| rev_pe | Specify the NIFTI, RSRC, or SRC file of the reversed-phase encoding images for TOPUP/EDDY. specify empty parameter (i.e. '--rev_pe=') to automatically search for RSRC or NIFTI files that can be used. |
 | rotate_to  | Specify a T1W or T2W for DSI Studio to rotate DWI to its space. (no scaling or shearing) |
 | align_to  | Specify a T1W or T2W for DSI Studio to use affine transform to its space. (including scaling or shearing) |
 | other_image  | Assign other image volumes (e.g., T1W, T2W image) to be wrapped with QSDR. --other_image=<label>:<file path>,<label>:<file path> |
