@@ -80,14 +80,16 @@ done
 | check_btable | Set --check_btable=1 to test b-table orientation and apply automatic flipping |
 | mask | Specify the mask file (.nii.gz). To use U-Net, specify --mask=unet |
 | motion_correction | Apply rigid-body transformation to align DWI volumes. The b-table is also rotated accordingly |     
-| cmd  | Specify any of the following commands for preprocessing. Use "+" to combine commands, and use "=" to assign value/parameters (e.g. --cmd="[Step T2][Corrections][EDDY]+[Step T2][Edit][Overwrite Voxel Size]=1.0" |
 | rev_pe | Specify the NIFTI, RSRC, or SRC file of the reversed-phase encoding images for TOPUP/EDDY. specify empty parameter (i.e. '--rev_pe=') to automatically search for RSRC or NIFTI files that can be used. |
 | rotate_to  | Specify a T1W or T2W for DSI Studio to rotate DWI to its space. (no scaling or shearing) |
 | align_to  | Specify a T1W or T2W for DSI Studio to use affine transform to its space. (including scaling or shearing) |
 | other_image  | Assign other image volumes (e.g., T1W, T2W image) to be wrapped with QSDR. --other_image=<label>:<file path>,<label>:<file path> |
 | save_src | Save preprocessed images to a new SRC file |
 | save_nii | Save preprocessed images back to 4d NIFTI file |
-           
+| cmd  | Specify any of the following commands for preprocessing. Use "+" to combine commands, and use "=" to assign value/parameters (e.g. --cmd="[Step T2][Corrections][EDDY]+[Step T2][Edit][Overwrite Voxel Size]=1.0" |
+
+**available command list**
+
      [Step T2][File][Save 4D NIFTI]
      [Step T2][File][Save Src File]
      
