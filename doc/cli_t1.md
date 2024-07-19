@@ -78,18 +78,18 @@ call dsi_studio.exe --action=src --source=%%x\%%x_dwi_QCed.nii --bval=%%x\%%x_QC
 
 | Parameters            | Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
-| source | specify a directory storing DICOM/NIFTI files or the filename of a 4D NIFTI file |
+| source | Specify a directory storing DICOM/NIFTI files or the filename of a 4D NIFTI file |
 
 
 ## Optional Functions
 
 | Parameters            | Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
-| other_source | specify other files to be included in the SRC file. Multiple files can be assigned using comma separator, (e.g. --other_source=1.nii.gz,2.nii.gz) |
-| output | assign the output src file name (.src.gz) or the output folder |
-| b_table | assign the text file to replace b-table |
-| bval | specify the location of the FSL bval file<sup>a</sup> |
-| bvec | specify the location of the FSL bvec file<sup>a</sup> |
+| other_source | Specify other files to be included in the SRC file. Multiple files can be assigned using comma separator, (e.g. --other_source=1.nii.gz,2.nii.gz) |
+| output | Assign the output src file name (.src.gz) or the output folder |
+| b_table | Assign the text file to replace b-table |
+| bval | Specify the location of the FSL bval file<sup>a</sup> |
+| bvec | Specify the location of the FSL bvec file<sup>a</sup> |
 
 
 
@@ -99,9 +99,9 @@ call dsi_studio.exe --action=src --source=%%x\%%x_dwi_QCed.nii --bval=%%x\%%x_QC
 
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
-| recursive | `0` | search all NIFTI or DICOM files under the directory specified in --source |
-| up_sampling | `0` | upsampling the DWI, `0`:no resampling, `1`:upsample by2, `2`:downsample by2, `3`:upsample by 4, `4`:downsample by 4 |
-| bids | 0 | specify whether to use BIDS standard to parse a folder's NIFTI files. --bids=1 |
-| overwrite | 0 | specify whether to overwrite existing files |
+| recursive | `0` | Search all NIFTI or DICOM files under the directory specified in --source |
+| up_sampling | `0` | Upsampling the DWI, `0`:no resampling, `1`:upsample by2, `2`:downsample by2, `3`:upsample by 4, `4`:downsample by 4 |
+| bids | `0` not bids | Specify whether to use BIDS standard to parse a folder specified by --source  |
+| overwrite | `0` no overwrite | Specify whether to overwrite existing files |
 
     
