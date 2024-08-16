@@ -100,7 +100,6 @@ call dsi_studio.exe --action=src --source=%%x\%%x_dwi_QCed.nii --bval=%%x\%%x_QC
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
 | recursive | `0` | Search all NIFTI or DICOM files under the directory specified in --source |
-| up_sampling | `0` | Upsampling the DWI, `0`:no resampling, `1`:upsample by2, `2`:downsample by2, `3`:upsample by 4, `4`:downsample by 4 |
 | bids | `0` not bids | Specify whether to use BIDS standard to parse a folder specified by --source  |
 | overwrite | `0` no overwrite | Specify whether to overwrite existing files |
 
