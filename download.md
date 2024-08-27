@@ -4,13 +4,16 @@ DSI Studio has a high version turning rate, and occasionally the computation out
 
 [![Build Release](https://github.com/frankyeh/DSI-Studio/actions/workflows/build_dsistudio.yml/badge.svg)](https://github.com/frankyeh/DSI-Studio/actions/workflows/build_release.yml)<a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio"></a><a href="https://github.com/frankyeh/DSI-Studio/releases"><img src="https://img.shields.io/github/v/release/frankyeh/DSI-Studio"></a>
 
-## Download Links: "Hou" versions (2024)
+## Download Links: "Hou" versions (2024-)(Pre-release under testing)
 
 *Download and unzip to run the executive. No installation needed*
+
 *Currently at pre-release stage under frequent updates and testing*
+
 *If you have existing studies using "Chen", make sure to make a copy of the working DSI Studio*
 
-Major Updates from "Chen":
+**Major Updates from "Chen"**
+
 - New FIB/SRC format (*.fz,*.sz): higher storage efficiency.
 - DSI Studio Data Hub: instant access to thousands of readily trackable data.
 - New linear and nonlinear registrations: support simultaneously multi-modality registration with greater accuracy dealing with lesions.
