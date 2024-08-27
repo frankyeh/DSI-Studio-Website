@@ -49,7 +49,7 @@ DSI Studio is dual-licensed. You can pick one license or the other.
 
 ## Academic License
 
-DSI Studio is free for academic or research purposes under [Attribution-***NonCommercial***-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) license. 
+DSI Studio is free for academic or research purposes under [Attribution-***NonCommercial***-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) license. For license agreement details, please check out the agreement [here](https://github.com/frankyeh/DSI-Studio/?tab=License-1-ov-file#readme).
 
 ## Commercial License
 
