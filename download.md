@@ -1,34 +1,30 @@
-DSI Studio has a high version turning rate, and occasionally the computation outcome may be different between versions. I would recommend  keeping a local copy of DSI Studio for each research project and updating DSI Studio every time a new project is initiated.
-
-# Packages
 
 [![Build Release](https://github.com/frankyeh/DSI-Studio/actions/workflows/build_dsistudio.yml/badge.svg)](https://github.com/frankyeh/DSI-Studio/actions/workflows/build_release.yml)<a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio"></a><a href="https://github.com/frankyeh/DSI-Studio/releases"><img src="https://img.shields.io/github/v/release/frankyeh/DSI-Studio"></a>
 
-## Download Links: "Hou" versions (2024-)(Pre-release under testing)
+# Download Links: "Hou" versions (2024-)(Pre-release under testing)
 
-*Download and unzip to run the executive. No installation needed*
+**Hou version is currently at the pre-release stage under frequent updates and testing**
 
-*Currently at pre-release stage under frequent updates and testing*
+Download and unzip to run the executive. No installation is needed. DSI Studio has a high version turning rate, and the computation outcome may differ between versions. I would recommend  keeping a local copy of DSI Studio for each research project and updating DSI Studio every time a new project is initiated.
 
-*If you have existing studies using "Chen", make sure to make a copy of the working DSI Studio*
-
-**Major Updates from "Chen"**
-
-- New FIB/SRC format (*.fz,*.sz): higher storage efficiency.
-- DSI Studio Data Hub: instant access to thousands of readily trackable data.
-- New linear and nonlinear registrations: support simultaneously multi-modality registration with greater accuracy dealing with lesions.
-- New GUI
 
 | OS      | File     | Note      |
 |---------|----------|-----------|
 |  Windows (7+)  |  [GPU version (recommended)](https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_win.zip)<br> [CPU version (if GPU does not work)](https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_win_cpu.zip)| Unzip the file and click on the DSI Studio program to run it. <br> If missing DLL files, install the [VC package](https://aka.ms/vs/17/release/vc_redist.x64.exe).<br>To use GPU, install [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_network) and update your graphic drivers.|
 |  Mac (12+)      |  [dsi_studio_mac-12.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_macos-12_qt6.zip)<br>[dsi_studio_mac-13.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_macos-13_qt6.zip)<br>[dsi_studio_mac-14.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_macos-14_qt6.zip) | make sure to [enable run permission](http://mac-how-to.wonderhowto.com/how-to/open-third-party-apps-from-unidentified-developers-mac-os-x-0158095/). |
 |  Ubuntu (20.04+)   |  [dsi_studio_ubuntu2004.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_ubuntu2004.zip)<br>[dsi_studio_ubuntu2204.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_ubuntu2204.zip)<br>[dsi_studio_ubuntu2404.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_ubuntu2404.zip)<br> | If showing error related to *libQt6Charts*, run `sudo apt install libqt6charts6-dev`<br> If reporting error related to xcb, check out this [solution](https://groups.google.com/g/dsi-studio/c/b61uyoo0CuI). |
+|  Container (Docker)   |  docker hub repository: `dsistudio/dsistudio:latest`  | `docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $PWD:/data dsistudio/dsistudio:latest` |
+
+**Change log **
+
+- 2024/08:
+  - New FIB/SRC format (*.fz,*.sz): higher storage efficiency.
+  - DSI Studio Data Hub: instant access to thousands of readily trackable data.
+  - New linear and nonlinear registrations: support simultaneously multi-modality registration with greater accuracy dealing with lesions.
+  - New GUI
 
 
-## Download Links: "Chen" versions (2022-2024)
-
-*Download and unzip to run the executive. No installation needed*
+# Download Links: "Chen" versions (2022-2024)
 
 | OS      | File     | Note      |
 |---------|----------|-----------|
@@ -36,8 +32,9 @@ DSI Studio has a high version turning rate, and occasionally the computation out
 |  Mac (11+)      |  Qt5<br>[dsi_studio_mac-11.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_macos-11.zip)<br>[dsi_studio_mac-12.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_macos-12.zip)<br>Qt6<br>[dsi_studio_mac-11.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_macos-11_qt6.zip)<br>[dsi_studio_mac-12.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_macos-12_qt6.zip)<br>[dsi_studio_mac-13.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_macos-13_qt6.zip) | make sure to [enable run permission](http://mac-how-to.wonderhowto.com/how-to/open-third-party-apps-from-unidentified-developers-mac-os-x-0158095/). |
 |  Ubuntu (16.04+)   |  [dsi_studio_ubuntu1604.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_ubuntu1604.zip)<br>[dsi_studio_ubuntu1804.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_ubuntu1804.zip)<br>[dsi_studio_ubuntu2004.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_ubuntu2004.zip)<br>[dsi_studio_ubuntu2204.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_ubuntu2204.zip)<br> | If showing error related to *libQt6Charts*, run `sudo apt install libqt6charts6-dev`<br> If reporting error related to xcb, check out this [solution](https://groups.google.com/g/dsi-studio/c/b61uyoo0CuI). |
 |  CentOS (7)   |  [dsi_studio_centos7.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2023.07.08/dsi_studio_centos7.zip)<br> | |
+|  Container (Docker)   |  docker hub repository: `dsistudio/chen-2024-06-12`  | `docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $PWD:/data dsistudio/chen-2024-06-12` |
 
-Older "Chen" versions can be found [here](https://github.com/frankyeh/DSI-Studio/releases)*
+Previous "Chen" versions can be found [here](https://github.com/frankyeh/DSI-Studio/releases)*
 
 **Change Log**
 
@@ -46,26 +43,10 @@ Older "Chen" versions can be found [here](https://github.com/frankyeh/DSI-Studio
 - 2023/07/08: Tractography atlas is further separated into 5 sets of pathways. The GUI and command line interface for automated fiber tracking has been modified. The updated DSI Studio allows for the use of multiple tractography atlases.
 - 2023/10/02: The Otsu's threshold was updated to ignore zeros values in the background, as a result, the equivalent value will be slightly different if there are zeros in the background. The seeding region in automatic fiber tracking was updated to provide more comprehensive mapping. The previous version seeds within a more restricted region designated by the atlas and some branches may not be fully covered. The updated version will have a much larger seeding region to get better coverage.
 
-## Download Links: Pre-"Chen" versions
+# Download Links: Pre-"Chen" versions
 
 Versions before "Chen" can be downloaded from [here](https://www.dropbox.com/sh/ectib64vhctkl8b/AADBRYp_aPLEuAOdNw393tO-a?dl=0)*
 
-# Containers
-
-**Docker**
-
-```
-docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $PWD:/data dsistudio/dsistudio:latest
-```
-
-**Singularity**
-     
-```
-$ singularity pull docker://dsistudio/dsistudio:latest     # This creates a singularity container *.sif file from the latest release of DSI Studio. Make sure you keep a copy of the .sif file for your results
-$ singularity exec -B /var,/run -B /home/server/folder dsistudio_latest.sif dsi_studio  # Some cluster does not allow users to access the host drive, and you may need to mount folder into singularity container
-$ singularity exec dsistudio_latest.sif dsi_studio   #  This invokes the graphic interface of DSI Studio 
-$ singularity exec dsistudio_latest.sif dsi_studio --action=rec --source=my.src.gz # call DSI Studio command line interface in the singularity container  
-```
 
 # License
 
