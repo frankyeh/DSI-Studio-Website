@@ -11,7 +11,9 @@
       gtag('config', 'G-GV2KQKX4TF');
     </script>
     <meta charset="UTF-8">
-    {% include google-analytics.html %}
+    {% if site.google_analytics and jekyll.environment == 'production' %}
+    {% include analytics.html %}
+    {% include google_network_domain.html %}
     {% endif %}
 {% seo %}
     <link rel="shortcut icon" type="image/x-icon" href="/favicon-16x16.png">
