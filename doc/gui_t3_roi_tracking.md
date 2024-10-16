@@ -16,7 +16,7 @@ There are several ways to assign regions:
 
 ## Load Regions From NIFTI Files
 
-For details, please check out the [[Regions] menu section](/menu_regions.html)
+For details about loading regions from NIFTI files, please check out the [[Regions] menu section](https://dsi-studio.labsolver.org/doc/menu_regions.html)
 
 ## Load Regions From Built-In Atlases
 
