@@ -49,11 +49,13 @@ You can open/save the mask to a txt file or nifti file.
 
 # Preprocessing Steps
 
-Please follow each of the steps to preprocess DWI data.
+Please follow each of the steps to preprocess DWI data. The following steps has to be done in the correct order (starting from 1. 2. ...etc).
 
 ## 1. TOPUP/EDDY
 
- ***If you have reverse-phase encoding acquisition:***
+**Most animal studies are not able to use FSL TOPUP/EDDY, and you may skip this step**
+
+***If you have reverse-phase encoding acquisition:***
 1. On the top menu, click on [Corrections][TOPUP/EDDY]
 2. Select the reverse phase encoding acquisition (nii.gz or src.gz). If you are not sure how to identify it, please refer to the [video tutorial](https://www.youtube.com/watch?v=-J8qBMiHQHk&t=130s)
 3. DSI Studio will call FSL's topup and eddy to handle susceptibility artifact and eddy current distortion.
@@ -69,9 +71,13 @@ Please follow each of the steps to preprocess DWI data.
 
 ## 2. Correct image orientations (animal scans)
 
-Most animal scans are likely to be acquired with an orientation different from the animal template in DSI Studio. Therefore, it is necessary to rotate the image volume to match the template. This will ensure the b-table checking functions correctly and the atlas function in Step T3 works properly.
+**Most animal studies need this step to make sure most functions works**
 
-The following is the template orientation for mouse, marmoset, and rhesus data.
+Animal scans are likely to be acquired with an orientation different from the animal template in DSI Studio. Therefore, it is necessary to rotate the image volume to match the template. This will ensure the b-table checking functions correctly and the atlas function in Step T3 works properly.
+After 2024 October versions, DSI Studio provide automatic way to correct image orientation at top menu [Corrections][Volume Orientation Correction]. The function needs correct mask to work.
+You may apply it and check its accuracy with the default template orientation.
+
+The following is the default template orientation for mouse, marmoset, and rhesus data.
    
 ![](/images/t2_default_template.png)
    
@@ -91,6 +97,8 @@ Also use [**Edit**][**Crop Background**] to reduce image volume,
 
 ## 4. Check b-table orientation (animal scans)
 
+**Most animal studies need this step to get correct tractography. Ignoring this if you are not using fiber tracking**
+
 If your analysis does not consider fiber orientation (e.g. just analyze FA, ADC...etc.) You can ignore the b-table flipping problem. Otherwise, you will need to pay attention to the reconstructed fiber orientations.
 
 Apply [**B-table**][**Check b-table**] to check b-table orientation. The b-table checking function will examine a total of 24 different flip and swap conditions and figure out the one that gives the best fiber coherence. 
@@ -99,8 +107,8 @@ The b-table checking function may fail if the SNR is low. In such cases, you mig
 
 ## 5. Make isotropic (optional)
 
+**Isotropic resolution is critical for fiber tracking. Ignoring this if you are not using fiber tracking**
 Many scans have non-isotropic resolution, which can cause registration problems. You can interpolate the data to make it isotropic using [**Edit**][**Make isotropic**]
-
 
 # Step T2b(1): Select a Reconstruction Method
 
