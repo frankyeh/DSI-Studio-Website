@@ -69,18 +69,24 @@ done
 | record_odf | `0` | specify whether to output the ODF in the fib file (used in connectometry analysis). |
 | qsdr_reso | `2.0` | specify output resolution for QSDR reconstruction |
 | template | `0` | specify the template for QSDR reconstruction:<br>`0`:ICBM152<br>`1`:CIVM_mouse<br>`2`:Neonate<br>`3`:INDI_rhesus<br>`4`:Pitt_Marmoset<br>`5`:WHS_SD_rat |
+
+## Preprocessing Operation
+
+| Parameters            | Default | Description                                                                 |
+|:-----------------|:--------|:------------------------------------------------------------------------------|
+| rev_pe | (empty) | Specify the NIFTI, RSRC, or SRC file of the reversed-phase encoding images for TOPUP/EDDY. specify empty parameter (i.e. '--rev_pe') to automatically search for RSRC or NIFTI files that can be used. |
+| volume_correction | 0 (human) 1 (non-human) | Set --volume_correction=1 to apply automatic volume orientation correction by swapping or flipping xyz axis. |     
+| check_btable | 0 (human) 1 (non-human) | Set --check_btable=1 to test b-table orientation and apply automatic flipping |
+| motion_correction | 0 | Set --motion_correction=1 to apply rigid-body transformation to align DWI volumes. The b-table is also rotated accordingly |     
 | make_isotropic | `2.0` for human scans or slice thickness for nonhuman | Resample DWI to an isotropic resolution of the specified resolution (i.e. --make_isotropic=2.0) |
+| align_acpc | Set --align_acpc=1.5 to rotate image volume to align ap-pc and resample volume to 1.5 mm. |
 
 
 ## Additional Operation
 
 | Parameters            | Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
-| align_acpc | Set --align_acpc=1.5 to rotate image volume to align ap-pc and resample volume to 1.5 mm. |
-| check_btable | Set --check_btable=1 to test b-table orientation and apply automatic flipping |
 | mask | Specify the mask file (.nii.gz). To use U-Net, specify --mask=unet |
-| motion_correction | Apply rigid-body transformation to align DWI volumes. The b-table is also rotated accordingly |     
-| rev_pe | Specify the NIFTI, RSRC, or SRC file of the reversed-phase encoding images for TOPUP/EDDY. specify empty parameter (i.e. '--rev_pe=') to automatically search for RSRC or NIFTI files that can be used. |
 | rotate_to  | Specify a T1W or T2W for DSI Studio to rotate DWI to its space. (no scaling or shearing) |
 | align_to  | Specify a T1W or T2W for DSI Studio to use affine transform to its space. (including scaling or shearing) |
 | other_image  | Assign other image volumes (e.g., T1W, T2W image) to be wrapped with QSDR. --other_image=<label>:<file path>,<label>:<file path> |
