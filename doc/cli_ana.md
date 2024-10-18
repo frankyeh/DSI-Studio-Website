@@ -7,12 +7,11 @@
 
 The `ana` action can use any post-tracking functions listed under "--action=trk", including `delete_repeat`,`output`, `export`, `end_point`, `ref`, `connectivity`, `connectivity_type`, `connectivity_value`, and ROI related commands, such as `roi`, `roi2`, ...etc. Please check out `--action=trk` for details.
 
-*Calculate the tract-to-region connectivity using the tracts and built-in atlas or ROI file*
+*(Versions after 2024/10) Calculate the tract-to-region connectivity using the tracts and built-in atlas or ROI file*
 ```
 dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --connectivity=HCP-MMP,Brodmann
 dsi_studio --action=ana --source=my.fib.gz --tract=bundle1.tt.gz,bundle2.tt.gz,bundle3.tt.gz --connectivity=HCP-MMP+subcortical.nii.gz
 dsi_studio --action=ana --source=my.fib.gz --tract=*.tt.gz --connectivity=HCP-MMP
-
 ```
 
 *Merge two trk files and save it to a txt file*
