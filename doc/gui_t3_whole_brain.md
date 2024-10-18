@@ -1,4 +1,4 @@
-# Step T3 Whole Brain Fiber Tracking
+# Step T3 Tractography
 
 Open the main window and click a button named [**Step T3: Fiber Tracking**] to select a FIB file generated from Step T1-T2. DSI Studio will bring up the tracking window.
 
@@ -51,10 +51,6 @@ The details of each parameter:
 | ***Default Otsu*** | `0.6` | The ratio of otsu threshold to derive default anisotropy threshold.|
 | ***Output Format*** | `tt.gz` | The default tractography output file format.|
 
-
-
-
-
 ## 3. Save Tractography
 
 The fiber trajectories can be saved using [Tracts][Save Tracts As]. One should note that [Tracts][Save Tracts As] saves only the current selected fiber bundles. To save tracts of different clusters at one, use [Tracts][Save All Tracts As...].
@@ -62,10 +58,42 @@ The fiber trajectories can be saved using [Tracts][Save Tracts As]. One should n
 
 DSI Studio saves tracks in the native diffusion voxel space rotated to "LPS". The coordinates are voxel coordinates started from (0,0,0) at the most left/anterior/bottom point of the image volume. The orientation is (+right,+posterior, +top). For example, (1,2,3) = [the left most 1st voxel, the most anterior second voxel, the bottom 3rd voxel].
 
+# Tract-to-Region Connectome
+
+***Only available in versions after 2024 October the "Hou" Version***
+
+Tract-to-region (T2R) connectome is represented by an **n-by-m** matrix, where **n** is the number of tract bundles, and **m** is the number of brain parcellation regions. The T2R connectome is the recommended approach for getting structural connectivity in DSI Studio.
+
+The following are steps to generate tract-to-region connectivity matricies:
+
+1. Using [AutoTrack](https://dsi-studio.labsolver.org/doc/gui_t3_atk.html) to map tract bundles of interests (e.g arcuate fasciculus, cingulum, IFOF...etc). This can be done on GUI or command line. DO NOT USE WHOLE BRAIN TRACTOGRAPHY FOR TRACT-TO-REGION CONNECTOME.
+
+![image](https://github.com/user-attachments/assets/6532c9d2-9516-4374-973d-206df90f3764)
+
+2. Load brain parcellations from [Step T3a][Atlas...]. Select all region from parcellation such as HCP-MMP or Brodmann:
+
+![image](https://github.com/user-attachments/assets/9251ab6a-f2f2-4608-be7a-bfed5b86e492)
+
+3. Generate T2R matrix using [Regions][Tract-to-Region Connectome]
+
+This will generate a text content of the n-by-m matrix, which can be paste to excel:
+
+![image](https://github.com/user-attachments/assets/ce5bbfbc-a17b-459f-81db-c596ffccf4f0)
+
+4. Visualization
+
+To observe the T2R connectivity for a bundle, at [Step T3c Option][Region Rendering][Region Color], set [Style]=Metrics and [Metrics]=current tract, lower [Max Value] to 0.2. Select the bundle on the right lower corner to see its correponding T2R connectivity.
+
+![image](https://github.com/user-attachments/assets/89d3407d-fbb2-444c-b848-2b5c89321248)
+
+example of the arcuate fasciculus T2R connectivity
+
 
 # Connectivity Matrix and Network Measures 
 
-***Recommendation: Do not use connectivity matrix and network measure unless you are really familiar with its methodological utilization, interpretation, and limications. Choose [other analysis approaches](https://dsi-studio.labsolver.org/doc/how_to_analyze_dmri.html) for better sensitivity and specificity.***
+***NOT RECOMMENDED, USE TRACT-TO-REGION CONNECTOME ABOVE***
+
+***Do not use connectivity matrix and network measure unless you are really familiar with its methodological utilization, interpretation, and limications. Choose [other analysis approaches](https://dsi-studio.labsolver.org/doc/how_to_analyze_dmri.html) for better sensitivity and specificity.***
 
 
 The following are steps to generate connectivity matricies:
