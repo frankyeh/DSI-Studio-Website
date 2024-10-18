@@ -7,6 +7,14 @@
 
 The `ana` action can use any post-tracking functions listed under "--action=trk", including `delete_repeat`,`output`, `export`, `end_point`, `ref`, `connectivity`, `connectivity_type`, `connectivity_value`, and ROI related commands, such as `roi`, `roi2`, ...etc. Please check out `--action=trk` for details.
 
+*Calculate the tract-to-region connectivity using the tracts and built-in atlas or ROI file*
+```
+dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --connectivity=HCP-MMP,Brodmann
+dsi_studio --action=ana --source=my.fib.gz --tract=bundle1.tt.gz,bundle2.tt.gz,bundle3.tt.gz --connectivity=HCP-MMP+subcortical.nii.gz
+dsi_studio --action=ana --source=my.fib.gz --tract=*.tt.gz --connectivity=HCP-MMP
+
+```
+
 *Merge two trk files and save it to a txt file*
 ```
 dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts1.tt.gz,Tract2.tt.gz --output=Tracts1.txt
@@ -40,11 +48,6 @@ dsi_studio --action=ana --source=my.fib.gz --tract=tract_mni.tt.gz --export=stat
 *Get track DKI and ODI statistics from a track file*
 ```
 dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --other_slices=DKI.nii.gz,ODI.nii.gz --export=stat    
-```
-
-*Calculate the connectivity using the tractography and ROI files*
-```
-dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --connectivity=FreeSurferDKT,my_roi.nii.gz,another_roi.nii.gz --connectivity_value=qa,count,ncount --connectivity_type=pass,end
 ```
 
 ## Examples of Region Functions: 
