@@ -14,12 +14,14 @@ For mapping individual bundle, please use [(automatic fiber tracking)](https://d
 ```
 dsi_studio --action=trk --source=*.fib.gz --output=*.tt.gz
 ```
-
-*Track the left arcuate fasciculus of a fib file and save them in the t1w.nii.gz space*
+*Track the left arcuate fasciculus of a fib file*
 ```
-dsi_studio --action=trk --source=subject01.fib.gz --track_id=Arcuate_Fasciculus_L --output=subject01.t1w.AF.tt.gz --ref=t1w.nii.gz
+dsi_studio --action=trk --source=subject01.fib.gz --track_id=ArcuateFasciculusL --output=subject01.ArcuateFasciculusL.tt.gz
 ```
-
+*(Versions after 2024/10) Tract-to-region connectivity between left arcuate fasciculus and HCP-MMP parcellation
+```
+dsi_studio --action=trk --source=subject01.fib.gz --track_id=ArcuateFasciculusL --connectivity=HCP-MMP
+```
 *Perform fiber tracking with all fiber tracking parameters assigned by a parameter ID*
 ```
 dsi_studio --action=trk --source=subject001.fib.gz --parameter_id=c9A99193Fba3F2EFF013Fcb2041b96438813dcb
@@ -158,7 +160,7 @@ dsi_studio --action=trk --source=*.fib.gz --other_slices=HCP1065_nqa_mni.nii.gz 
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
 | tractography_atlas | 0 | specify the atlas.<p>    0: association pathway<p>    1:cerebellum pathways<p>    2:commissure pathways<p>    3:cranial nerves<p>    4:long projection pathways<p>    5:short projection pathways  |
-| track_id       | (not assigned) | Specify which ID of the track to track using automatic fiber tracking. |
+| track_id       | (not assigned) | Specify which tract to map using automatic fiber tracking. The complete list of tract can be found [here](https://github.com/frankyeh/data-atlas/blob/main/ICBM152_adult/ICBM152_adult.tt.gz.txt). partial name supported. |
 
 
 ## Tract-related post-processing and analysis
