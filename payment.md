@@ -66,6 +66,7 @@ IN WITNESS WHEREOF, the parties hereto have executed this Agreement, including D
 ```
 
 Appendix 1: Third-party components NOT cover by this Agreement
+
 | Components	| Function	Location	| File Location	| License |
 |---------|-----------------|--------------|------|
 | FSL tools	| [Step T2][Correction][TOPUP/EDDY] or [EDDY]	| /plugin/*.exe	| FSL License |
@@ -73,6 +74,7 @@ Appendix 1: Third-party components NOT cover by this Agreement
 
 Appendix 2: Patents NOT covered by this Agreement.
 Active Patents:
+
 | Components	| Function Location	| Patent	| Owner |
 |---------|-----------------|--------------|------|
 | Differential fiber tracking	| [Step T3c][Tracking Parameters][Differential Tracking] |	US11523767B2	| NATIONAL INSTITUTES OF HEALTH (NIH), U.S. DEPT. OF HEALTH AND HUMAN SERVICES (DHHS), U.S. GOVERNMENT, MARYLAND |
@@ -80,6 +82,7 @@ Active Patents:
 | Q-Space Distribution Reconstruction  | [Step T2b(1)][QSDR]  |  	US8849001B2	| National Taiwan University |
 
 Expired Patents:
+
 | Components	| Function Location	| Patent	| Owner |
 |---------|-----------------|--------------|------|
 | Generalized Q-Sampling Imaging	| [Step T2b(1)][GQI]  |    	US8564289B2	| PATENT EXPIRED DUE TO NONPAYMENT OF MAINTENANCE |
