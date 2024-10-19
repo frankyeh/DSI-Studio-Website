@@ -8,8 +8,14 @@ To complete the payment process, please **enter your company email address as yo
 
 [Proceed to the Payment Page](https://www.paypal.com/ncp/payment/K25LMLLSXD79Y)
 
-## Note
+## Important Notes
+
 The commercial license is valid for one year from the purchase date and governed by a separate licensing agreement, listed below.
+This license does not cover third-party tools, resources, or patents, including but not limited to:
+
+- FSL plugins
+- Atlases (each atlas has its own license or usage agreement)
+- Patent-protected algorithms
 
 ##  DSI Studio Copyright License Agreement (the "Agreement") 
 ```
