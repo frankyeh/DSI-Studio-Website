@@ -4,9 +4,15 @@
 Using DSI Studio or its source code in commercial entities requires a paid annual licensing fee, granting a license for one year from the purchase date.
 
 ## Payment Instructions
-To complete the payment process, please **enter your company email address as your DSI Studio registration account** on the payment page. This will ensure that your license is properly linked to your account.
+To complete the payment process, please **enter your Registration Entity shown in the DSI Studio** on the payment page. This will ensure that your license is properly linked to your account.
+
+![image](https://github.com/user-attachments/assets/fbe04404-502a-4e4b-b875-1954efca9105)
+
+Enter this registering entity in the payment page.
 
 [Proceed to the Payment Page](https://www.paypal.com/ncp/payment/K25LMLLSXD79Y)
+
+If you have any questions or concerns about the commercial license, please email frank.yeh@gmail.com
 
 ## Important Notes
 
