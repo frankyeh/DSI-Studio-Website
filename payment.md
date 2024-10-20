@@ -4,24 +4,19 @@
 Using DSI Studio or its source code in commercial entities requires a paid annual licensing fee, granting a license for one year from the purchase date.
 
 ## Payment Instructions
-To complete the payment process, please **enter your Registration Entity shown in the DSI Studio** on the payment page. This will ensure that your license is properly linked to your account.
 
-![image](https://github.com/user-attachments/assets/fbe04404-502a-4e4b-b875-1954efca9105)
+1. Copy **Registration Entity** as shown in the DSI Studio.
 
-Enter this registering entity in the payment page.
+<img src="https://github.com/user-attachments/assets/fbe04404-502a-4e4b-b875-1954efca9105" width=500/>
 
-[Proceed to the Payment Page](https://www.paypal.com/ncp/payment/K25LMLLSXD79Y)
+2. [Proceed to the Payment Page](https://www.paypal.com/ncp/payment/K25LMLLSXD79Y) and enter this registering entity in the payment page before paying the licensing fee. We will match registration entity with the sign-in records.
 
 If you have any questions or concerns about the commercial license, please email frank.yeh@gmail.com
 
 ## Important Notes
 
 The commercial license is valid for one year from the purchase date and governed by a separate licensing agreement, listed below.
-This license does not cover third-party tools, resources, or patents, including but not limited to:
-
-- FSL plugins
-- Atlases (each atlas has its own license or usage agreement)
-- Patent-protected algorithms
+This license does not cover third-party tools, resources, or patents, including FSL plugins, atlases (each atlas has its own license or usage agreement), and patent-protected algorithms.
 
 ##  DSI Studio Copyright License Agreement (the "Agreement") 
 ```
