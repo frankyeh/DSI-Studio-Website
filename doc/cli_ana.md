@@ -49,6 +49,12 @@ dsi_studio --action=ana --source=my.fib.gz --tract=tract_mni.tt.gz --export=stat
 dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --other_slices=DKI.nii.gz,ODI.nii.gz --export=stat    
 ```
 
+*Save tracks to a difference slice space
+```
+dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --ref=t1w.nii.gz --output=tract_in_t1w.tt.gz
+```
+
+
 ## Examples of Region Functions: 
 
 *Get the statistics of multiple native-space ROIs*
