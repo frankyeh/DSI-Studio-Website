@@ -2,9 +2,6 @@
 ![image](https://docs.google.com/spreadsheets/d/e/2PACX-1vQXdTEZlHaH6ziIFTG8ws4xFnP03oJ0ux8sAx-rfnKUCjpkcOX9aHJQ4-0RgbK0IshqpQnyfjxvI9CC/pubchart?oid=1633232015&format=image)
 ![image](https://docs.google.com/spreadsheets/d/e/2PACX-1vQXdTEZlHaH6ziIFTG8ws4xFnP03oJ0ux8sAx-rfnKUCjpkcOX9aHJQ4-0RgbK0IshqpQnyfjxvI9CC/pubchart?oid=1979214148&format=image)
 <br>
-
-<iframe width="852" height="608" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQXdTEZlHaH6ziIFTG8ws4xFnP03oJ0ux8sAx-rfnKUCjpkcOX9aHJQ4-0RgbK0IshqpQnyfjxvI9CC/pubchart?oid=537610136&amp;format=interactive"></iframe>
-
 ---
 
 ## Citations for specific methods
