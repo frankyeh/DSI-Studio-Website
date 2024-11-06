@@ -103,4 +103,16 @@ call dsi_studio.exe --action=src --source=%%x\%%x_dwi_QCed.nii --bval=%%x\%%x_QC
 | bids | `0` not bids | Specify whether to use BIDS standard to parse a folder specified by --source  |
 | overwrite | `0` no overwrite | Specify whether to overwrite existing files |
 
-    
+
+
+# SRC files Quality Control
+
+> use --action=`qc` to run quality control on SRC files
+
+## Examples
+
+Specify a folder storing *.src.gz or *.sz files
+```
+dsi_studio --action=qc --source=/folder_storing_src_siles
+```
+
