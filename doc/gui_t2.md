@@ -51,9 +51,9 @@ You can open/save the mask to a txt file or nifti file.
 
 Please follow each of the steps to preprocess DWI data. The following steps has to be done in the correct order (starting from 1. 2. ...etc).
 
-## 1. TOPUP/EDDY
+## 1. TOPUP/EDDY/Motion Correction
 
-**Most animal studies are not able to use FSL TOPUP/EDDY, and you may skip this step**
+**ANIMAL STUDIES: Some animal scans are not able to use FSL TOPUP/EDDY, and if this is the case, you may skip this step and use [Corrections][Motion Correction] instead**
 
 ***If you have reverse-phase encoding acquisition:***
 1. On the top menu, click on [Corrections][TOPUP/EDDY]
@@ -65,13 +65,12 @@ Please follow each of the steps to preprocess DWI data. The following steps has 
 2. DSI Studio will call FSL's eddy to handle susceptibility artifact and eddy current distortion.
 
 **This preprocessing may take a long time (in hours)**
-**After the correction, it is recommended to save a new SRC file**
-**When a user load the SRC file, DSI Studio will check if there are previous TOPUP/EDDY correction results and will load them if users request the TOPUP/EDDY again**
-
+**After the correction, it is recommended to save a new SRC/SZ file**
+**If there are previous TOPUP/EDDY correction results and will load them if users request the TOPUP/EDDY again**
 
 ## 2. Correct image orientations (animal scans)
 
-**Most animal studies need this step to make sure most functions works**
+**ANIMAL STUDIES: Animal studies need this step to make sure most functions works**
 
 Animal scans are likely to be acquired with an orientation different from the animal template in DSI Studio. Therefore, it is necessary to rotate the image volume to match the template. This will ensure the b-table checking functions correctly and the atlas function in Step T3 works properly.
 After 2024 October versions, DSI Studio provide automatic way to correct image orientation at top menu [Corrections][Volume Orientation Correction]. The function needs correct mask to work.
@@ -97,13 +96,13 @@ Also use [**Edit**][**Crop Background**] to reduce image volume,
 
 ## 4. Check b-table orientation (animal scans)
 
-**Most animal studies need this step to get correct tractography. Ignoring this if you are not using fiber tracking**
+**ANIMAL STUDIES: Most animal studies need this step to get correct tractography. Ignoring this if you are not using fiber tracking**
 
 If your analysis does not consider fiber orientation (e.g. just analyze FA, ADC...etc.) You can ignore the b-table flipping problem. Otherwise, you will need to pay attention to the reconstructed fiber orientations.
 
-Apply [**B-table**][**Check b-table**] to check b-table orientation. The b-table checking function will examine a total of 24 different flip and swap conditions and figure out the one that gives the best fiber coherence. 
+Apply [**B-table**][**Check b-table**] to check b-table orientation. The b-table checking function will examine a total of 24 different flip and swap conditions and figure out the one that gives the best fiber coherence. The "template-based" version will compare fiber orientation with a template, but this requires a good alignment with the template structure.
 
-The b-table checking function may fail if the SNR is low. In such cases, you might need to manually test different b-table flip/swap configurations to determine which one provides the correct fiber orientations.. 
+The b-table checking function may fail if the SNR is low. In such cases, you might need to manually test different b-table flip/swap configurations to determine which one provides the correct fiber orientations.
 
 ## 5. Make isotropic (optional)
 
