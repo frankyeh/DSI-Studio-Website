@@ -175,7 +175,7 @@ dsi_studio --action=trk --source=*.fib.gz --other_slices=HCP1065_nqa_mni.nii.gz 
 | end_point2 | specify file name for output the second endpoint region in the NIFTI format |
 | template_track | specify file name for output tracts in the template space |
 | other_slices | specify the file name of the other image modality for analysis. <br> Multiple files can be assigned by using comma separator (e.g. --other_slices=t1w.nii.gz,t2w.nii.gz). <br> Wildcard supported (e.g., --other_slices=*.nii.gz) <br> If the image is already registered, to avoid registration, the other image modality should have the same dimension as the DWI, and the file name should include "reg" (e.g. --other_slices=t1w_reg.nii.gz) |
-| export |  export additional information related to the fiber tracts <br> use "--export=tdi" to generate track density image in the diffusion space. <br> use "--export=tdi2" to generate track density image in the subvoxel diffusion space. <br> use "--export=tdi_t1t2" to generate track density image in the t1w space specified by --t1t2=t1w.nii.gz.  <br> use "--export=tdi_color" or "--export=tdi2_color" to generate track color density image. <br> use "--export=stat" to export tracts statistics like along tract mean fa, adc, or morphology index such as volume, length, ... etc. <br> To export TDI endpoints, use tdi_end or tdi2_end. <br> use "--export=report:dti_fa:0:1" to export the tract reports on "fa" values with a profile style at x-direction "0" and a bandwidth of "1" <br> the profile style can be the following: <br> 0 x-direction <br> 1 y-direction <br> 2 z-direction <br> 3 along tracts <br> 4 mean of each tract <br> You can export multiple outputs separated by ",". For example, <br> --export=stat,tdi,tdi2 exports tract statistics, tract density images (TDI), subvoxel TDI, along tract qa values, and along tract gfa values. |
+| export |  export additional information related to the fiber tracts <br> use "--export=tdi" to generate track density image in the diffusion space. <br> use "--export=tdi2" to generate track density image in the subvoxel diffusion space. <br> use "--export=tdi_t1t2" to generate track density image in the t1w space specified by --ref=t1w.nii.gz.  <br> use "--export=tdi_color" or "--export=tdi2_color" to generate track color density image. <br> use "--export=stat" to export tracts statistics like along tract mean fa, adc, or morphology index such as volume, length, ... etc. <br> To export TDI endpoints, use tdi_end or tdi2_end. <br> use "--export=report:dti_fa:0:1" to export the tract reports on "fa" values with a profile style at x-direction "0" and a bandwidth of "1" <br> the profile style can be the following: <br> 0 x-direction <br> 1 y-direction <br> 2 z-direction <br> 3 along tracts <br> 4 mean of each tract <br> You can export multiple outputs separated by ",". For example, <br> --export=stat,tdi,tdi2 exports tract statistics, tract density images (TDI), subvoxel TDI, along tract qa values, and along tract gfa values. |
 | recognize | Specify the output for the "recognize and cluster" function. Specify --recognize=cluster to save tract labels as cluster.label.txt and cluster.name.txt |
 
 ## Connectivity analysis
@@ -200,9 +200,9 @@ dsi_studio --action=trk --source=*.fib.gz --other_slices=HCP1065_nqa_mni.nii.gz 
 ```
 --connectivity=mni_space_parcellations.nii.gz
 ```
-> If the ROIs is segmented based on T1W, you will need to specify the original t1w file using --t1t2
+> If the ROIs is segmented based on T1W, you will need to specify the original t1w file using --other_slices
 ```
---t1t2=subject_t1w.nii.gz --connectivity=parcellation_based_on_subject_t1w.nii.gz
+--other_slices=subject_t1w.nii.gz --connectivity=parcellation_based_on_subject_t1w.nii.gz
 ```
 > Please note that if the number of the connecting tracks is not enough (determined by connectivity_threshold), the connectivity value will not be calculated. This strategy is used to avoid the inclusion of accidental connections due to false tracks.
 
