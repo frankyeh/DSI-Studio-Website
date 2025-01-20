@@ -69,7 +69,7 @@ dsi_studio --action=ana --source=my.fib.gz --regions=mni_space_roi.nii.gz
 
 *Get statistics from Freesurfer segmented ROIs using subjects T1W to guide the registration*
 ```
-dsi_studio --action=ana --source=my.fib.gz --regions=aparc+aseg.nii.gz --t1t2=subject_t1w.nii.gz
+dsi_studio --action=ana --source=my.fib.gz --regions=aparc+aseg.nii.gz --other_slices=subject_t1w.nii.gz
 ```
 
 *Get statistics from ROIs of the atlas included in the DSI Studio package*
