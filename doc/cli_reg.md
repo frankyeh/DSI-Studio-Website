@@ -3,7 +3,7 @@
 > use --action=`reg` to apply linear and/or nonlinear registration.
 
 Update:
-(2025/03/03) The registration has revised.
+(2025/03/03) The registration syntax has revised.
 
 ## Examples
 
@@ -12,12 +12,12 @@ Update:
 dsi_studio --action=reg --source=subject_qa.nii.gz,=subject_iso.nii.gz --to=template_qa.nii.gz,template_iso.nii.gz --output_mapping=mapping_field.mz
 ```
 
-*Warp the subject image to the template space
+*Warp the subject image to the template space using previously computed mapping field
 ```
 dsi_studio --action=reg --source=subject_qa.nii.gz --mapping=mapping_field.mz
 ```
 
-*Unwarp the template image to the subject space
+*Unwarp the template image to the subject space using previously computed mapping field
 ```
 dsi_studio --action=reg --to=template_qa.nii.gz --mapping=mapping_field.mz
 ```
@@ -30,7 +30,7 @@ dsi_studio --action=reg --source=*.nii.gz --mapping=mapping_field.mz
  
 ## Registration Functions
 
-The function registers the subject/source image with the template/target image
+The function warps the subject/source image to the template/target image
 
 | Parameters   |  Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
