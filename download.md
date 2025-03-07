@@ -47,7 +47,7 @@ DSI Studio is free for academic users under [Attribution-***NonCommercial***-Sha
 
 ## Commercial License
 
-[Purchasing the DSI Studio Commercial License](https://dsi-studio.labsolver.org/payment.html)
+Please contact frank.yeh@gmail.com about the commercial license.
 
 # Hardware recommendation:
 
