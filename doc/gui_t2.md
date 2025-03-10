@@ -32,7 +32,7 @@ Switch the first tab [**Source Images**].
 <iframe width="560" height="315" src="https://www.youtube.com/embed/stL4GMeTC1I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-# Step T2a: Setup a Mask
+# Step T2a: Specify a mask
 
 ![image](https://user-images.githubusercontent.com/275569/147804666-b75d4167-ce90-4722-816e-a3106046f6f0.png)
 
@@ -109,7 +109,7 @@ The b-table checking function may fail if the SNR is low. In such cases, you mig
 **Isotropic resolution is critical for fiber tracking. Ignoring this if you are not using fiber tracking**
 Many scans have non-isotropic resolution, which can cause registration problems. You can interpolate the data to make it isotropic using [**Edit**][**Make isotropic**]
 
-# Step T2b(1): Select a Reconstruction Method
+# Step T2b: Specify a Model
 
 ## Diffusion Tensor Imaging (DTI)
 
@@ -145,27 +145,7 @@ To carry out other images modalities to the MNI space with QSDR, click on the [*
 The QSDR reconstruction requires the assignment of a template (e.g. human, monkey, rat, mouse).
 ***Please make sure that your data match the template.***
 
-# Step T2b(2): Specify Parameters
-
-***Output ODF***
-
-Checking this check box will export all ODF information and allow DSI Studio to run connectometry analysis or visualize the ODFs for inspection. Note that enabling this option will greatly increase the size of the .fib file.
-
-***Check b-table***
-
-DSI Studio allows for checking and correcting whether the b-table is flipped and/or swapped in x, y, or z-direction. The function is realized by using a fiber coherence index to check which settings a better result [14].  The checkbox for "check b-table" is located on the bottom of the reconstruction dialog after selecting the reconstruction method (e.g. DTI, GQI, ...etc.).
-
-*If the diffusion signals are corrupted, this b-table checking may result in a random configuration that can be easily identified from the file name of the FIB file.
-
-***Advanced Options: Scheme balance***
-
-Check this option if you are using a shell acquisition to make sure that the orientational sampling is homogeneous.
-
-***Advanced Options: No high b for DTI***
-
-Check this if your tensor estimation uses only b-values lower than 1,500.
-
-***Advanced Options: Other output metrics***
+# Step T2c: Specify outputs
 
 Specify the name of the metrics (separated by comma) to be included in the output FIB file:
 
@@ -174,11 +154,15 @@ Specify the name of the metrics (separated by comma) to be included in the outpu
 - rd1: first radial diffusivity
 - rd2: second radial diffusivity
 - md: mean diffusivity
-- helix: helix angle
 - tensor: the tensor metrix in txx,txy,txz,tyy,tyz
-- nqa: normalized qa
-- iso: isotropic measures
+- helix: helix angle
 - gfa: generalized fractional anisotropy
 - rdi: restricted diffusion
-- nrdi: non-restricted diffusion
-- jdet: Jacobian determinant used in the QSDR reconstruction.
+- odf: The entire ODF vectors for constructing ODF templates. Checking this check box will export all ODF information and allow DSI Studio for ODF visualization. Note that enabling this option will greatly increase the size of the .fib file.
+
+
+***Advanced Options: Ignore high b for DTI***
+
+Check this if your tensor estimation uses only b-values lower than 1,500.
+
+
