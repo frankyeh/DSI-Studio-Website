@@ -18,24 +18,21 @@ The peak.nii.gz can be loaded in DSI Studio [Step T3 Fiber Tracking] to run fibe
 
 
 
-## Load/Save SRC files in MATLAB
+## Load/Save SRC (*.src.gz *.sz) files in MATLAB
 
 |   matrix | description|
 |:---------|:-----------|
 | *dimension* | A 1-by-3 vector storing the dimension of the containing image. |
 | *voxel_size* | A 1-by-3 vector storing the voxel size in mm. |
-| *image0,image1,...* | The images extracted from DICOM or NIFTI files. These matrices can be restored to a 3-dimensional image volume by the command "reshape(image0,dimension);" |
+| *image0,image1,...* | The images extracted from DICOM or NIFTI files. In .src and .src.gz files the image vectors can be restored to 3d volume using reshape(mask,dimension). In .sz file, the vector only stores value within the mask, scaled by image0.scale and offset by image0.interp. |
 | *b-table* | The b-table of the extracted images. b(1,:) stores b-value, whereas b(2:4,:) stores gradient vector. |
-
+| *mask* | a 0-1 value volume storing the mask. use reshape(mask,dimension) to get the original 3D volume |
 
 [![](https://sites.google.com/a/labsolver.org/dsi-studio/_/rsrc/1468760874347/Manual/export-data-to-matlab/src.PNG)](https://sites.google.com/a/labsolver.org/dsi-studio/Manual/export-data-to-matlab/src.PNG?attredirects=0)
 
-The SRC file (*.src, *.src.gz) stores the diffusion weighted images and b-table that can be used to do reconstruction. The SRC files are MATLAB matrix file stored in V4 version. The src.gz is the SRC file compressed by gzip. To load an SRC file in MATLAB, uncompress the file and rename it as .mat.
+The SRC file (*.src, *.src.gz *.sz) stores the diffusion weighted images and b-table that can be used to do reconstruction. The SRC files are MATLAB matrix file stored in V4 version. The src.gz and .sz are the SRC file compressed by gzip. To load an SRC file in MATLAB, uncompress the file and rename it as .mat.
 
 An SRC file stores the raw image volumes in addition to image dimension, voxel size, and b-table ([see how to get .src file](https://sites.google.com/a/labsolver.org/dsi-studio/Manual/Parse-DICOM)). The SRC files are MATLAB matrix file stored in V4 version. To load an SRC file into Matlab, extract .src.gz file to create an uncompressed .src file. Then rename the .src file to .mat file and load it in Matlab. The meanings of each exported matrix are explained as follows.
-
-The following is a list of matrix used in the SRC file.
-
 
 After loading the .src file in Matlab, the user can process the data and save it back to an SRC file using "save('filename.src','-v4');" Note that you have to specify **'-v4' **so that DSI Studio can read the .src file.
 
@@ -142,12 +139,11 @@ b_table(2:4,:) = b_vector;
 save example.src -v4
 ```
 
-## Load/Save FIB files in MATLAB
+## Load/Save FIB files (*.fib.gz *.fz) in MATLAB
 
  ![](https://sites.google.com/a/labsolver.org/dsi-studio/_/rsrc/1468760871354/Manual/export-data-to-matlab/mat_export.jpg)
 
-The FIB file (*.fib.gz) stores the vector field (fiber orientations) and anisotropy information (the magnitude) that can be used by DSI Studio to conduct fiber tracking. The FIB files are MATLAB matrix file stored in V4 version. The fib.gz files are the FIB files compressed by gzip. To load an FIB file into Matlab, extract the *.fib.gz file into an uncompressed .fib file. Then rename the .fib file to .mat file and load it using Matlab.
-
+The FIB file (*.fib.gz and *.fz) stores the vector field (fiber orientations) and anisotropy information (the magnitude) that can be used by DSI Studio to conduct fiber tracking. The FIB files are MATLAB matrix file stored in V4 version. The fib.gz and .fz files are the FIB files compressed by gzip. To load an FIB file into Matlab, extract the *.fib.gz or *.fz file into an uncompressed file. Then rename the file to .mat file and load it using Matlab.
 
 The following is a list of matrix used in the SRC file.
 
