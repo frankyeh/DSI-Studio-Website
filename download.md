@@ -1,6 +1,15 @@
 
 [![Build Release](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml/badge.svg)](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml)<a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio"></a><a href="https://github.com/frankyeh/DSI-Studio/releases"><img src="https://img.shields.io/github/v/release/frankyeh/DSI-Studio"></a>
 
+# 2025 DSI Studio Workshop Registration Opened
+
+**Registration link: [https://forms.gle/bDAeCEXjBLQZkGDUA](https://forms.gle/bDAeCEXjBLQZkGDUA)**
+
+- Format: Weekly one-hour zoom meeting divided into 3 or 4 sessions (15 min each) followed by Q&A
+- Time: April (Exact days to be determined) Friday 10 am - 11 am EST
+- Website: https://practicum.labsolver.org
+- Main Topic: Introduction to DSI Studio "Hou" version
+- 
 # Download Links: "Hou" versions (2024-)
 
 **Hou version is currently at the pre-release stage under frequent updates and testing**
