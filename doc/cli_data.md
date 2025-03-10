@@ -1,4 +1,4 @@
-# Data Export/Import to MATLAB
+# Data Export/Import
 
 DSI Studio saves most files in MAT -v4 format. You can ungzip the fib.gz, src.gz file and rename it to view the content in MATLAB.
 
@@ -16,7 +16,7 @@ The peak.nii.gz can be loaded in DSI Studio [Step T3 Fiber Tracking] to run fibe
 ![image](https://user-images.githubusercontent.com/275569/158298172-0fd06ad6-ac08-4f2f-9736-db85a95289cf.png)
 
 
-## Load/Save SRC (*.src.gz *.sz) files in MATLAB
+## Load/Save SRC (*.src.gz *.sz) files using MATLAB or Python
 
 |   matrix | description|
 |:---------|:-----------|
@@ -147,7 +147,7 @@ b_table(2:4,:) = b_vector;
 save example.src -v4
 ```
 
-## Load/Save FIB files (*.fib.gz *.fz) in MATLAB
+## Load/Save FIB files (*.fib.gz *.fz) using MATLAB or Python
 
  ![](https://sites.google.com/a/labsolver.org/dsi-studio/_/rsrc/1468760871354/Manual/export-data-to-matlab/mat_export.jpg)
 
