@@ -47,6 +47,16 @@ eval(strcat('images(:,:,:,i) = reshape(image',int2str(i-1),',dimension);'));
 end
 ```
 
+```python
+!wget -q https://github.com/data-hcp/lifespan/releases/download/hcp-ya-retest/103818a.sz
+!gunzip -c 103818a.sz > 103818a.mat
+import scipy.io
+# Use whosmat to list variables (name, shape, type)
+variables = scipy.io.whosmat('103818a.mat')
+for name, shape, _ in variables:
+    print(f"{name}: dimension {shape}")
+```
+
 **Example: Load the DWI as a 4D image from a src.gz file**
 
 ```matlab
