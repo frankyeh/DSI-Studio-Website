@@ -20,16 +20,16 @@ DSI Studio has facilitated and been used in more than 1,400 publications. Resear
 
 ### More Than Just Pretty Pictures
 
-The deterministic fiber tracking method in DSI Studio has achieved the highest 92% valid connection (ID#3) among 96 methods submitted from 20 different research groups, examined by an open competition [(Nature communications, 8(1), 1349, 2017)](https://www.nature.com/articles/s41467-017-01285-x). The average accuracy of the tools is only 54%.
+The deterministic fiber tracking method in DSI Studio has achieved the 92% valid connection (ID#3) among 96 methods submitted from 20 different research groups, examined by an open competition [(Nature communications, 8(1), 1349, 2017)](https://www.nature.com/articles/s41467-017-01285-x). The average accuracy of the tools is only 54%.
 
 ![image](/images/HAFT.png)
 > DSI Studio tractography performance [ID:03](http://www.tractometer.org/ismrm_2015_challenge/results)
 
 ---
 
-### Usage in Clinical Medicine for Tumor Patients
+### Research in Clinical Medicine for Tumor Patients
 
-Although not yet FDA cleared, under the research projects, DSI Studio has helped more than 200 brain tumor patients at the University of Pittsburgh Medical Center:
+Under the research projects, DSI Studio has helped more than 200 brain tumor patients at the University of Pittsburgh Medical Center:
 
 Patient's story: [1](https://www.youtube.com/watch?v=gEZlzkxb-LE), [2](https://www.youtube.com/watch?v=vULJxiuO6lo), [3](https://www.youtube.com/watch?v=7WQ-Dej4_dM)
 
