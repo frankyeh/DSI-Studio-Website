@@ -8,6 +8,8 @@
 - Main Topic: Introduction to DSI Studio "Hou" version
 
 ## Update log 
+- (03/11/2025) introduce new termination count system using tract-to-voxel ratio.
+- (03/11/2025) fix a bug in autotract in versions between 02/01/2025 and 03/10/2025
 - (03/01/2025) built-in neonate template updated.
 - (02/01/2025) update t1w t2w to 0.5mm for icbm152 human
 - (01/30/2025) enhance linear registration accuracy. 
