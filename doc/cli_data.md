@@ -16,6 +16,8 @@ The peak.nii.gz can be loaded in DSI Studio [Step T3 Fiber Tracking] to run fibe
 ![image](https://user-images.githubusercontent.com/275569/158298172-0fd06ad6-ac08-4f2f-9736-db85a95289cf.png)
 
 
+
+
 ## Load/Save SRC (*.src.gz *.sz) files using MATLAB or Python
 
 DSI Studio uses two formats for storing DWI signals and b-tables:  
@@ -157,6 +159,43 @@ b_table(1,:) = b_value;
 b_table(2:4,:) = b_vector; 
 
 save example.src -v4
+```
+
+**Convert *.sz and *.fz back to *.src.gz and *.fib.gz**
+
+```
+import scipy.io, numpy as np, gzip, shutil, os
+
+def convert_sz_fz(input_file, output_file):
+    temp_mat = input_file.replace('.sz', '.mat').replace('.fz', '.mat')
+    with gzip.open(input_file, 'rb') as f_in, open(temp_mat, 'wb') as f_out: shutil.copyfileobj(f_in, f_out)
+
+    data = scipy.io.loadmat(temp_mat)
+    mask = data.get('mask')
+
+    if mask is None:
+        dim = data.get('dimension')
+        if dim is None or dim.shape != (1, 3):
+            raise ValueError(f"Missing mask and dimension in {input_file}")
+        mask = np.ones((int(dim[0, 0]) * int(dim[0, 1]), int(dim[0, 2])), dtype=np.uint8)
+
+    nonzero_idx, num_nonzero = np.flatnonzero(mask.T), np.count_nonzero(mask)
+    restored = {k: v for k, v in data.items() if '.' not in k and k not in ['__header__', '__version__', '__globals__']}
+    for k in list(restored.keys()):
+        if restored[k].shape == (1, num_nonzero):
+            slope, inter = data.get(f"{k}.slope", [[1]])[0][0], data.get(f"{k}.inter", [[0]])[0][0]
+            temp_array = np.zeros(mask.size, dtype=np.float32)
+            temp_array[nonzero_idx] = restored[k].flatten() * slope + inter  
+            restored[k] = temp_array.reshape(mask.T.shape).T
+
+    scipy.io.savemat(temp_mat, restored, format='4')
+    with open(temp_mat, 'rb') as f_in, gzip.open(output_file, 'wb') as f_out: shutil.copyfileobj(f_in, f_out)
+    os.remove(temp_mat)
+    print(f"Conversion complete: {output_file}")
+
+# Example usage:
+# convert_sz_fz("input.sz", "output.src.gz")  # Convert DWI signal file
+# convert_sz_fz("input.fz", "output.fib.gz")  # Convert fiber tracking file
 ```
 
 ## Load/Save FIB files (*.fib.gz *.fz) using MATLAB or Python
