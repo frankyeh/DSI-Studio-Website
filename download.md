@@ -9,7 +9,8 @@
 - Time: April (Exact days to be determined) Friday 10 am - 11 am EST
 - Website: https://practicum.labsolver.org
 - Main Topic: Introduction to DSI Studio "Hou" version
-- 
+
+
 # Download Links: "Hou" versions (2024-)
 
 **Hou version is currently at the pre-release stage under frequent updates and testing**
