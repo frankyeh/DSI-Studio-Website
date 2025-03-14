@@ -3,8 +3,6 @@
 ![image](/images/dsi_studio2.jfif)
 > *A screenshot of DSI Studio mapping tractography of the arcuate fasciculus*
 
-### **DSI Studio: A Lightweight and Adaptive Tractography Tool for Tractography Analysis**  
-
 DSI Studio is a user-friendly tractography software designed for tractography analysis. It allows researchers and clinicians to efficiently map brain connections and explore their relationships with brain disorders.  
 
 Guided by a minimalist design philosophy, DSI Studio prioritizes simplicity, efficiency, and adaptability:  
