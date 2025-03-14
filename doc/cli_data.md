@@ -18,6 +18,17 @@ The peak.nii.gz can be loaded in DSI Studio [Step T3 Fiber Tracking] to run fibe
 
 ## Load/Save SRC (*.src.gz *.sz) files using MATLAB or Python
 
+DSI Studio uses two formats for storing DWI signals and b-tables:  
+- **`*.src.gz`** (versions before Hou)  
+- **`*.sz`** (Hou versions and later)  
+
+The `*.src.gz` format is a gzip-compressed MATLAB `.mat` file in version 4 format. The `*.sz` format follows the same structure but only stores values within the mask. Additionally, stored values in `*.sz` are shifted and scaled using `matrix_name.inter` and `matrix_name.slope`.  
+
+Due to the `.` character in the matrix names, `*.sz` files cannot be directly parsed by MATLAB. However, they can still be read and written using `scipy.io` in Python or C++ code.  
+
+
+*Matrix Structure*
+
 |   matrix | description|
 |:---------|:-----------|
 | *dimension* | A 1-by-3 vector storing the dimension of the containing image. |
@@ -34,16 +45,7 @@ To load an SRC file into MATLAB, decompress the file (if compressed) and rename 
 
 After processing data in MATLAB, the results can be saved back into the SRC file format using MATLAB's `save` command with the `-v4` option to ensure compatibility with DSI Studio.
 
-
-**Example: Load the DWI as a 4D image from a src.gz file**
-
-```matlab
-load('DSI-253d_PA.nii.gz.mat')
-bsize = size(b_table);
-for i=1:bsize(2)
-eval(strcat('images(:,:,:,i) = reshape(image',int2str(i-1),',dimension);'));
-end
-```
+**Example: Load a .sz file (Python)**
 
 ```python
 !wget -q https://github.com/data-hcp/lifespan/releases/download/hcp-ya-retest/103818a.sz
@@ -53,6 +55,16 @@ import scipy.io
 variables = scipy.io.whosmat('103818a.mat')
 for name, shape, _ in variables:
     print(f"{name}: dimension {shape}")
+```
+
+**Example: Load a src.gz file (MATLAB)**
+
+```matlab
+load('DSI-253d_PA.nii.gz.mat')
+bsize = size(b_table);
+for i=1:bsize(2)
+eval(strcat('images(:,:,:,i) = reshape(image',int2str(i-1),',dimension);'));
+end
 ```
 
 **Example: Load the DWI as a 4D image from a src.gz file**
