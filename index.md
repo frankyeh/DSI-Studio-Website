@@ -1,29 +1,34 @@
-# DSI-Studio: A Tractography Software Tool for Diffusion MRI Analysis
+# DSI-Studio: A Simple and Adaptive Tractography Tool for Diffusion MRI Analysis
  
-DSI Studio is a tractography software tool that maps brain connections and correlates findings with neuropsychological disorders. It is a collective implementation of several diffusion MRI methods, including diffusion tensor imaging (DTI), generalized q-sampling imaging (GQI), q-space diffeomorphic reconstruction (QSDR), diffusion MRI connectometry, and generalized deterministic fiber tracking.
-
 ![image](/images/dsi_studio2.jfif)
 > *A screenshot of DSI Studio mapping tractography of the arcuate fasciculus*
 
+### **DSI Studio: A Lightweight and Adaptive Tractography Tool for Tractography Analysis**  
+
+DSI Studio is a user-friendly tractography software designed for tractography analysis. It allows researchers and clinicians to efficiently map brain connections and explore their relationships with brain disorders.  
+
+Guided by a minimalist design philosophy, DSI Studio prioritizes simplicity, efficiency, and adaptability:  
+
+- **Straightforward Tractography** – Start with a simple method before considering more advanced approaches.  
+- **Minimal Preprocessing** – Uses only essential corrections (e.g., **FSL’s TOPUP and eddy**) to reduce preprocessing burden.  
+- **Simple but Effective Modeling** – Uses simple models such as **DTI, GQI, and QSDR**.  
+- **Adaptive to Research Needs** – Frequently updated based on user feedback to remain relevant to the research community.  
+- **Concept-Driven Innovation** – Introduces novel yet accessible analysis approaches, including:  
+  - **Tract-to-region connectome** for connectivity mapping  
+  - **Differential tractography** for detecting structural changes  
+  - **Correlational tractography** for studying structure-function relationships  
+
+By emphasizing ease of use and conceptual innovations, DSI Studio enables researchers to explore brain connectivity without the complexities of excessive preprocessing or over-engineered modeling. 🚀
 
 ---
 
 ### Publications in Neuroscience
 
-DSI Studio has facilitated and been used in more than 1,400 publications. Research studies using DSI Studio have been published in top-tier journals including Nature Neuroscience, Nature Human Behavior, Nature Communication, Brain, Cerebral Cortex, and NeuroImage 
+DSI Studio has facilitated and been used in more than [2,400 publications](https://scholar.google.com/scholar?q=%22DSI+Studio%22). Research studies using DSI Studio have been published in top-tier journals including Nature Neuroscience, Nature Human Behavior, Nature Communication, Brain, Cerebral Cortex, and NeuroImage 
 
 ![image](/images/nat_rev_neuro.png)
 > DSI Studio tractography on the cover of "Nature Reviews Neurology" for the whole year of 2017. 
 > About the cover. Brains and beauty — the 2017 cover. Nat Rev Neurol 13, 1 (2017)
-
----
-
-### More Than Just Pretty Pictures
-
-The deterministic fiber tracking method in DSI Studio has achieved the 92% valid connection (ID#3) among 96 methods submitted from 20 different research groups, examined by an open competition [(Nature communications, 8(1), 1349, 2017)](https://www.nature.com/articles/s41467-017-01285-x). The average accuracy of the tools is only 54%.
-
-![image](/images/HAFT.png)
-> DSI Studio tractography performance [ID:03](http://www.tractometer.org/ismrm_2015_challenge/results)
 
 ---
 
