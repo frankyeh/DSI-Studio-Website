@@ -163,11 +163,15 @@ save example.src -v4
 
  ![](https://sites.google.com/a/labsolver.org/dsi-studio/_/rsrc/1468760871354/Manual/export-data-to-matlab/mat_export.jpg)
 
-The FIB file format (*.fib.gz, *.fz) stores vector field data (fiber orientations) and anisotropy information (magnitude), which are used by DSI Studio for fiber tracking. FIB files are stored in MATLAB's V4 matrix format, with .fib.gz and .fz being gzip-compressed versions.
 
-To load a FIB file in MATLAB, decompress the file (if compressed) and rename it with a .mat extension before loading it. When saving a processed FIB file, it must be saved in MATLAB's V4 format to ensure compatibility with DSI Studio.
+DSI Studio uses the `*.fib.gz` (versions before Hou) and `*.fz` (Hou versions and later) formats to store fiber tracking data, including vector field information (fiber orientations) and anisotropy values (magnitude).  
 
-The following is a list of matrix used in the SRC file.
+The `*.fib.gz` format is a gzip-compressed MATLAB `.mat` file in V4 format. The `*.fz` format follows the same structure but only stores values within the mask. Additionally, stored values in `*.fz` are shifted and scaled using `matrix_name.inter` and `matrix_name.slope`.  
+
+Due to the `.` character in the matrix names, `*.fz` files cannot be directly parsed by MATLAB. However, they can still be read and written using `scipy.io` in Python or C++ code.  
+
+
+**Matrix Structure**
 
 | matrix | description|
 |:---------|:-----------|
@@ -178,6 +182,18 @@ The following is a list of matrix used in the SRC file.
 | *odf_vertices* | The fiber orientation table used by the index matrices. For example: <br> The index is zero based. For instance, if a voxel's *index0* value is 5, the voxel's first fiber has an orientation of *odf_vertices*(:,5+1). |
 | *dir0, dir1, dir2, ...* | The vectors of fiber orientations instead of directional index. By default, DSI Studio uses "directional index" (*index0,index1,...* etc.), and thus won't save directional vectors in the FIB file. <br> Each directional matrix has a dimension of 3xN. <br> dir0 is the directional vector of the most prominent fiber, and dir1 is the vector of the second most prominent fiber. These matrices have to be "reshaped" to restore to its original form: <br> ` dir0 = reshape(dir0,[3 dimension]);` <br> This will make it a 3-by-x-by-y-by-z matrix. <br> To determine the number of fibers in a voxel, we need to refer to *fa0*, *fa1*, *fa2*...etc. For example, if a voxel has two fibers, its *fa0* and *fa1* have nonzero values, whereas* fa2*, *fa3*,... are zero. |
 | *odf1, odf2, ....* | The ODF values of each voxel can also be exported from DSI Studio. To get the ODF data, check the "output ODF" check box in advance option of the reconstruction window. DSI Studio will store a series of matrices named *odf1, odf2,.... * For each these odf matrices, the dimension is e.g. 321-by-20000. 321 is the dimension of an ODF vector (the actual value depends on the ODF order), and 20000 is the number of the ODFs stored. Note that only the ODFs from the voxels with QA \> 0 or FA \> 0 are stored. <br> For more detail about how to use the ODF matrix and visualize them. If you are using the ODFs calculated from QSDR, you may also need to look into this document to handle the discrepancy between ODF counts and a number of voxels with qa \> 0. <br> Example: load a fib.gz file and get the information <br> The odf_vertices matrix stores the ODF sampling orientations table. This table stores sampling orientations that are equally-distributed (almost) on a sphere with the radius of one. You can use the table generated from DSI Studio or any table you prefer. The odf_face matrix indicates which three orientations forms a triangle on an ODF. YOU may use the one generated from DSI Studio. The exemplary table can be download at the bottom of this page. |
+
+**Example: Load a .fz file (Python)**
+
+```python
+!wget -q https://github.com/data-hcp/lifespan/releases/download/hcp-ya-retest/103818a.fz
+!gunzip -c 103818a.fz > 103818a.mat
+import scipy.io
+# Use whosmat to list variables (name, shape, type)
+variables = scipy.io.whosmat('103818a.mat')
+for name, shape, _ in variables:
+    print(f"{name}: dimension {shape}")
+```
 
 **Example: load a fib.gz file and get the information**
 
