@@ -161,7 +161,7 @@ b_table(2:4,:) = b_vector;
 save example.src -v4
 ```
 
-** Convert .sz and .fz back to .src.gz and .fib.gz **
+**Convert .sz and .fz back to .src.gz and .fib.gz**
 
 ```
 import scipy.io, numpy as np, gzip, shutil, os
