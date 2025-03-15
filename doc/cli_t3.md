@@ -72,10 +72,13 @@ call dsi_studio.exe --action=trk --source="%%x" --seed_count=1000000 --thread_co
 ## Conventional Tracking
 > Specify the tracking parameters below or replace them by using a single `--parameter_id`, which can be found at the method text under Step T3d after running fiber tracking.
 
+
+**The following parameters better leave them as default (don't need to specify them) unless you have special purpose**
+
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
-| fiber_count or seed_count | `100000`| specify the number of fibers to be generated. If seed number is preferred, use seed_count instead. If DSI Studio cannot find a track connecting the ROI, then the program may run forever. To avoid this problem, you may assign fiber_count and seed_count at the same time so that DSI Studio can terminate if the seed count reaches a large number.
-| fa_threshold   | `0` | which means it is randomized): threshold for fiber tracking. In QBI, DSI, and GQI, "fa_threshold" will be applied to the QA threshold. To use other index as the threshold, add "threshold_index=[name of the index]" (e.g. "--threshold_index=nqa --fa_threshold=0.01" sets a threshold of 0.01 on nqa for tract termination). If fa_threshold is not assigned, then DSI Studio will select a random value between 0.5 Otsu and 0.7 Otsu threshold using a uniform distribution.
+| tract_count or seed_count | `0`| specify the number of tract or seed to be generated. The default (0) means let DSI Studio decide the number.  | 
+| fa_threshold   | `0` | which means it is randomized): DSI Studio will select a random value between 0.5 Otsu and 0.7 Otsu threshold using a uniform distribution.
 | turning_angle | `0` (randomized) | This threshold (in degrees) serves as a termination criterion. If two consecutive moving directions have a crossing angle above this threshold, the tracking will be terminated. <br> The default `0` will be a random selection of a value from 15 degrees to 90 degrees.|
 | step_size | `0` (randomized) | Step size defines the moving distance in each tracking iteration. This unit is in millimeter-scale. The default value `0` will be a random selection of the step size from 1.0 to 3.0 voxel distance (for versions before June 2023, 0.5 to 1.5 voxels). |
 | min_length | `30` (mm)| Length constraint that filters out the tracks that are either too short |
@@ -86,8 +89,7 @@ The following settings are also included in `--parameter_id` but  usually the de
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
 | method | `0` |  tracking methods 0:streamline , 1:rk4 |
-| otsu_threshold | `0.6` | The default Otsu's threshold can be adjusted to any ratio.
-| smoothing | `0` (off) | Smoothing serves like a "momentum". For example, if smoothing is 0, the propagation direction is independent of the previous incoming direction. If the smoothing is 0.5, each moving direction remains 50% of the "momentum", which is the previous propagation vector. This function makes the tracks appear smoother. In implementation detail, there is a weighting sum on every two consecutive moving directions. For smoothing value 0.2, each subsequent direction has 0.2 weightings contributed from the previous moving direction and 0.8 contributed from the income direction. To disable smoothing set its value to 0. <br> Assign 1.0 to do a random selection of the value from 0% to 95%. |
+| otsu_threshold | `0.6` | The default Otsu's threshold can be adjusted to any ratio. |
 | tip_iteration | `0` | specify pruning iterations. If --track_id or --dt_threshold_index is specified, the default value is `16` |
 | random_seed | `0` | specify the random number for fiber tracking. Specify a different interger to get different seed sequences. |
 
