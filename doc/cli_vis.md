@@ -1,44 +1,26 @@
-# Visualization
+# GIU-Based Command Line
 
-> use --action=`vis` to initiate 3D rendering interface for visualization
+> use --action=`vis` to run command line for GUI
+
+After loading a .fz file, users can run command line on the GUI's console window for batch visualization.
 
 ## Examples
 
 *Load all fib file and its correponding tract file. Add an isosurface,and save the rendering image in horizontal layout.*
 ```
-dsi_studio --action=vis --source=sub001.fib.gz --tract=sub001.tt.gz --cmd="set_zoom,1.0+restore_rendering+add_surface,Full+save_h3view_image,sub001.png"
+dsi_studio --action=vis --cmd="load_tracts,sub001.tt.gz+set_zoom,1.0+restore_rendering+add_surface,Full+save_h3view_image,sub001.png"
 ```
 
 *Load an fib file and a tract file. Set the view from the top and save the rendering image as 1.jpg.*
 ```
-dsi_studio --action=vis --source=test.fib.gz --tract=whole_brain.tt.gz --cmd="set_view,2+save_image,1.jpg,1024 800"
+dsi_studio --action=vis --cmd="load_tracts,whole_brain.tt.gz+set_view,2+save_image,1.jpg,1024 800"
 ```
 
-*Load an FIB file and keep GUI open:*
-```
-dsi_studio --action=vis --source=test.fib.gz --stay_open=1
-```
-
-*Load multiple TRK files and keep GUI open:*
-
-```
-dsi_studio --action=vis --source=test.fib.gz --tract="TRACK1.tt.gz,TRACK2.tt.gz" --cmd=" " --stay_open=1
-```
-*Load trk and fib files to rendering their 3D images (Windows batch script)*
-```
-path=C:\Users\frank\Documents\GitHub\DSI-Studio-WIN64\dsi_studio_64
-FOR /F "delims=" %%A in ('dir *.fib.gz /b /on') do (
-    call dsi_studio.exe --action=vis --source=%%A --tract=%%A.tt.gz --cmd="add_surface,0,0+slice_off+save_h3view_image,%%A.jpg+save_h3view_image,%%A.jpg" > %%A_.txt
-)
-```
  
 ## Core Functions
 
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
-| source |  | specify the fib.gz file for automatic bundle tracking.  |
-| stay_open | `0` | assign "--stay_open=1" to allow GUI to stay open after the command line |
-| tract |  | (optional) specify the track files to open. To load multiple files, use "," to separate multiple track files. |
 | cmd |  | specify the function to execute. Multiple commands can be combined using "+" as the separator (e.g. --cmd="add_surface+save_image") |
 
 *The following commands are for controlling the interface:*
@@ -80,6 +62,7 @@ You may specify the file name. For example "add_surface+save_image,file_name.jpg
 - `restore_rendering` : restore all rendering settings
 - `run_tracking`: run tracking using the current parameters
 - `load_track_color,my_track_color_file.txt`: load the color for current tract from a text file.
+- `load_tract_values,my_track_value_file.txt`: load the valuer for current tract from a text file.
 - `load_cluster_color,clutser_colors.txt`: load the color for all loaded tracts from a text RGB file.
 - `cut_by_slice`: cut tracks by the current slice position. Specify slice orientation by 0:sagittal 1:coronal, 2:axial. and direction by 0:lesser 1:greater. For example,  `--cut_by_slice,2,1` cut tracks at Z+
 
