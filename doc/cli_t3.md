@@ -36,7 +36,7 @@ dsi_studio --action=trk --source=subject001.fib.gz --seed=wholeBrain.nii --roi=m
 ```
 *Perform fiber tracking and output connectivity matrix using HCP-MMP and AAL3 parcellation, respectively. Specify --output=no_file to skip saving the large tractography file*
 ```
-dsi_studio --action=trk --source=subject001.fib.gz --fiber_count=1000000 --output=no_file --connectivity=HCP-MMP,FreeSurferDKT_Cortical --connectivity_value=count,qa,trk
+dsi_studio --action=trk --source=subject001.fib.gz --output=no_file --connectivity=HCP-MMP,FreeSurferDKT_Cortical --connectivity_value=count,qa,trk
 ```
 *Perform fiber tracking and export track-specific statistics and TDI*
 ```
