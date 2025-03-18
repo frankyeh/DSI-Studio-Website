@@ -5,18 +5,16 @@
 
 DSI Studio is a user-friendly tractography software designed for tractography analysis. It allows researchers and clinicians to efficiently map brain connections and explore their relationships with brain disorders.  
 
-Guided by a minimalist design philosophy, DSI Studio prioritizes simplicity, efficiency, and adaptability:  
+The design of DSI Studio follows *minimalist principle* and prioritizes *simplicity, efficiency, and adaptability*:  
 
 - **Straightforward Tractography** – Start with a simple method before considering more advanced approaches.  
 - **Minimal Preprocessing** – Uses only essential corrections (e.g., **FSL’s TOPUP and eddy**) to reduce preprocessing burden.  
-- **Simple but Effective Modeling** – Uses simple models such as **DTI, GQI, and QSDR**.  
+- **Simple Modeling** – Uses simple models such as **DTI, GQI, and QSDR**.
 - **Adaptive to Research Needs** – Frequently updated based on user feedback to remain relevant to the research community.  
-- **Concept-Driven Innovation** – Introduces novel yet accessible analysis approaches, including:  
+- **Concept-Driven Innovation** – Introduces novel yet easy analysis approaches, including:  
   - **Tract-to-region connectome** for connectivity mapping  
   - **Differential tractography** for detecting structural changes  
   - **Correlational tractography** for studying structure-function relationships  
-
-By emphasizing ease of use and conceptual innovations, DSI Studio enables researchers to explore brain connectivity without the complexities of excessive preprocessing or over-engineered modeling. 🚀
 
 ---
 
