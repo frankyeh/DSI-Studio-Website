@@ -3,17 +3,18 @@
 > use --action=`vis` to run command line for GUI
 
 After loading a .fz file, users can run command line on the GUI's console window for batch visualization.
+![image](https://github.com/user-attachments/assets/d0e967eb-06fc-4874-9eba-19110477a55a)
 
 ## Examples
 
-*Load all fib file and its correponding tract file. Add an isosurface,and save the rendering image in horizontal layout.*
+*Load a file and add an isosurface. save the rendering image in horizontal layout.*
 ```
-dsi_studio --action=vis --cmd="load_tracts,sub001.tt.gz+set_zoom,1.0+restore_rendering+add_surface,Full+save_h3view_image,sub001.png"
+--cmd=load_tracts,sub001.tt.gz+set_zoom,1.0+restore_rendering+add_surface,Full+save_h3view_image,sub001.png
 ```
 
-*Load an fib file and a tract file. Set the view from the top and save the rendering image as 1.jpg.*
+*Load each *.tt.gz tract file in the current folder, and set the view from the top and save the rendering image as 1.jpg.*
 ```
-dsi_studio --action=vis --cmd="load_tracts,whole_brain.tt.gz+set_view,2+save_image,1.jpg,1024 800"
+--loop=*.tt.gz --cmd="load_tracts,*.tt.gz+set_view,2+save_image,1.jpg,1024 800"
 ```
 
  
