@@ -1,8 +1,8 @@
-# GIU-Based Command Line
+# GUI-Based Command Line
 
 > use --action=`vis` to run command line for GUI
 
-After loading a .fz file, users can run command line on the GUI's console window for batch visualization.
+After loading a .fz file, users can use GUI's console window for batch visualization and screen saving.
 ![image](https://github.com/user-attachments/assets/d0e967eb-06fc-4874-9eba-19110477a55a)
 
 ## Examples
