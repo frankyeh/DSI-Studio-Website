@@ -6,8 +6,8 @@
 **Registration link: [https://forms.gle/bDAeCEXjBLQZkGDUA](https://forms.gle/bDAeCEXjBLQZkGDUA)**
 
 - Format: Weekly one-hour zoom meeting divided into 3 or 4 sessions (15 min each) followed by Q&A
-- Time: April (Exact days to be determined) Friday 10 am - 11 am EST
-- Website: https://practicum.labsolver.org
+- Time: April (4th, 11th, 18th, 25th) Friday 10 am - 11 am EST
+- Website: [https://practicum.labsolver.org](https://practicum.labsolver.org)
 - Main Topic: Introduction to DSI Studio "Hou" version
 
 
