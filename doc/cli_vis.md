@@ -1,7 +1,5 @@
 # GUI-Based Command Line
 
-> use --action=`vis` to run command line for GUI
-
 After loading a .fz file, users can use GUI's console window for batch visualization and screen saving.
 ![image](https://github.com/user-attachments/assets/d0e967eb-06fc-4874-9eba-19110477a55a)
 
@@ -9,12 +7,12 @@ After loading a .fz file, users can use GUI's console window for batch visualiza
 
 *Load a file and add an isosurface. save the rendering image in horizontal layout.*
 ```
---cmd=load_tracts,sub001.tt.gz+set_zoom,1.0+restore_rendering+add_surface,Full+save_h3view_image,sub001.png
+--action=vis --cmd=load_tracts,sub001.tt.gz+set_zoom,1.0+restore_rendering+add_surface,Full+save_h3view_image,sub001.png
 ```
 
 *Load each *.tt.gz tract file in the current folder, and set the view from the top and save the rendering image as 1.jpg.*
 ```
---loop=*.tt.gz --cmd="load_tracts,*.tt.gz+set_view,2+save_image,1.jpg,1024 800"
+--action=vis --cmd="load_tracts,*.tt.gz+set_view,2+save_image,1.jpg,1024 800"
 ```
 
  
