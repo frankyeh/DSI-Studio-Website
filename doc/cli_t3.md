@@ -12,52 +12,52 @@ For mapping individual bundle, please use [(automatic fiber tracking)](https://d
 
 *Whole brain tracking on all fib files and save tractograms*
 ```
-dsi_studio --action=trk --source=*.fib.gz --output=*.tt.gz
+dsi_studio --action=trk --source=*.fz --output=*.tt.gz
 ```
 *Track the left arcuate fasciculus of a fib file*
 ```
-dsi_studio --action=trk --source=subject01.fib.gz --track_id=ArcuateFasciculusL --output=subject01.ArcuateFasciculusL.tt.gz
+dsi_studio --action=trk --source=subject01.fz --track_id=ArcuateFasciculusL --output=subject01.ArcuateFasciculusL.tt.gz
 ```
 *(Versions after 2024/10) Tract-to-region connectivity between left arcuate fasciculus and HCP-MMP parcellation
 ```
-dsi_studio --action=trk --source=subject01.fib.gz --track_id=ArcuateFasciculusL --connectivity=HCP-MMP
+dsi_studio --action=trk --source=subject01.fz --track_id=ArcuateFasciculusL --connectivity=HCP-MMP
 ```
 *Perform fiber tracking with all fiber tracking parameters assigned by a parameter ID*
 ```
-dsi_studio --action=trk --source=subject001.fib.gz --parameter_id=c9A99193Fba3F2EFF013Fcb2041b96438813dcb
+dsi_studio --action=trk --source=subject001.fz --parameter_id=c9A99193Fba3F2EFF013Fcb2041b96438813dcb
 ```
 *Use the left and right precentral region from FreeSurferDKT atlas as the ROIs. Dilate them twice and smooth them for fiber tracking*
 ```
-dsi_studio --action=trk --source=subject001.fib.gz --roi=FreeSurferDKT_Cortical:left_precentral,dilate,dilate,smoothing --roi2=FreeSurferDKT_Cortical:right_precentral,dilate,dilate,smoothing
+dsi_studio --action=trk --source=subject001.fz --roi=FreeSurferDKT_Cortical:left_precentral,dilate,dilate,smoothing --roi2=FreeSurferDKT_Cortical:right_precentral,dilate,dilate,smoothing
 ```
 *Fiber tracking using two MNI-space ROIs (include MNI in the file name) and subject-space whole-brain seeding (from wholeBrain.nii)*
 ```
-dsi_studio --action=trk --source=subject001.fib.gz --seed=wholeBrain.nii --roi=mni_roi1.nii --roi2=mni_roi2.nii
+dsi_studio --action=trk --source=subject001.fz --seed=wholeBrain.nii --roi=mni_roi1.nii --roi2=mni_roi2.nii
 ```
 *Perform fiber tracking and output connectivity matrix using HCP-MMP and AAL3 parcellation, respectively. Specify --output=no_file to skip saving the large tractography file*
 ```
-dsi_studio --action=trk --source=subject001.fib.gz --output=no_file --connectivity=HCP-MMP,FreeSurferDKT_Cortical --connectivity_value=count,qa,trk
+dsi_studio --action=trk --source=subject001.fz --output=no_file --connectivity=HCP-MMP,FreeSurferDKT_Cortical --connectivity_value=count,qa,trk
 ```
 *Perform fiber tracking and export track-specific statistics and TDI*
 ```
-dsi_studio --action=trk --source=subject001.fib.gz --output=tracks.tt.gz --export=stat,tdi
+dsi_studio --action=trk --source=subject001.fz --output=tracks.tt.gz --export=stat,tdi
 ```
 *Perform fiber tracking and recognize tracts
 ```
-dsi_studio --action=trk --source=subject001.fib.gz --output=tracks.tt.gz --recognize=cluster_info
+dsi_studio --action=trk --source=subject001.fz --output=tracks.tt.gz --recognize=cluster_info
 ```
 *Perform fiber tracking and insert other metrics (DKI, FW_FA...etc) and export track-specific statistics*
 ```
-dsi_studio --action=trk --source=subject001.fib.gz --other_slices=./other/*.nii.gz --output=tracks.tt.gz --export=stat
+dsi_studio --action=trk --source=subject001.fz --other_slices=./other/*.nii.gz --output=tracks.tt.gz --export=stat
 ```
 *Perform differential tractography by comparing MNI-space FA map (include MNI in the file name) and subject's fa and tracking the decreased FA at 10%*
 ```
-dsi_studio --action=trk --source=subject001.fib.gz --other_slices=template_qa.nii.gz --dt_metric1=follow_up_qa --dt_meetric2=qa --dt_threshold=0.2 --seed_count=1000000 --min_length=30 --output=tracks.tt.gz
+dsi_studio --action=trk --source=subject001.fz --other_slices=template_qa.nii.gz --dt_metric1=follow_up_qa --dt_meetric2=qa --dt_threshold=0.2 --seed_count=1000000 --min_length=30 --output=tracks.tt.gz
 ```
 *(Windows System) Search for all fib files under the current directory and perform fiber tracking to get the FreeSurferDKT connectivity matrix*
 ```
 path=C:\dsi_studio_64
-for /f "delims=" %%x in ('dir *.fib.gz /b /d /s') do (
+for /f "delims=" %%x in ('dir *.fz /b /d /s') do (
 call dsi_studio.exe --action=trk --source="%%x" --seed_count=1000000 --thread_count=8 --output=no_file --connectivity=FreeSurferDKT > "%%x.log.txt"
 )
 ```
@@ -139,14 +139,14 @@ The following settings are also included in `--parameter_id` but  usually the de
 
 *Differential fiber tracking on all patient's fib files against HCP1065 NQA MNI-space template to map pathways with 20% decreases (The QA nifti file needs to have mni in the file name to enable warping
 ```
-dsi_studio --action=trk --source=*.fib.gz --other_slices=HCP1065_nqa_mni.nii.gz --dt_metric2=qa --dt_metric1=HCP1065_nqa_mni --dt_threshold=0.2
+dsi_studio --action=trk --source=*.fz --other_slices=HCP1065_nqa_mni.nii.gz --dt_metric2=qa --dt_metric1=HCP1065_nqa_mni --dt_threshold=0.2
 ```
 
 
 
 | Parameters            | Description                                                                 |
 |:-----------------|:------------------------------------------------------------------------------|
-| other_slices     | [option 1] specify the NIFTI file or to be inserted for differential tractography (e.g., --other_slices=pre.nii.gz,post.nii.gz)<br> [option 2]  specify a connectometry database with built-in demographics and specify subject's demographics using --subject_demo (e.g., --other_slices=study.db.fib.gz --subject_demo=62,1)<br>If the image is in the MNI space, add `mni` in the filename (e.g. xxx.mni.nii.gz).<br>To disable registration, add `native` in the file name (e.g. qa.native.nii.gz). |
+| other_slices     | [option 1] specify the NIFTI file or to be inserted for differential tractography (e.g., --other_slices=pre.nii.gz,post.nii.gz)<br> [option 2]  specify a connectometry database with built-in demographics and specify subject's demographics using --subject_demo (e.g., --other_slices=study.db.fz --subject_demo=62,1)<br>If the image is in the MNI space, add `mni` in the filename (e.g. xxx.mni.nii.gz).<br>To disable registration, add `native` in the file name (e.g. qa.native.nii.gz). |
 | dt_threshold | Assign percentage threshold for differential tractography. assign --dt_threshold=0.1 to detect more than 10% change. |
 | dt_metric1 | Specify the first metrics for differential tracking |
 | dt_metric2 | Specify the second metrics for differential tracking |
