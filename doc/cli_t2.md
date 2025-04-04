@@ -7,31 +7,31 @@
 *Reconstruct all SRC files with GQI using 1.25 mean diffusion distance and output all FIB files to a folder named fib*
 
 ```
-dsi_studio --action=rec --source=*.src.gz --method=4 --param0=1.25 --output=/fib/
+dsi_studio --action=rec --source=*.sz --method=4 --param0=1.25 --output=/fib/
 ```
 
 *Reconstruct all SRC files after EDDY correction 
 
 ```
-dsi_studio --action=rec --source=subject1.src.gz --cmd="[Step T2][Corrections][EDDY]" --method=4 --param0=1.25
+dsi_studio --action=rec --source=subject1.sz --cmd="[Step T2][Corrections][EDDY]" --method=4 --param0=1.25
 ```
 
 *Reconstruct SRC file after TOPUP/EDDY correction using reverse-phase encoding b0 stored in the nifti file.*
 
 ```
-dsi_studio --action=rec --source=*.src.gz --rev_pe=*.rev_b0.nii.gz --method=4 --param0=1.25
+dsi_studio --action=rec --source=*.sz --rev_pe=*.rev_b0.nii.gz --method=4 --param0=1.25
 ```
 
 *Apply TOPUP/EDDY to the src file using the corresponding reverse PE image and save the preprocessed data to a new SRC file (no reconstruction done).*
 
 ```
-dsi_studio --action=rec --source=*_s04_dMRI_dir258_1_HDFT.src.gz --rev_pe=*_s09_dMRI_dir258_2_HDFT.nii.gz --save_src=*_proc.src.gz
+dsi_studio --action=rec --source=*_s04_dMRI_dir258_1_HDFT.sz --rev_pe=*_s09_dMRI_dir258_2_HDFT.nii.gz --save_src=*_proc.sz
 ```
 
 *QSDR reconstruction with 1.25 sampling length ratio. The t1w and t2w were also warped with QSDR*
 
 ```
-dsi_studio --action=rec --source=20081006_M025Y_1Shell.src.gz --method=7 --other_image=t1w:my_tiw.nii.gz,t2w:my_t2w.nii.gz
+dsi_studio --action=rec --source=20081006_M025Y_1Shell.sz --method=7 --other_image=t1w:my_tiw.nii.gz,t2w:my_t2w.nii.gz
 ```
 
 *A bash script that reconstructs all src.gz files in the directory*
@@ -43,7 +43,7 @@ dsi_studio --action=rec --source=20081006_M025Y_1Shell.src.gz --method=7 --other
 exec 1>log_qsdr.out 2>&1
 
 # List all src.gz files
-subs=$(ls *.src.gz)
+subs=$(ls *.sz)
 
 # Reconstruction Parameters
 method=7          # 7 for QSDR
@@ -62,7 +62,7 @@ done
 
 | Parameters            | Default | Description                                                                 |
 |:-----------------|:--------|:------------------------------------------------------------------------------|
-| source |  | specify the .src.gz file for reconstruction. |
+| source |  | specify the .sz file for reconstruction. |
 | method | `4` | specify the reconstruction methods.<br> 0:DSI, 1:DTI, 4:GQI 7:QSDR.|
 | param0 | `1.25` (in-vivo) or `0.6` (ex-vivo)| the diffusion sampling length ratio for GQI and QSDR reconstruction. |
 | other_output | `fa,ad,rd,md,nqa,iso,rdi,nrdi` | specify what diffusion metrics to calculate. use `all` to get all of possible metrics |
