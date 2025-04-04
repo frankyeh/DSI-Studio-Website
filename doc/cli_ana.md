@@ -9,49 +9,49 @@ The `ana` action can use any post-tracking functions listed under "--action=trk"
 
 *(Versions after 2024/10) Calculate the tract-to-region connectivity using the tracts and built-in atlas or ROI file*
 ```
-dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --connectivity=HCP-MMP,Brodmann
-dsi_studio --action=ana --source=my.fib.gz --tract=bundle1.tt.gz,bundle2.tt.gz,bundle3.tt.gz --connectivity=HCP-MMP+subcortical.nii.gz
-dsi_studio --action=ana --source=my.fib.gz --tract=*.tt.gz --connectivity=HCP-MMP
+dsi_studio --action=ana --source=my.fz --tract=tract.tt.gz --connectivity=HCP-MMP,Brodmann
+dsi_studio --action=ana --source=my.fz --tract=bundle1.tt.gz,bundle2.tt.gz,bundle3.tt.gz --connectivity=HCP-MMP+subcortical.nii.gz
+dsi_studio --action=ana --source=my.fz --tract=*.tt.gz --connectivity=HCP-MMP
 ```
 
 *Merge two trk files and save it to a txt file*
 ```
-dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts1.tt.gz,Tract2.tt.gz --output=Tracts1.txt
+dsi_studio --action=ana --source=avg.mean.fz --tract=Tracts1.tt.gz,Tract2.tt.gz --output=Tracts1.txt
 ```
 
 *Read track trk file, filter it by ROIs, and output as another trk file*
 ```
-dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts.tt.gz --roi=roi.nii.gz --roi2=roi2.nii.gz --output=filtered_track.tt.gz
+dsi_studio --action=ana --source=avg.mean.fz --tract=Tracts.tt.gz --roi=roi.nii.gz --roi2=roi2.nii.gz --output=filtered_track.tt.gz
 ```
 
 *Convert trk file to ROI file*
 ```
-dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts1.tt.gz --output=ROI.nii.gz
+dsi_studio --action=ana --source=avg.mean.fz --tract=Tracts1.tt.gz --output=ROI.nii.gz
 ```
 
 *Generate tract density imaging from a trk file.*
 ```
-dsi_studio --action=ana --source=avg.mean.fib.gz --tract=Tracts1.tt.gz --export=tdi
+dsi_studio --action=ana --source=avg.mean.fz --tract=Tracts1.tt.gz --export=tdi
 ```
 
 *Get track statistics from a track file*
 ```
-dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --export=stat    
+dsi_studio --action=ana --source=my.fz --tract=tract.tt.gz --export=stat    
 ```
 
 *Get track statistics from a mni-space track file*
 ```
-dsi_studio --action=ana --source=my.fib.gz --tract=tract_mni.tt.gz --export=stat    
+dsi_studio --action=ana --source=my.fz --tract=tract_mni.tt.gz --export=stat    
 ```
 
 *Get track DKI and ODI statistics from a track file*
 ```
-dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --other_slices=DKI.nii.gz,ODI.nii.gz --export=stat    
+dsi_studio --action=ana --source=my.fz --tract=tract.tt.gz --other_slices=DKI.nii.gz,ODI.nii.gz --export=stat    
 ```
 
 *Save tracks to a difference slice space
 ```
-dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --ref=t1w.nii.gz --output=tract_in_t1w.tt.gz
+dsi_studio --action=ana --source=my.fz --tract=tract.tt.gz --ref=t1w.nii.gz --output=tract_in_t1w.tt.gz
 ```
 
 
@@ -59,40 +59,40 @@ dsi_studio --action=ana --source=my.fib.gz --tract=tract.tt.gz --ref=t1w.nii.gz 
 
 *Get the statistics of multiple native-space ROIs*
 ```
-dsi_studio --action=ana --source=my.fib.gz --regions=native_space_roi.nii.gz
+dsi_studio --action=ana --source=my.fz --regions=native_space_roi.nii.gz
 ```
 
 *Get the statistics of multiple MNI-space ROIs (including 'mni' in the file name tells DSI Studio that this is an MNI space region)*
 ```
-dsi_studio --action=ana --source=my.fib.gz --regions=mni_space_roi.nii.gz
+dsi_studio --action=ana --source=my.fz --regions=mni_space_roi.nii.gz
 ```
 
 *Get statistics from Freesurfer segmented ROIs using subjects T1W to guide the registration*
 ```
-dsi_studio --action=ana --source=my.fib.gz --regions=aparc+aseg.nii.gz --other_slices=subject_t1w.nii.gz
+dsi_studio --action=ana --source=my.fz --regions=aparc+aseg.nii.gz --other_slices=subject_t1w.nii.gz
 ```
 
 *Get statistics from ROIs of the atlas included in the DSI Studio package*
 ```
-dsi_studio --action=ana --source=*.fib.gz --regions=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R,HCP842_tractography:Corpus_Callosum
+dsi_studio --action=ana --source=*.fz --regions=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R,HCP842_tractography:Corpus_Callosum
 ```
 
 *Get the statistics from multiple ROIs of an atlas*
 ```
-dsi_studio --action=ana --source=my.fib.gz --atlas=FreeSurferDKT
+dsi_studio --action=ana --source=my.fz --atlas=FreeSurferDKT
 ```
 
 ## Examples of Export Functions: 
 
 *Get the diffusion metrics from fib files*
 ```
-dsi_studio --action=ana --source=*.gqi.1.25.fib.gz --export=qa,iso,dti_fa,rd,ad
+dsi_studio --action=ana --source=*.gqi.1.25.fz --export=qa,iso,dti_fa,rd,ad
 ```
 
 *Export all fiber orientations in the fib file*
 
 ```
-dsi_studio --action=ana --source=test.fib.gz --export=dirs
+dsi_studio --action=ana --source=test.fz --export=dirs
 ```
 
 *Convert an SRC file to a 4D nifti file*
