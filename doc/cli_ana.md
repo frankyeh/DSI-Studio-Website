@@ -74,7 +74,7 @@ dsi_studio --action=ana --source=my.fz --regions=aparc+aseg.nii.gz --other_slice
 
 *Get statistics from ROIs of the atlas included in the DSI Studio package*
 ```
-dsi_studio --action=ana --source=*.fz --regions=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R,HCP842_tractography:Corpus_Callosum
+dsi_studio --action=ana --source=*.fz --region=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R,HCP842_tractography:Corpus_Callosum
 ```
 
 *Get the statistics from multiple ROIs of an atlas*
@@ -143,7 +143,7 @@ You can export multiple outputs separated by ",". For example,
 
 | Parameters        | Description                                                                 |
 |:------------------|:------------------------------------------------------------------------------|
-| region or regions | specify the NIFTI file of a single ROI (--region) or multiple ROIs (--regions) to export region statistics. If the regions are in the MNI space, add "mni" to the file name (e.g. mni_regions.nii.gz) |
+| region or regions | specify the NIFTI file of a single ROI (--region) or multiple ROIs (--regions) to export region statistics. If the regions are in the MNI space, add "mni" to the file name (e.g. mni_regions.nii.gz). --region further support loading built-in atlas regions (e.g. --region=HCP-MMP:L_V1) |
 | other_slices  | if the region is derived from a T1W, then specify the t1w image using --other_slices=t1w.nii.gz for registration with the DWI. *Please make sure that the T1W has the same dimension as the region file*|
 | atlas | Specify the built-in atlas name for export region statistics | 
 
