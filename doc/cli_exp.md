@@ -6,12 +6,12 @@
 
 *Export dti_fa,ad,md from a FIB file
 ```
-dsi_studio --action=exp --source=subject1.fib.gz --export=dti_fa,ad,md
+dsi_studio --action=exp --source=subject1.fz --export=dti_fa,ad,md
 ```
 
 *Export qa,iso from all FIB files
 ```
-dsi_studio --action=exp --source=*.fib.gz --export=qa,iso
+dsi_studio --action=exp --source=*.fz --export=qa,iso
 ```
 
 
