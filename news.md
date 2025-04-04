@@ -3,11 +3,12 @@
 **Registration link: [https://forms.gle/bDAeCEXjBLQZkGDUA](https://forms.gle/bDAeCEXjBLQZkGDUA)**
 
 - Format: Weekly one-hour zoom meeting divided into 3 or 4 sessions (15 min each) followed by Q&A
-- Time: April (Exact days to be determined) Friday 10 am - 11 am EST
+- Time: April (4th 11th 18th 25) Friday 10 am - 11 am EST
 - Website: https://practicum.labsolver.org
 - Main Topic: Introduction to DSI Studio "Hou" version
 
 ## Update log 
+- (04/01/2025) adding command history function
 - (03/11/2025) introduce new termination count system using tract-to-voxel ratio.
 - (03/11/2025) fix a bug in autotract in versions between 02/01/2025 and 03/10/2025
 - (03/01/2025) built-in neonate template updated.
