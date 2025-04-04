@@ -8,18 +8,18 @@ Automatic fiber tracking maps individual bundles using deterministic fiber track
 
 *Run fiber tracking on all fib.gz files to map all association pathways
 ```
-dsi_studio --action=atk --source=*.fib.gz
+dsi_studio --action=atk --source=*.fz
 ```
 
 *Run fiber tracking on all fib.gz files to map corticospinal tracts and optic radiation
 ```
-dsi_studio --action=atk --source=*.fib.gz --track_id=Corticos,Optic
+dsi_studio --action=atk --source=*.fz --track_id=Corticos,Optic
 ```
 
 
 *Run fiber tracking on all fib.gz files and output tracts to the template space
 ```
-dsi_studio --action=atk --source=*.fib.gz --export_template_trk=1
+dsi_studio --action=atk --source=*.fz --export_template_trk=1
 ```
 
 
