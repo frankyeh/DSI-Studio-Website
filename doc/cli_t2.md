@@ -89,7 +89,7 @@ done
 | mask | Specify the mask file (.nii.gz). To use U-Net, specify --mask=unet |
 | rotate_to  | Specify a T1W or T2W for DSI Studio to rotate DWI to its space. (no scaling or shearing) |
 | align_to  | Specify a T1W or T2W for DSI Studio to use affine transform to its space. (including scaling or shearing) |
-| other_image  | Assign other image volumes (e.g., T1W, T2W image) to be wrapped with QSDR. --other_image=<label>:<file path>,<label>:<file path> |
+| other_image  | Assign other image volumes (e.g., T1W, T2W image) to be wrapped with QSDR. --other_image=t1w:/path_to_t1w.nii.gz,t2w:/path_to/t2w.nii.gz |
 | save_src | Save preprocessed images to a new SRC file |
 | save_nii | Save preprocessed images back to 4d NIFTI file |
 | cmd  | Specify any of the following commands for preprocessing. Use "+" to combine commands, and use "=" to assign value/parameters (e.g. --cmd="[Step T2][Corrections][EDDY]+[Step T2][Edit][Overwrite Voxel Size]=1.0" |
