@@ -65,8 +65,7 @@ done
 | source |  | specify the .sz file for reconstruction. |
 | method | `4` | specify the reconstruction methods.<br> 0:DSI, 1:DTI, 4:GQI 7:QSDR.|
 | param0 | `1.25` (in-vivo) or `0.6` (ex-vivo)| the diffusion sampling length ratio for GQI and QSDR reconstruction. |
-| other_output | `fa,ad,rd,md,nqa,iso,rdi,nrdi` | specify what diffusion metrics to calculate. use `all` to get all of possible metrics |
-| record_odf | `0` | specify whether to output the ODF in the fib file (used in connectometry analysis). |
+| other_output | `fa,rd,rdi` | specify what diffusion metrics to calculate. add `odf` to output the odf data. use `all` to get all of possible metrics |
 | qsdr_reso | `2.0` | specify output resolution for QSDR reconstruction |
 | template | `0` | specify the template for QSDR reconstruction:<br>`0`:ICBM152<br>`1`:CIVM_mouse<br>`2`:Neonate<br>`3`:INDI_rhesus<br>`4`:Pitt_Marmoset<br>`5`:WHS_SD_rat |
 
