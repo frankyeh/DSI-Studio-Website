@@ -44,7 +44,7 @@ dsi_studio --action=src --source=C:\20081006_11_00814348_DWI_WIP_DSI_203 --outpu
 *Find all *98_AP.nii.gz file and combine its corresponding 99_AP.nii.gz file to generate one combined SRC file*
 
 ```
-dsi_studio --action=rec --source=*98_AP.nii.gz --other_source=*99_AP.nii.gz
+dsi_studio --action=src --source=*98_AP.nii.gz --other_source=*99_AP.nii.gz
 ```
 
 *Parse all 4d NIFTI files in a folder (each of them has a bval and bvec file that shares a similar file name) and generate corresponding SRC files to a new folder*
@@ -52,6 +52,14 @@ dsi_studio --action=rec --source=*98_AP.nii.gz --other_source=*99_AP.nii.gz
 ```
 dsi_studio --action=src --source=*.nii.gz --output=/src_folder
 ```
+
+
+* create a loop by search all MGH_*_all.zip and create .sz file for each
+
+```
+dsi_studio --action=src --loop=MGH_*_all.zip --source=mgh_*/diff/preproc/mri/diff_preproc.nii.gz --bval=mgh_*/diff/preproc/bvals.txt --bvec=mgh_*/diff/preproc/bvecs_fsl_moco_norm.txt --output=sub-*_dwi.sz
+```
+
 
 *Windows batch file for creating src files from HCP datasets*
 
