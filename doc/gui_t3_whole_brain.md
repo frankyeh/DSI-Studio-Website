@@ -35,8 +35,9 @@ The details of each parameter:
 | ***Step size*** | `0` (randomized) | Step size defines the moving distance in each tracking iteration. This unit is in millimeter-scale. The default value `0` will be a random selection of the step size from 0.5 to 1.5 voxel distance. |
 | ***Min Length*** | `30` | Length constraint that filters out the tracks that are either too short |
 | ***Max Length*** | `300` | Length constraint that filters out the tracks that are either too long |
-| ***Terminate if*** | `500` | The total number of `Tracts` generated or `Seeds` placed |
-|                    | `Tracts` | If `Tracts` is selected, DSI Studio will keep seeding and tracking until the number of tracts reaches the above number because a seed may not always result in a track due to [Min Lnegth][Max Length] or ROI filtering. If `Seeds` is selected, DSI Studio will stop once the total seeding count reaches the number. <br> The choice of the value depends on the application. The rule of thumb is that the final result of the pipeline (e.g. averaged fa, tract area...etc.) should not change more than 5% when you add 1,000 more tracts. A preliminary test is often needed to find the minimum required number of tracts that result in stable results.|
+| ***Max Seed Count*** | `0` | The total number of `Seeds` placed. The default setting will use tract-to-voxel ratio to get tracts |
+| ***Max Tract Count*** | `0` | The total number of `Tracts` mapped. The default setting will use tract-to-voxel ratio to get tracts |
+| ***Tract to voxel ratio*** | `1` | Determine the number of tracts generated using tract-to-voxel ratio |
 | ***Topology-Informed Pruning (TIP)***| 16 | Number of iteration for removing false connections using the TIP method (Yeh Neurotherapeutics 2018)[5] Used in automatic fiber tracking. Used in autotrack |
 | ***Autotrack tolerance (mm)***| 16 | The distance tolerance for track recognition. A larger number results in more results but increases the chance of false findings autotrack  |
 
