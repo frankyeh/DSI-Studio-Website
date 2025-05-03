@@ -1,50 +1,58 @@
 # Automatic Fiber Tracking
 
-> Use --action=`atk` to initiate automatic fiber tracking
+> Use `--action=atk` to initiate automatic fiber tracking.
 
 Automatic fiber tracking maps individual bundles using deterministic fiber tracking and tract recognition. The implementation is detailed in Yeh, Fang-Cheng. "Shape analysis of the human association pathways." Neuroimage 223 (2020): 117329.
 
 ## Examples
 
-*Run fiber tracking on all fib.gz files to map all association pathways
-```
+**1. Run fiber tracking on all fib.gz files to map all association pathways:**
+```bash
 dsi_studio --action=atk --source=*.fz
 ```
 
-*Run fiber tracking on all fib.gz files to map corticospinal tracts and optic radiation
-```
+**2. Track specific bundles (e.g., corticospinal tracts and optic radiation):**
+```bash
 dsi_studio --action=atk --source=*.fz --track_id=Corticos,Optic
 ```
 
-
-*Run fiber tracking on all fib.gz files and output tracts to the template space
-```
+**3. Output tracts in the template space:**
+```bash
 dsi_studio --action=atk --source=*.fz --export_template_trk=1
 ```
 
+---
 
 ## Core Functions
 
-| Parameters            | Default | Description                                                                 |
-|:-----------------|:--------|:------------------------------------------------------------------------------|
-| source |  | Specify fib.gz files for automatic bundle tracking.  |
-| track_id | `Arcuate,Cingulum,Aslant,InferiorFronto,InferiorLongitudinal,SuperiorLongitudinal,Uncinate,Fornix,Corticos,ThalamicR,Optic,Lemniscus,Reticular,Corpus`| Specify the name or the bundles separated by commas. A partial name is accepted. The complete list of the available pathways can be found [here](https://github.com/frankyeh/DSI-Studio-atlas/blob/main/ICBM152_adult/ICBM152_adult.tt.gz.txt)<br>    example:<br>   for tracking left and right arcuate fasciculus, assign --track_id=arcuate    (DSI Studio will find bundles with names containing 'arcuate', case insensitive) <br>    example:<br>   for tracking left and right arcuate and cingulum, assign --track_id=arcuate,cingulum|
-| template | 0 | Specify the template. Current DSI Studio only has atk for ICBM152,INDI_rhesus,Pitt_Marmoset :<br>`0`:ICBM152<br>`1`:CIVM_mouse<br>`2`:Neonate<br>`3`:INDI_rhesus<br>`4`:Pitt_Marmoset<br>`5`:WHS_SD_rat |
-| tolerance | `22,26,30` | the tolerance for bundle recognition. The unit is in mm. Multiple values can be assigned using a comma separator. A larger value may include larger track variation but also subject to more false results. |
-| track_voxel_ratio | `2.0` | the track-voxel ratio for the total number of the streamline count. A larger value gives better mapping at the expense of computation time. 
-| check_ending | `1` and `0` for cingulum | remove tracts if they terminate in high anisotropy locations. |
-| thread_count | hardware max | Specify the number of CPU cores used in computation |
-| yield_rate | '0.00001' | This rate will be used to terminate tracking early if DSI Studio finds the fiber trackings are not generating results |
-| default_mask | `0` | Specify whether the default mask is used. |
-| overwrite | `0` | Specify whether to overwrite existing files. |
-| export_stat | `1` | Specify whether to output track statistics. |
-| export_trk | `1` | Specify whether to output the tractography file. |
-| export_template_trk | `0` | Specify whether to output tractography in the template space. |
-| trk_format | `tt.gz` | Specify the postfix and the output format of the tractography. Supported formats include tt.gz trk trk.gz tck txt mat nii nii.gz. It also allows for changing the postfix of the filename |
-| stat_format | `stat.txt` | Specify the postfix for the statistics text file (has to be in text format).  |
-| output | the directory of the first file specified in --source | Specify the output directory | 
-  
-Fiber tracking parameters such as --otsu_threshold, --fa_Threshold, --turning_angle, --step_size, --smoothing, --tip_iteration are also supported. 
-(--min_length and --max_length are not supported because the length constraint will be automatically determined from the atlas)
+| **Parameter**          | **Default**                                                                 | **Description**                                                                 |
+|-------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| `source`               |                                                                             | Specify fib.gz files for automatic bundle tracking.                            |
+| `track_id`             | `Arcuate,Cingulum,Aslant,InferiorFronto,InferiorLongitudinal,SuperiorLongitudinal,Uncinate,Fornix,Corticos,ThalamicR,Optic,Lemniscus,Reticular,Corpus` | Specify the bundle names, separated by commas. Partial names are accepted. Example: `--track_id=arcuate` tracks left and right arcuate fasciculus. |
+| `template`             | `0`                                                                         | Specify the template for tracking. Supported templates:<br>`0`: ICBM152<br>`1`: CIVM_mouse<br>`2`: Neonate<br>`3`: INDI_rhesus<br>`4`: Pitt_Marmoset<br>`5`: WHS_SD_rat |
+| `tolerance`            | `22,26,30`                                                                  | Set tolerance for bundle recognition (in mm). Larger values may include more variation but increase false positives. |
+| `track_voxel_ratio`    | `2.0`                                                                       | Set the track-to-voxel ratio for streamline count. Higher values improve mapping but increase computation time. |
+| `check_ending`         | `1` (default: `0` for cingulum)                                             | Removes tracts terminating in high anisotropy locations.                       |
+| `thread_count`         | Hardware max                                                               | Specify the number of CPU cores used for computation.                          |
+| `yield_rate`           | `0.00001`                                                                  | Terminates tracking early if no new fibers are generated.                      |
+| `default_mask`         | `0`                                                                        | Specify whether to use the default mask.                                       |
+| `overwrite`            | `0`                                                                        | Specify whether to overwrite existing files.                                   |
+| `export_stat`          | `1`                                                                        | Specify whether to output tracking statistics.                                 |
+| `export_trk`           | `1`                                                                        | Specify whether to output the tractography file.                               |
+| `export_template_trk`  | `0`                                                                        | Specify whether to output tractography in the template space.                  |
+| `trk_format`           | `tt.gz`                                                                    | Set the output format for tractography files. Supported formats: `.tt.gz`, `.trk`, `.trk.gz`, `.tck`, `.txt`, `.mat`, `.nii`, `.nii.gz`. |
+| `stat_format`          | `stat.txt`                                                                 | Specify the output format for statistics files (must be in text format).       |
+| `output`               | Output directory of the first file in `--source`                           | Specify the output directory.                                                 |
 
-  
+---
+
+## Notes:
+- **Fiber Tracking Parameters**: The following parameters are also supported: 
+  - `--otsu_threshold`
+  - `--fa_threshold`
+  - `--turning_angle`
+  - `--step_size`
+  - `--smoothing`
+  - `--tip_iteration`
+- **Length Constraints**: Parameters like `--min_length` and `--max_length` are not supported, as length constraints are automatically determined from the atlas.
+- **Report Generation**: Use the `--report` parameter to save the auto-tracking report to a file.
