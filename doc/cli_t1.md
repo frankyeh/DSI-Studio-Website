@@ -1,126 +1,107 @@
-# Generating SRC files
+# Generating SRC Files
 
-> use --action=`src` to generate SRC file from NIFTI or DICOM files
+> Use `--action=src` to generate SRC files from NIFTI or DICOM files.
+
+The `src` action supports converting NIFTI or DICOM files into SRC format, with optional configurations for b-values, b-vectors, additional sources, and output specifications.
+
+---
 
 ## Examples
 
-*Convert one 4d NIFTI file and generate an SRC file subject001.nii.gz.src.gz*
-
-```
+**1. Convert a single 4D NIFTI file to an SRC file:**
+```bash
 dsi_studio --action=src --source=c:\subject001.nii.gz
 ```
 
-*Convert one 4d NIFTI file and specify the location of bval and bvec (only needed when DSI Studio cannot find them)*
-
-```
+**2. Specify the location of bval and bvec files for a 4D NIFTI file (when DSI Studio cannot find them automatically):**
+```bash
 dsi_studio --action=src --source=c:\subject001.nii.gz --bval=bval --bvec=bvec
 ```
 
-*Convert DWI NIFTI files in a BIDS folder and output all SRC files to a folder
-
-```
+**3. Convert DWI NIFTI files in a BIDS folder and output all SRC files to a specified folder:**
+```bash
 dsi_studio --action=src --source=./bids_root_folder --output=/src_files
 ```
 
-*Convert DWI NIFTI files in a BIDS session folder and output one SRC file or its reverse phase encoding RSRC file
-
-```
+**4. Parse a BIDS session folder and generate one SRC file or its reverse phase encoding RSRC file:**
+```bash
 dsi_studio --action=src --source=./sub-01/ses-01/dwi --bids=1
 ```
 
-
-*Combine two 4d NIFTI files and generate one SRC file*
-
-```
+**5. Combine two 4D NIFTI files into one SRC file:**
+```bash
 dsi_studio --action=src --source=HCA9992517_V1_MR_dMRI_dir98_AP.nii.gz --other_source=HCA9992517_V1_MR_dMRI_dir99_AP.nii.gz
 ```
 
-*Search all DICOM files under the assigned directory and output SRC file*
-
+**6. Search all DICOM files under a directory and output an SRC file:**
+```bash
+dsi_studio --action=src --source=C:\DICOM_folder --output=C:\output.src.gz
 ```
-dsi_studio --action=src --source=C:\20081006_11_00814348_DWI_WIP_DSI_203 --output=c:\20081006_11_00814348_DWI_WIP_DSI_203.src.gz
-```
 
-*Find all *98_AP.nii.gz file and combine its corresponding 99_AP.nii.gz file to generate one combined SRC file*
-
-```
+**7. Find and combine specific files based on a pattern to create a combined SRC file:**
+```bash
 dsi_studio --action=src --source=*98_AP.nii.gz --other_source=*99_AP.nii.gz
 ```
 
-*Parse all 4d NIFTI files in a folder (each of them has a bval and bvec file that shares a similar file name) and generate corresponding SRC files to a new folder*
-
-```
+**8. Parse 4D NIFTI files from a folder, each with associated bval and bvec files, and generate SRC files in a new folder:**
+```bash
 dsi_studio --action=src --source=*.nii.gz --output=/src_folder
 ```
 
-
-* create a loop by search all MGH_*_all.zip and create .sz file for each
-
-```
+**9. Batch process using a loop to create SRC files from zip archives and associated files:**
+```bash
 dsi_studio --action=src --loop=MGH_*_all.zip --source=mgh_*/diff/preproc/mri/diff_preproc.nii.gz --bval=mgh_*/diff/preproc/bvals.txt --bvec=mgh_*/diff/preproc/bvecs_fsl_moco_norm.txt --output=sub-*_dwi.sz
 ```
 
-
-*Windows batch file for creating src files from HCP datasets*
-
-```bat
-path=C:\dsi_studio_64
-cd F:\HCP\
-dir ?????? /b > file_list.txt
-for /f "delims=" %%x in (file_list.txt) do (
-call dsi_studio.exe --action=src --source=F:\HCP\%%x\T1w\Diffusion\data.nii.gz --output=F:\%%x.src.gz > F:\%%x.txt
-)
-```
-
-*Windows batch script for creating src from NIFTI data*
-
-```bat
-path=C:\dsi_studio_64
-dir ????? /b > file_list.txt
-for /f "delims=" %%x in (file_list.txt) do (
-call dsi_studio.exe --action=src --source=%%x\%%x_dwi_QCed.nii --bval=%%x\%%x_QC.bval --bvec=%%x\%%x_QC.bvec --output=%%x.src.gz
-)
-```
+---
 
 ## Core Functions
 
-| Parameters            | Description                                                                 |
-|:-----------------|:------------------------------------------------------------------------------|
-| source | Specify a directory storing DICOM/NIFTI files or the filename of a 4D NIFTI file |
+| **Parameter**   | **Description**                                                                 |
+|------------------|---------------------------------------------------------------------------------|
+| `source`        | Specify the directory containing DICOM/NIFTI files or the filename of a 4D NIFTI file. |
 
+---
 
 ## Optional Functions
 
-| Parameters            | Description                                                                 |
-|:-----------------|:------------------------------------------------------------------------------|
-| other_source | Specify other files to be included in the SRC file. Multiple files can be assigned using comma separator, (e.g. --other_source=1.nii.gz,2.nii.gz) |
-| output | Assign the output src file name (.src.gz) or the output folder |
-| b_table | Assign the text file to replace b-table |
-| bval | Specify the location of the FSL bval file<sup>a</sup> |
-| bvec | Specify the location of the FSL bvec file<sup>a</sup> |
+| **Parameter**      | **Description**                                                                 |
+|---------------------|---------------------------------------------------------------------------------|
+| `other_source`      | Specify additional files to be included in the SRC file. Multiple files can be assigned using a comma-separated list (e.g., `--other_source=1.nii.gz,2.nii.gz`). |
+| `output`           | Assign the output SRC file name (`.src.gz`) or the output folder. If not specified, the SRC file will be written to the same directory as the input files. |
+| `b_table`          | Assign a text file to replace the b-table. The file must match the loaded images in size. |
+| `bval`             | Specify the location of the FSL bval file. *(DSI Studio usually detects this automatically.)* |
+| `bvec`             | Specify the location of the FSL bvec file. *(DSI Studio usually detects this automatically.)* |
+| `intro`            | Specify a `README` file to include as an introduction for the SRC file. |
 
-
-
-<sup>a</sup>for most cases, DSI Studio can automatically associate bval and bvec with NIFTI automatically.
+---
 
 ## Accessory Functions
 
-| Parameters            | Default | Description                                                                 |
-|:-----------------|:--------|:------------------------------------------------------------------------------|
-| recursive | `0` | Search all NIFTI or DICOM files under the directory specified in --source |
-| bids | `0` not bids | Specify whether to use BIDS standard to parse a folder specified by --source  |
-| overwrite | `0` no overwrite | Specify whether to overwrite existing files |
+| **Parameter**      | **Default**     | **Description**                                                                 |
+|---------------------|-----------------|---------------------------------------------------------------------------------|
+| `recursive`         | `0`            | Search for all NIFTI or DICOM files in subdirectories within the specified `--source`. |
+| `bids`             | `0` (not BIDS) | Specify whether to use the BIDS standard to parse the folder specified by `--source`. |
+| `overwrite`         | `0` (no overwrite) | Specify whether to overwrite existing files.                                   |
+| `topup_eddy`        | `0`            | Specify whether to run topup and eddy correction during SRC generation.        |
+| `sort_b_table`      | `0`            | Specify whether to sort the b-table (useful for certain datasets).             |
 
+---
 
+## Notes from the Source Code
 
-# SRC files Quality Control
+1. **File Search and BIDS Support**:
+   - The tool can automatically search for NIFTI and DICOM files in the specified `--source` directory.
+   - When `--bids=1` is specified, the tool follows the BIDS (Brain Imaging Data Structure) convention for organizing files.
 
-> use --action=`qc` to run quality control on SRC files
+2. **Output Directory**:
+   - If the `--output` parameter is not provided, the resulting SRC files are saved in the same directory as the input files.
 
-## Examples
+3. **Reverse Phase Encoding**:
+   - Reverse phase encoding files can be detected and included automatically in the SRC file generation process.
 
-Specify a folder storing *.src.gz or *.sz files
-```
-dsi_studio --action=qc --source=/folder_storing_src_siles
-```
+4. **Error Handling**:
+   - The tool performs various checks for mismatched b-values, b-vectors, and file compatibility, displaying error messages when issues are encountered.
 
+5. **Default Behavior**:
+   - If no file is found under the `--source`, the tool attempts to convert DICOM files to SRC and NIFTI formats.
