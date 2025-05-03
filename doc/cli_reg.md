@@ -1,53 +1,68 @@
 # Registration
 
-> use --action=`reg` to apply linear and/or nonlinear registration.
+> Use `--action=reg` to apply linear and/or nonlinear registration.
 
-Update:
-(2025/03/03) The registration syntax has revised.
+## Update
+**(2025/03/03)** The registration syntax has been revised.
+
+---
 
 ## Examples
 
-*Apply linear and nonlinear registration to nonlinearly warp subject's QA and ISO maps to template QA and ISO maps (duel modality warping)
-```
-dsi_studio --action=reg --source=subject_qa.nii.gz,=subject_iso.nii.gz --to=template_qa.nii.gz,template_iso.nii.gz --output_mapping=mapping_field.mz
+**1. Apply linear and nonlinear registration to warp the subject's QA and ISO maps to template QA and ISO maps (dual modality warping):**
+```bash
+dsi_studio --action=reg --source=subject_qa.nii.gz,subject_iso.nii.gz --to=template_qa.nii.gz,template_iso.nii.gz --output_mapping=mapping_field.mz
 ```
 
-*Warp the subject image to the template space using previously computed mapping field
-```
+**2. Warp the subject image to the template space using a previously computed mapping field:**
+```bash
 dsi_studio --action=reg --source=subject_qa.nii.gz --mapping=mapping_field.mz
 ```
 
-*Unwarp the template image to the subject space using previously computed mapping field
-```
+**3. Unwarp the template image to the subject space using a previously computed mapping field:**
+```bash
 dsi_studio --action=reg --to=template_qa.nii.gz --mapping=mapping_field.mz
 ```
 
-*Warp all nifti image and all tract files from the template space to the subject space
-```
+**4. Warp all NIfTI images and tract files from the template space to the subject space:**
+```bash
 dsi_studio --action=reg --source=*.nii.gz --mapping=mapping_field.mz
 ```
 
- 
+**5. Transform specific files from subject-to-template space (requires `--source` and `--to` to define the mapping):**
+```bash
+dsi_studio --action=reg --source=subject_qa.nii.gz --to=template_qa.nii.gz --s2t=additional_image1.nii.gz,additional_image2.nii.gz
+```
+
+**6. Transform specific files from template-to-subject space (requires `--source` and `--to` to define the mapping):**
+```bash
+dsi_studio --action=reg --source=subject_qa.nii.gz --to=template_qa.nii.gz --t2s=additional_image1.nii.gz,additional_image2.nii.gz
+```
+
+---
+
 ## Registration Functions
 
-The function warps the subject/source image to the template/target image
+The function warps the subject/source image to the template/target image.
 
-| Parameters   |  Description                                                                 |
-|:-----------------|:------------------------------------------------------------------------------|
-| source | specify the nifti file(s) of the subject/source image. You may specify multiple modalities separated by comma |
-| to | specify the nifti file of the template/target image.  You may specify multiple modalities separated by comma |
-| output_mapping | (optional) specify the file to store the mapping field (e.g., --output_mapping=mapping.mz) | 
-| mapping | specify the previous computed mapping and applied to --source or --to , which can take multiple nii.gz or tt.gz files separated by comma. |
+| **Parameter**       | **Description**                                                                 |
+|----------------------|---------------------------------------------------------------------------------|
+| `source`            | Specify the NIfTI file(s) of the subject/source image. Multiple modalities can be specified, separated by commas. |
+| `to`                | Specify the NIfTI file(s) of the template/target image. Multiple modalities can be specified, separated by commas. |
+| `output_mapping`    | (Optional) Specify the file to store the mapping field (e.g., `--output_mapping=mapping.mz`). |
+| `mapping`           | Specify a previously computed mapping file to apply to `--source` or `--to`. Multiple NIfTI or tractography files (e.g., `.nii.gz`, `.tt.gz`) can be separated by commas. |
+| `s2t`               | Additional files to transform from subject-to-template space. Accepts multiple files separated by commas. Requires `--source` and `--to` to define the mapping. Results are stored in the template space. |
+| `t2s`               | Additional files to transform from template-to-subject space. Accepts multiple files separated by commas. Requires `--source` and `--to` to define the mapping. Results are stored in the subject space. |
 
+---
 
-| Parameters |Default |  Description                                                                 |
-|:--------|:----------|:----------|
-| cost_function | mi | specify the cost function to linear registration. <br> mi: mutual information <br> cc: correlation coefficient |
-| reg_type | 1 | specify whether nonlinear registration is needed. set it to 0 if only linear registration is needed |
-| normalize_signal | 1 | specify whether pre-registration signal normalization is needed. The normalization scales the image value between 0 and 1 | 
-| resolution | 2 | Specify the final resolution. The value can be 1,2,4,8. 2 means the nonlinear registration will be conducted at x2 down sampling. | 
-| speed | 1 | specify the convergence speed for nonlinear registration |
-| smoothing | 0.2 | specify the mapping field smoothing for nonlinear registration. The value can be 0 (no smoothing) or 0.95 (more smoothing applied) | 
-| iterations | 200 | specify number of iterations applied to compute nonlinear registration |
-| min_dimension | 8 | specify the minimum dimension to start the nonlinear registration. |
+## Advanced Parameters
 
+| **Parameter**         | **Default** | **Description**                                                                 |
+|------------------------|-------------|---------------------------------------------------------------------------------|
+| `cost_function`       | `mi`        | Specify the cost function for linear registration:<br> `mi`: mutual information<br> `corr`: correlation coefficient. |
+| `reg_type`            | `1`         | Specify whether nonlinear registration is needed. Set to `0` for linear registration only. |
+| `normalize_signal`    | `1`         | Perform pre-registration signal normalization (scales image values between 0 and 1). |
+| `resolution`          | `2`         | Specify the final resolution. Options are: `1`, `2`, `4`, `8` (e.g., `2` means nonlinear registration is conducted at x2 downsampling). |
+| `speed`               | `1`         | Set the convergence speed for nonlinear registration.                           |
+| `smoothing`           | `0.2`       | Adjust mapping field smoothing for
