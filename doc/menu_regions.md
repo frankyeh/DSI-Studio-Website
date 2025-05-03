@@ -1,40 +1,63 @@
 # [Regions] Menu
 
-DSI Studio's region menu provides functions for loading regions, modifying the regions, and computing region-based statistics.
+## Overview
+The `[Regions]` menu in DSI Studio provides a variety of functions for creating, editing, and managing regions of interest (ROIs). Below is a detailed list of all available actions and their corresponding internal commands.
 
-## [Regions][New Region]
+---
 
-This function creates a new region in a size and resolution defined by the current slices. Inserting T1W images using the [Slices] menu will allow for creating a new region in the space defined by the inserted image.
+## [Regions] Menu Actions Table
 
-## [Regions][Open Region]
+| **Action**                     | **Description**                                              | **Internal Command Text**           |
+|---------------------------------|--------------------------------------------------------------|--------------------------------------|
+| **New Region**                 | Creates a new region with dimensions defined by the slices.   | *No toolTip in the .ui file*         |
+| **Open Region**                | Opens a NIFTI file as a region.                              | `run open_region`                    |
+| **Open MNI Region**            | Warps MNI space regions to native diffusion space.           | `run open_mni_region`                |
+| **Save Region**                | Saves the current region(s) to a file.                      | `run save_region`                    |
+| **Save All Regions**           | Saves all regions as 4D NIfTI files.                        | `run save_all_regions_as_4d_nifti`   |
+| **Statistics**                 | Exports region-based metrics to a text file.                | `run region_statistics`              |
+| **Check All Regions**          | Checks all regions in the list.                             | `run check_all_regions`              |
+| **Uncheck All Regions**        | Unchecks all regions in the list.                           | `run uncheck_all_regions`            |
+| **Merge Regions**              | Combines selected regions into a single region.             | `run merge_all`                      |
+| **Delete Region**              | Deletes the selected region(s).                             | `run delete_region`                  |
+| **Delete All Regions**         | Deletes all regions in the list.                            | `run delete_region_all`              |
+| **Copy Region**                | Copies the selected region to the clipboard.                | `run copy_region`                    |
+| **Undo Edit**                  | Reverts the last editing action on a region.                | `run undo_edit`                      |
+| **Redo Edit**                  | Redoes the last reverted editing action on a region.        | `run redo_edit`                      |
+| **Tract to Region Connectome** | Generates a connectome based on tract and region overlap.    | `run tract_to_region_connectome`     |
 
-DSI Studio can open a NIFTI file as a region:
+---
 
-***If your FIB file is in the native space (i.e., reconstructed by DTI or GQI):***
+## [Regions Misc] Additional Features
 
-1. If the ROI file originated from the subject's own T1W or T2W (e.g. a FreeSurfer segmentation in T1-weighted or T2-weighted image space), then you need to first insert the original structural image (e.g. T1-weighted or T2-weighted images) by [Slices][Insert T1/T2]. DSI Studio will work out a background registration, which may take 5 minutes to converge. After the registration is stabilized, load the ROI file, and DSI Studio will automatically apply the registration from the previous structural image. The transformation matrix in the nifti header will not be used here.
-2. If the NIFTI file is in the MNI space, use [Region][Load MNI Region] to import the region. You may also add 'mni' to the file name (e.g. region_mni.nii.gz) when using [Region][Load Region], and DSI Studio will warp the MNI region to the subject space.
-3. If the image size of the NIFTI file matches the diffusion data, DSI Studio will load it directly.
+### **New Region From Thresholding**
+- **Functionality:** Creates a region by applying an intensity threshold to the current slice.
 
-***If your FIB file is in the template space (i.e., reconstructed by QSDR):***
+### **New Region From MNI Coordinate**
+- **Functionality:** Generates a spherical region centered on a specified MNI coordinate with a user-defined radius.
 
-1. DSI Studio can only use the NIFTI file that is in the MNI space. 
-2. If the NIFTI file was generated from T1W (e.g. manually drawing or from Freesurfer), the NIFTI file has to be converted to the original diffusion space. Then DSI Studio can load it and apply transformation automatically. DSI Studio can take the nifti file with multiple values as multiple ROIs. You can supply a label file with the nifti file. An example of the label file can be found under the "atlas" folder in the DSI Studio package.
+---
 
-DSI Studio can load ROIs from a text file of the ROI coordinates. The coordinates should be integers (floating point will be rounded up) because the coordinates indicate the "voxel" of the seeding regions. Users should be noted that the actual seeding points are uniformly distributed "within" the seeding region. The coordinates here may not necessarily match the exact seeding points in the tracking algorithm.
+## [Regions][Edit Region]
+The following functions are available for modifying regions:
 
-## [Regions][Open MNI Region]
+- **Flip (X, Y, Z axes):**
+  - `[Regions][Edit][Flip X]`
+  - `[Regions][Edit][Flip Y]`
+  - `[Regions][Edit][Flip Z]`
+- **Shift:**
+  - `[Regions][Edit][Shift X/Y/Z (Positive or Negative)]`
+- **Morphological Operations:**
+  - `[Regions][Edit][Erode]`
+  - `[Regions][Edit][Dilate]`
+  - `[Regions][Edit][Smooth]`
+  - `[Regions][Edit][Defragment]`
 
-This function will take an MNI space region and warp it into the native space.
+---
 
-## [Regions][Statistics]
+## [Regions Misc][Advanced]
+- **Separate Region:** Splits a region into connected sub-regions.
+- **Negate Region:** Inverts the voxel selection within a region.
 
-DSI Studio can export metrics associated with a region (e.g. size, location, FA, ADC, ...etc). The exported information is a text file including the coordinates and the corresponding values for the indices.
+---
 
-## [Regions Misc][New Region From Thresholding]
-
-This function creates a new region by thresholding the current slice.
-
-## [Regions Misc][New Region From MNI Coordinate]
-
-This function creates a sphere given the MNI Coordinate and the radius of the sphere.
+Let me know if you need further modifications or additional details.
