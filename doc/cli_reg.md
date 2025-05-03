@@ -65,4 +65,19 @@ The function warps the subject/source image to the template/target image.
 | `normalize_signal`    | `1`         | Perform pre-registration signal normalization (scales image values between 0 and 1). |
 | `resolution`          | `2`         | Specify the final resolution. Options are: `1`, `2`, `4`, `8` (e.g., `2` means nonlinear registration is conducted at x2 downsampling). |
 | `speed`               | `1`         | Set the convergence speed for nonlinear registration.                           |
-| `smoothing`           | `0.2`       | Adjust mapping field smoothing for
+| `smoothing`           | `0.2`       | Adjust mapping field smoothing for nonlinear registration. Range: `0` (no smoothing) to `0.95` (maximum smoothing). |
+| `iterations`          | `200`       | Number of iterations for nonlinear registration.                                |
+| `min_dimension`       | `8`         | Minimum dimension to start nonlinear registration.                              |
+| `large_deform`        | `0`         | Use large deformation registration bounds if set to `1`.                       |
+| `skip_linear`         | `0`         | Skip linear registration stage if set to `1`.                                   |
+| `skip_nonlinear`      | `0`         | Skip nonlinear registration stage if set to `1`.                                |
+| `overwrite`           | `0`         | Overwrite existing output files if set to `1`.                                  |
+
+---
+
+## Notes from the Source Code
+- **Dual Modality Support**: The registration function supports multiple modalities for both `--source` and `--to` parameters, ensuring alignment across modalities.
+- **Mapping Files**: Mapping fields can be saved using the `--output_mapping` parameter and reused for warping/unwarping.
+- **`s2t` and `t2s` Parameters**: These accept multiple files separated by commas and rely on `--source` and `--to` for the mapping definition.
+- **Error Handling**: Errors are reported for unsupported file formats, mismatched dimensions, or invalid mapping files.
+- **Output Formats**: Results can be saved in `.nii.gz` for images or `.tt.gz` for tractography.
