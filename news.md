@@ -3,9 +3,12 @@
 
 ** New diffusion index added: QIR (QA-to-Iso Ratio), which is the ratio between QA and ISO. We found this provide a much reliable replacement for QA in correlational tractography
 
+May 2025
+
+- Introduce multi-metrics database .dz format
+
 April 2025
 
-- add QIR (QA-to-Iso Ratio) as the default database metrics
 - add effect size funcion correlational tractography
 - improved multi-thread efficiency
 - improved differential tractography pipeline
@@ -25,7 +28,9 @@ January 2025
 - GUI: error message when loading template fz
 - GUI: fix long text issue in tract or region statistics in Mac OS.
 
-## Bugs
+## Issues
+
+Please check if your version has following issues and update accordingly
 
 - [versions >= 4/15/2025 < 5/6/2025] Converting DICOM to Nifti file may create left-right mirrow T1w images
 - [versions < 2/1/2025] DSI Studio treats MedialLemniscus tracts as an mni space tract
