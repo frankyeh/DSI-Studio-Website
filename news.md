@@ -31,3 +31,6 @@ January 2025
 - GUI : fix long text issue in tract or region statistics in Mac OS.
 - bug fix: DSI Studio fails to update image resolution when flip or swap image volume.
 
+## Bugs
+
+- [versions >= 4/15/2025 < 5/6/2025] Converting DICOM to Nifti file may create left-right mirrow T1w images
