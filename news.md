@@ -5,7 +5,8 @@
 
 May 2025
 
-- Introduce multi-metrics database .dz format
+- add issue checking routine to alert users
+- introduce multi-metrics database .dz format
 
 April 2025
 
