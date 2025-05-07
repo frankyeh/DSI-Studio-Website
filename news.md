@@ -30,5 +30,5 @@ January 2025
 - [versions >= 4/15/2025 < 5/6/2025] Converting DICOM to Nifti file may create left-right mirrow T1w images
 - [versions < 2/1/2025] DSI Studio treats MedialLemniscus tracts as an mni space tract
 - [versions < 2/1/2025] bug fix: an error in multi-thread may cause estimation of tract statistics errors in connectometry db.
-- [version >= 2/1/2025 <= 3/10/2025 ] autotract may give incorrect results
-- [version < 5/1/2025] DSI Studio cannot align tck with structure images correctly
+- [versions >= 2/1/2025 <= 3/10/2025 ] autotract may give incorrect results
+- [versions < 5/1/2025] DSI Studio cannot align tck with structure images correctly
