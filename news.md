@@ -1,7 +1,6 @@
 
 ## Update log 
 
-** New diffusion index added: QIR (QA-to-Iso Ratio), which is the ratio between QA and ISO. We found this provide a much reliable replacement for QA in correlational tractography
 
 May 2025
 
