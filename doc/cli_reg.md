@@ -1,6 +1,6 @@
 # Registration
 
-> Use `--action=reg` to apply linear and/or nonlinear registration.
+> Use `--action=reg` to apply linear and/or nonlinear registration. This command line provides the same functions used at [R1: Linear Registration] and [R2" Nonlinear Registration] registration tools.
 
 ## Update
 **(2025/03/03)** The registration syntax has been revised.
