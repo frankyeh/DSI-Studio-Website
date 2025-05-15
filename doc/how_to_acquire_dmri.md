@@ -1,84 +1,117 @@
-## HCP-Style Multishell Acquisitions
+## Introduction
 
-Multi-shell acquisition, especially the HCP-style 3-shell acquisition, is currently the most popular protocol for "beyond-DTI" acquisition. The HCP-style multishell acquisition samples b-values of 1,000, 2,000, and 3,000 and 90-90-90 directions. 
+Multishell acquisition, particularly the HCP-style 3-shell protocol, is widely adopted for advanced diffusion MRI beyond DTI. This protocol samples b-values of 1,000, 2,000, and 3,000 s/mm², each with 90 directions.
 
-This protocol has two major possible improvements:
+However, this approach has two key limitations:
 
-- **Suboptimal sampling scheme:** The 90 directions at the low b-value shell are over-sampled because most of the 90 DWI signals are redundant and can be readily interpolated by neighboring DWIs. On the other hand, the high b-value shell does not have enough sampling directions. The correlation between the neighboring DWI is much lower, and more directions should be added. **An optimal acquisition should have the same redundancy for each shell**, which means high b-value shells should have more sampling directions, whereas the low b-value should have fewer directions.
-- 
-- **Orientation bias:** The 90 directions of each shell is not equally distributed on the sphere. Consequently, the acquisition has a substantial orientational bias, and the reproducibility will be lower if head orientation is different. The problem is that the original HCP directions tried to avoid the same direction at different shells, an approach that is unnecessary because each shell can be viewed as different "bandwidth" for differentiating fast and slow diffusion. A sampling direction with good rotation invariance is essential for achieving good reproducibility and low rotation variance. 
+* **Suboptimal Sampling Distribution**: The low b-value shell (b=1,000) is oversampled, resulting in redundant measurements that can be interpolated from neighboring directions. In contrast, the high b-value shell lacks sufficient angular coverage, despite requiring more directions due to lower correlation between signals. **An optimal design should maintain similar redundancy across shells**, allocating more directions to higher b-values and fewer to lower b-values.
 
-## DSI acquisition: 23 b-values with b-max=4,000 at 258 directions
+* **Orientation Bias**: The 90 directions per shell are not uniformly distributed on the sphere, introducing orientation bias and reducing reproducibility when head positioning varies. This results from the HCP scheme’s attempt to avoid repeating directions across shells, a constraint that is unnecessary. Each shell represents a different diffusion sensitivity, and ensuring uniform angular sampling within each shell is more important for achieving rotation invariance and reproducibility.
 
-My recommendation is a 12-minute "grid-258" sampling with a maximum b-value of 4000, which acquires not just two or three b-values,
-but 23 different b-values ranging from b=0 to b=4000 at a total of 258 directions. The low b-value range has fewer sampling compared to HCP multishell,
-making the entire acquisition much more efficient. Moreover, the scheme reaches a higher b-value to 4,000 so that it captures restricted diffusion much better. 
+This document outlines recommended acquisition strategies, including (1) a practical two-shell protocol using the built-in DTI sequence, and (2) an advanced 23-shell DSI protocol with 258 directions.
 
-This grid scheme addresses the issues of the HCP-style acquisition mentioned above.
+---
 
-> **Using a multiband sequence (e.g., Siemens SMS or CMRR) with an MB factor of 4, this 2-mm 258-direction dMRI acquisition can be completed in 12 minutes.**  
+## Recommendation 1: Achieving Multishell Acquisition Using Built-In DTI Sequence
 
-*The grid sampling has several benefits:*
-- It has uniformly distributed density in the diffusion encoding space (i.e., q-space) and does not have the sampling homogeneity problem in the shell acquisitions. 
-- The sampling is more efficient by avoiding over-sampling at low b-values or under-sampling at high b-values. 
-- It can be reconstructed by DTI, ball-and-sticks model, NODDI, GQI...etc.
-- It captures a continuous range of diffusion patterns from non-restricted diffusion to restricted diffusion. The grid scheme can capture all possible diffusion changes due to edematous tissue or cell infiltration for clinical studies. In comparison, multishell only acquire 2 or 3 b-values. Its ability to differentiate complex restricted diffusion is not as good as 23 b-value acquisition.
+The built-in DTI protocol supports multishell acquisition compatible with advanced methods like GQI, QSDR, and RDI.
 
-*There are limitations with the grid sampling scheme:*
-- A bipolar-encoding pulse is needed to handle eddy current at the sequence level: FSL's *eddy* need enough redundancy at each shell to "interpolate" or correct DWI singals. The grid-258 turns out does not have this redundancy. Each of the acquired signals is much more unique and cannot be interpolated by the neighboring DWI signals. The eddy current distortion needs sequence-level correction.
-- Spherical harmonics methods (e.g. CSD, MSMT-CSD) cannot use grid scheme data.
+---
 
-## Steps to install the 12-min grid scheme on Siemens Prisma scanners
+### Step 1: b = 3000 s/mm² (60 Directions, Minimum TE)
 
-The following files can be used to set up the 12-min 258-direction scan on the SIEMENS Prisma scanners. If scanning time is an issue, consider 5-minute 101-direction scan.
+* **Geometry**: FOV 256 mm, Matrix 128×128, Slice 2 mm, Gap 0 mm, Axial oblique (AC-PC), Whole brain.
+* **Diffusion**: b = 3000 s/mm², 60 directions, 2 b=0 images.
+* **Timing**: TR 8000–12000 ms, TE set to *Minimum TE* (record value, e.g., 89.3 ms).
+* **Parallel Imaging**: GE ASSET 2×, Siemens SMS 3–4×.
 
-- [exar](/files/QSI258.exar1)
-- [exar-journal](/files/QSI258.exar1-journal)
-- [QSI_258dir.pdf (select the two Siemens SMS sequences)](/files/QSI258_SMS.pdf) or [QSI_258dir.pdf (CMRR)](/files/QSI258.pdf)
-- [grid-258 b-table](/files/GRID258_VECTOR_TABLE.txt)(recommended) or [grid-101 b-table here](/files/GRID101_VECTOR_TABLE.txt)
+---
 
-You will need to acquire both "dMRI_dir258_1_Siemens" (full 258-direction DWI) and also its opposite phase encoding b0 acquisition "dMRI_dir258_2_Siemens" (only the b0), which is for distortion correction.
+### Step 2: b = 1500 s/mm² (30 Directions, Same TE)
 
-You may need licenses such as Siemens SMS EPI license (for MB imaging), Siemens DTI package license (for diffusion table), High-performance gradient (HCP) that is installed in Prisma (for high bandwidth readout).
+* Clone the b=3000 protocol.
+* **Diffusion**: b = 1500 s/mm², 30 directions, 2 b=0 images.
+* **Timing** (**Important**): Manually set TE to exactly match b=3000 (e.g., 89.3 ms); do **not** use "Min TE".
+* **Geometry**: Verify all settings remain identical.
 
-In the diffusion tab of the sequence, switch "MDDW" to "Free" mode and load the grid-258 b-table. The table should be placed under C:\MedCom\MriCustomer\seq\. You may need to rename the current DiffusionVectors.txt file to another name first and then copy the grid-258 table to DiffusionVectors.txt.
-Then set b-value1=0 and b-value2=4000
+---
 
-For other scanners, please follow the following instruction.
+### Final Checks
 
-## Steps to install the 12-min q-space scheme on Other scanners
+Ensure identical coverage and TE; adjust NEX if needed for SNR. Save protocols as:
 
-Convert the [grid-258 b-table](/files/GRID258_BVAL_BVEC.txt) to its compatible format.
+* `DTI_b3000_60dir_2mm_TE89`
+* `DTI_b1500_30dir_2mm_TE89`
 
-The following are acquisition parameters:
 
-1. In-plane resolution: 2.0 mm, slice thickness: 2.0 mm (if your SNR is not good enough, increase them to 2.4 mm.)
-2. Matrix size: 104x104
-3. Slice number: 72 (can be reduced if ignoring the cerebellum), no gap
-4. Multiband acceleration factor: 3 or 4
-5. "Bipolar" diffusion scheme (for eliminating eddy current). Some may prefer "Monopolar" and correct Eddy current using FSL's eddy. This only works on shell acquisition and is not recommended for the grid scheme.
-6. Minimum TE and TR
-7. Pixel bandwidth: ~1700
-8. Phase encoding direction: A to P
-9. Make a copy of the sequence and invert its phase encoding direction (P to A). Only b0 is needed here for phase distortion correction.
+---
+
+## Recommendation 2: 23-Shell DSI Acquisition (b-value = 0 to 4,000 across 258 Directions)
+
+An advanced option is the 12-minute **grid-258** acquisition, sampling 23 b-values from 0 to 4,000 s/mm² across 258 directions. Compared to HCP multishell, it reduces oversampling at low b-values and extends to higher b-values, improving sensitivity to restricted diffusion.
+
+This grid scheme directly addresses the sampling and orientation bias issues of HCP-style acquisitions.
+
+> **With a multiband sequence (e.g., Siemens SMS or CMRR) at MB factor 4, this 2-mm, 258-direction acquisition completes in 12 minutes.**
+
+**Benefits of Grid Sampling:**
+
+* Uniform q-space coverage, avoiding shell sampling biases.
+* More efficient: fewer low b-value samples, denser high b-value coverage.
+* Compatible with DTI, ball-and-stick, NODDI, GQI, and other models.
+* Captures a continuous range of diffusion patterns, improving detection of complex tissue changes such as edema and cellular infiltration, outperforming multishell schemes limited to 2–3 b-values.
+
+**Limitations:**
+
+* Requires bipolar diffusion encoding to correct eddy currents at the sequence level; standard *eddy* correction is insufficient due to low redundancy.
+* Not compatible with spherical harmonics methods (e.g., CSD, MSMT-CSD).
+
+## Steps to Install the 12-Minute Grid Scheme on Siemens Prisma Scanners
+
+Use the following files to set up the 12-minute 258-direction scan on Siemens Prisma. For faster acquisition, consider the 5-minute 101-direction scan.
+
+* [EXAR File](/files/QSI258.exar1)
+* [EXAR Journal](/files/QSI258.exar1-journal)
+* Protocol PDF: [Siemens SMS Version](/files/QSI258_SMS.pdf) or [CMRR Version](/files/QSI258.pdf)
+* b-Table: [Grid-258 (Recommended)](/files/GRID258_VECTOR_TABLE.txt) or [Grid-101](/files/GRID101_VECTOR_TABLE.txt)
+
+### Acquisition Notes
+
+* Acquire both `dMRI_dir258_1_Siemens` (full DWI) and `dMRI_dir258_2_Siemens` (b0 reverse phase) for distortion correction.
+* Required licenses: Siemens SMS EPI (MB imaging), DTI package (custom diffusion tables), and High-Performance Gradient (HCP) for high bandwidth readout.
+
+### Sequence Configuration
+
+1. In the diffusion tab, set **MDDW** to **Free** mode.
+2. Place the b-table under `C:\MedCom\MriCustomer\seq\`. * Rename any existing `DiffusionVectors.txt` and copy the Grid-258 table as `DiffusionVectors.txt`.
+3. Set `b-value1 = 0` and `b-value2 = 4000`.
+
+
+## Steps to Install the 12-Minute q-Space Scheme on Other Scanners
+
+Convert the [Grid-258 b-table](/files/GRID258_BVAL_BVEC.txt) to the required format for your scanner.
+
+### Acquisition Parameters
+
+1. Resolution: **2.0 mm isotropic** (increase to 2.4 mm if SNR is insufficient).
+2. Matrix: **104 × 104**.
+3. Slices: **72** (reduce if cerebellum coverage is not needed), no gap.
+4. Multiband Acceleration: **Factor 3 or 4**.
+5. Diffusion Scheme: Use **Bipolar** for eddy current compensation. *Monopolar with FSL's eddy correction is not recommended for grid sampling.*
+6. Use **Minimum TE and TR**.
+7. Pixel Bandwidth: \~**1700 Hz/pixel**.
+8. Phase Encoding: **Anterior to Posterior (A>>P)**.
+9. Acquire an additional b0 image with **Phase Encoding reversed (P>>A)** for distortion correction. Only the b0 image is needed for this.
+
+---
 
 ## Quality Check for Preliminary Results
 
-1. Make sure that the brain contour in the DWI with b=4000 is still visible. If not, consider lowering the b-value to 3000.
-2. Create SRC files from the diffusion MRI data. Run DSI Studio and use [Diffusion MRI Analysis][Step T1a: Quality Control](/doc/gui_t1.html#step-t1a-quality-control-optional) to select a folder that contains the SRC file. It will compute "Neighboring DWI correlation". The one with a low correlation value may indicate a problem in data acquisition.
+1. Verify that the brain contour is still visible in the DWI images at **b = 4000**. If not, consider reducing the maximum b-value to **3000** to improve SNR.
+2. Generate SRC files from the diffusion MRI data. In DSI Studio, run [Diffusion MRI Analysis → Step T1a: Quality Control](/doc/gui_t1.html#step-t1a-quality-control-optional) and select the folder containing the SRC files. Review the **Neighboring DWI Correlation** values; low correlations may indicate motion artifacts or acquisition errors.
 
-*Please feel free to send me your pilot grid258 data for a quality check. I will compare the results with the data I have to ensure that you have achieved the same quality.*
+### Conclusion
 
-## What if I only have the default DTI protocol?
+Following these guidelines ensures efficient and high-quality multishell diffusion MRI acquisitions suitable for advanced analyses beyond DTI. Proper quality control is essential to verify data integrity before proceeding to model fitting and interpretation.
 
-The good news is that you can use the scanner's built-in DTI protocol to acquire "multishell" and still enjoy the benefit of "beyond-DTI" methods such as GQI, QSDR, RDI...etc.
 
-Here is a working parameter on a SIEMENS 3T Scanner:
-
-1. acquire one 32-direction DTI at b=1500 and another 60-direction DTI at b=3000 (built-in ep2d_mddw protocol)
-2. In-plane resolution: 2mm, slice thickness: 2mm (isotropic resolution is essential)
-    If scanning time is an issue, use 2.5 mm isotropic.
-3. Matrix size: 104x104
-4. Slice number: 72 (can be reduced if ignoring the cerebellum), no gap
-5. Minimum TE and TR, but the TE for the b=1500 DTI should be the same as the TE of the b=3000 DTI.
-6. Make a copy of the sequence and invert its phase encoding direction (acquire AP and PA for phase distortion correction)
