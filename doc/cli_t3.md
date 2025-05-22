@@ -26,21 +26,12 @@ dsi_studio --action=trk \
            --output=streamlines.tt.gz
 ```
 
-### Connectivity analysis (HCP-MMP & AAL3 atlases)
+### Mapping the left arcuate fasciculus and derive is tract-to-region connectome at HCP-MMP parcellation
 ```bash
 dsi_studio --action=trk \
            --source=subject.fib.gz \
-           --output=no_file \
-           --connectivity=HCP-MMP,AAL3 \
-           --connectivity_value=count,qa
-```
-
-### Bundle-specific tracking by parameter ID
-```bash
-dsi_studio --action=trk \
-           --source=subject.fib.gz \
-           --parameter_id=c9A99193Fba3F2EFF013Fcb2041b96438813dcb \
-           --output=subject_bundle.tt.gz
+           --track_id=ArcuateFasciculusL \
+           --connectivity=HCP-MMP
 ```
 
 ---
@@ -51,13 +42,10 @@ dsi_studio --action=trk \
 |---------------------|----------------------|-------------------------------------------------------------------------------------------------------|
 | `--action`         | *(required)*         | Must be `trk`.                                                                                       |
 | `--source`         | *(required)*         | Path to your `.fib.gz` (or `.fz`) file.                                                              |
-| `--output`         | Depends on format    | Output file or directory. Extensions depend on the specified format.                                  |
-| `--thread_count`   | Hardware threads     | Number of threads to use.                                                                             |
-| `--report`         | —                    | Write the raw tracking report (`.txt`).                                                              |
-| `--parameter_id`   | —                    | Load all tracking parameters from a saved parameter code.                                             |
-| `--refine`         | —                    | Number of "trim + reseed" iterations after initial tracking.                                          |
+| `--output`         |                      | Output tractography file (e.g. --output=tract.tt.gz) or directory (e.g. --output=/path).                                  |
+| `--track_id`       | (optional)           | Specify the name of the bundle to be mapped (e.g. --track_id=ArcuateFasciculusL ). The complete list can be found [here](https://github.com/frankyeh/data-atlas/blob/main/human/human.tt.gz.txt)                                        |
 | `--tip_iteration`  | `0` or `16`          | Specify pruning iterations. Default is `16` for `track_id` or `dt_threshold_index`.                   |
-| `--random_seed`    | `0`                  | Seed for random number generation in fiber tracking. Set to an integer to vary seed sequences.        |
+| `--thread_count`   | Hardware threads     | Number of threads to use.                                                                             |
 
 ---
 
@@ -77,6 +65,8 @@ dsi_studio --action=trk \
 | `--otsu_threshold`   | FA threshold × 0.6            | Default threshold for FA-based seeding.                                                             |
 | `--threshold_index`  | —                             | Use a different diffusion index (e.g., QA) for termination instead of FA.                           |
 | `--check_ending`     | Off for whole-brain tracking  | Drop tracks that do not terminate within any ROI.                                                   |
+| `--parameter_id`     | —                    | Load all tracking parameters from a parameter code.                                             |
+| `--random_seed`    | `0`                  | Seed for random number generation in fiber tracking. Set to an integer to vary seed sequences.        |
 
 ---
 
