@@ -118,6 +118,17 @@ There are settings in the connectivity matrix dialog:
 | ***value*** | The connectivity matrix can be calculated by accounting for the number of tracts that pass two ROIs (select "count" as matrix value). This number can be normalized by the median length (select "ncount" as matrix value) or multiplied by the sum of the inverse of the length (select "ncount2"). <br> The FA, QA, or ADC sampled by the tracks can also be used as the matrix entry (e.g. select "fa", "qa", or "adc" as the matrix value). There is a drop-down list in the connectivity window. One is "end in region", which counts only the final connecting region. Another one is "pass region", which counts all the regions passed. |
 | ***threshold*** | The threshold is used to filter out matrix entries with a small number of connecting tracks. It is a ratio to the maximum connecting tracks in the connectivity matrix. |
 
+Example command line:
+
+```
+dsi_studio --action=trk --source=subject.fib.gz --track_id=ArcuateFasciculusL --connectivity=HCP-MMP
+
+dsi_studio --action=ana --source=my.fz --tract=bundle1.tt.gz,bundle2.tt.gz,bundle3.tt.gz --connectivity=HCP-MMP
+
+dsi_studio --action=atk --source=*.fz --track_id=Arcuate,Cingulum,Aslant,InferiorFronto,InferiorLongitudinal,SuperiorLongitudinal,Uncinate,Fornix,Corticos,ThalamicR,Optic,Lemniscus,Reticular,Corpus --connectivity=HCP-MMP
+
+```
+
 The calculated matrix can be exported as a mat file or a figure. In the mat file, the connectivity matrix is stored as an n-by-n *connectivity* matrix, whereas the region labels are stored in the *name* matrix. To recover the list of the region labels, use the following command in Matlab
 
 ```
