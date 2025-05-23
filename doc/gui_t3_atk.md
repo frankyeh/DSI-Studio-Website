@@ -248,3 +248,34 @@ The second one exports TDI in a 4-times higher spatial resolution than the curre
 
 You may load a T1w image in DSI Studio and export the TDI in the T1 space.
 
+
+# **Tract-to-Region Connectome**
+
+***Only available in versions after 2024 October the "Hou" Version***
+
+Tract-to-region (T2R) connectome is represented by an **n-by-m** matrix, where **n** is the number of tract bundles, and **m** is the number of brain parcellation regions. The T2R connectome is the recommended approach for getting structural connectivity in DSI Studio.
+
+The following are steps to generate tract-to-region connectivity matricies:
+
+1. Using [AutoTrack](https://dsi-studio.labsolver.org/doc/gui_t3_atk.html) to map tract bundles of interests (e.g arcuate fasciculus, cingulum, IFOF...etc). This can be done on GUI or command line. DO NOT USE WHOLE BRAIN TRACTOGRAPHY FOR TRACT-TO-REGION CONNECTOME.
+
+![image](https://github.com/user-attachments/assets/6532c9d2-9516-4374-973d-206df90f3764)
+
+2. Load brain parcellations from [Step T3a][Atlas...]. Select all region from parcellation such as HCP-MMP or Brodmann:
+
+![image](https://github.com/user-attachments/assets/9251ab6a-f2f2-4608-be7a-bfed5b86e492)
+
+3. Generate T2R matrix using [Regions][Tract-to-Region Connectome]
+
+This will generate a text content of the n-by-m matrix, which can be paste to excel:
+
+![image](https://github.com/user-attachments/assets/ce5bbfbc-a17b-459f-81db-c596ffccf4f0)
+
+4. Visualization
+
+To observe the T2R connectivity for a bundle, at [Step T3c Option][Region Rendering][Region Color], set [Style]=Metrics and [Metrics]=current tract, lower [Max Value] to 0.2. Select the bundle on the right lower corner to see its correponding T2R connectivity.
+
+![image](https://github.com/user-attachments/assets/89d3407d-fbb2-444c-b848-2b5c89321248)
+
+example of the arcuate fasciculus T2R connectivity
+
