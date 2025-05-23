@@ -2,7 +2,6 @@
 
 <img src="https://user-images.githubusercontent.com/275569/182761132-9bd68015-509a-4e11-9b11-c1f4c63ddcd6.png" width=800/>
 
-
 The following are common preprocessing steps for almost all analysis in DSI Studio.
 
 1. [Create SRC files from diffusion data (DICOM files or NIFTI)](/doc/gui_t1.html).
@@ -11,14 +10,6 @@ The following are common preprocessing steps for almost all analysis in DSI Stud
 
 3. [Reconstruct FIB files from SRC files](/doc/gui_t2.html) using GQI (native space) or QSDR(template space) to get a FIB file.
 
-
-# Choices of Analytical Approaches
-
-<img src="https://user-images.githubusercontent.com/275569/147861653-6f86b49c-143f-4297-a304-6b28680c1691.png" width=800/>
-
-I would also recommend checking out the [citation page](/citation.html) to see how other studies have used DSI Studio in their analysis.
-
-The followings are steps for each analytical approaches:
 
 ## Region-Based Analysis
 
