@@ -255,8 +255,7 @@ You may load a T1w image in DSI Studio and export the TDI in the T1 space.
 
 ---
 
-<iframe width="560" height="315" src="http://www.youtube.com/watch?v=7Ns9vHl21J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="[http://www.youtube.com/embed/v=7Ns9vHl21J8](https://www.youtube.com/watch?v=7Ns9vHl21J8)" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 The **tract-to-region (T2R) connectome** represents structural connectivity as an **n-by-m matrix**, where **n** is the number of white matter tract bundles, and **m** is the number of brain parcellation regions. Each matrix entry quantifies the probability or strength of a tract's connection to a specific cortical region. This method offers a more anatomically precise mapping compared to conventional region-to-region connectomes, which often overlook the specific white matter pathways involved.
 
