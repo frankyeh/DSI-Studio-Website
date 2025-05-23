@@ -249,33 +249,115 @@ The second one exports TDI in a 4-times higher spatial resolution than the curre
 You may load a T1w image in DSI Studio and export the TDI in the T1 space.
 
 
-# **Tract-to-Region Connectome**
+---
 
-***Only available in versions after 2024 October the "Hou" Version***
+## 🧠 Tract-to-Region (T2R) Connectome in DSI Studio
 
-Tract-to-region (T2R) connectome is represented by an **n-by-m** matrix, where **n** is the number of tract bundles, and **m** is the number of brain parcellation regions. The T2R connectome is the recommended approach for getting structural connectivity in DSI Studio.
+---
 
-The following are steps to generate tract-to-region connectivity matricies:
+<iframe width="560" height="315" src="www.youtube.com/watch?v=7Ns9vHl21J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. Using [AutoTrack](https://dsi-studio.labsolver.org/doc/gui_t3_atk.html) to map tract bundles of interests (e.g arcuate fasciculus, cingulum, IFOF...etc). This can be done on GUI or command line. DO NOT USE WHOLE BRAIN TRACTOGRAPHY FOR TRACT-TO-REGION CONNECTOME.
 
-![image](https://github.com/user-attachments/assets/6532c9d2-9516-4374-973d-206df90f3764)
+The **tract-to-region (T2R) connectome** represents structural connectivity as an **n-by-m matrix**, where **n** is the number of white matter tract bundles, and **m** is the number of brain parcellation regions. Each matrix entry quantifies the probability or strength of a tract's connection to a specific cortical region. This method offers a more anatomically precise mapping compared to conventional region-to-region connectomes, which often overlook the specific white matter pathways involved.
 
-2. Load brain parcellations from [Step T3a][Atlas...]. Select all region from parcellation such as HCP-MMP or Brodmann:
+---
 
-![image](https://github.com/user-attachments/assets/9251ab6a-f2f2-4608-be7a-bfed5b86e492)
+## 🛠️ Steps to Generate a T2R Connectome
 
-3. Generate T2R matrix using [Regions][Tract-to-Region Connectome]
+### 1. Map Tract Bundles Using AutoTrack
 
-This will generate a text content of the n-by-m matrix, which can be paste to excel:
+Utilize [AutoTrack](https://dsi-studio.labsolver.org/doc/gui_t3_atk.html) to automatically identify and map tract bundles of interest, such as the arcuate fasciculus, cingulum, or IFOF. This can be performed via the GUI or command line.
 
-![image](https://github.com/user-attachments/assets/ce5bbfbc-a17b-459f-81db-c596ffccf4f0)
+> ⚠️ **Important:** Avoid using whole-brain tractography for T2R connectome construction, as it may introduce false positives and lacks specificity.
 
-4. Visualization
+![AutoTrack Interface](https://github.com/user-attachments/assets/6532c9d2-9516-4374-973d-206df90f3764)
 
-To observe the T2R connectivity for a bundle, at [Step T3c Option][Region Rendering][Region Color], set [Style]=Metrics and [Metrics]=current tract, lower [Max Value] to 0.2. Select the bundle on the right lower corner to see its correponding T2R connectivity.
+### 2. Load Brain Parcellations
 
-![image](https://github.com/user-attachments/assets/89d3407d-fbb2-444c-b848-2b5c89321248)
+In \[Step T3a]\[Atlas...], load the desired brain parcellation atlas, such as HCP-MMP or Brodmann. Ensure all regions from the selected parcellation are included for comprehensive coverage.
 
-example of the arcuate fasciculus T2R connectivity
+![Loading Parcellations](https://github.com/user-attachments/assets/9251ab6a-f2f2-4608-be7a-bfed5b86e492)
+
+### 3. Generate the T2R Matrix
+
+Navigate to \[Regions] > \[Tract-to-Region Connectome] to compute the T2R matrix. This function calculates the overlap between each tract bundle and cortical region, outputting a text-based matrix that can be imported into spreadsheet software like Excel for further analysis.
+
+![T2R Matrix Output](https://github.com/user-attachments/assets/ce5bbfbc-a17b-459f-81db-c596ffccf4f0)
+
+### 4. Visualize T2R Connectivity
+
+To visualize the connectivity of a specific tract bundle:
+
+* Go to \[Step T3c Option] > \[Region Rendering] > \[Region Color].
+* Set **Style** to `Metrics` and **Metrics** to `Current Tract`.
+* Adjust **Max Value** to a lower threshold (e.g., 0.2) to enhance visibility.
+* Select the tract bundle of interest from the list to display its cortical projections.
+
+![Arcuate Fasciculus Connectivity](https://github.com/user-attachments/assets/89d3407d-fbb2-444c-b848-2b5c89321248)
+
+---
+
+## 📌 Additional Notes
+
+* **Data Consistency:** Approximately 85% of tract-to-region connections are consistent across individuals, while the remaining 15% exhibit variability, underscoring the importance of individualized mapping in certain contexts.&#x20;
+
+* **Clinical Applications:** The T2R connectome is particularly useful in clinical scenarios, such as assessing the impact of white matter lesions on cortical function or planning neurosurgical interventions.
+
+* **Research Utility:** This approach facilitates a deeper understanding of the brain's structural organization, enabling studies on functional connectivity, development, and neurological disorders.
+
+
+[![The tract-to-region connectome matrices derived from the Brodmann and ...](https://tse3.mm.bing.net/th?id=OIP.MWYbqCbdazNqVcegT4T6AgHaHi\&pid=Api)](https://www.researchgate.net/figure/The-tract-to-region-connectome-matrices-derived-fromtheBrodmann-and-Kleist-brain_fig4_362851622)
+
+---
+
+### 🧠 Tract-to-Region Connectome: Command-Line Examples
+
+DSI Studio offers versatile command-line options to compute T2R connectomes, enabling efficient batch processing and integration into automated pipelines.
+
+#### 1. Map the Left Arcuate Fasciculus and Derive Its T2R Connectome with HCP-MMP Parcellation
+
+This command performs deterministic tracking of the left arcuate fasciculus and computes its connectivity with the HCP-MMP atlas:([DSI Studio Documentation][1])
+
+```bash
+dsi_studio --action=trk --source=subject.fib.gz --track_id=ArcuateFasciculusL --connectivity=HCP-MMP
+```
+
+
+
+* `--action=trk`: Initiates deterministic fiber tracking.
+* `--track_id=ArcuateFasciculusL`: Specifies the tract of interest.
+* `--connectivity=HCP-MMP`: Computes the tract-to-region connectome using the HCP-MMP parcellation.([DSI Studio Documentation][1], [DSI Studio Documentation][2])
+
+*Note*: Avoid using whole-brain tractography for T2R connectome construction, as it may introduce false positives and lacks specificity.
+
+#### 2. Load Pre-Derived Tracts and Compute Their T2R Connectome with Brodmann Parcellation
+
+If you have previously generated tract files (e.g., via AutoTrack or manual segmentation), you can compute their T2R connectome as follows:
+
+```bash
+dsi_studio --action=ana --source=my.fz --tract=bundle1.tt.gz,bundle2.tt.gz,bundle3.tt.gz --connectivity=Brodmann
+```
+
+
+
+* `--action=ana`: Initiates analysis on existing tracts.
+* `--tract=...`: Specifies the tract files to analyze.
+* `--connectivity=Brodmann`: Computes the connectome using the Brodmann parcellation.([DSI Studio Documentation][3], [DSI Studio Documentation][2])
+
+*Note*: This approach is suitable for analyzing multiple tracts simultaneously.
+
+#### 3. Use AutoTrack to Map Recommended Pathways and Derive Their T2R Connectome with HCP-MMP and Brodmann Parcellations
+
+To automatically map a set of major white matter pathways and compute their T2R connectomes with multiple parcellations:
+
+```bash
+dsi_studio --action=atk --source=*.fz --track_id=Arcuate,Cingulum,Aslant,InferiorFronto,InferiorLongitudinal,SuperiorLongitudinal,Uncinate,Fornix,Corticos,ThalamicR,Optic,Lemniscus,Reticular,Corpus --connectivity=HCP-MMP,Brodmann
+```
+
+* `--action=atk`: Initiates automatic fiber tracking using predefined tract IDs.
+* `--source=*.fz`: Applies the operation to all `.fz` files in the directory.
+* `--track_id=...`: Specifies the list of tracts to map.
+* `--connectivity=HCP-MMP,Brodmann`: Computes connectomes using both HCP-MMP and Brodmann parcellations.([DSI Studio Documentation][4])
+
+*Note*: Ensure that your `.fz` files are reconstructed using QSDR to align with the template space required for AutoTrack.([DSI Studio Documentation][5])
 
