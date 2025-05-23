@@ -305,9 +305,6 @@ To visualize the connectivity of a specific tract bundle:
 
 * **Research Utility:** This approach facilitates a deeper understanding of the brain's structural organization, enabling studies on functional connectivity, development, and neurological disorders.
 
-
-[![The tract-to-region connectome matrices derived from the Brodmann and ...](https://tse3.mm.bing.net/th?id=OIP.MWYbqCbdazNqVcegT4T6AgHaHi\&pid=Api)](https://www.researchgate.net/figure/The-tract-to-region-connectome-matrices-derived-fromtheBrodmann-and-Kleist-brain_fig4_362851622)
-
 ---
 
 ### 🧠 Tract-to-Region Connectome: Command-Line Examples
