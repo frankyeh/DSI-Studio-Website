@@ -1,14 +1,14 @@
 # How to analyze dMRI
 
-<img src="https://user-images.githubusercontent.com/275569/182761132-9bd68015-509a-4e11-9b11-c1f4c63ddcd6.png" width=800/>
+<img src="https://github.com/user-attachments/assets/9afac513-ccbd-419c-9d79-4b7dd9458294" width=800/>
 
 The following are common preprocessing steps for almost all analysis in DSI Studio.
 
-1. [Create SRC files from diffusion data (DICOM files or NIFTI)](/doc/gui_t1.html).
+1. [Create SRC files (.sz) from diffusion data (DICOM files or NIFTI)](/doc/gui_t1.html).
 
 2. [SRC file quality control](/doc/gui_t1.html#step-t1a-quality-control-optional)(/doc/gui_t1.html#batch-quality-control) to exclude problematic data.
 
-3. [Reconstruct FIB files from SRC files](/doc/gui_t2.html) using GQI (native space) or QSDR(template space) to get a FIB file.
+3. [Reconstruct FIB files (.fz) from SRC files](/doc/gui_t2.html) using GQI (native space) or QSDR(template space) to get a FIB file.
 
 
 ## Region-Based Analysis
