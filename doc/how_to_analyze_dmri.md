@@ -60,17 +60,6 @@ Another way to do region-based analysis is to reconstruct/normalize all data in 
 
 2. Open the database file in Step T3, and follow the above-mentioned steps 3 to 5. Please note that this db.fib.gz file is already in the MNI space, and the regions should be MNI regions.
 
-## Connectivity matrix and graph theoretical analysis
-
-Example studies: <https://scholar.google.com/scholar?hl=en&as_sdt=0%2C39&q=Bassett+dsi+studio&btnG=>
-
-The connectivity matrix uses an atlas for partitioning the cortex into several regions and uses a number of connecting tracks as the matrix entry. A connectivity matrix can be generated for each subject, and the matrices of a group of subjects can be compared with those from another group of subjects to study the differences.
-
-The following list is the steps for generating a connectivity matrix.
-
-1. Run graph analysis: <http://dsi-studio.labsolver.org/Manual/tract-specific-analysis#TOC-Connectivity-matrix-and-graph-analysis>
-
-
 ## Differential Tractography
 
 Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
@@ -98,3 +87,16 @@ For group connectometry see:
 1. See [Create a connectometry database](/doc/gui_cx.html) to create a connectometry database
 
 2. [Run group connectometry analysis](/doc/gui_cx.html)
+
+## Tract-to-region (T2R) connectome
+
+Example studies: [Yeh, Fang-Cheng. "Population-based tract-to-region connectome of the human brain and its hierarchical topology." Nature communications 13.1 (2022): 4933.](https://www.nature.com/articles/s41467-022-32595-4)
+
+The tract-to-region (T2R) connectome maps the probability that specific white matter tracts innervate particular cortical regions, providing a detailed anatomical linkage between tracts and regions. This contrasts with the traditional region-to-region (R2R) connectome, which outlines connections between cortical areas without specifying the underlying white matter pathways. 
+
+The following list is the steps for generating a connectivity matrix.
+
+1. Map a list of fiber bundles using [AutoTrack](https://dsi-studio.labsolver.org/doc/gui_t3_atk.html)
+2. Choose a brain parcellation using the [Step T3a][Atlas] button to load brain parcellation (e.g. HCP-MMP or Broadman)
+3. At top menu, [Region][Tract-to-Region Connectome] to get the n-by-m T2R matrix.
+4. The T2R connectome can be visualized by coloring the parcellation region with T2R values. See instruction [here](https://dsi-studio.labsolver.org/doc/gui_t3_atk.html).
