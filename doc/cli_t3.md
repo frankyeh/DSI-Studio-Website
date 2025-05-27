@@ -76,7 +76,7 @@ The following region types can be specified (comma-separated actions are applied
 
 ```text
 --seed=<file>
---roi=<file_or_atlas:region>[,dilation,erosion,smoothing,…]
+--roi=<file_or_atlas:region>,<other region file>,<region actions>,... 
 --roi2=…
 --roa=…
 --end=…
@@ -85,11 +85,11 @@ The following region types can be specified (comma-separated actions are applied
 --lim=…
 ```
 
-### Actions
-- **Actions:** `dilation`, `erosion`, `defragment`, `negate`, `flipx`, `flipy`, `flipz`, etc.
-- **Merge Volumes:** You can merge multiple volumes using `+`:
+### Region Actions
+- **Region Actions:** `dilation`, `erosion`, `defragment`, `negate`, `flipx`, `flipy`, `flipz`, etc.
+- **Merge Volumes:** You can also add more volumes using `,`:
 ```bash
---roi=left.nii.gz+right.nii.gz,dilation,smoothing
+--roi=left.nii.gz,right.nii.gz,dilation,smoothing
 ```
 
 ---
