@@ -7,13 +7,13 @@
 **1. Use a multiple regression model with three variables (0:SEX, 1:BMI, 2:AGE) to study how BMI (the second variable) affects the brain connection in the CMU 60 connectometry database.**
 
 ```bash
-dsi_studio --action=cnt --source=CMU60.db.fib.gz --index_name=qa --effect_size=0.3 --demo=CMU60.txt --variable_list=0,1,2 --voi=1 --roi=FreeSurferDKT:left_precentral --output=CMU60
+dsi_studio --action=cnt --source=CMU60.db.fib.gz --index_name=qa --effect_size=0.3 --demo=CMU60.txt --variable_list=0,1,2 --voi=1
 ```
 
 **2. Use ROI and ROA to limit connectometry analysis on subjects with specific demographics: scanner=1 and group not equal to 3.**
 
 ```bash
-dsi_studio --action=cnt --source=study.db.fib.gz --demo=demo.csv --roi=ROI.nii.gz --roa=ROA.nii.gz --select="scanner=1,group/3" --variable_list=2,4,5 --voi=5
+dsi_studio --action=cnt --source=study.db.fib.gz --demo=demo.csv --effect_size=0.2 --roa=excluded_mni_region.nii.gz --select="scanner=1,group/3" --variable_list=2,4,5 --voi=5
 ```
 
 ---
@@ -23,11 +23,11 @@ dsi_studio --action=cnt --source=study.db.fib.gz --demo=demo.csv --roi=ROI.nii.g
 | **Parameter**    | **Description**                                                                 |
 |-------------------|---------------------------------------------------------------------------------|
 | `source`         | Specify the `db.fib.gz` file.                                                  |
-| `index_name`     | Specify which diffusion metrics to analyze (e.g. --index_name=dti_fa           |
+| `index_name`     | Specify which diffusion metrics to analyze (e.g. --index_name=dti_fa)          |
 | `demo`           | Assign the path to the demographic CSV or text file.                           |
 | `variable_list`  | Assign the study variables for regression. Use commas to include multiple variables. <br> Example: `--variable_list=0,1,2` includes the first three variables. |
 | `voi`            | Specify the "variable of interest" for multiple regression. <br> Use `--voi=0` for the first variable, `--voi=1` for the second, etc. <br> For longitudinal analysis, use `--voi=longitudinal`. |
-| `output`          |                     | Specify the prefix for all output files. Defaults to the demographics file name with the study variable appended. |
+
 
 ---
 
@@ -53,7 +53,7 @@ dsi_studio --action=cnt --source=study.db.fib.gz --demo=demo.csv --roi=ROI.nii.g
 |---------------------|---------------------------------------------------------------------------------|
 | `select`          | Select subjects for analysis. Example: `--select=Gender=1,Age>20` filters subjects with Gender=1 and Age > 20. |
 | `seed, roi, roa...`| Define regions to limit the tracking areas (see `--action=trk` for details).    |
-
+| `output`          | Specify the prefix for all output files. Defaults to the demographics file name with the study variable appended. |
 ---
 
 ## Updates Based on Code Features
