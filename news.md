@@ -1,6 +1,14 @@
 
 ## Update log 
 
+June 2025
+
+- provide qa-iso ratio (QIR) in fiber tracking window
+- support access to NDA restricted dataset using registery entity
+- provide T1w tissue segmentation function at CLI
+- allow using T2w to correct for phase distortion
+- fix T1w normalization issues
+- fix manual atlas normalization crash bug
 
 May 2025
 
