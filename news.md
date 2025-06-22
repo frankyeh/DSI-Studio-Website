@@ -40,7 +40,7 @@ January 2025
 
 Please check if your version has following issues and update accordingly
 
-- [versions >= 6/4/2025 < 6/20/2025] A bug causing a crash when making SRC files isotropic
+- [versions >= 6/4/2025 <= 6/20/2025] A bug causing a crash when making SRC files isotropic
 - [versions >= 6/10/2025 < 6/15/2025] A bug in saving file that creates corrupted .sz and .fz files. (also need to remove .sz .fz files)
 - [versions >= 4/15/2025 < 5/6/2025] Converting DICOM to Nifti file may create left-right mirrow T1w images
 - [versions < 2/1/2025] DSI Studio treats MedialLemniscus tracts as an mni space tract
