@@ -4,22 +4,27 @@
 <br>
 ---
 
+## General citation for DSI Studio or Fiber Data Hub
+
+Yeh, Fang-Cheng. "DSI Studio: an Integrated Tractography Platform and Fiber Data Hub for Accelerating Brain Research." Nat Methods (2025).
+
+
 ## Citations for specific methods
 
 - [Population-based atlas and tracto-to-region connectome (2022)]([https://www.sciencedirect.com/science/article/pii/S1053811920308156](https://www.nature.com/articles/s41467-022-32595-4)): This study constructs a population-based probablistic tractography atlas and its associated tract-to-region connectome.
 ```
-Yeh FC. Population-based tract-to-region connectome of the human brain and its hierarchical topology. Nature communications. 2022 Aug 22;13(1):1-3.
+Yeh, Fang-Cheng. "Population-based tract-to-region connectome of the human brain and its hierarchical topology." Nat Commun 13, 4933 (2022). https://doi.org/10.1038/s41467-022-32595-4
 ```
 
 
 - [Shape Analysis (2020)](https://www.sciencedirect.com/science/article/pii/S1053811920308156): Shape analysis is a morphology based quantification of tractography.
 ```
-Yeh, Fang-cheng. "Shape Analysis of the Human Association Pathways." Neuroimage (2020).
+Yeh, Fang-Cheng. "Shape analysis of the human association pathways." Neuroimage 223 (2020): 117329.
 ```
 
 - [Augmented fiber tracking (2020)](https://www.sciencedirect.com/science/article/pii/S1053811920308156): The "augmented fiber tracking" are three strategies used to boost reproducibility of deterministic fiber tracking.
 ```
-Yeh, Fang-cheng. "Shape Analysis of the Human Association Pathways." Neuroimage (2020).
+Yeh, Fang-Cheng. "Shape analysis of the human association pathways." Neuroimage 223 (2020): 117329.
 ```
 
 - [SRC file quality control (2019)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6919327/): The "neighboring DWI correlation" is introduced in this study as a QC metrics for DWI.
