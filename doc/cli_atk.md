@@ -18,7 +18,7 @@ dsi_studio --action=atk --source=*.fz --track_id=Corticos,Optic
 
 **3. Output tracts in the template space:**
 ```bash
-dsi_studio --action=atk --source=*.fz --export_template_trk=1
+dsi_studio --action=atk --source=*.fz --template_track
 ```
 
 ---
@@ -37,22 +37,28 @@ dsi_studio --action=atk --source=*.fz --export_template_trk=1
 | `yield_rate`           | `0.00001`                                                                  | Terminates tracking early if no new fibers are generated.                      |
 | `default_mask`         | `0`                                                                        | Specify whether to use the default mask.                                       |
 | `overwrite`            | `0`                                                                        | Specify whether to overwrite existing files.                                   |
-| `export_stat`          | `1`                                                                        | Specify whether to output tracking statistics.                                 |
-| `export_trk`           | `1`                                                                        | Specify whether to output the tractography file.                               |
-| `export_template_trk`  | `0`                                                                        | Specify whether to output tractography in the template space.                  |
 | `trk_format`           | `tt.gz`                                                                    | Set the output format for tractography files. Supported formats: `.tt.gz`, `.trk`, `.trk.gz`, `.tck`, `.txt`, `.mat`, `.nii`, `.nii.gz`. |
-| `stat_format`          | `stat.txt`                                                                 | Specify the output format for statistics files (must be in text format).       |
-| `output`               | Output directory of the first file in `--source`                           | Specify the output directory.                                                 |
 
 ---
 
-## Notes:
-- **Fiber Tracking Parameters**: The following parameters are also supported: 
+## Optional Functions
+
+The majority of parameters used in --action=trk are also supported.
+
+- **Fiber Tracking Parameters**: The following parameters are supported: 
   - `--otsu_threshold`
   - `--fa_threshold`
   - `--turning_angle`
   - `--step_size`
   - `--smoothing`
   - `--tip_iteration`
-- **Length Constraints**: Parameters like `--min_length` and `--max_length` are not supported, as length constraints are automatically determined from the atlas.
-- **Report Generation**: Use the `--report` parameter to save the auto-tracking report to a file.
+  - 
+- **Length Constraints**:
+  Parameters like `--min_length` and `--max_length` are not supported, as length constraints are automatically determined from the atlas.
+
+
+- **Post-Tracking Routines**: The following parameters are also supported:
+
+  - `--connectivity`
+  - `--export`
+   
