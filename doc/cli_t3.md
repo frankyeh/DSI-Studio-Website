@@ -96,30 +96,6 @@ The following region types can be specified (comma-separated actions are applied
 
 ## Post-Tracking Routine
 
-| **Option**         | **Description**                                                                                      |
-|---------------------|------------------------------------------------------------------------------------------------------|
-| `--output=<file name for saving tractography>`  | save tractography (e.g. `--output=result.tt.gz`)                                      |
-| `--trk_format=<format> | specify default tractography format (e.g. --trk_format=tt.gz if --output is not specified  |
-| `--delete_repeat=<length>`  | Remove duplicate streamlines within a specified voxel distance. (e.g. `--delete_repeat=8`)  |
-| `--delete_by_length=<length>`  | Remove streamlines shorter than a specified voxel distance.                                       |
-| `--cluster=<method_id>,<cluster count>,<detail>,<output txt file name>`  | Apply clustering, (e.g. `--cluster=0,50,8,cluster.txt`. The method_id includes 0: single linkage, 1: k-means 2:EM. <detail> is only used in single linkage method.|
-| `--recognize=<recognize output>`      | Apply atlas-based bundle recognition.                                                                |
-| `--template_track=<file name>`      | Save tracts in the template's voxel space.                                                                            |
-| `--mni_track=<file name>`      | Save tracts in MNI space.                                                                            |
-| `--end_point=<file name>`      | Save a `.txt` or `.mat` file of all endpoint coordinates.                                            |
-| `--end_point1=<file name>`      | Save a `.txt` or `.mat` file of endpoint coordinates of tract's one end.                                            |
-| `--end_point2=<file name>`      | Save a `.txt` or `.mat` file of endpoint coordinates of tract's another end.                                            |
-| `--export=stat,tdi,report:<index_name>:<0:x 1:y 2:z 3: along tract 4:mean value>:<bandwidth>`         | Export options for statistics and visualizations: --export=stat outputs the statistics <br> --export=tdi outputs the track density images <br> --export=report:dti_fa:0:1 outputs the tract x-direction profile at bandwidth=1 |
-| `--connectivity`          | Comma-separated list of atlases or ROI files (e.g., `AAL2,HCP-MMP`).                                |
-| `--connectivity_value`    | Metrics to compute for each matrix entry: `count`, `length`, `qa`, etc.                            |
-| `--connectivity_threshold`| Threshold to binarize connection weights before graph measures.                                    |
-
-Here's a revised and cleaner version of your markdown table, improving clarity, grammar, and formatting:
-
----
-
-## Post-Tracking Routine
-
 | **Option**                                     | **Description**                                                                                                                                                                       |
 | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `--output=<file>`                              | Save tractography result (e.g., `--output=result.tt.gz`).                                                                                                                             |
@@ -137,11 +113,6 @@ Here's a revised and cleaner version of your markdown table, improving clarity, 
 | `--connectivity=<atlases>`                     | Specify comma-separated atlas or ROI names (e.g., `AAL2,HCP-MMP`).                                                                                                                    |
 | `--connectivity_value=<metric>`                | Set matrix value metric: `count`, `length`, `qa`, etc.                                                                                                                                |
 | `--connectivity_threshold=<value>`             | Threshold to binarize connection weights before computing graph measures.                                                                                                             |
-
----
-
-Let me know if you'd like to group related options, add examples, or create a collapsible version for a website.
-
 
 ---
 
