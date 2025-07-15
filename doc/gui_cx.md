@@ -1,4 +1,4 @@
-# Correlational Tractography & Connectometry
+# Correlational Tractography
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qC8jx6XZHGI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -185,10 +185,10 @@ Results for T-statistics are stored in a FIB file:
 
 | Output Files | Descriptions |
 |:------------|:-------------|
-| bmi.t_statistics.fib.gz | A FIB file storing the t-statistics can be opened in [Step T3:fiber tracking] to visualize T-statistics with tracks. The T statistics for increased metrics is stored as "inc_t", whereas decreased metrics is stored as "dec_t" |
-| bmi.t2.fdr.jpg | The FDR with respect to tracking length. |
-| bmi.t2.fdr_dist.values.txt | the FDR values with respect to length. |
-| demo.txt.length40.bmi.t20.report.html | HTML file reporting the connectometry results |
+| bmi.t_statistics.fz | A FIB file storing the t-statistics can be opened in [Step T3:fiber tracking] to visualize T-statistics with tracks. The T statistics for increased metrics is stored as "inc_t", whereas decreased metrics is stored as "dec_t" |
+| bmi.length20.fdr.jpg | The FDR with respect to tracking length. |
+| bmi.length20.fdr_dist.values.txt | the FDR values with respect to length. |
+| *.report.html | HTML file reporting the connectometry results |
 
 Results for increased metrics associated with the study variable will be saved with "inc" (for decreased metrics, "dec"):
 
