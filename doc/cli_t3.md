@@ -94,15 +94,54 @@ The following region types can be specified (comma-separated actions are applied
 
 ---
 
-## Post-Tracking & Export Options
+## Post-Tracking Routine
 
 | **Option**         | **Description**                                                                                      |
 |---------------------|------------------------------------------------------------------------------------------------------|
-| `--delete_repeat`  | Remove duplicate streamlines within a specified voxel distance.                                       |
-| `--recognize`      | Apply atlas-based bundle recognition.                                                                |
-| `--mni_track`      | Save tracts in MNI space.                                                                            |
-| `--end_point`      | Save a `.txt` or `.mat` file of all endpoint coordinates.                                            |
-| `--export`         | Export options for statistics and visualizations: `stat`, `tdi`, `tdi_color`, `report:index`, etc.   |
+| `--output=<file name for saving tractography>`  | save tractography (e.g. `--output=result.tt.gz`)                                      |
+| `--trk_format=<format> | specify default tractography format (e.g. --trk_format=tt.gz if --output is not specified  |
+| `--delete_repeat=<length>`  | Remove duplicate streamlines within a specified voxel distance. (e.g. `--delete_repeat=8`)  |
+| `--delete_by_length=<length>`  | Remove streamlines shorter than a specified voxel distance.                                       |
+| `--cluster=<method_id>,<cluster count>,<detail>,<output txt file name>`  | Apply clustering, (e.g. `--cluster=0,50,8,cluster.txt`. The method_id includes 0: single linkage, 1: k-means 2:EM. <detail> is only used in single linkage method.|
+| `--recognize=<recognize output>`      | Apply atlas-based bundle recognition.                                                                |
+| `--template_track=<file name>`      | Save tracts in the template's voxel space.                                                                            |
+| `--mni_track=<file name>`      | Save tracts in MNI space.                                                                            |
+| `--end_point=<file name>`      | Save a `.txt` or `.mat` file of all endpoint coordinates.                                            |
+| `--end_point1=<file name>`      | Save a `.txt` or `.mat` file of endpoint coordinates of tract's one end.                                            |
+| `--end_point2=<file name>`      | Save a `.txt` or `.mat` file of endpoint coordinates of tract's another end.                                            |
+| `--export=stat,tdi,report:<index_name>:<0:x 1:y 2:z 3: along tract 4:mean value>:<bandwidth>`         | Export options for statistics and visualizations: --export=stat outputs the statistics <br> --export=tdi outputs the track density images <br> --export=report:dti_fa:0:1 outputs the tract x-direction profile at bandwidth=1 |
+| `--connectivity`          | Comma-separated list of atlases or ROI files (e.g., `AAL2,HCP-MMP`).                                |
+| `--connectivity_value`    | Metrics to compute for each matrix entry: `count`, `length`, `qa`, etc.                            |
+| `--connectivity_threshold`| Threshold to binarize connection weights before graph measures.                                    |
+
+Here's a revised and cleaner version of your markdown table, improving clarity, grammar, and formatting:
+
+---
+
+## Post-Tracking Routine
+
+| **Option**                                     | **Description**                                                                                                                                                                       |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--output=<file>`                              | Save tractography result (e.g., `--output=result.tt.gz`).                                                                                                                             |
+| `--trk_format=<format>`                        | Set default tract format if `--output` is not specified (e.g., `--trk_format=tt.gz`).                                                                                                 |
+| `--delete_repeat=<length>`                     | Remove duplicate streamlines within the specified voxel distance (e.g., `--delete_repeat=8`).                                                                                         |
+| `--delete_by_length=<length>`                  | Remove streamlines shorter than the specified voxel length.                                                                                                                           |
+| `--cluster=<method>,<count>,<detail>,<output>` | Perform clustering (e.g., `--cluster=0,50,8,cluster.txt`).<br>`method`: 0=single linkage, 1=k-means, 2=EM.<br>`detail` is used only in method 0.                                      |
+| `--recognize=<file>`                           | Apply atlas-based bundle recognition and save recognized tracts.                                                                                                                      |
+| `--template_track=<file>`                      | Save tracts in the template voxel space.                                                                                                                                              |
+| `--mni_track=<file>`                           | Save tracts in MNI space.                                                                                                                                                             |
+| `--end_point=<file>`                           | Save endpoint coordinates (both ends) to `.txt` or `.mat`.                                                                                                                            |
+| `--end_point1=<file>`                          | Save coordinates of tract starting points to `.txt` or `.mat`.                                                                                                                        |
+| `--end_point2=<file>`                          | Save coordinates of tract endpoints to `.txt` or `.mat`.                                                                                                                              |
+| `--export=<type>,<type>,<type>`                              | Export tract data (e.g. `--export=stat,tdi,report:dti_fa:0:1`) :<br>• `stat` – statistics<br>• `tdi` – track density image<br>• `report:<index>:<dim>:<bandwidth>` – tract profile (e.g., `--export=report:dti_fa:0:1`) |
+| `--connectivity=<atlases>`                     | Specify comma-separated atlas or ROI names (e.g., `AAL2,HCP-MMP`).                                                                                                                    |
+| `--connectivity_value=<metric>`                | Set matrix value metric: `count`, `length`, `qa`, etc.                                                                                                                                |
+| `--connectivity_threshold=<value>`             | Threshold to binarize connection weights before computing graph measures.                                                                                                             |
+
+---
+
+Let me know if you'd like to group related options, add examples, or create a collapsible version for a website.
+
 
 ---
 
@@ -115,12 +154,3 @@ The following region types can be specified (comma-separated actions are applied
 | `--dt_threshold`      | Percent change threshold for differential analysis.                                                 |
 | `--dt_threshold_type` | Type of threshold: `0=(m1−m2)/m1`, `1=(m1−m2)/m2`, `2=abs(m1−m2)`.                                  |
 
----
-
-## Connectivity Options
-
-| **Option**                | **Default**       | **Description**                                                                                     |
-|----------------------------|-------------------|-----------------------------------------------------------------------------------------------------|
-| `--connectivity`          | —                 | Comma-separated list of atlases or ROI files (e.g., `AAL2,HCP-MMP`).                                |
-| `--connectivity_value`    | `count`           | Metrics to compute for each matrix entry: `count`, `length`, `qa`, etc.                            |
-| `--connectivity_threshold`| `0.001`           | Threshold to binarize connection weights before graph measures.                                    |
