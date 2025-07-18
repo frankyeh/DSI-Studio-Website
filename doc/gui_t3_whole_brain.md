@@ -61,10 +61,7 @@ DSI Studio saves tracks in the native diffusion voxel space rotated to "LPS". Th
 
 # Connectivity Matrix and Network Measures 
 
-***NOT RECOMMENDED, USE TRACT-TO-REGION CONNECTOME ABOVE***
-
-***Do not use connectivity matrix and network measure unless you are really familiar with its methodological utilization, interpretation, and limications. Choose [other analysis approaches](https://dsi-studio.labsolver.org/doc/how_to_analyze_dmri.html) for better sensitivity and specificity.***
-
+There are many issues and limitations in conventional region-to-region structural connectivity matrix (see [review](https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/nbm.3752) ). Thus I would recommend not to use connectivity matrix and network measure unless you are really familiar with its methodological utilization, interpretation, and limications. There are [other analysis approaches](https://dsi-studio.labsolver.org/doc/how_to_analyze_dmri.html) for better sensitivity and specificity.
 
 The following are steps to generate connectivity matricies:
 
