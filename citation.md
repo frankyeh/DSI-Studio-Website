@@ -7,7 +7,7 @@
 ## General citation for DSI Studio or Fiber Data Hub
 
 ```
-Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research." Nature Methods (2025): 1-3.
+Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research." Nat Methods (2025). https://doi.org/10.1038/s41592-025-02762-8
 ```
 
 ## Citations for specific methods
