@@ -40,10 +40,8 @@ January 2025
 
 Please check if your version has following issues and update accordingly
 
-- [versions >= 6/4/2025 <= 6/20/2025] A bug causing a crash when making SRC files isotropic
-- [versions >= 6/10/2025 < 6/15/2025] A bug in saving file that creates corrupted .sz and .fz files. (also need to remove .sz .fz files)
-- [versions >= 4/15/2025 < 5/6/2025] Converting DICOM to Nifti file may create left-right mirrow T1w images
-- [versions < 2/1/2025] DSI Studio treats MedialLemniscus tracts as an mni space tract
-- [versions < 2/1/2025] bug fix: an error in multi-thread may cause estimation of tract statistics errors in connectometry db.
-- [versions >= 2/1/2025 <= 3/10/2025 ] autotract may give incorrect results
-- [versions < 5/1/2025] DSI Studio cannot align tck with structure images correctly
+- [versions >= 8/8/2025 <= 8/10/2025] aA bug in automatic fiber tracking causing it not working
+- [versions >= 6/4/2025 <= 6/20/2025] a bug causing a crash when making SRC files isotropic and a bug in saving file that creates corrupted .sz and .fz files. (also need to remove .sz .fz files)
+- [versions >= 4/15/2025 < 5/6/2025] converting DICOM to Nifti file may create left-right mirrow T1w images
+- [versions >= 2/1/2025 <= 3/10/2025] autotract may give incorrect results due to normalization error
+- [versions < 5/1/2025] bug fix: (1) medialLemniscus tracts was wrongly treated as an mni space tract, (2) an error in multi-thread may cause estimation of tract statistics errors in connectometry db, (3) a abug causing alignment problem in tck with structure images. 
