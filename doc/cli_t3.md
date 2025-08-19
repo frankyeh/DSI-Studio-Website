@@ -112,9 +112,34 @@ The following region types can be specified (comma-separated actions are applied
 | `--end_point2=<file>`                          | Save endpoint coordinates to `.txt` or `.mat`.                                                                                                                                                                                                       |
 | `--export=<type>,<type>,...`                   | Export tract data (e.g., `--export=stat,tdi,report:dti_fa:3:1`)<br>• `stat`: summary statistics<br>• `tdi`: track density image<br>• `report:<index>:<direction>:<bandwidth>`: tract profile                                                         |
 |                                                | Example: `--export=report:dti_fa:3:1` exports FA profile along fiber direction using bandwidth = 1.<br>• `index`: e.g., `dti_fa`, `md`, `ad`<br>• `direction`: 0 = x, 1 = y, 2 = z, 3 = along fiber, 4 = mean<br>• `bandwidth`: regression bandwidth |
-| `--connectivity=<atlases>`                     | Comma-separated list of atlases or ROI files (e.g., `AAL2,HCP-MMP`).                                                                                                                                                                                 |
-| `--connectivity_value=<metric>`                | Metric to compute for each matrix entry: `count`, `length`, `qa`, etc.                                                                                                                                                                               |
-| `--connectivity_threshold=<value>`             | Threshold to binarize connection weights before graph analysis.                                                                                                                                                                                      |
+
+
+
+## **Connectivity Matrix (Connectome)**
+
+| **Option**                           | **Description**                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--connectivity=<atlases>`           | Comma-separated list of brain parcellation files in **NIFTI format** (e.g., `AAL2,HCP-MMP`) used to compute region-to-region (R2R) and tract-to-region (T2R) connectomes.                                                                                                                                                                          |
+| `--connectivity_value=<metrics>`     | Metric(s) used to compute entries of the **R2R connectome** matrix (e.g., `count`, `length`, `qa`). Multiple metrics can be specified with comma separation to generate multiple matrices in one run.                                                                                                                                              |
+| `--connectivity_type=<"pass","end">` | Specify whether to use streamline **pass-through** or **endpoints** to compute the **R2R connectome**. Multiple types can be specified with comma separation to generate multiple matrices in one run.                                                                                                                                             |
+| `--connectivity_threshold=<value>`   | Threshold for binarizing connection weights in the **R2R connectome** prior to graph analysis.                                                                                                                                                                                                                                                     |
+| `--connectivity_output=<types>`      | Output type(s) for the **R2R connectome**. Multiple types can be specified with comma separation: <br>• `matrix` → saves `*.connectivity.mat` (MATLAB v4 square matrix) <br>• `connectogram` → saves `*.connectogram.txt` (for visualization with **CIRCUS**) <br>• `measure` → saves `*.network_measures.txt` (graph-theoretic network measures). |
+
+The **connectivity command** generates two types of connectomes:
+
+* **Region-to-Region (R2R) Connectome**
+  Produces connectivity matrices between all atlas-defined regions. Each entry represents the connectivity value between two regions, determined by the selected metric (`--connectivity_value`) and connectivity type (`--connectivity_type`). Both options accept **comma-separated lists** to generate multiple matrices in one run.
+
+  * R2R connectomes can produce **three types of outputs** as specified in `--connectivity_output`:
+
+    * **Matrix** → `*.connectivity.mat` (MATLAB v4 square matrix).
+    * **Connectogram** → `*.connectogram.txt` (for visualization with **CIRCUS**).
+    * **Measure** → `*.network_measures.txt` (graph-theoretic network measures).
+  * The optional threshold (`--connectivity_threshold`) can be applied before graph analysis.
+
+* **Tract-to-Region (T2R) Connectome**
+  Produces a `.tract2region.txt` file with one row per input tract file (specified with `--tract`) and one column per ROI in the parcellation atlas (specified with `--connectivity`). Each entry represents the volume fraction (0–1) of ROI voxels intersected by tract passages. These values quantify the proportion of each ROI’s volume traversed by the tracts and are **independent of `--connectivity_value`, `--connectivity_type`, `--connectivity_threshold`, and `--connectivity_output`,** which apply only to R2R connectomes.
+
 
 ---
 
