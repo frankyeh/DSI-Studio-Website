@@ -1,6 +1,14 @@
 
 ## Update log 
 
+August 2025
+
+- The Spearman correlation in correlational tractography updated to consider tie conditions. This should improve p-value.
+- Julich Brain atlas updated to 3.1
+- connectivity matrix in command line can output shape metrics and diffusion metrics at in one command specify --connectivity_value=all
+- fix a bug in autotrack that failed to map pathway in large FOV scans
+
+
 June 2025
 
 - provide qa-iso ratio (QIR) in fiber tracking window
