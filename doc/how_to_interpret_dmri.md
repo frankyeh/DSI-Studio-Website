@@ -1,4 +1,4 @@
-# How to interpret dMRI metrics
+# Diffusion metrics provided by DSI Studio
 
 Diffusion MRI (dMRI) acquires **diffusion-sensitive** MRI data to reveal the microscopic change of biological tissues structure. The dMRI data are processed to provide diffusion metrics, such as diffusivities and anisotropy to summarize the diffusion pattern. Studies have shown that diffusion metrics could reveal neuronal change, cellularity, tissue edema.
 
