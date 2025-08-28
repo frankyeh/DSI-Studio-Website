@@ -19,7 +19,8 @@ The following is a summary of how to interpret results from diffusion metrics.
 | **ISO** | isotropy | Q-space imaging | ISO is associated with edema | increases: edema | ISO is a measure of isotropic diffusion (Yeh. 2010). It represents background isotropic diffusion contributed from CSF or edema, including both restricted and non-restricted isotropic diffusion. |
 | **RDI** | restricted diffusion imaging | Q-space imaging | RDI is associated with cell infiltration during inflammation (Yeh 2017)(Yeh 2021)| increases: cell infiltrations (inflammation or tumor infiltration) | RDI quantified the total amount of restricted diffusion regardless of the orientation (Yeh 2017)| 
 | **NRDI** | none-restricted diffusion imaging | Q-space imaging | NRDI is associated with edema (Yeh 2017)| increases: edema due to inflammation | NRDI quantified the total amount of none-restricted diffusion regardless of the orientation (Yeh 2017)| 
-
+| **QIR** (newly introduced, 2025) | QA-ISO ratio (qa/iso) | Q-space imaging | QIR is a measure of axonal integrity | reduced QIR may suggest inflamation or demelination | QIR is derived from QA and ISO and is more comparable across different scans because the computation removed the effect of B1 inhomogniety | 
+| **VOL** (newly introduced, 2025) | template-space volume | Nonlinear spatial normalization | Vol is a volumetric measure | reduced vol suggest atrophy of the tissue | Vol reflect the relective size in the template space. | 
 
 *The diffusivity (either RD, MD, or AD) calculated in DSI Studio has a unit of 10^-3 mm^2/s.
 
