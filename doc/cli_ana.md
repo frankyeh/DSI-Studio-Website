@@ -57,22 +57,22 @@ dsi_studio --action=ana --source=my.fz --tract=tract.tt.gz --ref=t1w.nii.gz --ou
 
 *Get statistics of multiple native-space ROIs:*
 ```bash
-dsi_studio --action=ana --source=my.fz --other_regions=native_space_roi.nii.gz
+dsi_studio --action=ana --source=my.fz --regions=native_space_roi.nii.gz
 ```
 
 *Get statistics of multiple MNI-space ROIs:*
 ```bash
-dsi_studio --action=ana --source=my.fz --other_regions=mni_space_roi.nii.gz
+dsi_studio --action=ana --source=my.fz --regions=mni_space_roi.nii.gz
 ```
 
 *Get statistics from Freesurfer segmented ROIs:*
 ```bash
-dsi_studio --action=ana --source=my.fz --other_regions=aparc+aseg.nii.gz
+dsi_studio --action=ana --source=my.fz --regions=aparc+aseg.nii.gz
 ```
 
 *Get statistics for ROIs of a built-in atlas:*
 ```bash
-dsi_studio --action=ana --source=*.fz --region=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R
+dsi_studio --action=ana --source=*.fz --regions=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R
 ```
 
 ---
@@ -110,7 +110,7 @@ dsi_studio --action=ana --source=test.fz --export=dirs
 
 | **Parameter**    | **Description**                                                                 |
 |-------------------|---------------------------------------------------------------------------------|
-| `other_regions`  | Specifies a NIFTI file of single/multiple ROIs for region statistics. Add `mni` for MNI-space regions. |
+| `regions`  | Specifies a NIFTI file of single/multiple ROIs for region statistics. Add `mni` for MNI-space regions. |
 | `atlas`          | Specify a built-in atlas name for region analysis.                             |
 
 ---
