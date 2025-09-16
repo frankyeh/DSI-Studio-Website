@@ -18,6 +18,8 @@ Download and unzip to run the executive. No installation is needed. DSI Studio h
 |  CentOS 8    |  [dsi_studio_centos8.zip](https://github.com/frankyeh/DSI-Studio/releases/download/2025.04.16/dsi_studio_centos8.zip)  |  |
 |  Container (Docker)   |  docker hub repository: `dsistudio/dsistudio:latest`  | `docker run -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $PWD:/data dsistudio/dsistudio:latest` |
 
+[开百度网盘链接](https://pan.baidu.com/s/5GuYBQbLHTN_HvShnM3oQew)
+
 **Unique in Hou versions**
 
 - 2024/08:
