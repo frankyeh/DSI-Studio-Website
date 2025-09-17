@@ -1,6 +1,12 @@
 
 ## Update log 
 
+September 2025
+
+- revive --action=vis
+- provide "vol" metrics
+- fix a bug in computing "span" of the tracts. previously it computes only the voxel distance.
+
 August 2025
 
 - The Spearman correlation in correlational tractography updated to consider tie conditions. This should improve p-value.
