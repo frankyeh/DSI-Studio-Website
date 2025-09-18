@@ -1,4 +1,4 @@
-# DSI-Studio: A Simple and Adaptive Tractography Tool for Diffusion MRI Analysis
+# DSI-Studio: A Tractography Tool for Diffusion MRI Analysis, Fiber Tracking, and Connectome Mapping
  
 ![image](/images/dsi_studio2.jfif)
 > *A screenshot of DSI Studio mapping tractography of the arcuate fasciculus*
