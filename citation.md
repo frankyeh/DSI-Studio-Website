@@ -6,6 +6,11 @@
 
 ## General citation for DSI Studio or Fiber Data Hub
 
+Example citation:
+
+**The analysis was conducted using DSI Studio (Yeh, 2025), specifically the Hou version (accessed [Date], http://dsi-studio.labsolver.org).**
+
+
 ```
 Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research." Nat Methods (2025). https://doi.org/10.1038/s41592-025-02762-8
 ```
