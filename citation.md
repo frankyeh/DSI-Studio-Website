@@ -6,9 +6,11 @@
 
 ## General citation for DSI Studio or Fiber Data Hub
 
+When citing DSI Studio, to ensure reproducibility, please reference the 2025 Nature Methods paper (Yeh, 2025) and additionally specify the software version (Hou or Chen), the access date, and the download source.
+
 Example citation:
 
-**The analysis was conducted using DSI Studio (Yeh, 2025), specifically the Hou version (accessed [Date], http://dsi-studio.labsolver.org).**
+**The analysis was conducted using DSI Studio (Yeh, 2025), the Hou version (accessed [Date], http://dsi-studio.labsolver.org).**
 
 
 ```
