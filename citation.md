@@ -21,8 +21,7 @@ Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data
 
 Reviewers may sometimes question the reliability of methods implemented in DSI Studio. The following references provide validation and testing to address such concerns.
 
-
-- [Population-based atlas and tracto-to-region connectome (2022)]([https://www.sciencedirect.com/science/article/pii/S1053811920308156](https://www.nature.com/articles/s41467-022-32595-4)): This study constructs a population-based probablistic tractography atlas and its associated tract-to-region connectome.
+-- Tracto-to-region connectome (2022)](https://www.nature.com/articles/s41467-022-32595-4): This study constructs a population-based probablistic tractography atlas and its associated tract-to-region connectome.
 ```
 Yeh, Fang-Cheng. "Population-based tract-to-region connectome of the human brain and its hierarchical topology." Nat Commun 13, 4933 (2022). https://doi.org/10.1038/s41467-022-32595-4
 ```
@@ -47,6 +46,12 @@ Yeh, Fang-Cheng, et al. "Differential tractography as a track-based biomarker fo
 ```
 Yeh, F. C., Panesar, S., Barrios, J., Fernandes, D., Abhinav, K., Meola, A., & Fernandez-Miranda, J. C. (2019). Automatic Removal of False Connections in Diffusion MRI Tractography Using Topology-Informed Pruning (TIP). Neurotherapeutics, 1-7.
 ```
+
+- [Tractography Atlas (2018)](https://www.sciencedirect.com/science/article/pii/S1053811920308156): This study provide the tractography atlas included in DSI Studio for human young adults.
+```
+Yeh, Fang-Cheng, et al. "Population-averaged atlas of the macroscale human structural connectome and its network topology." Neuroimage 178 (2018): 57-68.
+```
+
 
 - [Group connectometry (2016)](/ref/Connectometry.pdf): connectometry is a statistical framework for testing the significance of correlational tractography.
 ```
