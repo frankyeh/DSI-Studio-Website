@@ -18,7 +18,7 @@ The design of DSI Studio follows *minimalist principle* and prioritizes *simplic
 
 ### Publications in Neuroscience
 
-DSI Studio has facilitated and been used in more than [3,000 publications](https://scholar.google.com/scholar?q=%22DSI+Studio%22). Research studies using DSI Studio have been published in top-tier journals including Nature Neuroscience, Nature Human Behavior, Nature Communication, Brain, Cerebral Cortex, and NeuroImage 
+DSI Studio has facilitated and been used in more than 3,000 publications. Research studies using DSI Studio have been published in top-tier journals including Nature Neuroscience, Nature Human Behavior, Nature Communication, Brain, Cerebral Cortex, and NeuroImage 
 
 ![image](/images/nat_rev_neuro.png)
 > DSI Studio tractography on the cover of "Nature Reviews Neurology" for the whole year of 2017. 
@@ -51,4 +51,4 @@ DSI Studio can process high-resolution ex-vivo diffusion "MRI microscopy" acquir
 > Kidney Rainbow created using DSI Studio by Nian Wang, Center for In Vivo Microcopy (Directed by Dr. G. Allan Johnson), Duke University, U.S (Curtesy of Dr. Wang) <br>
 > Coverage by [Science](https://science.sciencemag.org/content/363/6427/564)
 
- 
+The tissue segmentation functoin in DSI Studio is provided by its sister tool [U-Net Studio](https://unet-studio.labsolver.org)
