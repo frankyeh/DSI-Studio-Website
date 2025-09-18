@@ -21,7 +21,7 @@ Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data
 
 Reviewers may sometimes question the reliability of methods implemented in DSI Studio. The following references provide validation and testing to address such concerns.
 
--- Tracto-to-region connectome (2022)](https://www.nature.com/articles/s41467-022-32595-4): This study constructs a population-based probablistic tractography atlas and its associated tract-to-region connectome.
+-- [Tracto-to-region connectome (2022)](https://www.nature.com/articles/s41467-022-32595-4): This study constructs a population-based probablistic tractography atlas and its associated tract-to-region connectome.
 ```
 Yeh, Fang-Cheng. "Population-based tract-to-region connectome of the human brain and its hierarchical topology." Nat Commun 13, 4933 (2022). https://doi.org/10.1038/s41467-022-32595-4
 ```
