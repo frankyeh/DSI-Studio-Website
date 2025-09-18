@@ -7,20 +7,18 @@ DSI Studio is a user-friendly tractography software designed for tractography an
 
 The design of DSI Studio follows *minimalist principle* and prioritizes *simplicity, efficiency, and adaptability*:  
 
-- **Straightforward Tractography** – Start with a simple method before considering more advanced approaches.  
-- **Minimal Preprocessing** – Uses only essential corrections (e.g., **FSL’s TOPUP and eddy**) to reduce preprocessing burden.  
-- **Simple Modeling** – Uses simple models such as **DTI, GQI, and QSDR**.
-- **Adaptive to Research Needs** – Frequently updated based on user feedback to remain relevant to the research community.  
-- **Concept-Driven Innovation** – Introduces novel yet easy analysis approaches, including:  
-  - **Tract-to-region connectome** for connectivity mapping  
+- **Tractography Modalities**: provide connectional tractography and also new modalities:
   - **Differential tractography** for detecting structural changes  
   - **Correlational tractography** for studying structure-function relationships  
+- **Connetome Modalities**: provide conventional region-to-region connectome and novel tract-to-Region connectome for connectivity mapping
+- **Minimal Preprocessing** – Uses only essential corrections (e.g., **FSL’s TOPUP and eddy**) to reduce preprocessing burden.  
+- **Modeling** – Uses simple models such as **DTI, GQI, and QSDR**.
 
 ---
 
 ### Publications in Neuroscience
 
-DSI Studio has facilitated and been used in more than [2,400 publications](https://scholar.google.com/scholar?q=%22DSI+Studio%22). Research studies using DSI Studio have been published in top-tier journals including Nature Neuroscience, Nature Human Behavior, Nature Communication, Brain, Cerebral Cortex, and NeuroImage 
+DSI Studio has facilitated and been used in more than [3,000 publications](https://scholar.google.com/scholar?q=%22DSI+Studio%22). Research studies using DSI Studio have been published in top-tier journals including Nature Neuroscience, Nature Human Behavior, Nature Communication, Brain, Cerebral Cortex, and NeuroImage 
 
 ![image](/images/nat_rev_neuro.png)
 > DSI Studio tractography on the cover of "Nature Reviews Neurology" for the whole year of 2017. 
