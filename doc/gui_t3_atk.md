@@ -18,7 +18,7 @@ To use this function, click on [**Step T3: Fiber Tracking**] to select a FIB fil
 
 Follows the steps below to run automatic fiber tracking.
 
-***Before using auto track, make sure you [run a whole-brain tracking](/doc/t3_whole_brain.html) as a visual quality check.***
+***Before using auto track, make sure you run a whole-brain tracking as a visual quality check.***
 
 ## 1. Click on the [Step T3d:Tracts][Enable auto track...]
 
