@@ -18,7 +18,7 @@ A connectometry database aggregates multiple FIB files into a common template sp
 
 You will need FIB files generated from [Step T2: Reconstruction](https://dsi-studio.labsolver.org/doc/gui_t2.html) or MNI-space NIFTI files.
 
-The FIB file can be reconstructed using [Step T2b(1)][QSDR](**recommended**) or [Step T2b(1)][GQI] with the default setting. (1.25 sample length ratio for in-vivo and 0.6 for ex-vivo).
+The FIB file can be reconstructed using [Step T2b(1)][QSDR] or [Step T2b(1)][GQI] with the default setting. (1.25 sample length ratio for in-vivo and 0.6 for ex-vivo).
 
 **After the 2022 June versions, DSI Studio can use all kinds of FIB files (not limited to QSDR FIB with ODF) to construct a connectometry database.
 
@@ -36,7 +36,7 @@ If you are going to study the longitudinal change, make sure that you place base
 
 ## Step C1b: Select analysis metric and template
 
-The FIB file contains many diffusion metrics. The default choice is "QA" known as quantitative anisotropy. You can also study other diffusion measures such as FA, AD, RD, MD, RDI, and NRDI. Each metric will need its dedicated connectometry database file. To know more about their differences, refer to [here](\doc\how_to_interpret_dmri.html)
+The FIB file contains many diffusion metrics. The default choice is "QA" known as quantitative anisotropy. You can also study other diffusion measures such as FA, AD, RD, MD, RDI, and NRDI. Each metric will need its dedicated connectometry database file. To know more about their differences, refer to [here](doc/how_to_interpret_dmri.html)
 
 If you use QSDR FIB files, DSI Studio will assign the corresponding template. If you use a GQI FIB file, you may need to select the correct template.
 
