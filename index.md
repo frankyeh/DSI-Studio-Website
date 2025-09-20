@@ -1,18 +1,25 @@
-# DSI-Studio: Tractography Tool for Diffusion MRI Fiber Tracking and Connectome
+# DSI-Studio: Tractography Software Tool for Diffusion MRI, Fiber Tracking, and Connectome Analysis
  
 ![image](/images/dsi_studio2.jfif)
 > *A screenshot of DSI Studio mapping tractography of the arcuate fasciculus*
 
-DSI Studio is a user-friendly tractography software designed for tractography analysis. It allows researchers and clinicians to efficiently map brain connections and explore their relationships with brain disorders.  
+**DSI Studio** is an open-source, cross-platform software platform for analyzing brain connectivity using diffusion-weighted MRI (dMRI). It supports widely used diffusion models including diffusion tensor imaging (DTI) and generalized q-sampling imaging (GQI) for robust mapping of white matter pathways and brain networks. The tool enables both neuroscience researchers and clinical neuroimaging specialists to reconstruct, quantify, and visualize white matter architecture, as well as study its relationship to cognition, behavior, and neurological conditions such as epilepsy, Alzheimer's disease, traumatic brain injury, and developmental disorders.
 
-The design of DSI Studio follows *minimalist principle* and prioritizes *simplicity, efficiency, and adaptability*:  
+It provides the following major functionalities:
 
-- **Tractography Modalities**: provide connectional tractography and also new modalities:
-  - **Differential tractography** for detecting structural changes  
-  - **Correlational tractography** for studying structure-function relationships  
-- **Connetome Modalities**: provide conventional region-to-region connectome and novel tract-to-Region connectome for connectivity mapping
-- **Minimal Preprocessing** – Uses only essential corrections (e.g., **FSL’s TOPUP and eddy**) to reduce preprocessing burden.  
-- **Modeling** – Uses simple models such as **DTI, GQI, and QSDR**.
+* **Multiple Tractography Approaches**:
+  Supports deterministic and probabilistic **fiber tracking** algorithms, as well as novel modalities:
+
+  * **Differential tractography** – for detecting longitudinal or group-level microstructural changes in white matter.
+  * **Correlational tractography** – for identifying connections associated with behavioral, cognitive, or clinical variables.
+* **Comprehensive Connectome Mapping**:
+  Includes both traditional **region-to-region connectivity matrices** and the novel **tract-to-region connectome**, enabling high-resolution structural network analysis.
+* **Lightweight Preprocessing Pipeline**:
+  Employs only essential corrections (e.g., **motion correction**, **susceptibility distortion correction** using tools like FSL TOPUP and eddy), avoiding overfitting and preserving native image features.
+* **Support for Multiple Diffusion Models**:
+  Built-in support for DTI, GQI, and **Q-space diffeomorphic reconstruction (QSDR)**, allowing flexibility across different acquisition protocols and datasets.
+
+Whether you're conducting brain connectomics research, analyzing neurodevelopment, or building machine learning pipelines on white matter features, DSI Studio provides an efficient and validated environment for structural MRI analysis and neuroinformatics applications.
 
 ---
 
