@@ -5,7 +5,9 @@
 
 **DSI Studio** is an open-source, cross-platform software platform for analyzing brain connectivity using diffusion-weighted MRI (dMRI). It supports widely used diffusion models including diffusion tensor imaging (DTI) and generalized q-sampling imaging (GQI) for robust mapping of white matter pathways and brain networks. The tool enables both neuroscience researchers and clinical neuroimaging specialists to reconstruct, quantify, and visualize white matter architecture, as well as study its relationship to cognition, behavior, and neurological conditions such as epilepsy, Alzheimer's disease, traumatic brain injury, and developmental disorders.
 
-It provides the following major functionalities:
+We also recommend other tools that provide similar functions, including MRtrix3, Dipy, TRACULA, SlicerDMRI, ExploreDTI, TrackVis, FSL probtrackx.
+
+### Major Functionalities
 
 * **Multiple Tractography Approaches**:
   Supports deterministic and probabilistic **fiber tracking** algorithms, as well as novel modalities:
