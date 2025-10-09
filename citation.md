@@ -8,20 +8,20 @@
 
 When citing DSI Studio, to ensure reproducibility, please reference the 2025 Nature Methods paper (Yeh, 2025) and additionally specify the software version (Hou or Chen), the access date, and the download source.
 
-Example citation:
+- [DSI Studio toolbox and Fiber Data Hub](https://rdcu.be/exECv)
 
 **The analysis was conducted using DSI Studio (Yeh, 2025), the Hou version (accessed [Date], http://dsi-studio.labsolver.org).**
 
+```
+Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research." Nat Methods (2025). https://doi.org/10.1038/s41592-025-02762-8
+```
 
-```
-[Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research." Nat Methods (2025). https://doi.org/10.1038/s41592-025-02762-8](https://rdcu.be/exECv)
-```
 
 ## Citations for specific methods
 
 Reviewers may sometimes question the reliability of methods implemented in DSI Studio. The following references provide validation and testing to address such concerns.
 
--- [Tracto-to-region connectome (2022)](https://www.nature.com/articles/s41467-022-32595-4): This study constructs a population-based probablistic tractography atlas and its associated tract-to-region connectome.
+- [Tracto-to-region connectome (2022)](https://www.nature.com/articles/s41467-022-32595-4): This study constructs a population-based probablistic tractography atlas and its associated tract-to-region connectome.
 ```
 Yeh, Fang-Cheng. "Population-based tract-to-region connectome of the human brain and its hierarchical topology." Nat Commun 13, 4933 (2022). https://doi.org/10.1038/s41467-022-32595-4
 ```
