@@ -14,7 +14,7 @@ Example citation:
 
 
 ```
-Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research." Nat Methods (2025). https://doi.org/10.1038/s41592-025-02762-8
+[Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research." Nat Methods (2025). https://doi.org/10.1038/s41592-025-02762-8](https://rdcu.be/exECv)
 ```
 
 ## Citations for specific methods
