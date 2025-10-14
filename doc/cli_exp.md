@@ -9,9 +9,9 @@
 dsi_studio --action=exp --source=subject1.fz --export=dti_fa,ad,md
 ```
 
-**2. Export `qa` and `iso` from all FIB files:**
+**2. Export `qa` and `iso` from all FIB files to the MNI space:** (supported after Oct/2025)
 ```bash
-dsi_studio --action=exp --source=*.fz --export=qa,iso
+dsi_studio --action=exp --source=*.fz --export=qa,iso --export_to_mni 
 ```
 
 ---
@@ -22,6 +22,8 @@ dsi_studio --action=exp --source=*.fz --export=qa,iso
 |---------------|-------------|---------------------------------------------------------------------------------|
 | `source`      |             | Specify the path for the FIB file.                                              |
 | `export`      |             | Specify the metrics to export (e.g., `qa`, `iso`, `dti_fa`, `ad`, `md`). Metrics are saved as `.nii.gz` files. |
+
+to export image to the template space, specify --export_to_mni (supported after Oct/2025)
 
 ---
 
