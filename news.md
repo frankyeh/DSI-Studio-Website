@@ -1,6 +1,11 @@
 
 ## Update log 
 
+October 2025
+- Fix registration bug that when DWI has large FOV.
+- Fix export to mni bug in the GUI
+- Major revision on connectivity matrix computation. Fully support T2R results for all metrics
+
 September 2025
 
 - revive --action=vis
