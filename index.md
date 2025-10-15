@@ -1,4 +1,4 @@
-# DSI-Studio: Tractography Software Tool for Diffusion MRI, Fiber Tracking, and Connectome Analysis
+# DSI-Studio: Tractography Software for Diffusion MRI, Fiber Tracking, and Connectome
  
 ![image](/images/dsi_studio2.jfif)
 > *A screenshot of DSI Studio mapping tractography of the arcuate fasciculus*
