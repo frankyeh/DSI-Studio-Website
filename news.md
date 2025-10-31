@@ -2,6 +2,8 @@
 ## Update log 
 
 October 2025
+- check bias field correction before reconstruction
+- Improved mask generation at Step T2
 - Fix registration bug when DWI has a large FOV.
 - Fix export slice image to mni bug in the GUI
 - Major revision on connectivity matrix computation. DSI Studio now support T2R results for all metrics.
