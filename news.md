@@ -1,6 +1,9 @@
 
 ## Update log 
 
+November 2025
+- [BUG] the 1st and 4th quarter volume of the tracts reported in tract statistics may sometimes be flipped. This bug affect versions before 11/6/2025.
+
 October 2025
 - check bias field correction before reconstruction
 - Improved mask generation at Step T2
