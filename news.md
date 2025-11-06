@@ -1,11 +1,11 @@
 
-## Update log 
+## Recent Update Log 
 
 November 2025
-- [BUG] the 1st and 4th quarter volume of the tracts reported in tract statistics may sometimes be flipped. This bug affect versions before 11/6/2025.
+- Fix a bug in tract statistics: the 1st and 4th quarter volume of the tracts reported in tract statistics may sometimes be flipped. This bug affect versions before 11/6/2025.
 
 October 2025
-- check bias field correction before reconstruction
+- always apply bias field correction before reconstruction
 - Improved mask generation at Step T2
 - Fix registration bug when DWI has a large FOV.
 - Fix export slice image to mni bug in the GUI
@@ -24,6 +24,17 @@ August 2025
 - connectivity matrix in command line can output shape metrics and diffusion metrics at in one command specify --connectivity_value=all
 - fix a bug in autotrack that failed to map pathway in large FOV scans
 
+## Issues
+
+Please check if your version has following issues and update accordingly
+
+- [versions >= 8/8/2025 <= 8/11/2025] bug in automatic fiber tracking and qsdr reconstruction causing it not working
+- [versions >= 6/4/2025 <= 6/20/2025] a bug causing a crash when making SRC files isotropic and a bug in saving file that creates corrupted .sz and .fz files. (also need to remove .sz .fz files)
+- [versions >= 4/15/2025 < 5/6/2025] converting DICOM to Nifti file may create left-right mirrow T1w images
+- [versions >= 2/1/2025 <= 3/10/2025] autotract may give incorrect results due to normalization error
+- [versions < 5/1/2025] bug fix: (1) medialLemniscus tracts was wrongly treated as an mni space tract, (2) an error in multi-thread may cause estimation of tract statistics errors in connectometry db, (3) a abug causing alignment problem in tck with structure images. 
+
+## Past Updates
 
 June 2025
 
@@ -60,12 +71,4 @@ January 2025
 - GUI: error message when loading template fz
 - GUI: fix long text issue in tract or region statistics in Mac OS.
 
-## Issues
 
-Please check if your version has following issues and update accordingly
-
-- [versions >= 8/8/2025 <= 8/11/2025] bug in automatic fiber tracking and qsdr reconstruction causing it not working
-- [versions >= 6/4/2025 <= 6/20/2025] a bug causing a crash when making SRC files isotropic and a bug in saving file that creates corrupted .sz and .fz files. (also need to remove .sz .fz files)
-- [versions >= 4/15/2025 < 5/6/2025] converting DICOM to Nifti file may create left-right mirrow T1w images
-- [versions >= 2/1/2025 <= 3/10/2025] autotract may give incorrect results due to normalization error
-- [versions < 5/1/2025] bug fix: (1) medialLemniscus tracts was wrongly treated as an mni space tract, (2) an error in multi-thread may cause estimation of tract statistics errors in connectometry db, (3) a abug causing alignment problem in tck with structure images. 
