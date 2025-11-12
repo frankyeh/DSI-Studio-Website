@@ -4,8 +4,6 @@
 
 # Download Links: "Hou" versions (2025-)
 
-**Hou version is currently at the pre-release stage under frequent updates and testing**
-
 Download and unzip to run the executive. No installation is needed. DSI Studio has a high version turning rate, and the computation outcome may differ between versions. I would recommend  keeping a local copy of DSI Studio for each research project and updating DSI Studio every time a new project is initiated.
 
 
