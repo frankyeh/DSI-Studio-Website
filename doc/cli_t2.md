@@ -93,7 +93,7 @@ done
 
 ---
 
-## Masking & Registration Options
+## Masking 
 
 | **Option**           | **Description**                                                                                               |
 |-----------------------|--------------------------------------------------------------------------------------------------------------|
@@ -102,6 +102,15 @@ done
 | `--rotate_to`       | Rigid-body rotate DWI into the specified T1w/T2w space (no scaling).                                           |
 | `--align_to`        | Affine align DWI into the specified T1w/T2w space (includes scaling/shearing).                                 |
 | `--other_image`     | Attach native-space images for QSDR to bring to template space. Format: `t1w:/path/t1w.nii.gz,t2w:/path/t2w.nii.gz`. |
+
+
+## Registration Options
+
+| **Option**          | **Default**| **Description**                                                                                                                       |
+|---------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------|
+| `--reg_resolution`  | `2`    |   The relative resolution used in the nonlinear registration. `2` subsample to x2 lower resolution. Use `1` to the same resolution (higher computation time) |
+| `--reg_speed`       | `0.3`  |   The deformation speed. Higher values handle larger distortions                                      |
+| `--reg_smoothing`   | `0.05` |   The smoothing applied to the deformation field. Higher values ensure structural continuity |
 
 ---
 
