@@ -73,14 +73,27 @@ Follow these steps in order to preprocess DWI data effectively:
 ---
 
 ### 2. Correct Image Orientations (Animal Scans Only)
+Here is a clearer, simpler, and more polished version:
 
-Animal scans often require orientation corrections. Use [Corrections][Volume Orientation Correction] to align the volume with the template.
+---
 
-Default template orientations for mice, marmosets, or rhesus are shown below:
+Animal scans often need orientation adjustments. Use **Corrections → Volume Orientation Correction** to align your data with the template.
 
-![Template Orientation](https://user-images.githubusercontent.com/275569/149644623-ee22e1d3-d8a6-4650-b2ae-ce10d93e11f2.png)
+Default template orientations for mouse, marmoset, and rhesus brains are shown below:
 
-If necessary, use [**Edit**][**Image Flip**] or [**Image Swap**] to match the template orientation.
+<img width="800" alt="template orientation image" src="https://github.com/user-attachments/assets/d64d99dc-33f9-45ec-ad84-1431473bf6ab" />
+
+
+When the slice-position slider moves to the right, the view should show the **top** of the brain. If it does not, flip the volume along **Z**.
+
+If needed, use **Edit → Image Flip** or **Image Swap** to match the template orientation.
+
+**Important:** Any flip or swap creates a mirrored image.
+If the total number of flip/swap operations is **odd**, the final result will be mirrored.
+Make sure to flip **X** to correct it if this happens.
+
+---
+
 
 ---
 
