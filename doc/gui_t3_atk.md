@@ -77,11 +77,8 @@ Restart DSI Studio to take effect.
 
 [Tracts][Statistics] provides values extracted from shape analysis and diffusion metrics.
 
-[Shape analysis](https://www.sciencedirect.com/science/article/pii/S1053811920308156) uses the topology information from tractography streamlines to derive length, area, volume, and shape descriptors. The analysis quantifies macroscopic structural features of fiber pathways.
-
-The details of the diffusion metrics are documented at [Diffusion MRI Metrics](https://sites.google.com/a/labsolver.org/dsi-studio/Manual/diffusion-mri-indices)
-
 ***Shape Metrics***
+[Shape analysis](https://www.sciencedirect.com/science/article/pii/S1053811920308156) uses the topology information from tractography streamlines to derive length, area, volume, and shape descriptors. The analysis quantifies macroscopic structural features of fiber pathways.
 
 | Metrics | Description |
 |:--------|:------------|
@@ -105,6 +102,8 @@ The details of the diffusion metrics are documented at [Diffusion MRI Metrics](h
 | irregularity of end region 2 |  |
 
 ***Diffusion Metrics***
+
+The details of the diffusion metrics are documented at [Diffusion MRI Metrics](https://dsi-studio.labsolver.org/doc/how_to_interpret_dmri.html)
 
 | Metrics | Description |
 |:--------|:------------|
