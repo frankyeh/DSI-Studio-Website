@@ -118,25 +118,12 @@ The following region types can be specified (comma-separated actions are applied
 
 ## **Connectivity Matrix (Connectome)**
 
-| **Option**                           | **Description**                                                                                                                                                                                                                                                                                                                                    |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--connectivity=<atlases>`           | Comma-separated list of brain parcellation files in **NIFTI format** (e.g., `AAL2,HCP-MMP`) used to compute region-to-region (R2R) and tract-to-region (T2R) connectomes. |
-| `--connectivity_type=<"pass","end">` | Specify whether to use streamline **pass-through** or **endpoints** to compute the **R2R connectome**. Multiple types can be specified with comma separation to generate multiple matrices in one run.                                                             |
-
-The output include both **Region-to-Region (R2R) Connectome** and **Tract-to-Region (T2R) Connectome**:
-
-* **Region-to-Region (R2R) Connectome**
-  Produces connectivity matrices between all atlas-defined regions. Each entry represents the connectivity value between two regions, determined by the selected metric (`--connectivity_value`) and connectivity type (`--connectivity_type`). Both options accept **comma-separated lists** to generate multiple matrices in one run.
-
-  * R2R connectomes can produce **three types of outputs** as specified in `--connectivity_output`:
-
-    * **Matrix** → `*.connectivity.mat` (MATLAB v4 square matrix).
-    * **Connectogram** → `*.connectogram.txt` (for visualization with **CIRCUS**).
-    * **Measure** → `*.network_measures.txt` (graph-theoretic network measures).
-  * The optional threshold (`--connectivity_threshold`) can be applied before graph analysis.
-
-* **Tract-to-Region (T2R) Connectome**
-  Produces a `.tract2region.txt` file with one row per metrics and one column per ROI in the parcellation atlas (specified with `--connectivity`).
+| **Option**                        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--connectivity=<atlases>`        | A comma-separated list of brain parcellation atlases (NIfTI files or atlas names recognized by DSI Studio, e.g., `AAL2,HCP-MMP`). The specified parcellations are used to compute region-to-region (R2R) and tract-to-region (T2R) connectomes.                                                                                                                                                                                                                                                                                                                            |
+| `--connectivity_type=<types>`     | Defines how streamlines contribute to the structural connectivity. Use `pass` to include streamlines that pass through ROIs (pass-through), or `end` to include streamline by checking the endpoints. Multiple types can be specified using commas to export multiple connectomes in a single run, e.g., `--connectivity_type=pass,end`.                                                                                                                                                                                                                                                            |
+| `--connectivity_value=<metrics>`  | Selects which connectivity metric(s) to export. The default value `all` exports all supported metrics. To export a subset, provide a comma-separated list of metric keywords (matched by name), e.g., `--connectivity_value=volume,fa`.                                                                                                                                                                                                                                                                                                                                                |
+| `--connectivity_output=<outputs>` | Specifies which outputs to save. The default value `all` saves all available outputs. Otherwise, provide a comma-separated list: `matrix` saves the connectivity matrix as `*.connectivity.mat` (MATLAB v4 square matrix); `connectogram` saves `*.connectogram.txt` for visualization with **CIRCUS**; `network` saves graph-theoretic network measures as `*.network_measures.txt`; `t2r` saves the tract-to-region connectome as `.tract2region.txt` (one row per metric and one column per ROI). Example: `--connectivity_output=matrix,network`. |
 
 
 ---
