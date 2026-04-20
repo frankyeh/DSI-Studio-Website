@@ -1,9 +1,20 @@
 
 ## Recent Update Log 
 
+April 2026
+- Major code revision to improve efficiency
+- Adding UNet segmentation models for T1W/T2W structure images
+- Revise atlas and template saving location
+
+March 2026
+- Revise autotrack function: reduce default TIP iteration count, adding debug features
+- Adding comprehensive tract-to-region connectome quantification set
+
 November 2025
 - Fix a bug in tract statistics: the 1st and 4th quarter volume of the tracts reported in tract statistics may sometimes be flipped. This bug affect versions before 11/6/2025.
-
+- Improve robustness and efficiency of image registration, adding more search count and estimate initial parameters
+-
+ 
 October 2025
 - always apply bias field correction before reconstruction
 - Improved mask generation at Step T2
