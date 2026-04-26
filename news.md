@@ -39,12 +39,13 @@ August 2025
 
 Please check if your version has following issues and update accordingly
 
-- [versions >= 11/10/2025 <= 2/17/2026] The visualization of NIFTI images at tracking window may be flipped due to a bug in reading NIFTI header.
-- [versions >= 8/8/2025 <= 8/11/2025] bug in automatic fiber tracking and qsdr reconstruction causing it not working
-- [versions >= 6/4/2025 <= 6/20/2025] a bug causing a crash when making SRC files isotropic and a bug in saving file that creates corrupted .sz and .fz files. (also need to remove .sz .fz files)
-- [versions >= 4/15/2025 < 5/6/2025] converting DICOM to Nifti file may create left-right mirrow T1w images
-- [versions >= 2/1/2025 <= 3/10/2025] autotract may give incorrect results due to normalization error
-- [versions < 5/1/2025] bug fix: (1) medialLemniscus tracts was wrongly treated as an mni space tract, (2) an error in multi-thread may cause estimation of tract statistics errors in connectometry db, (3) a abug causing alignment problem in tck with structure images. 
+- [versions >= 4/15/2026 <= 4/24/2026] (MAJOR ISSUE) GPU-based nonlinear registration did not run correctly due to an error introduced during code revision.
+- [versions >= 11/10/2025 <= 2/17/2026] (MAJOR ISSUE) NIFTI images displayed in the tracking window may appear flipped due to a bug in reading the NIFTI header.
+- [versions >= 8/8/2025 <= 8/11/2025] A bug affected automatic fiber tracking and QSDR reconstruction, causing them to fail.
+- [versions >= 6/4/2025 <= 6/20/2025] A bug may cause crashes when making SRC files isotropic. Another bug may create corrupted .sz and .fz files when saving. Any affected .sz and .fz files should be removed.
+- [versions >= 4/15/2025 < 5/6/2025] Converting DICOM files to NIfTI may create left-right mirrored T1w images.
+- [versions >= 2/1/2025 <= 3/10/2025] Autotract may produce incorrect results due to a normalization error.
+- [versions < 5/1/2025] Bug fixes: (1) medial lemniscus tracts were incorrectly treated as MNI-space tracts, (2) a multithreading error may cause incorrect tract statistics in the connectometry database, and (3) a bug may cause alignment problems between .tck files and structural images.
 
 ## Past Updates
 
