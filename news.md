@@ -18,32 +18,6 @@ March 2026
 - Revised the automatic fiber tracking function by reducing the default TIP iteration count and adding debugging features.
 - Added a comprehensive set of tract-to-region connectome quantification outputs.
 
-November 2025
-
-- Fixed a bug in tract statistics: the first- and fourth-quartile tract volumes reported in tract statistics may sometimes be flipped. This bug affects versions before 11/6/2025.
-- Improved the robustness and efficiency of image registration by adding more search counts and better initial parameter estimation.
-
-October 2025
-
-- Bias field correction is now always applied before reconstruction.
-- Improved mask generation at Step T2.
-- Fixed a registration bug when DWI has a large field of view.
-- Fixed a GUI bug when exporting slice images to MNI space.
-- Major revision of connectivity matrix computation. DSI Studio now supports tract-to-region results for all metrics.
-
-September 2025
-
-- Restored `--action=vis`.
-- Added the `vol` metric.
-- Fixed a bug in computing the `span` of tracts. Previously, it only computed voxel distance.
-
-August 2025
-
-- Updated Spearman correlation in correlational tractography to handle tied ranks, improving p-value estimation.
-- Updated the Julich Brain atlas to version 3.1.
-- Added command-line support for outputting shape metrics and diffusion metrics in one connectivity matrix command using `--connectivity_value=all`.
-- Fixed a bug in automatic fiber tracking that failed to map pathways in large-FOV scans.
-
 ## Issues
 
 Please check whether your version is affected by the following issues and update accordingly.
@@ -58,39 +32,19 @@ Please check whether your version is affected by the following issues and update
 
 ## Past Updates
 
-June 2025
+2025
 
-- Added the QA-ISO ratio (QIR) in the fiber tracking window.
-- Added support for access to NDA restricted datasets using a registry entity.
-- Added T1w tissue segmentation in the command line interface.
-- Added support for using T2w images to correct phase distortion.
-- Fixed T1w normalization issues.
-- Fixed a crash in manual atlas normalization.
+- Added issue checking, the multi-metric database `.dz` format, QA-ISO ratio (QIR), command-line T1w tissue segmentation, and support for NDA restricted datasets.
+- Improved differential tractography, connectivity matrix computation, image registration, mask generation, multithreading efficiency, FIB averaging, bias field correction, and phase-distortion correction using T2w images.
+- Updated correlational tractography p-value estimation, the Julich Brain atlas, built-in neonate template, and ICBM152 T1w/T2w templates.
+- Added command history, empty-tract save/load support, expanded tract-to-region metrics, and restored `--action=vis`.
 
-May 2025
+2023-2024
 
-- Added an issue-checking routine to alert users about known affected versions.
-- Introduced the multi-metric database `.dz` format.
+- Introduced the Hou generation of DSI Studio with new `.fz`/`.sz` formats, the DSI Studio Data Hub, updated registration tools, and a revised GUI.
+- Updated tractography atlas organization and automated fiber tracking support for multiple tractography atlases.
 
-April 2025
+2020-2022
 
-- Added effect size calculation in correlational tractography.
-- Improved multithreading efficiency.
-- Improved the differential tractography pipeline.
-- Added support for saving and loading empty tracts.
-- Added bias field correction.
-- Added FIB averaging for creating population templates.
-- Added command history.
-
-March 2025
-
-- Introduced a new termination count system using the tract-to-voxel ratio.
-- Updated the built-in neonate template.
-
-January 2025
-
-- Updated ICBM152 human T1w/T2w templates to 0.5 mm resolution.
-- Enhanced linear registration accuracy.
-- GUI: added an error message when loading a template `.fz` file.
-- GUI: fixed long-text display issues in tract and region statistics on macOS.
+- Major revision of QA calculation; nQA replaced QA.
 
