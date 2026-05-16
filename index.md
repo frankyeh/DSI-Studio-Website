@@ -1,63 +1,86 @@
-# DSI-Studio: Tractography Software for Diffusion MRI, Fiber Tracking, and Connectome
- 
-![image](/images/dsi_studio2.jfif)
-> *A screenshot of DSI Studio mapping tractography of the arcuate fasciculus*
+# DSI Studio
 
-**DSI Studio** is an open-source, cross-platform software platform for analyzing brain connectivity using diffusion-weighted MRI (dMRI). It supports widely used diffusion models including diffusion tensor imaging (DTI) and generalized q-sampling imaging (GQI) for robust mapping of white matter pathways and brain networks. The tool enables both neuroscience researchers and clinical neuroimaging specialists to reconstruct, quantify, and visualize white matter architecture, as well as study its relationship to cognition, behavior, and neurological conditions such as epilepsy, Alzheimer's disease, traumatic brain injury, and developmental disorders.
+## Integrated tractography, connectomics, brain MRI segmentation, and large-scale fiber data sharing
 
-We also recommend other tools, including MRtrix3, Dipy, TRACULA, SlicerDMRI, ExploreDTI, TrackVis, FSL probtrackx.
+![DSI Studio and Fiber Data Hub workflow](/images/fiber_data_hub_workflow.svg)
 
-### Major Functionalities
+**DSI Studio** is an open-source, cross-platform software platform for diffusion MRI and structural MRI analysis. It brings together diffusion reconstruction, fiber tracking, connectome mapping, quality control, group analysis, and brain MRI segmentation in one environment. With direct integration of the **Fiber Data Hub**, DSI Studio also serves as a data infrastructure for scalable and reproducible brain connectivity research.
 
-* **Multiple Tractography Approaches**:
-  Supports deterministic and probabilistic **fiber tracking** algorithms, as well as novel modalities:
-
-  * **Differential tractography** – for detecting longitudinal or group-level microstructural changes in white matter.
-  * **Correlational tractography** – for identifying connections associated with behavioral, cognitive, or clinical variables.
-* **Comprehensive Connectome Mapping**:
-  Includes both traditional **region-to-region connectivity matrices** and the novel **tract-to-region connectome**, enabling high-resolution structural network analysis.
-* **Lightweight Preprocessing Pipeline**:
-  Employs only essential corrections (e.g., **motion correction**, **susceptibility distortion correction** using tools like FSL TOPUP and eddy), avoiding overfitting and preserving native image features.
-* **Support for Multiple Diffusion Models**:
-  Built-in support for DTI, GQI, and **Q-space diffeomorphic reconstruction (QSDR)**, allowing flexibility across different acquisition protocols and datasets.
-
-Whether you're conducting brain connectomics research, analyzing neurodevelopment, or building machine learning pipelines on white matter features, DSI Studio provides an efficient and validated environment for structural MRI analysis and neuroinformatics applications.
+**Quick links:** [Download](download.html) · [Fiber Data Hub](https://brain.labsolver.org) · [News](news.html) · [Forum](https://groups.google.com/g/dsi-studio) · [GitHub](https://github.com/frankyeh/DSI-Studio)
 
 ---
 
-### Publications in Neuroscience
+## What you can do with DSI Studio
 
-DSI Studio has facilitated and been used in more than 3,000 publications. Research studies using DSI Studio have been published in top-tier journals including Nature Neuroscience, Nature Human Behavior, Nature Communication, Brain, Cerebral Cortex, and NeuroImage 
+- Reconstruct diffusion MRI using methods including **DTI**, **GQI**, and **QSDR**.
+- Map white matter pathways using **deterministic** and **probabilistic tractography**.
+- Study change and association using **differential tractography** and **correlational tractography**.
+- Quantify brain networks using both **region-to-region connectivity matrices** and the **tract-to-region connectome**.
+- Run **quality control**, **group analysis**, and population-level workflows in the same software environment.
+- Perform **brain MRI segmentation** for T1w and T2w images using compact **U-Net models** integrated in DSI Studio.
+- Use the same platform on **Windows**, **macOS**, **Linux**, and **Docker**.
+
+---
+
+## Fiber Data Hub
+
+The **Fiber Data Hub** extends DSI Studio from a software tool to a software-and-data platform. It provides direct access to compact processed diffusion MRI derivatives that can be downloaded and analyzed without repeating the full preprocessing pipeline from raw DWI.
+
+The Hub currently hosts **more than 50,000 processed fiber datasets** from major neuroimaging resources including **HCP**, **ABCD**, **OpenNeuro**, **INDI**, **TCIA**, and other public datasets. These derivatives are distributed in compact formats such as **.fz**, **.sz**, and **.dz**, which are typically **50–100× smaller** than raw diffusion MRI while preserving the information needed for tractography and connectomics. For example, a diffusion MRI dataset that may require roughly **500 MB** in raw form can often be represented as a **5–10 MB** fiber dataset for downstream analysis.
+
+This allows users to:
+
+- browse and download processed datasets directly in DSI Studio;
+- start tractography and connectomics analysis more quickly;
+- build reproducible pipelines using standardized derivatives;
+- scale analyses across public datasets with much lower storage and transfer cost.
+
+Explore the Hub at [brain.labsolver.org](https://brain.labsolver.org).
+
+---
+
+## Research impact
+
+DSI Studio has been used in **more than 3,000 publications** spanning neuroscience, neurology, psychiatry, psychology, biomedical engineering, and neurosurgery. Studies using DSI Studio have appeared in journals including **Nature Neuroscience**, **Nature Human Behaviour**, **Nature Communications**, **Brain**, **Cerebral Cortex**, and **NeuroImage**.
+
+The software and the data platform were recently described in *Nature Methods* as an integrated tractography platform and fiber data hub for accelerating brain research.
 
 ![image](/images/nat_rev_neuro.png)
-> DSI Studio tractography on the cover of "Nature Reviews Neurology" for the whole year of 2017. 
-> About the cover. Brains and beauty — the 2017 cover. Nat Rev Neurol 13, 1 (2017)
+> DSI Studio tractography on the cover of *Nature Reviews Neurology* in 2017.
 
 ---
 
-### Research in Clinical Medicine for Tumor Patients
+## Clinical and translational applications
 
-Under the research projects, DSI Studio has helped more than 200 brain tumor patients at the University of Pittsburgh Medical Center:
+DSI Studio has supported translational and clinical research in a wide range of neurological conditions, including epilepsy, traumatic brain injury, developmental disorders, and neurodegenerative disease. At the University of Pittsburgh Medical Center, its tractography workflows have been applied in research involving **more than 200 brain tumor patients** for presurgical evaluation and structural pathway assessment.
 
-Patient's story: [1](https://www.youtube.com/watch?v=gEZlzkxb-LE), [2](https://www.youtube.com/watch?v=vULJxiuO6lo), [3](https://www.youtube.com/watch?v=7WQ-Dej4_dM)
-
-Fiber tracking in DSI Studio provides a superior presurgical evaluation of the fiber tracts for patients with complex brain lesions, including low-grade and high-grade gliomas. Presurgical studies are built upon precise and accurate neuroanatomical knowledge, which allows doctors to reconstruct perilesional or intralesional fiber tracts, design the less invasive trajectory into the target lesion and apply more effectively intraoperative electrical mapping techniques for maximal and safe tumor resection in eloquent cortical and subcortical regions. 
-
-Our clinical experience applying DSI Studio fiber tracking has been reported in Neurosurgery, Journal of Neurosurgery, and Neuro-oncology among others. We are actively investigating its potential for not only presurgical planning and intraoperative navigation but also for neurostructural damage assessment, estimation of postsurgical neural pathways damage and recovery, and tracking of postsurgical changes and responses to rehabilitation therapy.
-
-The latest innovation is the reconstruction of cranial nerves for presurgical evaluation in skull base surgery, with very promising results. The ultimate goal is to facilitate brain function preservation and recovery in patients undergoing complex brain surgery.
+Its applications include mapping perilesional and intralesional pathways, studying postsurgical pathway changes, and reconstructing cranial nerves for skull base surgery research. These efforts aim to improve structural assessment in settings where preservation of brain function is important.
 
 ![image](/images/af.png)
-> The human language pathway: left arcuate fasciculus mapped using DSI Studio
+> The human language pathway: left arcuate fasciculus mapped using DSI Studio.
 
 ---
 
-### Histology Studies
+## Ex-vivo and histology applications
 
-DSI Studio can process high-resolution ex-vivo diffusion "MRI microscopy" acquired at a large volume of imaging data, makes it possible to estimate the location, orientation, and anisotropy of the tracts in any histological specimens. This provides a powerful tool to investigate the structural topology of biological tissue to shade insight into its physiological function.
+DSI Studio can also process high-resolution ex-vivo diffusion MRI and MRI microscopy data. This supports structural analysis of biological tissue at high spatial resolution and has been used in histology-oriented imaging studies.
 
 ![Kidney rainbow](/images/KidneyRainbow.png)
-> Kidney Rainbow created using DSI Studio by Nian Wang, Center for In Vivo Microcopy (Directed by Dr. G. Allan Johnson), Duke University, U.S (Curtesy of Dr. Wang) <br>
-> Coverage by [Science](https://science.sciencemag.org/content/363/6427/564)
+> Kidney Rainbow created using DSI Studio by Nian Wang, Center for In Vivo Microscopy, Duke University. Coverage by [Science](https://science.sciencemag.org/content/363/6427/564).
 
-The tissue segmentation functoin in DSI Studio is provided by its sister tool [U-Net Studio](https://unet-studio.labsolver.org)
+---
+
+## Brain MRI segmentation
+
+DSI Studio now includes **U-Net based segmentation** for structural MRI, allowing users to run compact segmentation models directly inside the software. This extends the platform beyond tractography and connectomics to a broader structural MRI workflow.
+
+The segmentation models are designed for convenient deployment, with no need to install Python or large deep-learning environments separately. Related segmentation development is also supported by the sister project [U-Net Studio](https://unet-studio.labsolver.org).
+
+---
+
+## Get started
+
+- Download the latest release from the [download page](download.html).
+- Check recent features and bug notices on the [news page](news.html).
+- Visit the [support forum](https://groups.google.com/g/dsi-studio) for questions and community discussions.
+- Explore large-scale processed datasets on the [Fiber Data Hub](https://brain.labsolver.org).
