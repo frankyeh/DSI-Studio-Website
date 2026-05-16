@@ -1,7 +1,8 @@
 <img width="1024" alt="image" src="https://github.com/user-attachments/assets/e19f8a20-7d4b-46a2-8bd9-8863c4dba0d6" />
 
 
-## Integrated tractography, connectomics, brain MRI segmentation, and large-scale fiber data sharing
+> ### Integrated tractography, connectomics, brain MRI segmentation, and large-scale fiber data sharing
+
 
 **DSI Studio** is an open-source, cross-platform software platform for diffusion MRI and structural MRI analysis. It brings together diffusion reconstruction, fiber tracking, connectome mapping, quality control, group analysis, and brain MRI segmentation in one environment. With direct integration of the **Fiber Data Hub**, DSI Studio also serves as a data infrastructure for scalable and reproducible brain connectivity research.
 
