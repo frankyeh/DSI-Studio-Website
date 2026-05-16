@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="880" viewBox="0 0 1600 880" role="img" aria-labelledby="title desc">
+  <title id="title">DSI Studio and Fiber Data Hub</title>
+  <desc id="desc">Workflow diagram showing public diffusion MRI datasets flowing into the Fiber Data Hub and then into DSI Studio.</desc>
+  <defs>
+    <style>
+      .t1{font:800 74px Arial,sans-serif;fill:#0f2b76}
+      .t2{font:800 74px Arial,sans-serif;fill:#148998}
+      .sub{font:400 28px Arial,sans-serif;fill:#51657d}
+      .h{font:700 34px Arial,sans-serif}
+      .b{font:400 24px Arial,sans-serif;fill:#27415f}
+      .s{font:700 28px Arial,sans-serif;fill:#0f2b76}
+      .small{font:400 21px Arial,sans-serif;fill:#51657d}
+      .chip{font:700 26px Arial,sans-serif;fill:white}
+    </style>
+    <marker id="arrow" markerWidth="16" markerHeight="12" refX="12" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#1b57ba"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="880" fill="#f7fbff"/>
+  <text x="285" y="105" class="t1">DSI Studio</text>
+  <text x="665" y="105" class="t2">+ Fiber Data Hub</text>
+  <text x="195" y="154" class="sub">An integrated platform for diffusion MRI, tractography, connectomics, and brain MRI segmentation</text>
+
+  <rect x="55" y="205" width="430" height="520" rx="24" fill="white" stroke="#b9d6fb" stroke-width="2"/>
+  <rect x="585" y="205" width="450" height="520" rx="24" fill="#f6fcfc" stroke="#87d5d3" stroke-width="2"/>
+  <rect x="1085" y="205" width="460" height="520" rx="24" fill="white" stroke="#b9d6fb" stroke-width="2"/>
+
+  <text x="270" y="255" class="h" text-anchor="middle" fill="#12479a">Public diffusion MRI datasets</text>
+  <text x="120" y="325" class="b">HCP</text>
+  <text x="120" y="385" class="b">ABCD</text>
+  <text x="120" y="445" class="b">OpenNeuro</text>
+  <text x="120" y="505" class="b">INDI</text>
+  <text x="120" y="565" class="b">TCIA</text>
+  <text x="120" y="625" class="b">disease / animal / ex-vivo</text>
+  <text x="270" y="685" class="b" text-anchor="middle">raw DWI and structural MRI</text>
+  <g fill="#dbeaff" stroke="#9ec1ef">
+    <ellipse cx="90" cy="315" rx="22" ry="7"/><rect x="68" y="315" width="44" height="18"/><ellipse cx="90" cy="333" rx="22" ry="7"/>
+    <ellipse cx="90" cy="375" rx="22" ry="7"/><rect x="68" y="375" width="44" height="18"/><ellipse cx="90" cy="393" rx="22" ry="7"/>
+    <ellipse cx="90" cy="435" rx="22" ry="7"/><rect x="68" y="435" width="44" height="18"/><ellipse cx="90" cy="453" rx="22" ry="7"/>
+    <ellipse cx="90" cy="495" rx="22" ry="7"/><rect x="68" y="495" width="44" height="18"/><ellipse cx="90" cy="513" rx="22" ry="7"/>
+    <ellipse cx="90" cy="555" rx="22" ry="7"/><rect x="68" y="555" width="44" height="18"/><ellipse cx="90" cy="573" rx="22" ry="7"/>
+    <ellipse cx="90" cy="615" rx="22" ry="7"/><rect x="68" y="615" width="44" height="18"/><ellipse cx="90" cy="633" rx="22" ry="7"/>
+  </g>
+
+  <line x1="485" y1="465" x2="570" y2="465" stroke="#1b57ba" stroke-width="10" marker-end="url(#arrow)"/>
+
+  <text x="810" y="255" class="h" text-anchor="middle" fill="#148998">Fiber Data Hub</text>
+  <ellipse cx="750" cy="410" rx="72" ry="18" fill="#67c1c0" stroke="#148998" stroke-width="2"/>
+  <rect x="678" y="410" width="144" height="92" fill="#2ea5ac" stroke="#148998" stroke-width="2"/>
+  <ellipse cx="750" cy="502" rx="72" ry="18" fill="#1c8f9f" stroke="#148998" stroke-width="2"/>
+  <text x="930" y="335" class="s" text-anchor="middle">50,000+</text>
+  <text x="930" y="365" class="small" text-anchor="middle">processed fiber datasets</text>
+  <text x="930" y="455" class="s" text-anchor="middle">50–100×</text>
+  <text x="930" y="485" class="small" text-anchor="middle">smaller than raw DWI</text>
+  <text x="930" y="575" class="small" text-anchor="middle">Example:</text>
+  <text x="930" y="605" class="small" text-anchor="middle">~500 MB raw DWI</text>
+  <text x="930" y="635" class="small" text-anchor="middle">→ ~5–10 MB fiber data</text>
+  <rect x="650" y="585" width="80" height="54" rx="12" fill="#2ea5ac"/><rect x="760" y="585" width="80" height="54" rx="12" fill="#2ea5ac"/><rect x="870" y="585" width="80" height="54" rx="12" fill="#2ea5ac"/>
+  <text x="690" y="620" class="chip" text-anchor="middle">.fz</text><text x="800" y="620" class="chip" text-anchor="middle">.sz</text><text x="910" y="620" class="chip" text-anchor="middle">.dz</text>
+  <text x="810" y="685" class="b" text-anchor="middle">standardized fiber derivatives for scalable and reproducible analysis</text>
+
+  <line x1="1035" y1="465" x2="1070" y2="465" stroke="#1b57ba" stroke-width="10" marker-end="url(#arrow)"/>
+
+  <text x="1315" y="255" class="h" text-anchor="middle" fill="#12479a">DSI Studio</text>
+  <rect x="1138" y="300" width="354" height="340" rx="18" fill="#ffffff" stroke="#274f9f" stroke-width="2"/>
+  <rect x="1138" y="300" width="60" height="340" rx="18" fill="#10327f"/>
+  <rect x="1220" y="330" width="110" height="110" rx="12" fill="#f7fbff" stroke="#d9e6f6"/>
+  <rect x="1350" y="330" width="110" height="110" rx="12" fill="#f7fbff" stroke="#d9e6f6"/>
+  <rect x="1220" y="460" width="110" height="110" rx="12" fill="#f7fbff" stroke="#d9e6f6"/>
+  <rect x="1350" y="460" width="110" height="110" rx="12" fill="#f7fbff" stroke="#d9e6f6"/>
+  <text x="1275" y="390" class="small" text-anchor="middle">tractography</text>
+  <text x="1405" y="390" class="small" text-anchor="middle">connectomics</text>
+  <text x="1275" y="520" class="small" text-anchor="middle">U-Net</text>
+  <text x="1275" y="548" class="small" text-anchor="middle">segmentation</text>
+  <text x="1405" y="520" class="small" text-anchor="middle">quality control</text>
+  <text x="1315" y="685" class="b" text-anchor="middle">download, inspect, analyze, visualize</text>
+
+  <rect x="55" y="770" width="1490" height="80" rx="18" fill="white" stroke="#d9e6f6"/>
+  <text x="210" y="820" class="s" text-anchor="middle">Cross-platform software</text>
+  <text x="800" y="820" class="s" text-anchor="middle" fill="#148998">Integrated data + analysis</text>
+  <text x="1315" y="820" class="s" text-anchor="middle">Built for scalable brain connectivity research</text>
+</svg>
