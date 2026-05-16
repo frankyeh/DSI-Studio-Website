@@ -1,4 +1,5 @@
-<img width="1024" alt="image" src="https://github.com/user-attachments/assets/be21b1fa-9038-45c2-94bb-fc264a423899" />
+<img width="1024" alt="image" src="https://github.com/user-attachments/assets/e19f8a20-7d4b-46a2-8bd9-8863c4dba0d6" />
+
 
 ## Integrated tractography, connectomics, brain MRI segmentation, and large-scale fiber data sharing
 
