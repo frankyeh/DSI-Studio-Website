@@ -1,4 +1,3 @@
-
 ## Recent Update Log
 
 May 2026
@@ -22,13 +21,13 @@ March 2026
 
 Please check whether your version is affected by the following issues and update accordingly.
 
-- [versions >= 4/15/2026 <= 4/24/2026] **Major issue:** GPU-based nonlinear registration did not run correctly due to an error introduced during code revision.
-- [versions >= 11/10/2025 <= 2/17/2026] **Major issue:** NIfTI images displayed in the tracking window may appear flipped due to a bug in reading the NIfTI header.
-- [versions >= 8/8/2025 <= 8/11/2025] A bug affected automatic fiber tracking and QSDR reconstruction, causing them to fail.
-- [versions >= 6/4/2025 <= 6/20/2025] A bug may cause crashes when making SRC files isotropic. Another bug may create corrupted `.sz` and `.fz` files when saving. Any affected `.sz` and `.fz` files should be removed.
-- [versions >= 4/15/2025 < 5/6/2025] Converting DICOM files to NIfTI may create left-right mirrored T1w images.
-- [versions >= 2/1/2025 <= 3/10/2025] Autotrack may produce incorrect results due to a normalization error.
-- [versions < 5/1/2025] Bug fixes include: (1) medial lemniscus tracts were incorrectly treated as MNI-space tracts, (2) a multithreading error may cause incorrect tract statistics in the connectometry database, and (3) a bug may cause alignment problems between `.tck` files and structural images.
+- [versions >= 02/25/2026 <= 06/03/2026] **Major issue:** Multithread racing causing crash, and GPU-based nonlinear registration did not run correctly due to an error introduced during code revision.
+- [versions >= 11/10/2025 <= 02/17/2026] **Major issue:** NIfTI images displayed in the tracking window may appear flipped due to a bug in reading the NIfTI header.
+- [versions >= 08/08/2025 <= 08/11/2025] A bug affected automatic fiber tracking and QSDR reconstruction, causing them to fail.
+- [versions >= 06/04/2025 <= 06/20/2025] A bug may cause crashes when making SRC files isotropic. Another bug may create corrupted `.sz` and `.fz` files when saving. Any affected `.sz` and `.fz` files should be removed.
+- [versions >= 04/15/2025 < 05/06/2025] Converting DICOM files to NIfTI may create left-right mirrored T1w images.
+- [versions >= 02/01/2025 <= 03/10/2025] Autotrack may produce incorrect results due to a normalization error.
+- [versions < 05/01/2025] Bug fixes include: (1) medial lemniscus tracts were incorrectly treated as MNI-space tracts, (2) a multithreading error may cause incorrect tract statistics in the connectometry database, and (3) a bug may cause alignment problems between `.tck` files and structural images.
 
 ## Past Updates
 
