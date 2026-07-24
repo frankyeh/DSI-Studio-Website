@@ -61,12 +61,12 @@ Region analysis calculates quantitative metrics within specific volumes of inter
 
 *Get statistics for native or MNI space ROIs:*
 ```bash
-dsi_studio --action=ana --source=my.fz --regions=native_roi.nii.gz,mni_space.mni.nii.gz
+dsi_studio --action=ana --source=my.fz --region=native_roi.nii.gz,mni_space.mni.nii.gz
 ```
 
 *Get statistics for built-in atlas regions:*
 ```bash
-dsi_studio --action=ana --source=my.fz --regions=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R
+dsi_studio --action=ana --source=my.fz --region=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R
 ```
 
 ---
@@ -105,7 +105,7 @@ dsi_studio --action=exp --source=test.sz --export=4dnii
 
 | Parameter | Description |
 | :--- | :--- |
-| `regions` | Specifies NIFTI files or atlas-labeled regions for statistical analysis. |
+| `region` | Specifies NIFTI files or atlas-labeled regions for statistical analysis. |
 | `atlas` | Specifies a built-in atlas to be used for region analysis. |
 
 ---
