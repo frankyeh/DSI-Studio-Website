@@ -108,6 +108,14 @@ dsi_studio --action=exp --source=test.sz --export=4dnii
 | `region` | Specifies NIFTI files or atlas-labeled regions for statistical analysis. |
 | `atlas` | Specifies a built-in atlas to be used for region analysis. |
 
+examples of --region usages
+
+--region=mask.nii.gz
+--region=labels.nii.gz
+--region=labels.nii.gz:Hippocampus
+--region=AAL2:Hippocampus_L
+--region=roi1.nii.gz,roi2.nii.gz
+
 ---
 
 ## Technical Notes
