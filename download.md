@@ -24,6 +24,17 @@ DSI Studio is updated frequently, and computational results may differ between v
 
 ***[Alternate download in China: 百度网盘](https://pan.baidu.com/s/5GuYBQbLHTN_HvShnM3oQew)***
 
+
+# Use DSI Studio with Codex, CLaude Code, Gemini CLI
+
+1. Download the AI-control-enabled DSI Studio.
+2. Start DSI Studio and leave its main window open.
+3. Open AI Desktop or AI CLI on the same Windows computer.
+4. Attach the manual DSI_STUDIO_AI_MANUAL.md and DSI_STUDIO_AI_SETUP.md tell AI where `dsi_studio.exe` is located.
+5. Ask: "Read the manual, connect to DSI Studio, and list its open windows."
+6. Then describe your goal normally, for example: "Open this GQI file and track the left arcuate fasciculus."
+
+
 **New in Hou versions**
 
 - New FIB/SRC formats (`*.fz`, `*.sz`) for better storage efficiency.
