@@ -14,6 +14,13 @@ DSI Studio is updated frequently, and computational results may differ between v
 - **Ubuntu:** choose the package matching your Ubuntu version and CPU architecture. Use the CPU version if CUDA is not needed.
 - **Docker:** useful for command-line workflows, reproducible pipelines, or Linux GUI use with X11 forwarding.
 
+**New in Hou versions**
+
+- New FIB/SRC formats (`*.fz`, `*.sz`) for better storage efficiency.
+- DSI Studio Data Hub for instant access to thousands of readily trackable datasets.
+- New linear and nonlinear registration tools with support for multi-modality registration and lesion-aware workflows.
+- New graphical user interface.
+
 | OS | File | Notes |
 |----|------|-------|
 | Windows 10/11 x64 | [GPU version for NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win.zip)<br>[CPU version](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_cpu.zip) | Unzip the file and run `dsi_studio.exe`.<br>If DLL files are missing, install the [Microsoft Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe).<br>The GPU version may require an updated NVIDIA driver and/or [CUDA Toolkit 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local). |
@@ -34,13 +41,6 @@ DSI Studio is updated frequently, and computational results may differ between v
 5. Ask: "Read the manual, connect to DSI Studio, and list its open windows."
 6. Then describe your goal normally, for example: "Open this GQI file and track the left arcuate fasciculus."
 
-
-**New in Hou versions**
-
-- New FIB/SRC formats (`*.fz`, `*.sz`) for better storage efficiency.
-- DSI Studio Data Hub for instant access to thousands of readily trackable datasets.
-- New linear and nonlinear registration tools with support for multi-modality registration and lesion-aware workflows.
-- New graphical user interface.
 
 # Previous Versions
 
