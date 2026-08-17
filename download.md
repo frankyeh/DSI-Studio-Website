@@ -1,7 +1,21 @@
 
 [![Build Release](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml/badge.svg)](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml)<a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio"></a><a href="https://github.com/frankyeh/DSI-Studio/releases"><img src="https://img.shields.io/github/v/release/frankyeh/DSI-Studio"></a>
 
+# Download Links: "Sun" Versions (2026-)
+
+The current Sun release is **2026.7.25**.
+
+| OS | File | Notes |
+|----|------|-------|
+| Windows 10/11 x64 | [GPU version for NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_win.zip)<br>[CPU version](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_win_cpu.zip) | Unzip the file and run `dsi_studio.exe`. |
+| macOS 13+ | [Apple Silicon version (M1/M2/M3/M4)](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_macos-14-arm64_qt6.zip)<br>[Intel version](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_macos-15-intel_qt6.zip) | Unzip the file and run `dsi_studio.app`. |
+| Ubuntu x86_64 | GPU versions for NVIDIA GPU:<br>[Ubuntu 20.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2004.zip)<br>[Ubuntu 22.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204.zip)<br>[Ubuntu 24.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404.zip)<br><br>CPU versions:<br>[Ubuntu 20.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2004_cpu.zip)<br>[Ubuntu 22.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_cpu.zip)<br>[Ubuntu 24.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_cpu.zip) | Choose the package closest to your Ubuntu version. |
+| Ubuntu arm64 | GPU versions for NVIDIA GPU:<br>[Ubuntu 22.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_arm64.zip)<br>[Ubuntu 24.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_arm64.zip)<br><br>CPU versions:<br>[Ubuntu 22.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_cpu_arm64.zip)<br>[Ubuntu 24.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_cpu_arm64.zip) | For Linux arm64 desktops or workstations. |
+| Docker | Docker Hub image:<br>`dsistudio/dsistudio:latest` | Command-line and Linux container workflows. |
+
 # Download Links: "Hou" Versions (2025-)
+
+> **Important:** Hou versions cannot correctly create `.dz` databases. If your workflow creates a `.dz` database, use the Sun version above.
 
 Download and unzip the package to run DSI Studio. No installation is needed.
 
