@@ -20,11 +20,11 @@ The current Sun release is **2026.7.25**.
 
 | OS | File | Notes |
 |----|------|-------|
-| Windows 10/11 x64 | [GPU version for NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_win.zip)<br>[CPU version](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_win_cpu.zip) | Unzip the file and run `dsi_studio.exe`. |
-| macOS 13+ | [Apple Silicon version (M1/M2/M3/M4)](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_macos-14-arm64_qt6.zip)<br>[Intel version](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_macos-15-intel_qt6.zip) | Unzip the file and run `dsi_studio.app`. |
-| Ubuntu x86_64 | GPU versions for NVIDIA GPU:<br>[Ubuntu 20.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2004.zip)<br>[Ubuntu 22.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204.zip)<br>[Ubuntu 24.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404.zip)<br><br>CPU versions:<br>[Ubuntu 20.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2004_cpu.zip)<br>[Ubuntu 22.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_cpu.zip)<br>[Ubuntu 24.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_cpu.zip) | Choose the package closest to your Ubuntu version. |
-| Ubuntu arm64 | GPU versions for NVIDIA GPU:<br>[Ubuntu 22.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_arm64.zip)<br>[Ubuntu 24.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_arm64.zip)<br><br>CPU versions:<br>[Ubuntu 22.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_cpu_arm64.zip)<br>[Ubuntu 24.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_cpu_arm64.zip) | For Linux arm64 desktops or workstations. |
-| Docker | Docker Hub image:<br>`dsistudio/dsistudio:latest` | Command-line and Linux container workflows. |
+| Windows 10/11 x64 | [GPU version for NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_win.zip)<br>[CPU version](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_win_cpu.zip) | Unzip and run `dsi_studio.exe`.<br>**AI Agent:** install [Node.js 18+](https://nodejs.org/), then `npm install -g @openai/codex` and `codex --login`, or install [Git for Windows](https://git-scm.com/download/win), run `npm install -g @anthropic-ai/claude-code`, then `claude`. Select the agent in DSI Studio. |
+| macOS 13+ | [Apple Silicon version (M1/M2/M3/M4)](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_macos-14-arm64_qt6.zip)<br>[Intel version](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_macos-15-intel_qt6.zip) | Unzip and run `dsi_studio.app`.<br>**AI Agent:** install [Node.js 18+](https://nodejs.org/), then `npm install -g @openai/codex` and `codex --login`, or `npm install -g @anthropic-ai/claude-code` and run `claude`. Select the agent in DSI Studio. |
+| Ubuntu x86_64 | GPU versions for NVIDIA GPU:<br>[Ubuntu 20.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2004.zip)<br>[Ubuntu 22.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204.zip)<br>[Ubuntu 24.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404.zip)<br><br>CPU versions:<br>[Ubuntu 20.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2004_cpu.zip)<br>[Ubuntu 22.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_cpu.zip)<br>[Ubuntu 24.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_cpu.zip) | Choose the package closest to your Ubuntu version.<br>**AI Agent:** install [Node.js 18+](https://nodejs.org/), then `npm install -g @openai/codex` and `codex --login`, or `npm install -g @anthropic-ai/claude-code` and run `claude`. Select the agent in DSI Studio. |
+| Ubuntu arm64 | GPU versions for NVIDIA GPU:<br>[Ubuntu 22.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_arm64.zip)<br>[Ubuntu 24.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_arm64.zip)<br><br>CPU versions:<br>[Ubuntu 22.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_cpu_arm64.zip)<br>[Ubuntu 24.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_cpu_arm64.zip) | For Linux arm64 desktops or workstations.<br>**AI Agent:** install [Node.js 18+](https://nodejs.org/), then `npm install -g @openai/codex` and `codex --login`, or `npm install -g @anthropic-ai/claude-code` and run `claude`. Select the agent in DSI Studio. |
+| Docker | Docker Hub image:<br>`dsistudio/dsistudio:latest` | Command-line and Linux container workflows. AI Agent setup is intended for the desktop Sun builds above. |
 
 ## "Hou" Versions (2024-2026)
 
@@ -47,64 +47,6 @@ The current Sun release is **2026.7.25**.
 
 ***[Alternate download in China: 百度网盘](https://pan.baidu.com/s/5GuYBQbLHTN_HvShnM3oQew)***
 
-
-# AI Agent Setup (Sun Version)
-
-The **Sun version is the AI-agent-enabled release of DSI Studio**. It can use **OpenAI Codex** or **Claude Code** to operate DSI Studio through the built-in AI Agent interface. Install the selected agent on the same computer running DSI Studio and complete its login first.
-
-## Windows 10/11
-
-Install [Node.js 18+](https://nodejs.org/). For Claude Code, also install [Git for Windows](https://git-scm.com/download/win).
-
-**Claude Code**
-```bash
-npm install -g @anthropic-ai/claude-code
-claude
-```
-Complete the Claude login when first launched.
-
-**Codex**
-```bash
-npm install -g @openai/codex
-codex --login
-```
-Complete the OpenAI login in the browser. Codex CLI support on Windows is experimental and may require WSL if the native installation does not work.
-
-## macOS
-
-Install [Node.js 18+](https://nodejs.org/), then install either agent in Terminal.
-
-**Codex**
-```bash
-npm install -g @openai/codex
-codex --login
-```
-
-**Claude Code**
-```bash
-npm install -g @anthropic-ai/claude-code
-claude
-```
-
-## Ubuntu / Linux
-
-Install [Node.js 18+](https://nodejs.org/), then install either agent in a terminal.
-
-**Codex**
-```bash
-npm install -g @openai/codex
-codex --login
-```
-
-**Claude Code**
-```bash
-npm install -g @anthropic-ai/claude-code
-claude
-```
-
-## Start the DSI Studio Agent
-
-Confirm that `codex --version` or `claude --version` works from a terminal. Then start **DSI Studio Sun**, open the **AI Agent** interface, select **Codex** or **Claude**, and start a conversation.
 
 
 # Previous Versions
