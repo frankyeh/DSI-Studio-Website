@@ -28,14 +28,14 @@ The current Sun release is **2026.7.25**.
 
 ## "Hou" Versions (2024-2026)
 
-> **Important:** Hou versions cannot correctly create `.dz` databases. If your workflow creates a `.dz` database, use the Sun version above.
+### Highlights
 
-**New in Hou versions**
+- Introduced compact FIB/SRC formats (`*.fz`, `*.sz`) for better storage efficiency.
+- Added DSI Studio Data Hub for instant access to thousands of readily trackable datasets.
+- Added linear and nonlinear registration tools with support for multi-modality registration and lesion-aware workflows.
+- Introduced a redesigned graphical user interface.
 
-- New FIB/SRC formats (`*.fz`, `*.sz`) for better storage efficiency.
-- DSI Studio Data Hub for instant access to thousands of readily trackable datasets.
-- New linear and nonlinear registration tools with support for multi-modality registration and lesion-aware workflows.
-- New graphical user interface.
+> **Heads-up:** Hou versions have a known issue when creating `.dz` databases. If you need to create a `.dz` database, use the Sun version above.
 
 | OS | File | Notes |
 |----|------|-------|
