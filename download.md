@@ -1,7 +1,20 @@
 
 [![Build Release](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml/badge.svg)](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml)<a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio"></a><a href="https://github.com/frankyeh/DSI-Studio/releases"><img src="https://img.shields.io/github/v/release/frankyeh/DSI-Studio"></a>
 
-# Download Links: "Sun" Versions (2026-)
+# Download DSI Studio
+
+Download and unzip the package to run DSI Studio. No installation is needed.
+
+DSI Studio is updated frequently, and computational results may differ between versions. For reproducibility, keep a local copy of the DSI Studio version used for each research project. It is usually best to update DSI Studio when starting a new project, not in the middle of an ongoing analysis.
+
+## Which file should I download?
+
+- **Windows:** use the CPU version if you do not have an NVIDIA GPU. Use the GPU version for CUDA acceleration.
+- **Mac:** choose **Apple Silicon** for M1/M2/M3/M4 Macs and **Intel** for older Intel Macs. Check **Apple menu > About This Mac** if unsure.
+- **Ubuntu:** choose the package matching your Ubuntu version and CPU architecture. Use the CPU version if CUDA is not needed.
+- **Docker:** useful for command-line workflows, reproducible pipelines, or Linux GUI use with X11 forwarding.
+
+## "Sun" Versions (2026-)
 
 The current Sun release is **2026.7.25**.
 
@@ -13,20 +26,9 @@ The current Sun release is **2026.7.25**.
 | Ubuntu arm64 | GPU versions for NVIDIA GPU:<br>[Ubuntu 22.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_arm64.zip)<br>[Ubuntu 24.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_arm64.zip)<br><br>CPU versions:<br>[Ubuntu 22.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_cpu_arm64.zip)<br>[Ubuntu 24.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_cpu_arm64.zip) | For Linux arm64 desktops or workstations. |
 | Docker | Docker Hub image:<br>`dsistudio/dsistudio:latest` | Command-line and Linux container workflows. |
 
-# Download Links: "Hou" Versions (2025-)
+## "Hou" Versions (2024-2026)
 
 > **Important:** Hou versions cannot correctly create `.dz` databases. If your workflow creates a `.dz` database, use the Sun version above.
-
-Download and unzip the package to run DSI Studio. No installation is needed.
-
-DSI Studio is updated frequently, and computational results may differ between versions. For reproducibility, keep a local copy of the DSI Studio version used for each research project. It is usually best to update DSI Studio when starting a new project, not in the middle of an ongoing analysis.
-
-**Which file should I download?**
-
-- **Windows:** use the CPU version if you do not have an NVIDIA GPU. Use the GPU version for CUDA acceleration.
-- **Mac:** choose **Apple Silicon** for M1/M2/M3/M4 Macs and **Intel** for older Intel Macs. Check **Apple menu > About This Mac** if unsure.
-- **Ubuntu:** choose the package matching your Ubuntu version and CPU architecture. Use the CPU version if CUDA is not needed.
-- **Docker:** useful for command-line workflows, reproducible pipelines, or Linux GUI use with X11 forwarding.
 
 **New in Hou versions**
 
