@@ -46,14 +46,63 @@ DSI Studio is updated frequently, and computational results may differ between v
 ***[Alternate download in China: 百度网盘](https://pan.baidu.com/s/5GuYBQbLHTN_HvShnM3oQew)***
 
 
-# Use DSI Studio with Codex, CLaude Code, Gemini CLI
+# AI Agent Setup (Sun Version)
 
-1. Download the AI-control-enabled DSI Studio.
-2. Start DSI Studio and leave its main window open.
-3. Open AI Desktop or AI CLI on the same Windows computer.
-4. Attach the manual DSI_STUDIO_AI_MANUAL.md and DSI_STUDIO_AI_SETUP.md tell AI where `dsi_studio.exe` is located.
-5. Ask: "Read the manual, connect to DSI Studio, and list its open windows."
-6. Then describe your goal normally, for example: "Open this GQI file and track the left arcuate fasciculus."
+The **Sun version is the AI-agent-enabled release of DSI Studio**. It can use **OpenAI Codex** or **Claude Code** to operate DSI Studio through the built-in AI Agent interface. Install the selected agent on the same computer running DSI Studio and complete its login first.
+
+## Windows 10/11
+
+Install [Node.js 18+](https://nodejs.org/). For Claude Code, also install [Git for Windows](https://git-scm.com/download/win).
+
+**Claude Code**
+```bash
+npm install -g @anthropic-ai/claude-code
+claude
+```
+Complete the Claude login when first launched.
+
+**Codex**
+```bash
+npm install -g @openai/codex
+codex --login
+```
+Complete the OpenAI login in the browser. Codex CLI support on Windows is experimental and may require WSL if the native installation does not work.
+
+## macOS
+
+Install [Node.js 18+](https://nodejs.org/), then install either agent in Terminal.
+
+**Codex**
+```bash
+npm install -g @openai/codex
+codex --login
+```
+
+**Claude Code**
+```bash
+npm install -g @anthropic-ai/claude-code
+claude
+```
+
+## Ubuntu / Linux
+
+Install [Node.js 18+](https://nodejs.org/), then install either agent in a terminal.
+
+**Codex**
+```bash
+npm install -g @openai/codex
+codex --login
+```
+
+**Claude Code**
+```bash
+npm install -g @anthropic-ai/claude-code
+claude
+```
+
+## Start the DSI Studio Agent
+
+Confirm that `codex --version` or `claude --version` works from a terminal. Then start **DSI Studio Sun**, open the **AI Agent** interface, select **Codex** or **Claude**, and start a conversation.
 
 
 # Previous Versions
