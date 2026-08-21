@@ -1,9 +1,6 @@
 # Registration
 
-> Use `--action=reg` to apply linear and/or nonlinear registration. This command line provides the same functions used at [R1: Linear Registration] and [R2" Nonlinear Registration] registration tools.
-
-## Update
-**(2025/03/03)** The registration syntax has been revised.
+> Use `--action=reg` to apply linear and nonlinear registration. This command provides the same core functions used by the R1 linear and R2 nonlinear registration tools.
 
 ---
 
@@ -24,7 +21,7 @@ dsi_studio --action=reg --source=subject_qa.nii.gz --mapping=mapping_field.mz
 dsi_studio --action=reg --to=template_qa.nii.gz --mapping=mapping_field.mz
 ```
 
-**4. Warp all NIfTI images and tract files from the template space to the subject space:**
+**4. Warp all matching NIfTI images from the subject/source space to the template/target space:**
 ```bash
 dsi_studio --action=reg --source=*.nii.gz --mapping=mapping_field.mz
 ```
@@ -47,12 +44,13 @@ The function warps the subject/source image to the template/target image.
 
 | **Parameter**       | **Description**                                                                 |
 |----------------------|---------------------------------------------------------------------------------|
-| `source`            | Specify the NIfTI file(s) of the subject/source image. Multiple modalities can be specified, separated by commas. |
-| `to`                | Specify the NIfTI file(s) of the template/target image. Multiple modalities can be specified, separated by commas. |
+| `source`            | Specify the NIfTI file(s) of the subject/source image. Multiple modalities can be specified, separated by commas. With `--mapping`, these files are warped source-to-target. |
+| `to`                | Specify the NIfTI file(s) of the template/target image. Multiple modalities can be specified, separated by commas. With `--mapping`, these files are unwarped target-to-source. |
 | `output_mapping`    | (Optional) Specify the file to store the mapping field (e.g., `--output_mapping=mapping.mz`). |
 | `mapping`           | Specify a previously computed mapping file to apply to `--source` or `--to`. Multiple NIfTI or tractography files (e.g., `.nii.gz`, `.tt.gz`) can be separated by commas. |
 | `s2t`               | Additional files to transform from subject-to-template space. Accepts multiple files separated by commas. Requires `--source` and `--to` to define the mapping. Results are stored in the template space. |
 | `t2s`               | Additional files to transform from template-to-subject space. Accepts multiple files separated by commas. Requires `--source` and `--to` to define the mapping. Results are stored in the subject space. |
+| `output`            | Optional output directory for warped/unwarped files. |
 
 ---
 
@@ -60,18 +58,17 @@ The function warps the subject/source image to the template/target image.
 
 | **Parameter**         | **Default** | **Description**                                                                 |
 |------------------------|-------------|---------------------------------------------------------------------------------|
-| `cost_function`       | `mi`        | Specify the cost function for linear registration:<br> `mi`: mutual information<br> `corr`: correlation coefficient. |
-| `reg_type`            | `1`         | Specify whether nonlinear registration is needed. Set to `0` for linear registration only. |
-| `normalize_signal`    | `1`         | Perform pre-registration signal normalization (scales image values between 0 and 1). |
-| `resolution`          | `2`         | Specify the final resolution. Options are: `1`, `2`, `4`, `8` (e.g., `2` means nonlinear registration is conducted at x2 downsampling). |
-| `speed`               | `1`         | Set the convergence speed for nonlinear registration.                           |
-| `smoothing`           | `0.2`       | Adjust mapping field smoothing for nonlinear registration. Range: `0` (no smoothing) to `0.95` (maximum smoothing). |
-| `iterations`          | `200`       | Number of iterations for nonlinear registration.                                |
-| `min_dimension`       | `8`         | Minimum dimension to start nonlinear registration.                              |
-| `large_deform`        | `0`         | Use large deformation registration bounds if set to `1`.                       |
-| `skip_linear`         | `0`         | Skip linear registration stage if set to `1`.                                   |
-| `skip_nonlinear`      | `0`         | Skip nonlinear registration stage if set to `1`.                                |
-| `overwrite`           | `0`         | Overwrite existing output files if set to `1`.                                  |
+| `reg_type`            | `1` | Linear registration type: `0`=rigid body; `1`=affine. The affine workflow proceeds to nonlinear registration unless `--skip_nonlinear=1` is used. |
+| `cost_function`       | Depends on `reg_type` | Linear-registration cost: `mi` (mutual information) is the rigid-body default; `corr` (correlation) is the affine default. |
+| `match_vs`            | `1` | Match source and target resolution before registration. |
+| `resolution`          | Registration default | Relative resolution/downsampling used for nonlinear registration. |
+| `speed`               | Registration default | Nonlinear deformation speed. |
+| `smoothing`           | Registration default | Mapping-field smoothing for nonlinear registration. |
+| `min_dimension`       | Registration default | Minimum dimension used by nonlinear registration. |
+| `large_deform`        | `0` | Use larger linear-registration bounds when set to `1`. |
+| `skip_linear`         | `0` | Skip the linear-registration stage when set to `1`. |
+| `skip_nonlinear`      | `0` | Skip the nonlinear-registration stage when set to `1`. |
+| `overwrite`           | `0` | Overwrite existing output files when set to `1`. |
 
 ---
 
