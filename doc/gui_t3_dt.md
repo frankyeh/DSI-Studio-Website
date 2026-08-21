@@ -2,138 +2,257 @@
 
 ![image](https://user-images.githubusercontent.com/275569/147860577-35e5b242-2991-4cdf-b6f7-91161d8b0c73.png)
 
----
+Differential tractography maps pathway segments showing changes in diffusion measurements between scans or relative to a reference population. Instead of tracking where anisotropy exists, it adds a tracking criterion that follows where a selected diffusion metric differs between two conditions.
 
-Differential tractography compares one scan to another to map neuronal changes reflected by a decrease of anisotropy. Differential tractography integrates the "tracking-the-difference" paradigm as opposed to the "tracking-the-existence" used in conventional settings. This is realized by adding one tracking criterion to screen if trajectories have a decrease in anisotropy. Differential tractography greatly increases the sensitivity and specificity of diffusion metrics by aggregating results along white matter pathways.
+[Original differential tractography study](https://pubmed.ncbi.nlm.nih.gov/31472253/): Yeh et al., *NeuroImage* 202 (2019): 116131.
 
 ![image](https://user-images.githubusercontent.com/275569/170849962-ef2f90af-748a-4011-8610-508fa8e24645.png)
 
-Differential tractography can be applied to DTI data, multi-shell data, and DSI data. The anisotropy can be derived from DTI or GQI. Higher b-value signals will be more sensitive to early-stage neuronal changes, whereas low b-value signals may include a lot of physiological fluctuations, potentially leading to a higher false discovery rate (FDR). In the [original differential tractography study](https://pubmed.ncbi.nlm.nih.gov/31472253/), we used 256-direction grid sampling with b-max=4000 or even up to 7000 to get excellent FDR values lower than 0.05. Using DTI data may increase FDR up to 0.2.
+Differential tractography can be applied to DTI, multi-shell, and DSI acquisitions. Higher b-value acquisitions can improve sensitivity to axonal changes, whereas low-SNR or acquisition differences can increase false findings. Always evaluate data quality and use the same processing choices across the scans or groups being compared.
 
-![image](https://user-images.githubusercontent.com/275569/147860680-74abdce8-81a3-47a6-9d01-3d93be355b0d.png)
+## Four common study designs
 
-There are 4 types of differential tractography, and the applicable types depend on the experiment design.
+| Type | Design | Tracking space | Typical use |
+|---|---|---|---|
+| **1** | Longitudinal | Native subject space | Repeat scans with good native-space tractography and little deformation between scans |
+| **2** | Longitudinal | Template space | Repeat scans when native-space tractography/alignment is difficult |
+| **3** | Cross-sectional | Native patient space | Compare an individual patient with an age/sex or otherwise matched reference population |
+| **4** | Cross-sectional | Template space | Case-control/reference comparison performed in template space |
 
-# Type 1: mapping longitudinal change in the native space
+Current files use `.sz` for SRC, `.fz` for FIB, and `.dz` for connectometry databases. Legacy `.src.gz`, `.fib.gz`, `.db.fz`, and `.db.fib.gz` files remain readable in compatible workflows.
 
-**Requirements**:
-- repeat scans of the same subject, e.g. before/after treatment
-- good DWI data for fiber tracking (if not, choose type 2)
-- no deformation between repeats scans (if not, choose type 2)
+> **For Type 3 and Type 4 reference databases, use the Sun version to create `.dz` files.** Hou versions have a known issue when creating `.dz` databases.
 
-**Example**:
-- human subject study with repeated scans before and after treatment
+# Type 1: Longitudinal change in native space
 
-**Steps**: Use command-line options for batch processing, or follow the GUI steps for individual processing.
+Use this design for repeated scans of the same subject when both scans can be compared directly in native diffusion space.
 
-| **Steps** | Details |
-|-----------|------------|
-| 1. **Generate FIB Files** | Command-line: <br> ```dsi_studio --action=rec --source=*_ses-01_dwi.sz (or .src.gz for older versions) --method=4 --param=1.25 --output=*_ses-01_dwi.fz (or .fib.gz for older versions)``` <br> ```dsi_studio --action=rec --source=*_ses-02_dwi.sz (or .src.gz for older versions) --method=4 --param=1.25 --output=*_ses-02_dwi.fz (or .fib.gz for older versions)``` <br> GUI: <br> 1a. [creating SRC files](/doc/gui_t1.html): make sure to have a quality check to ensure the quality is good. Use .sz files (or .src.gz). <br> 1b. [generating FIB files](/doc/gui_t2.html): at Step T2b(1), use the GQI method to get native space .fz files (or .fib.gz). |
-| 2. **Export Metrics** | Command-line: <br> ```dsi_studio --action=exp --source=*_ses-02_dwi.fz (or .fib.gz for older versions) --export=dti_fa``` <br> GUI: <br> 2a. Open the .fz file (or .fib.gz) of each **follow-up** scan at **[Step T3: Fiber Tracking]**. <br> 2b. Use the **[Export]** function to save the dti_fa or qa map in a NIFTI file (e.g. sub1.followup.fa.nii.gz). Note that `fa0` is often preferred over `fa`. |
-| 3. **Optimize Tractography** | (optional manual checking) <br> GUI: <br> 3a. Open one baseline scan's .fz file (or .fib.gz) at **[Step T3 Fiber Tracking]**. <br> 3b. Restore default fiber tracking settings using **[Options][Restore Tracking Settings]**. <br> 3c. Set **[Step T3c Options][Tracking Parameters][Terminate if]** to `1,000,000` seeds. <br> 3d. Click the **[Step T3d: Tracts][Fiber Tracking]** button to see if you can get good quality whole-brain fiber tracking. If not, check out the troubleshooting section of the [whole brain fiber tracking document](https://dsi-studio.labsolver.org/doc/gui_t3_whole_brain.html). <br> 3e. Find out the best parameters until getting good quality whole-brain track. These parameters (`--seed_count`, `--min_length`, etc.) should be used in the command line for Step 4. |
-| 4. **Differential Tracking** | Command-line: <br> ```dsi_studio --action=trk --source=*_ses-01_dwi.fz (or .fib.gz for older versions) --other_slices=*_ses-02_dwi.fib.gz.dti_fa.nii.gz --dt_metric1=dti_fa --dt_metric2=dti_fa --dt_threshold=0.2 --seed_count=1000000 --min_length=30 --tip_iteration=16 --output=*.tt.gz``` <br> GUI: <br> 4a. For each subject, open their baseline scan's .fz file (or .fib.gz) at **[Step T3 Fiber Tracking]**. <br> 4b. Use **[Slice][Insert Other Images]** and select the NIFTI file of the follow-up scan metric (e.g. sub1.followup.fa.nii.gz created above). <br> 4c. Select the desired metric (e.g., `dti_fa` or `qa`) at **[Step T3c: Options][Tracking Parameters][Differential Tracking][Metrics1]**. This assumes that the anisotropy in the baseline scan is larger than the follow-up. <br> 4d. Select the loaded metric at **[Step T3c: Options][Tracking Parameters][Differential Tracking][Metrics2]**. <br> 4e. Adjust thresholds by setting **[Differential Tracking][Metric1>Metric2 Threshold]** (e.g., `0.1`, `0.2`, or `0.3`), which specify 10%, 20%, and 30% differences if [Threshold Type] is (m1-m2)/m1. For most metrics, the normal individual differences are around 10~20%. A higher threshold gives more specific results against individual variations. To use the absolute value as the threshold, set the [Threshold Type] to **m1-m2**. This threshold value should be used for the `--dt_threshold` parameter in the command line. <br> 4f. Click on **[Step T3d Tracts][Fiber Tracking]** to get differential tractography. |
+## 1. Reconstruct baseline and follow-up FIB files
 
-# Type 2: mapping longitudinal change in template space (using QSDR for template-space analysis)
+```bash
+dsi_studio --action=rec --source=*_ses-01_dwi.sz --method=4 --param=1.25 --output=*_ses-01_dwi.fz
+dsi_studio --action=rec --source=*_ses-02_dwi.sz --method=4 --param=1.25 --output=*_ses-02_dwi.fz
+```
 
-**Requirements:**
-- repeat scans of the same subject, e.g. before/after treatment
+In the GUI, create/QC the `.sz` files and reconstruct the scans using the same GQI settings.
 
-**Example:**
-- animal in-vivo study with repeated scans before and after treatment
-- human study where native space tractography is challenging
+## 2. Export the follow-up metric
 
-**Steps:** Use command-line options for batch processing, or follow the GUI steps for individual processing.
+For FA:
 
-| **Steps** | Details |
-|-----------|------------|
-| 1. **Generate QSDR FIB Files** | Command-line: <br> ```dsi_studio --action=rec --source=*.sz (or .src.gz for older versions) --method=7 --output=*.fz (or .fib.gz for older versions)``` <br> GUI: <br> 1a. [creating SRC files](/doc/gui_t1.html): make sure to have a quality check to ensure the quality is good. Use .sz files (or .src.gz). <br> 1b. [generating FIB files](/doc/gui_t2.html): at Step T2b(1), use the QSDR method to get native space .fz files (or .fib.gz). |
-| 2. **Export Metrics** | Command-line: <br> ```dsi_studio --action=exp --source=*.fz (or .fib.gz for older versions) --export=dti_fa``` <br> GUI: <br> 2a. Open the .fz file (or .fib.gz) of **all** scans at **[Step T3: Fiber Tracking]**. <br> 2b. Use the **[Export]** function to save the dti_fa or qa map in a NIFTI file (e.g. sub1.fa.nii.gz). Note that `fa0` is often preferred over `fa`. |
-| 3. **Differential Tracking** | Command-line: <br> ```dsi_studio --action=trk --source=0 --template=0 --tolerance=20 --other_slices=sub1_baseline.dti_fa.nii.gz,sub1_followup.dti_fa.nii.gz --dt_metric1=sub1_baseline --dt_metric2=sub1_followup --dt_threshold=0.2 --seed_count=1000000 --min_length=30 --tip_iteration=16 --output=*.tt.gz``` <br> *(Note: `0` for --source and --template refers to the ICBM152_adult template. Other template IDs are listed below.)*<br> Template IDs: <br> 0: ICBM152_adult <br> 1: C57BL6_mouse <br> 2: dHCP_neonate <br> 3: INDI_rhesus <br> 4: Pitt_marmoset <br> 5: WHS_SD_rat <br> GUI: <br> 4a. At **[Step T3 Fiber Tracking]**, choose the appropriate template (e.g., ICBM152_adult template for human studies) and click on the Step T3 button. <br> 4b. Use **[Slice][Insert Other Images]** and select the NIFTI files of the baseline and follow-up metrics (dti_fa or qa) of a subject. <br> 4c. Select the baseline metrics at **[Step T3c: Options][Tracking Parameters][Differential Tracking][Metrics1]**. This assumes that the anisotropy in the baseline scan is larger than the follow-up. <br> 4d. Select the follow-up metric at **[Step T3c: Options][Tracking Parameters][Differential Tracking][Metrics2]**. <br> 4e. Adjust thresholds by setting **[Differential Tracking][Metric1>Metric2 Threshold]** (e.g., `0.1`, `0.2`, or `0.3`), which specify 10%, 20%, and 30% differences if [Threshold Type] is (m1-m2)/m1. For most metrics, the normal individual differences are around 10~20%. A higher threshold gives more specific results against individual variations. To use the absolute value as the threshold, set the [Threshold Type] to **m1-m2**. This threshold value should be used for the `--dt_threshold` parameter in the command line. <br> 4f. Click on **[Step T3d Tracts][Fiber Tracking]** to get differential tractography. |
+```bash
+dsi_studio --action=exp --source=*_ses-02_dwi.fz --export=dti_fa
+```
 
-# Type 3: mapping cross sectional change in the native space
+The same approach can be used for QA or another metric appropriate for the acquisition and hypothesis.
 
-**Requirements:**
-- age-sex-matched controls
-- DWI data good enough for fiber tracking
+## 3. Check whole-brain tracking first
 
-**Example:**
-- human case-control studies
+Before differential tracking, open a representative baseline `.fz` in **Step T3: Fiber Tracking** and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
 
-**Steps:** Use command-line options for batch processing, or follow the GUI steps for individual processing.
+## 4. Run differential tracking
 
-| **Steps** | Details |
-|-----------|------------|
-| 1. **Generate FIB Files** | Command-line: <br> ```dsi_studio --action=rec --source=*.patients.sz (or .src.gz for older versions) --method=4 --param=1.25 --output=*.patients.fz (or .fib.gz for older versions)``` <br> ```dsi_studio --action=rec --method=7 --source=*.controls.sz (or .src.gz for older versions) --output=*.controls.fz (or .fib.gz for older versions)``` <br> GUI: <br> 1a. [creating SRC files](/doc/gui_t1.html): make sure to have a quality check to ensure the quality is good. Use .sz files (or .src.gz). <br> 1b. [generating FIB files](/doc/gui_t2.html): at Step T2b(1), **choose GQI for patients and choose QSDR for controls**. Use .fz files (or .fib.gz). |
-| 2. **Create Database File for Controls** | Command-line: <br> ```dsi_studio --action=atl --source=*.control.fz (or .fib.gz for older versions) --cmd=db --template=0 --demo=controls_age_sex.txt --output=control.db.fz (or .db.fib.gz for older versions)``` <br> GUI: <br> 2a. [Create a database](https://dsi-studio.labsolver.org/doc/gui_cx.html) and include **only controls**. <br> 2b. Prepare a demographic file for the controls. The file can be a space, tab, or comma-separated text file (e.g., `age sex` on the first line, followed by data like `32 1`). <br> 2c. Associate database with demographics: Open the connectometry database file (e.g., control.db.fz) in **[Step C2]** and load control subjects' demographics using **[File][Open demographics]**. This step associates demographics with the controls in the database. Save the database using the [File] menu. **Before doing this step, it is recommended to use [Step C3] to open the .db.fz file and load the demographics, just to check for any mismatch.** |
-| 3. **Differential Tracking** | Command-line: <br> ```dsi_studio --action=trk --source=patient.fz (or .fib.gz for older versions) --other_slices=control.db.fz (or .db.fib.gz for older versions) --dt_metric1=control --dt_metric2=dti_fa --demo=patient_age_sex.txt --select="age=<patient_age>,sex=<patient_sex>" --dt_threshold=0.2 --seed_count=1000000 --min_length=30 --tip_iteration=16 --output=*.cross_sectional.tt.gz``` <br> *(Note: `patient_age_sex.txt` is a demographics file for patients, potentially with an additional first column storing partial filenames for matching, although the `--select` option with `--demo` is preferred if demographics can be linked by file order or naming conventions.)* <br> GUI: <br> 3a. For each patient subject, open their .fz file (or .fib.gz) at **[Step T3 Fiber Tracking]**. <br> 3b. Click **[Slice][Insert Other Images]** and select the database file (e.g., control.db.fz) created in the previous step. Enter the patient's age and sex (e.g., `36 1`). You may rename the patient's FIB file to inform DSI Studio of the subject's age and sex. For example, `20220808_M029Y_XXXX.src.gz.gqi.fib.gz` will inform DSI Studio that the subject is a 29-year-old male. <br> 3c. Select the desired metric (e.g., `dti_fa` or `qa`) at **[Step T3c: Options][Tracking Parameters][Differential Tracking][Metrics2]** for the patient data. <br> 3d. Select the database metric at **[Step T3c: Options][Tracking Parameters][Differential Tracking][Metrics1]**. This assumes that the anisotropy in the control is larger than the patient. <br> 3e. Adjust thresholds by setting **[Differential Tracking][Metric1>Metric2 Threshold]** (e.g., `0.1`, `0.2`, or `0.3`), which specify 10%, 20%, and 30% differences if [Threshold Type] is (m1-m2)/m1. For most metrics, the normal individual differences are around 10~20%. A higher threshold gives more specific results against individual variations. To use the absolute value as the threshold, set the [Threshold Type] to **m1-m2**. This threshold value should be used for the `--dt_threshold` parameter in the command line. <br> 3f. Click on **[Step T3d Tracts][Fiber Tracking]** to get differential tractography. |
+Example using FA:
 
-**TIPS**
-If you don't have control subjects, there are publicly available connectometry databases available at [https://brain.labsolver.org](https://brain.labsolver.org). However, most dMRI metrics (especially DTI metrics) are very sensitive to acquisition parameters, and likely you will get many false positive results just due to acquisition differences. The following are publicly available connectometry databases:
-- [HCP Aging](https://pitt-my.sharepoint.com/:f:/g/personal/yehfc_pitt_edu/EvdTx_lhJJBCmek2G0IfNhkBmr7CkGKU79H6JC1OH2aWmA?e=xtSbtb) (age: 36+ y)
-- [HCP Development](https://pitt-my.sharepoint.com/:f:/g/personal/yehfc_pitt_edu/EgTq8mpY5zZEhKhwHhZMbPABMzRLckaiaRnwm4tMWSg3Fw?e=4m95Mf) (age: 5-21 y)
-- [developing HCP (neonate)](https://pitt-my.sharepoint.com/:f:/g/personal/yehfc_pitt_edu/EgTq8mpY5zZEhKhwHhZMbPABMzRLckaiaRnwm4tMWSg3Fw?e=4m95Mf) (age: 20-44 weeks post-conception)
-- HCP young adult (to be constructed)
-- Grid258 (under construction)
+```bash
+dsi_studio --action=trk \
+  --source=subject_baseline.fz \
+  --other_slices=subject_followup.fz.dti_fa.nii.gz \
+  --dt_metric1=dti_fa \
+  --dt_metric2=dti_fa \
+  --dt_threshold=0.2 \
+  --seed_count=1000000 \
+  --min_length=30 \
+  --tip_iteration=16 \
+  --output=subject.diff.tt.gz
+```
 
-# Type 4: mapping cross sectional change in template space (using QSDR for template-space analysis)
+In the GUI, open the baseline FIB, use **[Slices][Insert Other Images]** to add the follow-up metric, select the baseline and follow-up metrics under **Differential Tracking**, set the change threshold, and run fiber tracking.
 
-**Requirements:**
-- age-sex-matched controls
+# Type 2: Longitudinal change in template space
 
-**Example:**
-- animal in-vivo or ex-vivo studies
-- human case-control studies where native space tractography is challenging
+Use this design when repeated scans should be compared in a common template space.
 
-**Steps:** Use command-line options for batch processing, or follow the GUI steps for individual processing.
+## 1. Reconstruct the scans with QSDR
 
-| **Steps** | Details |
-|-----------|------------|
-| 1. **Generate QSDR FIB Files for Controls** | Command-line: <br> ```dsi_studio --action=rec --method=7 --source=*.controls.sz (or .src.gz for older versions) --output=*.controls.fz (or .fib.gz for older versions)``` <br> GUI: <br> 1a. [creating SRC files](/doc/gui_t1.html): make sure to have a quality check to ensure the quality is good. Use .sz files (or .src.gz). <br> 1b. [generating FIB files](/doc/gui_t2.html): at Step T2b(1), choose QSDR. Use .fz files (or .fib.gz). |
-| 2. **Export Patient Metrics** | Command-line: <br> ```dsi_studio --action=exp --source=*.patient.fz (or .fib.gz for older versions) --export=dti_fa``` <br> GUI: <br> 2a. Open each patient's .fz file (or .fib.gz) at **[Step T3: Fiber Tracking]**. <br> 2b. Use the **[Export]** function to save the dti_fa or qa map in a NIFTI file (e.g. sub1.fa.nii.gz). Note that `fa0` is often preferred over `fa`. |
-| 3. **Create Database File for Controls** | Command-line: <br> ```dsi_studio --action=atl --source=*.control.fz (or .fib.gz for older versions) --cmd=db --template=0 --demo=controls_age_sex.txt --output=control.db.fz (or .db.fib.gz for older versions)``` <br> GUI: <br> 3a. [Create a database](https://dsi-studio.labsolver.org/doc/gui_cx.html) and include **only controls**. <br> 3b. Prepare a demographic file for the controls. The file can be a space, tab, or comma-separated text file (e.g., `age sex` on the first line, followed by data like `32 1`). <br> 3c. Associate database with demographics: Open the connectometry database file (e.g., control.db.fz) in **[Step C2]** and load control subjects' demographics using **[File][Open demographics]**. This step associates demographics with the controls in the database. Save the database using the [File] menu. **Before doing this step, it is recommended to use [Step C3] to open the .db.fz file and load the demographics, just to check for any mismatch.** |
-| 4. **Differential Tracking** | Command-line: <br> ```dsi_studio --action=trk --source=0 --template=0 --tolerance=20 --other_slices=patient.dti_fa.nii.gz,control.db.fz (or .db.fib.gz for older versions) --dt_metric1=control --dt_metric2=patient --dt_threshold=0.2 --seed_count=1000000 --min_length=30 --tip_iteration=16 --output=*.tt.gz``` <br> *(Note: `0` for --source and --template refers to the ICBM152_adult template. Other template IDs are listed above.)* <br> GUI: <br> 4a. At **[Step T3 Fiber Tracking]**, choose the appropriate template (e.g., ICBM152_adult template for human studies) and click on the Step T3 button. <br> 4b. Use **[Slice][Insert Other Images]** and select a patient's dti_fa or qa NIFTI file generated from Step 2. <br> 4c. Click **[Slice][Insert Other Images]** and select the control subjects database file (e.g., control.db.fz) created in the previous step. Enter the patient's age and sex (e.g., `36 1`). <br> 4d. Select the control metrics at **[Step T3c: Options][Tracking Parameters][Differential Tracking][Metrics1]**. This assumes that the anisotropy in the control is larger than the patient. <br> 4e. Select the patient's metric at **[Step T3c: Options][Tracking Parameters][Differential Tracking][Metrics2]**. <br> 4f. Adjust thresholds by setting **[Differential Tracking][Metric1>Metric2 Threshold]** (e.g., `0.1`, `0.2`, or `0.3`), which specify 10%, 20%, and 30% differences if [Threshold Type] is (m1-m2)/m1. For most metrics, the normal individual differences are around 10~20%. A higher threshold gives more specific results against individual variations. To use the absolute value as the threshold, set the [Threshold Type] to **m1-m2**. This threshold value should be used for the `--dt_threshold` parameter in the command line. <br> 4g. Click on **[Step T3d Tracts][Fiber Tracking]** to get differential tractography. |
+```bash
+dsi_studio --action=rec --source=*.sz --method=7 --output=*.fz
+```
 
-## Advanced Features & Suggestions
+## 2. Export the metric from each scan
 
-**Reporting**
+```bash
+dsi_studio --action=exp --source=*.fz --export=dti_fa
+```
 
-It is recommended to check a range of **[Metric1>Metric2 Threshold]** values (e.g. 0.1, 0.2, 0.3, 0.4) and eliminate fragments by increasing **[Step T3c:Options][Tracking Parameters][Min Length]**. The goal is to maximize sensitivity while retaining specificity. These correspond to the `--dt_threshold` and `--min_length` command-line parameters.
+## 3. Run differential tracking in the template
 
-**Add ROA or ROI to limit findings**
+For the default human template example:
 
-You can map the affected pathways that pass through the internal capsule by assigning the internal capsule as the ROI. The number and length of tracks can be compared between patients if other tracking parameters are fixed (be sure to fix the seed count using the `--seed_count` parameter).
+```bash
+dsi_studio --action=trk \
+  --source=0 \
+  --template=0 \
+  --other_slices=subject_baseline.dti_fa.nii.gz,subject_followup.dti_fa.nii.gz \
+  --dt_metric1=subject_baseline \
+  --dt_metric2=subject_followup \
+  --dt_threshold=0.2 \
+  --seed_count=1000000 \
+  --min_length=30 \
+  --tip_iteration=16 \
+  --output=subject.template.diff.tt.gz
+```
 
-**Exclude cerebellum**
+Use the template appropriate for the species/study. The available template list is provided by the current DSI Studio version; do not rely on an old hard-coded template list when building a new pipeline.
 
-Many false results may be generated just because of different slice coverage at the cerebellum. To handle this issue, add a region from [Atlas][BrainSeg][Cerebellum] and assign it as ROA. This corresponds to using a mask file with the `--mask` command-line option.
+# Type 3: Cross-sectional change in native patient space
 
-**Segment results into bundles**
+Use this design when each patient's native-space metric is compared with a matched reference population.
 
-You can use [Tracts][Miscellaneous][Recognize Track] to recognize the name of the bundles.
+## 1. Reconstruct patient and control FIB files
 
-**Apply smoothing to metrics**
+Patients can be reconstructed in native space with GQI. Reference controls should be processed consistently; QSDR controls can be used to construct the population reference database.
 
-If tracking results change significantly in repeated analyses, it is likely that the image acquisition is not optimal (e.g., too noisy, has very thick slices), and thus registration errors are amplified. To minimize this variance, export both baseline and follow-up NQA images (or other metrics) and smooth them using [Tool][O41 View image][Signals][Smoothing] (make sure to update DSI Studio to use this function). Save the smoothed images as new files (e.g., NIFTI) to run differential tracking. After smoothing, add the smoothed image back using [Slices][Add Other images] and continue with further analysis. Command-line options for smoothing metrics might also be available in recent versions.
+```bash
+dsi_studio --action=rec --source=*.patients.sz --method=4 --param=1.25 --output=*.patients.fz
+dsi_studio --action=rec --source=*.controls.sz --method=7 --output=*.controls.fz
+```
 
-**Multi-metrics analysis**
-The metrics we usually use include DTI's FA and GQI's QA, RDI, NRDI (see [interpretations](https://dsi-studio.labsolver.org/doc/how_to_interpret_dmri.html)). The following is the implication behind them:
+## 2. Create the reference `.dz` database
 
--   **FA** decreases during acute neuronal injury or chronic neurodegeneration. It has high sensitivity and low specificity because the decreases of FA can be due to vasogenic edema, demyelination, inflammation, or axonal loss. We often use FA as the first-pass screening. Note that `fa0` is the preferred metric name in recent versions.
--   **QA** decreases when there is demyelination or axonal loss. It usually does NOT change in acute axonal injury or edema and thus is much more specific to axonal loss. In acute neuronal injury or inflammation, we may see FA decreasing with QA staying the same, potentially indicating that the axonal injury is reversible.
--   **RDI** increases when there is cell infiltration, which happens in tumor or during inflammation. You need to have multi-shell or DSI acquisitions to use this metric.
--   **NRDI** increases when there is tissue edema. You need to have multi-shell or DSI acquisitions to use this metric.
+For a differential analysis using FA, creating a database restricted to `dti_fa` makes the reference metric explicit:
 
-We usually run differential fiber tracking on FA (or fa0), QA, RDI, and NRDI, respectively. This will give a comprehensive clinical picture of the neuronal change. For more detailed discussion, please refer to [how to interpret dMRI metrics](/doc/how_to_interpret_dmri.html).
+```bash
+dsi_studio --action=atl \
+  --cmd=db \
+  --source=*.controls.fz \
+  --index_name=dti_fa \
+  --demo=controls_age_sex.csv \
+  --output=control.dz
+```
 
-## False discovery rate and statistical testing
+The demographic file stored in the reference database defines the variables used to generate a subject-matched reference value.
 
-One key question for differential tractography is the significance of the findings. For example, if we observe a lot of tracks showing up in differential tractography, how many of them are false positive? A way to quantify this reliability is by calculating the false discovery rate from a group of patients and a group of control subjects. The following steps illustrate how this can be carried out in DSI Studio.
+The general database workflow is documented in [Correlational Tractography / Connectometry](/doc/gui_cx.html).
 
-**Example: calculate the false discovery rate using control subjects**
+## 3. Run patient-versus-reference differential tracking
 
-1. Apply **identical** steps and parameters to each patient and matched control, respectively.
-2. Estimate the average volume of findings in patients using the [Tracts][Statistics] menu in Step T3.
-3. Estimate the average volume of findings in controls.
-4. False discovery rate (FDR) = (averaged volume in control) / (averaged volume in patient)
+For batch processing, `--subject_demo` supplies the patient's demographic values used to create the matched reference image from the `.dz` database.
 
-For example, if there is an average of 100 mm³ of track findings from patients and 10 mm³ track findings from controls, then the false discovery rate of the findings in patients is 10/100 = 10%. An FDR lower than 0.05 can be considered significant.
+Example subject demographics file:
+
+```text
+SUB01,36,1
+SUB02,42,0
+```
+
+The numeric values after the subject ID must match the demographic variables stored in the reference database, in the same order.
+
+```bash
+dsi_studio --action=trk \
+  --source=SUB01.patient.fz \
+  --other_slices=control.dz \
+  --subject_demo=patient_age_sex.csv \
+  --dt_metric1=control \
+  --dt_metric2=dti_fa \
+  --dt_threshold=0.2 \
+  --seed_count=1000000 \
+  --min_length=30 \
+  --tip_iteration=16 \
+  --output=SUB01.cross_sectional.tt.gz
+```
+
+In the GUI, open the patient's `.fz`, insert `control.dz` using **[Slices][Insert Other Images]**, enter the patient's demographic values when requested, select the control/reference metric as Metric 1 and the patient's metric as Metric 2, then run differential tracking.
+
+A decrease analysis assumes the reference metric is larger than the patient metric. Reverse the comparison or threshold interpretation when the biological hypothesis concerns an increase.
+
+Reference databases from external datasets can be useful, but diffusion measurements are sensitive to acquisition and processing differences. A large apparent patient/reference difference can reflect scanner, protocol, b-value, spatial resolution, or reconstruction differences rather than pathology. Prefer a reference population acquired and processed as comparably as possible.
+
+# Type 4: Cross-sectional change in template space
+
+Use this design when the patient metric and reference population will be compared in a common template space.
+
+## 1. Reconstruct controls with QSDR
+
+```bash
+dsi_studio --action=rec --source=*.controls.sz --method=7 --output=*.controls.fz
+```
+
+## 2. Export the patient metric in template space
+
+Export the metric from a template-space patient FIB or otherwise prepare the patient's metric in the same template space.
+
+```bash
+dsi_studio --action=exp --source=patient.fz --export=dti_fa
+```
+
+## 3. Create the control `.dz` database
+
+```bash
+dsi_studio --action=atl \
+  --cmd=db \
+  --source=*.controls.fz \
+  --index_name=dti_fa \
+  --demo=controls_age_sex.csv \
+  --output=control.dz
+```
+
+## 4. Run differential tracking in template space
+
+For one subject, demographic values may be supplied directly to `--subject_demo`; their order must match the variables embedded in the control database.
+
+```bash
+dsi_studio --action=trk \
+  --source=0 \
+  --template=0 \
+  --other_slices=patient.dti_fa.nii.gz,control.dz \
+  --subject_demo="36 1" \
+  --dt_metric1=control \
+  --dt_metric2=patient \
+  --dt_threshold=0.2 \
+  --seed_count=1000000 \
+  --min_length=30 \
+  --tip_iteration=16 \
+  --output=patient.template.cross_sectional.tt.gz
+```
+
+In the GUI, open the appropriate template in Step T3, insert the patient metric and the control `.dz`, enter the patient's demographics, then select the matched control metric as Metric 1 and the patient metric as Metric 2.
+
+# Choosing thresholds and tracking parameters
+
+The differential threshold describes the required difference between Metric 1 and Metric 2. For a fractional change definition such as `(m1-m2)/m1`, values of `0.1`, `0.2`, and `0.3` correspond to 10%, 20%, and 30% decreases.
+
+Normal scan-to-scan and individual variation can be substantial. Evaluate a scientifically justified range rather than choosing a threshold only because it produces visually appealing tracks. Larger thresholds and longer minimum track lengths are generally more specific but less sensitive.
+
+Before comparing subjects, keep the relevant tracking parameters fixed. Always check conventional tractography first; differential tracking cannot rescue poor diffusion acquisition, an incorrect b-table, failed reconstruction, or severe registration errors.
+
+## ROI and ROA constraints
+
+An ROI/ROA can be used when the hypothesis is anatomically specific. Adding a region changes the tested hypothesis and can substantially change the number of findings, so region constraints should be chosen from anatomical evidence rather than tuned after viewing the result.
+
+## Smoothing
+
+If repeat scans are noisy or registration differences create unstable voxelwise metrics, modest image smoothing may improve robustness. Apply the same processing to both conditions and document it in the analysis methods.
+
+# Interpreting common metrics
+
+For detailed interpretation, see [How to Interpret dMRI Metrics](/doc/how_to_interpret_dmri.html).
+
+- **FA / FA0:** sensitive to many tissue changes, including edema, inflammation, demyelination, and axonal loss; useful as a broad screening metric but not highly specific.
+- **QA:** often more specific to changes affecting anisotropic restricted diffusion and axonal structure.
+- **RDI:** requires appropriate multi-shell/DSI sampling and can reflect changes in restricted diffusion.
+- **NRDI:** requires appropriate multi-shell/DSI sampling and can be sensitive to tissue-water changes.
+
+Different metrics answer different biological questions. A multi-metric differential analysis can provide complementary information, but each metric should be interpreted within what the acquisition can support.
+
+# False discovery rate for differential findings
+
+A control or sham comparison can be used to estimate how much differential tracking is produced in the absence of the biological effect of interest.
+
+A simple group-level estimate used in differential tractography is:
+
+```text
+FDR = average volume of findings in controls / average volume of findings in patients
+```
+
+Apply identical processing, thresholds, and tracking parameters to the patient and control/sham analyses. Report the FDR together with the differential threshold, minimum track length, metric, acquisition, and other tracking parameters used to generate the result.
