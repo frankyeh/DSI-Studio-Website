@@ -73,16 +73,16 @@ dsi_studio --action=ana --source=my.fz --region=HCP842_tractography:Cingulum_L,H
 
 ## Examples of Export Functions
 
-To export volume-wide metrics or convert source files, use `--action=exp`.
+To export volume-wide metrics from FIB files, use `--action=exp`.
 
 *Export diffusion metrics from FIB files:*
 ```bash
 dsi_studio --action=exp --source=subject.fz --export=qa,iso,dti_fa,rd,ad
 ```
 
-*Convert an SRC file to a 4D NIFTI file:*
+*Save a preprocessed SRC file as a 4D NIFTI file:*
 ```bash
-dsi_studio --action=exp --source=test.sz --export=4dnii
+dsi_studio --action=rec --source=test.sz --save_nii=test.nii.gz
 ```
 
 ---
