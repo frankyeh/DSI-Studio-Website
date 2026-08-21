@@ -6,7 +6,7 @@ Automatic fiber tracking maps individual bundles using deterministic fiber track
 
 ## Examples
 
-**1. Run fiber tracking on all fib.gz files to map all association pathways:**
+**1. Run fiber tracking on all FIB files to map standard pathways:**
 ```bash
 dsi_studio --action=atk --source=*.fz
 ```
@@ -25,19 +25,17 @@ dsi_studio --action=atk --source=*.fz --template_track
 
 ## Core Functions
 
-| **Parameter**          | **Default**                                                                 | **Description**                                                                 |
-|-------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| `source`               |                                                                             | Specify fib.gz files for automatic bundle tracking.                            |
-| `track_id`             | `Arcuate,Cingulum,Aslant,InferiorFronto,InferiorLongitudinal,SuperiorLongitudinal,Uncinate,Fornix,Corticos,ThalamicR,Optic,Lemniscus,Reticular,Corpus` | Specify the bundle names, separated by commas. Partial names are accepted. Example: `--track_id=arcuate` tracks left and right arcuate fasciculus. |
-| `template`             | `0`                                                                         | Specify the template for tracking. Supported templates:<br>`0`: ICBM152<br>`1`: CIVM_mouse<br>`2`: Neonate<br>`3`: INDI_rhesus<br>`4`: Pitt_Marmoset<br>`5`: WHS_SD_rat |
-| `tolerance`            | `22,26,30`                                                                  | Set tolerance for bundle recognition (in mm). Larger values may include more variation but increase false positives. |
-| `track_voxel_ratio`    | `2.0`                                                                       | Set the track-to-voxel ratio for streamline count. Higher values improve mapping but increase computation time. |
-| `check_ending`         | `1` (default: `0` for cingulum)                                             | Removes tracts terminating in high anisotropy locations.                       |
-| `thread_count`         | Hardware max                                                               | Specify the number of CPU cores used for computation.                          |
-| `yield_rate`           | `0.00001`                                                                  | Terminates tracking early if no new fibers are generated.                      |
-| `default_mask`         | `0`                                                                        | Specify whether to use the default mask.                                       |
-| `overwrite`            | `0`                                                                        | Specify whether to overwrite existing files.                                   |
-| `trk_format`           | `tt.gz`                                                                    | Set the output format for tractography files. Supported formats: `.tt.gz`, `.trk`, `.trk.gz`, `.tck`, `.txt`, `.mat`, `.nii`, `.nii.gz`. |
+| **Parameter**          | **Default** | **Description** |
+|-------------------------|-------------|-----------------|
+| `source`               | *(required)* | Specify `.fz` or legacy `.fib.gz` files for automatic bundle tracking. |
+| `track_id`             | Atlas-defined standard groups | Bundle names separated by commas. Partial names are accepted; for example, `--track_id=arcuate` selects matching left/right arcuate bundles. |
+| `template`             | Current/default template | Select the tractography template. Use the template list provided by the current DSI Studio version rather than relying on fixed numeric names. |
+| `tolerance`            | FIB/template dependent | Bundle-recognition tolerance in mm. If omitted, DSI Studio derives a tolerance series from the selected FIB/template. |
+| `track_voxel_ratio`    | FIB dependent | Track-to-voxel ratio. If omitted, DSI Studio uses the value derived from the FIB. |
+| `check_ending`         | `1` | Apply ending constraints used by automatic tract recognition. |
+| `yield_rate`           | `0.00001` | Restart/stop an unproductive tracking attempt when tract yield is extremely low. |
+| `overwrite`            | `0` | Overwrite existing results when set to `1`. |
+| `trk_format`           | `tt.gz` | Output tractography format. |
 
 ---
 
@@ -45,20 +43,17 @@ dsi_studio --action=atk --source=*.fz --template_track
 
 The majority of parameters used in --action=trk are also supported.
 
-- **Fiber Tracking Parameters**: The following parameters are supported: 
+- **Fiber Tracking Parameters**: The following parameters are supported:
   - `--otsu_threshold`
   - `--fa_threshold`
   - `--turning_angle`
   - `--step_size`
   - `--smoothing`
   - `--tip_iteration`
-  - 
+
 - **Length Constraints**:
   Parameters like `--min_length` and `--max_length` are not supported, as length constraints are automatically determined from the atlas.
 
-
 - **Post-Tracking Routines**: The following parameters are also supported:
-
   - `--connectivity`
   - `--export`
-   
