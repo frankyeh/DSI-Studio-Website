@@ -6,26 +6,36 @@
 
 ## General citation for DSI Studio or Fiber Data Hub
 
-When citing DSI Studio, to ensure reproducibility, please reference the 2025 Nature Methods paper (Yeh, 2025) and additionally specify the software version (Hou or Chen), the access date, and the download source.
+When citing DSI Studio, please reference the 2025 *Nature Methods* paper and report the **exact DSI Studio release/version used for the analysis**. For reproducibility, also include the access date and download source when appropriate. The version family (Sun, Hou, Chen, etc.) may be included as additional information, but it should not replace the exact release number.
 
 - [DSI Studio toolbox and Fiber Data Hub](https://rdcu.be/exECv)
 
-**The analysis was conducted using DSI Studio (Yeh, 2025), the Hou version (accessed [Date], http://dsi-studio.labsolver.org).**
+Example methods statement:
+
+**The analysis was conducted using DSI Studio (Yeh, 2025), version YYYY.MM.DD (Sun), accessed [Date] from https://dsi-studio.labsolver.org.**
 
 ```
-Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research." Nat Methods (2025). https://doi.org/10.1038/s41592-025-02762-8
+Yeh, Fang-Cheng. "DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research." Nature Methods (2025). https://doi.org/10.1038/s41592-025-02762-8
 ```
-
 
 ## Citations for specific methods
 
-Reviewers may sometimes question the reliability of methods implemented in DSI Studio. The following references provide validation and testing to address such concerns.
+Reviewers may sometimes question the reliability of methods implemented in DSI Studio. The following references provide validation, methodological descriptions, and applications of specific DSI Studio methods.
 
-- [Tracto-to-region connectome (2022)](https://www.nature.com/articles/s41467-022-32595-4): This study constructs a population-based probablistic tractography atlas and its associated tract-to-region connectome.
+- [Differential tractography (2019)](https://pubmed.ncbi.nlm.nih.gov/31472253/): Differential tractography maps pathway segments showing longitudinal changes in diffusion measurements and provides a framework for estimating false discoveries.
+```
+Yeh, Fang-Cheng, et al. "Differential tractography as a track-based biomarker for neuronal injury." NeuroImage 202 (2019): 116131. https://doi.org/10.1016/j.neuroimage.2019.116131
+```
+
+- [Correlational tractography / tractography methodology (2021)](https://pubmed.ncbi.nlm.nih.gov/34673247/): This review describes tractography methods including correlational tractography and their application to brain tumors and traumatic brain injury.
+```
+Yeh, Fang-Cheng, Andrei Irimia, Dhiego Chaves de Almeida Bastos, and Alexandra J. Golby. "Tractography methods and findings in brain tumors and traumatic brain injury." NeuroImage 245 (2021): 118651. https://doi.org/10.1016/j.neuroimage.2021.118651
+```
+
+- [Tract-to-region connectome (2022)](https://www.nature.com/articles/s41467-022-32595-4): This study constructs a population-based probablistic tractography atlas and its associated tract-to-region connectome.
 ```
 Yeh, Fang-Cheng. "Population-based tract-to-region connectome of the human brain and its hierarchical topology." Nat Commun 13, 4933 (2022). https://doi.org/10.1038/s41467-022-32595-4
 ```
-
 
 - [Shape Analysis (2020)](https://www.sciencedirect.com/science/article/pii/S1053811920308156): Shape analysis is a morphology based quantification of tractography.
 ```
@@ -51,7 +61,6 @@ Yeh, F. C., Panesar, S., Barrios, J., Fernandes, D., Abhinav, K., Meola, A., & F
 ```
 Yeh, Fang-Cheng, et al. "Population-averaged atlas of the macroscale human structural connectome and its network topology." Neuroimage 178 (2018): 57-68.
 ```
-
 
 - [Group connectometry (2016)](/ref/Connectometry.pdf): connectometry is a statistical framework for testing the significance of correlational tractography.
 ```
@@ -139,12 +148,3 @@ If you would like to have your lab added/removed, please let me know (frank.yeh@
 
 ## Complete list of journal publications using DSI Studio
 [link](https://docs.google.com/spreadsheets/d/e/2PACX-1vRyAI6Xs_h9m9x6CAy1hvNhbBBIYHH8jY2Cl-EZeX_s9M5ksHOh_RxhLn5_CIGLBvhTTYTfh9jRpd7E/pubhtml?gid=1777795889&single=true)
-
-
-
-
-
-
-
-
-
