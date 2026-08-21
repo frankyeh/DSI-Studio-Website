@@ -20,7 +20,7 @@ dsi_studio --action=img --source=t1w.nii.gz
 mkdir -p ../reduced_anat
 
 for f in *.nii; do
-    dsi_studio_hou --action=img --source=$f 
+    dsi_studio --action=img --source=$f 
         --cmd=change_type:3+normalize_otsu_median+upper_threshold:1+normalize:1+change_type:0 
         --output=../reduced_anat/${f/%.nii/.nii.gz}
 done
@@ -32,7 +32,7 @@ done
 mkdir -p ../reduced_anat
 
 for f in *.nii; do
-    dsi_studio_hou --action=img --source=$f 
+    dsi_studio --action=img --source=$f 
         --cmd=change_type:3+bias_field_correction+normalize_otsu_median+bias_field_correction+upper_threshold:1+normalize:1+change_type:0 
         --output=../reduced_anat/${f/%.nii/.nii.gz}
 done
