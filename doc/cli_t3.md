@@ -44,7 +44,7 @@ dsi_studio --action=trk \
 | `--source`         | *(required)*         | Path to your `.fib.gz` (or `.fz`) file.                                                              |
 | `--output`         |                      | Output tractography file (e.g. --output=tract.tt.gz) or directory (e.g. --output=/path).                                  |
 | `--track_id`       | (optional)           | Specify the name of the bundle to be mapped (e.g. --track_id=ArcuateFasciculusL ). The complete list can be found [here](https://github.com/frankyeh/data-atlas/blob/main/human/human.tt.gz.txt)                                        |
-| `--tip_iteration`  | `0` or `16`          | Specify pruning iterations. Default is `16` for `track_id` or `dt_threshold_index`.                   |
+| `--tip_iteration`  | Workflow dependent  | Specify topology-informed pruning iterations. Atlas-based and differential workflows may set their own defaults. |
 | `--thread_count`   | Hardware threads     | Number of threads to use.                                                                             |
 
 ---
@@ -53,20 +53,20 @@ dsi_studio --action=trk \
 
 | **Option**           | **Default**                    | **Description**                                                                                      |
 |-----------------------|--------------------------------|------------------------------------------------------------------------------------------------------|
-| `--method`           | Algorithm in file             | Tracking algorithm. `0=streamline`, `1=RK4`, etc.                                                   |
-| `--tract_count`      | `0`                           | Number of tracts to generate (alternative to seed count).                                            |
-| `--seed_count`       | Auto                          | Number of seeds to launch. Overrides `tract_count`.                                                 |
-| `--track_voxel_ratio`| `0.5`                         | Seeds-per-voxel ratio.                                                                               |
-| `--turning_angle`    | `0` (random)                  | Maximum allowable turning angle (deg). Default is random between 15° and 90°.                       |
-| `--step_size`        | `0` (random)                  | Step size in mm. Default is random between 1–3 voxels.                                              |
-| `--smoothing`        | `0`                           | Fraction of previous direction to mix in (0-1).                                                     |
-| `--min_length`       | Dataset-specific              | Minimum fiber length (mm).                                                                          |
-| `--max_length`       | Dataset-specific              | Maximum fiber length (mm).                                                                          |
-| `--otsu_threshold`   | FA threshold × 0.6            | Default threshold for FA-based seeding.                                                             |
-| `--threshold_index`  | —                             | Use a different diffusion index (e.g., QA) for termination instead of FA.                           |
-| `--check_ending`     | Off for whole-brain tracking  | Drop tracks that do not terminate within any ROI.                                                   |
-| `--parameter_id`     | —                    | Load all tracking parameters from a parameter code.                                             |
-| `--random_seed`    | `0`                  | Seed for random number generation in fiber tracking. Set to an integer to vary seed sequences.        |
+| `--method`           | Current tracking setting | Tracking algorithm, e.g. streamline/Euler or RK4 depending on the current version. |
+| `--tract_count`      | `0` | Number of tracts to generate (alternative to seed count). |
+| `--seed_count`       | Auto | Number of seeds to launch. Overrides `tract_count`. |
+| `--track_voxel_ratio`| Data/FIB dependent | Track-to-voxel ratio used to determine the target streamline count. |
+| `--turning_angle`    | `0` (automatic/randomized) | Maximum allowable turning angle in degrees. Specify a value to use a fixed threshold. |
+| `--step_size`        | `0` (automatic/randomized) | Tracking step size in mm. Specify a value to use a fixed step size. |
+| `--smoothing`        | Current tracking setting | Direction smoothing fraction. |
+| `--min_length`       | Dataset-specific | Minimum fiber length (mm). |
+| `--max_length`       | Dataset-specific | Maximum fiber length (mm). |
+| `--otsu_threshold`   | Current tracking setting | Otsu-based scaling used to determine the tracking threshold. |
+| `--threshold_index`  | Current tracking index | Select a diffusion index (e.g., QA) for tracking/termination. |
+| `--check_ending`     | `0` for normal whole-brain tracking | Require tracks to satisfy ending constraints when enabled. |
+| `--parameter_id`     | — | Load tracking parameters from a parameter code. |
+| `--random_seed`      | `0` | Seed for random-number generation. |
 
 ---
 
