@@ -2,7 +2,7 @@
 
 > Use `--action=src` to generate SRC files from NIFTI or DICOM files.
 
-The `src` action supports converting NIFTI or DICOM files into SRC format, with optional configurations for b-values, b-vectors, additional sources, and output specifications.
+The `src` action converts NIFTI or DICOM diffusion data into the current `.sz` SRC format. Legacy `.src.gz` files remain supported for compatibility.
 
 ---
 
@@ -23,7 +23,7 @@ dsi_studio --action=src --source=c:\subject001.nii.gz --bval=bval --bvec=bvec
 dsi_studio --action=src --source=./bids_root_folder --output=/src_files
 ```
 
-**4. Parse a BIDS session folder and generate one SRC file or its reverse phase encoding RSRC file:**
+**4. Parse a BIDS session folder and generate an `.sz` file, with an `.rz` companion when reverse-phase data are present:**
 ```bash
 dsi_studio --action=src --source=./sub-01/ses-01/dwi --bids=1
 ```
@@ -35,7 +35,7 @@ dsi_studio --action=src --source=HCA9992517_V1_MR_dMRI_dir98_AP.nii.gz --other_s
 
 **6. Search all DICOM files under a directory and output an SRC file:**
 ```bash
-dsi_studio --action=src --source=C:\DICOM_folder --output=C:\output.src.gz
+dsi_studio --action=src --source=C:\DICOM_folder --output=C:\output.sz
 ```
 
 **7. Find and combine specific files based on a pattern to create a combined SRC file:**
@@ -68,7 +68,7 @@ dsi_studio --action=src --loop=MGH_*_all.zip --source=mgh_*/diff/preproc/mri/dif
 | **Parameter**      | **Description**                                                                 |
 |---------------------|---------------------------------------------------------------------------------|
 | `other_source`      | Specify additional files to be included in the SRC file. Multiple files can be assigned using a comma-separated list (e.g., `--other_source=1.nii.gz,2.nii.gz`). |
-| `output`           | Assign the output SRC file name (`.src.gz`) or the output folder. If not specified, the SRC file will be written to the same directory as the input files. |
+| `output`           | Assign the output `.sz` file name or output folder. If not specified, output is written next to the input. Legacy `.src.gz` remains readable. |
 | `b_table`          | Assign a text file to replace the b-table. The file must match the loaded images in size. |
 | `bval`             | Specify the location of the FSL bval file. *(DSI Studio usually detects this automatically.)* |
 | `bvec`             | Specify the location of the FSL bvec file. *(DSI Studio usually detects this automatically.)* |
@@ -80,28 +80,27 @@ dsi_studio --action=src --loop=MGH_*_all.zip --source=mgh_*/diff/preproc/mri/dif
 
 | **Parameter**      | **Default**     | **Description**                                                                 |
 |---------------------|-----------------|---------------------------------------------------------------------------------|
-| `recursive`         | `0`            | Search for all NIFTI or DICOM files in subdirectories within the specified `--source`. |
-| `bids`             | `0` (not BIDS) | Specify whether to use the BIDS standard to parse the folder specified by `--source`. |
-| `overwrite`         | `0` (no overwrite) | Specify whether to overwrite existing files.                                   |
-| `topup_eddy`        | `0`            | Specify whether to run topup and eddy correction during SRC generation.        |
-| `sort_b_table`      | `0`            | Specify whether to sort the b-table (useful for certain datasets).             |
+| `bids`             | Auto | BIDS parsing is selected automatically when a BIDS structure is detected. Use `--bids=1` to request BIDS handling explicitly. |
+| `overwrite`         | `0` | Overwrite existing output files when set to `1`. |
+| `topup_eddy`        | `0` | Run TOPUP and EDDY during directory/BIDS conversion when reverse-phase data are available. |
+| `sort_b_table`      | `0` | Sort the b-table when creating an SRC file from explicitly supplied images. |
 
 ---
 
 ## Notes from the Source Code
 
-1. **File Search and BIDS Support**:
-   - The tool can automatically search for NIFTI and DICOM files in the specified `--source` directory.
-   - When `--bids=1` is specified, the tool follows the BIDS (Brain Imaging Data Structure) convention for organizing files.
+1. **Directory and BIDS Handling**:
+   - For a directory source, DSI Studio first looks for BIDS DWI data, then other NIFTI DWI files, and otherwise falls back to DICOM conversion.
+   - `--bids=1` can be used to request BIDS handling explicitly.
 
 2. **Output Directory**:
    - If the `--output` parameter is not provided, the resulting SRC files are saved in the same directory as the input files.
 
 3. **Reverse Phase Encoding**:
-   - Reverse phase encoding files can be detected and included automatically in the SRC file generation process.
+   - Reverse-phase data detected during directory/BIDS conversion are saved as an `.rz` companion when TOPUP/EDDY is not run during SRC generation.
 
 4. **Error Handling**:
    - The tool performs various checks for mismatched b-values, b-vectors, and file compatibility, displaying error messages when issues are encountered.
 
 5. **Default Behavior**:
-   - If no file is found under the `--source`, the tool attempts to convert DICOM files to SRC and NIFTI formats.
+   - If no NIFTI diffusion data are found under a directory `--source`, DSI Studio attempts DICOM conversion.
