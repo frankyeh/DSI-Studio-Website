@@ -2,9 +2,9 @@
 
 
 > ### Integrated tractography, connectomics, brain MRI segmentation, and large-scale fiber data sharing
-> Yeh, Fang-Cheng. “DSI Studio: An Integrated Tractography Platform and Fiber Data Hub for Accelerating Brain Research.” Nature Methods, July 2025, https://doi.org/10.1038/s41592-025-02762-8. 
+> Yeh, Fang-Cheng. “DSI Studio: An Integrated Tractography Platform and Fiber Data Hub for Accelerating Brain Research.” Nature Methods, July 2025, https://doi.org/10.1038/s41592-025-02762-8.
 
-**DSI Studio** is an open-source, cross-platform software platform for diffusion MRI and structural MRI analysis. It brings together diffusion reconstruction, fiber tracking, connectome mapping, quality control, group analysis, and brain MRI segmentation in one environment. With direct integration of the **Fiber Data Hub**, DSI Studio also serves as a data infrastructure for scalable and reproducible brain connectivity research.
+**DSI Studio** is a cross-platform software platform with source code available on [GitHub](https://github.com/frankyeh/DSI-Studio) for diffusion MRI and structural MRI analysis. It brings together diffusion reconstruction, fiber tracking, connectome mapping, quality control, group analysis, and brain MRI segmentation in one environment. With direct integration of the **Fiber Data Hub**, DSI Studio also serves as a data infrastructure for scalable and reproducible brain connectivity research.
 
 **Quick links:** [Download](download.html) · [Fiber Data Hub](https://brain.labsolver.org) · [News](news.html) · [Forum](https://groups.google.com/g/dsi-studio) · [GitHub](https://github.com/frankyeh/DSI-Studio)
 
@@ -17,8 +17,17 @@
 - Study change and association using **differential tractography** and **correlational tractography**.
 - Quantify brain networks using both **region-to-region connectivity matrices** and the **tract-to-region connectome**.
 - Run **quality control**, **group analysis**, and population-level workflows in the same software environment.
-- Perform **brain MRI segmentation** for T1w and T2w images using compact **U-Net models** integrated in DSI Studio.
+- Perform **brain MRI segmentation** using compact **U-Net models** integrated in DSI Studio.
+- Use **Codex** or **Claude Code** through the Sun version's **AI Agent** integration to operate DSI Studio workflows from natural-language requests.
 - Use the same platform on **Windows**, **macOS**, **Linux**, and **Docker**.
+
+---
+
+## AI Agent in the Sun version
+
+The current **Sun** version integrates AI agents directly with DSI Studio. After installing **Codex** or **Claude Code** on the same computer, the agent can read the DSI Studio manuals, inspect the current data and application state, and operate workflows such as reconstruction, image processing, fiber tracking, and connectometry from natural-language requests.
+
+See the [download page](download.html) for the current Sun release and setup requirement.
 
 ---
 
