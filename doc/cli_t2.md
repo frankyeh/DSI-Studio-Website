@@ -8,10 +8,10 @@ This action reconstructs diffusion data (SRC/SZ format) into FIB files, with pre
 
 ## Examples
 
-**1. Reconstruct all SRC files with GQI** using a 1.25 sampling length and write `.fib` files to `fib/`:
+**1. Reconstruct all SRC files with GQI** using a 1.25 sampling length and write `.fz` files to `fib/`:
 
 ```bash
-dsi_studio --action=rec --source=*.sz --method=4 --param0=1.25 --output=fib/
+dsi_studio --action=rec --source=*.sz --method=4 --param=1.25 --output=fib/
 ```
 
 **2. Reconstruct a single SRC file after EDDY correction**:
@@ -19,7 +19,7 @@ dsi_studio --action=rec --source=*.sz --method=4 --param0=1.25 --output=fib/
 ```bash
 dsi_studio --action=rec --source=subject1.sz \
             --cmd="[Step T2][Corrections][EDDY]" \
-            --method=4 --param0=1.25
+            --method=4 --param=1.25
 ```
 
 **3. Reconstruct after TOPUP+EDDY** using a reverse-PE b0 in a NIfTI file:
@@ -27,7 +27,7 @@ dsi_studio --action=rec --source=subject1.sz \
 ```bash
 dsi_studio --action=rec --source=*.sz \
             --rev_pe=*_rev_b0.nii.gz \
-            --method=4 --param0=1.25
+            --method=4 --param=1.25
 ```
 
 **4. Apply TOPUP+EDDY only (no reconstruction)** and save the corrected SRC:
@@ -43,7 +43,7 @@ dsi_studio --action=rec --source=raw_dwi.sz \
 ```bash
 dsi_studio --action=rec --source=subj1.sz \
             --method=7 \
-            --param0=1.25 \
+            --param=1.25 \
             --other_image=t1w:my_t1w.nii.gz,t2w:my_t2w.nii.gz
 ```
 
@@ -53,13 +53,13 @@ dsi_studio --action=rec --source=subj1.sz \
 #!/bin/bash
 exec 1>log_qsdr.out 2>&1
 method=7            # 7 = QSDR
-param0="1.25"
+param="1.25"
 for sub in *.sz; do
   echo
   dsi_studio --action=rec \
               --source="$sub" \
               --method=$method \
-              --param0=$param0 \
+              --param=$param \
               --odf_resolving=1
   echo
 done
@@ -77,7 +77,7 @@ Check the resulting `qc.tsv` file. If the report indicates a correction is neede
 ```bash
 dsi_studio --action=rec --source=subject.sz \
             --cmd="[Step T2][B-table][swap bybz]+[Step T2][B-table][flip bx]" \
-            --method=4 --param0=1.25
+            --method=4 --param=1.25
 ```
 
 -----
@@ -86,17 +86,14 @@ dsi_studio --action=rec --source=subject.sz \
 
 | **Option** | **Default** | **Description** |
 |-----------------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `--source`           | *(required)* | Path to the `.sz` (or `.src.gz`) file to reconstruct.                                                                                             |
-| `--method`           | `4`                              | Reconstruction algorithm:<br>`1`=DTI, `4`=GQI, `7`=QSDR.                                                                                          |
-| `--param0`           | `1.25` (in vivo) / `0.6` (ex vivo) | Primary diffusion sampling length (for GQI/QSDR).                                                                                                 |
-| `--param1`           | *method-specific* | Second method parameter (e.g., order, regularization).                                                                                            |
-| `--param2`           | *method-specific* | Third method parameter.                                                                                                                           |
-| `--odf_resolving`    | `0`                              | Enable ODF resolving during reconstruction.                                                                                                       |
-| `--thread_count`     | System thread count              | Number of threads used for reconstruction.                                                                                                        |
-| `--template`         | `0`                              | QSDR template index (see printed list at startup—e.g. `0`=ICBM152, `1`=CIVM\_mouse, etc.).                                                         |
-| `--qsdr_reso`        | `2.0` mm                         | Output resolution for QSDR (overridden if smaller than your voxel size).                                                                          |
-| `--r2_weighted`      | `0`                              | Use R²-weighted SDF estimation for GQI/QSDR.                                                                                                      |
-| `--other_output`     | `fa,rd,rdi`                      | Comma-separated list of diffusion metrics to compute. Add `odf` for ODF data; use `all` for every possible measure.                                |
+| `--source`           | *(required)* | Path to the `.sz` file to reconstruct. Legacy `.src.gz` files are also supported. |
+| `--method`           | Current/SRC setting | Reconstruction algorithm: `1`=DTI, `4`=GQI, `7`=QSDR. Specify it explicitly for reproducible command-line workflows. |
+| `--param`            | Data/current setting | Diffusion sampling length ratio for GQI/QSDR. Common explicit values are `1.25` for in-vivo and `0.6` for ex-vivo applications. |
+| `--odf_resolving`    | `0` | Enable ODF resolving during reconstruction. |
+| `--template`         | Current template | Select the QSDR template. Use the template list reported by the current DSI Studio version. |
+| `--qsdr_reso`        | Data dependent | Output resolution for QSDR. |
+| `--r2_weighted`      | `0` | Use R²-weighted SDF estimation for GQI/QSDR. |
+| `--other_output`     | Current reconstruction setting | Comma-separated diffusion metrics to compute; specify explicitly when a particular output set is required. |
 
 -----
 
@@ -104,13 +101,12 @@ dsi_studio --action=rec --source=subject.sz \
 
 | **Option** | **Default** | **Description** |
 |-----------------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `--rev_pe`           | *(auto-detect)* | NIfTI, RSRC, or SRC of the reverse-phase-encoding b0 for TOPUP/EDDY.                                                                              |
-| `--volume_correction`| `0`                              | Apply automatic volume orientation correction (swap/flip axes).                                                                                   |
-| `--check_btable`     | `0`                              | Specify 1 to run b-table QC and auto-flip/swaps to fix gradient directions. Specify 2 to use template registration. *Note: Uniform application of 1 is not recommended for low SNR data; use `--action=qc` first (see Example 7).* |
-| `--correct_by_t2`    | *(none)* | Perform susceptibility distortion correction by nonlinearly warping b0 → T2w.                                                                     |
-| `--motion_correction`| `0`                              | Rigid-body align DWI volumes (and rotate b-table accordingly).                                                                                    |
-| `--make_isotropic`   | *(none)* | Resample DWI to isotropic resolution; defaults to `2.0` mm for human or your native slice thickness for non-human.                                |
-| `--align_acpc`       | *(none)* | Rotate/resample volume to align AC–PC; specify target isotropic resolution (e.g., `--align_acpc=1.5`).                                            |
+| `--rev_pe`           | *(none)* | Reverse-phase-encoding NIfTI/SRC input used to run TOPUP/EDDY. |
+| `--volume_correction`| `0` | Apply automatic volume orientation correction (swap/flip axes). |
+| `--check_btable`     | `0` | Specify `1` to run b-table QC and auto-flip/swaps, or `2` to use template registration. Uniform automatic correction is not recommended for low-SNR data; use `--action=qc` first. |
+| `--motion_correction`| `0` | Rigid-body align DWI volumes and rotate the b-table accordingly. |
+| `--make_isotropic`   | Data dependent | Override the isotropic resampling resolution. If omitted, DSI Studio may choose a resolution from the input data and reconstruction workflow. |
+| `--align_acpc`       | *(none)* | Rotate/resample the volume to AC-PC alignment at the specified isotropic resolution (e.g., `--align_acpc=1.5`). |
 
 -----
 
