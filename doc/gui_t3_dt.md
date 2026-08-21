@@ -117,6 +117,7 @@ If tracking results change significantly in repeated analyses, it is likely that
 
 **Multi-metrics analysis**
 The metrics we usually use include DTI's FA and GQI's QA, RDI, NRDI (see [interpretations](https://dsi-studio.labsolver.org/doc/how_to_interpret_dmri.html)). The following is the implication behind them:
+
 -   **FA** decreases during acute neuronal injury or chronic neurodegeneration. It has high sensitivity and low specificity because the decreases of FA can be due to vasogenic edema, demyelination, inflammation, or axonal loss. We often use FA as the first-pass screening. Note that `fa0` is the preferred metric name in recent versions.
 -   **QA** decreases when there is demyelination or axonal loss. It usually does NOT change in acute axonal injury or edema and thus is much more specific to axonal loss. In acute neuronal injury or inflammation, we may see FA decreasing with QA staying the same, potentially indicating that the axonal injury is reversible.
 -   **RDI** increases when there is cell infiltration, which happens in tumor or during inflammation. You need to have multi-shell or DSI acquisitions to use this metric.
