@@ -1,93 +1,75 @@
-# How to analyze dMRI
+# How to Analyze dMRI
 
-<img src="https://github.com/user-attachments/assets/9afac513-ccbd-419c-9d79-4b7dd9458294" width=800/>
+<img src="https://github.com/user-attachments/assets/9afac513-ccbd-419c-9d79-4b7dd9458294" width="800"/>
 
-The following are common preprocessing steps for almost all analysis in DSI Studio.
+Most DSI Studio diffusion MRI workflows begin with the same three steps:
 
-1. [Create SRC files (.sz) from diffusion data (DICOM files or NIFTI)](/doc/gui_t1.html).
+1. [Create SRC files (`.sz`) from DICOM or NIFTI diffusion data](/doc/gui_t1.html).
+2. [Run SRC quality control](/doc/gui_t1.html#step-t1a-quality-control-optional) and exclude or correct problematic data before group analysis.
+3. [Reconstruct FIB files (`.fz`)](/doc/gui_t2.html) using GQI for native-space analysis or QSDR when template-space reconstruction is needed.
 
-2. [SRC file quality control](/doc/gui_t1.html#step-t1a-quality-control-optional)(/doc/gui_t1.html#batch-quality-control) to exclude problematic data.
-
-3. [Reconstruct FIB files (.fz) from SRC files](/doc/gui_t2.html) using GQI (native space) or QSDR(template space) to get a FIB file.
-
+After reconstruction, choose the analysis that matches the scientific question.
 
 ## Region-Based Analysis
 
-<img src="https://user-images.githubusercontent.com/275569/147855916-ccd9a41d-fbfa-4011-9df9-92c4213e2fa3.png" width=800/>
+<img src="https://user-images.githubusercontent.com/275569/147855916-ccd9a41d-fbfa-4011-9df9-92c4213e2fa3.png" width="800"/>
 
-The simplest way to analyze diffusion data is to assign a region in the brain (either manual drawing or from an atlas) and get statistics on its diffusion indices. The following are the steps for ROI-based analysis in the subject space.
+Use region-based analysis when the question concerns diffusion measurements within an anatomical region.
 
-1. Open the FIB file in [Step T3 Fiber Tracking]. Check out [how to assign regions](/doc/gui_t3_roi_tracking.html#Load-Regions-From-Built-In-Atlases). Loading the region from built-in atlases will be the most efficient.
+1. Open the subject `.fz` file in **Step T3: Fiber Tracking**.
+2. [Load or define regions](/doc/gui_t3_roi_tracking.html#Load-Regions-From-Built-In-Atlases). Built-in atlases are usually the simplest choice for standardized regions.
+3. If needed, use **[Slices][Insert Other Images]** to add registered measurements such as DKI, NODDI, PET, or other NIFTI data.
+4. Use **[Region][Statistics]** to obtain diffusion or other image measurements from the selected regions.
 
-2. If you would like to analyze other measures (e.g. DKI, NODDI, or PET), and insert their NIFTI files by [Slices][Insert T1W/T2W images]. DSI Studio will register newly added images to the diffusion data set. The added metrics will be analyzed in the following steps.
-
-3. Use [Region][Statistics] to get region statistics. Click on the "show details" button to see the results. You may load the results in Excel to do further analysis. Each subject should have a diffusion index value calculated from a region.
-
-  Another way to do region-based analysis is to reconstruct/normalize all data in the MNI space and extract region statistics from all subjects in one shot. Here are the steps
-
-1. [Construct a connectometry database](/doc/gui_cx.html) from all subjects.
-
-2. Open the database file in Step T3, and follow the above-mentioned steps 3 to 6. Please note that this db.fib.gz file is already in the MNI space, and the regions should be MNI regions.
+For population/template-space region analysis, [create a `.dz` connectometry database](/doc/gui_cx.html) from the subjects and open the database in Step T3. Regions used with a population database should be defined in the corresponding template space.
 
 ## Tractometry
 
-Tractometry is a term that refers to the study and analysis of white matter tracts in the brain. White matter tracts are made up of axons (long, thin fibers) that connect different areas of the brain and facilitate communication between neurons. Tractometry involves using techniques such as diffusion tensor imaging (DTI) to visualize and quantify these white matter tracts in the brain. This can be used to study the structure and function of the brain, as well as to identify abnormalities or changes in the white matter tracts that may be associated with various neurological conditions.
+Tractometry quantifies diffusion or other measurements along white-matter pathways.
 
-Example studies: <https://www.nature.com/articles/nn.3870>
+1. Map the pathways using [automatic fiber tracking](/doc/gui_t3_atk.html) or [ROI-based fiber tracking](/doc/gui_t3_roi_tracking.html).
+2. Add other image measurements with **[Slices][Insert Other Images]** when needed.
+3. Use **[Tracts][Statistics]** for tract-level summary measurements.
+4. Use the [tract profile](/doc/gui_t3_atk.html#Tract-Profile) when the spatial distribution of a measurement along the pathway is important.
 
-The tractography-based analysis, a.k.a. tractometry, uses diffusion fiber tracking (manual or automatic) to define the trajectories of fiber pathways and extract tract-associated metrics. The advantage of tractography-based analysis is that it is fiber specific, whereas region-based analysis does not specify which fiber pathways to be analyzed. The following list is the steps for tractography-based analysis.
+For population/template-space tractometry, a `.dz` database can be opened in Step T3 and analyzed with template-space pathways.
 
-1. Fiber tracking: I would suggest using [automated fiber tracking](/doc/gui_t3_atk.html) to target your tracts of interest. Alternatively, you may need to use the conventional [region-based fiber tracking](/doc/gui_t3_roi_tracking.html) to obtain the exact fiber pathways you are interested in.
-
-2. If you would like to analyze other measures (e.g. DKI, NODDI, or PET), and insert their NIFTI files by [Slices][Insert T1W/T2W images]. DSI Studio will register newly added images to the diffusion data set. The added metrics will be analyzed in the following steps.
-
-3. Use [Tracts][Statistics] to get the average diffusion indices along the fiber pathways. Click on "show details" to get information and copy it to Excel for further analysis.
-
-4. Alternatively, use [track profile](/doc/gui_t3_atk.html#Tract-Profile) to get the distributed pattern of a diffusion index along the fiber pathways.
-
-Another way to do region-based analysis is to reconstruct/normalize all data in the MNI space and extract tract statistics from all subjects in one shot. Here are the steps
-
-1. [Construct a connectometry database](/doc/gui_cx.html) from all subjects.
-
-2. Open the database file in Step T3, and follow the above-mentioned steps 3 to 5. Please note that this db.fib.gz file is already in the MNI space, and the regions should be MNI regions.
+Example study: <https://www.nature.com/articles/nn.3870>
 
 ## Differential Tractography
 
+Differential tractography maps pathway segments showing changes in diffusion measurements between scans or relative to a reference population.
+
+Use the dedicated [Differential Tractography documentation](/doc/gui_t3_dt.html) for the four common designs:
+
+- longitudinal change in native space;
+- longitudinal change in template space;
+- cross-sectional comparison in native space;
+- cross-sectional comparison in template space.
+
 Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
 
-Differential tractography is a new type of tractography that compares repeat scans of the same individuals to capture neuronal injury reflected by a decrease of anisotropy.
+## Correlational Tractography / Connectometry
 
-The following is the steps
+Correlational tractography maps pathway segments whose diffusion measurements are associated with a study variable across a population. Connectometry uses permutation testing to estimate the statistical reliability of those findings.
 
-1. Follow the steps at [Differential tractography for longitudinal data](http://dsi-studio.labsolver.org/Manual/differential-tractography)
+The current workflow is:
 
-*Individual connectometry* aims to find the difference between the longitudinal study of a single subject. The method tracks the deviate pathways of an individual by comparing the subject with a normal population, an atlas, or the subject's previous scan. It is a powerful tool to map the tracks that are damaged. The steps to get the group or individual connectometry is described in the following documentation:
+1. [Create a connectometry database (`.dz`)](/doc/gui_cx.html) from the subject FIB files.
+2. Load demographics and select covariates, the study variable, and diffusion index.
+3. Run group connectometry and review the tract findings and FDR.
 
-## Correlational Tractography
+A current `.dz` database can store multiple diffusion indices, so separate database files are generally not required for QA, FA, RDI, and other available metrics.
 
-Example studies: ([1](https://academic.oup.com/brain/article-abstract/143/8/2532/5875734))[(](https://scholar.google.com/scholar?hl=en&as_sdt=0%2C39&q=Rahmani+connectometry&btnG=)[2](https://www.sciencedirect.com/science/article/pii/S2213158220301571#b0275))([3](https://www.sciencedirect.com/science/article/pii/S1875957218301797))
+Example studies: [1](https://academic.oup.com/brain/article-abstract/143/8/2532/5875734) · [2](https://www.sciencedirect.com/science/article/pii/S2213158220301571#b0275) · [3](https://www.sciencedirect.com/science/article/pii/S1875957218301797)
 
-Correlational tractography is a tractography modality that shows pathways correlated with a study variable (e.g. age). The method to derive correlational tractography and test its reliability is called "group connectometry." There are two types of connectometry analyses are available in DSI Studio: group connectometry and individual connectometry.
+## Tract-to-Region (T2R) Connectome
 
-*Group connectometry* aims to find trajectories associated with a study variable in a group study. The method allows you to identify the exact segment/subcomponent/branches of tracks that are correlated to group differences or any study variable (age, sex, ...etc).
+The tract-to-region (T2R) connectome quantifies which named white-matter pathways innervate particular brain regions. It complements the conventional region-to-region (R2R) connectome by retaining the identity of the intervening tract.
 
-The following are the steps for doing connectometry analysis.
+1. Map the pathways using [AutoTrack](/doc/gui_t3_atk.html).
+2. Load a brain parcellation from **[Step T3a][Atlas]**, such as HCP-MMP.
+3. Use **[Region][Tract-to-Region Connectome]** to generate the tract-by-region matrix.
+4. The parcellation can be colored by T2R values for visualization.
 
-For group connectometry see:
-
-1. See [Create a connectometry database](/doc/gui_cx.html) to create a connectometry database
-
-2. [Run group connectometry analysis](/doc/gui_cx.html)
-
-## Tract-to-region (T2R) connectome
-
-Example studies: [Yeh, Fang-Cheng. "Population-based tract-to-region connectome of the human brain and its hierarchical topology." Nature communications 13.1 (2022): 4933.](https://www.nature.com/articles/s41467-022-32595-4)
-
-The tract-to-region (T2R) connectome maps the probability that specific white matter tracts innervate particular cortical regions, providing a detailed anatomical linkage between tracts and regions. This contrasts with the traditional region-to-region (R2R) connectome, which outlines connections between cortical areas without specifying the underlying white matter pathways. 
-
-The following list is the steps for generating a connectivity matrix.
-
-1. Map a list of fiber bundles using [AutoTrack](https://dsi-studio.labsolver.org/doc/gui_t3_atk.html)
-2. Choose a brain parcellation using the [Step T3a][Atlas] button to load brain parcellation (e.g. HCP-MMP or Broadman)
-3. At top menu, [Region][Tract-to-Region Connectome] to get the n-by-m T2R matrix.
-4. The T2R connectome can be visualized by coloring the parcellation region with T2R values. See instruction [here](https://dsi-studio.labsolver.org/doc/gui_t3_atk.html).
+Example study: [Yeh, Fang-Cheng. "Population-based tract-to-region connectome of the human brain and its hierarchical topology." Nature Communications 13, 4933 (2022).](https://www.nature.com/articles/s41467-022-32595-4)
