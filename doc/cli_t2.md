@@ -66,19 +66,21 @@ done
 ```
 
 **7. B-table Quality Check and Manual Correction:**
-Applying `--check_btable` uniformly is not recommended, as automatic adjustments may fail if the SNR is low. It is best to perform a quality check first:
+Applying automatic b-table correction uniformly is not recommended when SNR is poor. Run QC first and inspect the result:
 
 ```bash
 dsi_studio --action=qc --source=*.sz --check_btable=1
 ```
 
-Check the resulting `qc.tsv` file. If the report indicates a correction is needed (e.g., "021fx"), apply the specific swaps and flips using `--cmd` during reconstruction. For "021fx", swap y and z to get "012", and flip x to fix "fx":
+If a representative good-quality acquisition indicates a consistent swap/flip convention (for example `021fx`), apply the corresponding **b-table-only** correction to scans known to share that acquisition/export convention. For `021fx`, swap y and z to obtain `012`, then flip x:
 
 ```bash
 dsi_studio --action=rec --source=subject.sz \
             --cmd="[Step T2][B-table][swap bybz]+[Step T2][B-table][flip bx]" \
             --method=4 --param=1.25
 ```
+
+Do not infer a group-wide b-table correction from a low-SNR or artifact-heavy outlier.
 
 -----
 
@@ -103,10 +105,13 @@ dsi_studio --action=rec --source=subject.sz \
 |-----------------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | `--rev_pe`           | *(none)* | Reverse-phase-encoding NIfTI/SRC input used to run TOPUP/EDDY. |
 | `--volume_correction`| `0` | Apply automatic volume orientation correction (swap/flip axes). |
-| `--check_btable`     | `0` | Specify `1` to run b-table QC and auto-flip/swaps, or `2` to use template registration. Uniform automatic correction is not recommended for low-SNR data; use `--action=qc` first. |
+| `--check_btable`     | `0` | `1` calls the template-aware **Check B-table** routine (using the selected/current template when available); `2` calls the no-template 24-candidate b-vector permutation/flip check. Automatic inference can be unreliable with poor SNR or poor template registration, so inspect QC first. |
 | `--motion_correction`| `0` | Rigid-body align DWI volumes and rotate the b-table accordingly. |
+| `--bias_field_correction` | `0` for DTI; `1` for GQI/QSDR unless already corrected | Correct smooth DWI signal inhomogeneity. Specify explicitly when you need to override the reconstruction-method default. |
 | `--make_isotropic`   | Data dependent | Override the isotropic resampling resolution. If omitted, DSI Studio may choose a resolution from the input data and reconstruction workflow. |
 | `--align_acpc`       | *(none)* | Rotate/resample the volume to AC-PC alignment at the specified isotropic resolution (e.g., `--align_acpc=1.5`). |
+
+When resampling is needed, keep the original DWI geometry while applying corrections that depend on the original acquisition (for example TOPUP/EDDY, motion, or distortion correction), then resample before reconstruction.
 
 -----
 
@@ -124,9 +129,9 @@ dsi_studio --action=rec --source=subject.sz \
 
 | **Option** | **Default**| **Description** |
 |---------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `--reg_resolution`  | `2`    |   The relative resolution used in the nonlinear registration. `2` subsample to x2 lower resolution. Use `1` to the same resolution (higher computation time) |
-| `--reg_speed`       | `0.3`  |   The deformation speed. Higher values handle larger distortions                                                                      |
-| `--reg_smoothing`   | `0.05` |   The smoothing applied to the deformation field. Higher values ensure structural continuity |
+| `--reg_resolution`  | `2`    | The relative resolution used in nonlinear registration. `2` uses 2× lower resolution; use `1` for the same resolution at higher computation cost. |
+| `--reg_speed`       | `0.3`  | Deformation speed. Higher values allow larger changes per iteration. |
+| `--reg_smoothing`   | `0.05` | Smoothing applied to the deformation field. Higher values enforce greater spatial continuity. |
 
 -----
 
@@ -134,51 +139,51 @@ dsi_studio --action=rec --source=subject.sz \
 
 | **Option** | **Description** |
 |-----------------------|--------------------------------------------------------------------------------------------------------------|
-| `--output`          | Output folder or filename prefix for reconstructed files.                                                                                             |
-| `--save_src`        | Write out the preprocessed SRC (no reconstruction).                                                                                                   |
-| `--save_nii`        | Write out the preprocessed 4D NIfTI instead of SRC.                                                                                                   |
-| `--intro`           | Load a text file (`.txt`/`.md`) as the “introduction” for embedding in the reconstruction report.              |
-| `--remove`          | Comma-list or ranges of DWI indices to drop—e.g., `--remove=0,5:10,end`.                                                                               |
-| `--export_r`        | Write a `.rXX` file reporting registration R² (e.g., `.r85` for 0.85).                                                                                |
+| `--output`          | Output folder or filename prefix for reconstructed files. |
+| `--save_src`        | Write out the preprocessed SRC (no reconstruction). |
+| `--save_nii`        | Write out the preprocessed 4D NIfTI instead of SRC. |
+| `--intro`           | Load a text file (`.txt`/`.md`) as the introduction embedded in the reconstruction report. |
+| `--remove`          | Comma-list or ranges of DWI indices to drop—e.g., `--remove=0,5:10,end`. |
+| `--export_r`        | Write a `.rXX` file reporting registration R² (e.g., `.r85` for 0.85). |
 | `--cmd`             | Chain GUI steps for extra edits: e.g., `--cmd="[Step T2][Resample]=1.0+[Step T2][File][Save Src File]=out.sz"`. |
 
 -----
 
 ### Available `[Step …]` commands in `--cmd`
 
-The following commands are defined in **libs/dsi/image\_model.cpp** and can be chained using `--cmd`:
+The following GUI-path commands can be chained using `--cmd`:
 
 #### File Operations
 
-  - `[Step T2][File][Save Src File]=<filename>`: Save the current SRC file.
-  - `[Step T2][File][Save 4D NIFTI]=<filename>`: Save DWI data as a 4D NIfTI file.
-  - `[Step T2][File][Save B0]=<filename>`: Save the B0 volume as a NIfTI file.
-  - `[Step T2][File][Save DWI Sum]=<filename>`: Save the sum of all DWI volumes.
+- `[Step T2][File][Save Src File]=<filename>`: Save the current SRC file.
+- `[Step T2][File][Save 4D NIFTI]=<filename>`: Save DWI data as a 4D NIfTI file.
+- `[Step T2][File][Save B0]=<filename>`: Save the B0 volume as a NIfTI file.
+- `[Step T2][File][Save DWI Sum]=<filename>`: Save the sum of all DWI volumes.
 
 #### Corrections
 
-  - `[Step T2][Corrections][TOPUP]`: Apply TOPUP correction.
-  - `[Step T2][Corrections][TOPUP EDDY]=<reverse_phase_file>`: Apply TOPUP and EDDY corrections.
-  - `[Step T2][Corrections][EDDY]`: Apply EDDY correction.
-  - `[Step T2][Corrections][Motion Correction]`: Perform motion correction.
-  - `[Step T2][Corrections][Bias Field]`: Correct the DWI bias field.
-  - `[Step T2][Corrections][By T2w]=<T2_file>`: Correct distortions using a T2-weighted image.
-  - `[Step T2][Corrections][Volume Orientation Correction]`: Adjust volume orientation.
+- `[Step T2][Corrections][TOPUP]`: Apply TOPUP correction.
+- `[Step T2][Corrections][TOPUP EDDY]=<reverse_phase_file>`: Apply TOPUP and EDDY corrections.
+- `[Step T2][Corrections][EDDY]`: Apply EDDY correction.
+- `[Step T2][Corrections][Motion Correction]`: Perform motion correction.
+- `[Step T2][Corrections][Bias Field]`: Correct the DWI bias field.
+- `[Step T2][Corrections][By T2w]=<T2_file>`: Correct distortions using a T2-weighted image.
+- `[Step T2][Corrections][Volume Orientation Correction]`: Adjust volume orientation.
 
 #### Editing
 
-  - `[Step T2][Edit][Resample]=<resolution>`: Resample the image to isotropic resolution.
-  - `[Step T2][Edit][Align ACPC]=<resolution>`: Align the volume to AC–PC.
-  - `[Step T2][Edit][Image flip x]`: Flip the image along the X-axis.
-  - `[Step T2][Edit][Image flip y]`: Flip the image along the Y-axis.
-  - `[Step T2][Edit][Image flip z]`: Flip the image along the Z-axis.
+- `[Step T2][Edit][Resample]=<resolution>`: Resample the image to isotropic resolution.
+- `[Step T2][Edit][Align ACPC]=<resolution>`: Align the volume to AC–PC.
+- `[Step T2][Edit][Image flip x]`: Flip the image along the X-axis.
+- `[Step T2][Edit][Image flip y]`: Flip the image along the Y-axis.
+- `[Step T2][Edit][Image flip z]`: Flip the image along the Z-axis.
 
 #### B-table Operations
 
-  - `[Step T2][B-table][Check B-table]`: Check and correct the b-table.
-  - `[Step T2][B-table][flip bx]`: Flip the X-gradient in the b-table.
-  - `[Step T2][B-table][flip by]`: Flip the Y-gradient in the b-table.
-  - `[Step T2][B-table][flip bz]`: Flip the Z-gradient in the b-table.
-  - `[Step T2][B-table][swap bxby]`: Swap X and Y gradients in the b-table.
-  - `[Step T2][B-table][swap bybz]`: Swap Y and Z gradients in the b-table.
-  - `[Step T2][B-table][swap bxbz]`: Swap X and Z gradients in the b-table.
+- `[Step T2][B-table][Check B-table]`: Check and correct the b-table.
+- `[Step T2][B-table][flip bx]`: Flip the X-gradient in the b-table.
+- `[Step T2][B-table][flip by]`: Flip the Y-gradient in the b-table.
+- `[Step T2][B-table][flip bz]`: Flip the Z-gradient in the b-table.
+- `[Step T2][B-table][swap bxby]`: Swap X and Y gradients in the b-table.
+- `[Step T2][B-table][swap bybz]`: Swap Y and Z gradients in the b-table.
+- `[Step T2][B-table][swap bxbz]`: Swap X and Z gradients in the b-table.
