@@ -1,80 +1,94 @@
 # Registration
 
-> Use `--action=reg` to apply linear and nonlinear registration. This command provides the same core functions used by the R1 linear and R2 nonlinear registration tools.
-
----
+Use `--action=reg` for linear/nonlinear registration, saving reusable mapping fields, and applying those mappings to images or tractography.
 
 ## Examples
 
-**1. Apply linear and nonlinear registration to warp the subject's QA and ISO maps to template QA and ISO maps (dual modality warping):**
+### Register a subject to a template
+
+Use two modalities for registration and save the mapping field:
+
 ```bash
-dsi_studio --action=reg --source=subject_qa.nii.gz,subject_iso.nii.gz --to=template_qa.nii.gz,template_iso.nii.gz --output_mapping=mapping_field.mz
+dsi_studio --action=reg \
+  --source=subject_qa.nii.gz,subject_iso.nii.gz \
+  --to=template_qa.nii.gz,template_iso.nii.gz \
+  --output_mapping=mapping_field.mz
 ```
 
-**2. Warp the subject image to the template space using a previously computed mapping field:**
+### Apply a saved mapping
+
+Warp a subject-space image to template space:
+
 ```bash
-dsi_studio --action=reg --source=subject_qa.nii.gz --mapping=mapping_field.mz
+dsi_studio --action=reg \
+  --source=subject_qa.nii.gz \
+  --mapping=mapping_field.mz
 ```
 
-**3. Unwarp the template image to the subject space using a previously computed mapping field:**
+Unwarp a template-space image to subject space:
+
 ```bash
-dsi_studio --action=reg --to=template_qa.nii.gz --mapping=mapping_field.mz
+dsi_studio --action=reg \
+  --to=template_qa.nii.gz \
+  --mapping=mapping_field.mz
 ```
 
-**4. Warp all matching NIfTI images from the subject/source space to the template/target space:**
+Apply a saved mapping to multiple subject-space files:
+
 ```bash
-dsi_studio --action=reg --source=*.nii.gz --mapping=mapping_field.mz
+dsi_studio --action=reg \
+  --source=*.nii.gz \
+  --mapping=mapping_field.mz
 ```
 
-**5. Transform specific files from subject-to-template space (requires `--source` and `--to` to define the mapping):**
+### Register and transform additional files
+
+Transform additional files from subject to template space:
+
 ```bash
-dsi_studio --action=reg --source=subject_qa.nii.gz --to=template_qa.nii.gz --s2t=additional_image1.nii.gz,additional_image2.nii.gz
+dsi_studio --action=reg \
+  --source=subject_qa.nii.gz \
+  --to=template_qa.nii.gz \
+  --s2t=additional_image1.nii.gz,additional_image2.nii.gz
 ```
 
-**6. Transform specific files from template-to-subject space (requires `--source` and `--to` to define the mapping):**
+Transform additional files from template to subject space:
+
 ```bash
-dsi_studio --action=reg --source=subject_qa.nii.gz --to=template_qa.nii.gz --t2s=additional_image1.nii.gz,additional_image2.nii.gz
+dsi_studio --action=reg \
+  --source=subject_qa.nii.gz \
+  --to=template_qa.nii.gz \
+  --t2s=additional_image1.nii.gz,additional_image2.nii.gz
 ```
 
----
+## Registration Parameters
 
-## Registration Functions
+| Parameter | Description |
+|:--|:--|
+| `--source` | Subject/source image or images. Multiple modalities can be comma-separated. With `--mapping`, source files are transformed source-to-target. |
+| `--to` | Template/target image or images. Multiple modalities can be comma-separated. With `--mapping`, target files are transformed target-to-source. |
+| `--output_mapping` | Save the computed mapping field. Mapping files use `.mz` unless a supported mapping-image output is explicitly requested. |
+| `--mapping` | Reuse a previously computed mapping field. |
+| `--s2t` | Additional comma-separated files to transform from subject to template space while computing the registration. |
+| `--t2s` | Additional comma-separated files to transform from template to subject space while computing the registration. |
+| `--output` | Optional output directory for transformed files. |
 
-The function warps the subject/source image to the template/target image.
-
-| **Parameter**       | **Description**                                                                 |
-|----------------------|---------------------------------------------------------------------------------|
-| `source`            | Specify the NIfTI file(s) of the subject/source image. Multiple modalities can be specified, separated by commas. With `--mapping`, these files are warped source-to-target. |
-| `to`                | Specify the NIfTI file(s) of the template/target image. Multiple modalities can be specified, separated by commas. With `--mapping`, these files are unwarped target-to-source. |
-| `output_mapping`    | (Optional) Specify the file to store the mapping field (e.g., `--output_mapping=mapping.mz`). |
-| `mapping`           | Specify a previously computed mapping file to apply to `--source` or `--to`. Multiple NIfTI or tractography files (e.g., `.nii.gz`, `.tt.gz`) can be separated by commas. |
-| `s2t`               | Additional files to transform from subject-to-template space. Accepts multiple files separated by commas. Requires `--source` and `--to` to define the mapping. Results are stored in the template space. |
-| `t2s`               | Additional files to transform from template-to-subject space. Accepts multiple files separated by commas. Requires `--source` and `--to` to define the mapping. Results are stored in the subject space. |
-| `output`            | Optional output directory for warped/unwarped files. |
-
----
+Current registration mapping can be applied to NIFTI images, TT tractography, and compatible DSI Studio SRC/FIB files (`.sz`, `.src.gz`, `.fz`, `.fib.gz`) when their source space matches the mapping.
 
 ## Advanced Parameters
 
-| **Parameter**         | **Default** | **Description**                                                                 |
-|------------------------|-------------|---------------------------------------------------------------------------------|
-| `reg_type`            | `1` | Linear registration type: `0`=rigid body; `1`=affine. The affine workflow proceeds to nonlinear registration unless `--skip_nonlinear=1` is used. |
-| `cost_function`       | Depends on `reg_type` | Linear-registration cost: `mi` (mutual information) is the rigid-body default; `corr` (correlation) is the affine default. |
-| `match_vs`            | `1` | Match source and target resolution before registration. |
-| `resolution`          | Registration default | Relative resolution/downsampling used for nonlinear registration. |
-| `speed`               | Registration default | Nonlinear deformation speed. |
-| `smoothing`           | Registration default | Mapping-field smoothing for nonlinear registration. |
-| `min_dimension`       | Registration default | Minimum dimension used by nonlinear registration. |
-| `large_deform`        | `0` | Use larger linear-registration bounds when set to `1`. |
-| `skip_linear`         | `0` | Skip the linear-registration stage when set to `1`. |
-| `skip_nonlinear`      | `0` | Skip the nonlinear-registration stage when set to `1`. |
-| `overwrite`           | `0` | Overwrite existing output files when set to `1`. |
+| Parameter | Default | Description |
+|:--|:--|:--|
+| `--reg_type` | `1` | Linear registration: `0` = rigid body; `1` = affine. The affine workflow proceeds to nonlinear registration unless `--skip_nonlinear=1` is used. |
+| `--cost_function` | depends on `reg_type` | Linear-registration cost. Mutual information is used for the rigid-body default and correlation for the affine default. |
+| `--match_vs` | `1` | Match source and target resolution before registration. |
+| `--resolution` | registration default | Relative resolution/downsampling used for nonlinear registration. |
+| `--speed` | registration default | Nonlinear deformation speed. |
+| `--smoothing` | registration default | Mapping-field smoothing. |
+| `--min_dimension` | registration default | Minimum dimension used by nonlinear registration. |
+| `--large_deform` | `0` | Use larger linear-registration search bounds when set to `1`. |
+| `--skip_linear` | `0` | Skip linear registration. |
+| `--skip_nonlinear` | `0` | Skip nonlinear registration. |
+| `--overwrite` | `0` | Overwrite existing outputs when set to `1`. |
 
----
-
-## Notes from the Source Code
-- **Dual Modality Support**: The registration function supports multiple modalities for both `--source` and `--to` parameters, ensuring alignment across modalities.
-- **Mapping Files**: Mapping fields can be saved using the `--output_mapping` parameter and reused for warping/unwarping.
-- **`s2t` and `t2s` Parameters**: These accept multiple files separated by commas and rely on `--source` and `--to` for the mapping definition.
-- **Error Handling**: Errors are reported for unsupported file formats, mismatched dimensions, or invalid mapping files.
-- **Output Formats**: Results can be saved in `.nii.gz` for images or `.tt.gz` for tractography.
+Label images are resampled using label-preserving interpolation, while scalar images use continuous interpolation. Always confirm that the files being transformed belong to the source or target space expected by the mapping.
