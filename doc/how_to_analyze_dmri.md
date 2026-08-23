@@ -17,9 +17,9 @@ After reconstruction, choose the analysis that matches the scientific question.
 Use region-based analysis when the question concerns diffusion measurements within an anatomical region.
 
 1. Open the subject `.fz` file in **Step T3: Fiber Tracking**.
-2. [Load or define regions](/doc/gui_t3_roi_tracking.html#Load-Regions-From-Built-In-Atlases). Built-in atlases are usually the simplest choice for standardized regions.
+2. [Load or define regions](/doc/gui_t3_roi_tracking.html#load-regions-from-built-in-atlases). Built-in atlases are usually the simplest choice for standardized regions.
 3. If needed, use **[Slices][Insert Other Images]** to add registered measurements such as DKI, NODDI, PET, or other NIFTI data.
-4. Use **[Region][Statistics]** to obtain diffusion or other image measurements from the selected regions.
+4. Use **[Regions][Statistics]** to obtain diffusion or other image measurements from the selected regions.
 
 For population/template-space region analysis, [create a `.dz` connectometry database](/doc/gui_cx.html) from the subjects and open the database in Step T3. Regions used with a population database should be defined in the corresponding template space.
 
@@ -30,7 +30,7 @@ Tractometry quantifies diffusion or other measurements along white-matter pathwa
 1. Map the pathways using [automatic fiber tracking](/doc/gui_t3_atk.html) or [ROI-based fiber tracking](/doc/gui_t3_roi_tracking.html).
 2. Add other image measurements with **[Slices][Insert Other Images]** when needed.
 3. Use **[Tracts][Statistics]** for tract-level summary measurements.
-4. Use the [tract profile](/doc/gui_t3_atk.html#Tract-Profile) when the spatial distribution of a measurement along the pathway is important.
+4. Use the [tract profile](/doc/gui_t3_atk.html#tract-profile) when the spatial distribution of a measurement along the pathway is important.
 
 For population/template-space tractometry, a `.dz` database can be opened in Step T3 and analyzed with template-space pathways.
 
@@ -69,7 +69,7 @@ The tract-to-region (T2R) connectome quantifies which named white-matter pathway
 
 1. Map the pathways using [AutoTrack](/doc/gui_t3_atk.html).
 2. Load a brain parcellation from **[Step T3a][Atlas]**, such as HCP-MMP.
-3. Use **[Region][Tract-to-Region Connectome]** to generate the tract-by-region matrix.
+3. Use **[Regions][Tract-to-Region Connectome]** to generate the tract-by-region matrix.
 4. The parcellation can be colored by T2R values for visualization.
 
 Example study: [Yeh, Fang-Cheng. "Population-based tract-to-region connectome of the human brain and its hierarchical topology." Nature Communications 13, 4933 (2022).](https://www.nature.com/articles/s41467-022-32595-4)
