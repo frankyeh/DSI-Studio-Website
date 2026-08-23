@@ -1,45 +1,46 @@
 # Rename DICOM Files
 
-> Use `--action=ren` to rename and optionally convert DICOM files.
-
-The `ren` action allows users to rename DICOM files in a specified directory, search subdirectories, and optionally convert files to SRC and NIFTI formats.
-
----
+Use `--action=ren` to rename and organize DICOM files and, optionally, convert the resulting studies to DSI Studio source files and NIfTI.
 
 ## Examples
 
-**1. Rename DICOM files under the `raw_data` directory:**
+### Rename DICOM files under a directory
+
 ```bash
 dsi_studio --action=ren --source=d:/raw_data
 ```
 
-**2. Rename DICOM files under the `dicom` directory and create SRC and NIFTI files:**
+DSI Studio scans subdirectories, reads the DICOM metadata, and organizes files by patient, sequence, and image name.
+
+### Rename and convert to SRC/NIfTI
+
 ```bash
 dsi_studio --action=ren --source=d:/dicom --to_src_nii=1
 ```
 
-**3. For each directory, rename DICOM files using a batch script:**
+### Allow conversion outputs to be overwritten
+
 ```bash
+dsi_studio --action=ren --source=d:/dicom --to_src_nii=1 --overwrite=1
+```
+
+### Windows batch example
+
+```bat
 for /f "delims=" %%x in ('dir * /b') do (
-    call dsi_studio.exe --action=ren --source="D:\MRI\CA\%%x" > %%x.log.txt 
+    call dsi_studio.exe --action=ren --source="D:\MRI\CA\%%x" > %%x.log.txt
 )
 ```
 
----
+## Options
 
-## Core Functions
+| Parameter | Default | Description |
+|:--|:--|:--|
+| `--source` | required | Directory containing the DICOM files. Subdirectories are scanned recursively. |
+| `--output` | same as `source` | Root directory for the renamed DICOM hierarchy. |
+| `--to_src_nii` | `0` | Set to `1` to convert the renamed DICOM studies to DSI Studio source (`.sz`) and NIfTI outputs. |
+| `--overwrite` | `0` | When conversion is enabled, set to `1` to allow existing conversion outputs to be overwritten. |
 
-| **Parameter**   | **Default** | **Description**                                                                 |
-|------------------|-------------|---------------------------------------------------------------------------------|
-| `source`        |             | Specify the path to the directory containing the DICOM files. Subdirectories will be scanned automatically. |
-| `output`        | Same as `source` | Specify the directory to output the renamed DICOM files. If not provided, the renamed files are saved in the same directory as the `source`. |
-| `to_src_nii`    | `0`         | Specify whether to convert DICOM files to SRC and NIFTI formats. Set to `1` to enable conversion. |
+## Important
 
----
-
-## Notes from the Source Code
-- **Subdirectory Scanning**: The tool automatically scans subdirectories in the provided `--source` path.
-- **Conversion**: When `--to_src_nii=1` is specified, the renamed DICOM files are converted to SRC and NIFTI formats using the `dicom2src_and_nii` function.
-- **Default Behavior**: If the `--output` parameter is not specified, renamed files are saved in the same directory as the `--source`.
-
-This documentation provides detailed guidance on using the `ren` action for renaming and converting DICOM files. Let me know if further refinements are needed!
+This action **renames and moves DICOM files**. Keep a backup of the original data or test the workflow on a small copy before applying it to a large archive.
