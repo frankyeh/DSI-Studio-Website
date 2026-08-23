@@ -14,7 +14,7 @@ Multiple SRC files can be reconstructed as a batch. Processing steps configured 
 
 ## Visual quality inspection
 
-Before reconstruction, inspect the **Source Images** and b-table for obvious problems.
+Before reconstruction, inspect the raw DWI/source-image view and b-table for obvious problems.
 
 ### Motion and distortion
 
@@ -22,7 +22,7 @@ Use the b-table/image list to move through the diffusion volumes and look for mo
 
 ### Bad slices
 
-Use **Show bad slices** to highlight detected problematic slices. Sagittal and coronal views can make slice artifacts easier to identify.
+Use **Show bad slice** to highlight detected problematic slices. Sagittal and coronal views can make slice artifacts easier to identify.
 
 ![Bad Slices](https://user-images.githubusercontent.com/275569/147804666-b75d4167-ce90-4722-816e-a3106046f6f0.png)
 
