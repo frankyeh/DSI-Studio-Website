@@ -41,7 +41,9 @@ dsi_studio --action=cnt \
 | `--variable_list` | Comma-separated **zero-based column indices** included in the regression model, for example `0,1,2`. |
 | `--voi` | **Zero-based index** of the variable of interest within the demographic variables. For longitudinal analysis, use `--voi=longitudinal`. |
 
-DSI Studio prints the available index names and demographic-variable indices when the analysis starts. Check these before launching a batch analysis.
+DSI Studio prints the available index names and demographic-variable indices when the analysis starts. Check **all available demographic columns** before launching a batch analysis rather than assuming a fixed column layout.
+
+For a derived or longitudinal database, do not assume demographics from the source database were embedded or carried forward. Verify the available variables again and supply `--demo=<file>` when the required study variable or covariates are missing.
 
 ## Analysis Parameters
 
@@ -68,4 +70,4 @@ DSI Studio prints the available index names and demographic-variable indices whe
 
 If no seed is provided, DSI Studio uses whole-brain seeding. Region constraints change the tested anatomical hypothesis and should be chosen before interpreting the result.
 
-For the GUI workflow, database creation, demographic loading, and interpretation of FDR, see [Correlational Tractography / Connectometry](/doc/gui_cx.html).
+For the GUI workflow, database creation, demographic loading, longitudinal-database handling, and interpretation of FDR, see [Correlational Tractography / Connectometry](/doc/gui_cx.html).
