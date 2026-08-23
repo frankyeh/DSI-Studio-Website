@@ -34,7 +34,7 @@ See the [download page](download.html) for the current Sun release and setup req
 
 The **Fiber Data Hub** extends DSI Studio from a software tool to a software-and-data platform. It provides direct access to compact processed diffusion MRI derivatives that can be downloaded and analyzed without repeating the full preprocessing pipeline from raw DWI.
 
-The Hub currently hosts **more than 50,000 processed fiber datasets** from major neuroimaging resources including **HCP**, **ABCD**, **OpenNeuro**, **INDI**, **TCIA**, and other public datasets. These derivatives are distributed in compact formats such as **.fz**, **.sz**, and **.dz**, which are typically **50–100× smaller** than raw diffusion MRI while preserving the information needed for tractography and connectomics. For example, a diffusion MRI dataset that may require roughly **500 MB** in raw form can often be represented as a **5–10 MB** fiber dataset for downstream analysis.
+The Hub currently hosts **more than 50,000 processed fiber datasets** from major neuroimaging resources including **HCP**, **ABCD**, **OpenNeuro**, **INDI**, **TCIA**, and other public datasets. DSI Studio uses compact formats such as **.fz** and **.sz** for processed diffusion data, while **.dz** supports population databases. These formats substantially reduce storage and transfer requirements for many downstream workflows compared with repeatedly distributing the corresponding raw diffusion MRI data.
 
 This allows users to:
 
