@@ -100,7 +100,7 @@ Use **[Step T3a][Atlas]** to load the desired parcellation, such as HCP-MMP or a
 
 ### 3. Create the matrix
 
-Use **[Region][Tract-to-Region Connectome]** to calculate the tract-by-region matrix.
+Use **[Regions][Tract-to-Region Connectome]** to calculate the tract-by-region matrix.
 
 Keep the tract set and parcellation identical across subjects when comparing T2R matrices.
 
