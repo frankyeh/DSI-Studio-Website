@@ -21,7 +21,7 @@ Use region-based analysis when the question concerns diffusion measurements with
 3. If needed, use **[Slices][Insert Other Images]** to add registered measurements such as DKI, NODDI, PET, or other NIFTI data.
 4. Use **[Regions][Statistics]** to obtain diffusion or other image measurements from the selected regions.
 
-For population/template-space region analysis, [create a `.dz` connectometry database](/doc/gui_cx.html) from the subjects and open the database in Step T3. Regions used with a population database should be defined in the corresponding template space.
+For population/template-space region analysis, [create a `.dz` connectometry database](/doc/gui_cx.html) from QSDR FIB files reconstructed into the same template space and resolution, then open the database in Step T3. Regions used with a population database should be defined in the corresponding template space.
 
 ## Tractometry
 
@@ -55,8 +55,8 @@ Correlational tractography maps pathway segments whose diffusion measurements ar
 
 The current workflow is:
 
-1. [Create a connectometry database (`.dz`)](/doc/gui_cx.html) from the subject FIB files.
-2. Load demographics and select covariates, the study variable, and diffusion index.
+1. Reconstruct the cohort with QSDR using the same template space and resolution, then [create a connectometry database (`.dz`)](/doc/gui_cx.html) from those FIB files.
+2. Load and verify demographics, then select covariates, the study variable, and diffusion index.
 3. Run group connectometry and review the tract findings and FDR.
 
 A current `.dz` database can store multiple diffusion indices, so separate database files are generally not required for QA, FA, RDI, and other available metrics.
