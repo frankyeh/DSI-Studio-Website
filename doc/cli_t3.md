@@ -32,7 +32,9 @@ Do not add a Seed region unless the tracking start locations intentionally need 
 | `--action` | required | Must be `trk`. |
 | `--source` | required | Input `.fz` file (legacy `.fib.gz` is also supported). |
 | `--output` | generated name | Output tractography file, normally `.tt.gz`. |
-| `--tip_iteration` | workflow dependent | Topology-informed pruning iterations. Normal whole-brain tracking does not require TIP; atlas/differential workflows may apply it. |
+| `--tip_iteration` | workflow dependent | Topology-informed pruning iterations. Ordinary whole-brain tracking does not require TIP. For differential tractography, the current recommended review workflow explicitly uses `0` for the initial run and applies pruning incrementally after inspecting the result. |
+
+The executable may choose a nonzero TIP default for special workflows when `--tip_iteration` is omitted. Specify the value explicitly when reproducibility or an inspect-before-pruning workflow matters.
 
 ## Tracking parameters
 
@@ -124,9 +126,9 @@ The differential **Type 1–4** terminology describes study design and analysis 
 
 | Option | Description |
 |:--|:--|
-| `--dt_metric1` | First differential metric (`m1`). |
-| `--dt_metric2` | Second differential metric (`m2`). Both metric options are required together. |
+| `--dt_metric1` | First differential metric (`m1`). Use the exact metric/custom-slice name available in the tracking data. |
+| `--dt_metric2` | Second differential metric (`m2`). Both metric options are required together; do not guess a custom-slice name from an abbreviation. |
 | `--dt_threshold` | Required difference threshold; `0.2` represents a 20% change when using a fractional threshold type such as type `0`. |
 | `--dt_threshold_type` | Differential formula: `0=(m1-m2)/m1`, `1=(m1-m2)/m2`, `2=m1-m2`, `3=(m2-m1)/m1`, `4=(m2-m1)/m2`, `5=m2-m1`, `6=m1/max(m1)`, `7=m2/max(m2)`. |
 
-For study-design guidance, see [Differential Tractography](/doc/gui_t3_dt.html).
+For study-design, reference-map, registration, and differential-pruning guidance, see [Differential Tractography](/doc/gui_t3_dt.html).
