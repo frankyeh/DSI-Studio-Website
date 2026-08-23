@@ -120,11 +120,13 @@ For atlas-based **tract-to-region** workflows using named tracts, use [Automatic
 
 ## Differential tracking
 
+The differential **Type 1–4** terminology describes study design and analysis space. It is separate from the numeric `--dt_threshold_type` formula index below.
+
 | Option | Description |
 |:--|:--|
-| `--dt_metric1` | First differential metric. |
-| `--dt_metric2` | Second differential metric. Both metric options are required together. |
-| `--dt_threshold` | Required difference threshold; `0.2` represents a 20% change when using the default fractional threshold type. |
-| `--dt_threshold_type` | `0=(m1-m2)/m1`, `1=(m1-m2)/m2`, `2=abs(m1-m2)`. |
+| `--dt_metric1` | First differential metric (`m1`). |
+| `--dt_metric2` | Second differential metric (`m2`). Both metric options are required together. |
+| `--dt_threshold` | Required difference threshold; `0.2` represents a 20% change when using a fractional threshold type such as type `0`. |
+| `--dt_threshold_type` | Differential formula: `0=(m1-m2)/m1`, `1=(m1-m2)/m2`, `2=m1-m2`, `3=(m2-m1)/m1`, `4=(m2-m1)/m2`, `5=m2-m1`, `6=m1/max(m1)`, `7=m2/max(m2)`. |
 
 For study-design guidance, see [Differential Tractography](/doc/gui_t3_dt.html).
