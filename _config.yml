@@ -1,7 +1,6 @@
 theme: jekyll-theme-minimal
 title: DSI Studio Documentation
 description: Documentation and Tutorials for DSI Studio
-google_analytics: UA-532890-5
 defaults:
   - scope:
       path: "doc"
