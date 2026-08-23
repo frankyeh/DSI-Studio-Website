@@ -14,217 +14,190 @@ Differential tractography can be applied to DTI, multi-shell, and DSI acquisitio
 
 | Type | Design | Tracking space | Typical use |
 |---|---|---|---|
-| **1** | Longitudinal | Native subject space | Repeat scans with good native-space tractography and little deformation between scans |
-| **2** | Longitudinal | Template space | Repeat scans when native-space tractography/alignment is difficult |
-| **3** | Cross-sectional | Native patient space | Compare an individual patient with an age/sex or otherwise matched reference population |
-| **4** | Cross-sectional | Template space | Case-control/reference comparison performed in template space |
+| **1** | Longitudinal | Native subject space | Baseline versus follow-up in the subject's native diffusion space |
+| **2** | Longitudinal | Template space | Baseline versus follow-up after QSDR/template normalization |
+| **3** | Cross-sectional | Native patient space | An individual patient compared with a population-average control reference |
+| **4** | Cross-sectional | Template space | Cross-sectional comparison performed in a common QSDR/template space |
 
 The **Type 1–4 number describes the study design and analysis space**. It is separate from the numeric `dt_threshold_type`, which selects the mathematical formula used to compare Metric 1 (`m1`) and Metric 2 (`m2`).
 
-Current files use `.sz` for SRC, `.fz` for FIB, and `.dz` for connectometry databases. Legacy `.src.gz`, `.fib.gz`, `.db.fz`, and `.db.fib.gz` files remain readable in compatible workflows.
-
-> **For Type 3 and Type 4 reference databases, use the Sun version to create `.dz` files.** Hou versions have a known issue when creating `.dz` databases.
+Current files use `.sz` for SRC and `.fz` for FIB. A `.dz` connectometry database is useful for cohort-level correlational tractography, but it is no longer the preferred default reference for Type 3 differential tractography.
 
 # Type 1: Longitudinal change in native space
 
-Use this design for repeated scans of the same subject when both scans can be compared directly in native diffusion space.
+Use this design for repeated scans of the same subject when the comparison should remain in native diffusion space.
 
 ## 1. Reconstruct baseline and follow-up FIB files
 
+Use GQI for both scans with consistent reconstruction settings:
+
 ```bash
-dsi_studio --action=rec --source=*_ses-01_dwi.sz --method=4 --param=1.25 --output=*_ses-01_dwi.fz
-dsi_studio --action=rec --source=*_ses-02_dwi.sz --method=4 --param=1.25 --output=*_ses-02_dwi.fz
+dsi_studio --action=rec --source=subject_baseline.sz --method=4 --param=1.25 --output=subject_baseline.fz
+dsi_studio --action=rec --source=subject_followup.sz --method=4 --param=1.25 --output=subject_followup.fz
 ```
 
-In the GUI, create/QC the `.sz` files and reconstruct the scans using the same GQI settings.
+## 2. Export only the follow-up metric
 
-## 2. Export the follow-up metric
+The opened baseline FIB already contains its own metric, so do not export the baseline metric and insert it again.
 
 For FA:
 
 ```bash
-dsi_studio --action=exp --source=*_ses-02_dwi.fz --export=dti_fa
+dsi_studio --action=exp --source=subject_followup.fz --export=dti_fa
 ```
 
-The same approach can be used for QA or another metric appropriate for the acquisition and hypothesis.
+This produces a file such as `subject_followup.fz.dti_fa.nii.gz`.
 
 ## 3. Check whole-brain tracking first
 
-Before differential tracking, open a representative baseline `.fz` in **Step T3: Fiber Tracking** and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
+Open the baseline `.fz` in **Step T3: Fiber Tracking** and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
 
-## 4. Run differential tracking
+## 4. Add the follow-up metric and wait for registration
 
-Example using FA:
+Insert the exported follow-up map using **[Slices][Insert Other Images]**. DSI Studio may run rigid-body registration even when the scans have the same matrix size and voxel size. Wait until registration is complete before selecting the differential metrics.
+
+Metric names used by differential tracking are the names shown by the current tracking window, not arbitrary abbreviations. For a NIfTI custom slice, the name is derived from the file stem. Verify the displayed names before a batch run.
+
+## 5. Run differential tracking
+
+For a baseline-normalized decrease, use baseline `dti_fa` as `m1`, the follow-up custom slice as `m2`, and formula type `0`, `(m1-m2)/m1`.
+
+Example:
 
 ```bash
 dsi_studio --action=trk \
   --source=subject_baseline.fz \
   --other_slices=subject_followup.fz.dti_fa.nii.gz \
   --dt_metric1=dti_fa \
-  --dt_metric2=dti_fa \
+  --dt_metric2=subject_followup \
+  --dt_threshold_type=0 \
   --dt_threshold=0.2 \
   --seed_count=1000000 \
   --min_length=30 \
-  --tip_iteration=16 \
+  --tip_iteration=0 \
   --output=subject.diff.tt.gz
 ```
 
-In the GUI, open the baseline FIB, use **[Slices][Insert Other Images]** to add the follow-up metric, and wait until its registration is complete before configuring differential tracking. Then select the baseline and follow-up metrics under **Differential Tracking**, set the change threshold, and run fiber tracking.
+With `dt_threshold=0.2`, this example maps locations satisfying a baseline-normalized decrease greater than 20%.
 
 # Type 2: Longitudinal change in template space
 
 Use this design when repeated scans should be compared in a common template space.
 
-## 1. Reconstruct the scans with QSDR
+## 1. Reconstruct both scans with QSDR
 
 ```bash
-dsi_studio --action=rec --source=*.sz --method=7 --output=*.fz
+dsi_studio --action=rec --source=subject_baseline.sz --method=7 --output=subject_baseline.fz
+dsi_studio --action=rec --source=subject_followup.sz --method=7 --output=subject_followup.fz
 ```
 
-## 2. Export the metric from each scan
+## 2. Export the metric from both scans
 
 ```bash
-dsi_studio --action=exp --source=*.fz --export=dti_fa
+dsi_studio --action=exp --source=subject_baseline.fz --export=dti_fa
+dsi_studio --action=exp --source=subject_followup.fz --export=dti_fa
 ```
 
 ## 3. Run differential tracking in the template
 
-For the default human template example:
-
 ```bash
 dsi_studio --action=trk \
   --source=0 \
   --template=0 \
-  --other_slices=subject_baseline.dti_fa.nii.gz,subject_followup.dti_fa.nii.gz \
+  --other_slices=subject_baseline.fz.dti_fa.nii.gz,subject_followup.fz.dti_fa.nii.gz \
   --dt_metric1=subject_baseline \
   --dt_metric2=subject_followup \
+  --dt_threshold_type=0 \
   --dt_threshold=0.2 \
   --seed_count=1000000 \
   --min_length=30 \
-  --tip_iteration=16 \
+  --tip_iteration=0 \
   --output=subject.template.diff.tt.gz
 ```
 
-Use the template appropriate for the species/study. The available template list is provided by the current DSI Studio version; do not rely on an old hard-coded template list when building a new pipeline. Inspect the alignment of both scalar maps in template space because nonlinear-registration errors can mimic local biological change.
+Use the template appropriate for the species/study. Inspect the alignment of both scalar maps in template space because QSDR/nonlinear-registration errors can create local metric differences that resemble biological change, especially near tissue boundaries, ventricles, lesions, or atrophy.
 
-# Type 3: Cross-sectional change in native patient space
+# Type 3: Cross-sectional comparison in native patient space
 
-Use this design when each patient's native-space metric is compared with a matched reference population.
+Type 3 compares an individual patient's native-space metric with a control reference while keeping tractography in the patient's native diffusion space.
 
-## 1. Reconstruct patient and control FIB files
+The current preferred reference is a **direct population-average scalar map** rather than an age/sex-matched `.dz` model. Age/sex matching alone can introduce model assumptions without necessarily providing a better estimate of the expected control value.
 
-Patients can be reconstructed in native space with GQI. Reference controls should be processed consistently and reconstructed with QSDR into the same template space and resolution before constructing the population reference database.
+## 1. Reconstruct the patient and controls
+
+- Reconstruct the patient with GQI for native-space tractography.
+- Reconstruct all controls with QSDR using the same template space and resolution.
+
+## 2. Export and average the control metric
+
+Export the same scalar metric from every QSDR control FIB. Because the control maps are already in the same QSDR/MNI space, they can be averaged voxelwise.
+
+For example, after exporting control FA maps:
 
 ```bash
-dsi_studio --action=rec --source=*.patients.sz --method=4 --param=1.25 --output=*.patients.fz
-dsi_studio --action=rec --source=*.controls.sz --method=7 --output=*.controls.fz
+dsi_studio --action=tmp \
+  --source=control_*.fz.dti_fa.nii.gz \
+  --output=control_avg.mni.nii.gz
 ```
 
-## 2. Create the reference `.dz` database
+The source images must already be QSDR/MNI aligned. Do not average native-space control images voxelwise.
 
-For a differential analysis using FA, creating a database restricted to `dti_fa` makes the reference metric explicit:
+## 3. Compare the native-space patient with the MNI control average
 
-```bash
-dsi_studio --action=db \
-  --source=*.controls.fz \
-  --index_name=dti_fa \
-  --demo=controls_age_sex.csv \
-  --output=control.dz
-```
+When the tracking FIB is GQI/native space, the control average is an MNI-space reference and must be mapped into the patient diffusion space. In the GUI, load it as an **MNI-space slice** and verify the mapped alignment before differential tracking.
 
-The demographic file stored in the reference database defines the variables used to generate a subject-matched reference value.
-
-The general database workflow is documented in [Correlational Tractography / Connectometry](/doc/gui_cx.html).
-
-## 3. Run patient-versus-reference differential tracking
-
-For batch processing, `--subject_demo` supplies the patient's demographic values used to create the matched reference image from the `.dz` database.
-
-Example subject demographics file:
-
-```text
-SUB01,36,1
-SUB02,42,0
-```
-
-The numeric values after the subject ID must match the demographic variables stored in the reference database, in the same order.
+For command-line tracking, including `.mni.` in the control-average filename marks it as an MNI-space image so DSI Studio maps it to the native patient space:
 
 ```bash
 dsi_studio --action=trk \
   --source=SUB01.patient.fz \
-  --other_slices=control.dz \
-  --subject_demo=patient_age_sex.csv \
-  --dt_metric1=control \
+  --other_slices=control_avg.mni.nii.gz \
+  --dt_metric1=control_avg \
   --dt_metric2=dti_fa \
+  --dt_threshold_type=0 \
   --dt_threshold=0.2 \
   --seed_count=1000000 \
   --min_length=30 \
-  --tip_iteration=16 \
+  --tip_iteration=0 \
   --output=SUB01.cross_sectional.tt.gz
 ```
 
-In the GUI, open the patient's `.fz`, insert `control.dz` using **[Slices][Insert Other Images]**, enter the patient's demographic values when requested, select the control/reference metric as Metric 1 and the patient's metric as Metric 2, then run differential tracking.
+For a decrease analysis, the control reference is `m1` and the patient's metric is `m2`. Use the reverse/increase formula when the biological hypothesis concerns an increase.
 
-A decrease analysis assumes the reference metric is larger than the patient metric. Reverse the comparison or use the corresponding increase formula when the biological hypothesis concerns an increase.
+Reference controls should be acquired and processed as comparably as possible. Scanner, protocol, b-value, spatial resolution, and reconstruction differences can appear as patient/control differences.
 
-Reference databases from external datasets can be useful, but diffusion measurements are sensitive to acquisition and processing differences. A large apparent patient/reference difference can reflect scanner, protocol, b-value, spatial resolution, or reconstruction differences rather than pathology. Prefer a reference population acquired and processed as comparably as possible.
+# Type 4: Cross-sectional comparison in template space
 
-# Type 4: Cross-sectional change in template space
+Type 4 performs the comparison in a common QSDR/template space. The subject/group metric and the control reference must use the same template space and resolution, and their alignment should be inspected before interpretation.
 
-Use this design when the patient metric and reference population will be compared in a common template space.
+A QSDR/MNI population-average control map can be used directly in the corresponding template-space tracking framework. The exact Type 4 setup depends on whether the comparison is an individual, a group-derived map, or another template-space reference. Use the same differential formula rules described above and verify the runtime metric names before tracking.
 
-## 1. Reconstruct controls with QSDR
+# Choosing the differential formula and threshold
 
-```bash
-dsi_studio --action=rec --source=*.controls.sz --method=7 --output=*.controls.fz
+Current formula indices are:
+
+```text
+0  (m1-m2)/m1
+1  (m1-m2)/m2
+2  m1-m2
+3  (m2-m1)/m1
+4  (m2-m1)/m2
+5  m2-m1
+6  m1/max(m1)
+7  m2/max(m2)
 ```
 
-## 2. Export the patient metric in template space
+For a fractional change definition such as `(m1-m2)/m1`, values of `0.1`, `0.2`, and `0.3` correspond to 10%, 20%, and 30% decreases.
 
-Export the metric from a template-space patient FIB or otherwise prepare the patient's metric in the same template space.
+Normal scan-to-scan and individual variation can be substantial. Consider a scientifically justified threshold series rather than choosing one threshold because it produces visually appealing tracks. For example, 10%, 20%, 30%, and 40% can show whether the anatomical pattern persists as the required effect size increases.
 
-```bash
-dsi_studio --action=exp --source=patient.fz --export=dti_fa
-```
+# Tracking and pruning guidance
 
-## 3. Create the control `.dz` database
+Keep the relevant tracking parameters fixed when comparing subjects. Always check conventional tractography first; differential tracking cannot rescue poor acquisition, an incorrect b-table, failed reconstruction, or severe registration errors.
 
-```bash
-dsi_studio --action=db \
-  --source=*.controls.fz \
-  --index_name=dti_fa \
-  --demo=controls_age_sex.csv \
-  --output=control.dz
-```
+For the initial differential run, use **`tip_iteration=0`** or otherwise keep pruning very light so the unpruned differential result can be inspected. If topology-informed pruning is needed, apply it incrementally after tracking and inspect the bundle after each round. One or two rounds are often sufficient for review. Stop or undo pruning if valid differential trajectories are being removed.
 
-## 4. Run differential tracking in template space
-
-For one subject, demographic values may be supplied directly to `--subject_demo`; their order must match the variables embedded in the control database.
-
-```bash
-dsi_studio --action=trk \
-  --source=0 \
-  --template=0 \
-  --other_slices=patient.dti_fa.nii.gz,control.dz \
-  --subject_demo="36 1" \
-  --dt_metric1=control \
-  --dt_metric2=patient \
-  --dt_threshold=0.2 \
-  --seed_count=1000000 \
-  --min_length=30 \
-  --tip_iteration=16 \
-  --output=patient.template.cross_sectional.tt.gz
-```
-
-In the GUI, open the appropriate template in Step T3, insert the patient metric and the control `.dz`, enter the patient's demographics, then select the matched control metric as Metric 1 and the patient metric as Metric 2.
-
-# Choosing thresholds and tracking parameters
-
-The differential threshold describes the required difference between Metric 1 and Metric 2. For a fractional change definition such as `(m1-m2)/m1`, values of `0.1`, `0.2`, and `0.3` correspond to 10%, 20%, and 30% decreases.
-
-Normal scan-to-scan and individual variation can be substantial. Evaluate a scientifically justified range rather than choosing a threshold only because it produces visually appealing tracks. Larger thresholds and longer minimum track lengths are generally more specific but less sensitive.
-
-Before comparing subjects, keep the relevant tracking parameters fixed. Always check conventional tractography first; differential tracking cannot rescue poor diffusion acquisition, an incorrect b-table, failed reconstruction, or severe registration errors.
+A remaining tract count around 5,000–10,000 can be convenient for inspection and visualization, but it is not a biological or statistical cutoff.
 
 ## ROI and ROA constraints
 
@@ -247,12 +220,12 @@ Different metrics answer different biological questions. A multi-metric differen
 
 # False discovery rate for differential findings
 
-A control or sham comparison can be used to estimate how much differential tracking is produced in the absence of the biological effect of interest.
+A control or sham cohort can be used to estimate how much differential tracking is produced in the absence of the biological effect of interest. Complete the differential analysis for **all controls and all patients** before estimating cohort-level FDR.
 
-A simple group-level estimate used in differential tractography is:
+At each differential threshold, quantify the differential-tract volume for each subject and estimate:
 
 ```text
-FDR = average volume of findings in controls / average volume of findings in patients
+FDR = mean differential-tract volume in controls / mean differential-tract volume in patients
 ```
 
-Apply identical processing, thresholds, and tracking parameters to the patient and control/sham analyses. Report the FDR together with the differential threshold, minimum track length, metric, acquisition, and other tracking parameters used to generate the result.
+If a threshold series is reported, calculate this separately at each threshold. Apply identical processing, differential formulas, thresholds, tracking parameters, and pruning rules to controls and patients.
