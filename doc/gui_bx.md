@@ -37,7 +37,7 @@ Current reconstructed files use `.fz`.
 
 See [Step T2: Reconstruction](/doc/gui_t2.html) for reconstruction choices.
 
-For population/connectometry analysis, reconstruct the subject FIB files and then create a `.dz` database using [Correlational Tractography](/doc/gui_cx.html).
+For population/connectometry analysis, reconstruct the cohort with **QSDR using the same template space and resolution**, then create a `.dz` database using [Correlational Tractography](/doc/gui_cx.html).
 
 For longitudinal or cross-sectional differential analysis, follow the study-specific workflow in [Differential Tractography](/doc/gui_t3_dt.html).
 
