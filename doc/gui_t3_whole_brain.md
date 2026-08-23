@@ -4,6 +4,8 @@ Open an `.fz` file in **Step T3: Fiber Tracking** and click **[Step T3d: Tracts]
 
 Whole-brain tracking is the first quality check before ROI tracking, AutoTrack, differential tractography, or tract-based quantitative analysis. Major pathways should look anatomically plausible before more restrictive analyses are attempted.
 
+A streamline is a computational trajectory reconstructed from diffusion orientations, not an observed axon. Streamline/tract count should not be interpreted directly as axon count or biological connection strength.
+
 ![image](https://user-images.githubusercontent.com/275569/147802869-07d8b7e9-aea9-4fc3-8af5-29286787841f.png)
 
 ## Troubleshooting
@@ -66,7 +68,7 @@ Do not use a white-matter tract atlas as the node parcellation for a conventiona
 |:--|:--|
 | **Parcellation Atlas** | Defines the nodes of the region-to-region network. |
 | **End / Pass** | `end` assigns connections according to streamline endpoints; `pass` includes regions traversed by the streamline. |
-| **Connectivity Value** | Selects tract count or available tract/diffusion-derived measurements used as matrix entries. |
+| **Connectivity Value** | Selects tract count or available tract/diffusion-derived measurements used as matrix entries. Streamline count is a tractography-dependent measure, not a direct axon count or connection-strength measurement. |
 | **Threshold** | Filters weak matrix entries. Thresholding changes the resulting graph and should be reported. |
 
 Command-line example:
