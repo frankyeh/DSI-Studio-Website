@@ -1,124 +1,137 @@
+# Region and Tract Analysis
 
-# Region and Tract Functions
+Use `--action=ana` to analyze existing tractography or regions with a FIB file. It supports tract statistics, tract density imaging, ROI filtering, connectivity analysis, and region-based quantitative measurements.
 
-The `--action=ana` command is used for analyzing fiber tracts, calculating region-based statistics, or performing connectivity analysis within the [Step T3 Fiber Tracking] workflow.
+## Tract Analysis Examples
 
-## Examples of Tract Functions
-
-The `ana` action supports post-tracking operations including merging, filtering, and quantifying tracts. Key parameters include `connectivity`, `connectivity_type`, `other_slices`, and `export`.
-
-### Connectivity Analysis
-Calculate tract-to-region connectivity using built-in atlases or custom ROI files. 
-*Note: `connectivity_type` defaults to `pass` (tracts passing through the region). Use `end` to only count tracts ending within the region.*
+### Tract statistics
 
 ```bash
-# Connectivity using built-in atlases
-dsi_studio --action=ana --source=my.fz --tract=tract.tt.gz --connectivity=HCP-MMP,Brodmann
-
-# Combining atlases with a custom NIFTI ROI
-dsi_studio --action=ana --source=my.fz --tract=bundle.tt.gz --connectivity=HCP-MMP+subcortical.nii.gz
-
-# Using end-point connectivity logic
-dsi_studio --action=ana --source=my.fz --tract=*.tt.gz --connectivity=HCP-MMP --connectivity_type=end
+dsi_studio --action=ana \
+  --source=my.fz \
+  --tract=tract.tt.gz \
+  --export=stat
 ```
 
-### Merging and Filtering Tracks
-*Merge multiple tract files into one:*
+Load additional scalar maps, such as DKI or NODDI outputs, and include them in tract statistics:
+
 ```bash
-dsi_studio --action=ana --source=avg.mean.fz --tract=Tracts1.tt.gz,Tract2.tt.gz --output=merged_tracts.tt.gz
+dsi_studio --action=ana \
+  --source=my.fz \
+  --tract=tract.tt.gz \
+  --other_slices=DKI.nii.gz,ODI.nii.gz \
+  --export=stat
 ```
 
-*Filter tracts by regions and save the result:*
+### Merge tract files
+
 ```bash
-dsi_studio --action=ana --source=avg.mean.fz --tract=Tracts.tt.gz --roi=roi.nii.gz --output=filtered_track.tt.gz
+dsi_studio --action=ana \
+  --source=avg.mean.fz \
+  --tract=tract1.tt.gz,tract2.tt.gz \
+  --output=merged_tracts.tt.gz
 ```
 
-### Conversion and Statistics
-*Convert a tract file to a density map or ROI mask:*
+### Filter a tract by ROI
+
 ```bash
-# Save as NIFTI ROI (binary mask or probability map)
-dsi_studio --action=ana --source=avg.mean.fz --tract=Tracts1.tt.gz --output=ROI.nii.gz
-
-# Generate tract density imaging (TDI)
-dsi_studio --action=ana --source=avg.mean.fz --tract=Tracts1.tt.gz --export=tdi
+dsi_studio --action=ana \
+  --source=avg.mean.fz \
+  --tract=tracts.tt.gz \
+  --roi=roi.nii.gz \
+  --output=filtered_tract.tt.gz
 ```
 
-*Get tract statistics with additional metrics:*
-Use `--other_slices` to load external maps (like DKI or ODI) for sampling along the tracts.
+### Export tract density imaging
+
 ```bash
-# Standard statistics (FA, MD, etc.)
-dsi_studio --action=ana --source=my.fz --tract=tract.tt.gz --export=stat
-
-# Statistics including external DKI/ODI metrics
-dsi_studio --action=ana --source=my.fz --tract=tract.tt.gz --other_slices=DKI.nii.gz,ODI.nii.gz --export=stat
+dsi_studio --action=ana \
+  --source=avg.mean.fz \
+  --tract=tract.tt.gz \
+  --export=tdi
 ```
 
----
+### Convert tractography to a NIFTI region/density map
 
-## Examples of Region Functions
-
-Region analysis calculates quantitative metrics within specific volumes of interest. If the ROI file contains `.mni.` in the filename, DSI Studio automatically performs the necessary transformation from MNI space to the subject's native diffusion space.
-
-*Get statistics for native or MNI space ROIs:*
 ```bash
-dsi_studio --action=ana --source=my.fz --region=native_roi.nii.gz,mni_space.mni.nii.gz
+dsi_studio --action=ana \
+  --source=avg.mean.fz \
+  --tract=tract.tt.gz \
+  --output=tract_region.nii.gz
 ```
 
-*Get statistics for built-in atlas regions:*
+## Connectivity Analysis
+
+Calculate connectivity using built-in atlases or NIFTI parcellations:
+
 ```bash
-dsi_studio --action=ana --source=my.fz --region=HCP842_tractography:Cingulum_L,HCP842_tractography:Cingulum_R
+dsi_studio --action=ana \
+  --source=my.fz \
+  --tract=tract.tt.gz \
+  --connectivity=HCP-MMP,Brodmann
 ```
 
----
+Use endpoint-based connectivity instead of the default pass-through definition:
 
-## Examples of Export Functions
-
-To export volume-wide metrics from FIB files, use `--action=exp`.
-
-*Export diffusion metrics from FIB files:*
 ```bash
-dsi_studio --action=exp --source=subject.fz --export=qa,iso,dti_fa,rd,ad
+dsi_studio --action=ana \
+  --source=my.fz \
+  --tract=tract.tt.gz \
+  --connectivity=HCP-MMP \
+  --connectivity_type=end
 ```
-
-*Save a preprocessed SRC file as a 4D NIFTI file:*
-```bash
-dsi_studio --action=rec --source=test.sz --save_nii=test.nii.gz
-```
-
----
-
-## Parameter Definitions
-
-### Tract Parameters (`--action=ana`)
 
 | Parameter | Description |
-| :--- | :--- |
-| `tract` | Specifies input tract files (*.trk.gz, *.tt.gz). |
-| `output` | Specifies the output filename. Use `.tt.gz` for tracts or `.nii.gz` for ROI/density maps. |
-| `export` | Exports specific tract data (e.g., `stat`, `tdi`, `tdi_color`, `tdi_end`). |
-| `connectivity` | Lists atlases or NIFTI files for connectivity matrix calculation. |
-| `connectivity_type` | Defines connectivity logic: `pass` (default) or `end`. |
-| `other_slices` | Loads external NIFTI maps to be sampled for tract/region statistics. |
-| `ref` | Specifies a reference image to define the grid space for TDI or output ROIs. |
+|:--|:--|
+| `--tract` | Input tractography files (`.tt.gz` or `.trk.gz`). Multiple files can be comma-separated. |
+| `--output` | Output tractography or NIFTI filename, depending on the requested operation. |
+| `--export` | Tract output such as `stat`, `tdi`, `tdi_color`, or `tdi_end`. |
+| `--connectivity` | Comma-separated built-in atlas names or NIFTI parcellations used for connectivity calculation. |
+| `--connectivity_type` | `pass` (default) or `end`. |
+| `--other_slices` | Additional NIFTI maps sampled for tract/region statistics. |
+| `--ref` | Reference image defining the output grid for TDI or NIFTI output. |
 
-### Region Parameters (`--action=ana`)
+## Region Analysis
 
-| Parameter | Description |
-| :--- | :--- |
-| `region` | Specifies NIFTI files or atlas-labeled regions for statistical analysis. |
-| `atlas` | Specifies a built-in atlas to be used for region analysis. |
+Analyze one or more native-space regions:
 
-examples of --region usages
+```bash
+dsi_studio --action=ana \
+  --source=my.fz \
+  --region=roi1.nii.gz,roi2.nii.gz
+```
 
+Analyze regions from a labeled NIFTI file or built-in atlas:
+
+```bash
+dsi_studio --action=ana --source=my.fz --region=labels.nii.gz:Hippocampus
+
+dsi_studio --action=ana --source=my.fz --region=AAL2:Hippocampus_L
+```
+
+Common `--region` forms include:
+
+```text
 --region=mask.nii.gz
 --region=labels.nii.gz
 --region=labels.nii.gz:Hippocampus
 --region=AAL2:Hippocampus_L
 --region=roi1.nii.gz,roi2.nii.gz
+```
 
----
+| Parameter | Description |
+|:--|:--|
+| `--region` | NIFTI region files or atlas-qualified region names used for quantitative statistics. |
+| `--atlas` | Built-in atlas selection for region analysis when required by the workflow. |
 
-## Technical Notes
-- **Metric Sampling**: The `get_tract_statistics` function extracts diffusion metrics (FA, ADC, etc.) specifically along the coordinates of the fibers.
-- **ROI Labels**: When loading NIFTI ROIs, DSI Studio checks for a corresponding `.txt` file in the same directory to assign region names to the indices.
-- **Automated Alignment**: The system uses the `mni` keyword in filenames as a trigger to apply MNI-to-native coordinate transformations.
+If a NIFTI region filename contains `mni`, DSI Studio treats it as an MNI-space image and maps it to native diffusion space when the required transformation is available. A labeled NIFTI can use a matching `.txt` or `.json` label file; FreeSurfer `aparc`/`aseg` files use the built-in FreeSurfer lookup table.
+
+When a native-space region has a different image geometry from the FIB file, use `--other_slices` to load its anatomical reference so DSI Studio can apply the corresponding registration.
+
+## Exporting Whole-Volume Metrics
+
+Whole-volume diffusion metrics are exported with [`--action=exp`](/doc/cli_exp.html), for example:
+
+```bash
+dsi_studio --action=exp --source=subject.fz --export=qa,iso,dti_fa,rd,ad
+```
