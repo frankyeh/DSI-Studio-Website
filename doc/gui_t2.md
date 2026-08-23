@@ -2,159 +2,104 @@
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=215" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
----
-
-The reconstruction step processes an SRC file from Step T1 to generate the FIB file, which can be used for advanced analyses like tractography or connectometry.
-
----
+Reconstruction processes an SRC file (`.sz`; legacy `.src.gz`) and creates an FIB file (`.fz`) for tractography, diffusion measurements, connectome analysis, and other downstream workflows.
 
 ## Step T2: Open SRC File(s)
 
-Click on the [**Step T2 Reconstruction**] button in the main project window to select one or multiple SRC files.
-
-DSI Studio will present a reconstruction window as shown below:
+Click **[Step T2 Reconstruction]** in the main window and select one or more SRC files.
 
 ![Reconstruction Window](https://user-images.githubusercontent.com/275569/147804658-3d2b3442-c0dd-4383-91cf-3718670b1413.png)
 
-*Tip: You can batch-reconstruct multiple SRC files. Any preprocessing (e.g., flipping images or aligning to MNI space) applies uniformly to all selected files.*
+Multiple SRC files can be reconstructed as a batch. Processing steps configured on the first file can be applied to the remaining selected files.
 
----
+## Visual quality inspection
 
-## Visual Quality Inspection (Optional)
+Before reconstruction, inspect the **Source Images** and b-table for obvious problems.
 
-Switch to the [**Source Images**] tab and visually inspect the data for the following issues:
+### Motion and distortion
 
-### 1. Eddy Current Distortion and Motion
-- Use the keyboard's arrow keys to scroll through the b-table list to check for distortions or motion artifacts.
+Use the b-table/image list to move through the diffusion volumes and look for motion, distortion, signal dropout, or inconsistent slices.
 
-### 2. Bad Slices
-- Click on the [**Show bad slices**] button to highlight bad slices in red. Use sagittal view for better visibility.
+### Bad slices
+
+Use **Show bad slices** to highlight detected problematic slices. Sagittal and coronal views can make slice artifacts easier to identify.
 
 ![Bad Slices](https://user-images.githubusercontent.com/275569/147804666-b75d4167-ce90-4722-816e-a3106046f6f0.png)
 
-### 3. Other Problems
-- Refer to the [video tutorial](https://www.youtube.com/watch?v=stL4GMeTC1I) for detailed guidance.
+For additional examples, see the [quality-control video](https://www.youtube.com/watch?v=stL4GMeTC1I).
 
----
+## Step T2a: Specify a mask
 
-## Step T2a: Specify a Mask
+The reconstruction mask limits processing to the tissue of interest. The mask editor provides thresholding and common morphological operations including smoothing, expansion, erosion, and defragmentation.
 
-A mask eliminates background signals, improving reconstruction efficacy. The mask selection window includes tools for:
+A typical starting sequence is **Threshold → Smoothing → Defragment**, followed by visual inspection and manual correction if needed.
 
-- **Thresholding**: Generates an initial selection.
-- **Smoothing**: Smooths the mask contour.
-- **Expansion**: Expands the mask.
-- **Erosion**: Shrinks the mask.
-- **Defragment**: Removes small fragments.
+Masks can be saved or loaded as text/NIfTI files.
 
-Recommendation: Use thresholding, smoothing, and defragmentation in sequence.
+## Corrections and preprocessing
 
-Masks can be saved/loaded as `.txt` or `.nii.gz` files.
+Only apply corrections that are appropriate for the acquisition and study design. Keep the processing consistent across subjects in a group analysis.
 
----
+### TOPUP/EDDY and motion correction
 
-## Preprocessing Steps
+For reverse-phase-encoding acquisitions, use **[Corrections][TOPUP/EDDY]**. DSI Studio first looks for the matching `.rz` companion file. If one is not found, it can accept another reverse-phase-encoding `.sz`, `.rz`, legacy `.src.gz`, or NIfTI file.
 
-Follow these steps in order to preprocess DWI data effectively:
+For acquisitions without a reverse-phase pair, use the applicable EDDY/motion-correction workflow.
 
-### 1. TOPUP/EDDY/Motion Correction
+These corrections may take substantial processing time. Save the corrected source data as a new `.sz` file if you want to preserve the corrected dataset for later reconstruction.
 
-#### For Reverse-Phase Encoding Acquisition:
-1. Click [Corrections][TOPUP/EDDY].
-2. Select the reverse-phase encoding file (e.g., `*.nii.gz` or `*.src.gz`).
-3. DSI Studio will call FSL's `topup` and `eddy` tools for artifact correction.
+### Volume orientation correction for animal scans
 
-#### Without Reverse-Phase Encoding:
-1. Click [Corrections][EDDY].
-2. FSL's `eddy` will correct for eddy current distortions.
-
-> **Note:** This step can take hours. Save a new SRC/SZ file after corrections.
-
----
-
-### 2. Correct Image Orientations (Animal Scans Only)
-Here is a clearer, simpler, and more polished version:
-
----
-
-Animal scans often need orientation adjustments. Use **Corrections → Volume Orientation Correction** to align your data with the template.
-
-Default template orientations for mouse, marmoset, and rhesus brains are shown below:
+Animal datasets may need orientation adjustment before template-based analysis. Use **Corrections → Volume Orientation Correction** to align the volume orientation with the selected template.
 
 <img width="800" alt="template orientation image" src="https://github.com/user-attachments/assets/d64d99dc-33f9-45ec-ad84-1431473bf6ab" />
 
+When the slice-position slider moves toward the superior end of the volume, the displayed anatomy should follow the orientation expected by the selected template. Use image flip/swap operations only when necessary, and verify the result visually after each change.
 
-When the slice-position slider moves to the right, the view should show the **top** of the brain. If it does not, flip the volume along **Z**.
+### Remove background or crop the image volume
 
-If needed, use **Edit → Image Flip** or **Image Swap** to match the template orientation.
+Use the image-editing tools to remove irrelevant background signal or crop excessive empty space when appropriate.
 
-**Important:** Any flip or swap creates a mirrored image.
-If the total number of flip/swap operations is **odd**, the final result will be mirrored.
-Make sure to flip **X** to correct it if this happens.
+### Check b-table orientation
 
----
+An incorrect b-table produces incorrect fiber orientations. Use **[B-table][Check b-table]** and inspect the result anatomically. Low-SNR or unusual animal acquisitions may require manual verification.
 
+### Make isotropic
 
----
+If needed, resample the source volume to isotropic resolution before reconstruction. Resampling does not add anatomical information, so use it for a specific processing or tracking requirement rather than routinely.
 
-### 3. Remove Background Signals or Crop Image Volume (Optional)
-
-Eliminate background noise using [**Edit**][**Erase Background Signals**] and crop the volume using [**Edit**][**Crop Background**].
-
----
-
-### 4. Check b-Table Orientation (Animal Scans)
-
-Incorrect b-tables lead to flawed fiber orientations. Use [B-table][Check b-table] to verify b-table orientation. For low SNR datasets, manually test flip/swap configurations.
-
----
-
-### 5. Make Isotropic (Optional)
-
-Isotropic resolution is crucial for fiber tracking. Use [**Edit**][**Make Isotropic**] to interpolate non-isotropic data.
-
----
-
-## Step T2b: Specify a Model
+## Step T2b: Specify a reconstruction method
 
 ### Diffusion Tensor Imaging (DTI)
-- Generates a single fiber orientation per voxel along with anisotropy and diffusivity measures.
-- Use only if GQI fails.
 
-### Generalized Q-Sampling Imaging (GQI) *(Recommended)*
-- Model-free method for resolving fiber orientations.
-- Optimize the diffusion sampling length ratio (`L`) using the following steps:
-  1. Reconstruct FIB files with different `L` values (e.g., `0.3`, `0.4`, ..., `2.0`).
-  2. Inspect crossing and non-crossing regions (e.g., corpus callosum) in [Step T3 Fiber Tracking].
+DTI estimates a diffusion tensor and tensor-derived measures such as FA, MD, AD, and RD. It provides one principal tensor direction per voxel and is appropriate when tensor measurements are the intended analysis.
 
-The goal: **Select the highest `L` that minimizes spurious fibers.**
+### Generalized Q-Sampling Imaging (GQI)
 
----
+GQI is the standard DSI Studio reconstruction for resolving one or more fiber orientations and is commonly used for native-space tractography.
+
+The **diffusion sampling length ratio** controls GQI sampling. The appropriate value depends on acquisition and tissue properties. When changing it, verify the resulting fiber orientations and whole-brain tractography rather than selecting a value from the appearance of a single pathway.
 
 ### Q-Space Diffeomorphic Reconstruction (QSDR)
-- MNI-aligned version of GQI.
-- Recommended for analyses in MNI space (e.g., connectometry).
-- Ensure your data matches the selected template (e.g., human, monkey, rat).
 
-To transform additional modalities (e.g., T1W) into MNI space, use the [**Attach Images...**] button.
+QSDR reconstructs diffusion information in a selected template space and is commonly used for population, atlas, and connectometry analyses.
 
----
+Select the template appropriate for the species and study. Inspect registration quality before including a subject in population analysis.
 
-## Step T2c: Specify Outputs
+Additional images can be attached when they are needed by the reconstruction/template workflow.
 
-Specify output metrics (comma-separated) for the FIB file:
+## Step T2c: Specify outputs
 
-- `fa`: Fractional anisotropy
-- `rd`: Radial diffusivity
-- `md`: Mean diffusivity
-- `tensor`: Tensor matrix (e.g., `txx`, `txy`, `txz`)
-- `gfa`: Generalized fractional anisotropy
-- `rdi`: Restricted diffusion
-- `odf`: Export entire ODF vectors (increases `.fib` file size).
+Select only the additional diffusion measurements needed for the analysis. Available outputs depend on the reconstruction method and DSI Studio version and can include tensor measures, GQI-derived measures, restricted-diffusion measures, and ODF-related outputs.
 
-### Advanced Options
-- **Ignore High b for DTI**: Use only b-values <1500 for tensor estimation.
+Saving unnecessary outputs increases `.fz` file size and processing time.
 
----
+### DTI high-b option
 
-This documentation captures all key features and workflows for Step T2 Reconstruction in DSI Studio. Let me know if further revisions are needed!
+**Ignore High b for DTI** restricts tensor estimation to lower b-values when appropriate for the acquisition. Use the same rule across subjects in a group study.
+
+## Reconstruct
+
+After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting `.fz` file can be opened in **Step T3: Fiber Tracking** or used by the corresponding command-line and population-analysis workflows.
+
+For command-line reconstruction, see [Reconstruction CLI](/doc/cli_t2.html).
