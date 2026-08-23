@@ -4,14 +4,16 @@
 
 Correlational tractography identifies white-matter pathway segments whose local diffusion/connectome measurements are associated with a study variable across subjects. DSI Studio uses regression to account for selected covariates and applies local correlation statistics followed by deterministic tracking. [Connectometry](https://pubmed.ncbi.nlm.nih.gov/26499808/) uses permutation testing to estimate the false discovery rate (FDR) of the resulting tracks.
 
+Correlational tractography is a **cohort-level** analysis. For a single subject's own before/after comparison, use [Differential Tractography](/doc/gui_t3_dt.html) instead. Group-level longitudinal connectometry is supported by first creating a database of matched per-subject changes.
+
 - **Tractography methods including correlational tractography:** Yeh et al., *NeuroImage* 245 (2021): 118651. [PubMed](https://pubmed.ncbi.nlm.nih.gov/34673247/)
 - **Connectometry:** Yeh, Fang-Cheng, David Badre, and Timothy Verstynen. NeuroImage 125 (2016): 162-171. [PDF](/ref/Connectometry.pdf)
 
 ## Current workflow
 
-1. **Step C1:** create a connectometry database (`.dz`) from subject FIB files.
+1. **Step C1:** create a connectometry database (`.dz`) from subject QSDR FIB files reconstructed into the same template space and resolution.
 2. **Step C2 (optional):** inspect/modify the database or calculate longitudinal change.
-3. **Step C3:** load demographics, select the model and study variable, and run correlational tractography/connectometry.
+3. **Step C3:** load/verify demographics, select the model and study variable, and run correlational tractography/connectometry.
 
 > **Use the Sun version to create `.dz` databases.** Hou versions have a known issue when creating `.dz` files. Older `.db.fz` and `.db.fib.gz` databases remain supported for compatibility.
 
@@ -19,13 +21,13 @@ Correlational tractography identifies white-matter pathway segments whose local 
 
 A connectometry database combines diffusion measurements from multiple subjects in a common template space for population analysis.
 
-Use subject FIB files (`.fz`; legacy `.fib.gz` is also supported). The subjects should be processed using compatible acquisition and reconstruction settings whenever possible. Both QSDR and native-space FIB files can be used; DSI Studio maps the subject measurements to the selected template during database construction.
+For population connectometry, reconstruct all subjects with **QSDR using the same template space and resolution** before database creation. Native-space GQI remains appropriate for individual/native-space analyses, but should not be treated as interchangeable input for a common-space connectometry cohort.
 
 ## C1a. Add subject FIB files
 
 Open **[Correlational Tractography][Step C1: Create a Connectometry Database]**.
 
-Use **[Add]**, **[Search in Directory]**, or **[Open List]** to load the subject FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
+Use **[Add]**, **[Search in Directory]**, or **[Open List]** to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
 
 ## C1b. Create the `.dz` file
 
@@ -36,19 +38,19 @@ Confirm the output name and click **[Create Database]**.
 Command-line equivalent:
 
 ```bash
-dsi_studio --action=atl --cmd=db --source=*.fz --output=study.dz
+dsi_studio --action=db --source=*.qsdr.fz --output=study.dz
 ```
 
 To embed demographics during database creation:
 
 ```bash
-dsi_studio --action=atl --cmd=db --source=*.fz --demo=participants.tsv --output=study.dz
+dsi_studio --action=db --source=*.qsdr.fz --demo=participants.tsv --output=study.dz
 ```
 
 By default, current DSI Studio stores the available indices from the FIB files. Use `--index_name` only when you intentionally want a subset, for example:
 
 ```bash
-dsi_studio --action=atl --cmd=db --source=*.fz --index_name=qa,dti_fa --output=study.dz
+dsi_studio --action=db --source=*.qsdr.fz --index_name=qa,dti_fa --output=study.dz
 ```
 
 ## C1c. Check registration quality
@@ -73,16 +75,31 @@ For repeated scans of the same subjects:
 The command line also supports paired longitudinal conversion. If scans are stored consecutively as baseline/follow-up pairs:
 
 ```bash
-dsi_studio --action=atl --cmd=db --source=study.dz --match=consecutive --output=study_longitudinal.dz
+dsi_studio --action=db \
+  --source=study.dz \
+  --match=consecutive \
+  --dif_type=0 \
+  --filter_type=0 \
+  --normalize_iso=1 \
+  --output=study_longitudinal.dz
 ```
 
 A text file can be supplied to `--match` when pairing is not consecutive.
+
+For a **group-level directional longitudinal hypothesis**, a useful two-stage strategy is:
+
+1. First use the unfiltered signed change (`filter_type=0`) and test whether the group expected to change shows a significant nonzero longitudinal effect.
+2. If a directional effect is supported, rebuild the longitudinal database using `filter_type=1` for increases or `filter_type=2` for decreases, then compare the magnitude of that directional change between groups.
+
+The directional databases store the selected change direction as a positive magnitude. They answer a different question from the initial signed-change test and should be interpreted accordingly.
+
+After creating any derived or longitudinal database, **re-check its demographics before analysis**. Do not assume demographic columns were embedded or carried forward from the source database. Reload the demographic table if the variables needed by the model are missing.
 
 # Step C3: Group Connectometry Analysis
 
 Open the `.dz` database in **Step C3: Group Connectometry Analysis**.
 
-## C3a. Load demographics
+## C3a. Load and verify demographics
 
 Demographics may be supplied as CSV or tab-separated text. If demographics are already embedded in the `.dz` database, DSI Studio loads them automatically.
 
@@ -98,13 +115,15 @@ SUB04,36,0,25.1
 
 DSI Studio can match subject identifiers in the first column against database subject names. Check the displayed table after loading demographics to make sure subjects and values are aligned correctly.
 
+Before choosing a variable of interest or running the analysis, verify that all required demographic columns and covariates are actually present in the currently opened database. Repeat this check for derived and longitudinal databases.
+
 Missing values can be left empty; subjects missing values required by the selected model are excluded from that analysis.
 
 ## C3b. Select covariates
 
 Select variables whose linear effects should be removed from the diffusion measurements, such as age or sex when appropriate for the study design.
 
-Avoid adding many highly correlated covariates unless the sample size supports the model. The choice of covariates should follow the scientific question rather than a fixed preset.
+Avoid adding many highly correlated covariates unless the sample size supports the model. The choice of covariates should follow the scientific question rather than a fixed preset. For multi-site studies, scanner/site may need to be considered; for longitudinal studies, the scan interval may also matter when it varies substantially across subjects.
 
 ## C3c. Select the study variable and diffusion index
 
@@ -112,7 +131,7 @@ Choose the study variable to test. For example, select age to map pathways assoc
 
 A current `.dz` database may contain multiple diffusion indices. Select the index appropriate for the hypothesis (for example QA, FA, RDI, or NRDI) within the analysis rather than creating a separate database for every metric.
 
-For longitudinal databases, choose the variable that corresponds to the longitudinal hypothesis being tested.
+For a longitudinal database, `longitudinal`/Intercept tests whether a nonzero change exists across the selected cohort. Selecting a demographic variable such as group instead tests whether the amount of change is associated with that variable.
 
 ## C3d. Parameters
 
@@ -139,9 +158,9 @@ Use **Select Cohort** when the analysis applies only to a subset of subjects. Al
 
 ## C3e. Run and review results
 
-Run connectometry and inspect both increased and decreased associations when relevant to the hypothesis. DSI Studio reports the tract findings together with the null/permuted distributions and FDR as a function of track length. The 3D result view can be used to inspect the anatomical location of the findings.
+Run connectometry and inspect both increased and decreased associations when relevant to the hypothesis. DSI Studio reports the tract findings together with the null/permuted distributions and FDR as a function of track length. The FDR comes from the whole-brain permutation framework; it should not be interpreted as an independent tract-by-tract statistical test.
 
-Interpret FDR together with effect size, track length, data quality, acquisition consistency, sample size, and the study design. Very small samples or systematic acquisition differences can produce unstable or misleading results even when a numerical threshold appears favorable.
+The 3D result view can be used to inspect the anatomical location of the findings. Interpret FDR together with effect size, track length, data quality, acquisition consistency, sample size, and the study design. Very small samples or systematic acquisition differences can produce unstable or misleading results even when a numerical threshold appears favorable.
 
 # Command-line analysis
 
@@ -159,4 +178,4 @@ dsi_studio --action=cnt \
   --effect_size=0.3
 ```
 
-The numeric positions used by `--variable_list` and `--voi` refer to the variables in the loaded demographic table. Check the demographic columns before launching a batch analysis.
+The numeric positions used by `--variable_list` and `--voi` refer to the variables in the loaded demographic table. Check every available demographic column before launching a batch analysis; do not assume a fixed column layout across studies.
