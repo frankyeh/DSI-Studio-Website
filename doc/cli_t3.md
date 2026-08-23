@@ -1,139 +1,130 @@
 # Fiber Tracking
 
-Use `--action=trk` to perform deterministic whole-brain or ROI-based fiber tracking in DSI Studio (Yeh et al. PLoS ONE 8(11):e80713, 2013). Additionally, you can compute tract-to-region connectomes, tract statistics, track-density images, cluster or recognize known bundles, and even perform differential analysis—all from this single command.
-
-For **automatic atlas-based bundle mapping**, see `--action=atk` instead:  
-[Atlas-Based Tracking Documentation](https://dsi-studio.labsolver.org/doc/cli_atk.html)
-
----
+Use `--action=trk` for deterministic whole-brain, ROI-based, or differential fiber tracking. For atlas-guided mapping of named bundles, use [`--action=atk`](/doc/cli_atk.html).
 
 ## Examples
 
-### Whole-brain deterministic tracking
+### Whole-brain tracking
+
 ```bash
 dsi_studio --action=trk \
-           --source=subject.fib.gz \
-           --output=subject_all.tt.gz
+  --source=subject.fz \
+  --output=subject_all.tt.gz
 ```
 
-### Seed-and-target ROI tracking
+### ROI-based tracking
+
 ```bash
 dsi_studio --action=trk \
-           --source=subject.fib.gz \
-           --seed=wholeBrain.nii.gz \
-           --roi=regionA.nii.gz \
-           --roi2=regionB.nii.gz \
-           --output=streamlines.tt.gz
+  --source=subject.fz \
+  --roi=regionA.nii.gz \
+  --roi2=regionB.nii.gz \
+  --roa=exclude_region.nii.gz \
+  --output=bundle.tt.gz
 ```
 
-### Mapping the left arcuate fasciculus and derive is tract-to-region connectome at HCP-MMP parcellation
+Do not add a Seed region unless the tracking start locations intentionally need to be restricted. Without `--seed`, normal whole-brain seeding is used.
+
+## Core options
+
+| Option | Default | Description |
+|:--|:--|:--|
+| `--action` | required | Must be `trk`. |
+| `--source` | required | Input `.fz` file (legacy `.fib.gz` is also supported). |
+| `--output` | generated name | Output tractography file, normally `.tt.gz`. |
+| `--tip_iteration` | workflow dependent | Topology-informed pruning iterations. Normal whole-brain tracking does not require TIP; atlas/differential workflows may apply it. |
+
+## Tracking parameters
+
+| Option | Default | Description |
+|:--|:--|:--|
+| `--method` | current tracking setting | Tracking algorithm. |
+| `--tract_count` | automatic | Stop after the requested number of tracts. When no tract/seed count is fixed, the track-to-voxel ratio determines the amount of tractography. |
+| `--seed_count` | automatic | Stop after the requested number of seeds; used when a fixed seeding count is required. |
+| `--track_voxel_ratio` | FIB/template dependent | Track-to-voxel ratio used when tract/seed counts are not explicitly fixed. The default scales with FIB voxel size and template scale. |
+| `--fa_threshold` | `0` | Tracking/anisotropy threshold. `0` randomizes the threshold around the Otsu-derived default. |
+| `--otsu_threshold` | `0.6` | Center of the Otsu-based default threshold. With `--fa_threshold=0`, the threshold is randomized from `default_otsu-0.1` to `default_otsu+0.1` times the Otsu threshold. |
+| `--threshold_index` | current tracking index | Diffusion index used for tracking/termination. |
+| `--turning_angle` | `0` | Maximum turning angle in degrees. `0` randomizes the angular threshold from **45° to 90°**. |
+| `--step_size` | `0` | Step size in millimeters. `0` uses the **voxel spacing**. |
+| `--smoothing` | `0` | Direction-smoothing fraction. `0` disables smoothing; `1` uses a randomized smoothing percentage. |
+| `--min_length` | template/image dependent | Minimum tract length in mm. |
+| `--max_length` | template/image dependent | Maximum tract length in mm. |
+| `--check_ending` | `0` for ordinary tracking | Enable ending checks when required by the workflow. |
+| `--parameter_id` | — | Restore tracking settings from a DSI Studio parameter code. |
+| `--random_seed` | `0` | Random-number seed when deterministic random-sequence control is needed. |
+
+The current default length and track-density settings are derived from the loaded FIB/template rather than one universal human value.
+
+## Region options
+
+The region roles correspond to the GUI tracking roles:
+
+| Option | Role |
+|:--|:--|
+| `--seed` | Start tracking inside the region. |
+| `--roi`, `--roi2`, ... | Keep tracks that pass through the region. Multiple ROIs are AND constraints. |
+| `--roa`, `--roa2`, ... | Exclude tracks that pass through the region. |
+| `--end`, `--end2` | Keep tracks ending in the region. |
+| `--ter`, `--ter2`, ... | Terminate tracking when the streamline enters the region. |
+| `--nend` | Exclude tracks that end in the region while allowing pass-through. |
+| `--lim` | Restrict tracking to a limiting spatial region. |
+
+Region specifications can be files, supported atlas-region expressions, and region operations. Multiple items can be separated by commas, for example:
+
+```bash
+--roi=left.nii.gz,dilation
+```
+
+See [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html) for the anatomical meaning of each role.
+
+## Post-tracking options
+
+| Option | Description |
+|:--|:--|
+| `--output=<file>` | Save tractography, e.g. `--output=result.tt.gz`. |
+| `--trk_format=<format>` | Select the tract format when a default output name is used. |
+| `--delete_repeat=<distance>` | Remove near-duplicate streamlines using the specified distance criterion. |
+| `--delete_by_length=<length>` | Remove short streamlines using the specified length criterion. |
+| `--cluster=<method>,<count>,<detail>,<output>` | Cluster the resulting streamlines. |
+| `--recognize=<file>` | Recognize bundles and save the recognized result. |
+| `--template_track=<file>` | Save tract coordinates in template voxel space. |
+| `--mni_track=<file>` | Save tract coordinates in MNI space. |
+| `--end_point=<file>` | Export endpoints from both ends. |
+| `--end_point1=<file>` / `--end_point2=<file>` | Export the two endpoint sets separately. |
+| `--export=<type>,...` | Export tract statistics or track-density products. |
+| `--profile=<metrics>:<type>:<bandwidth>` | Export along-tract profiles. |
+
+## Connectivity matrices
+
+Connectivity can be calculated from the tractography produced by the same command.
+
+| Option | Description |
+|:--|:--|
+| `--connectivity=<atlases>` | Comma-separated atlas names or NIfTI parcellations. |
+| `--connectivity_type=<types>` | `end` for endpoint connectivity or `pass` for regions traversed by a streamline. Multiple types can be requested. |
+| `--connectivity_value=<metrics>` | Select connectivity matrix value(s); `all` requests the supported set. |
+| `--connectivity_output=<outputs>` | Select outputs such as `matrix`, `connectogram`, and `network`. |
+
+Example:
+
 ```bash
 dsi_studio --action=trk \
-           --source=subject.fib.gz \
-           --track_id=ArcuateFasciculusL \
-           --connectivity=HCP-MMP
+  --source=subject.fz \
+  --connectivity=HCP-MMP \
+  --connectivity_type=end \
+  --connectivity_output=matrix,network
 ```
 
----
+For atlas-based **tract-to-region** workflows using named tracts, use [Automatic Fiber Tracking CLI](/doc/cli_atk.html).
 
-## Core Options
+## Differential tracking
 
-| **Option**         | **Default**          | **Description**                                                                                       |
-|---------------------|----------------------|-------------------------------------------------------------------------------------------------------|
-| `--action`         | *(required)*         | Must be `trk`.                                                                                       |
-| `--source`         | *(required)*         | Path to your `.fib.gz` (or `.fz`) file.                                                              |
-| `--output`         |                      | Output tractography file (e.g. --output=tract.tt.gz) or directory (e.g. --output=/path).                                  |
-| `--track_id`       | (optional)           | Specify the name of the bundle to be mapped (e.g. --track_id=ArcuateFasciculusL ). The complete list can be found [here](https://github.com/frankyeh/data-atlas/blob/main/human/human.tt.gz.txt)                                        |
-| `--tip_iteration`  | Workflow dependent  | Specify topology-informed pruning iterations. Atlas-based and differential workflows may set their own defaults. |
-| `--thread_count`   | Hardware threads     | Number of threads to use.                                                                             |
+| Option | Description |
+|:--|:--|
+| `--dt_metric1` | First differential metric. |
+| `--dt_metric2` | Second differential metric. Both metric options are required together. |
+| `--dt_threshold` | Required difference threshold; `0.2` represents a 20% change when using the default fractional threshold type. |
+| `--dt_threshold_type` | `0=(m1-m2)/m1`, `1=(m1-m2)/m2`, `2=abs(m1-m2)`. |
 
----
-
-## Tracking Parameters
-
-| **Option**           | **Default**                    | **Description**                                                                                      |
-|-----------------------|--------------------------------|------------------------------------------------------------------------------------------------------|
-| `--method`           | Current tracking setting | Tracking algorithm, e.g. streamline/Euler or RK4 depending on the current version. |
-| `--tract_count`      | `0` | Number of tracts to generate (alternative to seed count). |
-| `--seed_count`       | Auto | Number of seeds to launch. Overrides `tract_count`. |
-| `--track_voxel_ratio`| Data/FIB dependent | Track-to-voxel ratio used to determine the target streamline count. |
-| `--turning_angle`    | `0` (automatic/randomized) | Maximum allowable turning angle in degrees. Specify a value to use a fixed threshold. |
-| `--step_size`        | `0` (automatic/randomized) | Tracking step size in mm. Specify a value to use a fixed step size. |
-| `--smoothing`        | Current tracking setting | Direction smoothing fraction. |
-| `--min_length`       | Dataset-specific | Minimum fiber length (mm). |
-| `--max_length`       | Dataset-specific | Maximum fiber length (mm). |
-| `--otsu_threshold`   | Current tracking setting | Otsu-based scaling used to determine the tracking threshold. |
-| `--threshold_index`  | Current tracking index | Select a diffusion index (e.g., QA) for tracking/termination. |
-| `--check_ending`     | `0` for normal whole-brain tracking | Require tracks to satisfy ending constraints when enabled. |
-| `--parameter_id`     | — | Load tracking parameters from a parameter code. |
-| `--random_seed`      | `0` | Seed for random-number generation. |
-
----
-
-## ROI / Region Options
-
-The following region types can be specified (comma-separated actions are applied in order):
-
-```text
---seed=<file>
---roi=<file_or_atlas:region>,<other region file>,<region actions>,... 
---roi2=…
---roa=…
---end=…
---ter=…
---nend=…
---lim=…
-```
-
-### Region Actions
-- **Region Actions:** `dilation`, `erosion`, `defragment`, `negate`, `flipx`, `flipy`, `flipz`, etc.
-- **Merge Volumes:** You can also add more volumes using `,`:
-```bash
---roi=left.nii.gz,right.nii.gz,dilation,smoothing
-```
-
-
----
-
-## Post-Tracking Routine
-
-| **Option**                                     | **Description**                                                                                                                                                                                                                                      |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--output=<file>`                              | Save tractography result (e.g., `--output=result.tt.gz`).                                                                                                                                                                                            |
-| `--trk_format=<format>`                        | Set default tract format if `--output` is not specified (e.g., `--trk_format=tt.gz`).                                                                                                                                                                |
-| `--delete_repeat=<length>`                     | Remove duplicate streamlines within the specified voxel distance (e.g., `--delete_repeat=8`).                                                                                                                                                        |
-| `--delete_by_length=<length>`                  | Remove streamlines shorter than the specified voxel length.                                                                                                                                                                                          |
-| `--cluster=<method>,<count>,<detail>,<output>` | Perform clustering (e.g., `--cluster=0,50,8,cluster.txt`).<br>• `method`: 0 = single linkage, 1 = k-means, 2 = EM<br>• `detail`: only used in method 0                                                                                               |
-| `--recognize=<file>`                           | Apply atlas-based bundle recognition and save recognized tracts.                                                                                                                                                                                     |
-| `--template_track=<file>`                      | Save tracts in template voxel space.                                                                                                                                                                                                                 |
-| `--mni_track=<file>`                           | Save tracts in MNI space.                                                                                                                                                                                                                            |
-| `--end_point=<file>`                           | Save endpoint coordinates (both ends) to `.txt` or `.mat`.                                                                                                                                                                                           |
-| `--end_point1=<file>`                          | Save starting point coordinates to `.txt` or `.mat`.                                                                                                                                                                                                 |
-| `--end_point2=<file>`                          | Save endpoint coordinates to `.txt` or `.mat`.                                                                                                                                                                                                       |
-| `--export=<type>,<type>,...`                   | Export tract data (e.g., `--export=stat,tdi,`)<br>• `<type>`:  stat = tract statistics, tdi = track density image, tdi2= track density image with x2 resolution                                                                                      |
-| `--profile=<metrics>,<type>,<bandwidth>`       | Get tract profile, for example: `--profile=dti_fa:3:1` exports `FA` profile along `fiber direction (left first)` using `bandwidth = 1`.                                                                                                                        |
-|                                                | `<type>`: 0=x direction, 1=y direction, 2=z direction,<br> 3=fiber orientation (left first), 4=fiber orientation (posterior first), 5=fiber orientation (superior first),<br> 6=fiber orientation (right first), 7=fiber orientation (anterior first), 8=fiber orientation (inferior first)|
-
-
-
-## **Connectivity Matrix (Connectome)**
-
-| **Option**                        | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--connectivity=<atlases>`        | A comma-separated list of brain parcellation atlases (NIfTI files or atlas names recognized by DSI Studio, e.g., `AAL2,HCP-MMP`). The specified parcellations are used to compute region-to-region (R2R) and tract-to-region (T2R) connectomes.                                                                                                                                                                                                                                                                                                                            |
-| `--connectivity_type=<types>`     | Defines how streamlines contribute to the structural connectivity. Use `pass` to include streamlines that pass through ROIs (pass-through), or `end` to include streamline by checking the endpoints. Multiple types can be specified using commas to export multiple connectomes in a single run, e.g., `--connectivity_type=pass,end`.                                                                                                                                                                                                                                                            |
-| `--connectivity_value=<metrics>`  | Selects which connectivity metric(s) to export. The default value `all` exports all supported metrics. To export a subset, provide a comma-separated list of metric keywords (matched by name), e.g., `--connectivity_value=volume,fa`.                                                                                                                                                                                                                                                                                                                                                |
-| `--connectivity_output=<outputs>` | Specifies which outputs to save. The default value `matrix` saves region-to-region and tract-to-region matrices as `*.connectivity.mat` (MATLAB v4 square matrix). Specify `connectogram` saves `*.connectogram.txt` for visualization with **CIRCUS**. Specify `network` saves graph-theoretic network measures as `*.network_measures.txt`; Example: `--connectivity_output=matrix,network`. |
-
-
----
-
-## Differential Tracking
-
-| **Option**            | **Description**                                                                                     |
-|------------------------|-----------------------------------------------------------------------------------------------------|
-| `--dt_metric1`        | Metric for baseline tracking (e.g., `qa`).                                                          |
-| `--dt_metric2`        | Metric for comparison tracking (e.g., `nqa`).                                                       |
-| `--dt_threshold`      | Percent change threshold for differential analysis.                                                 |
-| `--dt_threshold_type` | Type of threshold: `0=(m1−m2)/m1`, `1=(m1−m2)/m2`, `2=abs(m1−m2)`.                                  |
-
+For study-design guidance, see [Differential Tractography](/doc/gui_t3_dt.html).
