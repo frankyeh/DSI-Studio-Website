@@ -71,14 +71,14 @@ Use [Export Files](/doc/cli_exp.html) for current export options.
 
 ## `.dz` connectometry databases
 
-`.dz` is the current population/connectometry database format. A database is created from subject FIB files and stores subject measurements in a common template space.
+`.dz` is the current population/connectometry database format. For population connectometry, use subject FIB files reconstructed with QSDR into the same template space and resolution so local measurements are directly comparable across subjects.
 
 Unlike older single-metric database files, a current `.dz` database can store multiple available diffusion indices in one file.
 
 Example:
 
 ```bash
-dsi_studio --action=atl --cmd=db --source=*.fz --output=study.dz
+dsi_studio --action=db --source=*.qsdr.fz --output=study.dz
 ```
 
 See [Correlational Tractography](/doc/gui_cx.html) and [Connectometry CLI](/doc/cli_cnt.html) for database creation and analysis.
