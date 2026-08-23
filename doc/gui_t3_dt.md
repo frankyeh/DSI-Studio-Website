@@ -19,6 +19,8 @@ Differential tractography can be applied to DTI, multi-shell, and DSI acquisitio
 | **3** | Cross-sectional | Native patient space | Compare an individual patient with an age/sex or otherwise matched reference population |
 | **4** | Cross-sectional | Template space | Case-control/reference comparison performed in template space |
 
+The **Type 1–4 number describes the study design and analysis space**. It is separate from the numeric `dt_threshold_type`, which selects the mathematical formula used to compare Metric 1 (`m1`) and Metric 2 (`m2`).
+
 Current files use `.sz` for SRC, `.fz` for FIB, and `.dz` for connectometry databases. Legacy `.src.gz`, `.fib.gz`, `.db.fz`, and `.db.fib.gz` files remain readable in compatible workflows.
 
 > **For Type 3 and Type 4 reference databases, use the Sun version to create `.dz` files.** Hou versions have a known issue when creating `.dz` databases.
@@ -67,7 +69,7 @@ dsi_studio --action=trk \
   --output=subject.diff.tt.gz
 ```
 
-In the GUI, open the baseline FIB, use **[Slices][Insert Other Images]** to add the follow-up metric, select the baseline and follow-up metrics under **Differential Tracking**, set the change threshold, and run fiber tracking.
+In the GUI, open the baseline FIB, use **[Slices][Insert Other Images]** to add the follow-up metric, and wait until its registration is complete before configuring differential tracking. Then select the baseline and follow-up metrics under **Differential Tracking**, set the change threshold, and run fiber tracking.
 
 # Type 2: Longitudinal change in template space
 
@@ -103,7 +105,7 @@ dsi_studio --action=trk \
   --output=subject.template.diff.tt.gz
 ```
 
-Use the template appropriate for the species/study. The available template list is provided by the current DSI Studio version; do not rely on an old hard-coded template list when building a new pipeline.
+Use the template appropriate for the species/study. The available template list is provided by the current DSI Studio version; do not rely on an old hard-coded template list when building a new pipeline. Inspect the alignment of both scalar maps in template space because nonlinear-registration errors can mimic local biological change.
 
 # Type 3: Cross-sectional change in native patient space
 
@@ -111,7 +113,7 @@ Use this design when each patient's native-space metric is compared with a match
 
 ## 1. Reconstruct patient and control FIB files
 
-Patients can be reconstructed in native space with GQI. Reference controls should be processed consistently; QSDR controls can be used to construct the population reference database.
+Patients can be reconstructed in native space with GQI. Reference controls should be processed consistently and reconstructed with QSDR into the same template space and resolution before constructing the population reference database.
 
 ```bash
 dsi_studio --action=rec --source=*.patients.sz --method=4 --param=1.25 --output=*.patients.fz
@@ -123,8 +125,7 @@ dsi_studio --action=rec --source=*.controls.sz --method=7 --output=*.controls.fz
 For a differential analysis using FA, creating a database restricted to `dti_fa` makes the reference metric explicit:
 
 ```bash
-dsi_studio --action=atl \
-  --cmd=db \
+dsi_studio --action=db \
   --source=*.controls.fz \
   --index_name=dti_fa \
   --demo=controls_age_sex.csv \
@@ -164,7 +165,7 @@ dsi_studio --action=trk \
 
 In the GUI, open the patient's `.fz`, insert `control.dz` using **[Slices][Insert Other Images]**, enter the patient's demographic values when requested, select the control/reference metric as Metric 1 and the patient's metric as Metric 2, then run differential tracking.
 
-A decrease analysis assumes the reference metric is larger than the patient metric. Reverse the comparison or threshold interpretation when the biological hypothesis concerns an increase.
+A decrease analysis assumes the reference metric is larger than the patient metric. Reverse the comparison or use the corresponding increase formula when the biological hypothesis concerns an increase.
 
 Reference databases from external datasets can be useful, but diffusion measurements are sensitive to acquisition and processing differences. A large apparent patient/reference difference can reflect scanner, protocol, b-value, spatial resolution, or reconstruction differences rather than pathology. Prefer a reference population acquired and processed as comparably as possible.
 
@@ -189,8 +190,7 @@ dsi_studio --action=exp --source=patient.fz --export=dti_fa
 ## 3. Create the control `.dz` database
 
 ```bash
-dsi_studio --action=atl \
-  --cmd=db \
+dsi_studio --action=db \
   --source=*.controls.fz \
   --index_name=dti_fa \
   --demo=controls_age_sex.csv \
