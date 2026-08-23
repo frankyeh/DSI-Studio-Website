@@ -72,6 +72,8 @@ Applying automatic b-table correction uniformly is not recommended when SNR is p
 dsi_studio --action=qc --source=*.sz --check_btable=1
 ```
 
+For `--action=qc`, `--check_btable=1` enables b-table checking, while the presence of `--template=<template>` determines whether the template-aware check is used. Without `--template`, QC uses the no-template check. This differs from `--action=rec`, where the numeric `--check_btable` value selects the reconstruction-time checking mode described below.
+
 If a representative good-quality acquisition indicates a consistent swap/flip convention (for example `021fx`), apply the corresponding **b-table-only** correction to scans known to share that acquisition/export convention. For `021fx`, swap y and z to obtain `012`, then flip x:
 
 ```bash
@@ -105,7 +107,7 @@ Do not infer a group-wide b-table correction from a low-SNR or artifact-heavy ou
 |-----------------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | `--rev_pe`           | *(none)* | Reverse-phase-encoding NIfTI/SRC input used to run TOPUP/EDDY. |
 | `--volume_correction`| `0` | Apply automatic volume orientation correction (swap/flip axes). |
-| `--check_btable`     | `0` | `1` calls the template-aware **Check B-table** routine (using the selected/current template when available); `2` calls the no-template 24-candidate b-vector permutation/flip check. Automatic inference can be unreliable with poor SNR or poor template registration, so inspect QC first. |
+| `--check_btable`     | `0` | For `--action=rec`, `1` calls the template-aware **Check B-table** routine (using the selected/current template when available); `2` calls the no-template 24-candidate b-vector permutation/flip check. Automatic inference can be unreliable with poor SNR or poor template registration, so inspect QC first. |
 | `--motion_correction`| `0` | Rigid-body align DWI volumes and rotate the b-table accordingly. |
 | `--bias_field_correction` | `0` for DTI; `1` for GQI/QSDR unless already corrected | Correct smooth DWI signal inhomogeneity. Specify explicitly when you need to override the reconstruction-method default. |
 | `--make_isotropic`   | Data dependent | Override the isotropic resampling resolution. If omitted, DSI Studio may choose a resolution from the input data and reconstruction workflow. |
