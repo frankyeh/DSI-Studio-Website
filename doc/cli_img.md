@@ -61,7 +61,9 @@ dsi_studio --action=img \
 
 # U-Net operations
 
-Current DSI Studio can run U-Net-based brain extraction, segmentation, and defacing.
+Current DSI Studio can run U-Net-based brain extraction, segmentation, and defacing. Model IDs come from the model catalog packaged with the current DSI Studio release, so discover the current ID rather than copying an old model name.
+
+If a U-Net command is requested without `--model`, DSI Studio lists the currently available model names. Use one of those exact IDs.
 
 ## Brain extraction
 
@@ -69,7 +71,7 @@ Current DSI Studio can run U-Net-based brain extraction, segmentation, and defac
 dsi_studio --action=img \
   --source=t1w.nii.gz \
   --cmd=brain_extraction \
-  --model=human_tissue_T1w \
+  --model=<model-id> \
   --output=t1w_brain.nii.gz
 ```
 
@@ -79,8 +81,8 @@ dsi_studio --action=img \
 dsi_studio --action=img \
   --source=flair.nii.gz \
   --cmd=segmentation \
-  --model=human_tumor_FLAIR \
-  --output=tumor_labels.nii.gz
+  --model=<model-id> \
+  --output=segmentation_labels.nii.gz
 ```
 
 ## Defacing
@@ -89,11 +91,11 @@ dsi_studio --action=img \
 dsi_studio --action=img \
   --source=t1w.nii.gz \
   --cmd=deface \
-  --model=human_tissue_T1w \
+  --model=<model-id> \
   --output=t1w_defaced.nii.gz
 ```
 
-If a U-Net command is requested without a model, DSI Studio lists the currently available model names. Supported models are downloaded/cached in the operating system's application-local DSI Studio data directory as needed; they do not need to be manually placed beside the executable.
+Supported models are downloaded/cached in the operating system's application-local DSI Studio data directory as needed; they do not need to be manually placed beside the executable.
 
 # Image-to-image registration
 
