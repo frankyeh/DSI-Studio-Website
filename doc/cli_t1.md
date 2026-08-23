@@ -33,10 +33,12 @@ dsi_studio --action=src --source=./sub-01/ses-01/dwi --bids=1
 dsi_studio --action=src --source=HCA9992517_V1_MR_dMRI_dir98_AP.nii.gz --other_source=HCA9992517_V1_MR_dMRI_dir99_AP.nii.gz
 ```
 
-**6. Search all DICOM files under a directory and output an SRC file:**
+**6. Search a DICOM directory and convert the detected DICOM studies:**
 ```bash
-dsi_studio --action=src --source=C:\DICOM_folder --output=C:\output.sz
+dsi_studio --action=src --source=C:\DICOM_folder
 ```
+
+For a directory containing no usable NIFTI diffusion data, DSI Studio falls back to its DICOM-directory conversion workflow. That route organizes/converts the detected studies and does not use `--output` as a single `.sz` filename.
 
 **7. Find and combine specific files based on a pattern to create a combined SRC file:**
 ```bash
@@ -68,7 +70,7 @@ dsi_studio --action=src --loop=MGH_*_all.zip --source=mgh_*/diff/preproc/mri/dif
 | **Parameter**      | **Description**                                                                 |
 |---------------------|---------------------------------------------------------------------------------|
 | `other_source`      | Specify additional files to be included in the SRC file. Multiple files can be assigned using a comma-separated list (e.g., `--other_source=1.nii.gz,2.nii.gz`). |
-| `output`           | Assign the output `.sz` file name or output folder. If not specified, output is written next to the input. Legacy `.src.gz` remains readable. |
+| `output`           | For single-file or NIFTI/BIDS conversion, assign the output `.sz` filename or output folder. If not specified, output is written next to the input. The DICOM-directory fallback manages its own output organization rather than treating `--output` as one `.sz` filename. Legacy `.src.gz` remains readable. |
 | `b_table`          | Assign a text file to replace the b-table. The file must match the loaded images in size. |
 | `bval`             | Specify the location of the FSL bval file. *(DSI Studio usually detects this automatically.)* |
 | `bvec`             | Specify the location of the FSL bvec file. *(DSI Studio usually detects this automatically.)* |
@@ -87,20 +89,17 @@ dsi_studio --action=src --loop=MGH_*_all.zip --source=mgh_*/diff/preproc/mri/dif
 
 ---
 
-## Notes from the Source Code
+## Directory behavior
 
-1. **Directory and BIDS Handling**:
-   - For a directory source, DSI Studio first looks for BIDS DWI data, then other NIFTI DWI files, and otherwise falls back to DICOM conversion.
+1. **BIDS/NIFTI detection**:
+   - For a directory source, DSI Studio first looks for BIDS DWI data, then other NIFTI DWI files.
    - `--bids=1` can be used to request BIDS handling explicitly.
 
-2. **Output Directory**:
-   - If the `--output` parameter is not provided, the resulting SRC files are saved in the same directory as the input files.
+2. **NIFTI output directory**:
+   - For directory-based NIFTI/BIDS conversion, `--output` is an output directory. If omitted, SRC files are written next to the NIFTI inputs.
 
-3. **Reverse Phase Encoding**:
+3. **Reverse phase encoding**:
    - Reverse-phase data detected during directory/BIDS conversion are saved as an `.rz` companion when TOPUP/EDDY is not run during SRC generation.
 
-4. **Error Handling**:
-   - The tool performs various checks for mismatched b-values, b-vectors, and file compatibility, displaying error messages when issues are encountered.
-
-5. **Default Behavior**:
-   - If no NIFTI diffusion data are found under a directory `--source`, DSI Studio attempts DICOM conversion.
+4. **DICOM fallback**:
+   - If no NIFTI diffusion data are found under the directory, DSI Studio attempts DICOM conversion using the directory-based DICOM workflow.
