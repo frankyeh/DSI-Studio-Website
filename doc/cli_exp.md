@@ -1,75 +1,49 @@
-# Export Metrics Data from FIB Files
+# Export Data
 
-> Use `--action=exp` to export data from a FIB file.
+Use `--action=exp` to export voxelwise metrics from FIB files or convert tractography between TT and TRK formats.
 
-## Examples
+## Export Metrics from FIB Files
 
-**1. Export `dti_fa`, `ad`, and `md` from a FIB file:**
+Export selected metrics from one FIB file:
+
 ```bash
-dsi_studio --action=exp --source=subject1.fz --export=dti_fa,ad,md
+dsi_studio --action=exp --source=subject.fz --export=dti_fa,ad,md
 ```
 
-**2. Export `qa` and `iso` from all FIB files to the MNI space:** (supported after Oct/2025)
+Export QA and ISO from all FIB files and transform the exported images to MNI space:
+
 ```bash
-dsi_studio --action=exp --source=*.fz --export=qa,iso --export_to_mni 
+dsi_studio --action=exp --source=*.fz --export=qa,iso --export_to_mni
 ```
 
----
+| Parameter | Description |
+|:--|:--|
+| `--source` | Input `.fz` or legacy `.fib.gz` file. Wildcards can be used for batch processing. |
+| `--export` | Comma-separated metric names to export, such as `qa,iso,dti_fa,ad,md`. Each metric is saved as `<source>.<metric>.nii.gz`. |
+| `--export_to_mni` | Transform exported images to MNI space. |
 
-## Core Functions
+## Convert Tractography Files
 
-| **Parameter** | **Default** | **Description**                                                                 |
-|---------------|-------------|---------------------------------------------------------------------------------|
-| `source`      |             | Specify the path for the FIB file.                                              |
-| `export`      |             | Specify the metrics to export (e.g., `qa`, `iso`, `dti_fa`, `ad`, `md`). Metrics are saved as `.nii.gz` files. |
+Convert TRK to TT:
 
-to export image to the template space, specify --export_to_mni (supported after Oct/2025)
-
----
-
-# Export Tract Data from TRK or TT Files
-
-> Use `--action=exp` to export data from TRK or TT files.
-
-## Examples
-
-**1. Export TRK's tract data into a TT file:**
 ```bash
 dsi_studio --action=exp --source=af.trk.gz --output=af.tt.gz
 ```
 
-**2. Export all TT's tract data into TRK files:**
+Convert TT to TRK:
+
 ```bash
-dsi_studio --action=exp --source=*.tt.gz --output=*.trk.gz
+dsi_studio --action=exp --source=af.tt.gz --output=af.trk.gz
 ```
 
----
+The conversion direction is determined by the input and output suffixes. `--action=exp` accepts `.trk.gz` → `.tt.gz` and `.tt.gz` → `.trk.gz` conversion.
 
-## Core Functions
+## Demographic-Matched Image Export
 
-| **Parameter** | **Default** | **Description**                                                                 |
-|---------------|-------------|---------------------------------------------------------------------------------|
-| `source`      |             | Specify the file name path for `.trk.gz` or `.tt.gz`.                           |
-| `output`      |             | Specify the output file. The file name must end with `.tt.gz` or `.trk.gz`.     |
+For a FIB-format connectometry database that includes demographics, `--match` can create a demographics-matched image:
 
----
+```bash
+dsi_studio --action=exp --source=database.fz --match=criteria.txt --output=matched_image.nii.gz
+```
 
-## Notes from the Source Code:
-
-1. **Supported File Formats**:
-   - `.fib.gz` / `.fz`: Metrics can be exported using the `export` parameter. Each metric will be saved as a `.nii.gz` file.
-   - `.trk.gz`: Files can be converted to `.tt.gz` format using the `trk2tt` function.
-   - `.tt.gz`: Files can be converted to `.trk.gz` format using the `tt2trk` function.
-
-2. **Error Handling**:
-   - If the FIB file is not a connectometry database or lacks demographics for matching, an error message is displayed.
-   - Unsupported file formats will result in an error.
-
-3. **Demographic Matching**:
-   - Use the `match` parameter to save demographics-matched images. Example:
-     ```bash
-     dsi_studio --action=exp --source=database.fz --match=criteria.txt --output=matched_image.nii.gz
-     ```
-
-4. **Output Naming**:
-   - Exported metrics are saved with the file name format: `<source>.<metric>.nii.gz`.
+This function requires connectometry database data and demographics stored in the input file. If `--output` is omitted, DSI Studio uses `<source>.matched.nii.gz`.
