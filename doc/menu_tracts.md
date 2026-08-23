@@ -24,6 +24,8 @@ DSI Studio's current compact tract format is `.tt.gz`. Use another format only w
 - DTI measurements such as FA, MD, AD, and RD;
 - values sampled from additional images inserted into the tracking window.
 
+Tract count is a property of the tractography sampling and tracking settings. It should not be interpreted as an axon count or direct biological connection strength.
+
 For along-tract variation rather than one summary value, use **Tract Profile**. See [AutoTrack and Tractometry](/doc/gui_t3_atk.html#tractometry).
 
 ## Convert tracts to regions
@@ -40,13 +42,13 @@ Topology-informed pruning (TIP) removes isolated or poorly supported streamline 
 
 ## Clustering and bundle recognition
 
-Tractography can be grouped by clustering or recognized against a tractography atlas. These functions are useful when an existing tractogram needs to be separated into pathway groups.
+Tractography can be grouped by clustering or recognized against a tractography atlas. Recognition assigns the **best-matching atlas label** to the tractography; it is a classification aid rather than definitive proof of anatomical identity. Inspect the bundle manually and report uncertain, cross-midline, or extra components conservatively.
 
 For direct atlas-guided mapping of named bundles, [AutoTrack](/doc/gui_t3_atk.html) is usually the clearer workflow.
 
 ## Track-density imaging
 
-Track-density images (TDI) can be exported from a tractogram in diffusion space or other supported mappings/resolutions. TDI reflects streamline sampling density and therefore depends on the tractography strategy and number of generated streamlines.
+Track-density images (TDI) can be exported from a tractogram in diffusion space or other supported mappings/resolutions. TDI reflects streamline sampling density and therefore depends on the tractography strategy and number of generated streamlines. It is not a direct measurement of axon density.
 
 ## Connectivity matrices
 
