@@ -38,8 +38,8 @@ The following table summarizes commonly used diffusion metrics and their interpr
 2. Budde MD, Kim JH, Liang HF, Schmidt RE, Russell JH, Cross AH, et al. Toward accurate diagnosis of white matter pathology using diffusion tensor imaging. Magn Reson Med. 2007;57(4):688-95.
 3. Sun SW, Liang HF, Trinkaus K, Cross AH, Armstrong RC, Song SK. Noninvasive detection of cuprizone induced axonal damage and demyelination in the mouse corpus callosum. Magn Reson Med. 2006;55(2):302-8.
 4. Song SK, Yoshino J, Le TQ, Lin SJ, Sun SW, Cross AH, et al. Demyelination increases radial diffusivity in corpus callosum of mouse brain. Neuroimage. 2005;26(1):132-40.
-5. Song SK, Sun SW, Ju WK, Lin SJ, Cross AH, Neufeld AH. Diffusion tensor imaging detects and differentiates axon and myelin degeneration in mouse optic nerve after retinal ischemia. Neuroimage. 2003;20(4):1714-22.
-6. Song SK, Sun SW, Ramsbottom MJ, Chang C, Russell J, Cross AH. Dysmyelination revealed through MRI as increased radial (but unchanged axial) diffusion of water. Neuroimage. 2002;17(3):1429-36.
+5. Song SK, Sun SW, Ju WK, Lin SJ, Cross AH, Neufeld AH. Diffusion tensor imaging detects and differentiates axon and myelin degeneration in mouse optic nerve after retinal ischemia. Neuroimage. 2003;20(3):1714-22.
+6. Song SK, Sun SW, Ramsbottom MJ, Chang C, Russell JH, Cross AH. Dysmyelination revealed through MRI as increased radial (but unchanged axial) diffusion of water. Neuroimage. 2002;17(3):1429-36.
 7. Kono K, Inoue Y, Nakayama K, Shakudo M, Morino M, Ohata K, et al. The role of diffusion-weighted imaging in patients with brain tumors. AJNR Am J Neuroradiol. 2001;22(6):1081-8.
 8. Gauvain KM, McKinstry RC, Mukherjee P, Perry A, Neil JJ, Kaufman BA, et al. Evaluating pediatric brain tumor cellularity with diffusion-tensor imaging. AJR Am J Roentgenol. 2001;177(2):449-54.
 9. Sugahara T, Korogi Y, Kochi M, Ikushima I, Shigematu Y, Hirai T, et al. Usefulness of diffusion-weighted MRI with echo-planar technique in the evaluation of cellularity in gliomas. J Magn Reson Imaging. 1999;9(1):53-60.
@@ -48,7 +48,7 @@ The following table summarizes commonly used diffusion metrics and their interpr
 12. Yeh FC, Zaydan IM, Suski VR, Lacomis D, Richardson RM, Maroon JC, et al. Differential tractography as a track-based biomarker for neuronal injury. Neuroimage. 2019;202:116131.
 13. Garic D, Yeh FC, Graziano P, Dick AS. In vivo restricted diffusion imaging (RDI) is sensitive to differences in axonal density in typical children and adults. Brain Struct Funct. 2021;226(8):2689-705.
 14. Yeh FC, Liu L, Hitchens TK, Wu YL. Mapping immune cell infiltration using restricted diffusion MRI. Magn Reson Med. 2017;77(2):603-12.
-15. Shen CY, Tyan YS, Kuo LW, Wu CW, Weng JC. Quantitative Evaluation of Rabbit Brain Injury after Cerebral Hemisphere Radiation Exposure Using Generalized q-Sampling Imaging. PLoS One. 2015;10(7):e0133001.
+15. Shen CY, Tyan YS, Kuo LW, Wu CW, Weng JC. Quantitative Evaluation of Rabbit Brain Injury after Cerebral Hemisphere Radiation Exposure Using Generalized q-sampling imaging. PLoS One. 2015;10(7):e0133001.
 
 # Difference between model-based and model-free
 
