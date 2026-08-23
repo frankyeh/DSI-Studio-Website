@@ -1,6 +1,5 @@
 <img width="1024" alt="image" src="https://github.com/user-attachments/assets/837427ff-b7f9-402f-bd21-3be9eb1d0346" />
 
-
 > ### Integrated tractography, connectomics, brain MRI segmentation, and large-scale fiber data sharing
 > Yeh, Fang-Cheng. “DSI Studio: An Integrated Tractography Platform and Fiber Data Hub for Accelerating Brain Research.” Nature Methods, July 2025, https://doi.org/10.1038/s41592-025-02762-8.
 
@@ -13,7 +12,7 @@
 ## What you can do with DSI Studio
 
 - Reconstruct diffusion MRI using methods including **DTI**, **GQI**, and **QSDR**.
-- Map white matter pathways using **deterministic** and **probabilistic tractography**.
+- Map white-matter pathways using **deterministic tractography**, **ROI-based tracking**, and **atlas-based automatic fiber tracking**.
 - Study change and association using **differential tractography** and **correlational tractography**.
 - Quantify brain networks using both **region-to-region connectivity matrices** and the **tract-to-region connectome**.
 - Run **quality control**, **group analysis**, and population-level workflows in the same software environment.
