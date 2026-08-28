@@ -26,6 +26,13 @@ Choose your processor architecture first. For Linux, the **Universal** packages 
 
 **Docker (x86_64):** CPU image `dsistudio/dsistudio:latest` · CUDA image `dsistudio/dsistudio:cuda`
 
+### Troubleshooting
+
+- **Windows:** if DLL files are missing, install the [Microsoft Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe). The GPU version may require an updated NVIDIA driver and/or [CUDA Toolkit 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local).
+- **macOS:** if macOS reports that the app is damaged or cannot be opened because it is not notarized, run `xattr -rd com.apple.quarantine /path/to/dsi_studio.app`. If the file-open dialog crashes with files on a cloud drive, copy the data to a local folder first.
+- **Ubuntu:** if `libQt6Charts` is missing, run `sudo apt install libqt6charts6-dev`. For `xcb` errors, see this [forum solution](https://groups.google.com/g/dsi-studio/c/b61uyoo0CuI).
+- 
+
 ## "Hou" Versions (2024-2026) — Legacy
 
 Hou introduced the compact `*.fz`/`*.sz` formats, DSI Studio Data Hub, new linear/nonlinear registration tools, and the redesigned graphical user interface.
@@ -41,12 +48,6 @@ Hou introduced the compact `*.fz`/`*.sz` formats, DSI Studio Data Hub, new linea
 | Docker | Docker Hub image:<br>`dsistudio/dsistudio:latest` | Command-line and Linux container workflows. |
 
 **China mirror (Hou only):** [百度网盘](https://pan.baidu.com/s/5GuYBQbLHTN_HvShnM3oQew)
-
-## Troubleshooting
-
-- **Windows:** if DLL files are missing, install the [Microsoft Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe). The GPU version may require an updated NVIDIA driver and/or [CUDA Toolkit 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local).
-- **macOS:** if macOS reports that the app is damaged or cannot be opened because it is not notarized, run `xattr -rd com.apple.quarantine /path/to/dsi_studio.app`. If the file-open dialog crashes with files on a cloud drive, copy the data to a local folder first.
-- **Ubuntu:** if `libQt6Charts` is missing, run `sudo apt install libqt6charts6-dev`. For `xcb` errors, see this [forum solution](https://groups.google.com/g/dsi-studio/c/b61uyoo0CuI).
 
 # Previous Versions
 
