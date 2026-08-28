@@ -15,25 +15,14 @@ The current Sun release is **2026.7.25**.
 
 Choose your processor architecture first. For Linux, the **Universal** packages are recommended for most systems; Ubuntu-specific builds are also provided.
 
-### x86_64 (Intel / AMD)
-
-| OS | Downloads | Notes |
-|----|-----------|-------|
-| **Windows 10/11** | **[NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win.zip)** · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_cpu.zip) | Unzip and run `dsi_studio.exe`. |
-| **macOS** | [Intel Mac](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_macos-15-intel_qt6.zip) | For Intel-based Macs. |
-| **Linux** | **Universal:** [NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cuda.zip) · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cpu.zip) · [Legacy CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_legacy_cpu.zip)<br>**Ubuntu:** [18.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu1804.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu1804_cpu.zip) · [20.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2004.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2004_cpu.zip) · [22.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204_cpu.zip) · [24.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404_cpu.zip) | Universal is the default choice. Legacy supports older Linux systems. |
-
-**Universal Linux:** Ubuntu 18.04–26.04, Debian 11–13, Rocky/AlmaLinux 8–10, and openSUSE Leap 15.6. **Legacy** additionally covers Ubuntu 16.04, Debian 9–10, CentOS 7, and Amazon Linux 2.
-
-### ARM64
-
-| OS | Downloads | Notes |
-|----|-----------|-------|
-| **Windows 11 ARM** | [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_arm64.zip) | For Windows on ARM devices. |
-| **macOS** | [Apple Silicon](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_macos-14-arm64_qt6.zip) | For M1/M2/M3/M4 and newer Apple Silicon Macs. |
-| **Linux** | **Universal:** [NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cuda_arm64.zip) · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cpu_arm64.zip)<br>**Ubuntu:** [22.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204_arm64.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204_cpu_arm64.zip) · [24.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404_arm64.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404_cpu_arm64.zip) | For ARM64 Linux desktops and workstations. |
-
-**Universal ARM64 CPU:** Ubuntu 18.04–26.04, Debian 11–13, Rocky/AlmaLinux 8–10, and Amazon Linux 2023. **ARM64 CUDA:** Ubuntu 22.04–26.04, Debian 12–13, and Rocky/AlmaLinux 10.
+| Architecture | OS | Downloads | Notes |
+|---|---|---|---|
+| **x86_64**<br>Intel / AMD | **Windows 10/11** | **[NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win.zip)** · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_cpu.zip) | Unzip and run `dsi_studio.exe`. |
+| **x86_64**<br>Intel / AMD | **macOS** | [Intel Mac](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_macos-15-intel_qt6.zip) | Intel Macs. |
+| **x86_64**<br>Intel / AMD | **Linux** | **Universal:** [NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cuda.zip) · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cpu.zip) · [Legacy CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_legacy_cpu.zip)<br>**Ubuntu:** [18.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu1804.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu1804_cpu.zip) · [20.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2004.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2004_cpu.zip) · [22.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204_cpu.zip) · [24.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404_cpu.zip) | **Universal:** Ubuntu 18.04–26.04, Debian 11–13, Rocky/AlmaLinux 8–10, openSUSE 15.6.<br>**Legacy:** also Ubuntu 16.04, Debian 9–10, CentOS 7, Amazon Linux 2. |
+| **ARM64** | **Windows 11 ARM** | [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_arm64.zip) | Windows on ARM. |
+| **ARM64** | **macOS** | [Apple Silicon](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_macos-14-arm64_qt6.zip) | M1/M2/M3/M4 and newer. |
+| **ARM64** | **Linux** | **Universal:** [NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cuda_arm64.zip) · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cpu_arm64.zip)<br>**Ubuntu:** [22.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204_arm64.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204_cpu_arm64.zip) · [24.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404_arm64.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404_cpu_arm64.zip) | **Universal CPU:** Ubuntu 18.04–26.04, Debian 11–13, Rocky/AlmaLinux 8–10, Amazon Linux 2023.<br>**CUDA:** Ubuntu 22.04–26.04, Debian 12–13, Rocky/AlmaLinux 10. |
 
 **Docker (x86_64):** CPU image `dsistudio/dsistudio:latest` · CUDA image `dsistudio/dsistudio:cuda`
 
