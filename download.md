@@ -13,13 +13,25 @@ The current Sun release is **2026.7.25**.
 
 **New in Sun: AI Agent.** DSI Studio can use **Codex** or **Claude Code** to understand natural-language requests and operate workflows including reconstruction, fiber tracking, image processing, and connectometry. To use the AI Agent, install Codex or Claude Code on the same computer.
 
-| OS | File | Notes |
-|----|------|-------|
-| Windows 10/11 x64 | [GPU version for NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_win.zip)<br>[CPU version](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_win_cpu.zip) | Unzip and run `dsi_studio.exe`. |
-| macOS 13+ | [Apple Silicon version (M1/M2/M3/M4)](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_macos-14-arm64_qt6.zip)<br>[Intel version](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_macos-15-intel_qt6.zip) | Unzip and run `dsi_studio.app`. |
-| Ubuntu x86_64 | GPU versions for NVIDIA GPU:<br>[Ubuntu 20.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2004.zip)<br>[Ubuntu 22.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204.zip)<br>[Ubuntu 24.04](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404.zip)<br><br>CPU versions:<br>[Ubuntu 20.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2004_cpu.zip)<br>[Ubuntu 22.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_cpu.zip)<br>[Ubuntu 24.04 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_cpu.zip) | Choose the package closest to your Ubuntu version. |
-| Ubuntu arm64 | GPU versions for NVIDIA GPU:<br>[Ubuntu 22.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_arm64.zip)<br>[Ubuntu 24.04 arm64](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_arm64.zip)<br><br>CPU versions:<br>[Ubuntu 22.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2204_cpu_arm64.zip)<br>[Ubuntu 24.04 arm64 CPU](https://github.com/frankyeh/DSI-Studio/releases/download/2026.7.25/dsi_studio_ubuntu2404_cpu_arm64.zip) | For Linux arm64 desktops or workstations. |
-| Docker | Docker Hub image:<br>`dsistudio/dsistudio:latest` | Command-line and Linux container workflows. |
+Choose your processor architecture first. For Linux, the **Universal** packages are recommended for most systems; Ubuntu-specific builds are also provided.
+
+### x86_64 (Intel / AMD)
+
+| OS | Downloads | Notes |
+|----|-----------|-------|
+| **Windows 10/11** | **[NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win.zip)** · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_cpu.zip) | Unzip and run `dsi_studio.exe`. |
+| **macOS** | [Intel Mac](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_macos-15-intel_qt6.zip) | For Intel-based Macs. |
+| **Linux** | **Universal:** [NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cuda.zip) · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cpu.zip) · [Legacy CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_legacy_cpu.zip)<br>**Ubuntu:** [18.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu1804.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu1804_cpu.zip) · [20.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2004.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2004_cpu.zip) · [22.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204_cpu.zip) · [24.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404_cpu.zip) | Universal is the default choice. Legacy supports older Linux systems. |
+
+### ARM64
+
+| OS | Downloads | Notes |
+|----|-----------|-------|
+| **Windows 11 ARM** | [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_arm64.zip) | For Windows on ARM devices. |
+| **macOS** | [Apple Silicon](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_macos-14-arm64_qt6.zip) | For M1/M2/M3/M4 and newer Apple Silicon Macs. |
+| **Linux** | **Universal:** [NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cuda_arm64.zip) · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_linux_universal_cpu_arm64.zip)<br>**Ubuntu:** [22.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204_arm64.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2204_cpu_arm64.zip) · [24.04 GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404_arm64.zip) / [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_ubuntu2404_cpu_arm64.zip) | For ARM64 Linux desktops and workstations. |
+
+**Docker (x86_64):** CPU image `dsistudio/dsistudio:latest` · CUDA image `dsistudio/dsistudio:cuda`
 
 ## "Hou" Versions (2024-2026) — Legacy
 
@@ -46,7 +58,7 @@ Hou introduced the compact `*.fz`/`*.sz` formats, DSI Studio Data Hub, new linea
 # Previous Versions
 
 - ["Chen" versions (2022-2024)](https://github.com/frankyeh/DSI-Studio/releases)
-- [Pre-"Chen" versions (2008-2022)](https://www.dropbox.com/sh/ectib64vhctkl8b/AADBRYp_aPLEuAOdNw393tO-a?dl=0)
+- [Pre-"Chen" versions (2008-2022)](https://www.dropbox.com/sh/ectib64vhctkl8bA?dl=0)
 - Older CentOS 8 builds, if needed, can be found in previous GitHub releases.
 
 # License
