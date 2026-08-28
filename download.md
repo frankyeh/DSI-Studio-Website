@@ -58,7 +58,7 @@ Hou introduced the compact `*.fz`/`*.sz` formats, DSI Studio Data Hub, new linea
 # Previous Versions
 
 - ["Chen" versions (2022-2024)](https://github.com/frankyeh/DSI-Studio/releases)
-- [Pre-"Chen" versions (2008-2022)](https://www.dropbox.com/sh/ectib64vhctkl8bA?dl=0)
+- [Pre-"Chen" versions (2008-2022)](https://www.dropbox.com/sh/ectib64vhctkl8b/AADBRYp_aPLEuAOdNw393tO-a?dl=0)
 - Older CentOS 8 builds, if needed, can be found in previous GitHub releases.
 
 # License
