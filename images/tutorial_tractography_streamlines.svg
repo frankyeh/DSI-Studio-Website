@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="390" viewBox="0 0 1100 390">
+<rect width="1100" height="390" fill="white"/>
+<text x="550" y="38" text-anchor="middle" font-family="Arial" font-size="28" font-weight="700">More streamlines do not automatically mean more accurate connectivity</text>
+<rect x="70" y="80" width="400" height="235" rx="18" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+<text x="270" y="115" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700">Conservative tracking</text>
+<path d="M120 260 C175 205,245 160,415 140" fill="none" stroke="#2563eb" stroke-width="6"/>
+<path d="M120 245 C180 195,260 170,415 155" fill="none" stroke="#2563eb" stroke-width="6"/>
+<path d="M120 275 C190 230,255 205,415 180" fill="none" stroke="#2563eb" stroke-width="6"/>
+<text x="270" y="295" text-anchor="middle" font-family="Arial" font-size="17">fewer trajectories, fewer opportunities for false routes</text>
+<rect x="630" y="80" width="400" height="235" rx="18" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+<text x="830" y="115" text-anchor="middle" font-family="Arial" font-size="22" font-weight="700">Permissive / dense tracking</text>
+<path d="M675 260 C730 205,800 160,975 140" fill="none" stroke="#2563eb" stroke-width="5"/>
+<path d="M675 245 C735 195,815 170,975 155" fill="none" stroke="#2563eb" stroke-width="5"/>
+<path d="M675 275 C745 230,810 205,975 180" fill="none" stroke="#2563eb" stroke-width="5"/>
+<path d="M675 270 C745 190,825 205,975 245" fill="none" stroke="#dc2626" stroke-width="5"/>
+<path d="M675 225 C770 255,850 135,975 205" fill="none" stroke="#dc2626" stroke-width="5"/>
+<path d="M675 285 C760 145,865 265,975 135" fill="none" stroke="#dc2626" stroke-width="5"/>
+<text x="830" y="295" text-anchor="middle" font-family="Arial" font-size="17">higher sensitivity can come with more false positives</text>
+<text x="550" y="360" text-anchor="middle" font-family="Arial" font-size="23" font-weight="700">Streamline count is an algorithm output, not an axon count.</text>
+</svg>
