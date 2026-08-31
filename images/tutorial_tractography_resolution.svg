@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420" viewBox="0 0 1100 420" role="img" aria-labelledby="title desc">
+  <title id="title">Higher angular resolution does not guarantee better anatomical tractography</title>
+  <desc id="desc">Three panels show one resolved direction, multiple resolved directions, and an additional spurious peak that can send a streamline onto a false route.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4b5563"/>
+    </marker>
+  </defs>
+  <text x="550" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#111827">More angular detail can help — but it is not the same as anatomical truth</text>
+
+  <rect x="35" y="75" width="300" height="220" rx="18" fill="#f9fafb" stroke="#9ca3af" stroke-width="2"/>
+  <text x="185" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#111827">Lower angular resolution</text>
+  <circle cx="185" cy="190" r="62" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+  <line x1="125" y1="190" x2="245" y2="190" stroke="#2563eb" stroke-width="7"/>
+  <text x="185" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#374151">may miss crossing fibers</text>
+
+  <rect x="400" y="75" width="300" height="220" rx="18" fill="#f9fafb" stroke="#9ca3af" stroke-width="2"/>
+  <text x="550" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#111827">Higher angular resolution</text>
+  <circle cx="550" cy="190" r="62" fill="#ecfdf5" stroke="#16a34a" stroke-width="2"/>
+  <line x1="490" y1="190" x2="610" y2="190" stroke="#2563eb" stroke-width="7"/>
+  <line x1="515" y1="235" x2="585" y2="145" stroke="#16a34a" stroke-width="7"/>
+  <text x="550" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#374151">can recover real crossings</text>
+
+  <rect x="765" y="75" width="300" height="220" rx="18" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="915" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#111827">Over-resolved / unstable peak</text>
+  <circle cx="875" cy="185" r="58" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <line x1="817" y1="185" x2="933" y2="185" stroke="#2563eb" stroke-width="7"/>
+  <line x1="842" y1="226" x2="908" y2="144" stroke="#16a34a" stroke-width="7"/>
+  <line x1="875" y1="185" x2="916" y2="142" stroke="#dc2626" stroke-width="6"/>
+  <path d="M936 185 C970 180, 984 152, 1015 138" fill="none" stroke="#dc2626" stroke-width="6" marker-end="url(#arrow)"/>
+  <text x="915" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#9a3412">a false peak can become a false route</text>
+
+  <line x1="110" y1="345" x2="990" y2="345" stroke="#111827" stroke-width="2"/>
+  <text x="550" y="385" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#111827">More resolved directions ≠ more true long-range connections</text>
+</svg>
