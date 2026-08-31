@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="300" viewBox="0 0 1100 300" role="img" aria-labelledby="title desc">
+  <title id="title">How tractography works from diffusion MRI to streamlines</title>
+  <desc id="desc">A four-step diagram showing diffusion MRI signals, local fiber orientation estimation, seed and propagation, and a streamline. The first half is labeled local measurement and the second half global inference.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#4b5563"/>
+    </marker>
+  </defs>
+  <rect x="20" y="45" width="220" height="120" rx="16" fill="#eef6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="130" y="85" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#111827">Diffusion MRI</text>
+  <text x="130" y="118" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#374151">direction-sensitive</text>
+  <text x="130" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#374151">water diffusion signals</text>
+
+  <line x1="245" y1="105" x2="290" y2="105" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="300" y="45" width="220" height="120" rx="16" fill="#eef6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="410" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#111827">Local fiber</text>
+  <text x="410" y="108" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#111827">orientations</text>
+  <line x1="370" y1="137" x2="450" y2="137" stroke="#dc2626" stroke-width="5"/>
+  <line x1="385" y1="153" x2="435" y2="121" stroke="#16a34a" stroke-width="5"/>
+
+  <line x1="525" y1="105" x2="570" y2="105" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="580" y="45" width="220" height="120" rx="16" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="690" y="83" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#111827">Seed + stepwise</text>
+  <text x="690" y="112" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#111827">propagation</text>
+  <circle cx="625" cy="142" r="7" fill="#111827"/>
+  <path d="M632 142 C655 124, 674 150, 700 132 S748 118, 765 137" fill="none" stroke="#16a34a" stroke-width="5"/>
+
+  <line x1="805" y1="105" x2="850" y2="105" stroke="#4b5563" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="860" y="45" width="220" height="120" rx="16" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <text x="970" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#111827">Streamline</text>
+  <path d="M895 140 C920 108, 945 152, 970 120 S1020 100, 1045 138" fill="none" stroke="#2563eb" stroke-width="6"/>
+
+  <line x1="40" y1="220" x2="510" y2="220" stroke="#2563eb" stroke-width="4"/>
+  <text x="275" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#1d4ed8">LOCAL MEASUREMENT / ESTIMATION</text>
+
+  <line x1="590" y1="220" x2="1060" y2="220" stroke="#16a34a" stroke-width="4"/>
+  <text x="825" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#15803d">GLOBAL PATHWAY INFERENCE</text>
+</svg>
