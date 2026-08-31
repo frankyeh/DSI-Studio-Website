@@ -115,19 +115,6 @@ This also explains why higher angular resolution does not automatically win. Bet
 
 An improvement at one step cannot automatically correct errors introduced at another.
 
-## In DSI Studio
-
-For practical implementation, continue with:
-
-- [Whole-brain tractography](/doc/gui_t3_whole_brain.html)
-- [ROI-based tracking](/doc/gui_t3_roi_tracking.html)
-- [Automatic fiber tracking](/doc/gui_t3_atk.html)
-- [How to acquire dMRI](/doc/how_to_acquire_dmri.html)
-- [How to analyze dMRI](/doc/how_to_analyze_dmri.html)
-- [How to interpret dMRI](/doc/how_to_interpret_dmri.html)
-
-The goal is to obtain a result that is **anatomically plausible, reproducible, and appropriate for the scientific question**.
-
 ## References
 
 1. Yeh FC, Irimia A, Bastos DCA, Golby AJ. Tractography methods and findings in brain tumors and traumatic brain injury. *NeuroImage*. 2021;245:118651. https://doi.org/10.1016/j.neuroimage.2021.118651
