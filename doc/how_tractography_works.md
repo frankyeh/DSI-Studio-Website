@@ -1,8 +1,8 @@
-# How Tractography Really Works: Four Myths and How to Get Better Results
+# Practical Tips for Tractography: Common Pitfalls and What to Watch For
 
-Diffusion MRI tractography is the only widely available noninvasive method for mapping white-matter pathways in the living human brain. It is also easy to over-interpret.
+Diffusion MRI tractography is a powerful noninvasive way to study white-matter pathways in the living human brain, but it is also easy to over-interpret. The suggestions below summarize how I usually think about tractography when choosing a method, checking a result, or deciding how much confidence to place in a pathway.
 
-The most important idea is simple:
+The most useful starting point is simple:
 
 > **Diffusion MRI estimates local directional information. Tractography uses that local information to infer long-range pathways.**
 
@@ -10,36 +10,49 @@ A streamline is therefore an **inference produced by an algorithm**. It is not a
 
 <img src="/images/tutorial_tractography_pipeline.svg" width="900" alt="Diffusion MRI provides local directional information, which tractography propagates into global streamlines.">
 
-This distinction explains many common tractography misconceptions.
+This distinction helps explain several common tractography misconceptions.
 
 ## Myth 1: Higher angular resolution automatically gives better tractography
 
-Higher angular resolution can help resolve crossing fibers. A tensor model usually resolves only one dominant direction in a voxel, whereas higher-order approaches can represent multiple directions. Methods using orientation distribution functions or fiber orientation distributions can therefore recover pathways that tensor-based tracking may miss.
+Higher angular resolution can help resolve crossing fibers. DTI usually resolves one dominant orientation in a voxel, whereas GQI-based diffusion ODFs and FODs can represent multiple orientations. This additional resolving power can recover pathways that tensor-based tracking may miss.
 
 But **resolving more directions is not the same as mapping more true connections**.
 
-<img src="/images/tutorial_tractography_resolution.svg" width="900" alt="Higher angular resolution can recover real crossing fibers but can also introduce spurious directions that lead to false pathways.">
+<img src="https://ars.els-cdn.com/content/image/1-s2.0-S1053811921009241-gr3.jpg" width="950" alt="Comparison of DTI, GQI diffusion ODF, and FOD fiber orientations from Yeh et al. NeuroImage 2021.">
 
-A sharper orientation distribution, a higher spherical-harmonic order, or a model capable of producing more peaks can increase angular resolving power. However, the extra angular detail is only useful when it is supported by the signal and by the underlying anatomy. Noise, partial-volume effects, model assumptions, response-function mismatch, regularization, and limited spatial resolution can all produce unstable or spurious orientations.
+*Figure 3 from Yeh et al., NeuroImage 2021. The same diffusion data are reconstructed using the tensor model, GQI diffusion ODFs, and FODs.*
 
-Once a spurious local orientation is present, fiber tracking can propagate it over many millimeters and generate a convincing but anatomically incorrect pathway.
+This comparison is useful because it shows both the benefit and the limitation of increasing angular resolving power. DTI may miss crossing branches such as lateral callosal fibers. GQI can recover additional fiber populations. FOD can provide still higher resolving power, yet the extra angular detail does not automatically translate into better anatomical accuracy. In superficial white matter, the FOD result can also produce orientations perpendicular to the gyrus and arc-shaped spurious tracks that are not supported by the corresponding histology.
 
-**Practical lesson:** choose a reconstruction method that resolves the anatomy supported by the data. Do not treat the number or sharpness of resolved peaks as a measure of tractography accuracy.
+The important distinction is therefore:
+
+> **Better local fiber resolving does not automatically mean better global anatomical mapping.**
+
+A sharper orientation distribution, a higher spherical-harmonic order, or a model capable of producing more peaks should not by itself be treated as evidence of better tractography.
+
+**Practical suggestion:** use enough angular resolution to resolve the anatomy required by the scientific question, then judge the result against anatomy and the complete pathway rather than the number or sharpness of local peaks.
 
 ## Myth 2: Crossing fibers are the main tractography problem
 
-Crossing fibers are important, but they are only one of several anatomical challenges.
+Crossing fibers are important, but they are only one of several anatomical challenges. Different parts of the brain create very different tracking problems.
 
-Different parts of the brain create different tracking problems:
+<img src="https://ars.els-cdn.com/content/image/1-s2.0-S1053811921009241-gr1.jpg" width="950" alt="White-matter anatomy and tractography challenges in superficial white matter, deep white matter, and subcortical nuclei from Yeh et al. NeuroImage 2021.">
 
-- **Superficial white matter:** fibers fan toward the cortex and often turn sharply near the gray-white matter boundary. This produces gyral bias and can cause connections to favor gyral crowns while missing sulcal banks.
-- **Deep white matter:** association, projection, and commissural pathways cross, branch, fan, and run alongside one another.
-- **Gray-white matter boundaries:** tracking must stop at biologically meaningful locations. Premature termination and overshoot both alter inferred connectivity.
-- **Subcortical nuclei and brainstem:** small pathways, limited spatial resolution, susceptibility distortion, and low diffusion signal can be more limiting than angular resolution.
+*Figure 1 from Yeh et al., NeuroImage 2021. Histology illustrates three distinct anatomical settings that challenge tractography.*
 
-This is why tractography is fundamentally an **anatomical inference problem**, not simply an angular-resolution problem.
+The figure highlights three particularly useful examples:
 
-For anatomy-based examples of these challenges, see Yeh et al., *NeuroImage* 2021, particularly Figs. 1, 3, and 4.
+- **Superficial white matter and gyral blades:** fibers fan toward the cortex and can turn sharply near the gray-white matter boundary. Tracking algorithms tend to favor less sharply turning trajectories, producing gyral bias and missed sulcal terminations.
+- **Deep white matter:** association, projection, and commissural pathways intersect, branch, and fan in the centrum semiovale. This is the classic crossing-fiber problem, but it is only one region of difficulty.
+- **Subcortical nuclei:** small pathways intermingle with large projection bundles, while limited spatial resolution and low diffusion signal can make local orientations difficult or impossible to resolve reliably.
+
+The lesson I would keep in mind is:
+
+> **Tractography is an anatomical inference problem, not simply an angular-resolution problem.**
+
+Improving crossing-fiber resolution helps one part of the problem, but it does not solve gyral bias, incorrect termination, limited spatial resolution, poor signal, or ambiguous long-range routing.
+
+**Practical suggestion:** before changing reconstruction or tracking parameters, first identify *where* the pathway is difficult anatomically. The appropriate solution depends on whether the main limitation is crossing, turning, termination, spatial resolution, signal quality, or pathway ambiguity.
 
 ## Myth 3: If the local fiber directions are correct, the pathway will be correct
 
@@ -55,7 +68,7 @@ Three common mechanisms are:
 
 The third case is especially important: every local orientation along a false streamline can look plausible while the **complete connection is wrong**.
 
-**Practical lesson:** evaluate the full pathway and its anatomical endpoints, not just the local orientation field.
+**Practical suggestion:** evaluate the full pathway and its anatomical endpoints, not just the local orientation field.
 
 ## Myth 4: More streamlines mean better mapping
 
@@ -71,9 +84,9 @@ Therefore:
 
 A useful tractography result balances sensitivity with anatomical specificity. For many scientific questions, a smaller set of reproducible and anatomically plausible pathways is more informative than a visually dense whole-brain tractogram.
 
-## What makes tractography work well?
+## Practical checks I find useful
 
-Good tractography does not come from one "best" reconstruction or tracking algorithm. It comes from several sources of information agreeing with one another.
+Good tractography rarely comes from one "best" reconstruction or tracking algorithm. It usually comes from several sources of information agreeing with one another.
 
 | Step | Question to ask |
 |---|---|
@@ -92,7 +105,7 @@ Instead of asking:
 
 > **Which tractography method is the most advanced?**
 
-ask:
+I find it more useful to ask:
 
 > **Which combination of data, reconstruction, tracking, anatomical constraints, and validation best answers this particular anatomical or scientific question?**
 
@@ -113,7 +126,7 @@ For practical implementation, continue with:
 - [How to analyze dMRI](/doc/how_to_analyze_dmri.html)
 - [How to interpret dMRI](/doc/how_to_interpret_dmri.html)
 
-The purpose of these tools is not to make the densest tractogram. The goal is to obtain a result that is **anatomically plausible, reproducible, and appropriate for the scientific question**.
+The goal is to obtain a result that is **anatomically plausible, reproducible, and appropriate for the scientific question**.
 
 ## References
 
