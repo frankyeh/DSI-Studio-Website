@@ -18,7 +18,7 @@ dsi_studio --action=rec --source=*.sz --method=4 --param=1.25 --output=fib/
 
 ```bash
 dsi_studio --action=rec --source=subject1.sz \
-            --cmd="[Step T2][Corrections][EDDY]" \
+            --cmd=eddy \
             --method=4 --param=1.25
 ```
 
@@ -78,7 +78,7 @@ If a representative good-quality acquisition indicates a consistent swap/flip co
 
 ```bash
 dsi_studio --action=rec --source=subject.sz \
-            --cmd="[Step T2][B-table][swap bybz]+[Step T2][B-table][flip bx]" \
+            --cmd="swap_bybz+flip_bx" \
             --method=4 --param=1.25
 ```
 
@@ -145,47 +145,82 @@ When resampling is needed, keep the original DWI geometry while applying correct
 | `--save_src`        | Write out the preprocessed SRC (no reconstruction). |
 | `--save_nii`        | Write out the preprocessed 4D NIfTI instead of SRC. |
 | `--intro`           | Load a text file (`.txt`/`.md`) as the introduction embedded in the reconstruction report. |
-| `--remove`          | Comma-list or ranges of DWI indices to drop—e.g., `--remove=0,5:10,end`. |
+| `--remove`          | Comma-separated DWI indices or ranges to drop, e.g. `--remove=0,5:10` or `--remove=20:end`. |
 | `--export_r`        | Write a `.rXX` file reporting registration R² (e.g., `.r85` for 0.85). |
-| `--cmd`             | Chain GUI steps for extra edits: e.g., `--cmd="[Step T2][Resample]=1.0+[Step T2][File][Save Src File]=out.sz"`. |
+| `--cmd`             | Run one or more reconstruction commands before reconstruction. Separate commands with `+` and append parameters with `=`, e.g. `--cmd="resample=1.0+save_src=out.sz"`. |
 
 -----
 
-### Available `[Step …]` commands in `--cmd`
+## Available `--cmd` commands
 
-The following GUI-path commands can be chained using `--cmd`:
+Direct `--action=rec --cmd` calls use the short command names below. Commands are chained with `+`:
 
-#### File Operations
+```text
+--cmd="command[=parameter]+command2[=parameter]"
+```
 
-- `[Step T2][File][Save Src File]=<filename>`: Save the current SRC file.
-- `[Step T2][File][Save 4D NIFTI]=<filename>`: Save DWI data as a 4D NIfTI file.
-- `[Step T2][File][Save B0]=<filename>`: Save the B0 volume as a NIfTI file.
-- `[Step T2][File][Save DWI Sum]=<filename>`: Save the sum of all DWI volumes.
+Older DSI Studio versions recorded processing steps using GUI-path names such as `[Step T2][Corrections][EDDY]`. Current command-line workflows should use the short names below. Saved processing histories are translated internally when they are replayed.
 
-#### Corrections
+### Parameters
 
-- `[Step T2][Corrections][TOPUP]`: Apply TOPUP correction.
-- `[Step T2][Corrections][TOPUP EDDY]=<reverse_phase_file>`: Apply TOPUP and EDDY corrections.
-- `[Step T2][Corrections][EDDY]`: Apply EDDY correction.
-- `[Step T2][Corrections][Motion Correction]`: Perform motion correction.
-- `[Step T2][Corrections][Bias Field]`: Correct the DWI bias field.
-- `[Step T2][Corrections][By T2w]=<T2_file>`: Correct distortions using a T2-weighted image.
-- `[Step T2][Corrections][Volume Orientation Correction]`: Adjust volume orientation.
+- `set_param=<name>=<value>`: Set one reconstruction parameter.
+- `set_params=<name>=<value>&<name>=<value>...`: Set multiple reconstruction parameters in one command. Quote the whole `--cmd` argument in shells where `&` has special meaning.
+- `list_param[=<name>]`: Print one parameter, or all parameters when no name (or `all`) is given.
 
-#### Editing
+Supported parameter names are `method`, `thread_count`, `other_output`, `dti_ignore_high_b`, `odf_resolving`, `r2_weighted`, `param`, `template`, `qsdr_reso`, `reg_resolution`, `reg_speed`, `reg_smoothing`, `hist_downsampling`, `hist_raw_smoothing`, `hist_tensor_smoothing`, and `hist_resolution`.
 
-- `[Step T2][Edit][Resample]=<resolution>`: Resample the image to isotropic resolution.
-- `[Step T2][Edit][Align ACPC]=<resolution>`: Align the volume to AC–PC.
-- `[Step T2][Edit][Image flip x]`: Flip the image along the X-axis.
-- `[Step T2][Edit][Image flip y]`: Flip the image along the Y-axis.
-- `[Step T2][Edit][Image flip z]`: Flip the image along the Z-axis.
+### File Operations
 
-#### B-table Operations
+- `save_src=<filename>`: Save the current data as an SRC/SZ file. Use an SRC/SZ filename extension.
+- `save_nifti=<filename>`: Save the current DWI data as a 4D NIfTI file. Use a NIfTI filename extension.
+- `save_b0=<filename>`: Save the first B0 volume as a NIfTI file.
+- `save_dwi_sum=<filename>`: Save the DWI-sum image as a NIfTI file.
 
-- `[Step T2][B-table][Check B-table]`: Check and correct the b-table.
-- `[Step T2][B-table][flip bx]`: Flip the X-gradient in the b-table.
-- `[Step T2][B-table][flip by]`: Flip the Y-gradient in the b-table.
-- `[Step T2][B-table][flip bz]`: Flip the Z-gradient in the b-table.
-- `[Step T2][B-table][swap bxby]`: Swap X and Y gradients in the b-table.
-- `[Step T2][B-table][swap bybz]`: Swap Y and Z gradients in the b-table.
-- `[Step T2][B-table][swap bxbz]`: Swap X and Z gradients in the b-table.
+### Mask Operations
+
+- `mask_open=<mask_file>`: Load a mask whose dimensions match the source data.
+- `mask_erosion`: Erode the current mask.
+- `mask_dilation`: Dilate the current mask.
+- `mask_unet`: Generate a mask using the U-Net model for the selected template.
+- `mask_defragment`: Keep the connected mask component after defragmentation.
+- `mask_slice_defragment`: Fill/defragment the mask slice by slice.
+- `mask_smoothing`: Smooth the current mask.
+- `mask_fit`: Fit the current mask to the DWI-sum image.
+- `mask_negate`: Invert the current mask.
+- `mask_from_template`: Generate a mask by warping the selected template.
+- `mask_threshold=<threshold>`: Set the mask from `DWI sum > threshold`. Supply the threshold explicitly for noninteractive CLI use.
+- `mask_remove_background`: Zero DWI voxels outside the current mask and enable mask application.
+- `probabilistic_masking=<probability_map.nii.gz>`: Multiply DWI signals by a same-dimension probability map and set the mask to voxels with probability greater than zero.
+
+### Image Editing
+
+- `resample=<resolution>`: Resample to the specified positive isotropic resolution in mm.
+- `align_acpc[=<resolution>]`: Align to AC-PC at the specified positive isotropic resolution; if omitted, the current x voxel size is used.
+- `crop_background[=<border>]`: Crop background with an optional non-negative voxel border (default `0`).
+- `set_voxel_size="<x> <y> <z>"`: Overwrite voxel size with three positive values.
+- `smooth_signals`: Apply Gaussian smoothing to the DWI volumes.
+- `flip_x`, `flip_y`, `flip_z`: Flip image data and corresponding b-vector axis.
+- `swap_xy`, `swap_yz`, `swap_xz`: Swap image axes, voxel sizes, and corresponding b-vector axes.
+
+### B-table Operations
+
+- `check_btable`: Run the template-aware b-table check.
+- `check_btable2`: Run the no-template b-table check.
+- `flip_bx`, `flip_by`, `flip_bz`: Flip only the corresponding b-vector component.
+- `swap_bxby`, `swap_bybz`, `swap_bxbz`: Swap only the corresponding b-vector components.
+
+### Corrections
+
+- `topup[=<reverse_phase_file>]`: Apply TOPUP. If the reverse-PE file is omitted, DSI Studio searches for a matching reverse-phase input.
+- `topup_eddy[=<reverse_phase_file>]`: Apply TOPUP followed by EDDY. If no usable reverse-PE input is found, TOPUP is skipped and EDDY is still attempted.
+- `eddy`: Apply FSL EDDY correction.
+- `motion_correction`: Perform rigid-body DWI motion correction and rotate the b-table accordingly.
+- `bias_field_correction`: Correct smooth DWI signal inhomogeneity.
+- `correct_by_t2w=<T2_file>`: Correct distortion using a T2-weighted image.
+- `orientation_correction`: Automatically correct volume orientation using image symmetry/axis heuristics.
+
+### Reconstruction Geometry
+
+- `partial_fov="<xmin> <ymin> <zmin> <xmax> <ymax> <zmax>"`: Set the partial-FOV bounds used by reconstruction.
+
+Reconstruction itself runs after the `--cmd` sequence. The legacy saved-step label `[Step T2][Reconstruction]` is a history marker rather than a direct `--cmd` operation.
