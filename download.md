@@ -28,7 +28,7 @@ Choose your processor architecture first. For Linux, the **Universal** packages 
 
 ### Troubleshooting
 
-- **Windows:** if DLL files are missing, install the [Microsoft Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe). The GPU version may require an updated NVIDIA driver and/or [CUDA Toolkit 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local).
+- **Windows:** if DLL files are missing, install the [Microsoft Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe). GPU builds require a compatible NVIDIA driver; the CUDA runtime is statically linked, so the CUDA Toolkit does not need to be installed.
 - **macOS:** if macOS reports that the app is damaged or cannot be opened because it is not notarized, run `xattr -rd com.apple.quarantine /path/to/dsi_studio.app`. If the file-open dialog crashes with files on a cloud drive, copy the data to a local folder first.
 - **Ubuntu:** if `libQt6Charts` is missing, run `sudo apt install libqt6charts6-dev`. For `xcb` errors, see this [forum solution](https://groups.google.com/g/dsi-studio/c/b61uyoo0CuI).
 
