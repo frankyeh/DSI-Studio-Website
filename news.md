@@ -1,5 +1,10 @@
 ## Recent Update Log
 
+September 2026
+
+- Corrected the **intersect volume** calculation in the tract-to-region connectome. In earlier versions, the value was divided by voxel volume instead of multiplied, so the absolute intersect-volume value is incorrect when voxel volume is not 1 mm³. This affects only the absolute scale; relative trends and comparisons are not affected.
+- Also corrected an uncommon `i == j` case in which the same region could be counted twice when calculating intersect volume.
+
 July 2026
 
 - Released the **Sun** generation of DSI Studio. The current release is **2026.7.25**.
