@@ -2,8 +2,13 @@
 
 September 2026
 
+- Improved AI-agent interaction and visualization controls, including more reliable chat/session updates and tract/region metric coloring.
 - Corrected the **intersect volume** calculation in the tract-to-region connectome. In earlier versions, the value was divided by voxel volume instead of multiplied, so the absolute intersect-volume value is incorrect when voxel volume is not 1 mm³. This affects only the absolute scale; relative trends and comparisons are not affected.
-- Also corrected an uncommon `i == j` case in which the same region could be counted twice when calculating intersect volume.
+
+August 2026
+
+- Expanded **AI Agent** automation with Fiber Data Hub access, connectometry commands, command-history replay/batch processing, and broader tract/rendering control.
+- Expanded Linux distribution support with universal x86-64 and ARM64 CPU/CUDA builds and broader compatibility testing across Linux releases.
 
 July 2026
 
