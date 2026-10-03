@@ -21,6 +21,32 @@ dsi_studio --action=atk --source=*.fz --track_id=Corticos,Optic
 dsi_studio --action=atk --source=*.fz --template_track
 ```
 
+**4. Calculate overlap of each completed named bundle with a built-in atlas:**
+```bash
+dsi_studio --action=atk \
+  --source=subject.fz \
+  --track_id=Corticos \
+  --overlap=HCP-MMP
+```
+
+For each completed named bundle, DSI Studio voxelizes the tract and writes an overlap-statistics table containing only nonempty atlas labels. The file is saved beside the normal bundle output as:
+
+```text
+<bundle-tract-file>.overlap.txt
+```
+
+For example, an AutoTrack bundle path such as:
+
+```text
+subject.ProjectionBrainstem_CorticospinalTractL.tt.gz
+```
+
+produces:
+
+```text
+subject.ProjectionBrainstem_CorticospinalTractL.tt.gz.overlap.txt
+```
+
 ---
 
 ## Core Functions
@@ -55,6 +81,7 @@ The majority of parameters used in `--action=trk` are also supported.
   Parameters such as `--min_length` and `--max_length` are not used because AutoTrack derives tract-length constraints from the atlas.
 
 - **Post-Tracking Routines**:
+  - `--overlap=<atlas-name>`: calculate voxelized bundle overlap with every nonempty label of the exact built-in atlas name and save `<bundle-tract-file>.overlap.txt`.
   - `--connectivity`
   - `--export`
 
