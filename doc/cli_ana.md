@@ -1,6 +1,6 @@
 # Region and Tract Analysis
 
-Use `--action=ana` to analyze existing tractography or regions with a FIB file. It supports tract statistics, tract density imaging, ROI filtering, connectivity analysis, and region-based quantitative measurements.
+Use `--action=ana` to analyze existing tractography or regions with a FIB file. It supports tract statistics, tract density imaging, ROI filtering, connectivity analysis, atlas-overlap statistics, and region-based quantitative measurements.
 
 ## Tract Analysis Examples
 
@@ -22,6 +22,25 @@ dsi_studio --action=ana \
   --other_slices=DKI.nii.gz,ODI.nii.gz \
   --export=stat
 ```
+
+### Tract overlap with a built-in atlas
+
+Use `--overlap=<atlas-name>` to voxelize one tract and report its intersections with every nonempty label of a built-in atlas:
+
+```bash
+dsi_studio --action=ana \
+  --source=my.fz \
+  --tract=CST.tt.gz \
+  --overlap=HCP-MMP
+```
+
+The output is the ordinary region-statistics table for the temporary tract-atlas intersections. Each nonempty atlas label is a result column; atlas labels with zero overlap are omitted. The table is written as:
+
+```text
+CST.tt.gz.overlap.txt
+```
+
+The overlap filename is based on the tract filename passed to post-processing. `--output` does not redirect this overlap table.
 
 ### Merge tract files
 
@@ -83,8 +102,9 @@ dsi_studio --action=ana \
 
 | Parameter | Description |
 |:--|:--|
-| `--tract` | Input tractography files (`.tt.gz` or `.trk.gz`). Multiple files can be comma-separated. |
-| `--output` | Output tractography or NIFTI filename, depending on the requested operation. |
+| `--tract` | Input tractography files (`.tt.gz` or `.trk.gz`). Multiple files can be comma-separated for operations that support them; atlas-overlap analysis is intended for one tract bundle at a time. |
+| `--overlap` | Exact built-in atlas name used to calculate tract-atlas overlap statistics. Zero-overlap labels are omitted. |
+| `--output` | Output tractography or NIFTI filename, depending on the requested operation. It does not redirect the tract `--overlap` table, which is saved as `<tract-file>.overlap.txt`. |
 | `--export` | Tract output such as `stat`, `tdi`, `tdi_color`, or `tdi_end`. |
 | `--connectivity` | Comma-separated built-in atlas names or NIFTI parcellations used for connectivity calculation. |
 | `--connectivity_type` | `pass` (default) or `end`. |
@@ -109,6 +129,28 @@ dsi_studio --action=ana --source=my.fz --region=labels.nii.gz:Hippocampus
 dsi_studio --action=ana --source=my.fz --region=AAL2:Hippocampus_L
 ```
 
+### Region overlap with a built-in atlas
+
+For statistics-only localization, `--overlap=<atlas-name>` directly intersects one source region with every label of the requested built-in atlas. It does not require loading atlas labels as separate regions:
+
+```bash
+dsi_studio --action=ana \
+  --source=my.fz \
+  --region=tumor.nii.gz \
+  --overlap=CHA \
+  --output=tumor_CHA.txt
+```
+
+`--overlap` requires exactly one source region. Each nonempty atlas label becomes a result column and zero-overlap labels are omitted. The rows are the same quantitative measurements used by normal region statistics, including voxel count and volume.
+
+Without `--output`, region statistics are written to:
+
+```text
+<source>.statistics.txt
+```
+
+If `--output` is a directory, DSI Studio writes the default statistics filename into that directory. If it is a filename, that filename is used and `.txt` is appended when needed.
+
 Common `--region` forms include:
 
 ```text
@@ -122,7 +164,9 @@ Common `--region` forms include:
 | Parameter | Description |
 |:--|:--|
 | `--region` | NIFTI region files or atlas-qualified region names used for quantitative statistics. |
+| `--overlap` | Exact built-in atlas name used to calculate region-atlas overlap statistics. Requires exactly one loaded source region. |
 | `--atlas` | Built-in atlas selection for region analysis when required by the workflow. |
+| `--output` | Region-statistics output filename or directory. Defaults to `<source>.statistics.txt`; `.txt` is appended to an explicit filename when needed. |
 
 If a NIFTI region filename contains `mni`, DSI Studio treats it as an MNI-space image and maps it to native diffusion space when the required transformation is available. A labeled NIFTI can use a matching `.txt` or `.json` label file; FreeSurfer `aparc`/`aseg` files use the built-in FreeSurfer lookup table.
 
