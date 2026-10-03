@@ -25,6 +25,27 @@ dsi_studio --action=trk \
 
 Do not add a Seed region unless the tracking start locations intentionally need to be restricted. Without `--seed`, normal whole-brain seeding is used.
 
+### Atlas-overlap statistics after tracking
+
+Use `--overlap=<atlas-name>` to voxelize the generated tractography and report its intersection with every nonempty label of a built-in atlas:
+
+```bash
+dsi_studio --action=trk \
+  --source=subject.fz \
+  --tract_count=10000 \
+  --overlap=HCP-MMP
+```
+
+The overlap table contains ordinary region statistics for the temporary tract-atlas intersections. Each nonempty atlas label is a result column; zero-overlap labels are omitted.
+
+The overlap table is written before the ordinary tract-output filename is finalized. For `--action=trk`, the current implementation derives the overlap filename from `<source>.tt.gz`, so the example above writes:
+
+```text
+subject.fz.tt.gz.overlap.txt
+```
+
+A later `--output=<tract-file>` controls the saved tractography but does not redirect this overlap table.
+
 ## Core options
 
 | Option | Default | Description |
@@ -86,6 +107,7 @@ See [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html) for the anatomical
 |:--|:--|
 | `--output=<file>` | Save tractography, e.g. `--output=result.tt.gz`. |
 | `--trk_format=<format>` | Select the tract format when a default output name is used. |
+| `--overlap=<atlas-name>` | Calculate voxelized tract overlap with every nonempty label of the exact built-in atlas name. The table is saved as `<pre-save-tract-file>.overlap.txt`; `--output` does not redirect it. |
 | `--delete_repeat=<distance>` | Remove near-duplicate streamlines using the specified distance criterion. |
 | `--delete_by_length=<length>` | Remove short streamlines using the specified length criterion. |
 | `--cluster=<method>,<count>,<detail>,<output>` | Cluster the resulting streamlines. |
