@@ -1,5 +1,9 @@
 ## Recent Update Log
 
+October 2026
+
+- Added **T1w distortion correction** (**[Corrections][T1w Distortion Correction...]**, `correct_by_t1w`) for AP–PA acquisitions without reverse-phase data. It replaces the previous T2w-based correction; `correct_by_t2w` remains as an alias.
+
 September 2026
 
 - Improved AI-agent interaction and visualization controls, including more reliable chat/session updates and tract/region metric coloring.
