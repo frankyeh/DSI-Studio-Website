@@ -216,7 +216,7 @@ Supported parameter names are `method`, `thread_count`, `other_output`, `dti_ign
 - `eddy`: Apply FSL EDDY correction.
 - `motion_correction`: Perform rigid-body DWI motion correction and rotate the b-table accordingly.
 - `bias_field_correction`: Correct smooth DWI signal inhomogeneity.
-- `correct_by_t2w=<T2_file>`: Correct distortion using a T2-weighted image.
+- `correct_by_t1w=<T1_file>[|<resolution>]`: Correct AP–PA susceptibility distortion using the subject's T1w image. The optional resolution sets the isotropic output voxel size in mm (e.g. `|1.5`); `0` or no value keeps the native resolution. The legacy `correct_by_t2w=<file>` is accepted as an alias and runs the same correction at native resolution.
 - `orientation_correction`: Automatically correct volume orientation using image symmetry/axis heuristics.
 
 ### Reconstruction Geometry
