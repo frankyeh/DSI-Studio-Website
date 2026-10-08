@@ -5,7 +5,7 @@
 
 **DSI Studio** is a cross-platform software platform with source code available on [GitHub](https://github.com/frankyeh/DSI-Studio) for diffusion MRI and structural MRI analysis. It brings together diffusion reconstruction, fiber tracking, connectome mapping, quality control, group analysis, and brain MRI segmentation in one environment. With direct integration of the **Fiber Data Hub**, DSI Studio also serves as a data infrastructure for scalable and reproducible brain connectivity research.
 
-**Quick links:** [Download](download.html) · [Fiber Data Hub](https://brain.labsolver.org) · [News](news.html) · [Forum](https://groups.google.com/g/dsi-studio) · [GitHub](https://github.com/frankyeh/DSI-Studio) · [Privacy Notice](https://dsi-studio.labsolver.org/LICENSE) · 
+**Quick links:** [Download](download.html) · [Fiber Data Hub](https://brain.labsolver.org) · [News](news.html) · [Forum](https://groups.google.com/g/dsi-studio) · [GitHub](https://github.com/frankyeh/DSI-Studio) · [Privacy Notice](https://dsi-studio.labsolver.org/LICENSE.html) · 
 
 ---
 
