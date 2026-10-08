@@ -62,7 +62,7 @@ DSI Studio offers dual licensing options for academic and commercial users.
 
 ## Academic License
 
-DSI Studio is free for academic users under the [Attribution-NonCommercial-ShareAlike 4.0 International License (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode). View the full license agreement [here](https://github.com/frankyeh/DSI-Studio/?tab=License-1-ov-file#readme).
+DSI Studio is free for academic users. View the full license agreement [here](https://dsi-studio.labsolver.org/license.html).
 
 DSI Studio is not FDA-cleared or FDA-approved. It is provided for research, education, and adjunct visualization. Any clinical use must be reviewed and approved under the user’s institutional policies. Results should not be used as the sole basis for diagnosis, treatment, or surgical decision-making.
 
