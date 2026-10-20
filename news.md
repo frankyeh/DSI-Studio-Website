@@ -2,12 +2,20 @@
 
 October 2026
 
-- Added **T1w distortion correction** (**[Corrections][T1w Distortion Correction...]**, `correct_by_t1w`) for AP–PA acquisitions without reverse-phase data. It replaces the previous T2w-based correction; `correct_by_t2w` remains as an alias.
+The following development updates may not yet be included in the latest tagged Sun release (2026.7.25).
+
+- Added **continuous fiber orientations for GQI and QSDR**, refining sampled ODF peaks against the original diffusion-signal kernel rather than limiting directions to tessellation vertices.
+- Introduced **compact 16-bit fiber direction storage** (`fixelN`) for DTI, GQI/QSDR, and template reconstruction outputs. The FIB/FZ format version is now `202610`; earlier builds cannot open files written in the new format.
+- Expanded **AI Agent** capabilities with remote Web sessions using Google Drive, headless command execution, approval-controlled shell and file operations, working-directory management, and file uploads/downloads.
+- Added **GLB 3D model export** alongside OBJ, supporting visible tracts, regions, surfaces, and image slices.
+- Added **b-table regeneration** from an aligned single-shell reference diffusion dataset and revised diffusion sampling-scheme balancing.
+- Improved **FIB regridding** to keep fiber directions and associated voxelwise metrics together through nearest-source sampling.
+- Added **T1w-guided susceptibility distortion correction** (**Corrections → T1w Distortion Correction...**, `correct_by_t1w`) for AP–PA acquisitions without reverse-phase data. It replaces the previous T2w-based correction; `correct_by_t2w` remains as an alias.
 
 September 2026
 
 - Improved AI-agent interaction and visualization controls, including more reliable chat/session updates and tract/region metric coloring.
-- Corrected the **intersect volume** calculation in the tract-to-region connectome. In earlier versions, the value was divided by voxel volume instead of multiplied, so the absolute intersect-volume value is incorrect when voxel volume is not 1 mm³. This affects only the absolute scale; relative trends and comparisons are not affected.
+- Corrected the **intersect volume** calculation in the tract-to-region connectome. In earlier versions, the value was divided by voxel volume instead of multiplied, so the absolute intersect-volume value is incorrect when voxel volume is not 1 mm³. Within a dataset with uniform voxel size, relative comparisons are unaffected; comparisons across datasets with different voxel sizes may also be affected.
 
 August 2026
 
