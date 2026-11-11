@@ -1,16 +1,18 @@
 ## Recent Update Log
 
-October 2026
+November 2026
 
 The following development updates may not yet be included in the latest tagged Sun release (2026.7.25).
 
-- Added **continuous fiber orientations for GQI and QSDR**, refining sampled ODF peaks against the original diffusion-signal kernel rather than limiting directions to tessellation vertices.
-- Introduced **compact 16-bit fiber direction storage** (`fixelN`) for DTI, GQI/QSDR, and template reconstruction outputs. The FIB/FZ format version is now `202610`; earlier builds cannot open files written in the new format.
-- Expanded **AI Agent** capabilities with remote Web sessions using Google Drive, headless command execution, approval-controlled shell and file operations, working-directory management, and file uploads/downloads.
-- Added **GLB 3D model export** alongside OBJ, supporting visible tracts, regions, surfaces, and image slices.
-- Added **b-table regeneration** from an aligned single-shell reference diffusion dataset and revised diffusion sampling-scheme balancing.
-- Improved **FIB regridding** to keep fiber directions and associated voxelwise metrics together through nearest-source sampling.
-- Added **T1w-guided susceptibility distortion correction** (**Corrections → T1w Distortion Correction...**, `correct_by_t1w`) for AP–PA acquisitions without reverse-phase data. It replaces the previous T2w-based correction; `correct_by_t2w` remains as an alias.
+- Redesigned the **MainWindow** with a left navigation sidebar, clearer import/reconstruction/tractography workflows, a three-stage correlational tractography layout, and persistent working-directory and recent-file controls.
+- Replaced legacy interface icons with a consistent **SVG icon set** across tool buttons and menus, including icons for all menu actions and updated brain-view, tractography, and image-editor symbols.
+- Improved **AI Agent** controls and provider identification, and streamlined NIfTI/BIDS folder import and creation of correlational tractography databases from FIB files.
+
+October 2026
+
+- Improved **GQI/QSDR fiber orientations** and introduced compact 16-bit direction storage. The FIB/FZ format version is now `202610`; older builds cannot read files written in this format.
+- Expanded **AI Agent** remote sessions and file/command controls, and added **GLB 3D export** alongside OBJ.
+- Improved diffusion processing with **b-table regeneration**, sampling-scheme balancing, and FIB regridding; added **T1w-guided susceptibility distortion correction** for acquisitions without reverse-phase data.
 
 September 2026
 
