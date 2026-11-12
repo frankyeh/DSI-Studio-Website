@@ -7,7 +7,7 @@ Using DSI Studio or its source code in commercial entities requires a paid annua
 
 1. Copy **Registration Entity** as shown in the DSI Studio.
 
-<img src="https://github.com/user-attachments/assets/fbe04404-502a-4e4b-b875-1954efca9105" width=500/>
+<img src="https://github.com/user-attachments/assets/fbe04404-502a-4e4b-b875-1954efca9105" width="500" alt="DSI Studio registration entity displayed in the license dialog">
 
 2. [Proceed to the Payment Page](https://www.paypal.com/ncp/payment/K25LMLLSXD79Y) and enter this registering entity in the payment page before paying the licensing fee. We will match registration entity with the sign-in records.
 
