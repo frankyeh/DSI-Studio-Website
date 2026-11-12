@@ -1,6 +1,6 @@
 # Correlational Tractography
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qC8jx6XZHGI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qC8jx6XZHGI" title="Correlational tractography tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Correlational tractography identifies white-matter pathway segments whose local diffusion/connectome measurements are associated with a study variable across subjects. DSI Studio uses regression to account for selected covariates and applies local correlation statistics followed by deterministic tracking. [Connectometry](https://pubmed.ncbi.nlm.nih.gov/26499808/) uses permutation testing to estimate the false discovery rate (FDR) of the resulting tracks.
 
