@@ -19,7 +19,7 @@ title: DSI Studio
 
 <section class="stats">
   <div><b>3,000+</b><span>publications using DSI Studio</span></div>
-  <div><b>50,000+</b><span>processed datasets on the Hub</span></div>
+  <div><b>30,000+</b><span>processed datasets on the Hub</span></div>
   <div><b>29</b><span>documentation guides</span></div>
   <div><b>4</b><span>platforms: Windows, macOS, Linux, Docker</span></div>
 </section>
@@ -70,82 +70,65 @@ title: DSI Studio
   </div>
 </section>
 
-<section class="section">
-  <div><img src="/images/nat_rev_neuro.png" alt="Nature Reviews Neurology cover" style="max-width:300px"></div>
+<section class="research" id="research">
+  <div><img src="/images/nat_rev_neuro.png" alt="Nature Reviews Neurology covers featuring DSI Studio tractography"></div>
   <div>
-    <h2>Research applications</h2>
-    <p>Cited in Nature Neuroscience, Nature Human Behaviour, Brain and NeuroImage; on the cover of Nature Reviews Neurology (2017); used in diffusion MRI, tractography and structural connectomics research.</p>
+    <h2>Research</h2>
+    <p>DSI Studio has been cited in Nature Neuroscience, Nature Human Behaviour, Brain and NeuroImage, and its tractography appeared on the cover of Nature Reviews Neurology (2017). It is used across diffusion MRI datasets and imaging protocols to reconstruct white-matter pathways, map connectivity and compare tractography results.</p>
     <div class="pills"><span>DTI · GQI · QSDR</span><span>AutoTrack</span><span>Differential</span><span>Correlational</span><span>U-Net segmentation</span></div>
+    <div class="cite-card">
+      <small>Nature Methods · July 2025</small>
+      <span>Yeh, F.-C. DSI Studio: An integrated tractography platform and Fiber Data Hub for accelerating brain research.</span>
+      <a href="https://doi.org/10.1038/s41592-025-02762-8">doi:10.1038/s41592-025-02762-8</a> · <a href="/citation.html">How to cite</a>
+    </div>
   </div>
 </section>
 
-<section class="section">
+<section class="hub">
   <div>
     <h2>Fiber Data Hub</h2>
-    <p>The <strong>Fiber Data Hub</strong> extends DSI Studio from a software tool to a software-and-data platform. It provides direct access to compact processed diffusion MRI derivatives that can be downloaded and analyzed without repeating the full preprocessing pipeline from raw DWI.</p>
-    <p>The Hub currently hosts <strong>more than 50,000 processed fiber datasets</strong> from major neuroimaging resources including <strong>HCP</strong>, <strong>ABCD</strong>, <strong>OpenNeuro</strong>, <strong>INDI</strong>, <strong>TCIA</strong>, and other public datasets. DSI Studio uses compact formats such as <strong>.fz</strong> and <strong>.sz</strong> for processed diffusion data, while <strong>.dz</strong> supports population databases. These formats substantially reduce storage and transfer requirements for many downstream workflows compared with repeatedly distributing the corresponding raw diffusion MRI data.</p>
+    <p>Compact processed diffusion MRI derivatives (<b style="color:#16181d">.fz</b>, <b style="color:#16181d">.sz</b>, <b style="color:#16181d">.dz</b>) that open directly in DSI Studio, without repeating preprocessing from raw DWI. More than 30,000 fiber datasets as of the Nature Methods 2025 paper, from HCP, ABCD, OpenNeuro, INDI, TCIA and other public datasets.</p>
   </div>
-  <div>
-    <p>This allows users to:</p>
-    <ul>
-      <li>browse and download processed datasets directly in DSI Studio;</li>
-      <li>start tractography and connectomics analysis more quickly;</li>
-      <li>build reproducible pipelines using standardized derivatives;</li>
-      <li>scale analyses across public datasets with much lower storage and transfer cost.</li>
-    </ul>
-    <p>Explore the Hub at <a href="https://brain.labsolver.org">brain.labsolver.org</a>.</p>
-  </div>
+  <ul>
+    <li><a href="https://brain.labsolver.org/#repository-list">Browse repositories <span>→</span></a></li>
+    <li><a href="https://brain.labsolver.org/qc.html">Search by quality control <span>→</span></a></li>
+    <li><a href="https://brain.labsolver.org/download.html">Download guide <span>→</span></a></li>
+  </ul>
 </section>
 
-<section class="section">
-  <div>
-    <img src="/images/af.png" alt="Left arcuate fasciculus language pathway tractography">
-    <p class="caption">The human language pathway: left arcuate fasciculus mapped using DSI Studio.</p>
-  </div>
-  <div>
-    <h2>Neuroimaging research applications</h2>
-    <p>DSI Studio supports diffusion MRI research across multiple datasets and imaging protocols. Its tractography workflows can be used to reconstruct white-matter pathways and examine structural connectivity.</p>
-    <p>Research applications include pathway reconstruction, regional connectivity analysis, and comparisons of tractography results across imaging datasets.</p>
-  </div>
+<section class="gallery">
+  <figure>
+    <div class="img"><img src="/images/KidneyRainbow.png" alt="Kidney rainbow"></div>
+    <figcaption>
+      <h3>Ex-vivo and histology</h3>
+      <p>High-resolution ex-vivo diffusion MRI and MRI microscopy, for structural analysis of biological tissue.</p>
+      <small>Kidney Rainbow by Nian Wang, Center for In Vivo Microscopy, Duke University. Coverage by <a href="https://doi.org/10.1126/science.363.6427.564">Science</a>.</small>
+    </figcaption>
+  </figure>
+  <figure>
+    <div class="img light"><img src="/images/unet_examples.png" alt="U-Net segmentation of mouse, marmoset and rhesus MRI"></div>
+    <figcaption>
+      <h3>Brain MRI segmentation</h3>
+      <p>U-Net based segmentation for structural MRI runs inside DSI Studio, with no Python or deep-learning environment to install.</p>
+      <small>Segmentation examples from <a href="https://unet-studio.labsolver.org">U-Net Studio</a>, the sister project.</small>
+    </figcaption>
+  </figure>
 </section>
 
-<section class="section">
-  <div>
-    <h2>Ex-vivo and histology applications</h2>
-    <p>DSI Studio can also process high-resolution ex-vivo diffusion MRI and MRI microscopy data. This supports structural analysis of biological tissue at high spatial resolution and has been used in histology-oriented imaging studies.</p>
-  </div>
-  <div>
-    <img src="/images/KidneyRainbow.png" alt="Kidney rainbow">
-    <p class="caption">Kidney Rainbow created using DSI Studio by Nian Wang, Center for In Vivo Microscopy, Duke University. Coverage by <a href="https://doi.org/10.1126/science.363.6427.564">Science</a>.</p>
-  </div>
-</section>
-
-<section class="section">
-  <div>
-    <div class="pills"><span>U-Net segmentation</span><span>Structural MRI</span><span>No Python needed</span><span><a href="https://unet-studio.labsolver.org">U-Net Studio →</a></span></div>
-  </div>
-  <div>
-    <h2>Brain MRI segmentation</h2>
-    <p>DSI Studio now includes <strong>U-Net based segmentation</strong> for structural MRI, allowing users to run compact segmentation models directly inside the software. This extends the platform beyond tractography and connectomics to a broader structural MRI workflow.</p>
-    <p>The segmentation models are designed for convenient deployment, with no need to install Python or large deep-learning environments separately. Related segmentation development is also supported by the sister project <a href="https://unet-studio.labsolver.org">U-Net Studio</a>.</p>
-  </div>
-</section>
-
-<section class="section">
+<section class="start">
   <div>
     <h2>Get started</h2>
-    <ul>
-      <li>Download the latest release from the <a href="/download.html">download page</a>.</li>
-      <li>Check recent features and bug notices on the <a href="/news.html">news page</a>.</li>
-      <li>Visit the <a href="https://groups.google.com/g/dsi-studio">support forum</a> for questions and community discussions.</li>
-      <li>Explore large-scale processed datasets on the <a href="https://brain.labsolver.org">Fiber Data Hub</a>.</li>
-    </ul>
-  </div>
-  <div>
+    <p>No installation needed: download, unzip and run.</p>
     <div class="badges">
-      <a href="https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml"><img src="https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml/badge.svg" alt="Build Release"></a>
-      <a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio" alt="Latest source commit"></a>
-      <a href="https://github.com/frankyeh/DSI-Studio/releases"><img src="https://img.shields.io/github/v/release/frankyeh/DSI-Studio" alt="Latest GitHub release"></a>
+      <a href="https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml"><img src="https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml/badge.svg" alt="Build"></a>
+      <a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio" alt="Last commit"></a>
+      <a href="https://github.com/frankyeh/DSI-Studio/releases"><img src="https://img.shields.io/github/v/release/frankyeh/DSI-Studio" alt="Release"></a>
     </div>
+  </div>
+  <div class="opts">
+    <a href="/download.html">Download<small>Sun {{ site.sun_version }}</small></a>
+    <a href="/news.html">News<small>features · fixes</small></a>
+    <a href="https://groups.google.com/g/dsi-studio">Forum<small>questions</small></a>
+    <a href="https://brain.labsolver.org">Data Hub<small>datasets</small></a>
   </div>
 </section>
