@@ -96,11 +96,17 @@
       {% if page.url contains 'gui' %}c[0].click();{% endif %}
       {% if page.url contains 'menu' %}c[1].click();{% endif %}
       {% if page.url contains 'cli' and page.url contains 'cli_vis' %}c[0].click();{% elsif page.url contains 'cli' and page.url != '/doc/cli_data.html' %}c[2].click();{% endif %}
-      var pagePath = window.location.pathname;
-      Array.prototype.forEach.call(document.querySelectorAll("header a[href]"), function(link) {
-        if (link.getAttribute("href") === pagePath || (pagePath === "/" && link.getAttribute("href") === "/"))
+      var pagePath = window.location.pathname === "/index.html" ? "/" : window.location.pathname;
+      Array.prototype.forEach.call(document.querySelectorAll("header h3 a[href], header h4 a[href]"), function(link) {
+        if (link.getAttribute("href") === pagePath)
           link.setAttribute("aria-current", "page");
       });
+      if (window.matchMedia("(max-width: 960px)").matches) {
+        var activeLink = document.querySelector('header a[aria-current="page"]');
+        var sidebar = document.querySelector("header.page-header");
+        if (activeLink && sidebar)
+          sidebar.scrollTop += activeLink.getBoundingClientRect().top - sidebar.getBoundingClientRect().top - 36;
+      }
       </script>
     </header>
 
