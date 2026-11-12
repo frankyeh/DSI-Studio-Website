@@ -98,4 +98,4 @@ When sharing a workspace, include the FIB/image data required by the saved state
 | `Ctrl+Z` | Undo selection/deletion. |
 | `Ctrl+Y` | Redo selection/deletion. |
 
-See the [[Edit] menu](/doc/menu_edit.html) for tract-editing details.
+See the [Edit menu](/doc/menu_edit.html) for tract-editing details.
