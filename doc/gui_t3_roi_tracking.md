@@ -6,7 +6,7 @@ ROI-based fiber tracking uses anatomical regions to include, exclude, start, or 
 
 ## Step T3a: Add regions
 
-Open the subject `.fz` file in **Step T3: Fiber Tracking**. Regions can be added from:
+Open the subject `.fz` file using **Tractography → 3 Track → FIB File (*.fz)** in the main window; this opens the separate fiber tracking window. Regions can be added from:
 
 - NIfTI region files;
 - built-in atlases;
