@@ -4,9 +4,9 @@
 
 Reconstruction processes an SRC file (`.sz`; legacy `.src.gz`) and creates an FIB file (`.fz`) for tractography, diffusion measurements, connectome analysis, and other downstream workflows.
 
-## Step T2: Open SRC File(s)
+## Open SRC File(s)
 
-Click **[Step T2 Reconstruction]** in the main window and select one or more SRC files.
+In the current main window, choose **Tractography → 2 Reconstruct → SRC File(s) (*.sz)** and select one or more SRC files. The **▸ More…** section contains **Batch SRC → FIB** and **SRC quality control...**. The older screenshot below shows the reconstruction window, which still opens after selecting SRC data.
 
 ![Reconstruction Window](https://user-images.githubusercontent.com/275569/147804658-3d2b3442-c0dd-4383-91cf-3718670b1413.png)
 
@@ -108,6 +108,6 @@ Saving unnecessary outputs increases `.fz` file size and processing time.
 
 ## Reconstruct
 
-After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting `.fz` file can be opened in **Step T3: Fiber Tracking** or used by the corresponding command-line and population-analysis workflows.
+After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting `.fz` file can be opened via **Tractography → 3 Track → FIB File (*.fz)** or used by the corresponding command-line and population-analysis workflows.
 
 For command-line reconstruction, see [Reconstruction CLI](/doc/cli_t2.html).
