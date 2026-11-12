@@ -11,7 +11,7 @@ Correlational tractography is a **cohort-level** analysis. For a single subject'
 
 ## Current main-window workflow
 
-Select **Correlational Tractography** from the left sidebar. Its three cards are **1 FIB files → 2 Prepare database → 3 Run analysis**. In the first card, **FIB File(s) (*.fz)...** and **FIB Folder (*.fz)...** open database creation with the selected QSDR FIB data preloaded. **Database (*.dz)...** in the second card opens a database for inspection/editing; **Database (*.dz)** in the third card launches correlational tractography analysis. A **Recent Database** list is located below. Older references to Step C1/C2/C3 below describe the same stages, not separate top-level tabs.
+Select **Correlational Tractography** from the left sidebar. Its three cards are **1 FIB files → 2 Prepare database → 3 Correlational Tractography**. In the first card, **FIB File(s) (*.fz)...** and **FIB Folder (*.fz)...** open database creation with the selected QSDR FIB data preloaded. **Database (*.dz)...** in the second card opens a database for inspection/editing; **Database (*.dz)** in the third card launches correlational tractography analysis. A **Recent Database** list is located below. Older references to Step C1/C2/C3 below describe the same stages, not separate top-level tabs.
 
 ## Current workflow
 
@@ -19,7 +19,7 @@ Select **Correlational Tractography** from the left sidebar. Its three cards are
 2. **Step C2 (optional):** inspect/modify the database or calculate longitudinal change.
 3. **Step C3:** load/verify demographics, select the model and study variable, and run correlational tractography/connectometry.
 
-> **Use the Sun version to create `.dz` databases.** Hou versions have a known issue when creating `.dz` files. Older `.db.fz` and `.db.fib.gz` databases remain supported for compatibility.
+> **Version compatibility:** Use the current **Sun** version to create `.dz` databases. The pinned Hou release dated **2025-04-16** predates `.dz` support; some later Hou builds introduced `.dz` support but had database-creation issues. Older `.db.fz` and `.db.fib.gz` databases remain supported for compatibility.
 
 # Step C1: Create a connectometry database
 
@@ -31,7 +31,7 @@ For population connectometry, reconstruct all subjects with **QSDR using the sam
 
 Use **Correlational Tractography → 1 FIB files → FIB File(s) (*.fz)...** or **FIB Folder (*.fz)...** to open Create Database with the input list populated.
 
-Use **[Add]**, **[Search in Directory]**, or **[Open List]** to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
+Use **[Add]**, **[Search in Directory...]**, or **[Open List]** to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
 
 ## C1b. Create the `.dz` file
 
@@ -101,7 +101,7 @@ After creating any derived or longitudinal database, **re-check its demographics
 
 # Step C3: Group Connectometry Analysis
 
-Use **Correlational Tractography → 3 Run analysis → Database (*.dz)** to open the group analysis for a `.dz` database.
+Use **Correlational Tractography → 3 Correlational Tractography → Database (*.dz)** to open the group analysis for a `.dz` database.
 
 ## C3a. Load and verify demographics
 
@@ -177,9 +177,9 @@ dsi_studio --action=cnt \
   --source=study.dz \
   --index_name=qa \
   --demo=participants.csv \
-  --variable_list=1,2,3 \
-  --voi=3 \
+  --variable_list=0,1,2 \
+  --voi=2 \
   --effect_size=0.3
 ```
 
-The numeric positions used by `--variable_list` and `--voi` refer to the variables in the loaded demographic table. Check every available demographic column before launching a batch analysis; do not assume a fixed column layout across studies.
+The numeric positions used by `--variable_list` and `--voi` are **zero-based indices for demographic variables**. In the example `ID,AGE,SEX,SCORE` table, AGE, SEX and SCORE are indices `0,1,2` (with ID used as the subject identifier), so `--voi=2` selects SCORE. Check every available demographic column before launching a batch analysis; do not assume a fixed column layout across studies.
