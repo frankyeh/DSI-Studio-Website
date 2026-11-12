@@ -21,7 +21,7 @@ The following table summarizes commonly used diffusion metrics and their interpr
 | **QIR** (introduced in 2025) | QA-to-ISO ratio (QA/ISO) | Q-space imaging | QIR is a measure of axonal integrity | reduced QIR may suggest inflammation or demyelination | QIR is derived from QA and ISO and is intended to improve comparability across scans by reducing the effect of B1 inhomogeneity. |
 | **VOL** (introduced in 2025) | template-space volume | Nonlinear spatial normalization | VOL is a volumetric measure | reduced VOL may suggest tissue atrophy | VOL reflects relative tissue size in template space after nonlinear spatial normalization. |
 
-*The diffusivity values (AD, RD, and MD) reported by DSI Studio use units of 10^-3 mm²/s.
+*The diffusivity values (AD, RD, and MD) reported by DSI Studio use units of 10^-3 mm²/s.*
 
 ## Change of metrics in neurological disorders
 
