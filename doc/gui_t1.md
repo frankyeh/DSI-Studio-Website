@@ -8,7 +8,7 @@ Older tutorial videos on this page may show the former main-window layout. The i
 
 ## DICOM to SRC
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=65" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=65" title="DICOM to SRC tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 In the current main window, open **Tractography → 1 Import → DICOM** and choose **DICOM file(s)...** or **DICOM folder...**. DSI Studio reads the diffusion information and creates a `.sz` file. The **▸ Rename DICOM** control exposes optional operations that move/rename DICOM files; these do not perform conversion.
 
@@ -21,7 +21,7 @@ The DICOM rename functions move/rename files, so keep a backup and test them on 
 
 ## NIFTI to SRC
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/iuBtgGLohsg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iuBtgGLohsg" title="NIfTI to SRC tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 A diffusion-weighted NIFTI image needs its diffusion gradient information. DSI Studio commonly reads this from FSL/BIDS `bval` and `bvec` sidecars.
 
