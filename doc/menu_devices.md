@@ -2,7 +2,7 @@
 
 DSI Studio can display devices such as SEEG electrodes, DBS leads, probes, and obturators together with images, regions, and tractography.
 
-![image](https://user-images.githubusercontent.com/275569/147839140-127aedcb-e626-422a-8a3b-c1f7749d24d5.png)
+![Device visualization in DSI Studio](https://user-images.githubusercontent.com/275569/147839140-127aedcb-e626-422a-8a3b-c1f7749d24d5.png)
 
 ## Electrode detection from CT
 
@@ -17,11 +17,11 @@ Detected contacts can be added as regions and displayed with the electrode/devic
 
 Use **[Devices][New Device]** to add a device, then select the device type and dimensions in the device table.
 
-![image](https://user-images.githubusercontent.com/275569/147839144-b4bb48b1-7aed-4774-9d14-4928d81c0cf2.png)
+![New device settings](https://user-images.githubusercontent.com/275569/147839144-b4bb48b1-7aed-4774-9d14-4928d81c0cf2.png)
 
 The selected device is displayed in the 3D view.
 
-![image](https://user-images.githubusercontent.com/275569/147839149-88ba5c23-5c45-4481-9f62-22b6a0380af5.png)
+![Device displayed in 3D view](https://user-images.githubusercontent.com/275569/147839149-88ba5c23-5c45-4481-9f62-22b6a0380af5.png)
 
 Use the 3D editing controls to move the device tip and adjust its orientation. Rotate the camera and inspect the device from multiple views before using its position for interpretation.
 
