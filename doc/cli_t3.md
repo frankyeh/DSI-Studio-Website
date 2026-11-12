@@ -74,6 +74,7 @@ The executable may choose a nonzero TIP default for special workflows when `--ti
 | `--min_length` | template/image dependent | Minimum tract length in mm. |
 | `--max_length` | template/image dependent | Maximum tract length in mm. |
 | `--check_ending` | `0` for ordinary tracking | Enable ending checks when required by the workflow. |
+| `--search_count` | `16` | Number of registration search attempts used when locating atlas/template pathways. This controls template matching, not streamline seed count. |
 | `--parameter_id` | — | Restore tracking settings from a DSI Studio parameter code. |
 | `--random_seed` | `0` | Random-number seed when deterministic random-sequence control is needed. |
 
