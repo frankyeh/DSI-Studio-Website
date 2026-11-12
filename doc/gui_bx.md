@@ -29,7 +29,7 @@ Use **Tractography → 1 Import** and choose the source format:
 
 Current DSI Studio source files use the `.sz` extension.
 
-After source creation, run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control-optional) before reconstruction or group analysis.
+After source creation, run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) before reconstruction or group analysis.
 
 ## Batch reconstruction
 
@@ -66,7 +66,7 @@ See [Automatic Fiber Tracking](/doc/gui_t3_atk.html) for the current workflow an
 
 If many subjects produce no result or implausible anatomy:
 
-- review [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control-optional);
+- review [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control);
 - verify b-table/image orientation and reconstruction;
 - open representative `.fz` files and run [whole-brain tractography](/doc/gui_t3_whole_brain.html);
 - confirm the selected tractography atlas/template is appropriate for the data;
