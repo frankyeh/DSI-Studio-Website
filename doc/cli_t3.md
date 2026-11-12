@@ -38,13 +38,13 @@ dsi_studio --action=trk \
 
 The overlap table contains ordinary region statistics for the temporary tract-atlas intersections. Each nonempty atlas label is a result column; zero-overlap labels are omitted.
 
-The overlap table is written before the ordinary tract-output filename is finalized. For `--action=trk`, the current implementation derives the overlap filename from `<source>.tt.gz`, so the example above writes:
+Without `--output`, `--action=trk` derives the overlap filename from `<source>.tt.gz`, so the example above writes:
 
 ```text
 subject.fz.tt.gz.HCP-MMP.overlap.txt
 ```
 
-A later `--output=<tract-file>` controls the saved tractography but does not redirect this overlap table.
+If `--output=<tract-file>` is provided, the overlap table instead uses the specified tract filename followed by `.<atlas-name>.overlap.txt`. For example, `--output=bundle.tt.gz` writes `bundle.tt.gz.HCP-MMP.overlap.txt`. If `--output` names a directory, the overlap table is written there using the generated tract filename.
 
 ## Core options
 
@@ -107,7 +107,7 @@ See [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html) for the anatomical
 |:--|:--|
 | `--output=<file>` | Save tractography, e.g. `--output=result.tt.gz`. |
 | `--trk_format=<format>` | Select the tract format when a default output name is used. |
-| `--overlap=<atlas-name>` | Calculate voxelized tract overlap with every nonempty label of the exact built-in atlas name. The table is saved as `<pre-save-tract-file>.<atlas-name>.overlap.txt`; `--output` does not redirect it. |
+| `--overlap=<atlas-name>` | Calculate voxelized tract overlap with every nonempty label of the exact built-in atlas name. The table is saved as `<tract-file>.<atlas-name>.overlap.txt`; `--output` can change its base filename or output directory. |
 | `--delete_repeat=<distance>` | Remove near-duplicate streamlines using the specified distance criterion. |
 | `--delete_by_length=<length>` | Remove short streamlines using the specified length criterion. |
 | `--cluster=<method>,<count>,<detail>,<output>` | Cluster the resulting streamlines. |
