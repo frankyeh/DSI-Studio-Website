@@ -51,7 +51,7 @@ Parameter choices should be kept consistent across subjects in a comparative stu
 
 If AutoTrack repeatedly produces no result or poor anatomy, check the upstream data before tuning the tract-recognition settings.
 
-1. Run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control-optional).
+1. Run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control).
 2. Verify the image orientation and b-table orientation during [reconstruction](/doc/gui_t2.html).
 3. Open the `.fz` file and confirm that principal fiber directions are anatomically plausible.
 4. Run whole-brain tracking and confirm that major pathways can be reconstructed.
