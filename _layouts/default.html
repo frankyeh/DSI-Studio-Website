@@ -95,6 +95,11 @@
       {% if page.url contains 'gui' %}c[0].click();{% endif %}
       {% if page.url contains 'menu' %}c[1].click();{% endif %}
       {% if page.url contains 'cli' and page.url contains 'cli_vis' %}c[0].click();{% elsif page.url contains 'cli' and page.url != '/doc/cli_data.html' %}c[2].click();{% endif %}
+      var pagePath = window.location.pathname;
+      Array.prototype.forEach.call(document.querySelectorAll("header a[href]"), function(link) {
+        if (link.getAttribute("href") === pagePath || (pagePath === "/" && link.getAttribute("href") === "/"))
+          link.setAttribute("aria-current", "page");
+      });
       </script>
     </header>
 
