@@ -74,7 +74,7 @@ An incorrect b-table produces incorrect fiber orientations. Use **[B-table][Chec
 
 If needed, resample the source volume to isotropic resolution before reconstruction. Resampling does not add anatomical information, so use it for a specific processing or tracking requirement rather than routinely.
 
-## Step T2b: Specify a reconstruction method
+## Step T2b: Specify a Model
 
 ### Diffusion Tensor Imaging (DTI)
 
