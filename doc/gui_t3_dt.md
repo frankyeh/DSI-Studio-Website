@@ -1,12 +1,12 @@
 # Differential Tractography
 
-![image](https://user-images.githubusercontent.com/275569/147860577-35e5b242-2991-4cdf-b6f7-91161d8b0c73.png)
+![Differential tractography illustration](https://user-images.githubusercontent.com/275569/147860577-35e5b242-2991-4cdf-b6f7-91161d8b0c73.png)
 
 Differential tractography maps pathway segments showing changes in diffusion measurements between scans or relative to a reference population. Instead of tracking where anisotropy exists, it adds a tracking criterion that follows where a selected diffusion metric differs between two conditions.
 
 [Original differential tractography study](https://pubmed.ncbi.nlm.nih.gov/31472253/): Yeh et al., *NeuroImage* 202 (2019): 116131.
 
-![image](https://user-images.githubusercontent.com/275569/170849962-ef2f90af-748a-4011-8610-508fa8e24645.png)
+![Differential tractography study illustration](https://user-images.githubusercontent.com/275569/170849962-ef2f90af-748a-4011-8610-508fa8e24645.png)
 
 Differential tractography can be applied to DTI, multi-shell, and DSI acquisitions. Higher b-value acquisitions can improve sensitivity to axonal changes, whereas low-SNR or acquisition differences can increase false findings. Always evaluate data quality and use the same processing choices across the scans or groups being compared.
 
