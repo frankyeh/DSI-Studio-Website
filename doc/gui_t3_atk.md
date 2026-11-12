@@ -24,7 +24,7 @@ See [Whole-Brain Fiber Tracking](/doc/gui_t3_whole_brain.html) for the general t
 
 ### 3. Enable AutoTrack
 
-Use **[Step T3d: Tracts][Autotrack...]** and select the target tract or tract group.
+Use **Step T3d: Tracts → Autotrack...** and select the target tract or tract group.
 
 DSI Studio uses the selected tractography atlas and the subject-to-template mapping to recognize streamlines belonging to the requested pathway. AutoTrack entries are hierarchical: choose the parent entry when the whole tract family is intended and a child entry only when a specific subdivision or branch is requested.
 
@@ -69,7 +69,7 @@ After a tract has been mapped, DSI Studio can quantify its shape and diffusion m
 
 ## Tract statistics
 
-Use **[Tracts][Statistics]** to obtain tract-level measurements. Depending on the loaded data, these can include:
+Use **Tracts → Statistics** to obtain tract-level measurements. Depending on the loaded data, these can include:
 
 - streamline/pathway length and span;
 - tract volume and surface/shape measurements;
@@ -80,11 +80,11 @@ Use **[Tracts][Statistics]** to obtain tract-level measurements. Depending on th
 
 For interpretation of diffusion measurements, see [How to Interpret dMRI Metrics](/doc/how_to_interpret_dmri.html).
 
-Additional NIfTI measurements such as structural MRI, quantitative MRI, PET, or other maps can be inserted with **[Slices][Insert Other Images]** and sampled along the tract when they are correctly aligned.
+Additional NIfTI measurements such as structural MRI, quantitative MRI, PET, or other maps can be inserted with **Slices → Insert Other Images** and sampled along the tract when they are correctly aligned.
 
 ## Tract profile
 
-Use **[Tracts][Tract Profile]** to examine how a measurement changes along a pathway rather than reducing the tract to one mean value.
+Use **Tracts → Tract Profile** to examine how a measurement changes along a pathway rather than reducing the tract to one mean value.
 
 Profiles can be parameterized by image axes or by fiber orientation. Keep the same profile definition and bandwidth when comparing subjects.
 
@@ -102,11 +102,11 @@ Use AutoTrack to map the tract bundles included in the analysis. T2R is designed
 
 ### 2. Load a brain parcellation
 
-Use **[Step T3a: Assign Regions][Atlas...]** to load the desired parcellation, such as HCP-MMP or another atlas appropriate for the study.
+Use **Step T3a: Assign Regions → Atlas...** to load the desired parcellation, such as HCP-MMP or another atlas appropriate for the study.
 
 ### 3. Create the matrix
 
-Use **[Regions][Tract-to-Region Connectome]** to calculate the tract-by-region matrix.
+Use **Regions → Tract-to-Region Connectome** to calculate the tract-by-region matrix.
 
 Keep the tract set and parcellation identical across subjects when comparing T2R matrices.
 
