@@ -67,6 +67,9 @@ a:hover { text-decoration: underline; }
 .section p { color: var(--muted); margin: 0 0 10px; }
 .section img { width: 100%; border-radius: 12px; border: 1px solid var(--line); }
 .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.agent-logos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.agent-logo { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border: 1px solid var(--line); border-radius: 14px; background: #fff; color: var(--ink); }
+.agent-logo svg { display: block; width: 29px; height: 29px; }
 .pills span { font-size: 13px; background: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: 3px 11px; }
 
 /* ---- footer: author + citation + the tiny source dot, untouched in spirit */
