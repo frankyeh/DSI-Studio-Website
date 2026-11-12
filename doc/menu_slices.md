@@ -16,7 +16,7 @@ DSI Studio registers an inserted image to the diffusion data when needed. Inspec
 
 ## Add Isosurface
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/PdjfjRW7bLw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PdjfjRW7bLw" title="Slices menu tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Use **[Slices][Add Isosurface]** to render a surface from the current image. The selected intensity threshold determines the extracted surface; inspect the result and adjust the threshold when needed.
 
