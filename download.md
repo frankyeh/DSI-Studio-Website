@@ -22,6 +22,7 @@ Choose your processor architecture first. For Linux, the **Universal** packages 
 <section class="dlv5-card" id="get-docker"><h3>Docker</h3><p class="dlv5-sub">Containers · x86_64</p><div class="dlv5-buttons"></div><pre>docker pull dsistudio/dsistudio:latest</pre><pre>docker pull dsistudio/dsistudio:cuda</pre><p class="dlv5-tip">Rolling tags serving the current Sun release: CPU <code>:latest</code> · CUDA <code>:cuda</code>.</p></section>
 </div>
 <p class="dlv5-matrix-heading"><strong>All Sun downloads</strong> — full architecture and distribution matrix</p>
+
 | Architecture | OS | Downloads | Notes |
 |---|---|---|---|
 | **x86_64**<br>Intel / AMD | **Windows 10/11** | **[NVIDIA GPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win.zip)** · [CPU](https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_cpu.zip) | Unzip and run `dsi_studio.exe`. |
