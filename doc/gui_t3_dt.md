@@ -23,7 +23,7 @@ The **Type 1–4 number describes the study design and analysis space**. It is s
 
 Current files use `.sz` for SRC and `.fz` for FIB. A `.dz` connectometry database is useful for cohort-level correlational tractography, but it is no longer the preferred default reference for Type 3 differential tractography.
 
-# Type 1: Longitudinal change in native space
+## Type 1: Longitudinal change in native space
 
 Use this design for repeated scans of the same subject when the comparison should remain in native diffusion space.
 
@@ -80,7 +80,7 @@ dsi_studio --action=trk \
 
 With `dt_threshold=0.2`, this example maps locations satisfying a baseline-normalized decrease greater than 20%.
 
-# Type 2: Longitudinal change in template space
+## Type 2: Longitudinal change in template space
 
 Use this design when repeated scans should be compared in a common template space.
 
@@ -117,7 +117,7 @@ dsi_studio --action=trk \
 
 Use the template appropriate for the species/study. Inspect the alignment of both scalar maps in template space because QSDR/nonlinear-registration errors can create local metric differences that resemble biological change, especially near tissue boundaries, ventricles, lesions, or atrophy.
 
-# Type 3: Cross-sectional comparison in native patient space
+## Type 3: Cross-sectional comparison in native patient space
 
 Type 3 compares an individual patient's native-space metric with a control reference while keeping tractography in the patient's native diffusion space.
 
@@ -166,13 +166,13 @@ For a decrease analysis, the control reference is `m1` and the patient's metric 
 
 Reference controls should be acquired and processed as comparably as possible. Scanner, protocol, b-value, spatial resolution, and reconstruction differences can appear as patient/control differences.
 
-# Type 4: Cross-sectional comparison in template space
+## Type 4: Cross-sectional comparison in template space
 
 Type 4 performs the comparison in a common QSDR/template space. The subject/group metric and the control reference must use the same template space and resolution, and their alignment should be inspected before interpretation.
 
 A QSDR/MNI population-average control map can be used directly in the corresponding template-space tracking framework. The exact Type 4 setup depends on whether the comparison is an individual, a group-derived map, or another template-space reference. Use the same differential formula rules described above and verify the runtime metric names before tracking.
 
-# Choosing the differential formula and threshold
+## Choosing the differential formula and threshold
 
 Current formula indices are:
 
@@ -191,7 +191,7 @@ For a fractional change definition such as `(m1-m2)/m1`, values of `0.1`, `0.2`,
 
 Normal scan-to-scan and individual variation can be substantial. Consider a scientifically justified threshold series rather than choosing one threshold because it produces visually appealing tracks. For example, 10%, 20%, 30%, and 40% can show whether the anatomical pattern persists as the required effect size increases.
 
-# Tracking and pruning guidance
+## Tracking and pruning guidance
 
 Keep the relevant tracking parameters fixed when comparing subjects. Always check conventional tractography first; differential tracking cannot rescue poor acquisition, an incorrect b-table, failed reconstruction, or severe registration errors.
 
@@ -207,7 +207,7 @@ An ROI/ROA can be used when the hypothesis is anatomically specific. Adding a re
 
 If repeat scans are noisy or registration differences create unstable voxelwise metrics, modest image smoothing may improve robustness. Apply the same processing to both conditions and document it in the analysis methods.
 
-# Interpreting common metrics
+## Interpreting common metrics
 
 For detailed interpretation, see [How to Interpret dMRI Metrics](/doc/how_to_interpret_dmri.html).
 
@@ -218,7 +218,7 @@ For detailed interpretation, see [How to Interpret dMRI Metrics](/doc/how_to_int
 
 Different metrics answer different biological questions. A multi-metric differential analysis can provide complementary information, but each metric should be interpreted within what the acquisition can support.
 
-# False discovery rate for differential findings
+## False discovery rate for differential findings
 
 A control or sham cohort can be used to estimate how much differential tracking is produced in the absence of the biological effect of interest. Complete the differential analysis for **all controls and all patients** before estimating cohort-level FDR.
 
