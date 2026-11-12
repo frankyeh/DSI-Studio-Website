@@ -36,13 +36,8 @@ Use **[Tract Edit][Paint]** or `Ctrl+P` to assign the selected tracks a color.
 | `Ctrl+Z` | Undo selection/deletion. |
 | `Ctrl+Y` | Redo selection/deletion. |
 
-## Command History names
+## Command History
 
-| Action | Command |
-|:--|:--|
-| Select | `select_tract` |
-| Delete | `delete_tract` |
-| Cut | `cut_tract` |
-| Paint | `paint_tract` |
-| Cut by Slice | `cut_by_slice` |
-| Trim Tracts | `trim_tracts` |
+The interactive **Select**, **Delete**, **Cut**, and **Paint** 3D gestures do not each generate a correspondingly named Command History command. In particular, `select_tract`, `cut_tract`, `paint_tract`, `cut_by_slice`, and `trim_tracts` are not valid commands. The **[Tracts][Delete]** operation uses `delete_tract`, which should not be confused with the **[Tract Edit]** mouse gesture.
+
+Recorded tract-editing commands include `trim_tract`, `undo_tract`, `redo_tract`, `cut_tract_by_x`, `cut_tract_by_x2`, `cut_tract_by_y`, `cut_tract_by_y2`, `cut_tract_by_z`, `cut_tract_by_z2`, `cut_tract_end_portion`, `cut_tract_lps_end`, and `cut_tract_rai_end`. See [Command History](/doc/cli_vis.html) for automation guidance.
