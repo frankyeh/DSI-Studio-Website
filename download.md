@@ -1,5 +1,5 @@
 
-[![Build Release](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml/badge.svg)](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml)<a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio"></a><a href="https://github.com/frankyeh/DSI-Studio/releases"><img src="https://img.shields.io/github/v/release/frankyeh/DSI-Studio"></a>
+[![Build Release](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml/badge.svg)](https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml)<a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio" alt="Latest source commit"></a><a href="https://github.com/frankyeh/DSI-Studio/releases"><img src="https://img.shields.io/github/v/release/frankyeh/DSI-Studio" alt="Latest GitHub release"></a>
 
 # Download DSI Studio
 
@@ -38,7 +38,7 @@ Choose your processor architecture first. For Linux, the **Universal** packages 
 
 Hou introduced the compact `*.fz`/`*.sz` formats, DSI Studio Data Hub, new linear/nonlinear registration tools, and the redesigned graphical user interface.
 
-> **Heads-up:** Hou versions have a known issue when creating `.dz` databases. If you need to create a `.dz` database, use the Sun version above.
+> **Compatibility:** The pinned **2025.04.16 Hou downloads below predate `.dz` database support**. Some later Hou builds added `.dz` creation but had issues that were fixed in later revisions. For creating `.dz` databases, use the current Sun version above.
 
 | OS | File | Notes |
 |----|------|-------|
