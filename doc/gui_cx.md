@@ -9,6 +9,10 @@ Correlational tractography is a **cohort-level** analysis. For a single subject'
 - **Tractography methods including correlational tractography:** Yeh et al., *NeuroImage* 245 (2021): 118651. [PubMed](https://pubmed.ncbi.nlm.nih.gov/34673247/)
 - **Connectometry:** Yeh, Fang-Cheng, David Badre, and Timothy Verstynen. NeuroImage 125 (2016): 162-171. [PDF](/ref/Connectometry.pdf)
 
+## Current main-window workflow
+
+Select **Correlational Tractography** from the left sidebar. Its three cards are **1 FIB files → 2 Prepare database → 3 Run analysis**. In the first card, **FIB File(s) (*.fz)...** and **FIB Folder (*.fz)...** open database creation with the selected QSDR FIB data preloaded. **Database (*.dz)...** in the second card opens a database for inspection/editing; **Database (*.dz)** in the third card launches correlational tractography analysis. A **Recent Database** list is located below. Older references to Step C1/C2/C3 below describe the same stages, not separate top-level tabs.
+
 ## Current workflow
 
 1. **Step C1:** create a connectometry database (`.dz`) from subject QSDR FIB files reconstructed into the same template space and resolution.
