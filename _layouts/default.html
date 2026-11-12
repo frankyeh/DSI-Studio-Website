@@ -36,7 +36,7 @@
       <h4><a href="/doc/how_tractography_works.html">Practical tips for tractography</a></h4>
       <h4><a href="/doc/cli_data.html">Data Formats</a></h4>
       
-      <button type="button" class="collapsible">User Manual (GUI)</button>
+      <button type="button" class="collapsible" aria-expanded="false">User Manual (GUI)</button>
       <div class="content">
       <h4><a href="/doc/gui_t1.html">Import: Generate SRC files</a></h4>
       <h4><a href="/doc/gui_t2.html">Reconstruct: SRC to FIB</a></h4>
@@ -49,7 +49,7 @@
       <h4><a href="/doc/cli_vis.html">Command History</a></h4>
       </div>
       
-      <button type="button" class="collapsible">User Manual (Menu)</button>
+      <button type="button" class="collapsible" aria-expanded="false">User Manual (Menu)</button>
       <div class="content">
       <h4><a href="/doc/menu_edit.html">[Edit] Menu</a></h4>
       <h4><a href="/doc/menu_tracts.html">[Tracts] Menu</a></h4>
@@ -58,7 +58,7 @@
       <h4><a href="/doc/menu_devices.html">[Devices] Menu</a></h4>
       </div>
       
-      <button type="button" class="collapsible">User Manual (CLI)</button>
+      <button type="button" class="collapsible" aria-expanded="false">User Manual (CLI)</button>
       <div class="content">
       <h4><a href="/doc/cli_t1.html">[src] Generate SRC file</a></h4>
       <h4><a href="/doc/cli_t2.html">[rec] Reconstruction</a></h4>
@@ -75,20 +75,21 @@
       <h3><a href="/citation.html">Citation</a></h3>
       <h3><a href="https://practicum.labsolver.org">Workshop</a></h3>
       <p>Fang-Cheng (Frank) Yeh<br>
-          <a href="https://www.dropbox.com/s/ej2ujl6fmcvwx8f/Frank_CV.pdf?dl=0"><img src="https://img.shields.io/badge/CV-white"></a>
-          <a href="http://scholar.google.com/citations?user=QdfsoJ4AAAAJ&hl=en"><img src="https://img.shields.io/badge/Citation-white"></a>
-          <a href="https://www.webofscience.com/wos/author/record/101404"><img src="https://img.shields.io/badge/Profile-white"></a><br> 
+          <a href="https://www.dropbox.com/s/ej2ujl6fmcvwx8f/Frank_CV.pdf?dl=0"><img src="https://img.shields.io/badge/CV-white" alt="Curriculum vitae"></a>
+          <a href="http://scholar.google.com/citations?user=QdfsoJ4AAAAJ&hl=en"><img src="https://img.shields.io/badge/Citation-white" alt="Google Scholar citations"></a>
+          <a href="https://www.webofscience.com/wos/author/record/101404"><img src="https://img.shields.io/badge/Profile-white" alt="Web of Science profile"></a><br> 
       <p></p>
       <p>Questions: <a href="https://groups.google.com/g/dsi-studio?pli=1" target="_blank">Discussion Forum</a><br>
          Collaborations: frank.yeh@gmail.com</p>
       <p></p>
-      <p><a href="https://github.com/frankyeh/DSI-Studio-Website/">.</a></p>  
+      <p><a href="https://github.com/frankyeh/DSI-Studio-Website/">Website source on GitHub</a></p>  
       <script>
       var c = document.getElementsByClassName("collapsible");
       for (var i = 0; i < c.length; i++) 
           c[i].addEventListener("click", function(){
-          this.classList.toggle("active");
-          this.nextElementSibling.style.maxHeight = (this.nextElementSibling.style.maxHeight) ? null : "500px";});
+          var expanded = this.classList.toggle("active");
+          this.setAttribute("aria-expanded", expanded ? "true" : "false");
+          this.nextElementSibling.style.maxHeight = expanded ? "500px" : null;});
       {% if page.url contains 'gui' %}c[0].click();{% endif %}
       {% if page.url contains 'menu' %}c[1].click();{% endif %}
       {% if page.url contains 'cli' %}c[2].click();{% endif %}
