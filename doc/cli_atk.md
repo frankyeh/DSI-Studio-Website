@@ -58,6 +58,7 @@ subject.ProjectionBrainstem_CorticospinalTractL.tt.gz.HCP-MMP.overlap.txt
 | `template`             | Current/default template | Select the tractography template. Use the template list provided by the current DSI Studio version rather than relying on fixed numeric names. |
 | `tolerance`            | FIB/template dependent | Bundle-recognition tolerance in mm. If omitted, DSI Studio derives a tolerance series from the selected FIB/template. |
 | `track_voxel_ratio`    | FIB dependent | Track-to-voxel ratio. If omitted, DSI Studio uses the value derived from the FIB. |
+| `search_count`         | `16` | Registration search attempts for atlas/template alignment; separate from streamline seed or tract counts. |
 | `check_ending`         | `1` | Apply ending constraints used by automatic tract recognition. |
 | `yield_rate`           | `0.00001` | Restart/stop an unproductive tracking attempt when tract yield is extremely low. |
 | `overwrite`            | `0` | Overwrite existing results when set to `1`. |
