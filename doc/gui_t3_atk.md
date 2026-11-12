@@ -1,6 +1,6 @@
 # Automatic Fiber Tracking (AutoTrack)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Hzeb_q6ux-Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Hzeb_q6ux-Q" title="Automatic fiber tracking tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 AutoTrack maps named white-matter pathways using DSI Studio's tractography atlas. It is useful when the goal is to map a specific anatomical bundle consistently across subjects.
 
@@ -92,7 +92,7 @@ Profiles can be parameterized by image axes or by fiber orientation. Keep the sa
 
 The **tract-to-region (T2R) connectome** represents connectivity as an *n × m* matrix, where rows are named white-matter tracts and columns are parcellation regions. This keeps the identity of the connecting white-matter pathway, unlike a conventional region-to-region matrix that summarizes connectivity only between region pairs.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7Ns9vHl21J8?si=GxfaKk8cz4FCpGMQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/7Ns9vHl21J8?si=GxfaKk8cz4FCpGMQ" title="Tract-to-region connectome tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Generate a T2R connectome
 
