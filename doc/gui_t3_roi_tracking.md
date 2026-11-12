@@ -72,7 +72,7 @@ Inspect the tract in multiple views and compare it with known anatomy. When refi
 
 For general tracking parameters, see [Whole-Brain Fiber Tracking](/doc/gui_t3_whole_brain.html). For command-line region roles, see [Fiber Tracking CLI](/doc/cli_t3.html).
 
-# Optional: Custom templates and atlases
+## Optional: Custom templates and atlases
 
 Most analyses should use the templates and atlases distributed with DSI Studio. Add custom resources only when the study requires a standard space or parcellation that is not already available.
 
@@ -98,7 +98,7 @@ A parcellation atlas normally consists of:
 
 Place both files in the folder for the corresponding template under the DSI Studio `atlas` directory and restart DSI Studio. The atlas image must be aligned to that template space before it is used.
 
-# Practical guidance
+## Practical guidance
 
 - Prefer anatomical evidence over trial-and-error region placement.
 - Avoid adding extra ROI/ROA constraints by default.
