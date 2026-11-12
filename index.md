@@ -1,4 +1,4 @@
-<img width="1024" alt="image" src="https://github.com/user-attachments/assets/837427ff-b7f9-402f-bd21-3be9eb1d0346" />
+<img width="1024" alt="DSI Studio desktop interface" src="https://github.com/user-attachments/assets/837427ff-b7f9-402f-bd21-3be9eb1d0346" />
 
 > ### Integrated tractography, connectomics, brain MRI segmentation, and large-scale fiber data sharing
 > Yeh, Fang-Cheng. “DSI Studio: An Integrated Tractography Platform and Fiber Data Hub for Accelerating Brain Research.” Nature Methods, July 2025, https://doi.org/10.1038/s41592-025-02762-8.
@@ -53,7 +53,7 @@ DSI Studio has been used in **more than 3,000 publications** spanning neuroscien
 
 The software and the data platform were recently described in *Nature Methods* as an integrated tractography platform and fiber data hub for accelerating brain research.
 
-![image](/images/nat_rev_neuro.png)
+![Nature Reviews Neurology cover featuring DSI Studio tractography](/images/nat_rev_neuro.png)
 > DSI Studio tractography on the cover of *Nature Reviews Neurology* in 2017.
 
 ---
@@ -64,7 +64,7 @@ DSI Studio has supported translational and clinical research in a wide range of 
 
 Its applications include mapping perilesional and intralesional pathways, studying postsurgical pathway changes, and reconstructing cranial nerves for skull base surgery research. These efforts aim to improve structural assessment in settings where preservation of brain function is important.
 
-![image](/images/af.png)
+![Left arcuate fasciculus language pathway tractography](/images/af.png)
 > The human language pathway: left arcuate fasciculus mapped using DSI Studio.
 
 ---
