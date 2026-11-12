@@ -18,10 +18,11 @@ main { margin-left: 310px; padding: 50px 32px 32px; }
 @media screen and (max-width: 960px) {
   header.page-header { position: static; float: none; width: auto; box-sizing: border-box; padding-right: 10px; }
   main { margin-left: 0; padding: 24px; }
+  header.page-header { max-height: 36vh; overflow-y: auto; }
+  .markdown-body iframe { display: block; width: 100%; max-width: 560px; height: auto; aspect-ratio: 16 / 9; }
 }
 @media screen and (max-width: 600px) {
   main { padding: 16px; }
-  .markdown-body iframe { max-width: 100%; }
 }
 
 h3 {margin-bottom: 8px}
