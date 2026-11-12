@@ -54,7 +54,7 @@ Open the baseline `.fz` using **Tractography → 3 Track → FIB File (*.fz)** a
 
 ## 4. Add the follow-up metric and wait for registration
 
-Insert the exported follow-up map using **[Slices][Insert Other Images]**. DSI Studio may run rigid-body registration even when the scans have the same matrix size and voxel size. Wait until registration is complete before selecting the differential metrics.
+Insert the exported follow-up map using **Slices → Insert Other Images**. DSI Studio may run rigid-body registration even when the scans have the same matrix size and voxel size. Wait until registration is complete before selecting the differential metrics.
 
 Metric names used by differential tracking are the names shown by the current tracking window, not arbitrary abbreviations. For a NIfTI custom slice, the name is derived from the file stem. Verify the displayed names before a batch run.
 
