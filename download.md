@@ -13,7 +13,7 @@ The current Sun release is **2026.7.25**.
 
 **New in Sun: AI Agent.** DSI Studio supports local CLI agents including **Codex, Claude Code, Muse, Antigravity, and Grok** for natural-language workflows such as reconstruction, fiber tracking, image processing, and connectometry. Install and configure a supported agent on the same computer, then check its availability in DSI Studio's AI Agent settings.
 
-Choose your processor architecture first. For Linux, the **Universal** packages are recommended for most systems; Ubuntu-specific builds are also provided.
+Choose your operating system below. For Linux, the **Universal** packages are recommended for most systems; Ubuntu-specific builds are also provided.
 
 <div class="dlv5-grid" aria-label="Recommended downloads by operating system">
 <section class="dlv5-card" id="get-windows"><h3>Windows</h3><p class="dlv5-sub">Windows 10/11 · Intel / AMD x64</p><div class="dlv5-buttons"><a class="dlv5-button" href="https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win.zip">NVIDIA GPU<small>Windows x64 · CUDA</small></a><a class="dlv5-button" href="https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_cpu.zip">CPU<small>Windows x64</small></a></div><p class="dlv5-extra">Windows 11 ARM: <a href="https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_arm64.zip">ARM64 CPU download</a></p><p class="dlv5-tip">Choose NVIDIA GPU only with a compatible NVIDIA card and driver; otherwise select CPU. Unzip and run <code>dsi_studio.exe</code>.</p></section>
