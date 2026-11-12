@@ -6,7 +6,7 @@ title: DSI Studio
   <div>
     <a class="paper" href="https://doi.org/10.1038/s41592-025-02762-8"><b>Nature Methods 2025</b>Platform paper →</a>
     <h1>Tractography, connectomics and fiber data, in one open platform.</h1>
-    <p class="lead">Reconstruct diffusion MRI, map white-matter pathways, run group analysis and segment brain MRI on Windows, macOS, Linux and Docker.</p>
+    <p class="lead">Reconstruct diffusion MRI, map white-matter pathways, run group analysis and segment brain MRI.</p>
     <div class="btns">
       <a class="btn primary" href="/download.html">Download</a>
       <a class="btn" href="/doc/how_to_analyze_dmri.html">Start the tutorial</a>
@@ -25,7 +25,6 @@ title: DSI Studio
 <section class="doors">
   <div class="door">
     <h3>Learn</h3>
-    <p>Concepts first, then the exact clicks.</p>
     <ul>
       <li><a href="/doc/how_to_acquire_dmri.html">How to acquire dMRI</a></li>
       <li><a href="/doc/how_to_analyze_dmri.html">How to analyze dMRI</a></li>
@@ -45,7 +44,6 @@ title: DSI Studio
   </div>
   <div class="door">
     <h3>Support</h3>
-    <p>Questions answered by the developer and community.</p>
     <ul>
       <li><a href="https://groups.google.com/g/dsi-studio">Forum (Google)</a></li>
       <li><a href="https://www.reddit.com/r/dsistudio/">Forum (Reddit)</a></li>
@@ -72,7 +70,7 @@ title: DSI Studio
   <div><img src="/images/nat_rev_neuro.png" alt="Nature Reviews Neurology covers featuring DSI Studio tractography"></div>
   <div>
     <h2>Research</h2>
-    <p>DSI Studio has been cited in Nature Neuroscience, Nature Human Behaviour, Brain and NeuroImage, and its tractography appeared on the cover of Nature Reviews Neurology (2017). It is used across diffusion MRI datasets and imaging protocols to reconstruct white-matter pathways, map connectivity and compare tractography results.</p>
+    <p>DSI Studio has been cited in Nature Neuroscience, Nature Human Behaviour, Brain and NeuroImage, and its tractography appeared on the cover of Nature Reviews Neurology (2017).</p>
     <div class="pills"><span>DTI · GQI · QSDR</span><span>AutoTrack</span><span>Differential</span><span>Correlational</span><span>U-Net segmentation</span></div>
     <div class="cite-card">
       <small>Nature Methods · July 2025</small>
@@ -85,7 +83,7 @@ title: DSI Studio
 <section class="hub">
   <div>
     <h2>Fiber Data Hub</h2>
-    <p>Compact processed diffusion MRI derivatives (<b style="color:#16181d">.fz</b>, <b style="color:#16181d">.sz</b>, <b style="color:#16181d">.dz</b>) that open directly in DSI Studio, without repeating preprocessing from raw DWI. More than 30,000 fiber datasets as of the Nature Methods 2025 paper, from HCP, ABCD, OpenNeuro, INDI, TCIA and other public datasets.</p>
+    <p>Compact processed diffusion MRI derivatives (<b style="color:#16181d">.fz</b>, <b style="color:#16181d">.sz</b>, <b style="color:#16181d">.dz</b>) that open directly in DSI Studio, without repeating preprocessing from raw DWI. Data sources include HCP, ABCD, OpenNeuro, INDI, TCIA and other public datasets.</p>
   </div>
   <ul>
     <li><a href="https://brain.labsolver.org/#repository-list">Browse repositories <span>→</span></a></li>
@@ -107,7 +105,7 @@ title: DSI Studio
     <div class="img light"><img src="/images/unet_examples.png" alt="U-Net segmentation of mouse, marmoset and rhesus MRI"></div>
     <figcaption>
       <h3>Brain MRI segmentation</h3>
-      <p>U-Net based segmentation for structural MRI runs inside DSI Studio, with no Python or deep-learning environment to install.</p>
+      <p>U-Net based segmentation for structural MRI runs inside DSI Studio.</p>
       <small>Segmentation examples from <a href="https://unet-studio.labsolver.org">U-Net Studio</a>, the sister project.</small>
     </figcaption>
   </figure>
@@ -116,7 +114,6 @@ title: DSI Studio
 <section class="start">
   <div>
     <h2>Get started</h2>
-    <p>No installation needed: download, unzip and run.</p>
     <div class="badges">
       <a href="https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml"><img src="https://github.com/frankyeh/DSI-Studio/actions/workflows/build.yml/badge.svg" alt="Build"></a>
       <a href="https://github.com/frankyeh/DSI-Studio/commits/master"><img src="https://img.shields.io/github/last-commit/frankyeh/DSI-Studio" alt="Last commit"></a>
