@@ -40,13 +40,13 @@ Only apply corrections that are appropriate for the acquisition and study design
 
 ### TOPUP/EDDY and motion correction
 
-For reverse-phase-encoding acquisitions, use **[Corrections][TOPUP/EDDY]**. DSI Studio first looks for the matching `.rz` companion file. If one is not found, it can accept another reverse-phase-encoding `.sz`, `.rz`, legacy `.src.gz`, or NIfTI file.
+For reverse-phase-encoding acquisitions, use **Corrections → TOPUP/EDDY**. DSI Studio first looks for the matching `.rz` companion file. If one is not found, it can accept another reverse-phase-encoding `.sz`, `.rz`, legacy `.src.gz`, or NIfTI file.
 
 For acquisitions without a reverse-phase pair, use the applicable EDDY/motion-correction workflow.
 
 ### T1w distortion correction
 
-When there is no reverse-phase pair but a T1w image of the same subject is available, use **[Corrections][T1w Distortion Correction...]** to correct susceptibility distortion. Select the T1w file, then choose the output resolution (**Native**, **1.5 mm isotropic**, or **1.0 mm isotropic**).
+When there is no reverse-phase pair but a T1w image of the same subject is available, use **Corrections → T1w Distortion Correction...** to correct susceptibility distortion. Select the T1w file, then choose the output resolution (**Native**, **1.5 mm isotropic**, or **1.0 mm isotropic**).
 
 DSI Studio converts the first b0 image to a T1-like contrast and extracts the brain from the T1w using U-Net, followed by bias field correction. It then registers the T1w rigidly to the b0 and estimates a nonlinear deformation restricted to the anterior–posterior (y) axis. Every DWI volume is warped once from the original data using T1w-guided interpolation and Jacobian signal modulation, and the mask is regenerated from the corrected images. The correction is recorded in the methods report.
 
@@ -68,7 +68,7 @@ Use the image-editing tools to remove irrelevant background signal or crop exces
 
 ### Check b-table orientation
 
-An incorrect b-table produces incorrect fiber orientations. Use **[B-table][Check b-table]** and inspect the result anatomically. Low-SNR or unusual animal acquisitions may require manual verification.
+An incorrect b-table produces incorrect fiber orientations. Use **B-table → Check b-table** and inspect the result anatomically. Low-SNR or unusual animal acquisitions may require manual verification.
 
 ### Make isotropic
 
