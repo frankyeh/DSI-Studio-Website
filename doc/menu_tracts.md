@@ -16,7 +16,7 @@ DSI Studio's current compact tract format is `.tt.gz`. Use another format only w
 
 ## Tract statistics
 
-**[Tracts][Statistics]** reports quantitative information for the selected tract group. Depending on the loaded FIB/images, this can include:
+**Tracts → Statistics** reports quantitative information for the selected tract group. Depending on the loaded FIB/images, this can include:
 
 - tract count and length;
 - tract shape/volume measurements;
@@ -52,13 +52,13 @@ Track-density images (TDI) can be exported from a tractogram in diffusion space 
 
 ## Connectivity matrices
 
-**[Tracts][Connectivity Matrix]** calculates region-to-region connectivity from the current tractography. The result depends on the parcellation, streamline definition, endpoint/pass-through rule, connectivity value, and threshold.
+**Tracts → Connectivity Matrix** calculates region-to-region connectivity from the current tractography. The result depends on the parcellation, streamline definition, endpoint/pass-through rule, connectivity value, and threshold.
 
 See [Whole-Brain Tractography](/doc/gui_t3_whole_brain.html#connectivity-matrices) for recommended workflow and interpretation cautions.
 
 ## Workspaces
 
-Tracts can be saved together with regions, devices, slices, and rendering settings using **[View][Save Workspace]**. See the [Slices menu](/doc/menu_slices.html#workspaces).
+Tracts can be saved together with regions, devices, slices, and rendering settings using **View → Save Workspace**. See the [Slices menu](/doc/menu_slices.html#workspaces).
 
 ## Command-line equivalents
 
