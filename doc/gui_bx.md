@@ -6,7 +6,7 @@ DSI Studio provides GUI batch functions for common multi-subject workflows. Test
 
 Click **XNAT Download** in the main window's left sidebar to connect to an XNAT server, select project data, and choose a local download directory.
 
-![image](https://user-images.githubusercontent.com/275569/147839715-c06d0643-c0c8-45ea-a56b-8195ef4be4e3.png)
+*Older XNAT screenshots may show the previous main-window layout. Follow the sidebar instructions above.*
 
 ## Rename and organize DICOM
 
@@ -47,18 +47,18 @@ For longitudinal or cross-sectional differential analysis, follow the study-spec
 
 Use **Tractography → 3 Track → ▸ More… → Automatic tracking** when named pathways should be mapped across many subjects. This opens the existing AutoTrack workflow, which already supports a subject list and aggregated statistics.
 
-![image](https://user-images.githubusercontent.com/275569/147839692-9a136412-6734-4b8f-880c-c5571d464cfe.png)
+*The outdated batch AutoTrack screenshot has been omitted because its controls and defaults no longer match the current interface.*
 
 ### Recommended workflow
 
 1. Select the `.fz` files to process.
 2. Select the tract or tract groups.
-3. Keep the FIB/template-derived defaults initially.
+3. Review atlas, tolerance and track density for the species and image scale; only the track-to-voxel ratio is initialized from the loaded FIB.
 4. Run a small subset and inspect the anatomy in Step T3.
 5. Only change tolerance, track density, pruning, or other tracking parameters when the anatomical results justify the change.
 6. Apply the finalized settings consistently to the study cohort.
 
-AutoTrack tolerance and track-to-voxel ratio are derived from the loaded FIB/template when not explicitly fixed; avoid copying old universal numeric defaults into new studies.
+The current batch AutoTrack GUI initially shows **Tolerance** = `22,26,30` mm; it does **not** automatically update tolerance when a FIB is loaded. **Track/Voxel Ratio** is initialized from the first FIB. Review tolerance carefully for pediatric, animal, and differently scaled data.
 
 See [Automatic Fiber Tracking](/doc/gui_t3_atk.html) for the current workflow and troubleshooting guidance.
 
