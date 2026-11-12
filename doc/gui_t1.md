@@ -1,8 +1,10 @@
-# Step T1: Generate SRC Files
+# Import: Generate SRC Files
 
 DSI Studio converts diffusion MRI source data into an SRC file. Current SRC files use the `.sz` extension; legacy `.src.gz` files remain supported.
 
 An SRC file stores the diffusion-weighted image volumes together with the b-table and other information needed for reconstruction.
+
+Older tutorial videos on this page may show the former main-window layout. The instructions below use current controls.
 
 ## DICOM to SRC
 
@@ -25,7 +27,7 @@ A diffusion-weighted NIFTI image needs its diffusion gradient information. DSI S
 
 For one scan:
 
-1. Open **Tractography → 1 Import → NIfTI → NIfTI file(s)...** and select the 4D diffusion NIfTI file.
+1. Open **Tractography → 1 Import → NIfTI → NIfTI file(s)...** and select one 4D diffusion NIfTI file. To process multiple scans, use **NIfTI folder...**.
 2. DSI Studio looks for matching `bval` and `bvec` files in the same directory.
 3. If they are not found automatically, load them from **[Files][Open bval]** and **[Files][Open bvec]**.
 4. Create the `.sz` file and inspect the loaded b-table before continuing.
