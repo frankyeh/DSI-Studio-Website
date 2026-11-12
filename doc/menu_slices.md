@@ -4,7 +4,7 @@ The **Slices** menu loads additional image volumes into the Step T3 tracking win
 
 ## Insert Other Images
 
-Use **[Slices][Insert Other Images]** to add DICOM or NIfTI data such as T1w, T2w, quantitative MRI, PET, statistical maps, or other aligned measurements.
+Use **Slices → Insert Other Images** to add DICOM or NIfTI data such as T1w, T2w, quantitative MRI, PET, statistical maps, or other aligned measurements.
 
 DSI Studio registers an inserted image to the diffusion data when needed. Inspect the alignment before using the image for quantitative sampling, ROI definition, or visualization.
 
@@ -18,7 +18,7 @@ DSI Studio registers an inserted image to the diffusion data when needed. Inspec
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PdjfjRW7bLw" title="Slices menu tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Use **[Slices][Add Isosurface]** to render a surface from the current image. The selected intensity threshold determines the extracted surface; inspect the result and adjust the threshold when needed.
+Use **Slices → Add Isosurface** to render a surface from the current image. The selected intensity threshold determines the extracted surface; inspect the result and adjust the threshold when needed.
 
 Surface color, opacity, and clipping/cross-section settings are available in the rendering options.
 
@@ -39,8 +39,8 @@ For clinical-navigation export workflows:
 
 1. Insert the source DICOM/T1w image with **Insert Other Images**.
 2. Select that image as the current slice.
-3. Use **[Slices][Mark Tracts on Slices]** or **[Slices][Mark Regions on Slices]**.
-4. Use **[Slices][Save Slices to DICOM]** to create modified DICOM output.
+3. Use **Slices → Mark Tracts on Slices** or **Slices → Mark Regions on Slices**.
+4. Use **Slices → Save Slices to DICOM** to create modified DICOM output.
 
 Keep the original clinical DICOM data unchanged and export marked images as separate files.
 
@@ -48,7 +48,7 @@ Keep the original clinical DICOM data unchanged and export marked images as sepa
 
 A workspace saves the current visualization state, including tracts, regions, devices, added slices, camera orientation, and rendering settings.
 
-Use **[View][Save Workspace]** to save the workspace to a folder and **[View][Load Workspace]** to restore it later.
+Use **View → Save Workspace** to save the workspace to a folder and **View → Load Workspace** to restore it later.
 
 Typical workspace contents include:
 
