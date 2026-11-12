@@ -255,3 +255,16 @@ article .dlv5-card .dlv5-tip { border-top:1px solid var(--line); padding-top:12p
 article .dlv5-matrix-heading { font-size:16px; margin:25px 0 12px; }
 @media(max-width:750px) { .dlv5-grid { grid-template-columns:1fr; } .dlv5-card { padding:18px; } }
 @media(max-width:340px) { .dlv5-buttons { grid-template-columns:1fr; } }
+
+/* GUI menu paths and step eyebrows in documentation */
+.ui-path { white-space: normal; }
+.ui-key { display: inline-block; font: 500 0.9em/1.35 var(--sans); color: var(--ink); background: var(--soft);
+  border: 1px solid var(--line); border-radius: 6px; padding: 0 7px; margin: 1px 0; white-space: nowrap; }
+.ui-sep { color: var(--muted); margin: 0 4px; font-weight: 400; }
+.ui-sep::before { content: "›"; }
+.ui-b { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+article h1 .ui-key, article h2 .ui-key, article h3 .ui-key { font-size: 0.72em; vertical-align: 0.18em; padding: 1px 9px; }
+.step-eyebrow { display: block; font: 600 12px/1.4 var(--sans); letter-spacing: .03em; color: #2a78d6; margin-bottom: 4px; }
+
+.shot figcaption { left: 0; right: 0; bottom: 0; padding: 18px 14px 10px;
+  background: linear-gradient(transparent, rgba(0,0,0,.65)); border-radius: 0 0 16px 16px; }

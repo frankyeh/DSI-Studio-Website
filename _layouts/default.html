@@ -178,6 +178,46 @@
       <div class="cite">Cite: Yeh F-C. DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research.
       <i>Nature Methods</i> (2025). doi:10.1038/s41592-025-02762-8 &nbsp;<a class="dot" href="https://github.com/frankyeh/DSI-Studio-Website/">.</a></div>
     </footer>
+{%- if is_doc -%}
+    <script>
+      // Turns bracketed GUI paths in documentation into quiet menu chips and "Step T1a:" headings into an eyebrow.
+      // Presentation only: brackets stay in the DOM (hidden), so copy/paste, ids, links and code are untouched.
+      (function () {
+        var article = document.querySelector("article");
+        if (!article) return;
+        var PATH = /^(\[[^\[\]]+\])+$/;           // the whole text is one or more [Label] groups
+        var GROUP = /\[([^\[\]]+)\]/g;
+
+        function chips(text) {
+          var html = [], m, first = true;
+          GROUP.lastIndex = 0;
+          while ((m = GROUP.exec(text))) {
+            if (!first) html.push('<span class="ui-sep" aria-hidden="true"></span>');
+            html.push('<span class="ui-key"><span class="ui-b">[</span>' + m[1].replace(/&/g, "&amp;").replace(/</g, "&lt;") +
+                      '<span class="ui-b">]</span></span>');
+            first = false;
+          }
+          return '<span class="ui-path">' + html.join("") + "</span>";
+        }
+
+        // 1. bold GUI paths in prose: <strong>[Slices][Insert Other Images]</strong>, never inside code or links
+        article.querySelectorAll("strong").forEach(function (el) {
+          if (el.closest("code, pre, a") || el.children.length) return;
+          var t = el.textContent.trim();
+          if (PATH.test(t)) el.innerHTML = chips(t);
+        });
+
+        // 2. headings: leading bracket groups become chips; "Step T1a: Title" gets a step eyebrow; ids are not touched
+        article.querySelectorAll("h1, h2, h3").forEach(function (h) {
+          if (h.children.length) return;
+          var t = h.textContent, m = t.match(/^((?:\[[^\[\]]+\])+)\s*(.*)$/);
+          if (m) { h.innerHTML = chips(m[1]) + (m[2] ? " " + m[2] : ""); return; }
+          m = t.match(/^Step (T\d+[a-z]?):?\s+(.+)$/);
+          if (m) h.innerHTML = '<span class="step-eyebrow">Step ' + m[1] + '<span class="ui-b">: </span></span>' + m[2];
+        });
+      })();
+    </script>
+{%- endif -%}
     <script>
       (function() {
         var q = location.search;
@@ -246,7 +286,7 @@
             toc.innerHTML = html;
             var links = toc.querySelectorAll("a");
             for (var j = 0; j < h2s.length; j++) {
-              links[j + 1].textContent = h2s[j].textContent;
+              links[j + 1].textContent = h2s[j].textContent.replace(/\]\s*\[/g, " › ").replace(/[\[\]]/g, "");
             }
           }
         }
