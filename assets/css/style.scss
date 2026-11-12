@@ -11,9 +11,12 @@
   min-width: 0;
 }
 main { margin-left: 310px; padding: 50px 32px 32px; }
+@media screen and (min-width: 961px) {
+  header.page-header { top: 0; bottom: 0; height: 100vh; box-sizing: border-box; overflow-y: auto; }
+}
 
 @media screen and (max-width: 960px) {
-  header.page-header { position: static; float: none; width: auto; box-sizing: border-box; }
+  header.page-header { position: static; float: none; width: auto; box-sizing: border-box; padding-right: 10px; }
   main { margin-left: 0; padding: 24px; }
 }
 @media screen and (max-width: 600px) {
@@ -60,9 +63,7 @@ button { padding: 0px;}
 }
 
 .content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
+  display: none;
 }
 
 /* GitHub Markdown preview styling applied to every page's main content. */
