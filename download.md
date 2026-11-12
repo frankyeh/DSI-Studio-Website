@@ -50,13 +50,13 @@ Hou introduced the compact `*.fz`/`*.sz` formats, DSI Studio Data Hub, new linea
 
 **China mirror (Hou only):** [百度网盘](https://pan.baidu.com/s/5GuYBQbLHTN_HvShnM3oQew)
 
-# Previous Versions
+## Previous Versions
 
 - ["Chen" versions (2022-2024)](https://github.com/frankyeh/DSI-Studio/releases)
 - [Pre-"Chen" versions (2008-2022)](https://www.dropbox.com/sh/ectib64vhctkl8b/AADBRYp_aPLEuAOdNw393tO-a?dl=0)
 - Older CentOS 8 builds, if needed, can be found in previous GitHub releases.
 
-# License
+## License
 
 DSI Studio offers dual licensing options for academic and commercial users.
 
@@ -68,6 +68,6 @@ DSI Studio is free for academic users. Read the [academic license agreement](htt
 
 Please contact frank.yeh@gmail.com about the commercial license.
 
-# Hardware Recommendations
+## Hardware Recommendations
 
 DSI Studio runs on a regular desktop or laptop. For large tractography or connectomics workflows, 64 GB RAM or more, a fast SSD, and a modern multi-core CPU are recommended. An NVIDIA GPU can accelerate GPU-enabled functions.
