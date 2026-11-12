@@ -29,7 +29,7 @@ For one scan:
 
 1. Open **Tractography → 1 Import → NIfTI → NIfTI file(s)...** and select one 4D diffusion NIfTI file. To process multiple scans, use **NIfTI folder...**.
 2. DSI Studio looks for matching `bval` and `bvec` files in the same directory.
-3. If they are not found automatically, use **[Files][Open bval]** and **[Files][Open bvec]** in the **source-image / b-table parser window** opened by NIfTI import (not the DSI Studio main window).
+3. If they are not found automatically, use **Files → Open bval** and **Files → Open bvec** in the **source-image / b-table parser window** opened by NIfTI import (not the DSI Studio main window).
 4. Create the `.sz` file and inspect the loaded b-table before continuing.
 
 For folder conversion, choose **Tractography → 1 Import → NIfTI → NIfTI folder...**. The program detects a BIDS dataset from its `sub-*` directories and creates SRC outputs under `derivatives`; otherwise, it processes an ordinary NIfTI folder and places an SRC file beside each diffusion NIfTI. The older separate BIDS/single-folder buttons have been consolidated.
@@ -52,7 +52,7 @@ Example:
 3000 -0.985100  0.130800  0.111300
 ```
 
-Load it using **[Files][Open b-table]** in that same **source-image / b-table parser window**.
+Load it using **Files → Open b-table** in that same **source-image / b-table parser window**.
 
 When present in the NIFTI directory, DSI Studio can also use `grad_dev.nii.gz` for gradient-nonlinearity information and `nodif_brain_mask.nii.gz` as a brain mask.
 
