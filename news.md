@@ -4,7 +4,7 @@ November 2026
 
 The following development updates may not yet be included in the latest tagged Sun release (2026.7.25).
 
-- Redesigned the **MainWindow** with a left navigation sidebar, clearer import/reconstruction/tractography workflows, a three-stage correlational tractography layout, and persistent working-directory and recent-file controls.
+- Redesigned the **MainWindow** with a left navigation sidebar, clearer import/reconstruction/tractography workflows, a three-stage correlational tractography layout, and a persistent working-directory bar plus recent-file controls.
 - Replaced legacy interface icons with a consistent **SVG icon set** across tool buttons and menus, including icons for all menu actions and updated brain-view, tractography, and image-editor symbols.
 - Improved **AI Agent** controls and provider identification, and streamlined NIfTI/BIDS folder import and creation of correlational tractography databases from FIB files.
 
