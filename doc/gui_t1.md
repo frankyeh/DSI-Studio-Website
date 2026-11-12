@@ -8,13 +8,12 @@ An SRC file stores the diffusion-weighted image volumes together with the b-tabl
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=65" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-For a single diffusion scan, use **Step T1: Open Source Images** and select the DICOM folder or files. DSI Studio reads the diffusion information and creates a `.sz` file.
+In the current main window, open **Tractography → 1 Import → DICOM** and choose **DICOM file(s)...** or **DICOM folder...**. DSI Studio reads the diffusion information and creates a `.sz` file. The **▸ Rename DICOM** control exposes optional operations that move/rename DICOM files; these do not perform conversion.
 
-For larger studies, the **Batch Processing** functions can organize DICOM files and create SRC files:
+For larger studies, the **DICOM folder...** option converts a folder of scans. Expand **▸ Rename DICOM** only when you explicitly need to reorganize the source files:
 
-- **Step B1a: Rename DICOM files** — organize selected DICOM files.
-- **Step B1b: Rename DICOM in Subfolders** — organize DICOM studies below a root directory.
-- **Step B2c: DICOM to SRC/NIFTI** — batch-create SRC or NIFTI files.
+- **Rename DICOM files...** — organize selected DICOM files.
+- **Rename DICOM folder...** — organize DICOM studies beneath a root folder.
 
 The DICOM rename functions move/rename files, so keep a backup and test them on a small subset first. See [GUI Batch Processing](/doc/gui_bx.html) and [Rename DICOM CLI](/doc/cli_ren.html).
 
@@ -26,15 +25,12 @@ A diffusion-weighted NIFTI image needs its diffusion gradient information. DSI S
 
 For one scan:
 
-1. Click **Step T1: Open Source Images** and select the 4D diffusion NIFTI file.
+1. Open **Tractography → 1 Import → NIfTI → NIfTI file(s)...** and select the 4D diffusion NIfTI file.
 2. DSI Studio looks for matching `bval` and `bvec` files in the same directory.
 3. If they are not found automatically, load them from **[Files][Open bval]** and **[Files][Open bvec]**.
 4. Create the `.sz` file and inspect the loaded b-table before continuing.
 
-For batch conversion:
-
-- **Step B2a: NIFTI to SRC (BIDS)** — process a BIDS dataset.
-- **Step B2b: NIFTI to SRC (Single Folder)** — process NIFTI files organized outside BIDS.
+For folder conversion, choose **Tractography → 1 Import → NIfTI → NIfTI folder...**. The program detects a BIDS dataset from its `sub-*` directories and creates SRC outputs under `derivatives`; otherwise, it processes an ordinary NIfTI folder and places an SRC file beside each diffusion NIfTI. The older separate BIDS/single-folder buttons have been consolidated.
 
 For command-line workflows, see [SRC Creation CLI](/doc/cli_t1.html).
 
@@ -62,17 +58,17 @@ When present in the NIFTI directory, DSI Studio can also use `grad_dev.nii.gz` f
 
 ### Bruker 2dseq
 
-Select the `2dseq` file in **Step T1: Open Source Images**. Keep its associated Bruker files in their expected relative directories so DSI Studio can read spatial parameters and the diffusion table.
+Select the `2dseq` file using **Tractography → 1 Import → 2dseq/FDF → 2dseq / FDF file(s)...**. Keep its associated Bruker files in their expected relative directories so DSI Studio can read spatial parameters and the diffusion table.
 
 After loading, verify the image and b-table orientation before reconstruction.
 
 ### Varian / Agilent FDF
 
-Select the FDF files from the scan directory. DSI Studio reads the image and diffusion-gradient information and creates an SRC file.
+On **Tractography → 1 Import → 2dseq/FDF**, select the FDF files from the scan directory. DSI Studio reads the image and diffusion-gradient information and creates an SRC file.
 
 # Step T1a: Quality Control
 
-Run **Diffusion MRI Analysis → Step T1a: Quality Control** on the study's SRC files before reconstruction or population analysis.
+Run **Tractography → 2 Reconstruct → ▸ More… → SRC quality control...** on the study's SRC files before reconstruction or population analysis. For NIfTI DWI quality control before SRC creation, use **Tractography → 1 Import → NIfTI → ▸ More… → NIFTI quality control...**.
 
 The QC report is designed to identify subjects that differ substantially from the rest of the study. Review at least:
 
@@ -99,7 +95,7 @@ For batch b-table checking and command-line correction, see [Reconstruction CLI]
 
 # Isotropic resampling
 
-If isotropic resampling is needed, open the SRC file in **Step T2: Reconstruction** and use the reconstruction image-editing/resampling tools. Resampling does not add anatomical information and should be used for a specific processing requirement rather than routinely.
+If isotropic resampling is needed, open the SRC file through **Tractography → 2 Reconstruct → SRC File(s) (*.sz)** and use the reconstruction image-editing/resampling tools. Resampling does not add anatomical information and should be used for a specific processing requirement rather than routinely.
 
 See [Step T2: Reconstruction](/doc/gui_t2.html#make-isotropic).
 
