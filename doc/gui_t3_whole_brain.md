@@ -6,7 +6,7 @@ Whole-brain tracking is the first quality check before ROI tracking, AutoTrack, 
 
 A streamline is a computational trajectory reconstructed from diffusion orientations, not an observed axon. Streamline/tract count should not be interpreted directly as axon count or biological connection strength.
 
-![image](https://user-images.githubusercontent.com/275569/147802869-07d8b7e9-aea9-4fc3-8af5-29286787841f.png)
+![Whole-brain streamline tractography illustration](https://user-images.githubusercontent.com/275569/147802869-07d8b7e9-aea9-4fc3-8af5-29286787841f.png)
 
 ## Troubleshooting
 
