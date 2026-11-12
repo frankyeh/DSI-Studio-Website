@@ -1,6 +1,6 @@
 # Reconstruct: SRC to FIB
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=215" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=215" title="SRC reconstruction tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Reconstruction processes an SRC file (`.sz`; legacy `.src.gz`) and creates an FIB file (`.fz`) for tractography, diffusion measurements, connectome analysis, and other downstream workflows.
 
