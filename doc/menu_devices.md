@@ -4,14 +4,14 @@ DSI Studio can display devices such as SEEG electrodes, DBS leads, probes, and o
 
 ![Device visualization in DSI Studio](https://user-images.githubusercontent.com/275569/147839140-127aedcb-e626-422a-8a3b-c1f7749d24d5.png)
 
-## Electrode detection from CT
+## CT-guided device placement
 
 1. Load the CT with **[Slices][Insert Other Images]**.
-2. Verify the CT-to-MRI/diffusion registration before using the detected locations.
-3. If needed, resample the CT to isotropic resolution using the image-processing tools.
-4. Use **[Devices][Detect Electrodes]** to identify electrode contacts.
+2. Verify CT-to-MRI/diffusion registration before using image-derived coordinates.
+3. If needed, use image-processing tools to improve visualization of electrode contacts.
+4. Use **[Devices][New Device]** to place and adjust a device manually, checking its position against the registered CT in multiple views.
 
-Detected contacts can be added as regions and displayed with the electrode/device geometry.
+The current **[Devices]** menu does not contain a **Detect Electrodes** action. Contact identification from CT requires a separately validated workflow; do not assume automatic detection is available through this menu.
 
 ## Add a device manually
 
@@ -29,7 +29,7 @@ Use the 3D editing controls to move the device tip and adjust its orientation. R
 
 Device positions can be saved to CSV and restored later. A saved workspace can also include the current devices together with tracts, regions, slices, and rendering settings.
 
-See the [[Slices] menu](/doc/menu_slices.html#workspaces) for workspace saving/loading.
+See the [Slices menu](/doc/menu_slices.html#workspaces) for workspace saving/loading.
 
 ## Custom device definitions
 
