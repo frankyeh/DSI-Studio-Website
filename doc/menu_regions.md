@@ -7,21 +7,21 @@ The `[Regions]` menu in DSI Studio provides functions for creating, editing, and
 
 | **Action** | **Description** | **Internal Command Text** |
 |:--|:--|:--|
-| **New Region** | Creates a new region with dimensions defined by the slices. | *No toolTip in the .ui file* |
+| **New Region** | Creates a new region with dimensions defined by the slices. | `run new_region` |
 | **Open Region** | Opens a NIFTI file as a region. | `run open_region` |
 | **Open MNI Region** | Warps MNI-space regions to native diffusion space. | `run open_mni_region` |
-| **Save Region** | Saves the current region(s) to a file. | `run save_region` |
-| **Save All Regions** | Saves all regions as 4D NIfTI files. | `run save_all_regions_as_4d_nifti` |
-| **Statistics** | Exports region-based metrics to a text file. | `run region_statistics` |
+| **Save Current Region As...** | Saves the current region to a file. | `run save_region` |
+| **Save Checked Regions to one 4D NIFTI...** | Saves checked regions together as a 4D NIfTI file. | `run save_4d_region` |
+| **Statistics** | Exports region-based metrics to a text file. | `run show_region_statistics` |
 | **Check All Regions** | Checks all regions in the list. | `run check_all_regions` |
 | **Uncheck All Regions** | Unchecks all regions in the list. | `run uncheck_all_regions` |
-| **Merge Regions** | Combines selected regions into a single region. | `run merge_all` |
-| **Delete Region** | Deletes the selected region(s). | `run delete_region` |
-| **Delete All Regions** | Deletes all regions in the list. | `run delete_region_all` |
-| **Copy Region** | Copies the selected region to the clipboard. | `run copy_region` |
-| **Undo Edit** | Reverts the last region-editing action. | `run undo_edit` |
-| **Redo Edit** | Redoes the last reverted editing action. | `run redo_edit` |
-| **Tract to Region Connectome** | Generates a connectome based on tract and region overlap. | `run tract_to_region_connectome` |
+| **Merge Checked Regions** | Combines checked regions into one region. | `run merge_regions` |
+| **Delete** | Deletes the selected region(s). | `run delete_region` |
+| **Delete All Regions** | Deletes all regions in the list. | `run delete_all_regions` |
+| **Copy** | Copies the selected region to the clipboard. | `run copy_region` |
+| **Undo Edit** | Reverts the last region-editing action. | *No documented `run` command binding* |
+| **Redo Edit** | Redoes the last reverted editing action. | *No documented `run` command binding* |
+| **Tract to Region Connectome** | Generates a connectome based on tract and region overlap. | `run show_t2r` |
 
 ## [Regions Misc] Additional Features
 
