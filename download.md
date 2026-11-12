@@ -11,7 +11,7 @@ DSI Studio is updated frequently, and computational results may differ between v
 
 The current Sun release is **2026.7.25**.
 
-**New in Sun: AI Agent.** DSI Studio can use **Codex** or **Claude Code** to understand natural-language requests and operate workflows including reconstruction, fiber tracking, image processing, and connectometry. To use the AI Agent, install Codex or Claude Code on the same computer.
+**New in Sun: AI Agent.** DSI Studio supports local CLI agents including **Codex, Claude Code, Muse, Antigravity, and Grok** for natural-language workflows such as reconstruction, fiber tracking, image processing, and connectometry. Install and configure a supported agent on the same computer, then check its availability in DSI Studio's AI Agent settings.
 
 Choose your processor architecture first. For Linux, the **Universal** packages are recommended for most systems; Ubuntu-specific builds are also provided.
 
