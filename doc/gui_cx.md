@@ -182,4 +182,4 @@ dsi_studio --action=cnt \
   --effect_size=0.3
 ```
 
-The numeric positions used by `--variable_list` and `--voi` are **zero-based indices for demographic variables**. In the example `ID,AGE,SEX,SCORE` table, AGE, SEX and SCORE are indices `0,1,2` (with ID used as the subject identifier), so `--voi=2` selects SCORE. Check every available demographic column before launching a batch analysis; do not assume a fixed column layout across studies.
+The numeric positions used by `--variable_list` and `--voi` are **zero-based indices for demographic variables**. In the example `ID,AGE,SEX,SCORE` table, the text subject identifiers `SUB01` etc. are recognized as a nonnumeric subject-name column, so AGE, SEX and SCORE are indices `0,1,2` and `--voi=2` selects SCORE. **Numeric IDs may instead be parsed as a demographic column** (index `0`), shifting AGE, SEX, and SCORE to `1,2,3`; inspect the parsed demographic variable list and adjust the indices to match your data. Check every available demographic column before launching a batch analysis; do not assume a fixed column layout across studies.
