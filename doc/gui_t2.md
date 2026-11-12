@@ -1,4 +1,4 @@
-# Reconstruction
+# Reconstruct: SRC to FIB
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=215" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -6,9 +6,7 @@ Reconstruction processes an SRC file (`.sz`; legacy `.src.gz`) and creates an FI
 
 ## Open SRC File(s)
 
-In the current main window, choose **Tractography → 2 Reconstruct → SRC File(s) (*.sz)** and select one or more SRC files. The **▸ More…** section contains **Batch SRC → FIB** and **SRC quality control...**. The older screenshot below shows the reconstruction window, which still opens after selecting SRC data.
-
-![Reconstruction Window](https://user-images.githubusercontent.com/275569/147804658-3d2b3442-c0dd-4383-91cf-3718670b1413.png)
+In the current main window, choose **Tractography → 2 Reconstruct → SRC File(s) (*.sz)** and select one or more SRC files. The **▸ More…** section contains **Batch SRC → FIB** and **SRC quality control...**. The reconstruction window opens after selecting SRC data. Older videos may show the previous main-window layout.
 
 Multiple SRC files can be reconstructed as a batch. Processing steps configured on the first file can be applied to the remaining selected files.
 
@@ -24,7 +22,7 @@ Use the b-table/image list to move through the diffusion volumes and look for mo
 
 Use **Show bad slice** to highlight detected problematic slices. Sagittal and coronal views can make slice artifacts easier to identify.
 
-![Bad Slices](https://user-images.githubusercontent.com/275569/147804666-b75d4167-ce90-4722-816e-a3106046f6f0.png)
+
 
 For additional examples, see the [quality-control video](https://www.youtube.com/watch?v=stL4GMeTC1I).
 
@@ -32,7 +30,7 @@ For additional examples, see the [quality-control video](https://www.youtube.com
 
 The reconstruction mask limits processing to the tissue of interest. The mask editor provides thresholding and common morphological operations including smoothing, expansion, erosion, and defragmentation.
 
-A typical starting sequence is **Threshold → Smoothing → Defragment**, followed by visual inspection and manual correction if needed.
+A typical starting sequence is **Thresholding → Smoothing → Defragment**, followed by visual inspection and manual correction if needed.
 
 Masks can be saved or loaded as text/NIfTI files.
 
