@@ -11,29 +11,29 @@ Correlational tractography is a **cohort-level** analysis. For a single subject'
 
 ## Current main-window workflow
 
-Select **Correlational Tractography** from the left sidebar. Its three cards are **1 FIB files → 2 Prepare database → 3 Correlational Tractography**. In the first card, **FIB File(s) (*.fz)...** and **FIB Folder (*.fz)...** open database creation with the selected QSDR FIB data preloaded. **Database (*.dz)...** in the second card opens a database for inspection/editing; **Database (*.dz)** in the third card launches correlational tractography analysis. A **Recent Database** list is located below. Older references to Step C1/C2/C3 below describe the same stages, not separate top-level tabs.
+Select **Correlational Tractography** from the left sidebar. Its three cards are **1 FIB files → 2 Prepare database → 3 Correlational Tractography**. In the first card, **FIB File(s) (*.fz)...** and **FIB Folder (*.fz)...** open database creation with the selected QSDR FIB data preloaded. **Database (*.dz)...** in the second card opens a database for inspection/editing; **Database (*.dz)** in the third card launches correlational tractography analysis. A **Recent Database** list is located below.
 
 ## Current workflow
 
-1. **Step C1:** create a connectometry database (`.dz`) from subject QSDR FIB files reconstructed into the same template space and resolution.
-2. **Step C2 (optional):** inspect/modify the database or calculate longitudinal change.
-3. **Step C3:** load/verify demographics, select the model and study variable, and run correlational tractography/connectometry.
+1. **Create database:** create a connectometry database (`.dz`) from subject QSDR FIB files reconstructed into the same template space and resolution.
+2. **Prepare database (optional):** inspect/modify the database or calculate longitudinal change.
+3. **Correlational tractography:** load/verify demographics, select the model and study variable, and run correlational tractography/connectometry.
 
 > **Version compatibility:** Use the current **Sun** version to create `.dz` databases. The pinned Hou release dated **2025-04-16** predates `.dz` support; some later Hou builds introduced `.dz` support but had database-creation issues. Older `.db.fz` and `.db.fib.gz` databases remain supported for compatibility.
 
-## Step C1: Create a connectometry database
+## Create a connectometry database
 
 A connectometry database combines diffusion measurements from multiple subjects in a common template space for population analysis.
 
 For population connectometry, reconstruct all subjects with **QSDR using the same template space and resolution** before database creation. Native-space GQI remains appropriate for individual/native-space analyses, but should not be treated as interchangeable input for a common-space connectometry cohort.
 
-## C1a. Add subject FIB files
+### Add subject FIB files
 
 Use **Correlational Tractography → 1 FIB files → FIB File(s) (*.fz)...** or **FIB Folder (*.fz)...** to open Create Database with the input list populated.
 
 Use **[Add]**, **[Search in Directory...]**, or **[Open List]** to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
 
-## C1b. Create the `.dz` file
+### Create the `.dz` file
 
 The current database format is `.dz`. A new `.dz` database stores the available diffusion indices from the FIB files in one database, so a separate database is no longer needed for each metric.
 
@@ -57,11 +57,11 @@ By default, current DSI Studio stores the available indices from the FIB files. 
 dsi_studio --action=db --source=*.qsdr.fz --index_name=qa,dti_fa --output=study.dz
 ```
 
-## C1c. Check registration quality
+### Check registration quality
 
 Database construction reports registration quality for each subject. Review subjects with low R2 or visibly poor alignment before group analysis. Acquisition differences, motion, incorrect b-tables, and registration failures can all create systematic effects that should not be interpreted as biological findings.
 
-## Step C2: View or modify a database
+## View or modify a database
 
 Use **Correlational Tractography → 2 Prepare database → Database (*.dz)...** when you need to inspect subjects, remove problematic data, load demographics, or prepare a longitudinal database.
 
@@ -99,11 +99,11 @@ The directional databases store the selected change direction as a positive magn
 
 After creating any derived or longitudinal database, **re-check its demographics before analysis**. Do not assume demographic columns were embedded or carried forward from the source database. Reload the demographic table if the variables needed by the model are missing.
 
-## Step C3: Group Connectometry Analysis
+## Group connectometry analysis
 
 Use **Correlational Tractography → 3 Correlational Tractography → Database (*.dz)** to open the group analysis for a `.dz` database.
 
-## C3a. Load and verify demographics
+### Load and verify demographics
 
 Demographics may be supplied as CSV or tab-separated text. If demographics are already embedded in the `.dz` database, DSI Studio loads them automatically.
 
@@ -123,13 +123,13 @@ Before choosing a variable of interest or running the analysis, verify that all 
 
 Missing values can be left empty; subjects missing values required by the selected model are excluded from that analysis.
 
-## C3b. Select covariates
+### Select covariates
 
 Select variables whose linear effects should be removed from the diffusion measurements, such as age or sex when appropriate for the study design.
 
 Avoid adding many highly correlated covariates unless the sample size supports the model. The choice of covariates should follow the scientific question rather than a fixed preset. For multi-site studies, scanner/site may need to be considered; for longitudinal studies, the scan interval may also matter when it varies substantially across subjects.
 
-## C3c. Select the study variable and diffusion index
+### Select the study variable and diffusion index
 
 Choose the study variable to test. For example, select age to map pathways associated with aging, or select a behavioral/clinical score to map pathways associated with that measure.
 
@@ -137,7 +137,7 @@ A current `.dz` database may contain multiple diffusion indices. Select the inde
 
 For a longitudinal database, `longitudinal`/Intercept tests whether a nonzero change exists across the selected cohort. Selecting a demographic variable such as group instead tests whether the amount of change is associated with that variable.
 
-## C3d. Parameters
+### Parameters
 
 | Parameter | Description |
 |:--|:--|
@@ -160,7 +160,7 @@ Use **Whole brain** for an exploratory analysis. If the hypothesis is anatomical
 
 Use **Select Cohort** when the analysis applies only to a subset of subjects. Always verify the selected subjects before running the permutation analysis.
 
-## C3e. Run and review results
+### Run and review results
 
 Run connectometry and inspect both increased and decreased associations when relevant to the hypothesis. DSI Studio reports the tract findings together with the null/permuted distributions and FDR as a function of track length. The FDR comes from the whole-brain permutation framework; it should not be interpreted as an independent tract-by-tract statistical test.
 
