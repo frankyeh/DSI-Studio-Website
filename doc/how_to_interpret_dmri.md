@@ -53,7 +53,7 @@ The following table summarizes commonly used diffusion metrics and their interpr
 16. Yeh FC, Wedeen VJ, Tseng WYI. Generalized q-sampling imaging. IEEE Trans Med Imaging. 2010;29(9):1626–1635. doi:10.1109/TMI.2010.2045126.
 17. Yeh FC, et al. Deterministic diffusion fiber tracking improved by quantitative anisotropy. PLoS One. 2013;8(11):e80713.
 
-# Difference between model-based and model-free
+## Difference between model-based and model-free
 
 Here we focus on the differences between DTI and GQI, although other model-based and model-free methods exist.
 
