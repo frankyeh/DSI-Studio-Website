@@ -47,7 +47,7 @@ Use **[Tracts][Save Current Tract As...]** to save the selected tract group. Use
 
 DSI Studio's current compact tractography format is `.tt.gz`. Other formats can be exported when interoperability with other software is needed.
 
-# Connectivity matrices
+## Connectivity matrices
 
 DSI Studio can derive region-to-region (R2R) connectivity matrices from tractography. Structural-connectivity matrices are sensitive to acquisition, tracking, parcellation, and counting choices, so keep those choices consistent across subjects and interpret graph measures with appropriate methodological caution.
 
@@ -83,13 +83,13 @@ dsi_studio --action=trk \
 
 See [Fiber Tracking CLI](/doc/cli_t3.html) for the current connectivity options.
 
-# Network measures and graph visualization
+## Network measures and graph visualization
 
 Network measures can be calculated from a connectivity matrix in the connectivity interface. When comparing subjects or groups, use the same parcellation, tractography strategy, connectivity definition, matrix value, and thresholding rule for every dataset.
 
 Saved connectivity matrices can also be visualized in the tracking window using the graph-visualization functions.
 
-# Related workflows
+## Related workflows
 
 - [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html)
 - [Automatic Fiber Tracking (AutoTrack)](/doc/gui_t3_atk.html)
