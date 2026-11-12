@@ -50,7 +50,7 @@ A very thin ROA can be skipped when the tracking step size is large enough to ju
 
 ## Load regions from built-in atlases
 
-Use **[Step T3a: Assign Regions][Atlas...]** to select anatomical regions from an atlas appropriate for the subject/template. DSI Studio maps atlas regions into the tracking space as needed.
+Use **Step T3a: Assign Regions → Atlas...** to select anatomical regions from an atlas appropriate for the subject/template. DSI Studio maps atlas regions into the tracking space as needed.
 
 Atlas regions are convenient anatomical references, but the selected ROI/ROA roles still define the tracking hypothesis. Inspect the transformed region before using it as a constraint.
 
