@@ -16,7 +16,7 @@ The following table summarizes commonly used diffusion metrics and their interpr
 | **MD** | mean diffusivity* | Diffusion tensor | MD is associated with edema and cell infiltration | increases: vasogenic edema; decreases: cytotoxic edema | Mean diffusivity is the average of the three diffusion-tensor eigenvalues: MD = (λ₁ + λ₂ + λ₃)/3. It summarizes the overall magnitude of diffusion within a voxel. |
 | **QA** | quantitative anisotropy | Q-space imaging | QA is associated with axonal density | decreases: axonal loss (Yeh 2019; Shen 2015) | Quantitative anisotropy (QA) measures anisotropic diffusion associated with each resolved fiber orientation. It is less affected by isotropic diffusion such as edema than FA (Yeh, 2013). |
 | **ISO** | isotropy | Q-space imaging | ISO is associated with edema | increases: edema | ISO measures isotropic diffusion (Yeh, 2010). It represents background isotropic diffusion contributed by CSF or edema, including both restricted and non-restricted isotropic diffusion. |
-| **RDI** | restricted diffusion imaging | Q-space imaging | RDI is associated with cell infiltration during inflammation (Yeh 2017; Yeh 2021) | increases: cell infiltration associated with inflammation or tumor infiltration | RDI quantifies restricted diffusion regardless of orientation (Yeh, 2017). |
+| **RDI** | restricted diffusion imaging | Q-space imaging | RDI is associated with cell infiltration during inflammation (Yeh 2017; Garic 2021) | increases: cell infiltration associated with inflammation or tumor infiltration | RDI quantifies restricted diffusion regardless of orientation (Yeh, 2017). |
 | **NRDI** | non-restricted diffusion imaging | Q-space imaging | NRDI is associated with edema (Yeh 2017) | increases: edema due to inflammation | NRDI quantifies non-restricted diffusion regardless of orientation (Yeh, 2017). |
 | **QIR** (introduced in 2025) | QA-to-ISO ratio (QA/ISO) | Q-space imaging | QIR is a measure of axonal integrity | reduced QIR may suggest inflammation or demyelination | QIR is derived from QA and ISO and is intended to improve comparability across scans by reducing the effect of B1 inhomogeneity. |
 | **VOL** (introduced in 2025) | template-space volume | Nonlinear spatial normalization | VOL is a volumetric measure | reduced VOL may suggest tissue atrophy | VOL reflects relative tissue size in template space after nonlinear spatial normalization. |
@@ -49,6 +49,9 @@ The following table summarizes commonly used diffusion metrics and their interpr
 13. Garic D, Yeh FC, Graziano P, Dick AS. In vivo restricted diffusion imaging (RDI) is sensitive to differences in axonal density in typical children and adults. Brain Struct Funct. 2021;226(8):2689-705.
 14. Yeh FC, Liu L, Hitchens TK, Wu YL. Mapping immune cell infiltration using restricted diffusion MRI. Magn Reson Med. 2017;77(2):603-12.
 15. Shen CY, Tyan YS, Kuo LW, Wu CW, Weng JC. Quantitative Evaluation of Rabbit Brain Injury after Cerebral Hemisphere Radiation Exposure Using Generalized q-sampling imaging. PLoS One. 2015;10(7):e0133001.
+
+16. Yeh FC, Wedeen VJ, Tseng WYI. Generalized q-sampling imaging. IEEE Trans Med Imaging. 2010;29(9):1626–1635. doi:10.1109/TMI.2010.2045126.
+17. Yeh FC, et al. Deterministic diffusion fiber tracking improved by quantitative anisotropy. PLoS One. 2013;8(11):e80713.
 
 # Difference between model-based and model-free
 
