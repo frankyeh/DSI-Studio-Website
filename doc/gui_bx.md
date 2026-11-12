@@ -2,36 +2,38 @@
 
 DSI Studio provides GUI batch functions for common multi-subject workflows. Test a batch operation on a small subset before running it on an entire study, especially when files will be renamed or moved.
 
-## Step B0: XNAT Download
+## XNAT Download
 
-Use **Batch Processing → Step B0: XNAT Download** to connect to an XNAT server, select project data, and choose a local download directory.
+Click **XNAT Download** in the main window's left sidebar to connect to an XNAT server, select project data, and choose a local download directory.
 
 ![image](https://user-images.githubusercontent.com/275569/147839715-c06d0643-c0c8-45ea-a56b-8195ef4be4e3.png)
 
-## Step B1: Rename and organize DICOM
+## Rename and organize DICOM
 
 The DICOM rename functions **move and rename files**. Keep a backup of the original data and test the operation first.
 
-- **Step B1a: Rename DICOM files** — organize selected DICOM files.
-- **Step B1b: Rename DICOM in Subfolders** — scan a root directory and organize the DICOM studies below it.
+Under **Tractography → 1 Import → DICOM**, expand **▸ Rename DICOM**:
+
+- **Rename DICOM files...** — organize selected DICOM files.
+- **Rename DICOM folder...** — scan a root directory and organize its DICOM studies.
 
 For command-line batch organization, see [Rename DICOM CLI](/doc/cli_ren.html).
 
-## Step B2: Create SRC files
+## Create SRC files
 
-Use the input route that matches the source data:
+Use **Tractography → 1 Import** and choose the source format:
 
-- **Step B2a: NIFTI to SRC (BIDS)** for a BIDS dataset.
-- **Step B2b: NIFTI to SRC (Single Folder)** for NIfTI data organized outside BIDS.
-- **Step B2c: DICOM to SRC/NIFTI** for DICOM studies.
+- **NIfTI → NIfTI folder...** handles both BIDS datasets (detected by `sub-*` directories; outputs under `derivatives`) and ordinary NIfTI folders (SRC files beside their diffusion images).
+- **DICOM → DICOM folder...** converts a folder of DICOM studies.
+- **2dseq/FDF → 2dseq / FDF file(s)...** handles supported scanner-specific files.
 
 Current DSI Studio source files use the `.sz` extension.
 
 After source creation, run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control-optional) before reconstruction or group analysis.
 
-## Step B3: Batch reconstruction
+## Batch reconstruction
 
-Use **Step B3: SRC to FIB** to reconstruct multiple `.sz` files. The normal reconstruction settings and quality checks still apply; batch processing should not be used to bypass visual QC.
+Use **Tractography → 2 Reconstruct → ▸ More… → Batch SRC → FIB** to reconstruct multiple `.sz` files. **SRC quality control...** is in the same expanded section. The normal reconstruction settings and quality checks still apply; batch processing should not be used to bypass visual QC.
 
 Current reconstructed files use `.fz`.
 
@@ -41,9 +43,9 @@ For population/connectometry analysis, reconstruct the cohort with **QSDR using 
 
 For longitudinal or cross-sectional differential analysis, follow the study-specific workflow in [Differential Tractography](/doc/gui_t3_dt.html).
 
-## Step B4: Automatic fiber tracking
+## Automatic fiber tracking
 
-Use **Step B4: Automatic Fiber Tracking** when named pathways should be mapped across many subjects.
+Use **Tractography → 3 Track → ▸ More… → Automatic tracking** when named pathways should be mapped across many subjects. This opens the existing AutoTrack workflow, which already supports a subject list and aggregated statistics.
 
 ![image](https://user-images.githubusercontent.com/275569/147839692-9a136412-6734-4b8f-880c-c5571d464cfe.png)
 
