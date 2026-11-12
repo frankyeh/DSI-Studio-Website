@@ -1,3 +1,5 @@
+# How to Acquire dMRI
+
 ## Introduction
 
 Multi-shell acquisition, particularly the HCP-style three-shell protocol, is widely adopted for advanced diffusion MRI beyond DTI. This protocol samples b-values of 1,000, 2,000, and 3,000 s/mm², each with 90 directions.
