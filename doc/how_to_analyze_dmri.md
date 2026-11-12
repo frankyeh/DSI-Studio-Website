@@ -70,7 +70,7 @@ For cohort data, use compatible QSDR/template-space FIB files with consistent re
 
 See the [full connectometry tutorial](/doc/gui_cx.html).
 
-Example studies: [1](https://academic.oup.com/brain/article-abstract/143/8/2532/5875734) · [2](https://www.sciencedirect.com/science/article/pii/S2213158220301571#b0275) · [3](https://www.sciencedirect.com/science/article/pii/S1875957218301797)
+Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-abstract/143/8/2532/5875734) · [NeuroImage: Clinical study](https://www.sciencedirect.com/science/article/pii/S2213158220301571#b0275) · [NeuroImage study](https://www.sciencedirect.com/science/article/pii/S1875957218301797)
 
 ## Structural Connectome (R2R and T2R)
 
