@@ -54,7 +54,7 @@ The following table summarizes commonly used diffusion metrics and their interpr
 
 Here we focus on the differences between DTI and GQI, although other model-based and model-free methods exist.
 
-<img src="https://user-images.githubusercontent.com/275569/156826203-e8c4ece1-1b45-4193-8257-aa8e64dfe57c.png" width="400">
+<img src="https://user-images.githubusercontent.com/275569/156826203-e8c4ece1-1b45-4193-8257-aa8e64dfe57c.png" width="400" alt="Illustration comparing diffusion-model metrics">
 
 <img src="https://user-images.githubusercontent.com/275569/156826048-40933f38-339d-442e-ab5d4fbb999.png" width="400">
 
