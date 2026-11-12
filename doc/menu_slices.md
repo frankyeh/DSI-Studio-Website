@@ -44,7 +44,7 @@ For clinical-navigation export workflows:
 
 Keep the original clinical DICOM data unchanged and export marked images as separate files.
 
-# Workspaces
+## Workspaces
 
 A workspace saves the current visualization state, including tracts, regions, devices, added slices, camera orientation, and rendering settings.
 
@@ -64,7 +64,7 @@ Typical workspace contents include:
 
 When sharing a workspace, include the FIB/image data required by the saved state and use current `.fz`/`.tt.gz` formats where applicable.
 
-# Shortcuts and graphic control
+## Shortcuts and graphic control
 
 ## Slice/region view
 
