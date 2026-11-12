@@ -37,7 +37,7 @@ dsi_studio --action=ana \
 The output is the ordinary region-statistics table for the temporary tract-atlas intersections. Each nonempty atlas label is a result column; atlas labels with zero overlap are omitted. The table is written as:
 
 ```text
-CST.tt.gz.overlap.txt
+CST.tt.gz.HCP-MMP.overlap.txt
 ```
 
 The overlap filename is based on the tract filename passed to post-processing. `--output` does not redirect this overlap table.
@@ -104,7 +104,7 @@ dsi_studio --action=ana \
 |:--|:--|
 | `--tract` | Input tractography files (`.tt.gz` or `.trk.gz`). Multiple files can be comma-separated for operations that support them; atlas-overlap analysis is intended for one tract bundle at a time. |
 | `--overlap` | Exact built-in atlas name used to calculate tract-atlas overlap statistics. Zero-overlap labels are omitted. |
-| `--output` | Output tractography or NIFTI filename, depending on the requested operation. It does not redirect the tract `--overlap` table, which is saved as `<tract-file>.overlap.txt`. |
+| `--output` | Output tractography or NIFTI filename, depending on the requested operation. It does not redirect the tract `--overlap` table, which is saved as `<tract-file>.<atlas-name>.overlap.txt`. |
 | `--export` | Tract output such as `stat`, `tdi`, `tdi_color`, or `tdi_end`. |
 | `--connectivity` | Comma-separated built-in atlas names or NIFTI parcellations used for connectivity calculation. |
 | `--connectivity_type` | `pass` (default) or `end`. |
