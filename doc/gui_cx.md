@@ -21,7 +21,7 @@ Select **Correlational Tractography** from the left sidebar. Its three cards are
 
 > **Version compatibility:** Use the current **Sun** version to create `.dz` databases. The pinned Hou release dated **2025-04-16** predates `.dz` support; some later Hou builds introduced `.dz` support but had database-creation issues. Older `.db.fz` and `.db.fib.gz` databases remain supported for compatibility.
 
-# Step C1: Create a connectometry database
+## Step C1: Create a connectometry database
 
 A connectometry database combines diffusion measurements from multiple subjects in a common template space for population analysis.
 
@@ -61,7 +61,7 @@ dsi_studio --action=db --source=*.qsdr.fz --index_name=qa,dti_fa --output=study.
 
 Database construction reports registration quality for each subject. Review subjects with low R2 or visibly poor alignment before group analysis. Acquisition differences, motion, incorrect b-tables, and registration failures can all create systematic effects that should not be interpreted as biological findings.
 
-# Step C2: View or modify a database
+## Step C2: View or modify a database
 
 Use **Correlational Tractography → 2 Prepare database → Database (*.dz)...** when you need to inspect subjects, remove problematic data, load demographics, or prepare a longitudinal database.
 
@@ -99,7 +99,7 @@ The directional databases store the selected change direction as a positive magn
 
 After creating any derived or longitudinal database, **re-check its demographics before analysis**. Do not assume demographic columns were embedded or carried forward from the source database. Reload the demographic table if the variables needed by the model are missing.
 
-# Step C3: Group Connectometry Analysis
+## Step C3: Group Connectometry Analysis
 
 Use **Correlational Tractography → 3 Correlational Tractography → Database (*.dz)** to open the group analysis for a `.dz` database.
 
@@ -166,7 +166,7 @@ Run connectometry and inspect both increased and decreased associations when rel
 
 The 3D result view can be used to inspect the anatomical location of the findings. Interpret FDR together with effect size, track length, data quality, acquisition consistency, sample size, and the study design. Very small samples or systematic acquisition differences can produce unstable or misleading results even when a numerical threshold appears favorable.
 
-# Command-line analysis
+## Command-line analysis
 
 For batch correlational tractography/connectometry, use `--action=cnt`. The current command-line options and defaults are documented at [Connectometry CLI](/doc/cli_cnt.html).
 
