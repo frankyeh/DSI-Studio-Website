@@ -6,7 +6,7 @@ title: DSI Studio
   <div>
     <a class="paper" href="https://doi.org/10.1038/s41592-025-02762-8"><b>Nature Methods 2025</b>Platform paper →</a>
     <h1>Tractography, connectomics and fiber data, in one open platform.</h1>
-    <p class="lead">Reconstruct diffusion MRI, map white-matter pathways, run group analysis and segment brain MRI on Windows, macOS, Linux or Docker. No installation needed.</p>
+    <p class="lead">Reconstruct diffusion MRI, map white-matter pathways, run group analysis and segment brain MRI on Windows, macOS, Linux and Docker.</p>
     <div class="btns">
       <a class="btn primary" href="/download.html">Download</a>
       <a class="btn" href="/doc/how_to_analyze_dmri.html">Start the tutorial</a>
