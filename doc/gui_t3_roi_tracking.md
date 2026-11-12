@@ -4,7 +4,7 @@ ROI-based fiber tracking uses anatomical regions to include, exclude, start, or 
 
 > **Check whole-brain tractography first.** Before adding ROI constraints, confirm that the `.fz` file has reasonable fiber orientations and that major pathways can be reconstructed with the normal tracking settings.
 
-## Step T3a: Add regions
+## Step T3a: Assign Regions
 
 Open the subject `.fz` file using **Tractography → 3 Track → FIB File (*.fz)** in the main window; this opens the separate fiber tracking window. Regions can be added from:
 
@@ -13,7 +13,7 @@ Open the subject `.fz` file using **Tractography → 3 Track → FIB File (*.fz)
 - manually drawn regions;
 - regions derived from existing tracts or images.
 
-See the [[Regions] menu](/doc/menu_regions.html) for region-management functions.
+See the [Regions menu](/doc/menu_regions.html) for region-management functions.
 
 ![Region selection in the fiber tracking window](https://user-images.githubusercontent.com/275569/147854254-70bd8cf7-9a47-485e-bab2-d38bfa19a2c6.png)
 
@@ -50,7 +50,7 @@ A very thin ROA can be skipped when the tracking step size is large enough to ju
 
 ## Load regions from built-in atlases
 
-Use **Step T3a: Atlas** to select anatomical regions from an atlas appropriate for the subject/template. DSI Studio maps atlas regions into the tracking space as needed.
+Use **[Step T3a: Assign Regions][Atlas...]** to select anatomical regions from an atlas appropriate for the subject/template. DSI Studio maps atlas regions into the tracking space as needed.
 
 Atlas regions are convenient anatomical references, but the selected ROI/ROA roles still define the tracking hypothesis. Inspect the transformed region before using it as a constraint.
 
@@ -60,11 +60,11 @@ Atlas regions are convenient anatomical references, but the selected ROI/ROA rol
 
 Regions can be drawn in the slice/region view with rectangular, freehand, polygon, sphere, and cube tools. Existing regions can be moved or edited with morphological operations such as dilation, erosion, smoothing, and defragmentation.
 
-For detailed editing commands, see the [[Regions] menu](/doc/menu_regions.html).
+For detailed editing commands, see the [Regions menu](/doc/menu_regions.html).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZkWBU_qnaKg" title="ROI-based fiber tracking tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Step T3d: Run fiber tracking
+## Step T3d: Tracts
 
 Click **Fiber Tracking** after the region roles are assigned. Only checked regions constrain the result.
 
