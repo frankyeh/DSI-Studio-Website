@@ -32,11 +32,11 @@ For along-tract variation rather than one summary value, use **Tract Profile**. 
 
 Tractography can be converted to spatial regions, including tract coverage and endpoint regions. These regions can then be used for visualization, quantitative analysis, or as anatomically justified tracking constraints.
 
-See the [[Regions] menu](/doc/menu_regions.html) for region operations.
+See the [Regions menu](/doc/menu_regions.html) for region operations.
 
 ## Editing and pruning
 
-Interactive selection, deletion, cutting, painting, and trimming are documented under the [[Edit] menu](/doc/menu_edit.html).
+Interactive selection, deletion, cutting, painting, and trimming are documented under the [Tract Edit menu](/doc/menu_edit.html).
 
 Topology-informed pruning (TIP) removes isolated or poorly supported streamline segments. Use it primarily on sufficiently dense, coherent tract bundles; it is not a mandatory step for every whole-brain tractogram.
 
@@ -58,7 +58,7 @@ See [Whole-Brain Tractography](/doc/gui_t3_whole_brain.html#connectivity-matrice
 
 ## Workspaces
 
-Tracts can be saved together with regions, devices, slices, and rendering settings using **[View][Save Workspace]**. See the [[Slices] menu](/doc/menu_slices.html#workspaces).
+Tracts can be saved together with regions, devices, slices, and rendering settings using **[View][Save Workspace]**. See the [Slices menu](/doc/menu_slices.html#workspaces).
 
 ## Command-line equivalents
 
