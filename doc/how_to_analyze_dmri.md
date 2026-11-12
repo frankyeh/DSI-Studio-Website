@@ -2,14 +2,14 @@
 
 DSI Studio's current main window uses a **left navigation sidebar** rather than the older Step T1 / Step T2 / Step T3 buttons. Select **Tractography** to see the three stages **1 Import → 2 Reconstruct → 3 Track**. Other sidebar pages are **Correlational Tractography**, **Image Processing**, and **Settings**.
 
-The **AI Agents**, **Fiber Data Hub**, **XNAT Download**, and **Console** buttons are located below the navigation list. The working directory can be selected under **Settings**. Some videos and screenshots in the detailed tutorials show an earlier main-window layout; the underlying SRC, reconstruction, and tracking operations remain applicable.
+The **AI Agents**, **Fiber Data Hub**, **XNAT Download**, and **Console...** buttons are located below the navigation list. Select the working directory using the persistent **Work Dir** bar and **Browse...** button at the bottom of the main window. Some videos and screenshots in the detailed tutorials show an earlier main-window layout; the underlying SRC, reconstruction, and tracking operations remain applicable.
 
 ## Start here: Import → Reconstruct → Track
 
 1. **Import diffusion data:** On **Tractography → 1 Import**, choose **NIfTI**, **DICOM**, or **2dseq/FDF**. Select **NIfTI file(s)...** or **NIfTI folder...** (the latter detects BIDS datasets with `sub-*` directories and otherwise handles an ordinary NIfTI folder). For DICOM choose **DICOM file(s)...** or **DICOM folder...**. The **▸ Rename DICOM** section contains file-moving/renaming operations, not conversion. The output is an SRC file (`.sz`).
 2. **Review input quality:** On the NIfTI import section, expand **▸ More… → NIFTI quality control...** when needed. Review [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) before group analyses; it is available under **Tractography → 2 Reconstruct → ▸ More… → SRC quality control...**.
 3. **Reconstruct:** On **Tractography → 2 Reconstruct**, click **SRC File(s) (*.sz)**. Choose [GQI or QSDR reconstruction](/doc/gui_t2.html), inspect the b-table, mask, orientation, and processing choices, and save the resulting FIB file (`.fz`). **▸ More…** also offers batch SRC-to-FIB reconstruction.
-4. **Track:** On **Tractography → 3 Track**, click **FIB File (*.fz)** to open the **fiber tracking window**, where you can perform whole-brain, ROI-based, automatic, differential, and connectome analyses. **▸ More…** contains **Automatic tracking** and **FIB quality control...**. The **Recent FIB / Recent SRC / Template FIB** controls below the stages reopen recent data or templates.
+4. **Track:** On **Tractography → 3 Track**, click **FIB File (*.fz)** to open the **fiber tracking window**, where you can perform whole-brain, ROI-based, automatic, differential, and connectome analyses. **▸ More…** contains **T1W/T2W image...**, **Automatic tracking**, and **FIB quality control...**. The **Recent FIB / Recent SRC / Template FIB** controls below the stages reopen recent data or templates.
 
 The **Step T3** labels used below refer to controls *inside the fiber tracking window*, not to a separate Step T3 tab in the new main window.
 
@@ -24,7 +24,7 @@ The **Step T3** labels used below refer to controls *inside the fiber tracking w
 | Individual longitudinal or patient-versus-reference changes | Open the appropriate FIB in the tracking window | [Differential Tractography](/doc/gui_t3_dt.html) |
 | Diffusion–behavior associations across a cohort | **Correlational Tractography** sidebar page | [Correlational Tractography](/doc/gui_cx.html) |
 | Region-to-region or tract-to-region connectivity | Open a FIB in the tracking window | [Connectome](#structural-connectome-r2r-and-t2r) |
-| Structural image inspection or registration | **Image Processing** sidebar page | Open image, linear registration, or nonlinear registration |
+| Structural image inspection or registration | **Image Processing** sidebar page | **Image Editor → Open image...**, **Linear Registration → Linear registration...**, or **Nonlinear Registration → Nonlinear registration...** |
 
 ## Region-Based Analysis
 
@@ -46,9 +46,9 @@ Tractometry quantifies diffusion or other measurements along white-matter pathwa
 3. Use **[Tracts][Statistics]** for bundle-level scalar and shape measurements.
 4. Use the [tract profile](/doc/gui_t3_atk.html#tract-profile) when the spatial distribution of a measurement along the pathway is important.
 
-Along-tract profiles currently use 100 sampling positions; keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible `.dz` database may be used with template-space pathways.
+Streamline-order tract profiles use 100 sampling positions; image-axis profiles instead depend on image geometry. Keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible `.dz` database may be used with template-space pathways.
 
-Example study: <https://www.nature.com/articles/nn.3870>
+Example study of **bundle-level** QA tractometry (not a 100-node along-tract profile): [Pritschet et al., *Nature Neuroscience* (2024)](https://doi.org/10.1038/s41593-024-01741-0).
 
 ## Differential Tractography
 
@@ -62,9 +62,9 @@ Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
 
 **Correlational Tractography** is a separate sidebar page for cohort-level associations between local diffusion measures and study variables. Its three stages are:
 
-1. **FIB files:** Select QSDR FIB inputs via **FIB File(s) (*.fz)...** or **FIB Folder (*.fz)...** to populate the database-creation workflow.
+1. **FIB files:** Select QSDR FIB inputs via **FIB File(s) (*.fz)...** or **FIB Folder (*.fz)...** to populate the database-creation workflow. The import stage also offers **▸ More... → Create population average...** for reference-population workflows.
 2. **Prepare database:** Open **Database (*.dz)...** to inspect or edit a connectometry database, subjects, and demographics.
-3. **Run analysis:** Select **Database (*.dz)** to open group correlational tractography/connectometry analysis. Choose variables, covariates and diffusion index, then review association tracts and permutation-derived FDR.
+3. **Correlational Tractography:** Select **Database (*.dz)** to open group correlational tractography/connectometry analysis. Choose variables, covariates and diffusion index, then review association tracts and permutation-derived FDR.
 
 For cohort data, use compatible QSDR/template-space FIB files with consistent resolution. A current `.dz` database can store several diffusion indices, so separate database files are generally not required for QA, FA, RDI and other available metrics. A **Recent Database** list is shown beneath the stages.
 
@@ -86,7 +86,7 @@ Example studies: [1](https://academic.oup.com/brain/article-abstract/143/8/2532/
 **T2R workflow:**
 
 1. Map named bundles using [AutoTrack](/doc/gui_t3_atk.html) or load an appropriate set of named tracts.
-2. Load a matching parcellation from **[Step T3a][Atlas]** within the tracking window.
+2. Load a matching parcellation from **[Step T3a: Assign Regions][Atlas...]** within the tracking window.
 3. Select **[Regions][Tract-to-Region Connectome]** to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.
 
 Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.
