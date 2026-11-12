@@ -84,6 +84,16 @@ Therefore:
 
 A useful tractography result balances sensitivity with anatomical specificity. For many scientific questions, a smaller set of reproducible and anatomically plausible pathways is more informative than a visually dense whole-brain tractogram.
 
+## False positives and false negatives: a sensitivity–specificity tradeoff
+
+DSI Studio's commonly used GQI-based deterministic tractography follows locally supported directions to produce reproducible streamlines. With selective tracking criteria and anatomical constraints, it can favor **fewer false-positive connections (higher specificity)**, but this may come at the expense of **missing genuine branches or connections (higher false-negative rate)**, especially in complex crossing, fanning, sharply turning, or low-anisotropy regions. An absent streamline should therefore not be interpreted as proof that the anatomical pathway is absent.
+
+Methods emphasizing high crossing-fiber sensitivity, including some FOD-based and probabilistic tracking pipelines, can recover pathways missed by more selective tracking (**fewer false negatives**). However, accepting more candidate trajectories may also introduce anatomically unsupported connections (**more false positives**). Probabilistic streamline frequency is not itself the probability that a connection exists.
+
+This is a **general tradeoff, not a fixed accuracy ranking of DSI Studio versus other software**. Diffusion model, seeding, thresholds, anatomical constraints, tract selection, and the pathway being tested all affect sensitivity and specificity. Tracer-based comparisons show that increasing sensitivity often decreases specificity (Thomas et al., 2014), and simulated connectome benchmarks show that recovering many true bundles can coexist with numerous invalid bundles (Maier-Hein et al., 2017). Connectome studies likewise report sparse, potentially incomplete deterministic results versus denser probabilistic results that require careful thresholding (Zalesky et al., 2016; Sarwar et al., 2019).
+
+**Practical interpretation:** A tract present in a reconstruction may still be a false positive; a tract absent from a reconstruction may still be a false negative. Prefer anatomically constrained, reproducible reconstructions and interpret negative findings particularly cautiously when testing pathways that are difficult to track.
+
 ## Practical checks I find useful
 
 Good tractography rarely comes from one "best" reconstruction or tracking algorithm. It usually comes from several sources of information agreeing with one another.
@@ -120,3 +130,6 @@ An improvement at one step cannot automatically correct errors introduced at ano
 1. Yeh FC, Irimia A, Bastos DCA, Golby AJ. Tractography methods and findings in brain tumors and traumatic brain injury. *NeuroImage*. 2021;245:118651. https://doi.org/10.1016/j.neuroimage.2021.118651
 2. Maier-Hein KH, Neher PF, Houde JC, et al. The challenge of mapping the human connectome based on diffusion tractography. *Nature Communications*. 2017;8:1349. https://doi.org/10.1038/s41467-017-01285-x
 3. Reveley C, Seth AK, Pierpaoli C, et al. Superficial white matter fiber systems impede detection of long-range cortical connections in diffusion MR tractography. *PNAS*. 2015;112:E2820-E2828. https://doi.org/10.1073/pnas.1418198112
+4. Thomas C, Ye FQ, Irfanoglu MO, et al. Anatomical accuracy of brain connections derived from diffusion MRI tractography is inherently limited. *PNAS*. 2014;111:16574–16579. https://doi.org/10.1073/pnas.1405672111
+5. Zalesky A, Fornito A, Cocchi L, et al. Connectome sensitivity or specificity: which is more important? *NeuroImage*. 2016;142:407–420. https://doi.org/10.1016/j.neuroimage.2016.06.035
+6. Sarwar T, Ramamohanarao K, Zalesky A. Mapping connectomes with diffusion MRI: deterministic or probabilistic tractography? *Magnetic Resonance in Medicine*. 2019;81:1368–1384. https://doi.org/10.1002/mrm.27471
