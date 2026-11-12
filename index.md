@@ -83,7 +83,7 @@ title: DSI Studio
 <section class="hub">
   <div>
     <h2>Fiber Data Hub</h2>
-    <p>Compact processed diffusion MRI derivatives (<b style="color:#16181d">.fz</b>, <b style="color:#16181d">.sz</b>, <b style="color:#16181d">.dz</b>) that open directly in DSI Studio, without repeating preprocessing from raw DWI. Data sources include HCP, ABCD, OpenNeuro, INDI, TCIA and other public datasets.</p>
+    <p>Compact processed diffusion MRI derivatives (<b style="color:#16181d">.fz</b>, <b style="color:#16181d">.sz</b>, <b style="color:#16181d">.dz</b>) that open directly in DSI Studio, without repeating preprocessing from raw DWI.</p>
   </div>
   <ul>
     <li><a href="https://brain.labsolver.org/#repository-list">Browse repositories <span>→</span></a></li>
