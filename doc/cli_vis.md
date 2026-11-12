@@ -6,7 +6,7 @@ DSI Studio records many GUI operations in **Command History**. The recorded comm
 
 After opening an `.fz` file, inspect recorded operations at **[Options][Command History]**.
 
-![image](https://github.com/user-attachments/assets/ef9b62f5-bc29-4b3d-b22f-f7ce9a4e56d7)
+![DSI Studio Command History interface](https://github.com/user-attachments/assets/ef9b62f5-bc29-4b3d-b22f-f7ce9a4e56d7)
 
 The history can be saved to or loaded from a CSV file. Selected commands can also be repeated directly from the history window.
 
