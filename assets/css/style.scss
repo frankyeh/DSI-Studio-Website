@@ -3,8 +3,23 @@
 
 @import "jekyll-theme-minimal";
 
-.main-content {width:80%;}
-main {width:80%;padding-left:340px;padding-top:50px}
+/* Keep the article beside the fixed desktop sidebar without overflowing the viewport. */
+.main-content, main {
+  box-sizing: border-box;
+  width: auto;
+  max-width: none;
+  min-width: 0;
+}
+main { margin-left: 310px; padding: 50px 32px 32px; }
+
+@media screen and (max-width: 960px) {
+  header.page-header { position: static; float: none; width: auto; box-sizing: border-box; }
+  main { margin-left: 0; padding: 24px; }
+}
+@media screen and (max-width: 600px) {
+  main { padding: 16px; }
+  .markdown-body iframe { max-width: 100%; }
+}
 
 h3 {margin-bottom: 8px}
 h4 {margin-left:20px;margin-bottom: 4px}
