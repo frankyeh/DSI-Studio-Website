@@ -41,7 +41,7 @@ If a pathway is incomplete or contains implausible branches, first determine whe
 | Parameter | Guidance |
 |:--|:--|
 | **Target tract** | Select the anatomical bundle to map. Use the current atlas entry; select the parent for the whole tract family and a child only for a requested subdivision. |
-| **AutoTrack tolerance** | Controls how far candidate streamlines may deviate from the atlas definition. The batch AutoTrack dialog starts at `22,26,30` mm and does not automatically update tolerance upon loading FIB data. Review it for species and image scale; increase it only when anatomical evidence supports a wider tolerance. |
+| **AutoTrack tolerance** | Controls how far candidate streamlines may deviate from the atlas definition. In the single-subject tracking window, the default is initialized from the loaded FIB data. The separate batch AutoTrack dialog starts at `22,26,30` mm and does not automatically update its tolerance on loading FIB data. Review it for species and image scale; increase it only when anatomical evidence supports a wider tolerance. |
 | **Track/Voxel Ratio** | Controls the amount of tractography generated. The current default is derived from the FIB data rather than a universal fixed value. |
 | **Min Length** | Removes short fragments. Set it according to the expected pathway and image scale. |
 | **Topology-Informed Pruning (TIP)** | Use TIP on a sufficiently populated, visually coherent bundle. When a bundle reaches roughly 5,000–10,000 or more tracts before pruning, **3–4 iterations** are a practical starting point. TIP is not generic whole-brain cleanup. |
