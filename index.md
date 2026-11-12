@@ -74,7 +74,7 @@ Its applications include mapping perilesional and intralesional pathways, studyi
 DSI Studio can also process high-resolution ex-vivo diffusion MRI and MRI microscopy data. This supports structural analysis of biological tissue at high spatial resolution and has been used in histology-oriented imaging studies.
 
 ![Kidney rainbow](/images/KidneyRainbow.png)
-> Kidney Rainbow created using DSI Studio by Nian Wang, Center for In Vivo Microscopy, Duke University. Coverage by [Science](https://science.sciencemag.org/content/363/6427/564).
+> Kidney Rainbow created using DSI Studio by Nian Wang, Center for In Vivo Microscopy, Duke University. Coverage by [Science](https://doi.org/10.1126/science.363.6427.564).
 
 ---
 
