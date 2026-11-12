@@ -14,7 +14,7 @@ This distinction helps explain several common tractography misconceptions.
 
 ## Myth 1: Higher angular resolution automatically gives better tractography
 
-Higher angular resolution can help resolve crossing fibers. DTI usually resolves one dominant orientation in a voxel, whereas GQI-based diffusion ODFs and FODs can represent multiple orientations. This additional resolving power can recover pathways that tensor-based tracking may miss.
+Higher angular resolution can help resolve crossing fibers. DTI usually resolves one dominant orientation in a voxel, whereas GQI-derived diffusion ODFs and fiber orientation distributions (FODs) can represent multiple orientations. This additional resolving power can recover pathways that tensor-based tracking may miss.
 
 But **resolving more directions is not the same as mapping more true connections**.
 
