@@ -15,7 +15,7 @@ Open the subject `.fz` file using **Tractography → 3 Track → FIB File (*.fz)
 
 See the [[Regions] menu](/doc/menu_regions.html) for region-management functions.
 
-![image](https://user-images.githubusercontent.com/275569/147854254-70bd8cf7-9a47-485e-bab2-d38bfa19a2c6.png)
+![Region selection in the fiber tracking window](https://user-images.githubusercontent.com/275569/147854254-70bd8cf7-9a47-485e-bab2-d38bfa19a2c6.png)
 
 ## Region roles
 
@@ -32,7 +32,7 @@ Assign each checked region the role required by the tracking hypothesis.
 | **NotEnd** | Rejects tracks that end in the region while still allowing tracks to pass through it. |
 | **Limiting** | Restricts tracking to the allowed spatial region. It is used internally by atlas-guided tracking and can be used when a pathway must stay within a defined spatial extent. |
 
-![image](https://user-images.githubusercontent.com/275569/147854494-af8a958f-ba50-4d2b-89c1-5ea37df57824.png)
+![Region types for ROI-guided tracking](https://user-images.githubusercontent.com/275569/147854494-af8a958f-ba50-4d2b-89c1-5ea37df57824.png)
 
 ### Recommended order for building a tracking protocol
 
@@ -56,7 +56,7 @@ Atlas regions are convenient anatomical references, but the selected ROI/ROA rol
 
 ## Draw and edit regions
 
-![image](https://user-images.githubusercontent.com/275569/147854543-9001e2d5-580b-4a86-a9cd-f931ca3973ca.png)
+![Drawing and editing regions](https://user-images.githubusercontent.com/275569/147854543-9001e2d5-580b-4a86-a9cd-f931ca3973ca.png)
 
 Regions can be drawn in the slice/region view with rectangular, freehand, polygon, sphere, and cube tools. Existing regions can be moved or edited with morphological operations such as dilation, erosion, smoothing, and defragmentation.
 
