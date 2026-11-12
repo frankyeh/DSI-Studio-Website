@@ -76,7 +76,7 @@
       <h3><a href="https://practicum.labsolver.org">Workshop</a></h3>
       <p>Fang-Cheng (Frank) Yeh<br>
           <a href="https://www.dropbox.com/s/ej2ujl6fmcvwx8f/Frank_CV.pdf?dl=0"><img src="https://img.shields.io/badge/CV-white" alt="Curriculum vitae"></a>
-          <a href="http://scholar.google.com/citations?user=QdfsoJ4AAAAJ&hl=en"><img src="https://img.shields.io/badge/Citation-white" alt="Google Scholar citations"></a>
+          <a href="https://scholar.google.com/citations?user=QdfsoJ4AAAAJ&amp;hl=en"><img src="https://img.shields.io/badge/Citation-white" alt="Google Scholar citations"></a>
           <a href="https://www.webofscience.com/wos/author/record/101404"><img src="https://img.shields.io/badge/Profile-white" alt="Web of Science profile"></a><br> 
       <p></p>
       <p>Questions: <a href="https://groups.google.com/g/dsi-studio?pli=1" target="_blank">Discussion Forum</a><br>
@@ -93,7 +93,7 @@
           this.nextElementSibling.style.display = expanded ? "block" : "none";});
       {% if page.url contains 'gui' %}c[0].click();{% endif %}
       {% if page.url contains 'menu' %}c[1].click();{% endif %}
-      {% if page.url contains 'cli' and page.url contains 'cli_vis' %}c[0].click();{% elsif page.url contains 'cli' %}c[2].click();{% endif %}
+      {% if page.url contains 'cli' and page.url contains 'cli_vis' %}c[0].click();{% elsif page.url contains 'cli' and page.url != '/doc/cli_data.html' %}c[2].click();{% endif %}
       </script>
     </header>
 
