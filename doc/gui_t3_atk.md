@@ -63,7 +63,7 @@ Small or difficult pathways may fail in some subjects when spatial resolution, a
 
 If an unexpected problem persists, share the relevant SRC/FIB data through the **Data Upload** link and describe the issue on the [DSI Studio forum](https://groups.google.com/g/dsi-studio).
 
-# Tractometry
+## Tractometry
 
 After a tract has been mapped, DSI Studio can quantify its shape and diffusion measurements.
 
@@ -88,7 +88,7 @@ Use **[Tracts][Tract Profile]** to examine how a measurement changes along a pat
 
 Profiles can be parameterized by image axes or by fiber orientation. Keep the same profile definition and bandwidth when comparing subjects.
 
-# Tract-to-Region (T2R) Connectome
+## Tract-to-Region (T2R) Connectome
 
 The **tract-to-region (T2R) connectome** represents connectivity as an *n × m* matrix, where rows are named white-matter tracts and columns are parcellation regions. This keeps the identity of the connecting white-matter pathway, unlike a conventional region-to-region matrix that summarizes connectivity only between region pairs.
 
