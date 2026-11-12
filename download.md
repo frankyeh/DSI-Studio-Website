@@ -70,7 +70,14 @@ article .dl6-extra-body pre{margin:0 0 8px;font-size:12px}
 
 ## Previous Versions
 
-- ["Chen" versions (2022-2024)](https://github.com/frankyeh/DSI-Studio/releases)
+<details class="dl6-legacy"><summary>Chen — archived downloads (release tag 2023.12.06)</summary>
+<div class="dl6-grid dl6-legacy-grid">
+<section class="dl6-card"><div class="dl6-card-head"><h3>Windows</h3><span>x64</span></div><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_win_cpu.zip"><span>CPU</span></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_win.zip"><span>NVIDIA GPU</span></a></div></section>
+<section class="dl6-card"><div class="dl6-card-head"><h3>macOS</h3><span>Archived builds</span></div><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_macos-13_qt6.zip"><span>macOS 13</span><small>Qt 6</small></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_macos-12_qt6.zip"><span>macOS 12</span><small>Qt 6</small></a></div><details class="dl6-extra"><summary>Other macOS builds</summary><div class="dl6-extra-body"><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_macos-11.zip"><span>macOS 11</span><small>Qt 5</small></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_macos-11_qt6.zip"><span>macOS 11</span><small>Qt 6</small></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_macos-12.zip"><span>macOS 12</span><small>Qt 5</small></a></div></div></details></section>
+<section class="dl6-card"><div class="dl6-card-head"><h3>Ubuntu</h3><span>16.04–22.04</span></div><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_ubuntu2204.zip"><span>Ubuntu 22.04</span></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_ubuntu2004.zip"><span>Ubuntu 20.04</span></a></div><details class="dl6-extra"><summary>Earlier Linux builds</summary><div class="dl6-extra-body"><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_ubuntu1804.zip"><span>Ubuntu 18.04</span></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_ubuntu1604.zip"><span>Ubuntu 16.04</span></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_centos7.zip"><span>CentOS 7</span></a></div></div></details></section>
+</div>
+<p><a href="https://github.com/frankyeh/DSI-Studio/releases">Other Chen releases</a></p>
+</details>
 - [Pre-"Chen" versions (2008-2022)](https://www.dropbox.com/sh/ectib64vhctkl8b/AADBRYp_aPLEuAOdNw393tO-a?dl=0)
 - Older CentOS 8 builds: see previous GitHub releases.
 
