@@ -14,7 +14,7 @@ title: DSI Studio
     </div>
     <div class="release">Sun {{ site.sun_version }} · Windows · macOS · Linux · Docker · <a href="https://github.com/frankyeh/DSI-Studio" style="color:inherit">source on GitHub</a></div>
   </div>
-  <figure class="shot" style="margin:0;aspect-ratio:1600/833"><img src="/images/af.jpg" alt="Left arcuate fasciculus tractography" width="1600" height="833"><figcaption>Left arcuate fasciculus, DSI Studio rendering (AI-upscaled)</figcaption></figure>
+  <figure class="shot" style="margin:0;aspect-ratio:1600/833"><img src="/images/af.jpg" alt="Left arcuate fasciculus tractography" width="1600" height="833"><figcaption>Left arcuate fasciculus, DSI Studio rendering</figcaption></figure>
 </section>
 
 <section class="stats two">
