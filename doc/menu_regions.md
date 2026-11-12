@@ -21,7 +21,7 @@ The `[Regions]` menu in DSI Studio provides functions for creating, editing, and
 | **Copy** | Copies the selected region to the clipboard. | `run copy_region` |
 | **Undo Edit** | Reverts the last region-editing action. | *No documented `run` command binding* |
 | **Redo Edit** | Redoes the last reverted editing action. | *No documented `run` command binding* |
-| **Tract to Region Connectome** | Generates a connectome based on tract and region overlap. | `run show_t2r` |
+| **Tract-To-Region Connectome...** | Generates a connectome based on tract and region overlap. | `run show_t2r` |
 
 ## [Regions Misc] Additional Features
 
