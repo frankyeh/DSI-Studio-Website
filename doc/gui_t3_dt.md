@@ -50,7 +50,7 @@ This produces a file such as `subject_followup.fz.dti_fa.nii.gz`.
 
 ## 3. Check whole-brain tracking first
 
-Open the baseline `.fz` in **Step T3: Fiber Tracking** and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
+Open the baseline `.fz` using **Tractography → 3 Track → FIB File (*.fz)** and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
 
 ## 4. Add the follow-up metric and wait for registration
 
