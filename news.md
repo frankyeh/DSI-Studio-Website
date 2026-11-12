@@ -1,4 +1,4 @@
-## Recent Update Log
+# DSI Studio Updates
 
 November 2026
 
