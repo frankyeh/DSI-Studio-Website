@@ -12,7 +12,7 @@ DSI Studio registers an inserted image to the diffusion data when needed. Inspec
 - **Load Mapping** loads an existing mapping and replaces the current registration.
 - **Adjust Registration** allows manual alignment when needed.
 
-![image](https://user-images.githubusercontent.com/275569/147839242-16c74c18-1f17-4b7c-bb80-eaee611fccd2.png)
+![Slices menu and image registration interface](https://user-images.githubusercontent.com/275569/147839242-16c74c18-1f17-4b7c-bb80-eaee611fccd2.png)
 
 ## Add Isosurface
 
