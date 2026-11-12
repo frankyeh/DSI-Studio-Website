@@ -20,7 +20,7 @@ title: DSI Studio
 <section class="stats">
   <div><b>3,000+</b><span>publications using DSI Studio</span></div>
   <div><b>50,000+</b><span>processed datasets on the Hub</span></div>
-  <div><b>200+</b><span>brain tumor patients in clinical research</span></div>
+  <div><b>29</b><span>documentation guides</span></div>
   <div><b>4</b><span>platforms: Windows, macOS, Linux, Docker</span></div>
 </section>
 
@@ -73,8 +73,8 @@ title: DSI Studio
 <section class="section">
   <div><img src="/images/nat_rev_neuro.png" alt="Nature Reviews Neurology cover" style="max-width:300px"></div>
   <div>
-    <h2>Research and clinical use</h2>
-    <p>Cited in Nature Neuroscience, Nature Human Behaviour, Brain and NeuroImage; on the cover of Nature Reviews Neurology (2017); applied to presurgical evaluation, epilepsy, TBI and neurodegeneration research.</p>
+    <h2>Research applications</h2>
+    <p>Cited in Nature Neuroscience, Nature Human Behaviour, Brain and NeuroImage; on the cover of Nature Reviews Neurology (2017); used in diffusion MRI, tractography and structural connectomics research.</p>
     <div class="pills"><span>DTI · GQI · QSDR</span><span>AutoTrack</span><span>Differential</span><span>Correlational</span><span>U-Net segmentation</span></div>
   </div>
 </section>
@@ -103,9 +103,9 @@ title: DSI Studio
     <p class="caption">The human language pathway: left arcuate fasciculus mapped using DSI Studio.</p>
   </div>
   <div>
-    <h2>Clinical and translational applications</h2>
-    <p>DSI Studio has supported translational and clinical research in a wide range of neurological conditions, including epilepsy, traumatic brain injury, developmental disorders, and neurodegenerative disease. Its tractography workflows have been applied in research involving <strong>more than 200 brain tumor patients</strong> for presurgical evaluation and structural pathway assessment.</p>
-    <p>Its applications include mapping perilesional and intralesional pathways, studying postsurgical pathway changes, and reconstructing cranial nerves for skull base surgery research. These efforts aim to improve structural assessment in settings where preservation of brain function is important.</p>
+    <h2>Neuroimaging research applications</h2>
+    <p>DSI Studio supports diffusion MRI research across multiple datasets and imaging protocols. Its tractography workflows can be used to reconstruct white-matter pathways and examine structural connectivity.</p>
+    <p>Research applications include pathway reconstruction, regional connectivity analysis, and comparisons of tractography results across imaging datasets.</p>
   </div>
 </section>
 
