@@ -104,8 +104,8 @@
       if (window.matchMedia("(max-width: 960px)").matches) {
         var activeLink = document.querySelector('header a[aria-current="page"]');
         var sidebar = document.querySelector("header.page-header");
-        if (activeLink && sidebar)
-          sidebar.scrollTop += activeLink.getBoundingClientRect().top - sidebar.getBoundingClientRect().top - 36;
+        if (activeLink && sidebar && activeLink.getBoundingClientRect().bottom > sidebar.getBoundingClientRect().bottom)
+          sidebar.scrollTop += activeLink.getBoundingClientRect().bottom - sidebar.getBoundingClientRect().bottom + 12;
       }
       </script>
     </header>
