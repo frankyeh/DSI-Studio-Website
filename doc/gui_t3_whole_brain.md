@@ -1,6 +1,6 @@
 # Step T3: Whole-Brain Tractography
 
-From the main window, select **Tractography → 3 Track → FIB File (*.fz)** to open an `.fz` file in the fiber tracking window, then click **[Step T3d: Tracts][Fiber Tracking]** to generate a whole-brain tractogram.
+From the main window, select **Tractography → 3 Track → FIB File (*.fz)** to open an `.fz` file in the fiber tracking window, then click **Step T3d: Tracts → Fiber Tracking** to generate a whole-brain tractogram.
 
 Whole-brain tracking is the first quality check before ROI tracking, AutoTrack, differential tractography, or tract-based quantitative analysis. Major pathways should look anatomically plausible before more restrictive analyses are attempted.
 
@@ -43,7 +43,7 @@ For command-line equivalents, see [Fiber Tracking CLI](/doc/cli_t3.html).
 
 ## Saving tractography
 
-Use **[Tracts][Save Current Tract As...]** to save the selected tract group. Use **[Tracts][Save All Tracts As]** when multiple loaded/segmented tract groups should be saved together.
+Use **Tracts → Save Current Tract As...** to save the selected tract group. Use **Tracts → Save All Tracts As** when multiple loaded/segmented tract groups should be saved together.
 
 DSI Studio's current compact tractography format is `.tt.gz`. Other formats can be exported when interoperability with other software is needed.
 
@@ -54,7 +54,7 @@ DSI Studio can derive region-to-region (R2R) connectivity matrices from tractogr
 ## GUI workflow
 
 1. Generate and inspect the tractography used for the connectome.
-2. Open **[Tracts][Connectivity Matrix]**.
+2. Open **Tracts → Connectivity Matrix**.
 3. Select a built-in parcellation atlas or use loaded ROIs.
 4. Select whether connectivity is defined by streamline **endpoints** or **pass-through** regions.
 5. Select the matrix value(s) and recalculate.
