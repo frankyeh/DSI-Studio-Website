@@ -1,0 +1,66 @@
+- group: "Tutorials"
+  items:
+    - title: "How to acquire dMRI"
+      slug: how_to_acquire_dmri
+    - title: "How to analyze dMRI"
+      slug: how_to_analyze_dmri
+    - title: "How to interpret dMRI"
+      slug: how_to_interpret_dmri
+    - title: "How to interpret tractography"
+      slug: how_tractography_works
+    - title: "Data formats"
+      slug: cli_data
+- group: "GUI manual"
+  items:
+    - title: "Import: generate SRC files"
+      slug: gui_t1
+    - title: "Reconstruct: SRC to FIB"
+      slug: gui_t2
+    - title: "Track: whole-brain tractography"
+      slug: gui_t3_whole_brain
+    - title: "AutoTrack & T2R connectome"
+      slug: gui_t3_atk
+    - title: "ROI-based tracking"
+      slug: gui_t3_roi_tracking
+    - title: "Differential tractography"
+      slug: gui_t3_dt
+    - title: "Correlational tractography"
+      slug: gui_cx
+    - title: "Batch workflows"
+      slug: gui_bx
+    - title: "Command history"
+      slug: cli_vis
+- group: "Menu reference"
+  items:
+    - title: "[Tract Edit]"
+      slug: menu_edit
+    - title: "[Tracts]"
+      slug: menu_tracts
+    - title: "[Regions]"
+      slug: menu_regions
+    - title: "[Slices]"
+      slug: menu_slices
+    - title: "[Devices]"
+      slug: menu_devices
+- group: "Command line"
+  items:
+    - title: "[src] Generate SRC"
+      slug: cli_t1
+    - title: "[rec] Reconstruction"
+      slug: cli_t2
+    - title: "[trk] Fiber tracking"
+      slug: cli_t3
+    - title: "[ana] Region & tract analysis"
+      slug: cli_ana
+    - title: "[ren] Rename DICOM"
+      slug: cli_ren
+    - title: "[atk] AutoTrack"
+      slug: cli_atk
+    - title: "[cnt] Correlational"
+      slug: cli_cnt
+    - title: "[exp] Export"
+      slug: cli_exp
+    - title: "[reg] Registration"
+      slug: cli_reg
+    - title: "[img] Image processing"
+      slug: cli_img

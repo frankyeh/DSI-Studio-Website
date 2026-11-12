@@ -1,7 +1,14 @@
-theme: jekyll-theme-minimal
 title: DSI Studio Documentation
 description: Documentation and Tutorials for DSI Studio
+url: https://dsi-studio.labsolver.org
+baseurl: ""
+sun_version: 2026.7.25
 defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
   - scope:
       path: "doc"
       type: pages

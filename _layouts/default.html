@@ -14,104 +14,243 @@
 {% seo %}
     <link rel="shortcut icon" type="image/x-icon" href="/favicon-16x16.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#157878">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <noscript><style>.content[hidden] { display: block !important; }</style></noscript>
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to main content</a>
-    <header class="page-header" role="banner">
-      <a href="/" aria-label="DSI Studio home"><img src="/images/dsi_studio.jfif" width="250" alt="DSI Studio"></a>
-      <h3><a href="/">Home</a></h3>
-      <h3><a href="/download.html">Download</a></h3>
-      <h3><a href="https://brain.labsolver.org">Data</a></h3>
-      <h3>User Support</h3>
-      <h4><a href="https://groups.google.com/g/dsi-studio?pli=1" target="_blank" rel="noopener noreferrer">Forum (Google)</a></h4>
-      <h4><a href="https://www.reddit.com/r/dsistudio/" target="_blank" rel="noopener noreferrer">Forum (Reddit)</a></h4>
-      <h4><a href="https://www.dropbox.com/request/W0hJkAIVC2keWAjqtqvU" target="_blank" rel="noopener noreferrer">Data Upload</a></h4>
-
-      <h3>Tutorials</h3>
-      <h4><a href="/doc/how_to_acquire_dmri.html">How to acquire dMRI</a></h4>
-      <h4><a href="/doc/how_to_analyze_dmri.html">How to analyze dMRI</a></h4>
-      <h4><a href="/doc/how_to_interpret_dmri.html">How to interpret dMRI</a></h4>
-      <h4><a href="/doc/how_tractography_works.html">How to interpret tractography</a></h4>
-      <h4><a href="/doc/cli_data.html">Data Formats</a></h4>
-      
-      <button type="button" class="collapsible" aria-expanded="false" aria-controls="manual-gui">User Manual (GUI)</button>
-      <div class="content" id="manual-gui" hidden>
-      <h4><a href="/doc/gui_t1.html">Import: Generate SRC files</a></h4>
-      <h4><a href="/doc/gui_t2.html">Reconstruct: SRC to FIB</a></h4>
-      <h4><a href="/doc/gui_t3_whole_brain.html">Track: Whole-brain tractography</a></h4>
-      <h4><a href="/doc/gui_t3_atk.html">AutoTrack & T2R Connectome</a></h4>
-      <h4><a href="/doc/gui_t3_roi_tracking.html">ROI-based Tracking</a></h4>
-      <h4><a href="/doc/gui_t3_dt.html">Differential Tractography</a></h4>
-      <h4><a href="/doc/gui_cx.html">Correlational Tractography</a></h4>
-      <h4><a href="/doc/gui_bx.html">Batch Workflows (GUI)</a></h4>
-      <h4><a href="/doc/cli_vis.html">Command History</a></h4>
+{%- assign is_doc = false -%}
+{%- if page.url contains '/doc/' -%}
+  {%- assign is_doc = true -%}
+  {%- assign cur_slug = page.url | remove: '/doc/' | remove: '.html' -%}
+  {%- assign prev_item = nil -%}
+  {%- assign next_item = nil -%}
+  {%- assign last_seen = nil -%}
+  {%- assign found_cur = false -%}
+  {%- assign cur_group = 'Documentation' -%}
+  {%- assign cur_nav_title = page.title -%}
+  {%- for group in site.data.docs -%}
+    {%- for item in group.items -%}
+      {%- if found_cur and next_item == nil -%}
+        {%- assign next_item = item -%}
+      {%- endif -%}
+      {%- if item.slug == cur_slug -%}
+        {%- assign cur_group = group.group -%}
+        {%- assign cur_nav_title = item.title -%}
+        {%- assign prev_item = last_seen -%}
+        {%- assign found_cur = true -%}
+      {%- endif -%}
+      {%- assign last_seen = item -%}
+    {%- endfor -%}
+  {%- endfor -%}
+{%- endif -%}
+    <header class="topbar">
+      <div class="dec"></div>
+      <div class="bar">
+        <a class="brand" href="/"><img src="/images/dsi_studio.jfif" alt="DSI Studio"></a>
+        <nav class="nav" aria-label="Primary">
+          <div class="nav-dd">
+            <a class="nav-item{% if is_doc %} on{% endif %}" id="docs" href="/doc/how_to_acquire_dmri.html">Docs<span class="caret">▾</span></a>
+            <div class="mega" id="mega">
+              <div class="mega-in">
+                {%- for group in site.data.docs -%}
+                <div>
+                  <h6>{{ group.group }}</h6>
+                  {%- for item in group.items limit:6 -%}
+                  <a href="/doc/{{ item.slug }}.html"{% if is_doc and item.slug == cur_slug %} class="cur"{% endif %}>{{ item.title }}</a>
+                  {%- endfor -%}
+                  {%- if group.items.size > 6 -%}
+                  {%- assign more_count = group.items.size | minus: 6 -%}
+                  <a href="/doc/{{ group.items[6].slug }}.html"><small>+ {{ more_count }} more</small></a>
+                  {%- endif -%}
+                </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+          <a href="https://brain.labsolver.org">Data Hub</a>
+          <a href="/citation.html"{% if page.url == '/citation.html' %} class="on"{% endif %}>Citation</a>
+          <a href="https://practicum.labsolver.org">Workshop</a>
+          <div class="nav-dd sup-dd">
+            <a class="nav-item{% if page.url == '/news.html' %} on{% endif %}" id="support" href="/news.html">Support<span class="caret">▾</span></a>
+            <div class="sup-menu" id="sup-menu">
+              <a href="https://groups.google.com/g/dsi-studio">Forum (Google)</a>
+              <a href="https://www.reddit.com/r/dsistudio/">Forum (Reddit)</a>
+              <a href="https://www.dropbox.com/request/W0hJkAIVC2keWAjqtqvU">Data upload</a>
+              <a href="/news.html">News</a>
+            </div>
+          </div>
+        </nav>
+        <a class="cta" href="/download.html">Download Sun {{ site.sun_version }}</a>
+        <a class="burger" href="#sheet" aria-label="Menu">☰</a>
       </div>
-      
-      <button type="button" class="collapsible" aria-expanded="false" aria-controls="manual-menu">User Manual (Menu)</button>
-      <div class="content" id="manual-menu" hidden>
-      <h4><a href="/doc/menu_edit.html">[Tract Edit] Menu</a></h4>
-      <h4><a href="/doc/menu_tracts.html">[Tracts] Menu</a></h4>
-      <h4><a href="/doc/menu_regions.html">[Regions] Menu</a></h4>
-      <h4><a href="/doc/menu_slices.html">[Slices] Menu</a></h4>
-      <h4><a href="/doc/menu_devices.html">[Devices] Menu</a></h4>
-      </div>
-      
-      <button type="button" class="collapsible" aria-expanded="false" aria-controls="manual-cli">User Manual (CLI)</button>
-      <div class="content" id="manual-cli" hidden>
-      <h4><a href="/doc/cli_t1.html">[src] Generate SRC file</a></h4>
-      <h4><a href="/doc/cli_t2.html">[rec] Reconstruction</a></h4>
-      <h4><a href="/doc/cli_t3.html">[trk] Fiber Tracking</a></h4>
-      <h4><a href="/doc/cli_ana.html">[ana] Region & Tract Analysis</a></h4>
-      <h4><a href="/doc/cli_ren.html">[ren] Rename & Convert DICOM</a></h4>
-      <h4><a href="/doc/cli_atk.html">[atk] Automatic Fiber Tracking</a></h4>
-      <h4><a href="/doc/cli_cnt.html">[cnt] Correlational Tractography</a></h4>
-      <h4><a href="/doc/cli_exp.html">[exp] Export Data</a></h4>
-      <h4><a href="/doc/cli_reg.html">[reg] Registration</a></h4>
-      <h4><a href="/doc/cli_img.html">[img] Image Processing</a></h4>
-      </div>
-      
-      <h3><a href="/citation.html">Citation</a></h3>
-      <h3><a href="https://practicum.labsolver.org">Workshop</a></h3>
-      <p>Fang-Cheng (Frank) Yeh<br>
-          <a href="https://www.dropbox.com/s/ej2ujl6fmcvwx8f/Frank_CV.pdf?dl=0"><img src="https://img.shields.io/badge/CV-white" alt="Curriculum vitae"></a>
-          <a href="https://scholar.google.com/citations?user=QdfsoJ4AAAAJ&amp;hl=en"><img src="https://img.shields.io/badge/Citation-white" alt="Google Scholar citations"></a>
-          <a href="https://www.webofscience.com/wos/author/record/101404"><img src="https://img.shields.io/badge/Profile-white" alt="Web of Science profile"></a></p>
-      <p>Questions: <a href="https://groups.google.com/g/dsi-studio?pli=1" target="_blank" rel="noopener noreferrer">Discussion Forum</a><br>
-         Collaborations: frank.yeh@gmail.com</p>
-      <p><a href="https://github.com/frankyeh/DSI-Studio-Website/">.</a></p>  
-      <script>
-      var c = document.getElementsByClassName("collapsible");
-      for (var i = 0; i < c.length; i++) 
-          c[i].addEventListener("click", function(){
-          var expanded = this.classList.toggle("active");
-          this.setAttribute("aria-expanded", expanded ? "true" : "false");
-          this.nextElementSibling.hidden = !expanded;
-          this.nextElementSibling.style.display = expanded ? "block" : "none";});
-      {% if page.url contains 'gui' %}c[0].click();{% endif %}
-      {% if page.url contains 'menu' %}c[1].click();{% endif %}
-      {% if page.url contains 'cli' and page.url contains 'cli_vis' %}c[0].click();{% elsif page.url contains 'cli' and page.url != '/doc/cli_data.html' %}c[2].click();{% endif %}
-      var pagePath = window.location.pathname === "/index.html" ? "/" : window.location.pathname;
-      Array.prototype.forEach.call(document.querySelectorAll("header h3 a[href], header h4 a[href]"), function(link) {
-        if (link.getAttribute("href") === pagePath)
-          link.setAttribute("aria-current", "page");
-      });
-      if (window.matchMedia("(max-width: 960px)").matches) {
-        var activeLink = document.querySelector('header a[aria-current="page"]');
-        var sidebar = document.querySelector("header.page-header");
-        if (activeLink && sidebar && activeLink.getBoundingClientRect().bottom > sidebar.getBoundingClientRect().bottom)
-          sidebar.scrollTop += activeLink.getBoundingClientRect().bottom - sidebar.getBoundingClientRect().bottom + 12;
-      }
-      </script>
     </header>
+    <nav class="sheet" id="sheet" aria-label="Mobile menu">
+      {%- for group in site.data.docs -%}
+      <details{% if is_doc and group.group == cur_group %} open{% endif %}>
+        <summary>{{ group.group }}</summary>
+        {%- for item in group.items -%}
+        <a href="/doc/{{ item.slug }}.html"{% if is_doc and item.slug == cur_slug %} class="cur"{% endif %}>{{ item.title }}</a>
+        {%- endfor -%}
+      </details>
+      {%- endfor -%}
+      <details>
+        <summary>Support</summary>
+        <a href="https://groups.google.com/g/dsi-studio">Forum (Google)</a>
+        <a href="https://www.reddit.com/r/dsistudio/">Forum (Reddit)</a>
+        <a href="https://www.dropbox.com/request/W0hJkAIVC2keWAjqtqvU">Data upload</a>
+        <a href="/news.html">News</a>
+      </details>
+      <a href="/download.html">Download</a>
+      <a href="https://brain.labsolver.org">Fiber Data Hub</a>
+      <a href="/citation.html">Citation</a>
+      <a href="https://practicum.labsolver.org">Workshop</a>
+      <a class="cta" href="/download.html">Download Sun {{ site.sun_version }}</a>
+    </nav>
 
-    <main id="content" class="main-content markdown-body" role="main" >
+{%- if page.layout == 'home' -%}
+    {{ content }}
+{%- elsif is_doc -%}
+    <div class="doc">
+      <aside class="side">
+        {%- for group in site.data.docs -%}
+        <details{% if group.group == cur_group %} open{% endif %}>
+          <summary><h6>{{ group.group }} <span class="caret">▾</span></h6></summary>
+          {%- for item in group.items -%}
+          <a href="/doc/{{ item.slug }}.html"{% if item.slug == cur_slug %} class="cur"{% endif %}>{{ item.title }}</a>
+          {%- endfor -%}
+        </details>
+        {%- endfor -%}
+      </aside>
+      <article id="content">
+        <a class="section-chip" href="#sheet"><span>{{ cur_group }} › <b>{{ cur_nav_title }}</b></span><span>▾</span></a>
+        <div class="crumbs">Docs › {{ cur_group }}</div>
+        {{ content }}
+        <div class="pager">
+          {%- if prev_item -%}
+          <a href="/doc/{{ prev_item.slug }}.html"><small>Previous</small>{{ prev_item.title }}</a>
+          {%- else -%}
+          <span></span>
+          {%- endif -%}
+          {%- if next_item -%}
+          <a href="/doc/{{ next_item.slug }}.html"><small>Next</small>{{ next_item.title }}</a>
+          {%- endif -%}
+        </div>
+      </article>
+      <nav class="toc" id="toc" aria-label="On this page"></nav>
+    </div>
+{%- else -%}
+    <article id="content" class="page">
       {{ content }}
-      <footer class="site-footer">
-      </footer>
-    </main>
+    </article>
+{%- endif -%}
+
+    <footer class="foot">
+      <div class="foot-in">
+        <div>
+          <h6>Author</h6>
+          <p><b style="color:#16181d">Fang-Cheng (Frank) Yeh</b></p>
+          <p>Questions: <a style="display:inline" href="https://groups.google.com/g/dsi-studio?pli=1">Discussion forum</a><br>
+          Collaborations: frank.yeh@gmail.com</p>
+          <p><a style="display:inline" href="https://www.dropbox.com/s/ej2ujl6fmcvwx8f/Frank_CV.pdf?dl=0">CV</a> · <a style="display:inline" href="https://scholar.google.com/citations?user=QdfsoJ4AAAAJ&amp;hl=en">Google Scholar</a> · <a style="display:inline" href="https://www.webofscience.com/wos/author/record/101404">Web of Science</a></p>
+        </div>
+        <div>
+          <h6>Software</h6>
+          <a href="/download.html">Download</a>
+          <a href="/news.html">News</a>
+          <a href="/academic_license.html">Academic license</a>
+          <a href="https://github.com/frankyeh/DSI-Studio">GitHub</a>
+        </div>
+        <div>
+          <h6>Learn</h6>
+          <a href="/doc/how_to_acquire_dmri.html">Tutorials</a>
+          <a href="/doc/gui_t1.html">GUI manual</a>
+          <a href="/doc/cli_t1.html">Command line</a>
+          <a href="https://practicum.labsolver.org">Workshop</a>
+        </div>
+        <div>
+          <h6>Community</h6>
+          <a href="https://groups.google.com/g/dsi-studio">Forum (Google)</a>
+          <a href="https://www.reddit.com/r/dsistudio/">Forum (Reddit)</a>
+          <a href="https://www.dropbox.com/request/W0hJkAIVC2keWAjqtqvU">Data upload</a>
+          <a href="https://brain.labsolver.org">Fiber Data Hub</a>
+        </div>
+      </div>
+      <div class="cite">Cite: Yeh F-C. DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research.
+      <i>Nature Methods</i> (2025). doi:10.1038/s41592-025-02762-8 &nbsp;<a class="dot" href="https://github.com/frankyeh/DSI-Studio-Website/">.</a></div>
+    </footer>
+    <script>
+      (function() {
+        var q = location.search;
+        var mega = document.getElementById("mega");
+        var supMenu = document.getElementById("sup-menu");
+        var sheet = document.getElementById("sheet");
+        var docsBtn = document.getElementById("docs");
+        var supBtn = document.getElementById("support");
+        var burger = document.querySelector(".burger");
+        var chip = document.querySelector(".section-chip");
+
+        if (q.indexOf("mega") !== -1 && mega) mega.classList.add("open");
+        if (q.indexOf("menu") !== -1 && sheet) sheet.classList.add("open");
+
+        if (docsBtn && mega) {
+          docsBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            if (supMenu) supMenu.classList.remove("open");
+            mega.classList.toggle("open");
+          });
+        }
+        if (supBtn && supMenu) {
+          supBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            if (mega) mega.classList.remove("open");
+            supMenu.classList.toggle("open");
+          });
+        }
+        function toggleSheet(e) {
+          e.preventDefault();
+          if (!sheet) return;
+          if (location.hash === "#sheet") {
+            history.replaceState(null, "", location.pathname + location.search);
+            sheet.classList.remove("open");
+          } else {
+            sheet.classList.toggle("open");
+          }
+        }
+        if (burger) burger.addEventListener("click", toggleSheet);
+        if (chip) chip.addEventListener("click", toggleSheet);
+
+        document.addEventListener("click", function(e) {
+          if (mega && !e.target.closest(".nav-dd")) mega.classList.remove("open");
+          if (supMenu && !e.target.closest(".sup-dd")) supMenu.classList.remove("open");
+        });
+        document.addEventListener("keydown", function(e) {
+          if (e.key === "Escape") {
+            if (mega) mega.classList.remove("open");
+            if (supMenu) supMenu.classList.remove("open");
+            if (sheet) sheet.classList.remove("open");
+          }
+        });
+
+        var toc = document.getElementById("toc");
+        var article = document.getElementById("content");
+        if (toc && article) {
+          var h2s = article.querySelectorAll("h2[id]");
+          if (h2s.length > 0) {
+            var html = '<h6 style="margin:0 0 10px;font-size:11.5px;letter-spacing:.08em;color:#5b616e">ON THIS PAGE</h6>';
+            html += '<a class="cur" href="#">Overview</a>';
+            for (var i = 0; i < h2s.length; i++) {
+              var id = h2s[i].getAttribute("id");
+              var label = h2s[i].textContent;
+              html += '<a href="#' + id + '"></a>';
+            }
+            toc.innerHTML = html;
+            var links = toc.querySelectorAll("a");
+            for (var j = 0; j < h2s.length; j++) {
+              links[j + 1].textContent = h2s[j].textContent;
+            }
+          }
+        }
+      })();
+    </script>
   </body>
 </html>
