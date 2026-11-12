@@ -1,3 +1,5 @@
+# DSI Studio
+
 <img width="1024" alt="DSI Studio desktop interface" src="https://github.com/user-attachments/assets/837427ff-b7f9-402f-bd21-3be9eb1d0346" />
 
 > ### Integrated tractography, connectomics, brain MRI segmentation, and large-scale fiber data sharing
