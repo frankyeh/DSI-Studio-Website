@@ -62,7 +62,7 @@ Regions can be drawn in the slice/region view with rectangular, freehand, polygo
 
 For detailed editing commands, see the [[Regions] menu](/doc/menu_regions.html).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ZkWBU_qnaKg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZkWBU_qnaKg" title="ROI-based fiber tracking tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Step T3d: Run fiber tracking
 
