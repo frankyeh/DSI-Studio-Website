@@ -17,14 +17,14 @@
 - Quantify brain networks using both **region-to-region connectivity matrices** and the **tract-to-region connectome**.
 - Run **quality control**, **group analysis**, and population-level workflows in the same software environment.
 - Perform **brain MRI segmentation** using compact **U-Net models** integrated in DSI Studio.
-- Use **Codex** or **Claude Code** through the Sun version's **AI Agent** integration to operate DSI Studio workflows from natural-language requests.
+- Use the Sun version's **AI Agents** integration with a supported agent to operate DSI Studio workflows from natural-language requests.
 - Use the same platform on **Windows**, **macOS**, **Linux**, and **Docker**.
 
 ---
 
-## AI Agent in the Sun version
+## AI Agents in the Sun version
 
-The current **Sun** version integrates AI agents directly with DSI Studio. After installing **Codex** or **Claude Code** on the same computer, the agent can read the DSI Studio manuals, inspect the current data and application state, and operate workflows such as reconstruction, image processing, fiber tracking, and connectometry from natural-language requests.
+The current **Sun** version integrates AI agents directly with DSI Studio. With a supported agent connected and the appropriate permissions, it can read the DSI Studio manuals, inspect the current data and application state, and operate workflows such as reconstruction, image processing, fiber tracking, and connectometry from natural-language requests.
 
 See the [download page](download.html) for the current Sun release and setup requirement.
 
