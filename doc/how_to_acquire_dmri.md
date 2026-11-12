@@ -100,7 +100,7 @@ Convert the [Grid-258 b-table](/files/GRID258_BVAL_BVEC.txt) to the required for
 ## Quality Check for Preliminary Results
 
 1. Verify that the brain contour remains visible in DWI images at **b = 4000**. If not, consider reducing the maximum b-value to **3000** to improve SNR.
-2. Generate SRC files from the diffusion MRI data. In DSI Studio, run [Diffusion MRI Analysis → Step T1a: Quality Control](/doc/gui_t1.html#step-t1a-quality-control-optional) and select the folder containing the SRC files. Review the **Neighboring DWI Correlation** values; low correlations may indicate motion artifacts or acquisition errors.
+2. Generate SRC files from the diffusion MRI data. In DSI Studio, open **Tractography → 2 Reconstruct → ▸ More… → SRC quality control...** and select the SRC files to review (multiple files are supported). See [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control). Review the **Neighboring DWI Correlation** values; low correlations may indicate motion artifacts or acquisition errors.
 
 ### Conclusion
 
