@@ -29,7 +29,7 @@ For population connectometry, reconstruct all subjects with **QSDR using the sam
 
 ## C1a. Add subject FIB files
 
-Open **[Correlational Tractography][Step C1: Create a Connectometry Database]**.
+Use **Correlational Tractography → 1 FIB files → FIB File(s) (*.fz)...** or **FIB Folder (*.fz)...** to open Create Database with the input list populated.
 
 Use **[Add]**, **[Search in Directory]**, or **[Open List]** to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
 
@@ -63,7 +63,7 @@ Database construction reports registration quality for each subject. Review subj
 
 # Step C2: View or modify a database
 
-Open the `.dz` file in **Step C2** when you need to inspect subjects, remove problematic data, load demographics, or prepare a longitudinal database.
+Use **Correlational Tractography → 2 Prepare database → Database (*.dz)...** when you need to inspect subjects, remove problematic data, load demographics, or prepare a longitudinal database.
 
 Demographics can be stored inside the database. After loading a demographic CSV/TSV file, save the database if you want those values to be available automatically the next time it is opened.
 
@@ -101,7 +101,7 @@ After creating any derived or longitudinal database, **re-check its demographics
 
 # Step C3: Group Connectometry Analysis
 
-Open the `.dz` database in **Step C3: Group Connectometry Analysis**.
+Use **Correlational Tractography → 3 Run analysis → Database (*.dz)** to open the group analysis for a `.dz` database.
 
 ## C3a. Load and verify demographics
 
