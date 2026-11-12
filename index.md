@@ -20,7 +20,7 @@ title: DSI Studio
 <section class="stats">
   <div><b>3,000+</b><span>publications using DSI Studio</span></div>
   <div><b>50,000+</b><span>processed datasets on the Hub</span></div>
-  <div><b>200+</b><span>brain tumor patients in UPMC research</span></div>
+  <div><b>200+</b><span>brain tumor patients in clinical research</span></div>
   <div><b>4</b><span>platforms: Windows, macOS, Linux, Docker</span></div>
 </section>
 
@@ -104,7 +104,7 @@ title: DSI Studio
   </div>
   <div>
     <h2>Clinical and translational applications</h2>
-    <p>DSI Studio has supported translational and clinical research in a wide range of neurological conditions, including epilepsy, traumatic brain injury, developmental disorders, and neurodegenerative disease. At the University of Pittsburgh Medical Center, its tractography workflows have been applied in research involving <strong>more than 200 brain tumor patients</strong> for presurgical evaluation and structural pathway assessment.</p>
+    <p>DSI Studio has supported translational and clinical research in a wide range of neurological conditions, including epilepsy, traumatic brain injury, developmental disorders, and neurodegenerative disease. Its tractography workflows have been applied in research involving <strong>more than 200 brain tumor patients</strong> for presurgical evaluation and structural pathway assessment.</p>
     <p>Its applications include mapping perilesional and intralesional pathways, studying postsurgical pathway changes, and reconstructing cranial nerves for skull base surgery research. These efforts aim to improve structural assessment in settings where preservation of brain function is important.</p>
   </div>
 </section>
