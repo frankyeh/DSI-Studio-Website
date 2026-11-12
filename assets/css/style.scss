@@ -228,3 +228,8 @@ article hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
   .research img { max-width: 260px; }
   .start .opts { grid-template-columns: 1fr 1fr; }
 }
+
+/* ---- two-item editorial stats strip */
+.stats.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.stats.two div { padding: 26px 0; }
+.stats.two b { font-size: 34px; }

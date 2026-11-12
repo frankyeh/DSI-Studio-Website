@@ -17,11 +17,9 @@ title: DSI Studio
   <figure class="shot" style="margin:0"><img src="/images/af.png" alt="Left arcuate fasciculus"><figcaption>Left arcuate fasciculus, DSI Studio</figcaption></figure>
 </section>
 
-<section class="stats">
+<section class="stats two">
   <div><b>3,000+</b><span>publications using DSI Studio</span></div>
   <div><b>30,000+</b><span>processed datasets on the Hub</span></div>
-  <div><b>29</b><span>documentation guides</span></div>
-  <div><b>4</b><span>platforms: Windows, macOS, Linux, Docker</span></div>
 </section>
 
 <section class="doors">
