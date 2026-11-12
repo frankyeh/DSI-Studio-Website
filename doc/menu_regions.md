@@ -31,7 +31,7 @@ Creates a region by applying an intensity threshold to the current slice.
 ### New Region From MNI Coordinate
 Creates a spherical region centered on an MNI coordinate with a user-defined radius.
 
-## Regions → Edit Region
+## [Regions][Edit Region]
 
 The following functions modify regions:
 
@@ -39,7 +39,7 @@ The following functions modify regions:
 - **Shift:** positive or negative shifts along X, Y, or Z.
 - **Morphological operations:** Erode, Dilate, Smooth, and Defragment.
 
-## Regions Misc → Advanced
+## [Regions Misc][Advanced]
 
 - **Separate Region:** splits a region into connected sub-regions.
 - **Negate Region:** inverts the voxel selection within a region.
