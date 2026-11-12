@@ -6,16 +6,16 @@ DSI Studio can display devices such as SEEG electrodes, DBS leads, probes, and o
 
 ## CT-guided device placement
 
-1. Load the CT with **[Slices][Insert Other Images]**.
+1. Load the CT with **Slices → Insert Other Images**.
 2. Verify CT-to-MRI/diffusion registration before using image-derived coordinates.
 3. If needed, use image-processing tools to improve visualization of electrode contacts.
-4. Use **[Devices][New Device]** to place and adjust a device manually, checking its position against the registered CT in multiple views.
+4. Use **Devices → New Device** to place and adjust a device manually, checking its position against the registered CT in multiple views.
 
 The current **[Devices]** menu does not contain a **Detect Electrodes** action. Contact identification from CT requires a separately validated workflow; do not assume automatic detection is available through this menu.
 
 ## Add a device manually
 
-Use **[Devices][New Device]** to add a device, then select the device type and dimensions in the device table.
+Use **Devices → New Device** to add a device, then select the device type and dimensions in the device table.
 
 ![New device settings](https://user-images.githubusercontent.com/275569/147839144-b4bb48b1-7aed-4774-9d14-4928d81c0cf2.png)
 
