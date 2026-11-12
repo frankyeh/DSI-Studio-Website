@@ -68,7 +68,7 @@ After loading, verify the image and b-table orientation before reconstruction.
 
 On **Tractography → 1 Import → 2dseq/FDF**, select the FDF files from the scan directory. DSI Studio reads the image and diffusion-gradient information and creates an SRC file.
 
-# Step T1a: Quality Control
+## Step T1a: Quality Control
 
 Run **Tractography → 2 Reconstruct → ▸ More… → SRC quality control...** on the study's SRC files before reconstruction or population analysis. For NIfTI DWI quality control before SRC creation, use **Tractography → 1 Import → NIfTI → ▸ More… → NIFTI quality control...**.
 
@@ -89,19 +89,19 @@ The neighboring-DWI-correlation QC method is described in:
 
 See the [citation page](/citation.html) for the full reference.
 
-# B-table orientation
+## B-table orientation
 
 Incorrect b-table orientation produces incorrect fiber orientations. B-table flip/swap operations are available during source creation/reconstruction, but they should be applied only when QC and anatomical inspection indicate a problem.
 
 For batch b-table checking and command-line correction, see [Reconstruction CLI](/doc/cli_t2.html).
 
-# Isotropic resampling
+## Isotropic resampling
 
 If isotropic resampling is needed, open the SRC file through **Tractography → 2 Reconstruct → SRC File(s) (*.sz)** and use the reconstruction image-editing/resampling tools. Resampling does not add anatomical information and should be used for a specific processing requirement rather than routinely.
 
 See [Step T2: Reconstruction](/doc/gui_t2.html#make-isotropic).
 
-# Combining multiple scans
+## Combining multiple scans
 
 When multiple diffusion acquisitions were collected in the same image space and should be combined into one SRC file, the command line supports `--other_source`:
 
