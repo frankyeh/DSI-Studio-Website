@@ -59,7 +59,7 @@ dsi_studio --action=img \
   --output=t1w_masked.nii.gz
 ```
 
-# U-Net operations
+## U-Net operations
 
 Current DSI Studio can run U-Net-based brain extraction, segmentation, and defacing. Model IDs come from the model catalog packaged with the current DSI Studio release, so discover the current ID rather than copying an old model name.
 
@@ -97,7 +97,7 @@ dsi_studio --action=img \
 
 Supported models are downloaded/cached in the operating system's application-local DSI Studio data directory as needed; they do not need to be manually placed beside the executable.
 
-# Image-to-image registration
+## Image-to-image registration
 
 Three image commands use a target image or a mapping established earlier in the same command chain.
 
@@ -118,7 +118,7 @@ dsi_studio --action=img \
 
 For explicit registration workflows and mapping files, see [Registration CLI](/doc/cli_reg.html).
 
-# Frequently used image commands
+## Frequently used image commands
 
 ## Intensity
 
@@ -218,7 +218,7 @@ dsi_studio --action=img \
   --output=sum.nii.gz
 ```
 
-# Input formats
+## Input formats
 
 Image mode supports NIfTI, NRRD, DICOM, Bruker 2dseq, and other image formats recognized by DSI Studio.
 
