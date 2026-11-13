@@ -300,6 +300,7 @@ article .ana-flow p { grid-column:2; margin:5px 0; font-size:13.5px; line-height
 .ana-pick-group .step-eyebrow { margin:0 0 10px; }
 .ana-card { position:relative; display:flex; flex-direction:column; gap:6px; min-width:0; border:1px solid var(--line); border-radius:12px; background:#fff; padding:15px 32px 15px 16px; color:var(--ink); text-decoration:none; margin-bottom:10px; }
 .ana-card strong { font-size:15px; line-height:1.35; }
+article .ana-card .ana-desc { margin:0; font-size:13px; line-height:1.5; color:var(--ink); }
 .ana-card > span { color:var(--muted); font-size:12.5px; line-height:1.45; overflow-wrap:anywhere; }
 .ana-card b { position:absolute; right:14px; top:16px; font-size:17px; color:var(--accent); }
 a.ana-card:hover, a.ana-card:focus-visible { border-color:#2a78d6; text-decoration:none; outline:2px solid #2a78d6; outline-offset:2px; }
