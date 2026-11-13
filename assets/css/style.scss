@@ -295,6 +295,8 @@ article .ana-flow p { grid-column:2; margin:5px 0; font-size:13.5px; line-height
 .ana-flow details p { margin:10px 0 0; overflow-wrap:anywhere; }
 .ana-pick { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin:17px 0 32px; }
 .ana-pick-group { min-width:0; }
+.ana-pick-group:last-child { grid-column:1 / -1; }
+.ana-pick-group:last-child .ana-static > span { display:block; }
 .ana-pick-group .step-eyebrow { margin:0 0 10px; }
 .ana-card { position:relative; display:flex; flex-direction:column; gap:6px; min-width:0; border:1px solid var(--line); border-radius:12px; background:#fff; padding:15px 32px 15px 16px; color:var(--ink); text-decoration:none; margin-bottom:10px; }
 .ana-card strong { font-size:15px; line-height:1.35; }
