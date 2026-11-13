@@ -56,7 +56,7 @@
                 <div>
                   <h6>{{ group.group }}</h6>
                   {%- for item in group.items limit:6 -%}
-                  <a href="/doc/{{ item.slug }}.html"{% if is_doc and item.slug == cur_slug %} class="cur"{% endif %}>{{ item.title }}</a>
+                  <a href="/doc/{{ item.slug }}.html"{% if is_doc and item.slug == cur_slug %} class="cur"{% endif %}>{% include doc-nav-label.html title=item.title %}</a>
                   {%- endfor -%}
                   {%- if group.items.size > 6 -%}
                   {%- assign more_count = group.items.size | minus: 6 -%}
@@ -89,7 +89,7 @@
       <details{% if is_doc and group.group == cur_group %} open{% endif %}>
         <summary>{{ group.group }}</summary>
         {%- for item in group.items -%}
-        <a href="/doc/{{ item.slug }}.html"{% if is_doc and item.slug == cur_slug %} class="cur"{% endif %}>{{ item.title }}</a>
+        <a href="/doc/{{ item.slug }}.html"{% if is_doc and item.slug == cur_slug %} class="cur"{% endif %}>{% include doc-nav-label.html title=item.title %}</a>
         {%- endfor -%}
       </details>
       {%- endfor -%}
@@ -116,7 +116,7 @@
         <details{% if group.group == cur_group %} open{% endif %}>
           <summary><h6>{{ group.group }} <span class="caret">▾</span></h6></summary>
           {%- for item in group.items -%}
-          <a href="/doc/{{ item.slug }}.html"{% if item.slug == cur_slug %} class="cur"{% endif %}>{{ item.title }}</a>
+          <a href="/doc/{{ item.slug }}.html"{% if item.slug == cur_slug %} class="cur"{% endif %}>{% include doc-nav-label.html title=item.title %}</a>
           {%- endfor -%}
         </details>
         {%- endfor -%}
