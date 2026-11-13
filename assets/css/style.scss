@@ -352,7 +352,7 @@ ol.tt-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 0; m
 article.doc-menu-reference table { display: table; width: 100%; max-width: 100%; table-layout: fixed; overflow: visible; }
 article.doc-menu-reference th:first-child,
 article.doc-menu-reference td:first-child { width: 27%; }
-article.doc-menu-reference td { overflow-wrap: break-word; }
+article.doc-menu-reference td { overflow-wrap: anywhere; }
 @media (max-width: 760px) {
   article.doc-menu-reference table,
   article.doc-menu-reference tbody,
