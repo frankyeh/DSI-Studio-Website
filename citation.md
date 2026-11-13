@@ -1,6 +1,6 @@
 # Cite DSI Studio
 
-<div class="cite-hero"><p class="cite-eyebrow">Always cite</p><p class="cite-text" id="cite-general">Yeh FC. DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research. Nature Methods. 2025;22(8):1617-1619. doi:10.1038/s41592-025-02762-8.</p><div class="cite-actions"><button type="button" class="cite-copy" data-copy="cite-general" hidden><span class="cite-copy-label">Copy citation</span></button><a class="cite-link" href="https://doi.org/10.1038/s41592-025-02762-8">Nature Methods article</a></div></div>
+<div class="cite-hero"><p class="cite-text" id="cite-general">Yeh FC. DSI Studio: an integrated tractography platform and fiber data hub for accelerating brain research. Nature Methods. 2025;22(8):1617-1619. doi:10.1038/s41592-025-02762-8.</p><div class="cite-actions"><button type="button" class="cite-copy" data-copy="cite-general" hidden><span class="cite-copy-label">Copy citation</span></button><a class="cite-link" href="https://doi.org/10.1038/s41592-025-02762-8">Nature Methods article</a></div></div>
 
 ## General citation for DSI Studio and Fiber Data Hub
 
