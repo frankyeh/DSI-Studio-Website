@@ -9,15 +9,15 @@ DSI Studio uses compact intermediate formats for diffusion MRI processing. For n
 | <span class="gui-file-ext">.sz</span> | Source diffusion data used for reconstruction. Stores processed DWI signals, the b-table, image geometry, mask, and related metadata. |
 | <span class="gui-file-ext">.rz</span> | Reverse-phase-encoding source data used with TOPUP/EDDY workflows. |
 | <span class="gui-file-ext">.fz</span> | Reconstructed fiber information used for tractography, diffusion metrics, connectomes, and other analyses. |
-| <span class="gui-file-ext">.dz</span> | Population/connectometry database. Current `.dz` databases can store multiple diffusion indices in one file together with subject information and optional demographics. |
+| <span class="gui-file-ext">.dz</span> | Population/connectometry database. Current <span class="gui-file-ext">.dz</span> databases can store multiple diffusion indices in one file together with subject information and optional demographics. |
 | <span class="gui-file-ext">.tt.gz</span> | DSI Studio TinyTrack tractography file. |
-| `.nii` / `.nii.gz` | NIfTI exchange format for images and exported scalar maps. |
+| <span class="gui-file-ext">.nii</span> / <span class="gui-file-ext">.nii.gz</span> | NIfTI exchange format for images and exported scalar maps. |
 
-Legacy files such as `.src.gz`, `.fib.gz`, `.db.fz`, and `.db.fib.gz` remain supported in compatible workflows, but new analyses should normally use `.sz`, `.fz`, and `.dz`.
+Legacy files such as <span class="gui-file-ext">.src.gz</span>, <span class="gui-file-ext">.fib.gz</span>, <span class="gui-file-ext">.db.fz</span>, and <span class="gui-file-ext">.db.fib.gz</span> remain supported in compatible workflows, but new analyses should normally use <span class="gui-file-ext">.sz</span>, <span class="gui-file-ext">.fz</span>, and <span class="gui-file-ext">.dz</span>.
 
-## `.sz` source files
+## <span class="gui-file-ext">.sz</span> source files
 
-An `.sz` file is the current source-data container used before reconstruction. It contains the diffusion-weighted signals and b-table needed to reconstruct an `.fz` file.
+An <span class="gui-file-ext">.sz</span> file is the current source-data container used before reconstruction. It contains the diffusion-weighted signals and b-table needed to reconstruct an <span class="gui-file-ext">.fz</span> file.
 
 Common matrices include:
 
@@ -46,9 +46,9 @@ Use DSI Studio rather than reconstructing the 4D volume manually:
 dsi_studio --action=rec --source=data.sz --save_nii=data.nii.gz
 ```
 
-## `.fz` fiber files
+## <span class="gui-file-ext">.fz</span> fiber files
 
-An `.fz` file contains reconstructed diffusion information used by Step T3 and command-line tractography. Depending on the reconstruction and requested outputs, it can include:
+An <span class="gui-file-ext">.fz</span> file contains reconstructed diffusion information used by Step T3 and command-line tractography. Depending on the reconstruction and requested outputs, it can include:
 
 - fiber orientations and anisotropy values;
 - orientation indices or directional vectors;
@@ -57,9 +57,9 @@ An `.fz` file contains reconstructed diffusion information used by Step T3 and c
 - additional scalar maps requested during reconstruction;
 - image geometry, transformation, and reconstruction metadata.
 
-Compact `.fz` matrices use the same masked/scaled storage concept described above.
+Compact <span class="gui-file-ext">.fz</span> matrices use the same masked/scaled storage concept described above.
 
-### Export a metric from `.fz`
+### Export a metric from <span class="gui-file-ext">.fz</span>
 
 For example:
 
@@ -69,11 +69,11 @@ dsi_studio --action=exp --source=data.fz --export=dti_fa
 
 Use [Export Files](/doc/cli_exp.html) for current export options.
 
-## `.dz` connectometry databases
+## <span class="gui-file-ext">.dz</span> connectometry databases
 
-`.dz` is the current population/connectometry database format. For population connectometry, use subject FIB files reconstructed with QSDR into the same template space and resolution so local measurements are directly comparable across subjects.
+<span class="gui-file-ext">.dz</span> is the current population/connectometry database format. For population connectometry, use subject FIB files reconstructed with QSDR into the same template space and resolution so local measurements are directly comparable across subjects.
 
-Unlike older single-metric database files, a current `.dz` database can store multiple available diffusion indices in one file.
+Unlike older single-metric database files, a current <span class="gui-file-ext">.dz</span> database can store multiple available diffusion indices in one file.
 
 Example:
 
@@ -83,13 +83,13 @@ dsi_studio --action=db --source=*.qsdr.fz --output=study.dz
 
 See [Correlational Tractography](/doc/gui_cx.html) and [Connectometry CLI](/doc/cli_cnt.html) for database creation and analysis.
 
-## `.tt.gz` tractography files
+## <span class="gui-file-ext">.tt.gz</span> tractography files
 
-TinyTrack (`.tt.gz`) is DSI Studio's compact tractography format. It stores streamline coordinates together with the image geometry needed to interpret them.
+TinyTrack (<span class="gui-file-ext">.tt.gz</span>) is DSI Studio's compact tractography format. It stores streamline coordinates together with the image geometry needed to interpret them.
 
 For interoperability, DSI Studio can export tractography and tract-derived measurements through the GUI and command line. Prefer those exports over parsing the binary track matrix unless direct format access is specifically required.
 
-## Inspecting `.sz` or `.fz` with Python
+## Inspecting <span class="gui-file-ext">.sz</span> or <span class="gui-file-ext">.fz</span> with Python
 
 The following example safely decompresses a file to a temporary MAT file and lists its matrices without overwriting the original file:
 
