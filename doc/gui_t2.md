@@ -10,6 +10,20 @@ In the current main window, choose **Tractography → 2 Reconstruct → SRC File
 
 Multiple SRC files can be reconstructed as a batch. Processing steps configured on the first file can be applied to the remaining selected files.
 
+## Reconstruction window menus
+
+The reconstruction window has five top-level menus. Their actions operate on the loaded SRC image and its reconstruction settings; inspect changes before saving or reconstructing.
+
+| Top menu | What it does |
+|:--|:--|
+| **File** | Saves the SRC dataset or exports 4D NIfTI, b0, and diffusion-weighted summary images. |
+| **Edit** | Changes image orientation and geometry (flip/swap, AC–PC alignment, rotation, resampling), attaches other images, and offers signal/background or cropping operations. |
+| **B-table** | Loads, saves, regenerates, checks, or flips/swaps diffusion-gradient directions. Incorrect changes alter estimated fiber orientations. |
+| **Corrections** | Runs TOPUP/EDDY, T1w-guided distortion correction, motion/orientation correction, or bias-field correction as appropriate for the acquisition. |
+| **QSDR** | Provides template-registration options, including manual alignment and partial-field-of-view controls for template-space reconstruction. |
+
+These are the menus **inside the SRC reconstruction window**, not the main window's **Tractography → 2 Reconstruct** entries.
+
 ## Visual quality inspection
 
 Before reconstruction, inspect the raw DWI/source-image view and b-table for obvious problems.
@@ -26,7 +40,7 @@ Use **Show bad slice** to highlight detected problematic slices. Sagittal and co
 
 For additional examples, see the [quality-control video](https://www.youtube.com/watch?v=stL4GMeTC1I).
 
-## Step T2a: Specify a mask
+## Specify a mask
 
 The reconstruction mask limits processing to the tissue of interest. The mask editor provides thresholding and common morphological operations including smoothing, expansion, erosion, and defragmentation.
 
@@ -74,7 +88,7 @@ An incorrect b-table produces incorrect fiber orientations. Use **B-table → Ch
 
 If needed, resample the source volume to isotropic resolution before reconstruction. Resampling does not add anatomical information, so use it for a specific processing or tracking requirement rather than routinely.
 
-## Step T2b: Specify a Model
+## Choose a reconstruction method
 
 ### Diffusion Tensor Imaging (DTI)
 
@@ -94,7 +108,7 @@ Select the template appropriate for the species and study. Inspect registration 
 
 Additional images can be attached when they are needed by the reconstruction/template workflow.
 
-## Step T2c: Specify outputs
+## Choose outputs
 
 Select only the additional diffusion measurements needed for the analysis. Available outputs depend on the reconstruction method and DSI Studio version and can include tensor measures, GQI-derived measures, restricted-diffusion measures, and ODF-related outputs.
 
@@ -103,6 +117,12 @@ Saving unnecessary outputs increases `.fz` file size and processing time.
 ### DTI high-b option
 
 **Ignore High b for DTI** restricts tensor estimation to lower b-values when appropriate for the acquisition. Use the same rule across subjects in a group study.
+
+## Batch reconstruction
+
+Use **Tractography → 2 Reconstruct → ▸ More… → Batch SRC → FIB** to process multiple `.sz` files. **SRC quality control...** is in the same expanded section. Batch execution applies the configured reconstruction to a group of subjects, but it does not replace inspecting representative images and evaluating [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) first.
+
+The resulting reconstructed files use `.fz`. For population studies, use **QSDR with the same template and output resolution** across subjects before preparing a [correlational tractography database](/doc/gui_cx.html#create-a-connectometry-database). For longitudinal or cross-sectional differential analysis, see [Differential Tractography](/doc/gui_t3_dt.html).
 
 ## Reconstruct
 
