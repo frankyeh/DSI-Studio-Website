@@ -63,6 +63,20 @@ Small or difficult pathways may fail in some subjects when spatial resolution, a
 
 If an unexpected problem persists, share the relevant SRC/FIB data through the **Data Upload** link and describe the issue on the [DSI Studio forum](https://groups.google.com/g/dsi-studio).
 
+## Batch AutoTrack across subjects
+
+For a cohort, open **Tractography → 3 Track → ▸ More… → Automatic tracking** in the main window. This opens the separate batch AutoTrack interface, which accepts multiple FIB subjects and produces aggregated statistics.
+
+1. Select the `.fz` files and named tract groups to process.
+2. Review the tractography atlas, tolerance, and track density for the anatomy and image scale.
+3. Test a small subset and inspect the reconstructed pathways.
+4. Change tolerance, density, or pruning only when anatomical evidence justifies it.
+5. Apply the finalized settings consistently to the study.
+
+**Important:** The batch interface initially sets **Tolerance** to `22,26,30` mm; loading a FIB does **not** automatically update it. **Track/Voxel Ratio** is initialized from the first FIB. Review tolerance carefully for pediatric, animal, and differently scaled acquisitions.
+
+If several subjects fail or produce implausible tracts, review [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control), b-table and volume orientation, representative [whole-brain tractography](/doc/gui_t3_whole_brain.html), atlas/template suitability, and acquisition SNR/resolution. Do not use relaxed constraints to conceal systematic upstream problems.
+
 ## Tractometry
 
 After a tract has been mapped, DSI Studio can quantify its shape and diffusion measurements.
