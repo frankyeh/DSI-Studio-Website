@@ -88,7 +88,7 @@ Track-density exports under **[Tracts][Save Tracts (Misc)...]** count each strea
 | **Connectivity matrix...** | Computes a region-to-region connectivity matrix from all **checked** bundles across checked ROIs or a built-in atlas using endpoint or pass-through criteria, with count, length, or scalar weighting and `.mat`, `.png`/`.tif`/`.bmp`, and `.txt` network or Circos exports. |
 | **Visualize Graph...** | Opens a square connectivity matrix from a `.mat` file (automatically loading its stored atlas parcellation when named) or a whitespace-delimited `.txt` file (matching regions currently in **Assign Regions**) for 3D connectome graph rendering. |
 
-Connectivity values depend strongly on parcellation choice, endpoint versus pass-through criteria, metric weighting, and thresholding; see [Whole-Brain Tractography](/doc/gui_t3_whole_brain.html#connectivity-matrices) for guidance.
+Connectivity values depend strongly on parcellation choice, endpoint versus pass-through criteria, metric weighting, and thresholding; see [Connectome (R2R / T2R)](/doc/gui_connectome.html) for guidance.
 
 ## Workspaces
 
