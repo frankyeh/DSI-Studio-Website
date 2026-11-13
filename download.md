@@ -24,7 +24,7 @@ article .dl6-card h3{font:600 23px/1.2 var(--serif);margin:0}
 .dl6-extra summary{cursor:pointer;color:#3c526d;font-size:13px;font-weight:600}
 .dl6-extra-body{padding-top:12px}
 article .dl6-extra-body p{margin:9px 0 0;font-size:13px;color:var(--muted)}
-article .dl6-extra-body pre{margin:0 0 8px;font-size:12px}
+article .dl6-extra-body pre{margin:0 0 8px;font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}
 .dl6-cluster-label{font-size:12px!important;font-weight:700!important;margin:12px 0 7px!important;color:var(--ink)!important}
 .dl6-legacy>summary{cursor:pointer;font:600 17px/1.4 var(--serif);padding:15px 18px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
 .dl6-legacy[open]>summary{margin-bottom:15px}
