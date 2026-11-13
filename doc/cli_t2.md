@@ -1,4 +1,4 @@
-# Step T2 Reconstruction
+# <span class="ui-key">Step T2</span> Reconstruction
 
 > Use `--action=rec` to perform diffusion reconstruction (e.g., GQI, DTI, QSDR).
 
