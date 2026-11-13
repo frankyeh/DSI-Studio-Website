@@ -40,7 +40,7 @@ A broader list of publications using DSI Studio is available in the [publication
     label.dataset.text = text;
     label.textContent = ok ? "Copied" : "Press Ctrl+C";
     btn.classList.toggle("is-done", ok);
-    if (status) status.textContent = ok ? "Citation copied to clipboard." : "Copy failed; the text is selected.";
+    if (status) status.textContent = ok ? "Copied to clipboard." : "Copy failed; the text is selected for manual copying.";
     setTimeout(function () { label.textContent = text; btn.classList.remove("is-done"); }, 1800);
   }
   function select(el) {
