@@ -233,6 +233,8 @@ For detailed interpretation, see [How to Interpret dMRI Metrics](/doc/how_to_int
 
 Different metrics answer different biological questions. A multi-metric differential analysis can provide complementary information, but each metric should be interpreted within what the acquisition can support.
 
+For repeated differential tractography analyses, review the GUI-generated commands in [Records › Command History](/doc/cli_vis.html) and apply consistent parameters across the study cohort.
+
 ## False discovery rate for differential findings
 
 A control or sham cohort can be used to estimate how much differential tracking is produced in the absence of the biological effect of interest. Complete the differential analysis for **all controls and all patients** before estimating cohort-level FDR.
