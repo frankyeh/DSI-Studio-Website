@@ -1,14 +1,14 @@
 # ROI-Based Fiber Tracking
 
-> **Before ROI-based tracking:** [Import diffusion data](/doc/gui_t1.html) → [reconstruct a FIB file](/doc/gui_t2.html) → [check whole-brain tractography](/doc/gui_t3_whole_brain.html). Open the resulting `.fz` in the tracking window, then add anatomical ROI/ROA/Seed/End constraints. Ensure any atlas or NIfTI region matches the subject's image space.
+> **Before ROI-based tracking:** [Import diffusion data](/doc/gui_t1.html) → [reconstruct a FIB file](/doc/gui_t2.html) → [check whole-brain tractography](/doc/gui_t3_whole_brain.html). Open the resulting <span class="gui-file-ext">.fz</span> in the tracking window, then add anatomical ROI/ROA/Seed/End constraints. Ensure any atlas or NIfTI region matches the subject's image space.
 
 ROI-based fiber tracking uses anatomical regions to include, exclude, start, or terminate streamlines. Use region constraints only when they are supported by the anatomical hypothesis.
 
-> **[Check whole-brain tractography first](/doc/gui_t3_whole_brain.html).** Before adding ROI constraints, confirm that the `.fz` file has reasonable fiber orientations and that major pathways can be reconstructed with the normal tracking settings.
+> **[Check whole-brain tractography first](/doc/gui_t3_whole_brain.html).** Before adding ROI constraints, confirm that the <span class="gui-file-ext">.fz</span> file has reasonable fiber orientations and that major pathways can be reconstructed with the normal tracking settings.
 
 ## Step T3a: Assign Regions
 
-Open the subject `.fz` file using <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> in the main window; this opens the separate fiber tracking window. Regions can be added from:
+Open the subject <span class="gui-file-ext">.fz</span> file using <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> in the main window; this opens the separate fiber tracking window. Regions can be added from:
 
 - NIfTI region files;
 - built-in atlases;
