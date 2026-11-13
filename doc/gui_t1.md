@@ -16,12 +16,12 @@ In the DSI Studio main window, select <span class="gui-action">XNAT Download</sp
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=65" title="DICOM to SRC tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-In the current main window, open <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">DICOM</span></span> and choose **DICOM file(s)...** or **DICOM folder...**. DSI Studio reads the diffusion information and creates a `.sz` file. The **▸ Rename DICOM** control exposes optional operations that move/rename DICOM files; these do not perform conversion.
+In the current main window, open <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">DICOM</span></span> and choose <span class="gui-menu-path"><span class="gui-menu-item">DICOM file(s)...</span></span> or <span class="gui-menu-path"><span class="gui-menu-item">DICOM folder...</span></span>. DSI Studio reads the diffusion information and creates a `.sz` file. The <span class="gui-action">▸ Rename DICOM</span> control exposes optional operations that move/rename DICOM files; these do not perform conversion.
 
-For larger studies, the **DICOM folder...** option converts a folder of scans. Expand **▸ Rename DICOM** only when you explicitly need to reorganize the source files:
+For larger studies, the <span class="gui-menu-path"><span class="gui-menu-item">DICOM folder...</span></span> option converts a folder of scans. Expand <span class="gui-action">▸ Rename DICOM</span> only when you explicitly need to reorganize the source files:
 
-- **Rename DICOM files...** — organize selected DICOM files.
-- **Rename DICOM folder...** — organize DICOM studies beneath a root folder.
+- <span class="gui-menu-path"><span class="gui-menu-item">Rename DICOM files...</span></span> — organize selected DICOM files.
+- <span class="gui-menu-path"><span class="gui-menu-item">Rename DICOM folder...</span></span> — organize DICOM studies beneath a root folder.
 
 The DICOM rename functions **move and rename files**. Keep an untouched backup and test on a small subset before processing a full study. For command-line organization, see [Rename DICOM CLI](/doc/cli_ren.html).
 
@@ -33,7 +33,7 @@ A diffusion-weighted NIFTI image needs its diffusion gradient information. DSI S
 
 For one scan:
 
-1. Open <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI file(s)...</span></span> and select one 4D diffusion NIfTI file. To process multiple scans, use **NIfTI folder...**.
+1. Open <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI file(s)...</span></span> and select one 4D diffusion NIfTI file. To process multiple scans, use <span class="gui-menu-path"><span class="gui-menu-item">NIfTI folder...</span></span>.
 2. DSI Studio looks for matching `bval` and `bvec` files in the same directory.
 3. If they are not found automatically, use <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open bval</span></span> and <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open bvec</span></span> in the **source-image / b-table parser window** opened by NIfTI import (not the DSI Studio main window).
 4. Create the `.sz` file and inspect the loaded b-table before continuing.
