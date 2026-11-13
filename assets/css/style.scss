@@ -70,7 +70,7 @@ a:hover { text-decoration: underline; }
 .agent-logos { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
 .agent-logo { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; width: 76px; }
 .agent-logo-tile { display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
-.agent-logo-tile img { display: block; width: 29px; height: 29px; object-fit: contain; background: transparent; border: 0; padding: 0; border-radius: 0; box-shadow: none; }
+.agent-logo-tile img { display: block; width: 38px; height: 38px; object-fit: contain; image-rendering: auto; background: transparent; border: 0; padding: 0; border-radius: 0; box-shadow: none; }
 .agent-logo:nth-child(1) .agent-logo-tile { background:#ddf5ec; border-color:#a8dbc7; }
 .agent-logo:nth-child(2) .agent-logo-tile { background:#fff0e9; border-color:#f0c6b4; }
 .agent-logo:nth-child(3) .agent-logo-tile { background:#e5f2ff; border-color:#b8d9fb; }
