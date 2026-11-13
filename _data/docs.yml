@@ -32,16 +32,40 @@
       slug: cli_vis
 - group: "Menu reference"
   items:
-    - title: "[Tract Edit]"
-      slug: menu_edit
-    - title: "[Tracts]"
-      slug: menu_tracts
+    - title: "[File]"
+      slug: menu_file
     - title: "[Regions]"
       slug: menu_regions
+    - title: "[Region Edit]"
+      slug: menu_region_edit
+    - title: "[Region Move]"
+      slug: menu_region_move
+    - title: "[Regions Misc]"
+      slug: menu_regions_misc
+    - title: "[Tracts]"
+      slug: menu_tracts
+    - title: "[Tract Edit]"
+      slug: menu_edit
+    - title: "[Tracts Cluster]"
+      slug: menu_tracts_cluster
+    - title: "[Tracts Misc]"
+      slug: menu_tracts_misc
     - title: "[Slices]"
       slug: menu_slices
+    - title: "[Slices Segment]"
+      slug: menu_slices_segment
     - title: "[Devices]"
       slug: menu_devices
+    - title: "[Screen]"
+      slug: menu_screen
+    - title: "[View]"
+      slug: menu_view
+    - title: "[Export]"
+      slug: menu_export
+    - title: "[Layout]"
+      slug: menu_layout
+    - title: "[Records]"
+      slug: menu_records
 - group: "Command line"
   items:
     - title: "[src] Generate SRC"
