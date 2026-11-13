@@ -56,7 +56,7 @@ Only apply corrections that are appropriate for the acquisition and study design
 
 ### TOPUP/EDDY and motion correction
 
-For reverse-phase-encoding acquisitions, use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">TOPUP/EDDY</span></span>. DSI Studio first looks for the matching `.rz` companion file. If one is not found, it can accept another reverse-phase-encoding <span class="gui-file-ext">.sz</span>, `.rz`, legacy <span class="gui-file-ext">.src.gz</span>, or NIfTI file.
+For reverse-phase-encoding acquisitions, use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">TOPUP/EDDY</span></span>. DSI Studio first looks for the matching <span class="gui-file-ext">.rz</span> companion file. If one is not found, it can accept another reverse-phase-encoding <span class="gui-file-ext">.sz</span>, <span class="gui-file-ext">.rz</span>, legacy <span class="gui-file-ext">.src.gz</span>, or NIfTI file.
 
 For acquisitions without a reverse-phase pair, use the applicable EDDY/motion-correction workflow.
 
