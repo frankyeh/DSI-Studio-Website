@@ -17,7 +17,7 @@ DSI Studio can derive region-to-region (R2R) connectivity matrices from tractogr
 
 ### Generate an R2R matrix
 
-1. Generate and inspect the tractography used for the connectome.
+1. Generate and inspect the [whole-brain tractography](/doc/gui_t3_whole_brain.html) used for the connectome.
 2. Open <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Connectivity Matrix</span></span>.
 3. Select a built-in parcellation atlas or use loaded ROIs.
 4. Select whether connectivity is defined by streamline **endpoints** or **pass-through** regions.
