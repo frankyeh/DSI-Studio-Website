@@ -47,6 +47,8 @@ Use **Tracts → Save Current Tract As...** to save the selected tract group. Us
 
 DSI Studio's current compact tractography format is `.tt.gz`. Other formats can be exported when interoperability with other software is needed.
 
+<span id="connectivity-matrices"></span>
+
 ## Connectome analysis
 
 To generate **region-to-region (R2R)** or **tract-to-region (T2R)** connectivity matrices from tractography, follow the dedicated [Connectome guide](/doc/gui_connectome.html). Whole-brain tracking is a useful quality check before constructing a connectivity matrix.
