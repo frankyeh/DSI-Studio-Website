@@ -164,9 +164,9 @@ Use the <span class="gui-menu-item">Cohort</span> tab when the analysis applies 
 
 ### Run and review results
 
-Run connectometry and inspect both increased and decreased associations when relevant to the hypothesis. DSI Studio reports the tract findings together with the null/permuted distributions and FDR as a function of track length. The FDR comes from the whole-brain permutation framework; it should not be interpreted as an independent tract-by-tract statistical test.
+Click <span class="gui-action">Run connectometry</span> and inspect both increased and decreased associations when relevant to the hypothesis. DSI Studio reports the tract findings together with the null/permuted distributions and FDR as a function of track length. The FDR comes from the whole-brain permutation framework; it should not be interpreted as an independent tract-by-tract statistical test.
 
-The 3D result view can be used to inspect the anatomical location of the findings. Interpret FDR together with effect size, track length, data quality, acquisition consistency, sample size, and the study design. Very small samples or systematic acquisition differences can produce unstable or misleading results even when a numerical threshold appears favorable.
+Use <span class="gui-action">View Results in 3D</span> to inspect the anatomical location of the findings. Interpret FDR together with effect size, track length, data quality, acquisition consistency, sample size, and the study design. Very small samples or systematic acquisition differences can produce unstable or misleading results even when a numerical threshold appears favorable.
 
 ## Command-line analysis
 
