@@ -1,5 +1,7 @@
 # AutoTrack and Tractometry
 
+> **Before AutoTrack or tractometry:** [Import diffusion data](/doc/gui_t1.html) → [reconstruct a FIB file](/doc/gui_t2.html) → [check whole-brain tractography](/doc/gui_t3_whole_brain.html). You need an anatomically plausible `.fz` and an appropriate tractography atlas; start on this page once those checks pass. For tract measurements, first map or load the named bundles.
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Hzeb_q6ux-Q" title="Automatic fiber tracking tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 AutoTrack maps named white-matter pathways using DSI Studio's tractography atlas. It is useful when the goal is to map a specific anatomical bundle consistently across subjects.
