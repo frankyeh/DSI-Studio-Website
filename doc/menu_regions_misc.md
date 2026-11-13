@@ -14,7 +14,7 @@ The **[Regions Misc]** menu creates threshold, MNI-coordinate, and whole-brain s
 | Menu item | Behavior |
 |---|---|
 | <span class="gui-menu-item">Load Region Color...</span> | Loads display colors (`0`–`255`) for all listed regions from a `.txt` file using positional `R G B` / `R G B A` lines or tab-separated `Name R G B A` rows. Mismatched counts, unknown or duplicate names, or invalid values abort the load unchanged. |
-| <span class="gui-menu-item">Save Region Color...</span> | Saves the assigned `R G B A` display color (`0`–`255`) of every listed region in row order to a `.txt` file, ready to reload with **Regions Misc › Load Region Color...**. |
+| <span class="gui-menu-item">Save Region Color...</span> | Saves the assigned `R G B A` display color (`0`–`255`) of every listed region in row order to a `.txt` file, ready to reload with **[Regions Misc][Load Region Color...]**. |
 
 ## Sort regions
 
