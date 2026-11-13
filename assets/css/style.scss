@@ -356,7 +356,7 @@ ol.tt-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 0; m
 /* Menu Reference: readable action labels and stacked behavior cards on phones. */
 article.doc-menu-reference table { display: table; width: 100%; max-width: 100%; table-layout: fixed; overflow: visible; }
 article.doc-menu-reference th:first-child,
-article.doc-menu-reference td:first-child { width: 27%; }
+article.doc-menu-reference td:first-child { width: 32%; }
 article.doc-menu-reference td { overflow-wrap: anywhere; }
 @media (max-width: 760px) {
   article.doc-menu-reference table,
@@ -366,7 +366,7 @@ article.doc-menu-reference td { overflow-wrap: anywhere; }
   article.doc-menu-reference thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   article.doc-menu-reference tr { margin-bottom: 12px; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
   article.doc-menu-reference td { border: 0; padding: 10px 12px; }
-  article.doc-menu-reference td:first-child { width: 100%; font-weight: 600; background: var(--soft); border-bottom: 1px solid var(--line); }
+  article.doc-menu-reference td:first-child { width: 100%; font-weight: 600; background: #fff; border-bottom: 1px solid var(--line); }
   article.doc-menu-reference .ui-key { white-space: normal; overflow-wrap: anywhere; }
 }
 
@@ -529,7 +529,7 @@ article h3.cite-title { margin: 0 0 6px; font: 600 15px/1.4 var(--sans); }
 article.doc-menu-reference td .gui-menu-item,
 article.doc-menu-reference td .gui-action,
 article.doc-menu-reference td .gui-card {
-  white-space: normal; overflow-wrap: break-word; hyphens: auto;
+  white-space: normal; overflow-wrap: break-word; hyphens: none;
   max-width: 100%; box-sizing: border-box;
 }
 article.doc-menu-reference td .gui-menu-path { display: inline; }
