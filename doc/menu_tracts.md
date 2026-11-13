@@ -36,7 +36,7 @@ Lists one dynamic entry for each available fiber metric and loaded slice volume 
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">&lt;metric&gt;...</span> | Samples the chosen metric at every vertex along the **highlighted** bundle and exports per-vertex values to `.txt`, `.mat`, or `.trk`/`.trk.gz`. Do not save as `.tt.gz`, which omits per-vertex scalar values. |
+| <var>metric</var><code>...</code> | Samples the chosen metric at every vertex along the **highlighted** bundle and exports per-vertex values to `.txt`, `.mat`, or `.trk`/`.trk.gz`. Do not save as `.tt.gz`, which omits per-vertex scalar values. |
 
 ## Manage tract bundles
 
@@ -65,7 +65,7 @@ Streamline count and voxelized bundle volume depend on seeding density, tracking
 |---|---|
 | <span class="gui-menu-item">Tracts To Region</span> | Voxelizes all visible streamlines of the **highlighted** bundle onto the active slice's voxel grid as a new checked ROI in **Assign Regions**. |
 | <span class="gui-menu-item">Endpoints To Region</span> | Orients streamlines in the **highlighted** bundle and creates two checked endpoint ROIs (`<name> endpoints1` and `<name> endpoints2`) on the active slice's voxel grid in **Assign Regions**. |
-| <span class="gui-menu-item">Filter Tracks by ROI/ROA/End</span> | Filters all **checked** bundles against checked regions in **Assign Regions** using each region's tracking role, moving excluded streamlines to the deleted buffer (undoable, or recoverable via **Tracts › Separate Deleted Tracts**). |
+| <span class="gui-menu-item">Filter Tracks by ROI/ROA/End</span> | Filters all **checked** bundles against checked regions in **Assign Regions** using each region's tracking role, moving excluded streamlines to the deleted buffer (undoable, or recoverable via **[Tracts][Separate Deleted Tracts]**). |
 
 Select the intended diffusion or registered anatomical volume in the slice selector dropdown before converting tracts or endpoints to regions, and see the [Regions menu](/doc/menu_regions.html) for region editing and export.
 
