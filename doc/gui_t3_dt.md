@@ -52,11 +52,11 @@ This produces a file such as `subject_followup.fz.dti_fa.nii.gz`.
 
 ## 3. Check whole-brain tracking first
 
-Open the baseline `.fz` using **Tractography → 3 Track → FIB File (*.fz)** and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
+Open the baseline `.fz` using <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
 
 ## 4. Add the follow-up metric and wait for registration
 
-Insert the exported follow-up map using **Slices → Insert Other Images**. DSI Studio may run rigid-body registration even when the scans have the same matrix size and voxel size. Wait until registration is complete before selecting the differential metrics.
+Insert the exported follow-up map using <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Insert Other Images</span></span>. DSI Studio may run rigid-body registration even when the scans have the same matrix size and voxel size. Wait until registration is complete before selecting the differential metrics.
 
 Metric names used by differential tracking are the names shown by the current tracking window, not arbitrary abbreviations. For a NIfTI custom slice, the name is derived from the file stem. Verify the displayed names before a batch run.
 
