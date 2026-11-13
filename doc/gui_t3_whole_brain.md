@@ -45,7 +45,7 @@ For command-line equivalents, see [Fiber Tracking CLI](/doc/cli_t3.html).
 
 ## Saving tractography
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Save Current Tract As...</span></span> to save the selected tract group. Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Save All Tracts As</span></span> when multiple loaded/segmented tract groups should be saved together.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Save Current Tract As...</span></span> to save the selected tract group. Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Save All Tracts As...</span></span> when multiple loaded/segmented tract groups should be saved together.
 
 DSI Studio's current compact tractography format is <span class="gui-file-ext">.tt.gz</span>. Other formats can be exported when interoperability with other software is needed.
 
