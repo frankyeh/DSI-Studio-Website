@@ -151,7 +151,7 @@ Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-a
       <li>Select <strong>Regions › Tract-to-Region Connectome</strong> to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.</li>
     </ol>
   </div>
-</div>>
+</div>
 
 <aside class="ana-note" role="note"><p><strong>Check.</strong> Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.</p></aside>
 
