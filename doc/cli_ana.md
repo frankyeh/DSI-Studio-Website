@@ -164,7 +164,7 @@ dsi_studio --action=ana \
 
 ## Connectivity Analysis
 
-Calculate region-to-region (`r2r`) and tract-to-region (`t2r`) connectivity matrices using built-in atlases or NIfTI parcellations:
+Calculate region-to-region (`r2r`) and tract-to-region (`t2r`) connectivity matrices using built-in atlases or NIfTI parcellations. For the GUI definitions and workflows, see [Connectome (R2R / T2R)](/doc/gui_connectome.html):
 
 ```bash
 dsi_studio --action=ana \
