@@ -8,8 +8,6 @@
       slug: how_to_interpret_dmri
     - title: "How to interpret tractography"
       slug: how_tractography_works
-    - title: "Data formats"
-      slug: cli_data
 - group: "GUI manual"
   items:
     - title: "Import: generate SRC files"
@@ -68,6 +66,8 @@
       slug: menu_records
 - group: "Command line"
   items:
+    - title: "Data formats"
+      slug: cli_data
     - title: "[src] Generate SRC"
       slug: cli_t1
     - title: "[rec] Reconstruction"
