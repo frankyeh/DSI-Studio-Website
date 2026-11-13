@@ -26,7 +26,7 @@ See [Whole-Brain Fiber Tracking](/doc/gui_t3_whole_brain.html) for the general t
 
 ### 3. Enable AutoTrack
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Autotrack...</span></span> and select the target tract or tract group.
+Use <span class="gui-menu-path"><span class="gui-card">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Autotrack...</span></span> and select the target tract or tract group.
 
 DSI Studio uses the selected tractography atlas and the subject-to-template mapping to recognize streamlines belonging to the requested pathway. AutoTrack entries are hierarchical: choose the parent entry when the whole tract family is intended and a child entry only when a specific subdivision or branch is requested.
 
@@ -85,7 +85,7 @@ After a tract has been mapped, DSI Studio can quantify its shape and diffusion m
 
 ## Tract statistics
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Statistics</span></span> to obtain tract-level measurements. Depending on the loaded data, these can include:
+Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Statistics...</span></span> to obtain tract-level measurements. Depending on the loaded data, these can include:
 
 - streamline/pathway length and span;
 - tract volume and surface/shape measurements;
@@ -96,11 +96,11 @@ Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span c
 
 For interpretation of diffusion measurements, see [How to Interpret dMRI Metrics](/doc/how_to_interpret_dmri.html).
 
-Additional NIfTI measurements such as structural MRI, quantitative MRI, PET, or other maps can be inserted with <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Insert Other Images</span></span> and sampled along the tract when they are correctly aligned.
+Additional NIfTI measurements such as structural MRI, quantitative MRI, PET, or other maps can be inserted with <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Insert Other Images...</span></span> and sampled along the tract when they are correctly aligned.
 
 ## Tract profile
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Tract Profile</span></span> to examine how a measurement changes along a pathway rather than reducing the tract to one mean value.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Tract Profile...</span></span> to examine how a measurement changes along a pathway rather than reducing the tract to one mean value.
 
 Profiles can be parameterized by image axes or by fiber orientation. Keep the same profile definition and bandwidth when comparing subjects.
 
