@@ -11,9 +11,9 @@ Every analysis starts from the same three steps: import your scans into an SRC f
     <p class="ana-path"><span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>Import</span></span></p>
     <p>Pick the tab that matches your files:</p>
     <div class="ana-sources">
-      <div><strong>DICOM</strong><span><span class="gui-menu-path"><span class="gui-menu-item">DICOM</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">DICOM folder...</span></span></span><small>or <span class="gui-action">DICOM file(s)...</span></small></div>
-      <div><strong>NIfTI with .bval / .bvec</strong><span><span class="gui-menu-path"><span class="gui-menu-item">NIfTI</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">NIfTI file(s)...</span></span></span><small><span class="gui-action">NIfTI folder...</span> also detects BIDS <code>sub-*</code> folders</small></div>
-      <div><strong>Bruker / Varian</strong><span><span class="gui-menu-path"><span class="gui-menu-item">2dseq/FDF</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">2dseq / FDF file(s)...</span></span></span></div>
+      <div><strong>DICOM tab</strong><span><span class="gui-menu-path"><span class="gui-action">DICOM folder...</span></span></span><small>or <span class="gui-action">DICOM file(s)...</span></small></div>
+      <div><strong>NIfTI tab</strong><small>NIfTI with .bval / .bvec</small><span><span class="gui-menu-path"><span class="gui-action">NIfTI file(s)...</span></span></span><small><span class="gui-action">NIfTI folder...</span> also detects BIDS <code>sub-*</code> folders</small></div>
+      <div><strong>2dseq/FDF tab</strong><small>Bruker / Varian</small><span><span class="gui-menu-path"><span class="gui-action">2dseq / FDF file(s)...</span></span></span></div>
     </div>
     <span class="ana-file">Output: .sz</span>
     <details>
