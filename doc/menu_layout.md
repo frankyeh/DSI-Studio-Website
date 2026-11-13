@@ -1,23 +1,38 @@
 # [Layout] Menu
 
-Restore the window arrangement or choose a 3D-view layout.
+Use the **[Layout]** menu in the Fiber Tracking window to reset the outer window geometry and dockable panel arrangement to their default workspace layout, or to switch the central 3D OpenGL viewport between a single full-width canvas, two independently steerable side-by-side views, and a coupled stereoscopic 3D pair.
 
 ## Window and 3D views
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Restore Window Layout  | — |
-| **3D Views** submenu | — |
+| **Restore Window Layout** | Restores the Fiber Tracking window size, screen position, and dock-panel layout to the initial session state (`1200 × 700` normal window with **Assign Regions** and **Draw Regions** docked on the left, **Options** and **Tracts** docked on the right, and **Devices** hidden unless shown when the first tracking window opened). Re-docks floating panels, re-opens closed standard docks, and resets splitter proportions. Does not change the active **Layout › 3D Views** split mode, 3D camera orientation, 2D slice or mosaic view mode, or tracking and rendering settings. |
+| **3D Views** | Opens the submenu that switches the central 3D OpenGL viewport between **Single**, **Double**, and **Stereoscopic** display modes. None of the actions in **Layout** or **Layout › 3D Views** define default keyboard shortcuts or display active-mode checkmarks. |
 
-### 3D Views submenu
+### [3D Views] submenu
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Single | — |
-| Double | — |
-| Stereoscopic | — |
+| **Single** | Displays one full-width 3D OpenGL viewport controlled by the primary camera (the default mode when a Fiber Tracking window opens). Select **Single** to exit **Double** or **Stereoscopic** split-screen rendering, as **Layout › Restore Window Layout** resets only dock panels and window geometry. |
+| **Double** | Splits the 3D OpenGL canvas vertically into two equal side-by-side viewports (`1/2` width each) with per-viewport aspect-ratio adjustment so neither half is horizontally stretched, initializing the right camera as a copy of the current left camera. Mouse interactions operate independently on whichever half the cursor is over: left-drag rotation, right-drag or scroll-wheel zoom, and middle-drag (or left+right drag) panning steer the left and right cameras separately while both halves display the same visible slices, tracts, regions, surfaces, and devices. Choosing an orthogonal preset in **View** (**Sagittal View**, **Coronal View**, or **Axial View**) or toggling the slice-plane buttons re-synchronizes the right camera to match the left; **View › Open Camera Position...**, **View › Save Camera Position...**, camera preset slots, and the **3D Zoom** spinbox read and update the left viewport camera. |
+| **Stereoscopic** | Splits the 3D OpenGL canvas vertically into coupled left-eye and right-eye viewports (`1/2` width each) for side-by-side binocular free-fusion or stereo-display viewing. The left half renders the primary camera and the right half renders the identical scene rotated around the vertical (`Y`) axis by **Options › Rendering › Stereoview Angle** (`0.0°`–`5.0°` in `0.2°` steps, default `1.0°`). Mouse rotation, zoom, and panning in either half update the shared primary camera so both views stay locked in binocular alignment. Because the projection aspect ratio uses the full canvas width for half-width stereo frame output, each eye view appears horizontally compressed on a standard 2D monitor unless the 3D area is widened or sent to a side-by-side 3D display. |
 
+## Dock panels and 3D-focused workspace
 
-The `run ...` strings above, where shown, are **GUI command hints from the UI file**, not public `dsi_studio --action=...` CLI flags.
+The Fiber Tracking window places the interactive **3D OpenGL viewport** (and its top slice-modality, slice-position, and contrast toolbar) at the center of five dockable panels:
 
-Source: [tracking_window.ui](https://github.com/frankyeh/DSI-Studio/blob/master/tracking/tracking_window.ui).
+- **Left dock area:** **Assign Regions** (region table, tracking role assignment, and atlas loading) and **Draw Regions** (2D slice/ROI drawing canvas and slice-view tools), both visible by default.
+- **Right dock area:** **Options** (tracking and rendering parameter tree) and **Tracts** (bundle table, fiber tracking controls, and visual style presets), both visible by default, plus **Devices** (stereotactic and DBS lead table), which starts hidden and opens automatically when **[Devices][New Device]** or **[Devices][Open Device...]** adds a device.
+
+You can customize the workspace or maximize the 3D view at any time:
+
+- **Resize, float, tab-stack, or focus on 3D:** Drag the splitter borders between panels to resize them, drag a dock title bar to float a panel as an independent window or tab-stack it onto another dock, or click a dock's close (`×`) button to hide it. Because the 3D viewport is the central widget, closing or floating the surrounding docks expands the 3D canvas across the entire Fiber Tracking window (maximize the window itself for full-screen 3D inspection).
+- **Toggle individual panels back on:** Right-click any visible dock title bar to open the panel checklist (**Assign Regions**, **Draw Regions**, **Options**, **Tracts**, **Devices**) and show or hide individual panels without resetting the rest of your arrangement. If every dock panel has been closed—leaving no dock title bar to right-click—choose **[Layout][Restore Window Layout]** to bring back all four standard docks and the default `1200 × 700` window geometry immediately.
+- **Presentation folders and session baseline:** Opening a `.fz` file located inside a `/presentation/` directory automatically loads the workspace from that folder and hides **Draw Regions** (plus **Assign Regions** when no regions are loaded) for a clean 3D presentation layout. Because DSI Studio captures the baseline geometry and dock state for **[Layout][Restore Window Layout]** from the first Fiber Tracking window opened in the current program session, opening a `/presentation/` file first makes that reduced dock state the session default; right-click a visible dock title bar (such as **Options** or **Tracts**) to re-enable **Draw Regions** or **Assign Regions** whenever needed.
+
+## Related view and reset controls
+
+- **2D slice and mosaic layouts:** The **Show 3-slice view**, **Show mosaic view**, and single-plane (**Sagittal**, **Coronal**, **Axial**) buttons at the bottom of **Draw Regions** control only the 2D ROI/slice canvas, independent of **[Layout][3D Views]**. When **Show 3-slice view** is active, its embedded 3D quadrant mirrors the live 3D OpenGL framebuffer, including any **Double** or **Stereoscopic** split.
+- **Screenshots and video in split modes:** Framebuffer captures such as **[Screen][Copy to Clipboard][3D Screen]**, **[Screen][Save 3D Screen...]**, and video recording capture the active **Single**, **Double**, or **Stereoscopic** viewport layout directly. To generate a one-shot side-by-side stereo pair or multi-angle composite while keeping **[Layout][3D Views][Single]** active, use **[Screen][Copy to Clipboard][3D Screen Left/Right Views]** or **[Screen][Save 3D Screen Left/Right Views...]** in the [Screen menu](/doc/menu_screen.html).
+- **Camera orientation and saved viewpoints:** Orthogonal anatomical camera views (**[View][Sagittal View]**, **[View][Coronal View]**, **[View][Axial View]**), camera matrix files, and store/recall camera slots `1`–`4` are in the [View menu](/doc/menu_view.html).
+- **Parameter resets and saved workspaces:** **[Layout][Restore Window Layout]** never modifies tracking thresholds, rendering parameters, or loaded data. Use **[File][Restore Tracking Settings]** and **[File][Restore Rendering Settings]** to reset parameters to defaults, or **[File][Save Workspace...]** and **[File][Load Workspace...]** in the [File menu](/doc/menu_file.html) to save and reload tracts, regions, devices, registered slices, settings, and camera orientation from a folder.

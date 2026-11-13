@@ -1,100 +1,72 @@
 # [Tract Edit] Menu
 
-Prune, select, delete, recolor, and cut streamlines in the Step T3 tracking window.
+The **[Tract Edit]** menu in the Fiber Tracking window provides interactive 3D mouse-stroke tools to select, delete, recolor, and split streamlines, alongside Topology-Informed Pruning (TIP), automated terminal-end trimming, orthogonal slice-plane cutting, and multi-step undo/redo. Streamline removals and cuts move affected trajectories into each bundle's per-row deleted buffer rather than discarding them permanently, so edits can be reverted with **[Tract Edit][Undo]** (`Ctrl+Z`) or extracted into a separate bundle row with **[Tracts][Separate Deleted Tracts]** (`Ctrl+Alt+S`). Pay attention to bundle targeting in the **Tracts** list: 3D stroke tools, **[Tract Edit][Cut By Slice]**, **[Tract Edit][Undo]**, and **[Tract Edit][Redo]** act across all **checked** bundles, **[Tract Edit][Trim]** acts on the **currently selected (highlighted) row** whether checked or unchecked, and the three endpoint-portion cuts require the **currently selected row** to be **checked**. For file I/O, bundle-row management, and ROI-based streamline filtering, see the [Tracts menu](/doc/menu_tracts.html); for automated branch, duplicate, and length cleanup, see the [Tracts Misc menu](/doc/menu_tracts_misc.html); for streamline clustering, see the [Tracts Cluster menu](/doc/menu_tracts_cluster.html).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/1xfhaFQhCtY" title="Interactive tract editing tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Undo, Redo, and Trim
 
-| Menu item | Shortcut / GUI command hint | Target & behavior |
-|:--|:--|:--|
-| Undo | Shortcut: `Ctrl+Z` · `run undo_tract` | Restores streamlines removed by the latest selection, deletion, trim, or cut across all **checked** bundles (and removes cut sub-segments); does not revert **Paint** color changes. |
-| Redo | Shortcut: `Ctrl+Y` · `run redo_tract` | Re-applies the most recently undone streamline removal in **checked** bundles. Cleared as soon as a new deletion or cut occurs. |
-| Trim | Shortcut: `Ctrl+T` · `run trim_tract` | Applies one Topology-Informed Pruning (TIP) iteration to the **currently selected bundle row** (checked or unchecked), deleting streamlines that pass through 2×2×2 voxel neighborhoods occupied by 3 or fewer streamlines. Intended for populated coherent bundles rather than whole-brain tractography. |
+| Menu item | Behavior |
+|---|---|
+| **Undo** | Shortcut: `Ctrl+Z`. Restores the latest batch of streamlines moved to the deleted buffer across all **checked** bundles in the **Tracts** table — including removals from **Select**, **Delete**, **Trim**, **Tracts › Filter Tracks by ROI/ROA/End**, and **Tracts Misc** deletion tools — and removes any split sub-segments created by **Cut**, endpoint-portion cuts, or **Cut By Slice** before restoring the original uncut trajectories. Updates both the **Tracts** and **Deleted** counts in the table. Caution: unchecked rows are skipped (check a row's box first if you trimmed it while unchecked), and **Undo** does not revert **Paint** color changes, whole-row deletion (**Tracts › Delete**), clustering, or trajectory resampling/reconnection. |
+| **Redo** | Shortcut: `Ctrl+Y`. Re-applies the most recently undone streamline removal across all **checked** bundles, moving those restored trajectories back into each bundle's deleted buffer. The redo stack is cleared immediately whenever a new streamline deletion, selection, trim, or cut is performed. Note that if the undone step was a cut operation, **Redo** moves the restored full-length streamlines back to the deleted buffer without re-creating the split sub-segments. |
+| **Trim** | Shortcut: `Ctrl+T`. Applies **one iteration** of **Topology-Informed Pruning (TIP)** to the **currently selected (highlighted) bundle row** in the **Tracts** table (whether its visibility checkbox is checked or unchecked). Evaluates trajectory density on the native diffusion voxel grid and moves any streamline that passes through a `2 × 2 × 2` voxel neighborhood occupied by `3` or fewer distinct streamlines into that bundle's deleted buffer. Repeat `Ctrl+T` (`1–4` passes) to progressively peel frayed or singular outlier trajectories from a well-populated, visually coherent pathway; avoid applying **Trim** to whole-brain tractograms or sparse bundles. |
+
+### Trim vs. Filter by ROI
+
+**[Tract Edit][Trim]** and **[Tracts][Filter Tracks by ROI/ROA/End]** solve distinct cleanup problems and target bundles differently:
+
+- **[Tract Edit][Trim]** (`Ctrl+T`, *density-based topological pruning*): Unsupervised cleanup on the **single selected bundle row** using local streamline-sharing density (`2 × 2 × 2` voxel neighborhoods with `≤ 3` streamlines removed). Best suited for an already isolated, densely populated single pathway (typically `5,000–10,000+` streamlines) where stray false-positive branches diverge into low-density voxels. Automated tracking workflows can also apply TIP iterations at completion through **TIP Iteration** under **Tracking Parameters** in the **Options** panel. Applying **Trim** to a sparse bundle can erase valid core fibers that fall below `4` streamlines per neighborhood, and applying it to a whole-brain tractogram indiscriminately prunes thin pathways while leaving dense crossing artifacts intact.
+- **[Tracts][Filter Tracks by ROI/ROA/End]** (*anatomical region filtering*): Hypothesis-driven filtering across **all checked bundles** against every checked region in the **Regions** list (`ROI` pass-through, `ROA` exclusion, `End` and `NotEnd` endpoint rules, and `Limiting` spatial bounds), independent of fiber density. Use **[Tracts][Filter Tracks by ROI/ROA/End]** first when isolating or excluding pathways by neuroanatomical landmarks (see [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html)), then apply **[Tract Edit][Trim]** if needed to tidy residual low-density fringe fibers.
 
 ## Select
 
-Choose **[Tract Edit][Select]** (`Ctrl+S`), then drag across the 3D view to isolate streamlines in all **checked** bundles: streamlines crossing the selection stroke are retained, and all non-crossing streamlines are moved to the bundle's deleted buffer (`Ctrl+Z` to undo).
+| Menu item | Behavior |
+|---|---|
+| **Select** | Shortcut: `Ctrl+S`. Switches the 3D viewport cursor to a one-shot crosshair so you can drag a selection stroke across visible fibers: across all **checked** bundles, streamlines intersected by the stroke are **kept** and all non-intersected streamlines are moved to each bundle's deleted buffer (`Ctrl+Z` to undo). Releasing the mouse button completes the edit and returns the cursor to normal navigation. Caution: `Ctrl+S` in the Fiber Tracking window arms 3D streamline selection rather than saving a file; use **Tracts › Save Current Tract As...** or **File › Save Workspace...** to save work to disk. |
 
-All four 3D gesture tools (**Select**, **Delete**, **Paint**, and **Cut**) switch the 3D cursor to a one-shot crosshair and share the same stroke modifiers:
+All four interactive 3D stroke tools (**[Tract Edit][Select]**, **[Tract Edit][Delete]**, **[Tract Edit][Paint]**, and **[Tract Edit][Cut]**) project viewing rays from the current 3D camera position (supporting single, double, and stereoscopic viewports) and share the same mouse-drag modifiers:
 
-| 3D mouse gesture | Behavior |
-|:--|:--|
-| **Left-drag** | Defines a straight viewing-ray cutting plane between press and release, matching crossing streamlines at any angle. |
-| **`Shift` + drag** | Draws a multi-segment freehand polyline across the 3D view (sampled every ≥ 20 pixels). |
-| **Right-drag** | Constrains the stroke by **Tract Selection Angle** (`tract_sel_angle` under **Tract** rendering options, `0`–`90`°, initial `45`°), matching only streamlines whose local tangent satisfies `|tangent · plane_normal| ≥ cos(tract_sel_angle)`. |
+- **Left-drag:** Sweeps a straight viewing-ray plane between the mouse-press and mouse-release positions, matching crossing streamlines at any orientation (`0°` angular cutoff).
+- **`Shift` + drag:** Draws a multi-segment freehand polyline across the 3D viewport, sampling a new ray vertex each time the cursor moves at least `20` pixels (Manhattan distance) so curved strokes can follow anatomical contours.
+- **Right-drag** (or **`Shift` + Right-drag**): Enables direction-selective angular filtering controlled by **Tract Selection Angle** (`0°–90°`, default `45°`, step `5°`) under **Tract Rendering** in the **Options** panel. Only crossing segments whose local unit tangent vector meets `|tangent · plane_normal| ≥ cos(Tract Selection Angle)` are matched — letting you select, delete, paint, or cut fibers running roughly perpendicular across your stroke while sparing crossing pathways running nearly parallel to the stroke plane.
 
 ## Delete
 
-Choose **[Tract Edit][Delete]** (`Ctrl+D`), then drag across the 3D view (`Left-drag`, `Shift` + drag, or angle-constrained `Right-drag`) to remove crossing streamlines from all **checked** bundles while keeping all remaining streamlines (`Ctrl+Z` to undo). Unlike **[Tracts][Delete]** (`delete_tract`), which removes entire bundle rows from the tract table, **[Tract Edit][Delete]** deletes individual streamlines inside checked bundles.
+| Menu item | Behavior |
+|---|---|
+| **Delete** | Shortcut: `Ctrl+D`. Arms a one-shot crosshair stroke in the 3D viewport (`Left-drag`, `Shift` + drag, or angle-constrained `Right-drag`) that moves intersected streamlines across all **checked** bundles into each bundle's deleted buffer while keeping all non-intersected streamlines (`Ctrl+Z` to undo). Unlike **Tracts › Delete** (`Ctrl+Alt+Backspace`), which permanently removes entire bundle rows from the **Tracts** table, **Tract Edit › Delete** prunes individual streamlines inside checked bundles, and those removed streamlines can be split out into a new bundle row via **Tracts › Separate Deleted Tracts** (`Ctrl+Alt+S`). |
 
 ## Paint
 
-Choose **[Tract Edit][Paint]** (`Ctrl+P`), drag across the 3D view (`Left-drag`, `Shift` + drag, or `Right-drag`), and pick an RGBA color in the color dialog. Crossing streamlines in all **checked** bundles receive the chosen color, and **Tract Color → Style** (`tract_color_style`) switches automatically to `Assigned` (manual per-streamline coloring). Because **Paint** updates streamline colors in place without removing streamlines, it is not reverted by **Undo**.
+| Menu item | Behavior |
+|---|---|
+| **Paint** | Shortcut: `Ctrl+P`. Arms a one-shot crosshair stroke in the 3D viewport (`Left-drag`, `Shift` + drag, or angle-constrained `Right-drag`) and opens the **Select color** picker upon mouse release. Assigns the chosen RGB color to every intersected streamline across all **checked** bundles and automatically switches **Tract Rendering › Tract Color › Style** in the **Options** panel to `Assigned` so custom per-streamline colors are displayed immediately. Caution: per-streamline alpha values in the picker are ignored (adjust overall bundle transparency with **Tract Color › Opacity**), clicking **Cancel** in the color dialog after dragging paints the intersected streamlines black (`#000000`), and **Paint** modifies colors in place without using the deleted buffer so **Tract Edit › Undo** (`Ctrl+Z`) does not revert color changes (switch **Tract Color › Style** back to `Directional` to restore orientation RGB display). |
 
 ## Cut
 
-The cutting actions split streamlines either interactively in 3D or deterministically along the bundle's dominant LPS/RAI orientation (`+X` = Left, `+Y` = Posterior, `+Z` = Superior in DSI Studio's internal LPS voxel space). All four operations can be undone with **[Tract Edit][Undo]** (`Ctrl+Z`).
+The cutting tools split or crop streamline trajectories either interactively in the 3D viewport or deterministically along the bundle's dominant anatomical axis in DSI Studio's internal LPS voxel coordinate system (`+X` = Left, `+Y` = Posterior, `+Z` = Superior; `-X` = Right, `-Y` = Anterior, `-Z` = Inferior). Original uncut trajectories are stored in the bundle's deleted buffer so all four actions can be reverted on checked bundles with **[Tract Edit][Undo]** (`Ctrl+Z`).
 
-| Menu item | Shortcut / GUI command hint | Target & behavior |
-|:--|:--|:--|
-| Cut | Shortcut: `Ctrl+X` · — | Interactive 3D gesture (`Left-drag`, `Shift` + drag, or `Right-drag`) that splits each crossing streamline (> 2 points) in **checked** bundles at the crossing point into two segments within the same bundle, so a subsequent **Select** or **Delete** stroke can isolate one side. |
-| Cut End Portion | `run cut_tract_end_portion` | Aligns streamlines along the bundle's dominant axis and trims 25% off **both** ends (`0.25`–`0.75` central trunk retained) on the **selected bundle row** (must be checked; skips ≤ 2-point fragments). |
-| Cut L/P/S End Portion | `run cut_tract_lps_end` | Removes the 25% terminal portion on the **Left / Posterior / Superior (LPS)** side (`0.25`–`1.0` retained) on the **selected bundle row** (must be checked). |
-| Cut R/A/I End Portion | `run cut_tract_rai_end` | Removes the 25% terminal portion on the **Right / Anterior / Inferior (RAI)** side (`0.0`–`0.75` retained) on the **selected bundle row** (must be checked). |
+| Menu item | Behavior |
+|---|---|
+| **Cut** | Shortcut: `Ctrl+X`. Arms a one-shot 3D crosshair stroke (`Left-drag`, `Shift` + drag, or angle-constrained `Right-drag`) across all **checked** bundles. Splits each intersected streamline containing more than `2` vertices into two separate trajectories within the same bundle at the first crossing vertex (preserving each streamline's assigned color) and moves the uncut original to the deleted buffer. Follow a **Cut** stroke with **Tract Edit › Select** (`Ctrl+S`) or **Tract Edit › Delete** (`Ctrl+D`) to isolate or remove one side of a severed pathway or collateral branch. |
+| **Cut End Portion** | Crops **both** terminal ends of streamlines in the **currently selected (highlighted) bundle row**, which **must be checked** in the **Tracts** table (does nothing if the selected row is unchecked). Estimates the bundle's dominant axis, aligns individual streamline polarity, trims `25%` of the vertex index span from each end, and retains the central `50%` trunk (`25%–75%` of vertices) while preserving assigned colors; fragments with `2` or fewer vertices are left unchanged. Useful for isolating the compact core stem of a pathway away from fanning cortical or subcortical terminations. |
+| **Cut L/P/S End Portion** | Crops the **Left / Posterior / Superior (`+X` / `+Y` / `+Z`)** terminal `25%` of each streamline in the **currently selected bundle row** (row **must be checked**). Consistently orients streamlines along the bundle's dominant axis (left–right, anterior–posterior, or superior–inferior), removes the `25%` vertex span on the LPS side, and retains the remaining `75%` extending toward the RAI end (`2`-vertex or shorter fragments are left unchanged). |
+| **Cut R/A/I End Portion** | Crops the **Right / Anterior / Inferior (`-X` / `-Y` / `-Z`)** terminal `25%` of each streamline in the **currently selected bundle row** (row **must be checked**). Consistently orients streamlines along the bundle's dominant axis, removes the `25%` vertex span on the RAI side, and retains the remaining `75%` extending toward the LPS end (`2`-vertex or shorter fragments are left unchanged). |
 
 ## Cut by Slice
 
-**[Tract Edit][Cut By Slice]** cuts streamlines in all **checked** bundles at the active slice's current `X`, `Y`, or `Z` slider position (`slice_pos`), discarding points on the chosen LPS side and retaining remaining sub-segments with at least 2 points (`Ctrl+Z` to undo). When a registered non-diffusion slice (such as T1w) is active, streamline coordinates are transformed into that slice's voxel space before cutting.
+The **[Tract Edit][Cut By Slice]** submenu crops streamlines across all **checked** bundles at the active slice's current sagittal (`X`), coronal (`Y`), or axial (`Z`) crosshair slider position in the **Slices** panel (stepped with `Q`/`A`, `W`/`S`, or `E`/`D`, or with the slice sliders). When an inserted external anatomical volume (such as T1w or T2w) is currently selected in the **Slices** list, DSI Studio transforms streamline coordinates into that active slice's LPS voxel grid before evaluating the cut plane. Curved streamlines that cross the kept side multiple times are split into separate retained sub-segments, resulting fragments shorter than `2` vertices are discarded, bundles with no vertices on the cut side are left untouched, and any cut can be reverted with **[Tract Edit][Undo]** (`Ctrl+Z`). Deterministic edits (**[Tract Edit][Trim]**, endpoint-portion cuts, and **[Tract Edit][Cut By Slice]**) are also logged in **[Records][Command History...]** for session review and batch replay; see the [Records menu](/doc/menu_records.html).
 
-| Submenu item | GUI command hint | Points removed | Points retained |
-|:--|:--|:--|:--|
-| Cut X+ | `run cut_tract_by_x` | `X ≥ slice_pos` (Left / `+X`) | `X < slice_pos` (Right / `-X`) |
-| Cut X- | `run cut_tract_by_x2` | `X < slice_pos` (Right / `-X`) | `X ≥ slice_pos` (Left / `+X`) |
-| Cut Y+ | `run cut_tract_by_y` | `Y ≥ slice_pos` (Posterior / `+Y`) | `Y < slice_pos` (Anterior / `-Y`) |
-| Cut Y- | `run cut_tract_by_y2` | `Y < slice_pos` (Anterior / `-Y`) | `Y ≥ slice_pos` (Posterior / `+Y`) |
-| Cut Z+ | `run cut_tract_by_z` | `Z ≥ slice_pos` (Superior / `+Z`) | `Z < slice_pos` (Inferior / `-Z`) |
-| Cut Z- | `run cut_tract_by_z2` | `Z < slice_pos` (Inferior / `-Z`) | `Z ≥ slice_pos` (Superior / `+Z`) |
+| Menu item | Behavior |
+|---|---|
+| **Cut X+** | Cuts all **checked** bundles at the active slice's current sagittal (`X`) voxel slice index, **removing** vertices on the **Left (`+X`)** side (`X ≥ slice index`) and **retaining** sub-segments (`≥ 2` vertices) on the **Right (`-X`)** side (`X < slice index`). |
+| **Cut X-** | Cuts all **checked** bundles at the active slice's current sagittal (`X`) voxel slice index, **removing** vertices on the **Right (`-X`)** side (`X < slice index`) and **retaining** sub-segments (`≥ 2` vertices) on the **Left (`+X`)** side (`X ≥ slice index`). |
+| **Cut Y+** | Cuts all **checked** bundles at the active slice's current coronal (`Y`) voxel slice index, **removing** vertices on the **Posterior (`+Y`)** side (`Y ≥ slice index`) and **retaining** sub-segments (`≥ 2` vertices) on the **Anterior (`-Y`)** side (`Y < slice index`). |
+| **Cut Y-** | Cuts all **checked** bundles at the active slice's current coronal (`Y`) voxel slice index, **removing** vertices on the **Anterior (`-Y`)** side (`Y < slice index`) and **retaining** sub-segments (`≥ 2` vertices) on the **Posterior (`+Y`)** side (`Y ≥ slice index`). |
+| **Cut Z+** | Cuts all **checked** bundles at the active slice's current axial (`Z`) voxel slice index, **removing** vertices on the **Superior (`+Z`)** side (`Z ≥ slice index`) and **retaining** sub-segments (`≥ 2` vertices) on the **Inferior (`-Z`)** side (`Z < slice index`). |
+| **Cut Z-** | Cuts all **checked** bundles at the active slice's current axial (`Z`) voxel slice index, **removing** vertices on the **Inferior (`-Z`)** side (`Z < slice index`) and **retaining** sub-segments (`≥ 2` vertices) on the **Superior (`+Z`)** side (`Z ≥ slice index`). |
 
 ## Shortcuts
 
-| Shortcut | Menu path | Action |
-|:--|:--|:--|
-| `Ctrl+Z` | **[Tract Edit][Undo]** | Undo the latest streamline selection, deletion, trim, or cut in checked bundles. |
-| `Ctrl+Y` | **[Tract Edit][Redo]** | Redo the most recently undone streamline removal in checked bundles. |
-| `Ctrl+T` | **[Tract Edit][Trim]** | Run one TIP pruning iteration on the selected bundle row. |
-| `Ctrl+S` | **[Tract Edit][Select]** | Arm 3D stroke to keep crossing streamlines in checked bundles. |
-| `Ctrl+D` | **[Tract Edit][Delete]** | Arm 3D stroke to delete crossing streamlines in checked bundles. |
-| `Ctrl+P` | **[Tract Edit][Paint]** | Arm 3D stroke to assign an RGBA color to crossing streamlines. |
-| `Ctrl+X` | **[Tract Edit][Cut]** | Arm 3D stroke to split crossing streamlines at the selection plane. |
-
-## Command History
-
-DSI Studio separates interactive menu gestures, UI command hints, and CLI / Command History execution into distinct layers:
-
-1. **Interactive 3D gestures have no command-history token:** **[Tract Edit][Select]**, **[Tract Edit][Delete]**, **[Tract Edit][Paint]**, and **[Tract Edit][Cut]** require live 3D mouse strokes and do not record a Command History entry. Names such as `select_tract`, `cut_tract`, `paint_tract`, `cut_by_slice`, and `trim_tracts` are **not** valid commands, and `delete_tract` belongs to **[Tracts][Delete]** (deleting whole bundle rows rather than 3D-selected streamlines).
-2. **`run ...` strings are GUI/agent command hints:** The `run ...` tooltips defined in `tracking_window.ui` (and used by DSI Studio AI window dispatch) are internal tracking-window command hints, **not** standalone `dsi_studio --action=...` CLI flags.
-3. **Verified `--action=vis --cmd=...` commands:** Deterministic **[Tract Edit]** actions record to [Command History](/doc/cli_vis.html) and can be replayed via CSV or executed with `dsi_studio --action=vis --source=<fib.fz> --cmd="..."` (`+` separates chained steps, `,` separates arguments, and `&` joins multiple 0-based bundle indices):
-
-| `--action=vis` `--cmd` syntax | Default target when index omitted | Operation |
-|:--|:--|:--|
-| `undo_tract[,<indices>]` | All checked bundles | Undo latest streamline deletion/cut |
-| `redo_tract[,<indices>]` | All checked bundles | Redo latest undone streamline removal |
-| `trim_tract[,<indices>]` | Selected bundle row (checked or unchecked) | One TIP pruning iteration |
-| `cut_tract_end_portion[,<index>]` | Selected bundle row (must be checked) | Retain central `0.25`–`0.75` trunk |
-| `cut_tract_lps_end[,<index>]` | Selected bundle row (must be checked) | Remove LPS `0.0`–`0.25` end; retain `0.25`–`1.0` |
-| `cut_tract_rai_end[,<index>]` | Selected bundle row (must be checked) | Remove RAI `0.75`–`1.0` end; retain `0.0`–`0.75` |
-| `cut_tract_by_x[,<slice_pos>[,<indices>]]` | Active slice `X` pos; all checked bundles | Cut `X ≥ slice_pos`; retain `X < slice_pos` |
-| `cut_tract_by_x2[,<slice_pos>[,<indices>]]` | Active slice `X` pos; all checked bundles | Cut `X < slice_pos`; retain `X ≥ slice_pos` |
-| `cut_tract_by_y[,<slice_pos>[,<indices>]]` | Active slice `Y` pos; all checked bundles | Cut `Y ≥ slice_pos`; retain `Y < slice_pos` |
-| `cut_tract_by_y2[,<slice_pos>[,<indices>]]` | Active slice `Y` pos; all checked bundles | Cut `Y < slice_pos`; retain `Y ≥ slice_pos` |
-| `cut_tract_by_z[,<slice_pos>[,<indices>]]` | Active slice `Z` pos; all checked bundles | Cut `Z ≥ slice_pos`; retain `Z < slice_pos` |
-| `cut_tract_by_z2[,<slice_pos>[,<indices>]]` | Active slice `Z` pos; all checked bundles | Cut `Z < slice_pos`; retain `Z ≥ slice_pos` |
-
-Example batch trim and inferior-end slice cut on bundle `0`:
-
-```bash
-dsi_studio --action=vis --source=sub01.fz --cmd="open_tract,cst.tt.gz+trim_tract,0+cut_tract_by_z2,30,0+save_tract,cst_edited.tt.gz,0"
-```
-
-Source: [tracking_window.ui](https://github.com/frankyeh/DSI-Studio/blob/master/tracking/tracking_window.ui).
+All seven **[Tract Edit]** shortcuts use unmodified `Ctrl` combinations (`Ctrl+Z` Undo, `Ctrl+Y` Redo, `Ctrl+T` Trim, `Ctrl+S` Select, `Ctrl+D` Delete, `Ctrl+P` Paint, and `Ctrl+X` Cut) and apply specifically to streamline editing. Whole-bundle list management in **[Tracts]** uses `Ctrl+Alt` combinations (`Ctrl+Alt+A` Check/Uncheck All, `Ctrl+Alt+S` Separate Deleted Tracts, `Ctrl+Alt+C` Copy Tracts, `Ctrl+Alt+M` Merge All, and `Ctrl+Alt+Backspace` Delete bundle row), while binary mask undo/redo and morphological operations in **[Regions]** and **[Region Edit]** use `Ctrl+Shift` combinations (`Ctrl+Shift+Z` and `Ctrl+Shift+Y`).

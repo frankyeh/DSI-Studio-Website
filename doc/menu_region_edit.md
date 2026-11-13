@@ -1,56 +1,53 @@
 # [Region Edit] Menu
 
-Edit region masks and apply morphology or set operations.
+The **[Region Edit]** menu in the Fiber Tracking window modifies binary region masks in place through 3D morphological operations, slice-intensity thresholding, connected-component cleanup or splitting, whole-volume mask inversion, and multi-region Boolean or parcellation operations. By default, single-region operations (**Dilation**, **Erosion**, **Opening**, **Closing**, **Smoothing**, **Defragment**, **Separate**, **Negate**, and **Threshold**) act on the currently selected (highlighted) row in the Region list; toggling **[Region Edit][Modify All Checked]** applies them across all checked regions instead, whereas the five multi-region items under [Region set operations](#region-set-operations) always process all checked regions in top-to-bottom table order. In-place edits within the same voxel grid can be reverted on the selected row with **[Regions][Undo]** (`Ctrl+Shift+Z`) and **[Regions][Redo]** (`Ctrl+Shift+Y`). For loading, saving, and assigning region tracking roles, see the [Regions menu](/doc/menu_regions.html) and [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html); for spatial flips, voxel shifts, and interactive 3D placement, see the [Region Move menu](/doc/menu_region_move.html).
 
 ## Checked regions
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Modify All Checked | — |
+| **Modify All Checked** | Checkable toggle (off by default) that controls which regions receive single-region edits from **Region Edit**. When unchecked, morphological, mask-structure, and threshold commands modify only the currently selected (highlighted) row in the Region list. When checked, those commands instead process every currently checked region in Region-list order (except **Separate**, which still splits only the first checked region). Multi-region commands under **Region set operations** always act on all checked regions regardless of this toggle. |
 
 ## Dilation and erosion
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Dilation | Shortcut: `Ctrl+Shift+D` · `run region_action_dilation` |
-| Dilation By Voxel... | `run region_action_dilation_by_voxel` |
-| Dilation By Threshold... | `run region_action_dilation_by_threshold` |
-| Erosioin By Threshold... | `run region_action_erosion_by_threshold` |
-| Erosion | Shortcut: `Ctrl+Shift+E` · `run region_action_erosion` |
+| **Dilation** | Shortcut: `Ctrl+Shift+D`. Expands the target region mask outward by `1` voxel in 3D along its 6 face-connected neighbors (`±X`, `±Y`, `±Z` on the region's own voxel grid). Useful for thickening thin exclusion (`ROA`) or inclusion (`ROI`) sheets so streamline tracking steps cannot jump across a 1-voxel barrier, or for bridging 1-voxel gaps along a mask boundary. |
+| **Dilation By Voxel...** | Opens an input dialog (`Voxel distance`, integer `1–100`, default `10`) and expands the target region mask in 3D by a spherical Euclidean radius of that many voxels (`dx² + dy² + dz² ≤ r²` on the region's voxel grid). Because the radius is specified in **voxels** rather than millimeters, physical expansion scales with the region's voxel size and produces an ellipsoid in physical space when voxel dimensions are anisotropic. |
+| **Dilation By Threshold...** | Opens a floating-point cutoff dialog pre-filled with Otsu's automatic intensity threshold for the currently active slice, then expands the target region outward by `1` face-connected voxel (`6`-neighborhood) **only** where both the existing boundary voxel and its adjacent candidate voxel satisfy the intensity cutoff on the active slice (resampled to the region's grid if their spaces differ). Entering a positive value `T` grows across brighter voxels (`I > T`); entering a negative value `-T` grows across darker low-pass voxels (`I < T`). Repeat as needed for multi-voxel intensity-guided growth. |
+| **Erosioin By Threshold...** | Opens the same active-slice intensity cutoff dialog (pre-filled with Otsu's threshold) and strips `1` face-connected boundary layer (`6`-neighborhood) from the target region **only** where an exterior neighbor and the adjacent region voxel both meet the cutoff (`I > T` for positive `T`, or `I < T` when a negative value `-T` is entered). Boundary voxels bordering slice intensities outside the cutoff are preserved. *(Spelled `Erosioin By Threshold...` in the menu.)* |
+| **Erosion** | Shortcut: `Ctrl+Shift+E`. Shrinks the target region mask inward by `1` voxel in 3D, removing every region voxel that touches at least one background (`0`) voxel in its 6 face-connected neighborhood (`±X`, `±Y`, `±Z` on the region's voxel grid). Caution: `1–2` voxel sheets, narrow bridges, or small isolated islands can vanish completely; select the row and use **Regions › Undo** (`Ctrl+Shift+Z`) immediately if over-eroded. |
 
 ## Opening and closing
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Opening | Shortcut: `Ctrl+Shift+O` · `run region_action_opening` |
-| Closing | Shortcut: `Ctrl+Shift+C` · `run region_action_closing` |
+| **Opening** | Shortcut: `Ctrl+Shift+O`. Removes thin exterior protrusions, narrow bridges, and sparse boundary spurs from the target region mask using 3D `3×3×3` (`27`-voxel) neighborhood-occupancy morphological opening. Iteratively strips weakly supported foreground voxels from the sparsest tips inward while preserving well-supported main surfaces without uniform whole-mask shrinkage. |
+| **Closing** | Shortcut: `Ctrl+Shift+C`. Fills small internal pinholes, narrow clefts, and concavities in the target region mask using 3D `3×3×3` (`27`-voxel) neighborhood-occupancy morphological closing. Iteratively fills background voxels that are heavily surrounded by foreground neighbors while avoiding uniform outward boundary bloat. |
 
 ## Smoothing and mask structure
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Smoothing | Shortcut: `Ctrl+Shift+S` · `run region_action_smoothing` |
-| Defragment | Shortcut: `Ctrl+Shift+F` · `run region_action_defragment` |
-| Separate | Shortcut: `Ctrl+Shift+P` · `run region_action_separate` |
-| Negate | Shortcut: `Ctrl+Shift+N` · `run region_action_negate` |
+| **Smoothing** | Shortcut: `Ctrl+Shift+S`. Regularizes jagged staircase boundaries on the target region mask with a 3D `3×3×3` majority filter: voxels with more than `13` foreground voxels in their `27`-voxel neighborhood become foreground (`1`), voxels with fewer than `13` become background (`0`), and exact ties (`13`) keep their prior state. Caution: `Ctrl+Shift+S` is also bound to **Regions › Save Checked Regions to one 4D NIFTI...** in the Fiber Tracking window, so keyboard dispatch can be ambiguous; click **Region Edit › Smoothing** directly in the menu if the shortcut does not fire. |
+| **Defragment** | Shortcut: `Ctrl+Shift+F`. Performs 3D 6-connected component labeling on the target region mask, retains **only the single largest connected component** by voxel count, and deletes every smaller disconnected island or stray speck. Caution: applying **Defragment** to an intentionally bilateral or multi-part region discards all components except the largest piece. |
+| **Separate** | Shortcut: `Ctrl+Shift+P`. Splits disconnected 3D 6-connected components of a region into separate Region-list entries, appending up to `256` new checked rows named `<Name>_1`, `<Name>_2`, ... in the source region's voxel space while leaving the original region row intact (uncheck or delete the original row afterward if only the separated components are needed). Even when **Region Edit › Modify All Checked** is turned on, **Separate** splits only the first checked region. |
+| **Negate** | Shortcut: `Ctrl+Shift+N`. Inverts the binary mask of the target region across its entire 3D voxel grid (`1 → 0` and `0 → 1`). Because every background voxel up to the full volume bounding box becomes foreground, whole-volume inversion produces a large box-filling mask; intersect the result with a brain or tissue mask (for example via **Region Edit › All Intersect First**) when you only want the complement inside brain parenchyma. |
 
 ## Threshold
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Threshold | Shortcut: `Ctrl+Shift+T` · `run region_action_threshold_current` |
+| **Threshold** | Shortcut: `Ctrl+Shift+T`. Filters **existing** voxels inside the target region against the intensity of the currently active slice (resampled onto the region's voxel grid when their spaces differ). Opens a cutoff dialog pre-filled with Otsu's threshold for the active slice: a positive value `T` retains only existing region voxels with slice intensity `I > T`, whereas a negative value `-T` retains only existing region voxels with `I ≤ T` (low-pass). Voxels outside the current region mask are never added; to create a new region from whole-slice thresholding, use **Regions Misc › New Region From Thresholding...** instead. |
 
 ## Region set operations
 
-| Menu item | Shortcut / GUI command hint |
+All five multi-region operations act on **every currently checked region** in top-to-bottom Region-list order (requiring **at least two checked regions**). The **first (topmost) checked region** defines the output voxel grid, resolution, and diffusion-space transform: any lower checked region stored on a different grid is resampled into the first checked region's space via majority interpolation, which also clears that resampled region's per-row undo history. Use the up/down arrow buttons in the **Assign Regions** panel to place your reference mask at the top of the checked set, and duplicate masks beforehand with **[Regions][Copy]** (`Ctrl+Shift+V`) when you want to keep unmodified originals.
+
+| Menu item | Behavior |
 |---|---|
-| All Intersect First | Shortcut: `Ctrl+Shift+1` · `run region_action_all_inter_1st` |
-| All Exclude First | Shortcut: `Ctrl+Shift+2` · `run region_action_all_ex_1st` |
-| First Excludes All | Shortcut: `Ctrl+Shift+3` · `run region_action_1st_ex_all` |
-| All Fit into First | Shortcut: `Ctrl+Shift+4` · `run region_action_all_to_1st` |
-| Refine All | Shortcut: `Ctrl+Shift+5` · `run region_action_refine_all` |
-
-
-The `run ...` strings above, where shown, are **GUI command hints from the UI file**, not public `dsi_studio --action=...` CLI flags.
-
-Source: [tracking_window.ui](https://github.com/frankyeh/DSI-Studio/blob/master/tracking/tracking_window.ui).
+| **All Intersect First** | Shortcut: `Ctrl+Shift+1`. Replaces each subsequent checked region (`2nd`, `3rd`, ...) in place with its voxel-wise overlap (`First AND Region`) with the **first (topmost) checked region**, leaving the first checked region itself unchanged. Any updated region that had a different grid or voxel size adopts the first checked region's grid and resolution. Requires at least two checked regions. |
+| **All Exclude First** | Shortcut: `Ctrl+Shift+2`. Subtracts the **first (topmost) checked region** from each subsequent checked region (`Region − First`), removing overlapping voxels in place from the `2nd`, `3rd`, ... checked regions while leaving the first checked region unchanged. Requires at least two checked regions; updated regions on a different grid adopt the first checked region's grid. |
+| **First Excludes All** | Shortcut: `Ctrl+Shift+3`. Subtracts every subsequent checked region (`2nd`, `3rd`, ...) from the **first (topmost) checked region** (`First − Union(Others)`), modifying **only** the first checked region in place and leaving all lower checked regions untouched. Useful for carving ventricles, lesions, or adjacent parcels out of a primary seed or target region. Requires at least two checked regions. |
+| **All Fit into First** | Shortcut: `Ctrl+Shift+4`. Fits and smooths all subsequent checked regions (`2nd`, `3rd`, ...) so they form a gap-free, non-overlapping parcellation inside the **first (topmost) checked region**. Clips the `2nd`, `3rd`, ... checked regions to the first checked region's mask (where initial masks overlap, lower rows in the Region list take precedence), iteratively grows those labels into any unlabeled voxels inside the first checked region (`up to 64` neighborhood-voting passes), smooths inter-parcel borders (`up to 12` majority-voting passes), and writes the resulting parcels back into the `2nd`, `3rd`, ... checked regions while leaving the first checked region unchanged. Requires at least two checked regions. |
+| **Refine All** | Shortcut: `Ctrl+Shift+5`. Refines shared borders across **all** checked regions (including the first checked region) against local image intensities from the currently active slice. Merges the checked regions into a multi-label map on the first checked region's grid (lower checked rows take initial precedence where masks overlap), resamples the active slice if needed, and iteratively reclassifies 6-connected boundary voxels using local Gaussian intensity likelihood combined with `3×3×3` neighborhood spatial priors before writing the updated non-overlapping masks back to every checked region. Requires at least two checked regions and a valid active slice. |

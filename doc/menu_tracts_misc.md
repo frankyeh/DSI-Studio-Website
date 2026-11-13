@@ -1,54 +1,51 @@
 # [Tracts Misc] Menu
 
-Process, transform, color, and recognize tract groups.
+The **[Tracts Misc]** menu in the Fiber Tracking window provides post-tracking tools to clean up streamline bundles, bridge or resample trajectory geometry, mirror tracts across image axes, import or export per-streamline colors and scalar values, and classify pathways against the built-in population tractography atlas. For opening and saving tract files, managing bundle rows, converting tracts to regions, and computing summary or along-tract statistics, see the [Tracts menu](/doc/menu_tracts.html); for interactive 3D selection, cutting, painting, undo/redo, and Topology-Informed Pruning (TIP), see the [Tract Edit menu](/doc/menu_edit.html); and for automated streamline clustering and cluster-level palettes, see the [Tracts Cluster menu](/doc/menu_tracts_cluster.html).
 
 ## Tract cleanup
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Merge Tracts by Name | `run merge_tract_by_name` |
-| Delete Repeated Tracks | `run delete_repeated_tract` |
-| Delete Short Tracts | `run delete_tract_by_length` |
-| Delete Branches | `run delete_branch` |
+| **Merge Tracts by Name** | Scans every row in the **Tracts** list (checked or unchecked), merges any later rows that have the exact same bundle **Name** into the first matching row (combining both visible and deleted streamline buffers), and removes the duplicate-named rows. Unlike **Tracts › Merge All**, which combines all checked rows regardless of name, this item groups strictly by identical row names—for example after **Tracts Misc › Recognize and Rename**. Row merging modifies the bundle list directly and cannot be reversed with **Tract Edit › Undo**. |
+| **Delete Repeated Tracks** | Prompts for **Distance threshold (voxels)** (`0`–`500`, default `1.0` voxel) and checks all **checked** bundles in the **Tracts** list for near-duplicate streamlines. Streamline pairs whose start and end points fall within the Manhattan (`abs(dx) + abs(dy) + abs(dz)`) voxel threshold and whose corresponding points along the trajectory stay within that distance in both directions are moved to each bundle's deleted buffer (recoverable with **Tract Edit › Undo** or extractable via **Tracts › Separate Deleted Tracts**). Because both trajectories in a matched duplicate pair are removed, use conservative thresholds on dense, coherent individual pathways and avoid routine use on whole-brain tractograms or sparse bundles. |
+| **Delete Short Tracts** | Prompts for **Length threshold in mm:** (`0`–`500` mm, default `0.5` mm) and filters all **checked** bundles in the **Tracts** list, moving any streamline with two or fewer vertices or a physical length shorter than the millimeter cutoff into the bundle's deleted buffer (recoverable with **Tract Edit › Undo** or **Tracts › Separate Deleted Tracts**). Note that this threshold is specified in physical **millimeters (mm)**, whereas **Delete Repeated Tracks** uses **voxels**. |
+| **Delete Branches** | Filters all **checked** bundles in the **Tracts** list immediately without a dialog by isolating the two main termination zones of each bundle. Extracts the bundle's two oriented endpoint voxel clusters, keeps only the largest connected 3D component of each endpoint mask as temporary `End` regions, and moves streamlines that fail to terminate in both primary endpoint components—such as stray collateral branches or prematurely stopping fibers—into the deleted buffer (recoverable with **Tract Edit › Undo**). Apply only to single coherent pathways connecting two discrete termination areas; do not apply to whole-brain tractograms or multi-branch fanning bundles whose valid subdivisions end in separate cortical territories. |
 
 ## Tract geometry
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Reconnect Tracts | `run reconnect_tract` |
-| Resample Step Size | `run resample_tract` |
+| **Reconnect Tracts** | Prompts for two space-separated values—**Assign maximum bridging distance (in voxels) and angles (degrees)** (pre-filled with `4 30`)—and bridges broken streamline segments in the **currently selected** (highlighted) bundle row. Requires a bridging distance strictly greater than `2.0` voxels and an angle strictly greater than `0` degrees (values `>= 2.0` voxels are iteratively halved internally into a `1.0` to `2.0` voxel endpoint search bin). Pairs of streamline endpoints within that voxel distance whose terminal tangent directions and connecting vector align within the angular threshold are concatenated in place, reversing streamline vertex order when needed. Because bridging alters trajectories in place without recording to **Tract Edit › Undo** and can create false continuations across kissing or crossing pathways, duplicate the bundle first with **Tracts › Copy Tracts** and inspect merged streamlines carefully. |
+| **Resample Step Size** | Prompts for **New step size (voxels)** (`0.0`–`5.0`, default `0.5` voxels) and resamples polyline vertices along every streamline (with three or more points) across all **checked** bundles in the **Tracts** list by linear interpolation at the requested **voxel** spacing while preserving exact start and end coordinates. Always specify a strictly positive step size (for example `0.2`–`1.0` voxels; never `0.0`). Resampling overwrites streamline vertices in place and cannot be undone with **Tract Edit › Undo**. |
 
 ## Move tracts
 
-| Menu item | Shortcut / GUI command hint |
-|---|---|
-| **Move Tracts** submenu | — |
+The **[Tracts Misc][Move Tracts]** submenu reflects streamline coordinates of the **currently selected** (highlighted) bundle across the native diffusion volume grid. The highlighted row in the **Tracts** list must also be **checked** for a flip operation to take effect; coordinates are modified in place (`dim - coord`), so select the same flip axis a second time to restore original positions or duplicate the bundle beforehand with **[Tracts][Copy Tracts]** to compare mirrored and native pathways side by side.
 
-### Move Tracts submenu
+### [Tracts Misc][Move Tracts]
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Flip X | `run flip_tract_x` |
-| Flip Y | `run flip_tract_y` |
-| Flip Z | `run flip_tract_z` |
+| **Flip X** | Mirrors all streamlines in the currently selected (and checked) bundle across the diffusion grid's **X** (left–right) axis (`x' = dim_x - x` in FIB voxel coordinates) and refreshes 3D and slice views. |
+| **Flip Y** | Mirrors all streamlines in the currently selected (and checked) bundle across the diffusion grid's **Y** (anterior–posterior) axis (`y' = dim_y - y` in FIB voxel coordinates) and refreshes 3D and slice views. |
+| **Flip Z** | Mirrors all streamlines in the currently selected (and checked) bundle across the diffusion grid's **Z** (inferior–superior) axis (`z' = dim_z - z` in FIB voxel coordinates) and refreshes 3D and slice views. |
 
 ## Tract colors and values
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Open Tract Colors... | `run load_tract_color` |
-| Open Tract Values... | `run load_tract_values` |
-| Save Tracts Colors As... | `run save_tract_color` |
+| **Open Tract Colors...** | Opens a file dialog (`*.txt`, defaulting to `<BundleName>_color.txt`) to load per-streamline RGB colors into the **currently selected** (highlighted) bundle row. Reads whitespace-separated `R G B` values (`0`–`255` per channel, one triplet per streamline in bundle order, matching **Tracts Misc › Save Tracts Colors As...**) and automatically sets **Tract Color › Style** in the **Options** dock to `Assigned` so the imported colors appear immediately. |
+| **Open Tract Values...** | Opens a file dialog (`*.txt`, defaulting to `<BundleName>_values.txt`) and loads one whitespace-separated floating-point scalar value per visible streamline into the **currently selected** (highlighted) bundle row. The number of values in the file must exactly match the bundle's visible streamline count, or loading aborts with an error message. Automatically sets **Tract Color › Style** in the **Options** dock to `Loaded Value`, mapping each streamline's scalar across the active **Tract Color** colormap between **Min Value** and **Max Value**. |
+| **Save Tracts Colors As...** | Opens a save file dialog (`*.txt`, defaulting to `<BundleName>_color.txt`) and exports the stored per-streamline assigned RGB colors of the **currently selected** (highlighted) bundle row as one space-separated `R G B` integer line (`0`–`255`) per streamline. Saves the bundle's assigned/painted RGB array (set via **Tract Edit › Paint**, **Tracts Cluster** color actions, or **Tracts Misc › Open Tract Colors...**), not dynamic directional or metric-colormap shader colors. |
+
+These three items work at the **individual streamline** level within the single highlighted bundle. To load or save one color or scalar value per bundle across multiple checked rows, use **[Tracts Cluster][Open Cluster Colors...]**, **[Tracts Cluster][Open Cluster Values...]**, and **[Tracts Cluster][Save Cluster Colors...]** in the [Tracts Cluster menu](/doc/menu_tracts_cluster.html).
 
 ## Tract recognition
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Recognize... | `run show_tract_recognition` |
-| Recognize and Rename | `run recognize_and_rename_tract` |
-| Recognize and Cluster | `run recognize_and_cluster_tract` |
+| **Recognize...** | Classifies streamlines in the **currently selected** (highlighted) bundle row (or the first row if none is highlighted, checked or unchecked) against the built-in asymmetric population tractography atlas, computing or loading subject-to-template spatial normalization if needed. Opens the **Tract Recognition** dialog reporting the percentage of recognized streamlines matching each atlas pathway (sorted from highest to lowest percentage), with **Copy to Clipboard**, **Save as...** (`*.txt`, defaulting to `<stem>_tract_names.txt`), and **Show Table** options, while leaving the bundle itself unchanged. |
+| **Recognize and Rename** | Classifies every **checked** non-empty bundle in the **Tracts** list against the asymmetric population tractography atlas (computing subject-to-template normalization if needed) and renames each checked row in place to its single highest-percentage matching atlas pathway name without splitting or deleting streamlines. Follow with **Tracts Misc › Merge Tracts by Name** if you want separate rows that received the same pathway label combined into one bundle. |
+| **Recognize and Cluster** | Classifies each streamline in the **currently selected** (highlighted) bundle row against the asymmetric population tractography atlas, **removes the original bundle row**, appends a new checked bundle row for every matched pathway (ordered from largest to smallest streamline count and named after the atlas pathway), and assigns distinct colors across all bundles. Unrecognized streamlines that do not match any atlas pathway are discarded when the source row is replaced, and the split cannot be undone with **Tract Edit › Undo**—duplicate the bundle first with **Tracts › Copy Tracts** if you need to retain unmatched trajectories. |
 
-
-The `run ...` strings above, where shown, are **GUI command hints from the UI file**, not public `dsi_studio --action=...` CLI flags.
-
-Source: [tracking_window.ui](https://github.com/frankyeh/DSI-Studio/blob/master/tracking/tracking_window.ui).
+Atlas recognition assigns the closest-matching reference pathway label as a classification aid rather than proof of anatomical identity. Always inspect recognized or split bundles against underlying anatomy, and use [AutoTrack](/doc/gui_t3_atk.html) when reconstructing named pathways directly from a FIB file.

@@ -1,39 +1,36 @@
 # [File] Menu
 
-Load and save FIB files, workspaces, and tracking/rendering settings.
+The **[File]** menu in the Fiber Tracking window manages the active FIB dataset on disk, saves and restores multi-object tracking workspaces, and exports, reloads, or resets tracking and 3D rendering parameters. Note that opening a new `.fz` or `.fib.gz` dataset is initiated from the main DSI Studio launcher window (see [Track: whole-brain tractography](/doc/gui_t3_whole_brain.html)), whereas **[File]** inside an open Fiber Tracking window acts on the currently loaded dataset and session state. For loading or saving individual tract bundles, regions, or overlaid NIfTI slices separately, see the [Tracts menu](/doc/menu_tracts.html), [Regions menu](/doc/menu_regions.html), and [Slices menu](/doc/menu_slices.html).
 
 ## FIB files
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Open FIB Directory... | Shortcut: `Ctrl+O` |
-| Save FIB As... | `run save_fib_as` |
+| **Open FIB Directory...** | Shortcut: `Ctrl+O`. Opens the parent folder containing the currently loaded `.fz` or `.fib.gz` file in the operating system's file manager (Explorer, Finder, or desktop file browser). Note that `Ctrl+O` inside the Fiber Tracking window reveals the dataset directory on disk rather than opening a new FIB file picker; to open another FIB dataset in a new tracking window, use the main DSI Studio window. |
+| **Save FIB As...** | Opens a Save File dialog (`*.fz`, defaulting `.fib.gz` filenames to `.fz`) and writes the loaded FIB container — fiber orientations, anisotropy and diffusivity metrics, template assignment, analysis report metadata, and any connectometry database matrices — to a compressed masked `.fz` file, updating the window's active FIB path to the saved file. Use this to convert legacy `.fib.gz` files into the compact `.fz` format or to persist FIB-level edits. Session overlays such as tracked streamlines, drawn regions, inserted external slices, and camera/display settings are not stored inside the `.fz` file; use **File › Save Workspace...** (or the **Tracts** and **Regions** menus) to save those objects. |
 
 ## Workspace
 
-| Menu item | Shortcut / GUI command hint |
+A workspace folder bundles checked tracts, checked regions, devices, the active custom slice, camera pose, slice crosshair positions, and all Options panel parameters into one directory so an interactive visualization and analysis session can be reopened later on top of the same FIB file.
+
+| Menu item | Behavior |
 |---|---|
-| Load Workspace... | `run load_workspace` |
-| Save Workspace... | `run save_workspace` |
+| **Load Workspace...** | Prompts for a previously saved workspace directory and restores its contents into the current Fiber Tracking window: loads `*tt.gz` bundles from `tracts/`, `*.nii.gz` masks from `regions/`, `*dv.csv` entries from `devices/`, and any `*.nii.gz` external volumes plus matching `.linear_reg.txt` transforms from `slices/`; restores 3D slice plane visibility toggles, voxel slice positions, and 3D zoom from `commands.csv`; applies all tracking and rendering parameters from `setting.ini`; restores the 3D camera matrix from `camera.txt`; and prepends any `README` text file in the folder to the window's report. Open the matching `.fz` or `.fib.gz` dataset first before loading a workspace. Caution: if the workspace folder contains `tracts/`, `regions/`, or `devices/` subfolders, any currently loaded tracts, regions, or devices in the window are deleted and replaced. |
+| **Save Workspace...** | Prompts for a destination folder (creating it if needed) and exports the current session state: all **checked** tract bundles to `tracts/`, all **checked** regions to `regions/`, any loaded devices to `devices/device.dv.csv`, an 8-bit normalized NIfTI copy and `.linear_reg.txt` alignment matrix to `slices/` when the **currently selected** slice is an inserted external image, every tracking and rendering parameter (including nested color and graph sub-options) to `setting.ini`, the 16-value 3D view matrix to `camera.txt`, and current voxel slice coordinates, 3D slice checkboxes, and zoom level to `commands.csv`. Caution: unchecked tracts and unchecked regions are omitted, built-in FIB slices and non-active custom slices are not copied to `slices/`, and default output formats in the Options panel should remain `.tt.gz` (for tracts) and `.nii.gz` (for regions) so **File › Load Workspace...** can rediscover them. |
 
 ## Tracking settings
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Load Tracking Settings... | `run load_tracking_setting` |
-| Save Tracking Settings... | `run save_tracking_setting` |
-| Load Parameter ID... | `run load_parameter_id` |
-| Restore Tracking Settings | — |
+| **Load Tracking Settings...** | Opens a file dialog (`*.ini`) and updates parameters in the **Tracking Parameters**, **Differential Tracking**, and **Advanced Options** groups of the Options panel from a saved Qt INI configuration file (or from a workspace `setting.ini`), leaving all rendering settings, camera views, regions, and existing tract bundles unchanged. |
+| **Save Tracking Settings...** | Opens a Save File dialog (`*.ini`, defaulting to `<fib_name>tracking_setting.ini`) and writes all current values from **Tracking Parameters** (tracking index, anisotropy threshold, angular threshold in degrees, step size in mm, minimum/maximum length in mm, seed/tract limits, tract-to-voxel ratio, topology-informed pruning iterations, and AutoTrack tolerance in mm), **Differential Tracking**, and **Advanced Options** (algorithm, smoothing, endpoint check, Otsu ratio, and output format) so the exact tracking protocol can be shared or reused across subjects. |
+| **Load Parameter ID...** | Opens a text prompt (`Please assign parameter ID`) to paste the compact alphanumeric `parameter_id=...` code recorded in DSI Studio's automated methods report. Decodes and applies the encoded tracking thresholds and options in one step: anisotropy threshold, differential threshold, angular threshold (`degrees`), step size (`mm`), smoothing fraction, minimum and maximum length (`mm`), tracking algorithm, check-ending toggle, maximum tract and seed counts, tract-to-voxel ratio, default Otsu ratio, and topology-informed pruning iterations. Note that tracking metric selection, AutoTrack tolerance, and output file format are not encoded in a parameter ID; also, codes generated from standard non-AutoTrack, non-differential runs store `0` pruning iterations, and malformed ID strings are not validated—paste the exact code produced by DSI Studio. |
+| **Restore Tracking Settings** | Immediately resets **Tracking Parameters**, **Differential Tracking**, and **Advanced Options** to factory defaults without opening a dialog, refreshes the anisotropy threshold range for the active tracking index, and recomputes template-scaled defaults for minimum length (`mm`), maximum length (`mm`), AutoTrack tolerance (`mm`), and tract-to-voxel ratio based on the open FIB dataset's species template and voxel spacing. Unlike the **Reset** button at the top of the **Options** panel (which resets both tracking and rendering together), this item leaves rendering settings untouched. |
 
 ## Rendering settings
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Load Rendering Settings... | `run load_rendering_setting` |
-| Save Rendering Settings | `run save_rendering_setting` |
-| Restore Rendering Settings | — |
-
-
-The `run ...` strings above, where shown, are **GUI command hints from the UI file**, not public `dsi_studio --action=...` CLI flags.
-
-Source: [tracking_window.ui](https://github.com/frankyeh/DSI-Studio/blob/master/tracking/tracking_window.ui).
+| **Load Rendering Settings...** | Opens a file dialog (`*.ini`) and applies saved display parameters to **Region Window**, **Background Rendering**, **Slice Rendering**, **Tract Rendering**, **Region Rendering**, **Surface Rendering**, **Device Rendering**, **Label Rendering**, and **ODF Rendering** in the Options panel while keeping current tracking parameters and camera orientation intact. Note that only direct parameters of those groups are loaded here (top-level layer visibility checkboxes and nested **Tract Color**, **Region Color**, and **Graph Visualization** sub-groups are only restored when loading a full workspace `setting.ini` via **File › Load Workspace...**). |
+| **Save Rendering Settings** | Opens a Save File dialog (`*.ini`, defaulting to `<fib_name>rendering_setting.ini`, even though the menu label has no ellipsis) and writes the direct parameters of **Region Window**, **Background Rendering**, **Slice Rendering**, **Tract Rendering**, **Region Rendering**, **Surface Rendering**, **Device Rendering**, **Label Rendering**, and **ODF Rendering** (`127` keys). Top-level layer visibility checkboxes, camera pose, and the nested **Tract Color**, **Region Color**, and **Graph Visualization** sub-groups are not written by this standalone export; use **File › Save Workspace...** when full color-bar, colormap, and graph-rendering states must be preserved. |
+| **Restore Rendering Settings** | Immediately resets all display parameters across **Region Window**, **Background Rendering**, **Slice Rendering**, **Tract Rendering** (including **Tract Color**), **Region Rendering** (including **Region Color** and **Graph Visualization**), **Surface Rendering**, **Device Rendering**, **Label Rendering**, and **ODF Rendering** to their built-in defaults, clears cached custom region colormap values, and refreshes the 2D slice and 3D views while keeping top-level layer visibility checkboxes, camera angle, and all tracking parameters unchanged. |

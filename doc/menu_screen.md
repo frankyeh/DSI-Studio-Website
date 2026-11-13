@@ -1,59 +1,60 @@
 # [Screen] Menu
 
-Save 3D and ROI views, copy views, and record rotations or videos.
+Use the **[Screen]** menu in the Fiber Tracking window to save publication-ready images of the 3D OpenGL scene and 2D ROI/slice canvas (including single-plane, 3-slice, and multi-slice mosaic views), render custom high-resolution or multi-angle composite figures, copy cropped 3D views or per-tract and per-region mosaics directly to the system clipboard, export visible anatomy as interactive `.obj` or `.glb` 3D meshes, and rotate or record `.avi` videos of the 3D scene. For setting exact orthogonal viewpoints or storing and recalling custom camera angles before capturing figures, see the [View menu](/doc/menu_view.html); for switching between single, side-by-side double, and stereoscopic 3D viewports, see the [Layout menu](/doc/menu_layout.html).
 
 ## Screen captures
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Save 3D Screen... | `run save_screen` |
-| Save 3D Screen in High Resolution.. | `run save_hd_screen` |
-| Save 3D Screen Left/Right Views... | `run save_lr_screen` |
+| **Save 3D Screen...** | Opens a save file dialog (`*.png`, `*.bmp`, `*.jpg`, `*.tif`; default `<fib_name>_screen.jpg`) and saves the live 3D OpenGL viewport at its current window pixel dimensions without tight bounding-box cropping. Temporarily extends the tract drawing budget (`60 s`) so dense fiber bundles finish rendering completely rather than stopping at an interactive frame-time cap, records the current 3D camera orientation in the session history, and captures any active **Layout › 3D Views** split (**Single**, **Double**, or **Stereoscopic**). Use `.png` or `.tif` when you need lossless text labels and sharp streamline edges without JPEG compression artifacts. |
+| **Save 3D Screen in High Resolution..** | Prompts first for custom pixel dimensions (`width height`, pre-filled with `1024 800`), then opens the image save dialog (`*.png`, `*.bmp`, `*.jpg`, `*.tif`; default `<fib_name>_screen.jpg`). Temporarily resizes the 3D OpenGL framebuffer to the requested `width × height` pixels, renders all visible streamlines with the extended `60 s` draw budget at the current camera angle, writes the image to disk, and immediately restores the original 3D viewport size. Maximum output resolution depends on your graphics driver framebuffer limit; canceling or clearing the size prompt aborts without saving. |
+| **Save 3D Screen Left/Right Views...** | Opens a save file dialog (`*.png`, `*.bmp`, `*.jpg`, `*.tif`; default `<fib_name>_lr_screen.jpg`), renders the 3D scene from the standard **Left sagittal** view (viewed from subject Left; Anterior at left, Superior at top) and **Right sagittal** view (viewed from subject Right; Posterior at left, Superior at top) at the current 3D zoom level, and stitches both panels side-by-side into a single `2W × H` image (`W × H` = current 3D viewport size). **Camera caution:** Rendering the pair overwrites any custom oblique camera rotation and leaves the live 3D viewport on the Right sagittal view afterward; save or store your custom angle in **View** first if you want to return to it. |
 
 ## Multi-view captures
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Save 3D Screen in 3 Views.. | `run save_3view_screen` |
-| Save 3D Screen in 3 Views (Horizontal)... | `run save_h3view_screen` |
-| Save 3D Screen in 3 Views (Vertical)... | `run save_v3view_screen` |
+| **Save 3D Screen in 3 Views..** | Opens a save file dialog (`*.png`, `*.bmp`, `*.jpg`, `*.tif`; default `<fib_name>_3view.jpg`) and saves a `2 × 2` (`2W × 2H`) composite combining three standard orthogonal 3D views with the active 2D slice/ROI view: **Left sagittal** (top-left), **Posterior coronal** (top-right; Left at left, Superior at top), the current **Draw Regions** 2D canvas scaled to width `W` (bottom-left), and **Superior axial** (bottom-right; Left at left, Anterior at top). **Cautions:** Leaves the live 3D camera on the Superior axial view afterward; if the 2D **Draw Regions** panel is in a tall multi-row mosaic, the bottom-left quadrant scales to width `W` and clips vertically to height `H`. |
+| **Save 3D Screen in 3 Views (Horizontal)...** | Opens a save file dialog (`*.png`, `*.bmp`, `*.jpg`, `*.tif`; default `<fib_name>_h3view.jpg`). Despite the historical `3 Views` label, captures **four** standard directional 3D views—**Left sagittal**, **Right sagittal**, **Posterior coronal**, and **Superior axial** (omitting the 2D slice panel)—automatically crops each view tightly to its non-background foreground bounding box, vertically centers the sagittal and coronal crops against the axial crop height on a uniform background matching the top-left corner pixel, and joins all four cropped views side-by-side into a compact horizontal figure strip. Leaves the live 3D camera on the Superior axial view afterward. |
+| **Save 3D Screen in 3 Views (Vertical)...** | Opens a save file dialog (`*.png`, `*.bmp`, `*.jpg`, `*.tif`; default `<fib_name>_v3view.jpg`), captures the same **four** standard directional 3D views (**Left sagittal**, **Right sagittal**, **Posterior coronal**, and **Superior axial**) without bounding-box cropping, and stacks them top-to-bottom into a `W × 4H` vertical strip. Leaves the live 3D camera on the Superior axial view afterward. |
 
 ## ROI and 3D export
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Save ROI Screen... | `run save_roi_screen` |
-| Save 3D Model... | `run save_3d_model` |
+| **Save ROI Screen...** | Opens a save file dialog (`*.png`, `*.bmp`, `*.jpg`; defaulting to `<SelectedRegion>.png` when a row is highlighted in **Assign Regions**, or `<WindowName>_<SliceModality>.jpg` otherwise), forces a full-detail redraw of the **Draw Regions** 2D canvas at the current **ROI › Zoom** factor, and saves the rendered 2D image. Exports whichever **ROI › Slice Layout** is currently active: **Single Slice** (active sagittal, coronal, or axial plane with checked region fills/edges, fiber directions, tract intersections, ruler, crosshair lines, and `R` marker), **3 Slices** (orthogonal sagittal, coronal, and axial planes; note that the fresh 2D redraw leaves the fourth embedded-3D quadrant blank—use **Screen › Copy to Clipboard › ROI** or **Screen › Save 3D Screen in 3 Views..** when you need 2D and 3D panels together), or **Mosaic** (`Mosaic` through `Mosaic 10`, tiling every 1st through 10th slice across the volume using **Mosaic Column Number** and **Mosaic Skip Row**). |
+| **Save 3D Model...** | Opens a save file dialog (`*.obj`, `*.glb`; default `<WindowName>.model.obj`) and exports the visible 3D scene as polygon meshes scaled into **millimeters (mm)** as `(x_mm, z_mm, -y_mm)` and centered at `(0, 0, 0)` for immediate framing in external 3D viewers. Requires at least one **checked** tract bundle or **checked** region. Exports visible 3D slice planes (as JPEG-textured quads with **Slice › Opacity** when **Slice Rendering** is on), checked tract bundles (coarse 3D tubes sized by **Tract › Tube Diameter (voxel)** in voxels, colored uniformly per bundle with its primary RGB color and **Tract › Opacity**), checked regions (surface meshes with assigned color and region opacity), and any visible 3D isosurface (with surface color and **Surface › Opacity**). If any checked bundle exceeds **3,000** visible streamlines, repeated streamlines (`1.0` voxel tolerance) are pruned automatically first; if a bundle still exceeds 3,000 visible streamlines, export stops so you can lower **Visible Tracts** or filter the bundle. Choosing `.glb` writes a single self-contained glTF 2.0 binary with embedded textures and alpha blending (ready for PowerPoint 3D models or Blender); choosing `.obj` writes `<file>.obj`, `<file>.mtl`, and `<file>.slice0.jpg`–`.slice2.jpg` companion texture files in the same folder. Procedural OpenGL **Devices**, **ODF** glyphs, and 3D text **Labels** are not exported unless device contacts are first converted to spherical ROIs via **Devices › Leads to ROI...**. |
 
 ## Clipboard
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| **Copy to Clipboard** submenu | — |
+| **Copy to Clipboard** | Opens the submenu for copying cropped 3D renders, multi-angle 3D composites, per-tract or per-region 3D galleries, and 2D slice/mosaic views directly to the system clipboard without writing temporary files. None of its items assign default keyboard shortcuts. |
 
-### Copy to Clipboard submenu
+### [Copy to Clipboard] submenu
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| 3D Screen | — |
-| 3D Screen Left/Right Views | — |
-| 3D Screen 3 Views | — |
-| 3D Screen 3 Views Horizontal | — |
-| 3D Screen 3 Views Vertical | — |
-| 3D Screen Each Tract | — |
-| 3D Screen Each Region | — |
-| ROI | — |
-| Track Report | — |
+| **3D Screen** | Captures the current 3D OpenGL viewport at its current camera angle, **automatically crops** uniform background margins tightly around the rendered foreground, and copies the cropped image to the system clipboard (unlike **Screen › Save 3D Screen...**, which preserves full uncropped viewport margins). Does not change the live 3D camera orientation. |
+| **3D Screen Left/Right Views** | Renders the standard **Left sagittal** and **Right sagittal** 3D views side-by-side (`2W × H`, uncropped) at the current 3D zoom level and copies the paired image to the system clipboard. Overwrites the live 3D camera rotation, leaving the viewport on the Right sagittal view. |
+| **3D Screen 3 Views** | Builds the `2 × 2` (`2W × 2H`) composite of **Left sagittal** (top-left), **Posterior coronal** (top-right), current **Draw Regions** 2D view (bottom-left), and **Superior axial** (bottom-right), and copies it to the system clipboard. Leaves the live 3D camera on the Superior axial view. |
+| **3D Screen 3 Views Horizontal** | Captures **four** standard directional 3D views (**Left sagittal**, **Right sagittal**, **Posterior coronal**, and **Superior axial**), crops each to its tight foreground bounding box, and copies the side-by-side 4-panel horizontal strip to the system clipboard. Leaves the live 3D camera on the Superior axial view. |
+| **3D Screen 3 Views Vertical** | Captures the **four** uncropped directional 3D views (**Left sagittal**, **Right sagittal**, **Posterior coronal**, and **Superior axial**), stacks them vertically (`W × 4H`), and copies the strip to the system clipboard. Leaves the live 3D camera on the Superior axial view. |
+| **3D Screen Each Tract** | Prompts for **Column Count** (`1`–`50`, default `5`), temporarily unchecks all tract bundles in the **Tracts** table, and steps through each originally checked bundle one by one—enabling only that bundle at the current 3D camera angle (while keeping any visible slices, regions, or surfaces as anatomical context), foreground-cropping each non-empty capture, and assembling all bundle panels into a multi-column mosaic on the system clipboard before restoring original checkmarks and confirming `Images captured to clipboard`. Requires at least one checked visible tract bundle (**Tract Rendering** enabled); note that clicking **Cancel** in the column-count prompt still proceeds using the default `5` columns. |
+| **3D Screen Each Region** | Prompts for **Column Count** (`1`–`50`, default `5`), temporarily unchecks all rows in **Assign Regions**, renders and foreground-crops each originally checked region individually from the current 3D camera angle (preserving any visible slices, tracts, or surfaces in the background), copies the resulting multi-column region gallery to the system clipboard, and restores all original region checkmarks (`Images captured to clipboard`). Requires at least one checked visible region (**Region Rendering** enabled); clicking **Cancel** in the column-count prompt still runs with `5` columns. |
+| **ROI** | Copies the currently displayed **Draw Regions** 2D canvas—whether in **Single Slice**, **3 Slices** (including its live embedded 3D quadrant), or multi-slice **Mosaic** layout at the active **ROI › Zoom** and overlay settings—directly to the system clipboard. |
+| **Track Report** | Listed in the submenu without an active handler in the current build; selecting it performs no action and leaves the clipboard unchanged. To copy tractography methods text or bundle measurements, highlight and copy text directly from the **Report** box in the **Tracts** panel, or open **Tracts › Statistics...** and click **Copy to Clipboard**. |
 
 ## Rotation and video
 
-| Menu item | Shortcut / GUI command hint |
+| Menu item | Behavior |
 |---|---|
-| Auto Rotate | — |
-| Record Video... | — |
-| Save Rotation Video... | `run save_rotation_video` |
+| **Auto Rotate** | Checkable toggle. When checked, continuously rotates the live 3D scene around the vertical (`Y`) axis at **10° per second** (rotating both cameras together when **Layout › 3D Views › Double** is active) while keeping interactive zoom, slice, and rendering controls responsive. Select **Auto Rotate** again to uncheck it and stop at the current angle. |
+| **Record Video...** | Starts or stops live interactive Motion-JPEG `.avi` recording of the 3D OpenGL viewport at **10 frames per second** (`100 ms` interval) using the current 3D viewport pixel dimensions. Selecting **Record Video...** once opens a save file dialog (`*.avi`; default `<WindowName>.avi`) and begins capturing live mouse rotations, zooms, slice sweeps, or **Auto Rotate** motion (avoid resizing the Fiber Tracking window during recording so frame dimensions remain constant). **Stopping caution:** Although the start prompt displays a legacy message (`Press Ctrl+Shift+R again to stop recording.`), no keyboard shortcut is assigned in the current interface—select **Screen › Record Video...** a second time from the menu to close the `.avi` stream and see `Video saved`. |
+| **Save Rotation Video...** | Opens a save file dialog (`*.avi`; default `<fib_name>_rotation.avi`) and automatically renders a smooth **360°** turntable animation around the vertical (`Y`) axis in **0.2°** steps (**1,800 frames** encoded as Motion-JPEG `.avi` at **30 fps**, playing back over **60 seconds**). On Windows and Linux, the 3D viewport temporarily resizes to **1980 × 1080** pixels during rendering (on macOS, it renders at the current 3D viewport size). Displays a cancellable progress bar and automatically restores the original camera matrices and viewport size on completion, error, or cancellation; canceling early stops frame generation and may leave a partial `.avi` file at the chosen path. |
 
+## Capture and export notes
 
-The `run ...` strings above, where shown, are **GUI command hints from the UI file**, not public `dsi_studio --action=...` CLI flags.
-
-Source: [tracking_window.ui](https://github.com/frankyeh/DSI-Studio/blob/master/tracking/tracking_window.ui).
+- **Preserving custom oblique camera angles:** **[Screen][Save 3D Screen...]**, **[Screen][Save 3D Screen in High Resolution..]**, **[Screen][Copy to Clipboard][3D Screen]**, **[Screen][Copy to Clipboard][3D Screen Each Tract]**, **[Screen][Copy to Clipboard][3D Screen Each Region]**, and **[Screen][Save Rotation Video...]** all keep your exact current 3D camera angle. By contrast, every **Left/Right Views** and **3 Views** capture resets the live 3D camera to standard sagittal, coronal, or axial presets—store your camera angle first via **[View]** (for example `Alt+1` and `1`) whenever you want to return to a custom viewpoint.
+- **Exporting multi-slice 2D series (mosaics):** Click the **Show mosaic view** button at the bottom of **Draw Regions** (or adjust **ROI › Slice Layout** from `Mosaic` to `Mosaic 10`, **Mosaic Column Number**, **Mosaic Skip Row**, and **Zoom** in **Options**) to tile an entire axial, coronal, or sagittal slice series with region and tract overlays, then capture the full sheet at full resolution using **[Screen][Save ROI Screen...]** or **[Screen][Copy to Clipboard][ROI]**.
+- **Choosing `.glb` vs `.obj` for 3D models:** Prefer `.glb` in **[Screen][Save 3D Model...]** for presentations and quick sharing because slice textures and region/surface transparency are packed into a single file. Choose `.obj` when importing into mesh tools that expect separate Wavefront geometry (`.obj`), material (`.mtl`), and slice texture (`.jpg`) files, and keep all exported files in the same directory.

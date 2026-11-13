@@ -1,124 +1,88 @@
 # [Regions] Menu
 
-Create, import, export, combine, and quantify 3D regions of interest (ROIs) in the Step T3 tracking window. Right-clicking anywhere in the **Assign Regions** table opens the same **[Regions]** menu.
+The **[Regions]** menu in the Fiber Tracking window creates, imports, exports, combines, and quantifies 3D regions of interest (ROIs) used for 2D slice overlays, 3D surface rendering, ROI-guided fiber tracking, and scalar or connectome statistics. Right-clicking anywhere inside the **Assign Regions** table opens the same **[Regions]** context menu.
 
 ## Overview
 
-The **Assign Regions** dock lists every loaded region with four columns:
+The **Assign Regions** dock lists every loaded region with four columns and a compact toolbar above the table:
 
-| Column | Purpose |
-|:--|:--|
-| **Name** (with checkbox) | Toggles 2D slice overlay / 3D surface visibility and marks the region as **checked** for fiber tracking, checked-region exports, merging, and statistics. Double-click to rename. |
-| **Type** | Tracking role assigned to the region: `ROI` (`0`), `ROA` (`1`), `End` (`2`), `Seed` (`3`), `Terminative` (`4`), `NotEnd` (`5`), `Limiting` (`6`), or `...` (`7`, unassigned; initial state for newly created or loaded regions unless stored in NIfTI `descrip`). See [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html) for role semantics. |
-| **Color** | Region overlay and 3D surface RGBA color (`Assigned` color mode). |
-| **Dimension × Resolution (mm)** | Voxel grid dimensions and voxel spacing of the slice space in which the region is stored (diffusion grid or a registered structural slice grid). |
+- **Name** (with checkbox): Toggles 2D slice overlay and 3D surface visibility and marks the row as **checked** for fiber tracking, checked-region exports, merging, and statistics. Double-click a region name (or press the edit key) to rename it in place.
+- **Type**: Tracking role assigned to the region via dropdown: `ROI`, `ROA`, `End`, `Seed`, `Terminative`, `NotEnd`, `Limiting`, or `...` (unassigned visualization/parcellation state used when a region is newly created or loaded unless stored in a NIfTI header). See [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html) for how each role constrains streamlines.
+- **Color**: Region 2D overlay and 3D surface RGBA color swatch used when Region Rendering is set to `Assigned` color mode (click the swatch to pick a custom color).
+- **Dimension × Resolution (mm)**: Voxel grid dimensions `(X,Y,Z)` and millimeter voxel spacing `(vx,vy,vz)` of the slice space in which the region is stored (either the native diffusion grid or a registered structural slice grid).
+- **Dock toolbar**: Provides quick icon buttons to create, open, save, delete, or move the highlighted region row up and down in table order, a template dropdown (plus an alternate mapping selector when multiple template mappings exist), **Atlas...** to load parcels from built-in atlases, and **Segment...** for tissue or lesion segmentation.
 
-Notice the distinction between **selected** and **checked** rows: single-region operations (**Save Current Region As...**, **Copy**, **Undo**, **Redo**, **Region-Atlas Intersection Statistics...**, and default **Delete**) act on the currently highlighted row, whereas multi-region operations (**Save Checked Regions...**, **Merge Checked Regions**, **Statistics...**, **Tract-To-Region Connectome...**, and fiber tracking) act on all rows whose checkbox is checked.
+Notice the distinction between **selected** (highlighted) and **checked** rows: single-region operations (**Save Current Region As...**, **Delete**, **Copy**, **Undo**, **Redo**, and **Region-Atlas Intersection Statistics...**) act only on the currently highlighted row, whereas multi-region operations (**Save Checked Regions to one 3D NIFTI...**, **Save Checked Regions to multiple 3D NIFTIs...**, **Save Checked Regions to one 4D NIFTI...**, **Merge Checked Regions**, **Tract-To-Region Connectome...**, **Statistics...**, and fiber tracking) act on all rows whose checkbox is checked.
 
 ## [Regions] Menu Actions
 
-> **GUI command hints vs. CLI flags:** The `run ...` strings shown below come from `tracking_window.ui` action tooltips (`QAction::toolTip`) and are internal GUI/AI window command hints — **not** standalone `dsi_studio --action=...` command-line flags. See [Command History and CLI](#command-history-and-cli) for batch execution.
-
-| Menu item | Shortcut / GUI command hint | Target & behavior |
-|:--|:--|:--|
-| New Region | `Ctrl+Shift+F1` · `run new_region` | Appends an empty checked region (`new region`, role `...`) matching the active slice's dimensions, voxel size, and slice-to-diffusion transform for manual 2D slice drawing. |
-| Open Region... | `Ctrl+Shift+F2` · `run open_region` | Loads one or more `.nii`, `.nii.gz`, `.hdr`, `.mat`, or `.txt` region files in native/registered subject space (or MNI space when the filename contains `mni`); splits 3D multi-label parcellations and 4D NIfTI volumes into separate region rows. |
-| Open MNI Region... | `Ctrl+Shift+F3` · `run open_mni_region` | Computes subject-to-template registration if needed and nonlinearly warps template/MNI-space NIfTI masks or multi-label parcellations into subject space using majority-vote interpolation. |
-| Save Current Region As... | `Ctrl+Shift+F5` · `run save_region` | Saves the currently selected region as `.nii.gz` / `.nii` (`uint8` mask storing `color` and `roi` role in NIfTI `descrip`), `.mat` (`0`/`255` `uint8` 3D matrix), or `.txt` (`x y z` voxel coordinates per line); appends `.nii.gz` when no recognized extension is given. |
-| Save Checked Regions to one 3D NIFTI... | `Ctrl+Shift+F6` · `run save_all_regions` | Writes all checked regions into one 3D label NIfTI on the first checked region's grid (`uint8` for ≤ 255 regions, `uint16` for > 255) with **1-based** integer IDs (`1..N`) and a companion `<stem>.txt` label table. Where regions overlap, later checked rows overwrite earlier ones. |
-| Save Checked Regions to multiple 3D NIFTIs... | `Ctrl+Shift+F7` · `run save_all_regions_to_folder` | Exports every checked region into a chosen directory as `<region_name>.nii.gz` (or `.mat` / `.txt` when the active ROI output format is set accordingly). |
-| Save Checked Regions to one 4D NIFTI... | `Ctrl+Shift+S` · `run save_4d_region` | Writes all checked regions into a single `X × Y × Z × N` `uint8` (`0`/`1`) 4D NIfTI on the first checked region's grid — preserving overlapping voxels across volumes — alongside a **0-based** `<stem>.txt` label table (`0..N-1`). |
-| Check All | `Ctrl+Shift+A` · `run check_all_regions` | Checks every row in the **Assign Regions** table. |
-| Uncheck All | `Ctrl+Shift+U` · `run uncheck_all_regions` | Unchecks (hides) every row in the **Assign Regions** table. |
-| Merge Checked Regions | `Ctrl+Shift+M` · `run merge_regions` | Requires at least two checked regions; resamples later checked regions into the first checked region's grid, replaces that first region with the voxel union, and removes the remaining merged rows. |
-| Delete | `Ctrl+Shift+Backspace` · `run delete_region` | Removes the currently selected region row from the table. |
-| Delete All | `run delete_all_regions` | Removes all regions from the table and resets automatic region color cycling. |
-| Copy | `Ctrl+Shift+V` · `run copy_region` | Duplicates the currently selected region (voxels, coordinate space, role, color, and edit history) and inserts the checked copy immediately below the selected row (not to the system clipboard). |
-| Undo | `Ctrl+Shift+Z` · — | Reverts the most recent voxel drawing or mask-modification step on the currently selected region; does not undo row deletion or **Merge Checked Regions**. |
-| Redo | `Ctrl+Shift+Y` · — | Re-applies the most recently undone voxel edit on the currently selected region. |
-| Tract-To-Region Connectome... | `run show_t2r` | Requires ≥ 1 checked tract and ≥ 1 checked region; identifies streamlines intersecting each checked region and reports per-region tract counts, volumes, lengths, and scalar means in a dialog (default save name `<stem>_<tract>_t2r.txt`). |
-| Statistics... | `run show_region_statistics` | Computes a tab-separated summary across all checked regions: voxel count, volume (`mm^3`), diffusion-space and MNI center of mass and bounding box, min/max/mean across loaded scalar slices, and per-subject connectometry DB metrics when present. |
-| Region-Atlas Intersection Statistics... | `run show_region_overlap_statistics` | Prompts for a built-in atlas, intersects the currently selected region with every parcel of that atlas in the region's space **without adding rows to the region table**, omits zero-overlap parcels, and reports full region statistics for each overlapping parcel. |
+| Menu item | Behavior |
+|---|---|
+| **New Region** | Shortcut: `Ctrl+Shift+F1`. Appends an empty checked region named `new region` (role `...`, auto-cycled hue) matching the active slice's voxel grid dimensions, millimeter voxel spacing, and slice-to-diffusion transform for manual 2D slice drawing. Select the target diffusion or registered structural slice first so the new region inherits the intended drawing grid. |
+| **Open Region...** | Shortcut: `Ctrl+Shift+F2`. Opens a multi-file dialog for `.nii`, `.nii.gz`, `.hdr`, `.mat`, or `.txt` region files in native diffusion or registered structural-slice space (if a NIfTI filename contains lowercase `mni` and its dimensions differ from a native-space FIB, DSI Studio warps it from MNI space automatically). Binary or scalar 3D NIfTIs load as one region (`voxel > 0`), whereas integer multi-label 3D NIfTIs, 3D NIfTIs paired with a `<stem>.txt` label file, and 4D NIfTIs split into one checked row per nonzero parcel or volume. |
+| **Open MNI Region...** | Shortcut: `Ctrl+Shift+F3`. Computes subject-to-template registration if not already initialized, opens a multi-file dialog for `.nii`, `.nii.gz`, `.hdr`, `.mat`, or `.txt` region files defined in MNI/template space, and nonlinearly warps mismatched NIfTI masks or multi-label parcellations into subject diffusion space using majority-vote interpolation. Caution: if a NIfTI volume already has the exact same voxel dimensions as a native-space FIB, DSI Studio skips template warping and loads it directly on the diffusion grid. |
+| **Save Current Region As...** | Shortcut: `Ctrl+Shift+F5`. Saves the currently highlighted region row on its stored voxel grid as `.nii.gz` or `.nii` (`uint8` binary `0`/`1` mask recording display RGB color and tracking role in the NIfTI `descrip` header), `.mat` (`uint8` 3D matrix with values `0` and `255`), or `.txt` (whitespace-separated 0-based `x y z` voxel coordinates, one voxel per line). Defaults to the active ROI output extension (`.nii.gz` unless changed in the region display options) and appends `.nii.gz` when an unrecognized extension is entered. |
+| **Save Checked Regions to one 3D NIFTI...** | Shortcut: `Ctrl+Shift+F6`. Requires at least one checked region. Resamples all checked regions onto the first checked region's voxel grid via majority-vote interpolation when grids differ, assigns **1-based** integer parcel IDs (`1..N` in table order; `uint8` for up to 255 regions, `uint16` above 255), and writes both the 3D NIfTI parcellation and a companion `<stem>.txt` label table (`1 <name>` .. `N <name>`). Caution: where checked regions overlap, later checked rows overwrite earlier ones; use **Save Checked Regions to one 4D NIFTI...** when overlaps must be preserved. |
+| **Save Checked Regions to multiple 3D NIFTIs...** | Shortcut: `Ctrl+Shift+F7`. Requires at least one checked region. Prompts for an output folder and writes each checked region on its own voxel grid as `<region_name>.nii.gz` (or `.mat` / `.txt` when the region panel's **Default Output Format** option is set accordingly). Caution: ensure checked regions have unique names before exporting so duplicate `<region_name>` files do not overwrite one another in the target folder. |
+| **Save Checked Regions to one 4D NIFTI...** | Shortcut: `Ctrl+Shift+S`. Requires at least one checked region. Resamples all checked regions onto the first checked region's 3D grid and stacks them into a single `X × Y × Z × N` `uint8` (`0`/`1`) 4D NIfTI volume alongside a **0-based** companion `<stem>.txt` label table (`0 <name>` .. `N-1 <name>`), preserving overlapping voxels across volumes. Note: `Ctrl+Shift+S` is also assigned to **Region Edit › Smoothing**, so choose the menu item directly if the shortcut is ambiguous. |
+| **Check All** | Shortcut: `Ctrl+Shift+A`. Checks every row in the **Assign Regions** table, displaying all regions in the 2D slice and 3D views and including them in fiber tracking and checked-region operations. |
+| **Uncheck All** | Shortcut: `Ctrl+Shift+U`. Unchecks every row in the **Assign Regions** table, hiding all regions from the 2D and 3D views and excluding them from fiber tracking and checked-region operations. |
+| **Merge Checked Regions** | Shortcut: `Ctrl+Shift+M`. Requires at least two checked regions. Resamples all later checked regions onto the first checked region's voxel grid and coordinate space, replaces that first checked row in place with the binary voxel union, and deletes the remaining merged rows from the table. Caution: **Undo** reverts the first region's voxel mask if it remains highlighted, but does not restore the deleted rows. |
+| **Delete** | Shortcut: `Ctrl+Shift+Backspace`. Permanently removes the currently highlighted region row from the **Assign Regions** table (row deletion cannot be reverted with **Undo**). |
+| **Delete All** | Clears every region row from the **Assign Regions** table and resets automatic region color cycling to the start of the hue sequence. |
+| **Copy** | Shortcut: `Ctrl+Shift+V`. Duplicates the currently highlighted region — including its voxel mask, grid and coordinate transform, tracking role, color, and undo/redo history — and inserts the checked copy immediately below the highlighted row (internal table duplicate rather than a system clipboard operation). |
+| **Undo** | Shortcut: `Ctrl+Shift+Z`. Reverts the most recent voxel-mask edit (manual slice drawing or erasing, morphological or boolean edits, flips, or the first row's union mask from **Merge Checked Regions**) on the currently highlighted region row. Does not undo row deletion, renaming, or role/color changes. |
+| **Redo** | Shortcut: `Ctrl+Shift+Y`. Re-applies the most recently undone voxel-mask edit on the currently highlighted region row. |
+| **Tract-To-Region Connectome...** | Requires at least one checked tract bundle in the **Tracts** table and at least one checked region. Maps checked regions into diffusion space, identifies streamlines in each checked bundle that pass through each checked region, and opens a **Tract-To-Region Connectome** report dialog (default save name `<stem>_<tract>_t2r.txt`; one block per checked tract) reporting passing streamline counts (`number of tracts`), tract length/volume/shape metrics, scalar means along passing streamlines, `intersect ratio`, and `intersect volume(mm^3)`. Caution: to calculate the streamline involvement fraction, divide a region's `number of tracts` by the bundle's total streamline count rather than using `intersect ratio` (which reflects density-map voxel coverage), and note that streamlines crossing multiple regions count toward each one. |
+| **Statistics...** | Requires at least one checked region. Opens a **Region Statistics** report dialog (default save name `<stem>_region_stat.txt`) with one tab-separated column per checked region reporting `voxel counts`, `volume (mm^3)`, diffusion-grid center of mass (`center x/y/z`, in voxels) and bounding box (`bounding box min/max x/y/z`, in voxels), MNI millimeter center of mass and bounding box (`center mni x/y/z`, `bounding box mni min/max x/y/z`) once subject-to-template mapping is active in the session, nonzero/finite mean, `_max`, and `_min` values across every loaded diffusion index and inserted slice, and per-subject `<subject> mean_<metric>` rows when a connectometry database is open. |
+| **Region-Atlas Intersection Statistics...** | Acts on the currently highlighted region row. Prompts to choose a built-in atlas for the active template, warps all parcels of that atlas into the highlighted region's grid and coordinate space, intersects the highlighted region with each parcel **without adding or modifying rows in the Assign Regions table**, omits zero-overlap parcels, and opens a **Region-Atlas Intersection Statistics** report dialog (default save name `<stem>_region_overlap_stat.txt`) containing full region statistics (including MNI coordinates) for every overlapping parcel. |
 
 ### File Formats and Coordinate Alignment
 
-- **Single-ROI vs. multi-label NIfTI (`Open Region...` / `Open MNI Region...`):** Binary or continuous scalar NIfTI volumes load as a single region (`voxel > 0`), restoring saved display color and tracking role when NIfTI `descrip` contains `color=...;roi=...`. Integer label volumes (or 3D NIfTIs paired with a `<stem>.txt` label file) and 4D NIfTI volumes split into one region per nonzero label or 4D volume. Parcel names resolve from `<stem>.txt` (`<id> <name>`), `<stem>.json` (`arealabel` / `labelIndex`), or built-in `FreeSurferColorLUT.txt` when the filename contains `aparc` or `aseg`.
-- **Subject-space vs. structural-slice vs. MNI alignment:**
-  - In **[Regions][Open Region...]**, if the filename contains `mni`, DSI Studio warps it from MNI space automatically. Otherwise, if image dimensions match the FIB grid, voxels load directly in diffusion space; if dimensions differ on a native-space FIB, DSI Studio reuses the registration transform of an already loaded structural slice with matching dimensions (load the structural T1w/T2w volume via **[Slices][Insert Other Images...]** first, or use **[Regions][Open MNI Region...]** for template masks). On an MNI-space FIB, header `srow` affine matrices align mismatched grids.
-  - `.txt` coordinate files store whitespace-separated `x y z` voxel coordinates per line; an optional trailing `<scale> -1 -1` line defines a subvoxel resolution multiplier (`1 / scale`).
+- **Single-ROI vs. multi-label NIfTI (`Open Region...` and `Open MNI Region...`):** Binary masks and continuous scalar 3D NIfTI volumes without a companion `<stem>.txt` file load as a single binary region (`voxel > 0`), restoring saved RGB color and tracking role when the NIfTI `descrip` header contains `color=<rgb>;roi=<role>`. Integer multi-label 3D NIfTIs (label IDs up to `65535`), 3D NIfTIs paired with a `<stem>.txt` label file, and 4D NIfTI volumes split into one region row per nonzero parcel or 4D volume. Parcel names resolve automatically from `<stem>.txt` (`<id> <name>`), `<stem>.json` (`arealabel` and `labelIndex`), or DSI Studio's built-in `FreeSurferColorLUT.txt` (including FreeSurfer RGB colors) when the filename contains `aparc` or `aseg`; otherwise rows are named `<stem>_<id>`.
+- **Subject diffusion grid vs. structural-slice registration vs. MNI alignment:**
+  - **Matching diffusion grid:** When a NIfTI volume's dimensions match the opened FIB grid, voxels load directly in diffusion space (on a native-space FIB, identical dimensions take precedence even if the filename contains `mni`).
+  - **Native-space FIB with mismatched dimensions:** In **[Regions][Open Region...]**, if the filename contains lowercase `mni` (or when you choose **[Regions][Open MNI Region...]**), DSI Studio computes subject-to-template registration if needed and nonlinearly warps the volume from template space into subject diffusion space via majority-vote interpolation. Otherwise, DSI Studio looks for an already loaded structural slice with matching voxel dimensions and reuses its slice-to-diffusion registration transform — insert the reference T1w/T2w volume first via **[Slices][Insert Other Images...]** before opening structural-space ROIs, or use **[Regions][Open MNI Region...]** for template masks.
+  - **Template/MNI-space FIB (such as QSDR) with mismatched dimensions:** Header `srow` affine matrices align mismatched NIfTI grids to the template FIB grid; verify that imported NIfTI headers carry accurate MNI affine transforms.
+- **Text (`.txt`) and MATLAB (`.mat`) coordinate files:** `.txt` files store whitespace-separated 0-based `x y z` voxel coordinates per line (rounded to integer indices on load); an optional trailing `<scale> -1 -1` sentinel line defines a subvoxel resolution multiplier (`1 / scale` relative to diffusion voxels). `.mat` files store a 3D matrix (exported as `0`/`255` `uint8`, with any nonzero entry treated as an in-region voxel on load).
 
 ### Built-In Atlas Parcels
 
-Click **Atlas...** at the top of the **Assign Regions** dock (`ui->addRegionFromAtlas`) to warp parcels from DSI Studio's built-in templates (`ICBM152_adult`, FreeSurfer/HCP-MMP, AAL3, Brainnetome, subcortical atlases, etc.) into the active slice's space:
+Select the appropriate template in the dropdown at the top of the **Assign Regions** dock (for example `ICBM152_adult` alongside FreeSurfer/DKT, HCP-MMP, AAL3, Brainnetome, and subcortical atlases) and click **Atlas...** to warp parcels into the active slice's voxel space:
 
-- **Add** (`add_region_from_atlas "<template_id> <atlas_id> <label_id&label_id...>"`): Appends checked rows for the highlighted parcels (or all parcels when `<label_id>` is omitted in command history). Notice that `template_id` updates the active template before `atlas_id` is indexed.
-- **Merge and Add**: Combines all highlighted parcels into a single region row named after the selected parcels.
+- **Atlas selector & Search:** Choose an atlas from the top dropdown or type in **Search:** (`parcel:atlas` auto-completion) to jump directly to a parcel; **Select...** highlights all parcels matching a prefix string, and **Select All** highlights every parcel in the current atlas.
+- **Add:** Warps each highlighted parcel into the active slice's grid and appends one checked region row per parcel.
+- **Merge&Add:** Combines all highlighted parcels into a single checked region row named after the longest common prefix of the first and last selected parcel names (or the first parcel's name when no prefix is shared).
 
-## Command History and CLI
-
-DSI Studio separates interactive GUI navigation, GUI/agent command hints, Command History replay, and standalone CLI actions:
-
-1. **GUI menu paths** such as **[Regions][Open Region...]** trigger interactive Qt dialogs in the tracking window.
-2. **`run ...` strings** (such as `run open_region`) are internal tracking-window / DSI Studio AI command hints, not shell flags.
-3. **`--action=vis --cmd=...` ([Command History CLI](/doc/cli_vis.html))** replays recorded tracking-window commands (`+` separates chained commands, `,` separates arguments, and `&` joins multiple 0-based region row indices). **[Regions][Undo]** and **[Regions][Redo]** are direct GUI slots and have no `--cmd` token.
-4. **Headless CLI actions** run region statistics, overlap tables, and ROI fiber tracking directly without opening the GUI via [`--action=ana`](/doc/cli_ana.html) and [`--action=trk`](/doc/cli_t3.html).
-
-| `--action=vis` `--cmd` syntax | Notes & unattended batch behavior |
-|:--|:--|
-| `new_region` | Appends empty `"new region"` at the end of the region list. |
-| `open_region,<path>` | Loads `<path>` (or `&`-joined paths) in subject/slice space. |
-| `open_mni_region,<path>` | Warps MNI/template mask or parcellation `<path>` into subject space. |
-| `add_region_from_atlas,<template_id> <atlas_id>[ <l1&l2...>]` | Space-separated `template_id`, `atlas_id`, and optional `&`-joined 0-based parcel indices (adds all parcels if omitted). |
-| `save_region,<path>[,<index>]` | Saves 0-based `<index>` (default: selected row) to `.nii.gz`, `.nii`, `.mat`, or `.txt`. |
-| `save_all_regions,<path.nii.gz>` | Saves checked regions as one 1-based 3D label NIfTI + `<stem>.txt`. |
-| `save_all_regions_to_folder,<dir>` | Saves each checked region into `<dir>/<name>.nii.gz`. |
-| `save_4d_region,<path.nii.gz>` | Saves checked regions as one `0`/`1` 4D NIfTI + 0-based `<stem>.txt`. |
-| `check_all_regions` / `uncheck_all_regions` | Checks or unchecks all region rows (`check_region,<i1&i2>,1\|0` toggles specific rows). |
-| `merge_regions[,<i1&i2...>]` | Merges checked regions (or explicit `&`-joined 0-based indices) into the first listed row. |
-| `copy_region[,<index>]` | Duplicates row `<index>` (default: selected row) into `<index> + 1`. |
-| `delete_region[,<i1&i2...>]` / `delete_all_regions` | Deletes selected/indexed rows or clears all regions. |
-| `save_region_statistics,<out.txt>` | Unattended file export for `[Regions][Statistics...]` (`show_region_statistics` opens a modal dialog in `--action=vis`). |
-| `save_t2r,<out.txt>` | Unattended file export for `[Regions][Tract-To-Region Connectome...]` (`show_t2r` opens a modal dialog in `--action=vis`). |
-| `show_region_overlap_statistics,<index>,<atlas_name>` | Opens the overlap dialog in `--action=vis`; for unattended file output use `--action=ana --overlap=<atlas_name>` below. |
-
-Example batch workflow (`--action=vis` vs. headless `--action=ana`):
-
-```bash
-# Load an MNI mask via --action=vis, export checked-region stats, and save the warped mask
-dsi_studio --action=vis --source=sub01.fz --cmd="open_mni_region,lesion_mni.nii.gz+save_region_statistics,lesion_stat.txt+save_region,lesion_sub.nii.gz,0"
-
-# Headless CLI region-atlas intersection statistics without GUI dialogs
-dsi_studio --action=ana --source=sub01.fz --region=lesion_sub.nii.gz --overlap=HCP-MMP --output=lesion_hcpmmp_overlap.txt
-```
+Always inspect warped atlas parcels over the subject's slices before fiber tracking; if nonlinear registration is inaccurate due to pathology or severe distortion on a native-space dataset, refine template alignment via **[Regions Misc][Manual Atlas Alignment...]**.
 
 ## [Regions Misc] Additional Features
 
-Additional region-generation commands live under the sibling **[Regions Misc]** top-level menu (`menuRegions_Misc`):
+Additional region-generation commands reside under the neighboring **[Regions Misc]** menu (see the [Regions Misc menu reference](/doc/menu_regions_misc.html)):
 
 ### New Region From Thresholding
 
-**[Regions Misc][New Region From Thresholding...]** (`run new_region_from_threshold` / `--cmd="new_region_from_threshold,<thr>"`) appends `"New Region"` and masks voxels on the active slice satisfying `I > thr` (when prompting interactively, the default threshold is Otsu's threshold on the active slice; supplying a negative `<thr>` selects low-intensity voxels `I <= |thr|`).
+**[Regions Misc][New Region From Thresholding...]** appends a checked `New Region` on the active slice grid and prompts for an intensity threshold initialized to Otsu's threshold of the active slice. Positive values retain voxels strictly above the threshold (`I > threshold`), whereas negative values select low-intensity voxels (`I <= |threshold|`). Canceling the threshold prompt leaves the newly appended empty region row in the table.
 
 ### New Region From MNI Coordinate
 
-**[Regions Misc][New Region From MNI Coordinate...]** (`run new_region_from_mni` / `--cmd="new_region_from_mni,<mni_x> <mni_y> <mni_z> <radius_vox>"`) maps the millimeter MNI coordinate `(mni_x, mni_y, mni_z)` into the active slice's voxel space and populates a spherical region with radius `<radius_vox>` in voxels.
+**[Regions Misc][New Region From MNI Coordinate...]** prompts for space-separated millimeter MNI coordinates and a sphere radius in voxels (`mni_x mni_y mni_z radius_voxels`, such as `0 -10 21 10`, or three millimeter MNI coordinates followed by a voxel-radius prompt), maps the MNI coordinate into the active slice's voxel grid, and populates a spherical region of that voxel radius (so physical millimeter radius scales with the active slice's voxel size).
 
 ### Whole Brain Seeding
 
-**[Regions Misc][Whole Brain Seeding]** (`run new_region_whole_brain_seed` / `--cmd="new_region_whole_brain_seed[,<otsu_ratio>]"`) creates a checked `Seed` region named `"whole brain"` on the active slice grid where diffusion `fa0 > otsu_threshold * fa_otsu` (using the tracking window's `otsu_threshold` parameter unless an explicit `<otsu_ratio>` argument is passed).
+**[Regions Misc][Whole Brain Seeding]** creates a checked `Seed` region named `whole brain` on the active slice grid containing all voxels where primary fiber anisotropy (`fa0`) exceeds the tracking window's Otsu threshold ratio multiplied by the FIB's FA Otsu threshold.
 
 ## [Regions][Edit Region]
 
-Morphological, voxel-mask, and spatial transform operations are organized under the top-level **[Region Edit]** (`menuRegion_Edit`) and **[Region Move]** (`menuRegion_Move`) menus:
+Morphological, intensity-guided, boolean, and spatial-transform tools are organized under **[Region Edit]** ([Region Edit menu reference](/doc/menu_region_edit.html)) and **[Region Move]** ([Region Move menu reference](/doc/menu_region_move.html)):
 
-- **[Region Edit]**: **Dilation** (`Ctrl+Shift+D`), **Dilation By Voxel...**, **Dilation By Threshold...**, **Erosion** (`Ctrl+Shift+E`), **Erosioin By Threshold...**, **Opening** (`Ctrl+Shift+O`), **Closing** (`Ctrl+Shift+C`), **Smoothing** (`Ctrl+Shift+S`), **Defragment** (`Ctrl+Shift+F`), **Separate** (`Ctrl+Shift+P`), **Negate** (`Ctrl+Shift+N`), **Threshold** (`Ctrl+Shift+T`), and multi-region set operations (**All Intersect First** `Ctrl+Shift+1`, **All Exclude First** `Ctrl+Shift+2`, **First Excludes All** `Ctrl+Shift+3`, **All Fit into First** `Ctrl+Shift+4`, **Refine All** `Ctrl+Shift+5`). Toggle **[Region Edit][Modify All Checked]** (`actionModify_All`) to apply edits across all checked regions instead of only the selected row.
-- **[Region Move]**: **Flip X** (`Ctrl+7`), **Flip Y** (`Ctrl+8`), **Flip Z** (`Ctrl+9`), **Shift +X** / **Shift -X** (`Ctrl+1` / `Ctrl+2`), **Shift +Y** / **Shift -Y** (`Ctrl+3` / `Ctrl+4`), **Shift +Z** / **Shift -Z** (`Ctrl+5` / `Ctrl+6`), and **Move Region at 3D** (`Ctrl+A`).
+- **[Region Edit]**: **Dilation** (`Ctrl+Shift+D`), **Dilation By Voxel...**, **Dilation By Threshold...**, **Erosioin By Threshold...**, **Erosion** (`Ctrl+Shift+E`), **Opening** (`Ctrl+Shift+O`), **Closing** (`Ctrl+Shift+C`), **Smoothing** (`Ctrl+Shift+S`), **Defragment** (`Ctrl+Shift+F`), **Separate** (`Ctrl+Shift+P`), **Negate** (`Ctrl+Shift+N`), **Threshold** (`Ctrl+Shift+T`, filtering existing region voxels against the active slice), and multi-region set operations (**All Intersect First** `Ctrl+Shift+1`, **All Exclude First** `Ctrl+Shift+2`, **First Excludes All** `Ctrl+Shift+3`, **All Fit into First** `Ctrl+Shift+4`, **Refine All** `Ctrl+Shift+5`). Toggle **[Region Edit][Modify All Checked]** to apply single-region edits across all checked regions instead of only the highlighted row.
+- **[Region Move]**: Voxel-grid reflections (**Flip X** `Ctrl+7`, **Flip Y** `Ctrl+8`, **Flip Z** `Ctrl+9`), 1-voxel axis shifts (**Shift +X** / **Shift -X** `Ctrl+1` / `Ctrl+2`, **Shift +Y** / **Shift -Y** `Ctrl+3` / `Ctrl+4`, **Shift +Z** / **Shift -Z** `Ctrl+5` / `Ctrl+6`), and interactive 3D placement (**Move Region at 3D** `Ctrl+A`).
 
 ## [Regions Misc][Advanced]
 
-Advanced region utilities reside in **[Region Edit]** and **[Regions Misc]**:
+Advanced region utilities span **[Region Edit]**, **[Regions Misc]**, and **[Records]**:
 
-- **Separate & Negate:** **[Region Edit][Separate]** (`Ctrl+Shift+P`, `region_action_separate`) runs connected-component labeling on the target region mask and appends up to `256` `<name>_1`, `<name>_2`, ... component rows, and **[Region Edit][Negate]** (`Ctrl+Shift+N`, `region_action_negate`) inverts the binary mask across the region's slice volume.
-- **Sorting, Colors, Voxel Export, Slice Centering, and Atlas Mapping:** **[Regions Misc]** provides **Save Voxel Data As...** (`run save_region_info`), **Load Region Color...** / **Save Region Color...** (`run load_region_color` / `run save_region_color`), **Sort By Name**, **Sort By Size**, **Sort By X**, **Sort By Y**, **Sort By Z**, **Move Slices To Current Region** (`run move_slice_to_region`, centering slices on the selected region's per-axis median voxel), **Load MNI mapping...** (`run open_mapping`), and **Manual Atlas Alignment...**.
-
-Source: [tracking_window.ui](https://github.com/frankyeh/DSI-Studio/blob/master/tracking/tracking_window.ui) · [regiontablewidget.cpp](https://github.com/frankyeh/DSI-Studio/blob/master/tracking/region/regiontablewidget.cpp).
+- **Separate & Negate:** **[Region Edit][Separate]** (`Ctrl+Shift+P`) performs connected-component labeling on the target region mask and appends up to `256` checked `<name>_1`, `<name>_2`, ... component rows while keeping the original region, and **[Region Edit][Negate]** (`Ctrl+Shift+N`) inverts the binary voxel mask across the region's entire slice grid.
+- **Sorting, Color Tables, Voxel Export, Slice Centering, and Atlas Mapping:** **[Regions Misc]** provides **Load Region Color...** and **Save Region Color...** (loading positional RGB/RGBA or tab-separated region-name and RGBA color files and exporting per-row RGBA colors), **Sort By Name**, **Sort By Size**, **Sort By X**, **Sort By Y**, and **Sort By Z** (reordering checked rows and reversing direction when the same sort is selected twice in a row), **Save Voxel Data As...** (exporting diffusion coordinates, fiber orientations, and all loaded scalar values for every voxel in the highlighted region), **Move Slices To Current Region** (centering the 2D slice crosshairs on the highlighted region's per-axis median voxel so small distant fragments do not pull the view away from the main region), **Load MNI mapping...**, and **Manual Atlas Alignment...**.
+- **GUI Step Recording & Command-Line Workflows:** Interactive region steps can be viewed, saved, and replayed from **[Records]** ([Records menu reference](/doc/menu_records.html) and [Command History](/doc/cli_vis.html)); scriptable region statistics, atlas overlap tables, and ROI-based tracking are documented in [Region & Tract Analysis CLI](/doc/cli_ana.html) and [Fiber Tracking CLI](/doc/cli_t3.html).
