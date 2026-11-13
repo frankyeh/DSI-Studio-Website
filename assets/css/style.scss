@@ -519,3 +519,30 @@ article h3.cite-title { margin: 0 0 6px; font: 600 15px/1.4 var(--sans); }
 .cite-item .cite-actions { margin-top: auto; padding-top: 12px; }
 .cite-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 @media (max-width: 760px) { .cite-grid { grid-template-columns: 1fr; } .cite-hero { padding: 18px; } article .cite-text { font-size: 16px; } }
+
+/* Menu Reference: keep long menu labels within their bordered first-column chip. */
+article.doc-menu-reference td .gui-menu-item,
+article.doc-menu-reference td .gui-action,
+article.doc-menu-reference td .gui-card {
+  white-space: normal; overflow-wrap: break-word; hyphens: auto;
+  max-width: 100%; box-sizing: border-box;
+}
+article.doc-menu-reference td .gui-menu-path { display: inline; }
+
+/* Shortcut keys, typed values, and placeholders are text, never GUI widgets. */
+article.doc-menu-reference kbd {
+  font: 600 .88em/1.2 var(--sans); color: var(--ink);
+  background: none; border: 0; border-radius: 0; padding: 0; white-space: nowrap;
+}
+article.doc-menu-reference kbd kbd { font: inherit; }
+article.doc-menu-reference :not(pre) > code {
+  font: 500 .9em/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: #3d4350; background: none; border: 0; border-radius: 0;
+  padding: 0; overflow-wrap: anywhere;
+}
+article.doc-menu-reference var {
+  font: italic 500 .9em/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--muted);
+}
+article.doc-menu-reference var::before { content: "<"; }
+article.doc-menu-reference var::after { content: ">"; }
