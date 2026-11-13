@@ -8,7 +8,7 @@ Reconstruction processes an SRC file (`.sz`; legacy `.src.gz`) and creates an FI
 
 ## Open SRC File(s)
 
-In the current main window, choose <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">SRC File(s) (*.sz)</span></span> and select one or more SRC files. The **▸ More…** section contains <span class="gui-menu-path"><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> and **SRC quality control...**. The reconstruction window opens after selecting SRC data. Older videos may show the previous main-window layout.
+In the current main window, choose <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">SRC File(s) (*.sz)</span></span> and select one or more SRC files. The <span class="gui-action">▸ More…</span> section contains <span class="gui-menu-path"><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> and <span class="gui-menu-path"><span class="gui-menu-item">SRC quality control...</span></span>. The reconstruction window opens after selecting SRC data. Older videos may show the previous main-window layout.
 
 Multiple SRC files can be reconstructed as a batch. Processing steps configured on the first file can be applied to the remaining selected files.
 
@@ -118,11 +118,11 @@ Saving unnecessary outputs increases `.fz` file size and processing time.
 
 ### DTI high-b option
 
-**Ignore High b for DTI** restricts tensor estimation to lower b-values when appropriate for the acquisition. Use the same rule across subjects in a group study.
+<span class="gui-menu-path"><span class="gui-menu-item">Ignore High b for DTI</span></span> restricts tensor estimation to lower b-values when appropriate for the acquisition. Use the same rule across subjects in a group study.
 
 ## Batch reconstruction
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> to process multiple `.sz` files. **SRC quality control...** is in the same expanded section. Batch execution applies the configured reconstruction to a group of subjects, but it does not replace inspecting representative images and evaluating [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) first.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> to process multiple `.sz` files. <span class="gui-menu-path"><span class="gui-menu-item">SRC quality control...</span></span> is in the same expanded section. Batch execution applies the configured reconstruction to a group of subjects, but it does not replace inspecting representative images and evaluating [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) first.
 
 The resulting reconstructed files use `.fz`. For population studies, use **QSDR with the same template and output resolution** across subjects before preparing a [correlational tractography database](/doc/gui_cx.html#create-a-connectometry-database). For longitudinal or cross-sectional differential analysis, see [Differential Tractography](/doc/gui_t3_dt.html).
 
