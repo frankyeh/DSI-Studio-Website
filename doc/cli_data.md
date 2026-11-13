@@ -6,11 +6,11 @@ DSI Studio uses compact intermediate formats for diffusion MRI processing. For n
 
 | Format | Purpose |
 |:--|:--|
-| `.sz` | Source diffusion data used for reconstruction. Stores processed DWI signals, the b-table, image geometry, mask, and related metadata. |
-| `.rz` | Reverse-phase-encoding source data used with TOPUP/EDDY workflows. |
-| `.fz` | Reconstructed fiber information used for tractography, diffusion metrics, connectomes, and other analyses. |
-| `.dz` | Population/connectometry database. Current `.dz` databases can store multiple diffusion indices in one file together with subject information and optional demographics. |
-| `.tt.gz` | DSI Studio TinyTrack tractography file. |
+| <span class="gui-file-ext">.sz</span> | Source diffusion data used for reconstruction. Stores processed DWI signals, the b-table, image geometry, mask, and related metadata. |
+| <span class="gui-file-ext">.rz</span> | Reverse-phase-encoding source data used with TOPUP/EDDY workflows. |
+| <span class="gui-file-ext">.fz</span> | Reconstructed fiber information used for tractography, diffusion metrics, connectomes, and other analyses. |
+| <span class="gui-file-ext">.dz</span> | Population/connectometry database. Current `.dz` databases can store multiple diffusion indices in one file together with subject information and optional demographics. |
+| <span class="gui-file-ext">.tt.gz</span> | DSI Studio TinyTrack tractography file. |
 | `.nii` / `.nii.gz` | NIfTI exchange format for images and exported scalar maps. |
 
 Legacy files such as `.src.gz`, `.fib.gz`, `.db.fz`, and `.db.fib.gz` remain supported in compatible workflows, but new analyses should normally use `.sz`, `.fz`, and `.dz`.
