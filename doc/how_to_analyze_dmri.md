@@ -6,19 +6,19 @@
   <li id="import">
     <span class="ana-num">1</span>
     <h3>Import</h3>
-    <p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">1 Import</span></p>
+    <p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">1</span> Import</span></p>
     <p>Choose <strong>NIfTI file(s) or folder</strong>, <strong>DICOM file(s) or folder</strong>, or <strong>2dseq/FDF</strong> to import diffusion scans and create an SRC file (<code>.sz</code>).</p>
     <span class="ana-file">Output: .sz</span>
     <details>
       <summary>Options &amp; quality checks</summary>
       <p>Set the working directory using <span class="ui-key">Work Dir</span> and <span class="ui-key">Browse...</span>. <strong>NIfTI folder...</strong> detects BIDS datasets with <code>sub-*</code> directories and otherwise handles an ordinary NIfTI folder. <strong>Rename DICOM</strong> moves or renames files; it does not convert them.</p>
-      <p>When needed, use <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">1 Import</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">NIFTI quality control...</span>. Review <a href="/doc/gui_t1.html">SRC quality control</a> before group analyses; it is available under <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">2 Reconstruct</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">SRC quality control...</span>.</p>
+      <p>When needed, use <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">1</span> Import</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">NIFTI quality control...</span>. Review <a href="/doc/gui_t1.html">SRC quality control</a> before group analyses; it is available under <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">2</span> Reconstruct</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">SRC quality control...</span>.</p>
     </details>
   </li>
   <li id="reconstruct">
     <span class="ana-num">2</span>
     <h3>Reconstruct</h3>
-    <p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">2 Reconstruct</span></p>
+    <p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">2</span> Reconstruct</span></p>
     <p>Open the imported <code>.sz</code> with <strong>SRC File(s) (*.sz)</strong>. Choose <a href="/doc/gui_t2.html">GQI or QSDR</a> and review the b-table, mask, and orientation before generating the FIB file (<code>.fz</code>).</p>
     <span class="ana-file">Output: .fz</span>
     <details>
