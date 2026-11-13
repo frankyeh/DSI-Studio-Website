@@ -6,6 +6,12 @@ An SRC file stores the diffusion-weighted image volumes together with the b-tabl
 
 Older tutorial videos on this page may show the former main-window layout. The instructions below use current controls.
 
+## XNAT download
+
+In the DSI Studio main window, select **XNAT Download** in the left sidebar to connect to an XNAT server, browse project data, and select a local download directory. This retrieves data before SRC creation; review the downloaded series and their b-tables before importing them.
+
+*Older XNAT screenshots may show the previous main-window layout.*
+
 ## DICOM to SRC
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=65" title="DICOM to SRC tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -17,7 +23,7 @@ For larger studies, the **DICOM folder...** option converts a folder of scans. E
 - **Rename DICOM files...** — organize selected DICOM files.
 - **Rename DICOM folder...** — organize DICOM studies beneath a root folder.
 
-The DICOM rename functions move/rename files, so keep a backup and test them on a small subset first. See [GUI Batch Processing](/doc/gui_bx.html) and [Rename DICOM CLI](/doc/cli_ren.html).
+The DICOM rename functions **move and rename files**. Keep an untouched backup and test on a small subset before processing a full study. For command-line organization, see [Rename DICOM CLI](/doc/cli_ren.html).
 
 ## NIFTI to SRC
 
@@ -67,6 +73,18 @@ After loading, verify the image and b-table orientation before reconstruction.
 ### Varian / Agilent FDF
 
 On **Tractography → 1 Import → 2dseq/FDF**, select the FDF files from the scan directory. DSI Studio reads the image and diffusion-gradient information and creates an SRC file.
+
+## Folder and batch SRC creation
+
+For multi-subject import, use the relevant main-window folder action:
+
+| Input | Main-window action | Batch behavior |
+|:--|:--|:--|
+| **NIfTI / BIDS** | **Tractography → 1 Import → NIfTI → NIfTI folder...** | Detects `sub-*` BIDS directories and writes under `derivatives`, or processes a conventional folder beside the images. |
+| **DICOM** | **Tractography → 1 Import → DICOM → DICOM folder...** | Converts supported DICOM studies within the selected folder. |
+| **Bruker / FDF** | **Tractography → 1 Import → 2dseq/FDF → 2dseq / FDF file(s)...** | Accepts supported scanner-specific files; preserve accompanying scanner metadata. |
+
+Current SRC files use `.sz`. After conversion, run [SRC quality control](#step-t1a-quality-control) to identify scan outliers before reconstruction.
 
 ## Step T1a: Quality Control
 
