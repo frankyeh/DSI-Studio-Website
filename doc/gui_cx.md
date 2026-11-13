@@ -1,5 +1,7 @@
 # Correlational Tractography
 
+> **Before cohort-level correlational tractography:** [Import and QC each subject's DWI](/doc/gui_t1.html) → [reconstruct with QSDR](/doc/gui_t2.html#q-space-diffeomorphic-reconstruction-qsdr) using the **same template and output resolution** → create a cohort `.dz` database as described below. Confirm subject registration and demographic data before modeling. This is a group analysis, so a single native-space FIB is not sufficient.
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qC8jx6XZHGI" title="Correlational tractography tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Correlational tractography identifies white-matter pathway segments whose local diffusion/connectome measurements are associated with a study variable across subjects. DSI Studio uses regression to account for selected covariates and applies local correlation statistics followed by deterministic tracking. [Connectometry](https://pubmed.ncbi.nlm.nih.gov/26499808/) uses permutation testing to estimate the false discovery rate (FDR) of the resulting tracks.
