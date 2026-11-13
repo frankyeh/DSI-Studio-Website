@@ -18,11 +18,11 @@ The reconstruction window has five top-level menus. Their actions operate on the
 
 | Top menu | What it does |
 |:--|:--|
-| **File** | Saves the SRC dataset or exports 4D NIfTI, b0, and diffusion-weighted summary images. |
-| **Edit** | Changes image orientation and geometry (flip/swap, AC–PC alignment, rotation, resampling), attaches other images, and offers signal/background or cropping operations. |
-| **B-table** | Loads, saves, regenerates, checks, or flips/swaps diffusion-gradient directions. Incorrect changes alter estimated fiber orientations. |
-| **Corrections** | Runs TOPUP/EDDY, T1w-guided distortion correction, motion/orientation correction, or bias-field correction as appropriate for the acquisition. |
-| **QSDR** | Provides template-registration options, including manual alignment and partial-field-of-view controls for template-space reconstruction. |
+| <span class="gui-menu-item">File</span> | Saves the SRC dataset or exports 4D NIfTI, b0, and diffusion-weighted summary images. |
+| <span class="gui-menu-item">Edit</span> | Changes image orientation and geometry (flip/swap, AC–PC alignment, rotation, resampling), attaches other images, and offers signal/background or cropping operations. |
+| <span class="gui-menu-item">B-table</span> | Loads, saves, regenerates, checks, or flips/swaps diffusion-gradient directions. Incorrect changes alter estimated fiber orientations. |
+| <span class="gui-menu-item">Corrections</span> | Runs TOPUP/EDDY, T1w-guided distortion correction, motion/orientation correction, or bias-field correction as appropriate for the acquisition. |
+| <span class="gui-menu-item">QSDR</span> | Provides template-registration options, including manual alignment and partial-field-of-view controls for template-space reconstruction. |
 
 These are the menus **inside the SRC reconstruction window**, not the main window's <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Reconstruct</span></span> entries.
 
@@ -46,7 +46,7 @@ For additional examples, see the [quality-control video](https://www.youtube.com
 
 The reconstruction mask limits processing to the tissue of interest. The mask editor provides thresholding and common morphological operations including smoothing, expansion, erosion, and defragmentation.
 
-A typical starting sequence is **Thresholding → Smoothing → Defragment**, followed by visual inspection and manual correction if needed.
+A typical starting sequence is <span class="gui-action">Thresholding</span> → <span class="gui-action">Smoothing</span> → <span class="gui-action">Defragment</span>, followed by visual inspection and manual correction if needed.
 
 Masks can be saved or loaded as text/NIfTI files.
 
@@ -56,7 +56,7 @@ Only apply corrections that are appropriate for the acquisition and study design
 
 ### TOPUP/EDDY and motion correction
 
-For reverse-phase-encoding acquisitions, use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">TOPUP/EDDY</span></span>. DSI Studio first looks for the matching <span class="gui-file-ext">.rz</span> companion file. If one is not found, it can accept another reverse-phase-encoding <span class="gui-file-ext">.sz</span>, <span class="gui-file-ext">.rz</span>, legacy <span class="gui-file-ext">.src.gz</span>, or NIfTI file.
+For reverse-phase-encoding acquisitions, use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">TOPUP/EDDY...</span></span>. DSI Studio first looks for the matching <span class="gui-file-ext">.rz</span> companion file. If one is not found, it can accept another reverse-phase-encoding <span class="gui-file-ext">.sz</span>, <span class="gui-file-ext">.rz</span>, legacy <span class="gui-file-ext">.src.gz</span>, or NIfTI file.
 
 For acquisitions without a reverse-phase pair, use the applicable EDDY/motion-correction workflow.
 
@@ -72,7 +72,7 @@ These corrections may take substantial processing time. Save the corrected sourc
 
 ### Volume orientation correction for animal scans
 
-Animal datasets may need orientation adjustment before template-based analysis. Use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Volume Orientation Correction</span></span> to align the volume orientation with the selected template.
+Animal datasets may need orientation adjustment before template-based analysis. Use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Volume Orientation Correction...</span></span> to align the volume orientation with the selected template.
 
 <img width="800" alt="template orientation image" src="https://github.com/user-attachments/assets/d64d99dc-33f9-45ec-ad84-1431473bf6ab" />
 
@@ -80,15 +80,15 @@ When the slice-position slider moves toward the superior end of the volume, the 
 
 ### Remove background or crop the image volume
 
-Use the image-editing tools to remove irrelevant background signal or crop excessive empty space when appropriate.
+Use <span class="gui-menu-item">Edit</span> › <span class="gui-menu-item">Erase Background Signals</span> or <span class="gui-menu-item">Crop Background Volume</span> to remove irrelevant signal or excessive empty space when appropriate.
 
 ### Check b-table orientation
 
-An incorrect b-table produces incorrect fiber orientations. Use <span class="gui-menu-path"><span class="gui-menu-item">B-table</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Check b-table</span></span> and inspect the result anatomically. Low-SNR or unusual animal acquisitions may require manual verification.
+An incorrect b-table produces incorrect fiber orientations. Use <span class="gui-menu-path"><span class="gui-menu-item">B-table</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Check B-table...</span></span> and inspect the result anatomically. Low-SNR or unusual animal acquisitions may require manual verification.
 
 ### Make isotropic
 
-If needed, resample the source volume to isotropic resolution before reconstruction. Resampling does not add anatomical information, so use it for a specific processing or tracking requirement rather than routinely.
+If needed, use <span class="gui-menu-item">Edit</span> › <span class="gui-menu-item">Resample to Isotropic</span> to resample the source volume before reconstruction. Resampling does not add anatomical information, so use it for a specific processing or tracking requirement rather than routinely.
 
 ## Choose a reconstruction method
 
@@ -108,7 +108,7 @@ QSDR reconstructs diffusion information in a selected template space and is comm
 
 Select the template appropriate for the species and study. Inspect registration quality before including a subject in population analysis.
 
-Additional images can be attached when they are needed by the reconstruction/template workflow.
+When needed by reconstruction or template registration, attach auxiliary images through <span class="gui-menu-item">Edit</span> › <span class="gui-menu-item">Attach Images...</span>.
 
 ## Choose outputs
 
@@ -118,7 +118,7 @@ Saving unnecessary outputs increases <span class="gui-file-ext">.fz</span> file 
 
 ### DTI high-b option
 
-**Ignore High b for DTI** restricts tensor estimation to lower b-values when appropriate for the acquisition. Use the same rule across subjects in a group study.
+**ignore high b** restricts tensor estimation to lower b-values when appropriate for the acquisition. Use the same rule across subjects in a group study.
 
 ## Batch reconstruction
 
@@ -128,6 +128,6 @@ The resulting reconstructed files use <span class="gui-file-ext">.fz</span>. For
 
 ## Reconstruct
 
-After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting <span class="gui-file-ext">.fz</span> file can be opened via <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span></span> or used by the corresponding command-line and population-analysis workflows.
+After checking the mask, corrections, reconstruction method, template settings, and requested outputs, click <span class="gui-action">Run Reconstruction</span>. The resulting <span class="gui-file-ext">.fz</span> file can be opened via <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span></span> or used by the corresponding command-line and population-analysis workflows.
 
 For command-line reconstruction, see [Reconstruction CLI](/doc/cli_t2.html).
