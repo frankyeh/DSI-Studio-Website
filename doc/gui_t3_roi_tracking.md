@@ -60,7 +60,7 @@ Atlas regions are convenient anatomical references, but the selected ROI/ROA rol
 
 ![Drawing and editing regions](https://user-images.githubusercontent.com/275569/147854543-9001e2d5-580b-4a86-a9cd-f931ca3973ca.png)
 
-Regions can be drawn in the slice/region view with rectangular, freehand, polygon, sphere, and cube tools. Existing regions can be moved or edited with morphological operations such as dilation, erosion, smoothing, and defragmentation.
+Regions can be drawn in the <span class="gui-card">Draw Regions</span> dock using rectangular, freehand, polygon, sphere, and cube tools. Existing regions can be moved or edited with morphological operations such as dilation, erosion, smoothing, and defragmentation.
 
 For detailed editing commands, see the [Regions menu](/doc/menu_regions.html).
 
@@ -68,7 +68,7 @@ For detailed editing commands, see the [Regions menu](/doc/menu_regions.html).
 
 ## Step T3d: Tracts
 
-Click <span class="gui-action">Fiber Tracking</span> after the region roles are assigned. Only checked regions constrain the result.
+Click <span class="gui-menu-path"><span class="gui-card">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Fiber Tracking</span></span> after the region roles are assigned. Only checked regions constrain the result.
 
 Inspect the tract in multiple views and compare it with known anatomy. When refining a protocol, change one condition at a time. For group studies, keep the tracking parameters and anatomical rules consistent across subjects.
 
