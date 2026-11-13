@@ -8,19 +8,19 @@ The **[Tract Edit]** menu provides interactive 3D stroke tools, automated prunin
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Undo</span> | Shortcut: `Ctrl+Z`. Restores the most recently removed or split streamlines across all **checked** bundles from their deleted buffers. Unchecked rows are skipped, and **Undo** does not revert **Paint** colors, whole-bundle deletion (**Tracts › Delete**), or clustering. |
-| <span class="gui-menu-item">Redo</span> | Shortcut: `Ctrl+Y`. Re-applies the most recently undone streamline removal across all **checked** bundles. Performing any new edit clears the redo history, and redoing an undone cut moves the uncut streamlines to the deleted buffer without re-creating split segments. |
-| <span class="gui-menu-item">Trim</span> | Shortcut: `Ctrl+T`. Applies one pass of Topology-Informed Pruning (TIP) to the **highlighted** bundle row (checked or unchecked), moving low-density stray streamlines to the deleted buffer. Repeat as needed on dense single pathways; avoid trimming sparse bundles or whole-brain tractograms. |
+| <span class="gui-menu-item">Undo</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd></kbd>. Restores the most recently removed or split streamlines across all **checked** bundles from their deleted buffers. Unchecked rows are skipped, and **Undo** does not revert **Paint** colors, whole-bundle deletion (**Tracts › Delete**), or clustering. |
+| <span class="gui-menu-item">Redo</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>Y</kbd></kbd>. Re-applies the most recently undone streamline removal across all **checked** bundles. Performing any new edit clears the redo history, and redoing an undone cut moves the uncut streamlines to the deleted buffer without re-creating split segments. |
+| <span class="gui-menu-item">Trim</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>T</kbd></kbd>. Applies one pass of Topology-Informed Pruning (TIP) to the **highlighted** bundle row (checked or unchecked), moving low-density stray streamlines to the deleted buffer. Repeat as needed on dense single pathways; avoid trimming sparse bundles or whole-brain tractograms. |
 
 ### Trim vs. Filter by ROI
 
-Use **[Tracts][Filter Tracks by ROI/ROA/End]** first to isolate or exclude pathways across all **checked** bundles using anatomical regions ([ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html)), regardless of fiber density. Then apply **[Tract Edit][Trim]** (`Ctrl+T`) to the **highlighted** bundle to prune residual low-density fringe branches from an already isolated, well-populated pathway.
+Use **[Tracts][Filter Tracks by ROI/ROA/End]** first to isolate or exclude pathways across all **checked** bundles using anatomical regions ([ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html)), regardless of fiber density. Then apply **[Tract Edit][Trim]** (<kbd><kbd>Ctrl</kbd>+<kbd>T</kbd></kbd>) to the **highlighted** bundle to prune residual low-density fringe branches from an already isolated, well-populated pathway.
 
 ## Select
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Select</span> | Shortcut: `Ctrl+S`. Arms a one-shot 3D crosshair stroke that keeps intersected streamlines across all **checked** bundles and moves non-intersected streamlines to the deleted buffer. Note that `Ctrl+S` selects fibers rather than saving files; use **Tracts › Save Current Tract As...** to save. |
+| <span class="gui-menu-item">Select</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>S</kbd></kbd>. Arms a one-shot 3D crosshair stroke that keeps intersected streamlines across all **checked** bundles and moves non-intersected streamlines to the deleted buffer. Note that <kbd><kbd>Ctrl</kbd>+<kbd>S</kbd></kbd> selects fibers rather than saving files; use **Tracts › Save Current Tract As...** to save. |
 
 All four 3D stroke tools (**Select**, **Delete**, **Paint**, and **Cut**) use **Left-drag** for a straight line, **`Shift` + drag** for a freehand curve, and **Right-drag** to restrict the stroke to fibers crossing near perpendicular (adjusted by **Tract Rendering › Tract Selection Angle** in **Options**).
 
@@ -28,28 +28,28 @@ All four 3D stroke tools (**Select**, **Delete**, **Paint**, and **Cut**) use **
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Delete</span> | Shortcut: `Ctrl+D`. Arms a one-shot 3D crosshair stroke that moves intersected streamlines across all **checked** bundles to the deleted buffer while keeping the rest. Removed fibers can be restored with **Undo** (`Ctrl+Z`) or extracted into a new row via **Tracts › Separate Deleted Tracts** (`Ctrl+Alt+S`). |
+| <span class="gui-menu-item">Delete</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>D</kbd></kbd>. Arms a one-shot 3D crosshair stroke that moves intersected streamlines across all **checked** bundles to the deleted buffer while keeping the rest. Removed fibers can be restored with **Undo** (<kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd></kbd>) or extracted into a new row via **Tracts › Separate Deleted Tracts** (<kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd></kbd>). |
 
 ## Paint
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Paint</span> | Shortcut: `Ctrl+P`. Arms a one-shot 3D crosshair stroke and opens a color picker to recolor intersected streamlines across all **checked** bundles, switching **Tract Color › Style** to `Assigned`. Cannot be undone with **Undo** (`Ctrl+Z`); canceling the picker paints stroked fibers black, and **Tract Color › Opacity** controls transparency. |
+| <span class="gui-menu-item">Paint</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>P</kbd></kbd>. Arms a one-shot 3D crosshair stroke and opens a color picker to recolor intersected streamlines across all **checked** bundles, switching **Tract Color › Style** to `Assigned`. Cannot be undone with **Undo** (<kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd></kbd>); canceling the picker paints stroked fibers black, and **Tract Color › Opacity** controls transparency. |
 
 ## Cut
 
-Cut operations split or crop streamlines and store the uncut originals in the deleted buffer (`Ctrl+Z` to undo).
+Cut operations split or crop streamlines and store the uncut originals in the deleted buffer (<kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd></kbd> to undo).
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Cut</span> | Shortcut: `Ctrl+X`. Arms a one-shot 3D crosshair stroke that splits intersected streamlines across all **checked** bundles into two separate segments at the crossing point. Follow with **Select** (`Ctrl+S`) or **Delete** (`Ctrl+D`) to isolate or remove a severed branch. |
+| <span class="gui-menu-item">Cut</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>X</kbd></kbd>. Arms a one-shot 3D crosshair stroke that splits intersected streamlines across all **checked** bundles into two separate segments at the crossing point. Follow with **Select** (<kbd><kbd>Ctrl</kbd>+<kbd>S</kbd></kbd>) or **Delete** (<kbd><kbd>Ctrl</kbd>+<kbd>D</kbd></kbd>) to isolate or remove a severed branch. |
 | <span class="gui-menu-item">Cut End Portion</span> | Crops the outer `25%` from both ends of each streamline along the bundle's main axis, keeping the central `50%` trunk. Acts only on the **highlighted** bundle row, which must also be **checked**. |
 | <span class="gui-menu-item">Cut L/P/S End Portion</span> | Crops the terminal `25%` on the **Left, Posterior, or Superior** end of each streamline along the bundle's main axis, keeping the remaining `75%`. Acts only on the **highlighted** bundle row, which must also be **checked**. |
 | <span class="gui-menu-item">Cut R/A/I End Portion</span> | Crops the terminal `25%` on the **Right, Anterior, or Inferior** end of each streamline along the bundle's main axis, keeping the remaining `75%`. Acts only on the **highlighted** bundle row, which must also be **checked**. |
 
 ## Cut by Slice
 
-The **[Tract Edit][Cut By Slice]** submenu crops all **checked** bundles at the currently selected slice's crosshair position in the **Slices** panel (`Ctrl+Z` to undo), splitting curved fibers that cross the kept side more than once.
+The **[Tract Edit][Cut By Slice]** submenu crops all **checked** bundles at the currently selected slice's crosshair position in the **Slices** panel (<kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd></kbd> to undo), splitting curved fibers that cross the kept side more than once.
 
 | Menu item | Behavior |
 |---|---|
@@ -62,4 +62,4 @@ The **[Tract Edit][Cut By Slice]** submenu crops all **checked** bundles at the 
 
 ## Shortcuts
 
-Streamline edits in **[Tract Edit]** use plain `Ctrl` shortcuts, whereas whole-bundle actions in [Tracts](/doc/menu_tracts.html) use `Ctrl+Alt` and region-mask operations in [Regions](/doc/menu_regions.html) and [Region Edit](/doc/menu_region_edit.html) use `Ctrl+Shift`. Deterministic edits (**Trim**, endpoint cuts, and **Cut By Slice**) are also logged in **[Records][Command History...]**; see the [Records menu](/doc/menu_records.html).
+Streamline edits in **[Tract Edit]** use plain `Ctrl` shortcuts, whereas whole-bundle actions in [Tracts](/doc/menu_tracts.html) use <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd></kbd> and region-mask operations in [Regions](/doc/menu_regions.html) and [Region Edit](/doc/menu_region_edit.html) use <kbd><kbd>Ctrl</kbd>+<kbd>Shift</kbd></kbd>. Deterministic edits (**Trim**, endpoint cuts, and **Cut By Slice**) are also logged in **[Records][Command History...]**; see the [Records menu](/doc/menu_records.html).
