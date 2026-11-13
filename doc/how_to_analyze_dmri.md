@@ -121,7 +121,7 @@ Example study of **bundle-level** QA tractometry (not a 100-node along-tract pro
 
 <aside class="ana-note" role="note"><p><strong>Check.</strong> Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.</p></aside>
 
-Full guides: [R2R →](/doc/gui_t3_whole_brain.html) · [T2R →](/doc/gui_t3_atk.html)
+Full guide: [Connectome (R2R and T2R) →](/doc/gui_connectome.html)
 
 Example study: [Yeh FC, *Nature Communications* 13, 4933 (2022)](https://www.nature.com/articles/s41467-022-32595-4).
 
