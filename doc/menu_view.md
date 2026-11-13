@@ -6,16 +6,16 @@ Use the **[View]** menu to snap the 3D viewport and **Draw Regions** slice viewe
 
 | Menu item | Behavior |
 |---|---|
-| **Sagittal View** | Shortcut: `Z`. Switches the **Draw Regions** viewer to single-slice sagittal view and centers the 3D camera on a lateral view at the current zoom. Repeat to flip 180° between left and right sides. |
-| **Coronal View** | Shortcut: `X`. Switches the **Draw Regions** viewer to single-slice coronal view and centers the 3D camera on a coronal view at the current zoom. Repeat to flip 180° between anterior and posterior sides. |
-| **Axial View** | Shortcut: `C`. Switches the **Draw Regions** viewer to single-slice axial view (the default startup plane) and centers the 3D camera on an axial view at the current zoom. Repeat to flip 180° between superior and inferior sides. |
+| <span class="gui-menu-item">Sagittal View</span> | Shortcut: `Z`. Switches the **Draw Regions** viewer to single-slice sagittal view and centers the 3D camera on a lateral view at the current zoom. Repeat to flip 180° between left and right sides. |
+| <span class="gui-menu-item">Coronal View</span> | Shortcut: `X`. Switches the **Draw Regions** viewer to single-slice coronal view and centers the 3D camera on a coronal view at the current zoom. Repeat to flip 180° between anterior and posterior sides. |
+| <span class="gui-menu-item">Axial View</span> | Shortcut: `C`. Switches the **Draw Regions** viewer to single-slice axial view (the default startup plane) and centers the 3D camera on an axial view at the current zoom. Repeat to flip 180° between superior and inferior sides. |
 
 ## Camera files
 
 | Menu item | Behavior |
 |---|---|
-| **Open Camera Position...** | Loads a saved 3D camera viewpoint from a `.txt` file and immediately updates the primary 3D viewport's rotation, zoom, and pan, overwriting the current view. Incomplete or non-numeric files leave the view unchanged. |
-| **Save Camera Position...** | Saves the primary 3D viewport's current rotation, zoom, and pan to a `.txt` camera file for reproducible figure framing or sharing across sessions. |
+| <span class="gui-menu-item">Open Camera Position...</span> | Loads a saved 3D camera viewpoint from a `.txt` file and immediately updates the primary 3D viewport's rotation, zoom, and pan, overwriting the current view. Incomplete or non-numeric files leave the view unchanged. |
+| <span class="gui-menu-item">Save Camera Position...</span> | Saves the primary 3D viewport's current rotation, zoom, and pan to a `.txt` camera file for reproducible figure framing or sharing across sessions. |
 
 Camera `.txt` files store only the primary 3D viewpoint—use **[File][Save Workspace...]** in the [File menu](/doc/menu_file.html) to save slices, tracts, regions, devices, and rendering settings together. Saved viewpoints and presets align identically across datasets only when they share the same voxel grid and spacing; press `Z`, `X`, or `C` to re-center if a volume appears shifted.
 
@@ -23,25 +23,25 @@ Camera `.txt` files store only the primary 3D viewpoint—use **[File][Save Work
 
 | Menu item | Behavior |
 |---|---|
-| **Store Camera Position** | Opens the submenu to save the current primary 3D camera viewpoint into one of four persistent local preset slots (**Slot 1**–**Slot 4**, `Alt+1`–`Alt+4`). |
-| **Recall Camera Position** | Opens the submenu to restore a saved 3D camera viewpoint from one of four persistent local preset slots (**Slot 1**–**Slot 4**, `1`–`4`). |
+| <span class="gui-menu-item">Store Camera Position</span> | Opens the submenu to save the current primary 3D camera viewpoint into one of four persistent local preset slots (**Slot 1**–**Slot 4**, `Alt+1`–`Alt+4`). |
+| <span class="gui-menu-item">Recall Camera Position</span> | Opens the submenu to restore a saved 3D camera viewpoint from one of four persistent local preset slots (**Slot 1**–**Slot 4**, `1`–`4`). |
 
 ### [Store Camera Position] submenu
 
 | Menu item | Behavior |
 |---|---|
-| **Slot 1** | Shortcut: `Alt+1`. Saves the current primary 3D camera rotation, zoom, and pan to local preset slot 1 across sessions, overwriting any previous preset in that slot with a confirmation dialog. |
-| **Slot 2** | Shortcut: `Alt+2`. Saves the current primary 3D camera rotation, zoom, and pan to local preset slot 2 across sessions, overwriting any previous preset in that slot with a confirmation dialog. |
-| **Slot 3** | Shortcut: `Alt+3`. Saves the current primary 3D camera rotation, zoom, and pan to local preset slot 3 across sessions, overwriting any previous preset in that slot with a confirmation dialog. |
-| **Slot 4** | Shortcut: `Alt+4`. Saves the current primary 3D camera rotation, zoom, and pan to local preset slot 4 across sessions, overwriting any previous preset in that slot with a confirmation dialog. |
+| <span class="gui-menu-item">Slot 1</span> | Shortcut: `Alt+1`. Saves the current primary 3D camera rotation, zoom, and pan to local preset slot 1 across sessions, overwriting any previous preset in that slot with a confirmation dialog. |
+| <span class="gui-menu-item">Slot 2</span> | Shortcut: `Alt+2`. Saves the current primary 3D camera rotation, zoom, and pan to local preset slot 2 across sessions, overwriting any previous preset in that slot with a confirmation dialog. |
+| <span class="gui-menu-item">Slot 3</span> | Shortcut: `Alt+3`. Saves the current primary 3D camera rotation, zoom, and pan to local preset slot 3 across sessions, overwriting any previous preset in that slot with a confirmation dialog. |
+| <span class="gui-menu-item">Slot 4</span> | Shortcut: `Alt+4`. Saves the current primary 3D camera rotation, zoom, and pan to local preset slot 4 across sessions, overwriting any previous preset in that slot with a confirmation dialog. |
 
 ### [Recall Camera Position] submenu
 
 | Menu item | Behavior |
 |---|---|
-| **Slot 1** | Shortcut: `1`. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 1 to the primary 3D viewport, or leaves the view unchanged if slot 1 is empty. |
-| **Slot 2** | Shortcut: `2`. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 2 to the primary 3D viewport, or leaves the view unchanged if slot 2 is empty. |
-| **Slot 3** | Shortcut: `3`. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 3 to the primary 3D viewport, or leaves the view unchanged if slot 3 is empty. |
-| **Slot 4** | Shortcut: `4`. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 4 to the primary 3D viewport, or leaves the view unchanged if slot 4 is empty. |
+| <span class="gui-menu-item">Slot 1</span> | Shortcut: `1`. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 1 to the primary 3D viewport, or leaves the view unchanged if slot 1 is empty. |
+| <span class="gui-menu-item">Slot 2</span> | Shortcut: `2`. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 2 to the primary 3D viewport, or leaves the view unchanged if slot 2 is empty. |
+| <span class="gui-menu-item">Slot 3</span> | Shortcut: `3`. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 3 to the primary 3D viewport, or leaves the view unchanged if slot 3 is empty. |
+| <span class="gui-menu-item">Slot 4</span> | Shortcut: `4`. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 4 to the primary 3D viewport, or leaves the view unchanged if slot 4 is empty. |
 
 Presets persist across sessions on the current computer; click the 3D viewport before pressing `1`–`4` if focus is inside an input field. See the [Screen menu](/doc/menu_screen.html) for multi-angle captures and the [Layout menu](/doc/menu_layout.html) for split 3D views.
