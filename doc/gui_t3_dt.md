@@ -16,10 +16,10 @@ Differential tractography can be applied to DTI, multi-shell, and DSI acquisitio
 
 | Type | Design | Tracking space | Typical use |
 |---|---|---|---|
-| **1** | Longitudinal | Native subject space | Baseline versus follow-up in the subject's native diffusion space |
-| **2** | Longitudinal | Template space | Baseline versus follow-up after QSDR/template normalization |
-| **3** | Cross-sectional | Native patient space | An individual patient compared with a population-average control reference |
-| **4** | Cross-sectional | Template space | Cross-sectional comparison performed in a common QSDR/template space |
+| [**1**](#type-1-longitudinal-change-in-native-space) | Longitudinal | Native subject space | Baseline versus follow-up in the subject's native diffusion space |
+| [**2**](#type-2-longitudinal-change-in-template-space) | Longitudinal | Template space | Baseline versus follow-up after QSDR/template normalization |
+| [**3**](#type-3-cross-sectional-comparison-in-native-patient-space) | Cross-sectional | Native patient space | An individual patient compared with a population-average control reference |
+| [**4**](#type-4-cross-sectional-comparison-in-template-space) | Cross-sectional | Template space | Cross-sectional comparison performed in a common QSDR/template space |
 
 The **Type 1–4 number describes the study design and analysis space**. It is separate from the numeric `dt_threshold_type`, which selects the mathematical formula used to compare Metric 1 (`m1`) and Metric 2 (`m2`).
 
@@ -29,7 +29,8 @@ Current files use `.sz` for SRC and `.fz` for FIB. A `.dz` connectometry databas
 
 Use this design for repeated scans of the same subject when the comparison should remain in native diffusion space.
 
-## 1. Reconstruct baseline and follow-up FIB files
+### Reconstruct baseline and follow-up FIB files
+{: .dt-step data-step="1"}
 
 Use GQI for both scans with consistent reconstruction settings:
 
@@ -38,7 +39,8 @@ dsi_studio --action=rec --source=subject_baseline.sz --method=4 --param=1.25 --o
 dsi_studio --action=rec --source=subject_followup.sz --method=4 --param=1.25 --output=subject_followup.fz
 ```
 
-## 2. Export only the follow-up metric
+### Export only the follow-up metric
+{: .dt-step data-step="2"}
 
 The opened baseline FIB already contains its own metric, so do not export the baseline metric and insert it again.
 
@@ -50,17 +52,20 @@ dsi_studio --action=exp --source=subject_followup.fz --export=dti_fa
 
 This produces a file such as `subject_followup.fz.dti_fa.nii.gz`.
 
-## 3. Check whole-brain tracking first
+### Check whole-brain tracking first
+{: .dt-step data-step="3"}
 
 Open the baseline `.fz` using <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
 
-## 4. Add the follow-up metric and wait for registration
+### Add the follow-up metric and wait for registration
+{: .dt-step data-step="4"}
 
 Insert the exported follow-up map using <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Insert Other Images</span></span>. DSI Studio may run rigid-body registration even when the scans have the same matrix size and voxel size. Wait until registration is complete before selecting the differential metrics.
 
 Metric names used by differential tracking are the names shown by the current tracking window, not arbitrary abbreviations. For a NIfTI custom slice, the name is derived from the file stem. Verify the displayed names before a batch run.
 
-## 5. Run differential tracking
+### Run differential tracking
+{: .dt-step data-step="5"}
 
 For a baseline-normalized decrease, use baseline `dti_fa` as `m1`, the follow-up custom slice as `m2`, and formula type `0`, `(m1-m2)/m1`.
 
@@ -86,21 +91,24 @@ With `dt_threshold=0.2`, this example maps locations satisfying a baseline-norma
 
 Use this design when repeated scans should be compared in a common template space.
 
-## 1. Reconstruct both scans with QSDR
+### Reconstruct both scans with QSDR
+{: .dt-step data-step="1"}
 
 ```bash
 dsi_studio --action=rec --source=subject_baseline.sz --method=7 --output=subject_baseline.fz
 dsi_studio --action=rec --source=subject_followup.sz --method=7 --output=subject_followup.fz
 ```
 
-## 2. Export the metric from both scans
+### Export the metric from both scans
+{: .dt-step data-step="2"}
 
 ```bash
 dsi_studio --action=exp --source=subject_baseline.fz --export=dti_fa
 dsi_studio --action=exp --source=subject_followup.fz --export=dti_fa
 ```
 
-## 3. Run differential tracking in the template
+### Run differential tracking in the template
+{: .dt-step data-step="3"}
 
 ```bash
 dsi_studio --action=trk \
@@ -125,12 +133,14 @@ Type 3 compares an individual patient's native-space metric with a control refer
 
 The current preferred reference is a **direct population-average scalar map** rather than an age/sex-matched `.dz` model. Age/sex matching alone can introduce model assumptions without necessarily providing a better estimate of the expected control value.
 
-## 1. Reconstruct the patient and controls
+### Reconstruct the patient and controls
+{: .dt-step data-step="1"}
 
 - Reconstruct the patient with GQI for native-space tractography.
 - Reconstruct all controls with QSDR using the same template space and resolution.
 
-## 2. Export and average the control metric
+### Export and average the control metric
+{: .dt-step data-step="2"}
 
 Export the same scalar metric from every QSDR control FIB. Because the control maps are already in the same QSDR/MNI space, they can be averaged voxelwise.
 
@@ -144,7 +154,8 @@ dsi_studio --action=tmp \
 
 The source images must already be QSDR/MNI aligned. Do not average native-space control images voxelwise.
 
-## 3. Compare the native-space patient with the MNI control average
+### Compare the native-space patient with the MNI control average
+{: .dt-step data-step="3"}
 
 When the tracking FIB is GQI/native space, the control average is an MNI-space reference and must be mapped into the patient diffusion space. In the GUI, load it as an **MNI-space slice** and verify the mapped alignment before differential tracking.
 
@@ -174,7 +185,9 @@ Type 4 performs the comparison in a common QSDR/template space. The subject/grou
 
 A QSDR/MNI population-average control map can be used directly in the corresponding template-space tracking framework. The exact Type 4 setup depends on whether the comparison is an individual, a group-derived map, or another template-space reference. Use the same differential formula rules described above and verify the runtime metric names before tracking.
 
-## Choosing the differential formula and threshold
+## Analysis settings
+
+### Formula and threshold
 
 Current formula indices are:
 
@@ -193,7 +206,7 @@ For a fractional change definition such as `(m1-m2)/m1`, values of `0.1`, `0.2`,
 
 Normal scan-to-scan and individual variation can be substantial. Consider a scientifically justified threshold series rather than choosing one threshold because it produces visually appealing tracks. For example, 10%, 20%, 30%, and 40% can show whether the anatomical pattern persists as the required effect size increases.
 
-## Tracking and pruning guidance
+### Tracking and pruning
 
 Keep the relevant tracking parameters fixed when comparing subjects. Always check conventional tractography first; differential tracking cannot rescue poor acquisition, an incorrect b-table, failed reconstruction, or severe registration errors.
 
@@ -201,11 +214,11 @@ For the initial differential run, use **`tip_iteration=0`** or otherwise keep pr
 
 A remaining tract count around 5,000–10,000 can be convenient for inspection and visualization, but it is not a biological or statistical cutoff.
 
-## ROI and ROA constraints
+### ROI and ROA constraints
 
 An ROI/ROA can be used when the hypothesis is anatomically specific. Adding a region changes the tested hypothesis and can substantially change the number of findings, so region constraints should be chosen from anatomical evidence rather than tuned after viewing the result.
 
-## Smoothing
+### Smoothing
 
 If repeat scans are noisy or registration differences create unstable voxelwise metrics, modest image smoothing may improve robustness. Apply the same processing to both conditions and document it in the analysis methods.
 

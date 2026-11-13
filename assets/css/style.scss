@@ -474,3 +474,7 @@ article .gui-action {
 @media (max-width: 760px) {
   article .gui-action { white-space: normal; }
 }
+
+/* Differential tractography: numbered procedure steps rendered as H3s outside the page TOC. */
+article h3.dt-step { display: flex; align-items: center; gap: 10px; margin-top: 26px; }
+article h3.dt-step::before { content: attr(data-step); flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; font: 600 13px/1 var(--sans); }
