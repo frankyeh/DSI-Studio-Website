@@ -6,10 +6,10 @@ The **[Tracts Misc]** menu provides post-tracking tools to clean up bundles, bri
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Merge Tracts by Name</span> | Combines all bundle rows—checked or unchecked—that share an identical name into the first matching row. Unlike **Tracts › Merge All**, this groups strictly by bundle name and cannot be undone with **Tract Edit › Undo**. |
-| <span class="gui-menu-item">Delete Repeated Tracks</span> | Removes near-duplicate streamlines from all checked bundles within a specified **voxel** distance threshold (default `1.0` voxel; undoable with **Tract Edit › Undo**). Both streamlines in each matched pair are removed, so avoid routine use on sparse or whole-brain bundles. |
-| <span class="gui-menu-item">Delete Short Tracts</span> | Removes streamlines shorter than a physical **millimeter (mm)** cutoff (default `0.5` mm, or two or fewer points) from all checked bundles. Unlike **Delete Repeated Tracks** (which uses voxels), this filter uses **mm** and can be undone with **Tract Edit › Undo**. |
-| <span class="gui-menu-item">Delete Branches</span> | Prunes stray branches and prematurely stopping fibers from all checked bundles by keeping only streamlines that reach both main endpoint zones (undoable with **Tract Edit › Undo**). Use only on single two-endpoint pathways, never on fanning or whole-brain bundles. |
+| <span class="gui-menu-item">Merge Tracts by Name</span> | Combines all bundle rows—checked or unchecked—that share an identical name into the first matching row. Unlike **[Tracts][Merge All]**, this groups strictly by bundle name and cannot be undone with **[Tract Edit][Undo]**. |
+| <span class="gui-menu-item">Delete Repeated Tracks</span> | Removes near-duplicate streamlines from all checked bundles within a specified **voxel** distance threshold (default `1.0` voxel; undoable with **[Tract Edit][Undo]**). Both streamlines in each matched pair are removed, so avoid routine use on sparse or whole-brain bundles. |
+| <span class="gui-menu-item">Delete Short Tracts</span> | Removes streamlines shorter than a physical **millimeter (mm)** cutoff (default `0.5` mm, or two or fewer points) from all checked bundles. Unlike **Delete Repeated Tracks** (which uses voxels), this filter uses **mm** and can be undone with **[Tract Edit][Undo]**. |
+| <span class="gui-menu-item">Delete Branches</span> | Prunes stray branches and prematurely stopping fibers from all checked bundles by keeping only streamlines that reach both main endpoint zones (undoable with **[Tract Edit][Undo]**). Use only on single two-endpoint pathways, never on fanning or whole-brain bundles. |
 
 ## Tract geometry
 
@@ -45,7 +45,7 @@ For per-bundle colors and scalar values across multiple checked rows, see the [T
 | Menu item | Behavior |
 |---|---|
 | <span class="gui-menu-item">Recognize...</span> | Matches the highlighted bundle (or the first row if none is selected) against the built-in tractography atlas, running template registration if needed. Opens a summary of matched pathway percentages (with clipboard copy and `.txt` export) without altering the bundle. |
-| <span class="gui-menu-item">Recognize and Rename</span> | Classifies each checked bundle against the built-in tractography atlas (running template registration if needed) and renames each row to its highest-matching pathway without splitting or deleting streamlines. Use **Tracts Misc › Merge Tracts by Name** afterward to combine identically named rows. |
+| <span class="gui-menu-item">Recognize and Rename</span> | Classifies each checked bundle against the built-in tractography atlas (running template registration if needed) and renames each row to its highest-matching pathway without splitting or deleting streamlines. Use **[Tracts Misc][Merge Tracts by Name]** afterward to combine identically named rows. |
 | <span class="gui-menu-item">Recognize and Cluster</span> | Splits the highlighted bundle by matching each streamline to the built-in tractography atlas, replacing the original row with separate colored rows per pathway. Unrecognized streamlines are discarded and splitting cannot be undone, so duplicate the bundle first to keep unmatched fibers. |
 
 Atlas recognition reports the closest-matching reference pathway; always verify results against underlying anatomy, or use [AutoTrack](/doc/gui_t3_atk.html) to reconstruct named pathways directly.
