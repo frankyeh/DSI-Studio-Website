@@ -22,37 +22,6 @@ title: DSI Studio
   <div><b>30,000+</b><span>processed datasets on the Hub</span></div>
 </section>
 
-<section class="doors">
-  <div class="door">
-    <h3>Learn</h3>
-    <ul>
-      <li><a href="/doc/how_to_acquire_dmri.html">How to acquire dMRI</a></li>
-      <li><a href="/doc/how_to_analyze_dmri.html">How to analyze dMRI</a></li>
-      <li><a href="/doc/how_tractography_works.html">How to interpret tractography</a></li>
-      <li><a href="/doc/gui_t1.html">GUI manual · Command line →</a></li>
-    </ul>
-  </div>
-  <div class="door">
-    <h3>Data</h3>
-    <p>Start from processed .fz / .sz / .dz files instead of raw DWI.</p>
-    <ul>
-      <li><a href="https://brain.labsolver.org">HCP · ABCD · OpenNeuro</a></li>
-      <li><a href="https://brain.labsolver.org">INDI · TCIA · others</a></li>
-      <li><a href="/doc/cli_data.html">Data formats</a></li>
-      <li><a href="https://brain.labsolver.org">Open the Fiber Data Hub →</a></li>
-    </ul>
-  </div>
-  <div class="door">
-    <h3>Support</h3>
-    <ul>
-      <li><a href="https://groups.google.com/g/dsi-studio">Forum (Google)</a></li>
-      <li><a href="https://www.reddit.com/r/dsistudio/">Forum (Reddit)</a></li>
-      <li><a href="https://www.dropbox.com/request/W0hJkAIVC2keWAjqtqvU">Upload data for help</a></li>
-      <li><a href="/news.html">News &amp; bug notices →</a></li>
-    </ul>
-  </div>
-</section>
-
 <section class="section">
   <div>
     <h2>AI agents, in the Sun version</h2>
