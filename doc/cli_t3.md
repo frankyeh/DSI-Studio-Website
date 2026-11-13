@@ -143,7 +143,7 @@ See [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html) for the anatomical
 
 ## Connectivity matrices
 
-Region-to-region (`r2r`) and tract-to-region (`t2r`) structural connectivity can be computed directly from the generated tractography:
+Region-to-region (`r2r`) and tract-to-region (`t2r`) structural connectivity can be computed directly from the generated tractography. For the GUI workflow and interpretation, see [Connectome (R2R / T2R)](/doc/gui_connectome.html):
 
 | Option | Default | Description |
 |:--|:--|:--|
