@@ -47,49 +47,13 @@ Use **Tracts → Save Current Tract As...** to save the selected tract group. Us
 
 DSI Studio's current compact tractography format is `.tt.gz`. Other formats can be exported when interoperability with other software is needed.
 
-## Connectivity matrices
+## Connectome analysis
 
-DSI Studio can derive region-to-region (R2R) connectivity matrices from tractography. Structural-connectivity matrices are sensitive to acquisition, tracking, parcellation, and counting choices, so keep those choices consistent across subjects and interpret graph measures with appropriate methodological caution.
-
-## GUI workflow
-
-1. Generate and inspect the tractography used for the connectome.
-2. Open **Tracts → Connectivity Matrix**.
-3. Select a built-in parcellation atlas or use loaded ROIs.
-4. Select whether connectivity is defined by streamline **endpoints** or **pass-through** regions.
-5. Select the matrix value(s) and recalculate.
-6. Export the matrix, connectogram, or network measures as needed.
-
-Do not use a white-matter tract atlas as the node parcellation for a conventional region-to-region connectome.
-
-## Important connectivity choices
-
-| Setting | Meaning |
-|:--|:--|
-| **Parcellation Atlas** | Defines the nodes of the region-to-region network. |
-| **End / Pass** | `end` assigns connections according to streamline endpoints; `pass` includes regions traversed by the streamline. |
-| **Connectivity Value** | Selects tract count or available tract/diffusion-derived measurements used as matrix entries. Streamline count is a tractography-dependent measure, not a direct axon count or connection-strength measurement. |
-| **Threshold** | Filters weak matrix entries. Thresholding changes the resulting graph and should be reported. |
-
-Command-line example:
-
-```bash
-dsi_studio --action=trk \
-  --source=subject.fz \
-  --connectivity=HCP-MMP \
-  --connectivity_type=end \
-  --connectivity_output=matrix,network
-```
-
-See [Fiber Tracking CLI](/doc/cli_t3.html) for the current connectivity options.
-
-## Network measures and graph visualization
-
-Network measures can be calculated from a connectivity matrix in the connectivity interface. When comparing subjects or groups, use the same parcellation, tractography strategy, connectivity definition, matrix value, and thresholding rule for every dataset.
-
-Saved connectivity matrices can also be visualized in the tracking window using the graph-visualization functions.
+To generate **region-to-region (R2R)** or **tract-to-region (T2R)** connectivity matrices from tractography, follow the dedicated [Connectome guide](/doc/gui_connectome.html). Whole-brain tracking is a useful quality check before constructing a connectivity matrix.
 
 ## Related workflows
+
+- [Connectome: R2R and T2R](/doc/gui_connectome.html)
 
 - [ROI-Based Fiber Tracking](/doc/gui_t3_roi_tracking.html)
 - [Automatic Fiber Tracking (AutoTrack)](/doc/gui_t3_atk.html)
