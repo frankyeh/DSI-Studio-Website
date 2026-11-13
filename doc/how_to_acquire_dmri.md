@@ -3,8 +3,8 @@
 Diffusion MRI acquisition is a tradeoff among angular sampling, diffusion weighting, signal-to-noise ratio, scan time, and scanner capabilities. These are two example protocols for advanced diffusion MRI; adapt parameters to the study and validate them locally.
 
 <div class="aq-chooser" aria-label="Choose an acquisition protocol">
-  <a class="aq-choice" href="#recommendation-1-multi-shell-acquisition-using-a-built-in-dti-sequence"><span class="aq-choice-tag">Practical option</span><strong>Two-shell DTI sequence</strong><span>90 diffusion directions · b = 1,500 / 3,000</span><small>Uses a built-in diffusion sequence. Match geometry and TE across both scans.</small><span class="aq-choice-link">View protocol →</span></a>
-  <a class="aq-choice" href="#recommendation-2-23-shell-dsi-acquisition-b-value--0-to-4000-across-258-directions"><span class="aq-choice-tag">Advanced option</span><strong>258-direction grid sampling</strong><span>23 b-values · up to b = 4,000</span><small>Designed for broader q-space coverage; requires appropriate sequence support.</small><span class="aq-choice-link">View protocol →</span></a>
+  <a class="aq-choice" href="#two-shell-protocol"><span class="aq-choice-tag">Practical option</span><strong>Two-shell DTI sequence</strong><span>90 diffusion directions · b = 1,500 / 3,000</span><small>Uses a built-in diffusion sequence. Match geometry and TE across both scans.</small><span class="aq-choice-link">View protocol →</span></a>
+  <a class="aq-choice" href="#grid-protocol"><span class="aq-choice-tag">Advanced option</span><strong>258-direction grid sampling</strong><span>23 b-values · up to b = 4,000</span><small>Designed for broader q-space coverage; requires appropriate sequence support.</small><span class="aq-choice-link">View protocol →</span></a>
 </div>
 
 <details class="aq-context"><summary>Why use a different sampling distribution?</summary>
@@ -12,6 +12,7 @@ Diffusion MRI acquisition is a tradeoff among angular sampling, diffusion weight
 </details>
 
 ## Recommendation 1: Multi-Shell Acquisition Using a Built-In DTI Sequence
+{: #two-shell-protocol }
 
 The built-in DTI protocol supports multi-shell acquisition compatible with advanced methods such as GQI, QSDR, and RDI.
 
@@ -28,6 +29,7 @@ The built-in DTI protocol supports multi-shell acquisition compatible with advan
 <div class="aq-check"><strong>Before scanning</strong><p>Confirm identical coverage, geometry, and TE across the two shells. Save clearly named protocols so the shared TE is identifiable.</p><code>DTI_b3000_60dir_2mm_TE89</code><code>DTI_b1500_30dir_2mm_TE89</code></div>
 
 ## Recommendation 2: 23-Shell DSI Acquisition (b-value = 0 to 4,000 across 258 Directions)
+{: #grid-protocol }
 
 An advanced option is the 12-minute **grid-258** acquisition, sampling 23 b-values from 0 to 4,000 s/mm² across 258 directions. Compared with HCP multi-shell acquisition, it reduces oversampling at low b-values and extends to higher b-values, improving sensitivity to restricted diffusion.
 
