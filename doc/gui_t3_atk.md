@@ -1,6 +1,6 @@
 # AutoTrack and Tractometry
 
-> **Before AutoTrack or tractometry:** [Import diffusion data](/doc/gui_t1.html) → [reconstruct a FIB file](/doc/gui_t2.html) → [check whole-brain tractography](/doc/gui_t3_whole_brain.html). You need an anatomically plausible `.fz` and an appropriate tractography atlas; start on this page once those checks pass. For tract measurements, first map or load the named bundles.
+> **Before AutoTrack or tractometry:** [Import diffusion data](/doc/gui_t1.html) → [reconstruct a FIB file](/doc/gui_t2.html) → [check whole-brain tractography](/doc/gui_t3_whole_brain.html). You need an anatomically plausible <span class="gui-file-ext">.fz</span> and an appropriate tractography atlas; start on this page once those checks pass. For tract measurements, first map or load the named bundles.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Hzeb_q6ux-Q" title="Automatic fiber tracking tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -57,7 +57,7 @@ If AutoTrack repeatedly produces no result or poor anatomy, check the upstream d
 
 1. Run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control).
 2. Verify the image orientation and b-table orientation during [reconstruction](/doc/gui_t2.html).
-3. Open the `.fz` file and confirm that principal fiber directions are anatomically plausible.
+3. Open the <span class="gui-file-ext">.fz</span> file and confirm that principal fiber directions are anatomically plausible.
 4. Run [whole-brain tracking](/doc/gui_t3_whole_brain.html) and confirm that major pathways can be reconstructed.
 5. Make sure the selected tractography atlas/template is appropriate for the dataset.
 
@@ -69,7 +69,7 @@ If an unexpected problem persists, share the relevant SRC/FIB data through the *
 
 For a cohort, open <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Automatic tracking</span></span> in the main window. This opens the separate batch AutoTrack interface, which accepts multiple FIB subjects and produces aggregated statistics.
 
-1. Select the `.fz` files and named tract groups to process.
+1. Select the <span class="gui-file-ext">.fz</span> files and named tract groups to process.
 2. Review the tractography atlas, tolerance, and track density for the anatomy and image scale.
 3. Test a small subset and inspect the reconstructed pathways.
 4. Change tolerance, density, or pruning only when anatomical evidence justifies it.
