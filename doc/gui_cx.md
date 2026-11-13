@@ -1,6 +1,6 @@
 # Correlational Tractography
 
-> **Before cohort-level correlational tractography:** [Import and QC each subject's DWI](/doc/gui_t1.html) → [reconstruct with QSDR](/doc/gui_t2.html#q-space-diffeomorphic-reconstruction-qsdr) using the **same template and output resolution** → create a cohort `.dz` database as described below. Confirm subject registration and demographic data before modeling. This is a group analysis, so a single native-space FIB is not sufficient.
+> **Before cohort-level correlational tractography:** [Import and QC each subject's DWI](/doc/gui_t1.html) → [reconstruct with QSDR](/doc/gui_t2.html#q-space-diffeomorphic-reconstruction-qsdr) using the **same template and output resolution** → create a cohort <span class="gui-file-ext">.dz</span> database as described below. Confirm subject registration and demographic data before modeling. This is a group analysis, so a single native-space FIB is not sufficient.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qC8jx6XZHGI" title="Correlational tractography tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -17,11 +17,11 @@ Select <span class="gui-action">Correlational Tractography</span> from the left 
 
 ## Current workflow
 
-1. **Create database:** create a connectometry database (`.dz`) from subject QSDR FIB files reconstructed into the same template space and resolution.
+1. **Create database:** create a connectometry database (<span class="gui-file-ext">.dz</span>) from subject QSDR FIB files reconstructed into the same template space and resolution.
 2. **Prepare database (optional):** inspect/modify the database or calculate longitudinal change.
 3. **Correlational tractography:** load/verify demographics, select the model and study variable, and run correlational tractography/connectometry.
 
-> **Version compatibility:** Use the current **Sun** version to create `.dz` databases. The pinned Hou release dated **2025-04-16** predates `.dz` support; some later Hou builds introduced `.dz` support but had database-creation issues. Older `.db.fz` and `.db.fib.gz` databases remain supported for compatibility.
+> **Version compatibility:** Use the current **Sun** version to create <span class="gui-file-ext">.dz</span> databases. The pinned Hou release dated **2025-04-16** predates <span class="gui-file-ext">.dz</span> support; some later Hou builds introduced <span class="gui-file-ext">.dz</span> support but had database-creation issues. Older `.db.fz` and `.db.fib.gz` databases remain supported for compatibility.
 
 ## Create a connectometry database
 
@@ -35,9 +35,9 @@ Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tracto
 
 Use <span class="gui-action">Add</span>, <span class="gui-action">Search in Directory...</span>, or <span class="gui-action">Open List</span> to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
 
-### Create the `.dz` file
+### Create the <span class="gui-file-ext">.dz</span> file
 
-The current database format is `.dz`. A new `.dz` database stores the available diffusion indices from the FIB files in one database, so a separate database is no longer needed for each metric.
+The current database format is <span class="gui-file-ext">.dz</span>. A new <span class="gui-file-ext">.dz</span> database stores the available diffusion indices from the FIB files in one database, so a separate database is no longer needed for each metric.
 
 Confirm the output name and click <span class="gui-action">Create Database</span>.
 
@@ -76,7 +76,7 @@ For repeated scans of the same subjects:
 1. Make sure baseline and follow-up scans are correctly paired.
 2. Use <span class="gui-menu-path"><span class="gui-menu-item">Tools</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Longitudinal scans...</span></span> to review or define the matching.
 3. Choose how the longitudinal change is calculated, such as `scan2-scan1`.
-4. Save the resulting longitudinal database as a new `.dz` file.
+4. Save the resulting longitudinal database as a new <span class="gui-file-ext">.dz</span> file.
 
 The command line also supports paired longitudinal conversion. If scans are stored consecutively as baseline/follow-up pairs:
 
@@ -103,11 +103,11 @@ After creating any derived or longitudinal database, **re-check its demographics
 
 ## Group connectometry analysis
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Database (*.dz)</span></span> to open the group analysis for a `.dz` database.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Database (*.dz)</span></span> to open the group analysis for a <span class="gui-file-ext">.dz</span> database.
 
 ### Load and verify demographics
 
-Demographics may be supplied as CSV or tab-separated text. If demographics are already embedded in the `.dz` database, DSI Studio loads them automatically.
+Demographics may be supplied as CSV or tab-separated text. If demographics are already embedded in the <span class="gui-file-ext">.dz</span> database, DSI Studio loads them automatically.
 
 A recommended format includes a subject identifier in the first column:
 
@@ -135,7 +135,7 @@ Avoid adding many highly correlated covariates unless the sample size supports t
 
 Choose the study variable to test. For example, select age to map pathways associated with aging, or select a behavioral/clinical score to map pathways associated with that measure.
 
-A current `.dz` database may contain multiple diffusion indices. Select the index appropriate for the hypothesis (for example QA, FA, RDI, or NRDI) within the analysis rather than creating a separate database for every metric.
+A current <span class="gui-file-ext">.dz</span> database may contain multiple diffusion indices. Select the index appropriate for the hypothesis (for example QA, FA, RDI, or NRDI) within the analysis rather than creating a separate database for every metric.
 
 For a longitudinal database, `longitudinal`/Intercept tests whether a nonzero change exists across the selected cohort. Selecting a demographic variable such as group instead tests whether the amount of change is associated with that variable.
 
