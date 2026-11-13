@@ -2,7 +2,7 @@
 
 > **Starting here?** First [import diffusion data](/doc/gui_t1.html) to create `.sz`, run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control), then [reconstruct SRC to FIB](/doc/gui_t2.html) to obtain `.fz`. This page begins with that FIB file; inspect whole-brain tracking before moving to [ROI tracking](/doc/gui_t3_roi_tracking.html), [AutoTrack](/doc/gui_t3_atk.html), or [Connectome](/doc/gui_connectome.html).
 
-From the main window, select **Tractography → 3 Track → FIB File (*.fz)** to open an `.fz` file in the fiber tracking window, then click **Tracts → Fiber Tracking** to generate a whole-brain tractogram.
+From the main window, select <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> to open an `.fz` file in the fiber tracking window, then click <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Fiber Tracking</span></span> to generate a whole-brain tractogram.
 
 Whole-brain tracking is the first quality check before ROI tracking, AutoTrack, differential tractography, or tract-based quantitative analysis. Major pathways should look anatomically plausible before more restrictive analyses are attempted.
 
@@ -45,7 +45,7 @@ For command-line equivalents, see [Fiber Tracking CLI](/doc/cli_t3.html).
 
 ## Saving tractography
 
-Use **Tracts → Save Current Tract As...** to save the selected tract group. Use **Tracts → Save All Tracts As** when multiple loaded/segmented tract groups should be saved together.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Save Current Tract As...</span></span> to save the selected tract group. Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Save All Tracts As</span></span> when multiple loaded/segmented tract groups should be saved together.
 
 DSI Studio's current compact tractography format is `.tt.gz`. Other formats can be exported when interoperability with other software is needed.
 
