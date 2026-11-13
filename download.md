@@ -15,9 +15,9 @@
 /* One centered calligraphy watermark spans each edition's full card grid. */
 .dl6-era-grid{position:relative;isolation:isolate}
 .dl6-era-grid::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(520px,68%);aspect-ratio:378/416;background:var(--era-image) center/contain no-repeat;opacity:var(--era-opacity);mix-blend-mode:multiply;pointer-events:none;z-index:2}
-.dl6-era-sun{--era-image:url('/images/calligraphy/sun.svg');--era-opacity:.10}
-.dl6-era-hou{--era-image:url('/images/calligraphy/hou.svg');--era-opacity:.12}
-.dl6-era-chen{--era-image:url('/images/calligraphy/chen.svg');--era-opacity:.10}
+.dl6-era-sun{--era-image:url('/images/calligraphy/sun.svg');--era-opacity:.05}
+.dl6-era-hou{--era-image:url('/images/calligraphy/hou.svg');--era-opacity:.06}
+.dl6-era-chen{--era-image:url('/images/calligraphy/chen.svg');--era-opacity:.05}
 .dl6-era-chen::after{aspect-ratio:228/262}
 @media(max-width:780px){.dl6-era-grid::after{width:min(280px,70%)}}
 
