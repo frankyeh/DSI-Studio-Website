@@ -8,7 +8,7 @@ Older tutorial videos on this page may show the former main-window layout. The i
 
 ## XNAT download
 
-In the DSI Studio main window, select **XNAT Download** in the left sidebar to connect to an XNAT server, browse project data, and select a local download directory. This retrieves data before SRC creation; review the downloaded series and their b-tables before importing them.
+In the DSI Studio main window, select <span class="gui-action">XNAT Download</span> in the left sidebar to connect to an XNAT server, browse project data, and select a local download directory. This retrieves data before SRC creation; review the downloaded series and their b-tables before importing them.
 
 *Older XNAT screenshots may show the previous main-window layout.*
 
@@ -16,7 +16,7 @@ In the DSI Studio main window, select **XNAT Download** in the left sidebar to c
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=65" title="DICOM to SRC tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-In the current main window, open **Tractography → 1 Import → DICOM** and choose **DICOM file(s)...** or **DICOM folder...**. DSI Studio reads the diffusion information and creates a `.sz` file. The **▸ Rename DICOM** control exposes optional operations that move/rename DICOM files; these do not perform conversion.
+In the current main window, open <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">DICOM</span></span> and choose **DICOM file(s)...** or **DICOM folder...**. DSI Studio reads the diffusion information and creates a `.sz` file. The **▸ Rename DICOM** control exposes optional operations that move/rename DICOM files; these do not perform conversion.
 
 For larger studies, the **DICOM folder...** option converts a folder of scans. Expand **▸ Rename DICOM** only when you explicitly need to reorganize the source files:
 
@@ -33,12 +33,12 @@ A diffusion-weighted NIFTI image needs its diffusion gradient information. DSI S
 
 For one scan:
 
-1. Open **Tractography → 1 Import → NIfTI → NIfTI file(s)...** and select one 4D diffusion NIfTI file. To process multiple scans, use **NIfTI folder...**.
+1. Open <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI file(s)...</span></span> and select one 4D diffusion NIfTI file. To process multiple scans, use **NIfTI folder...**.
 2. DSI Studio looks for matching `bval` and `bvec` files in the same directory.
-3. If they are not found automatically, use **Files → Open bval** and **Files → Open bvec** in the **source-image / b-table parser window** opened by NIfTI import (not the DSI Studio main window).
+3. If they are not found automatically, use <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open bval</span></span> and <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open bvec</span></span> in the **source-image / b-table parser window** opened by NIfTI import (not the DSI Studio main window).
 4. Create the `.sz` file and inspect the loaded b-table before continuing.
 
-For folder conversion, choose **Tractography → 1 Import → NIfTI → NIfTI folder...**. The program detects a BIDS dataset from its `sub-*` directories and creates SRC outputs under `derivatives`; otherwise, it processes an ordinary NIfTI folder and places an SRC file beside each diffusion NIfTI. The older separate BIDS/single-folder buttons have been consolidated.
+For folder conversion, choose <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI folder...</span></span>. The program detects a BIDS dataset from its `sub-*` directories and creates SRC outputs under `derivatives`; otherwise, it processes an ordinary NIfTI folder and places an SRC file beside each diffusion NIfTI. The older separate BIDS/single-folder buttons have been consolidated.
 
 For command-line workflows, see [SRC Creation CLI](/doc/cli_t1.html).
 
@@ -58,7 +58,7 @@ Example:
 3000 -0.985100  0.130800  0.111300
 ```
 
-Load it using **Files → Open b-table** in that same **source-image / b-table parser window**.
+Load it using <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open b-table</span></span> in that same **source-image / b-table parser window**.
 
 When present in the NIFTI directory, DSI Studio can also use `grad_dev.nii.gz` for gradient-nonlinearity information and `nodif_brain_mask.nii.gz` as a brain mask.
 
@@ -66,13 +66,13 @@ When present in the NIFTI directory, DSI Studio can also use `grad_dev.nii.gz` f
 
 ### Bruker 2dseq
 
-Select the `2dseq` file using **Tractography → 1 Import → 2dseq/FDF → 2dseq / FDF file(s)...**. Keep its associated Bruker files in their expected relative directories so DSI Studio can read spatial parameters and the diffusion table.
+Select the `2dseq` file using <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2dseq/FDF</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2dseq / FDF file(s)...</span></span>. Keep its associated Bruker files in their expected relative directories so DSI Studio can read spatial parameters and the diffusion table.
 
 After loading, verify the image and b-table orientation before reconstruction.
 
 ### Varian / Agilent FDF
 
-On **Tractography → 1 Import → 2dseq/FDF**, select the FDF files from the scan directory. DSI Studio reads the image and diffusion-gradient information and creates an SRC file.
+On <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2dseq/FDF</span></span>, select the FDF files from the scan directory. DSI Studio reads the image and diffusion-gradient information and creates an SRC file.
 
 ## Folder and batch SRC creation
 
@@ -80,15 +80,15 @@ For multi-subject import, use the relevant main-window folder action:
 
 | Input | Main-window action | Batch behavior |
 |:--|:--|:--|
-| **NIfTI / BIDS** | **Tractography → 1 Import → NIfTI → NIfTI folder...** | Detects `sub-*` BIDS directories and writes under `derivatives`, or processes a conventional folder beside the images. |
-| **DICOM** | **Tractography → 1 Import → DICOM → DICOM folder...** | Converts supported DICOM studies within the selected folder. |
-| **Bruker / FDF** | **Tractography → 1 Import → 2dseq/FDF → 2dseq / FDF file(s)...** | Accepts supported scanner-specific files; preserve accompanying scanner metadata. |
+| **NIfTI / BIDS** | <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI folder...</span></span> | Detects `sub-*` BIDS directories and writes under `derivatives`, or processes a conventional folder beside the images. |
+| **DICOM** | <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">DICOM</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">DICOM folder...</span></span> | Converts supported DICOM studies within the selected folder. |
+| **Bruker / FDF** | <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2dseq/FDF</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2dseq / FDF file(s)...</span></span> | Accepts supported scanner-specific files; preserve accompanying scanner metadata. |
 
 Current SRC files use `.sz`. After conversion, run [SRC quality control](#step-t1a-quality-control) to identify scan outliers before reconstruction.
 
 ## Step T1a: Quality Control
 
-Run **Tractography → 2 Reconstruct → ▸ More… → SRC quality control...** on the study's SRC files before reconstruction or population analysis. For NIfTI DWI quality control before SRC creation, use **Tractography → 1 Import → NIfTI → ▸ More… → NIFTI quality control...**.
+Run <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">SRC quality control...</span></span> on the study's SRC files before reconstruction or population analysis. For NIfTI DWI quality control before SRC creation, use <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIFTI quality control...</span></span>.
 
 The QC report is designed to identify subjects that differ substantially from the rest of the study. Review at least:
 
@@ -115,7 +115,7 @@ For batch b-table checking and command-line correction, see [Reconstruction CLI]
 
 ## Isotropic resampling
 
-If isotropic resampling is needed, open the SRC file through **Tractography → 2 Reconstruct → SRC File(s) (*.sz)** and use the reconstruction image-editing/resampling tools. Resampling does not add anatomical information and should be used for a specific processing requirement rather than routinely.
+If isotropic resampling is needed, open the SRC file through <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">SRC File(s) (*.sz)</span></span> and use the reconstruction image-editing/resampling tools. Resampling does not add anatomical information and should be used for a specific processing requirement rather than routinely.
 
 See [Step T2: Reconstruction](/doc/gui_t2.html#make-isotropic).
 
