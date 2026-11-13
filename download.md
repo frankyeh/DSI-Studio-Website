@@ -36,6 +36,7 @@ article .dl6-extra-body pre{margin:0 0 8px;font-size:12px;white-space:pre-wrap;o
 </style>
 
 
+<span id="troubleshooting"></span>
 <div class="dl6-grid">
 <section class="dl6-card" id="get-windows"><div class="dl6-card-head"><h3>Windows</h3><span>10 / 11 · x64</span></div><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_cpu.zip"><span>CPU</span></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win.zip"><span>NVIDIA GPU</span><small>Windows x64 · CUDA</small></a></div><details class="dl6-extra"><summary>Windows ARM64</summary><div class="dl6-extra-body"><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_win_arm64.zip"><span>ARM64 CPU</span><small>Windows 11 on ARM</small></a></div></div></details><details class="dl6-extra"><summary>Troubleshooting</summary><div class="dl6-extra-body"><p>If DLL files are missing, install the <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Microsoft Visual C++ Redistributable</a>. GPU builds need a compatible NVIDIA driver. The CUDA runtime is statically linked; you do not need the CUDA Toolkit.</p></div></details></section>
 <section class="dl6-card" id="get-macos"><div class="dl6-card-head"><h3>macOS</h3><span>Apple Silicon / Intel</span></div><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_macos-arm64_qt6.zip"><span>Apple Silicon</span><small>M-series Macs</small></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/latest/download/dsi_studio_macos-intel_qt6.zip"><span>Intel</span><small>x64 Macs</small></a></div><details class="dl6-extra"><summary>Troubleshooting</summary><div class="dl6-extra-body"><p>If Gatekeeper blocks an older build, try the current signed release first. For an older copy you trust, remove quarantine using:</p><pre><code>xattr -rd com.apple.quarantine /path/to/dsi_studio.app</code></pre><p>If the file-open dialog crashes with a cloud-drive file, copy the data to a local folder first.</p></div></details></section>
@@ -46,10 +47,6 @@ article .dl6-extra-body pre{margin:0 0 8px;font-size:12px;white-space:pre-wrap;o
 <p>Sun includes AI Agent workflows through supported local CLI agents including Codex, Claude Code, Muse, Antigravity and Grok. Configure a supported agent locally and check availability in DSI Studio's AI Agent settings.</p>
 <p>Linux Universal packages are recommended for most systems.</p>
 </details>
-
-### Troubleshooting
-
-Troubleshooting instructions are available in the Windows, macOS and Linux download cards above.
 
 ## "Hou" Versions (2024-2026) — Legacy
 
