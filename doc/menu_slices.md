@@ -61,7 +61,7 @@ To composite statistical maps, lesions, PET, or multimodal scans onto a base sli
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Edit Slice Image...</span> | Opens the selected custom slice in the standalone Volume Viewer/Editor to crop, pad, resample, reorient, or filter intensities; choosing **File › Save** updates the slice in memory. Ignored for built-in diffusion metrics. |
+| <span class="gui-menu-item">Edit Slice Image...</span> | Opens the selected custom slice in the standalone Volume Viewer/Editor to crop, pad, resample, reorient, or filter intensities; choosing **[File][Save]** updates the slice in memory. Ignored for built-in diffusion metrics. |
 | <span class="gui-menu-item">Load Color Map...</span> | Loads a plain-text RGB lookup table (`.txt`, defaulting to DSI Studio's `color_map/` folder) and applies it immediately to the currently selected slice. |
 
 ### [Insert Picture]
@@ -95,7 +95,7 @@ Save and reload visualization sessions (checked tracts, checked regions, devices
 
 - **<kbd>Q</kbd> / <kbd>A</kbd>, <kbd>W</kbd> / <kbd>S</kbd>, <kbd>E</kbd> / <kbd>D</kbd>:** Step the sagittal, coronal, or axial slice `+1` / `-1` voxel.
 - **<kbd>Z</kbd> / <kbd>X</kbd> / <kbd>C</kbd>:** Switch the 2D slice view to sagittal, coronal, or axial orientation.
-- **<kbd><kbd>F1</kbd></kbd>–<kbd><kbd>F6</kbd></kbd>:** Toggle fiber orientations (<kbd><kbd>F1</kbd></kbd>), tract intersections (<kbd><kbd>F2</kbd></kbd>), ruler/grid (<kbd><kbd>F3</kbd></kbd>), crosshair lines (<kbd><kbd>F4</kbd></kbd>), <kbd>R</kbd> label (<kbd><kbd>F5</kbd></kbd>), and region outlines (<kbd><kbd>F6</kbd></kbd>).
+- **<kbd>F1</kbd>–<kbd>F6</kbd>:** Toggle fiber orientations (<kbd>F1</kbd>), tract intersections (<kbd>F2</kbd>), ruler/grid (<kbd>F3</kbd>), crosshair lines (<kbd>F4</kbd>), `R` orientation label (<kbd>F5</kbd>), and region outlines (<kbd>F6</kbd>).
 - **Double-click / <kbd>Ctrl</kbd> + wheel:** Jump the 3D crosshair to the clicked voxel, or zoom the 2D slice view.
 
 ## 3D view
