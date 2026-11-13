@@ -2,23 +2,41 @@
 
 ## Prepare your data
 
-<ol class="ana-flow" aria-label="Diffusion MRI preparation stages" markdown="1">
-  <li id="import" markdown="1"><span class="ana-num">1</span><h3>Import</h3><p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">1 Import</span></p><p>NIfTI · DICOM · 2dseq/FDF</p><span class="ana-file">Output: .sz</span>
-    <details markdown="1"><summary>Options &amp; quality checks</summary>
-
-Set the working directory using the **Work Dir** bar and **Browse...** at the bottom of the main window. Select **NIfTI file(s)...** or **NIfTI folder...** (the latter detects BIDS datasets with `sub-*` directories and otherwise handles an ordinary NIfTI folder). For DICOM choose **DICOM file(s)...** or **DICOM folder...**. The **Rename DICOM** section contains file-moving/renaming operations, not conversion.
-When needed, use **[Tractography][1 Import][More...][NIFTI quality control...]**. Review [SRC quality control](/doc/gui_t1.html) before group analyses; it is available under **[Tractography][2 Reconstruct][More...][SRC quality control...]**.
-    </details></li>
-  <li id="reconstruct" markdown="1"><span class="ana-num">2</span><h3>Reconstruct</h3><p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">2 Reconstruct</span></p><p>GQI or QSDR</p><span class="ana-file">Output: .fz</span>
-    <details markdown="1"><summary>Options &amp; quality checks</summary>
-
-Click **SRC File(s) (*.sz)**. Choose [GQI or QSDR reconstruction](/doc/gui_t2.html), inspect the b-table, mask, orientation, and processing choices, and save the resulting FIB file (`.fz`). **More...** also offers batch SRC-to-FIB reconstruction.
-    </details></li>
-  <li id="track" markdown="1"><span class="ana-num">3</span><h3>Track &amp; analyze</h3><p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">3 Track</span></p><p>Whole-brain · ROI · AutoTrack · connectome</p><span class="ana-file">Input: .fz</span>
-    <details markdown="1"><summary>Options &amp; quality checks</summary>
-
-Click **FIB File (*.fz)** to open the **fiber tracking window**, where you can perform whole-brain, ROI-based, automatic, differential, and connectome analyses. **More...** contains **T1W/T2W image...**, **Automatic tracking**, and **FIB quality control...**. The **Recent FIB / Recent SRC / Template FIB** controls below the stages reopen recent data or templates.
-    </details></li>
+<ol class="ana-flow" aria-label="Diffusion MRI preparation stages">
+  <li id="import">
+    <span class="ana-num">1</span>
+    <h3>Import</h3>
+    <p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">1 Import</span></p>
+    <p>NIfTI · DICOM · 2dseq/FDF</p>
+    <span class="ana-file">Output: .sz</span>
+    <details>
+      <summary>Options &amp; quality checks</summary>
+      <p>Set the working directory using the <strong>Work Dir</strong> bar and <strong>Browse...</strong> at the bottom of the main window. Select <strong>NIfTI file(s)...</strong> or <strong>NIfTI folder...</strong> (the latter detects BIDS datasets with <code>sub-*</code> directories and otherwise handles an ordinary NIfTI folder). For DICOM choose <strong>DICOM file(s)...</strong> or <strong>DICOM folder...</strong>. The <strong>Rename DICOM</strong> section contains file-moving/renaming operations, not conversion.</p>
+      <p>When needed, use <strong>Tractography › 1 Import › More... › NIFTI quality control...</strong>. Review <a href="/doc/gui_t1.html">SRC quality control</a> before group analyses; it is available under <strong>Tractography › 2 Reconstruct › More... › SRC quality control...</strong>.</p>
+    </details>
+  </li>
+  <li id="reconstruct">
+    <span class="ana-num">2</span>
+    <h3>Reconstruct</h3>
+    <p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">2 Reconstruct</span></p>
+    <p>GQI or QSDR</p>
+    <span class="ana-file">Output: .fz</span>
+    <details>
+      <summary>Options &amp; quality checks</summary>
+      <p>Click <strong>SRC File(s) (*.sz)</strong>. Choose <a href="/doc/gui_t2.html">GQI or QSDR reconstruction</a>, inspect the b-table, mask, orientation, and processing choices, and save the resulting FIB file (<code>.fz</code>). <strong>More...</strong> also offers batch SRC-to-FIB reconstruction.</p>
+    </details>
+  </li>
+  <li id="track">
+    <span class="ana-num">3</span>
+    <h3>Track &amp; analyze</h3>
+    <p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">3 Track</span></p>
+    <p>Whole-brain · ROI · AutoTrack · connectome</p>
+    <span class="ana-file">Input: .fz</span>
+    <details>
+      <summary>Options &amp; quality checks</summary>
+      <p>Click <strong>FIB File (*.fz)</strong> to open the <strong>fiber tracking window</strong>, where you can perform whole-brain, ROI-based, automatic, differential, and connectome analyses. <strong>More...</strong> contains <strong>T1W/T2W image...</strong>, <strong>Automatic tracking</strong>, and <strong>FIB quality control...</strong>. The <strong>Recent FIB / Recent SRC / Template FIB</strong> controls below the stages reopen recent data or templates.</p>
+    </details>
+  </li>
 </ol>
 
 ## Choose an analysis workflow
@@ -94,21 +112,21 @@ Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
 **Correlational Tractography** is a separate sidebar page for cohort-level associations between local diffusion measures and study variables.
 
 <ol class="ana-flow ana-flow-small" aria-label="Correlational tractography analysis stages">
-  <li><span class="ana-num">1</span><h3>FIB files</h3><p>QSDR/template-space FIB inputs</p><span class="ana-file">.fz</span><details markdown="1"><summary>Options &amp; QC</summary>
-
-Select **FIB File(s) (*.fz)...** or **FIB Folder (*.fz)...** to populate the database-creation workflow. The import stage also offers **More... → Create population average...** for reference-population workflows.
-
-</details></li>
-  <li><span class="ana-num">2</span><h3>Prepare database</h3><p>Subjects and demographics</p><span class="ana-file">.dz</span><details markdown="1"><summary>Options &amp; QC</summary>
-
-Open **Database (*.dz)...** to inspect or edit a connectometry database, subjects, and demographics.
-
-</details></li>
-  <li><span class="ana-num">3</span><h3>Correlational tractography</h3><p>Variables, covariates, diffusion index</p><span class="ana-file">FDR</span><details markdown="1"><summary>Options &amp; QC</summary>
-
-Select **Database (*.dz)** to open group correlational tractography/connectometry analysis. Choose variables, covariates and diffusion index, then review association tracts and permutation-derived FDR.
-
-</details></li>
+  <li>
+    <span class="ana-num">1</span><h3>FIB files</h3>
+    <p>QSDR/template-space FIB inputs</p><span class="ana-file">.fz</span>
+    <details><summary>Options &amp; QC</summary><p>Select <strong>FIB File(s) (*.fz)...</strong> or <strong>FIB Folder (*.fz)...</strong> to populate the database-creation workflow. The import stage also offers <strong>More... › Create population average...</strong> for reference-population workflows.</p></details>
+  </li>
+  <li>
+    <span class="ana-num">2</span><h3>Prepare database</h3>
+    <p>Subjects and demographics</p><span class="ana-file">.dz</span>
+    <details><summary>Options &amp; QC</summary><p>Open <strong>Database (*.dz)...</strong> to inspect or edit a connectometry database, subjects, and demographics.</p></details>
+  </li>
+  <li>
+    <span class="ana-num">3</span><h3>Correlational tractography</h3>
+    <p>Variables, covariates, diffusion index</p><span class="ana-file">FDR</span>
+    <details><summary>Options &amp; QC</summary><p>Select <strong>Database (*.dz)</strong> to open group correlational tractography/connectometry analysis. Choose variables, covariates and diffusion index, then review association tracts and permutation-derived FDR.</p></details>
+  </li>
 </ol>
 
 <aside class="ana-note" role="note" markdown="1">
