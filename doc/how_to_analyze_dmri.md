@@ -23,7 +23,7 @@
     <span class="ana-file">Output: .fz</span>
     <details>
       <summary>Options &amp; quality checks</summary>
-      <p>Adjust processing choices as needed. For multiple SRC files, use <strong>More...</strong> for batch SRC-to-FIB reconstruction.</p>
+      <p>Adjust processing choices as needed. For multiple SRC files, use <span class="ui-key">More...</span> for batch SRC-to-FIB reconstruction.</p>
     </details>
   </li>
   <li id="track">
@@ -34,7 +34,7 @@
     <span class="ana-file">Input: .fz</span>
     <details>
       <summary>Options &amp; quality checks</summary>
-      <p>Under <span class="ui-key">More...</span>, find <span class="ui-key">T1W/T2W image...</span>, <span class="ui-key">Automatic tracking</span>, and <span class="ui-key">FIB quality control...</span>. Use <strong>Recent FIB / Recent SRC / Template FIB</strong> to reopen previous data or templates.</p>
+      <p>Under <span class="ui-key">More...</span>, find <span class="ui-key">T1W/T2W image...</span>, <span class="ui-key">Automatic tracking</span>, and <span class="ui-key">FIB quality control...</span>. Use <span class="ui-key">Recent FIB</span> / <span class="ui-key">Recent SRC</span> / <span class="ui-key">Template FIB</span> to reopen previous data or templates.</p>
     </details>
   </li>
 </ol>
