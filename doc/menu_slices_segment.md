@@ -12,16 +12,16 @@ Shown when the `human` template is selected in **Assign Regions**.
 
 | Menu item | Behavior |
 |---|---|
-| **SynthSeg V2 (10.5MB)** | Segments human brain MRI into 32 anatomical regions—including cortex, white matter, ventricles, CSF, brainstem, thalamus, basal ganglia, hippocampus, and amygdala—at native slice resolution. Works on any slice regardless of MRI contrast or resolution. |
-| **SIAM Model 1 (64.1MB)** | Segments unstripped human head MRI into 39 intracerebral and extracerebral head-tissue regions in **Assign Regions**. Works on any slice across contrasts, resolutions, and pathology. |
-| **SIAM Model 2 (51.8MB)** | Segments unstripped human head MRI into 12 brain-tissue regions plus extracerebral head, skull, dura, and vessel regions. Works on any slice across contrasts, resolutions, and pathology. |
-| **SIAM Model 3 (21.5MB)** | Segments unstripped human head MRI into the 12 brain and extracerebral head, skull, dura, and vessel regions of **SIAM Model 2 (51.8MB)** plus an abnormal-tissue anomaly region. Works on any slice across contrasts and resolutions. |
-| **GOUHFI (79.6MB)** | Segments whole-brain human MRI into 35 anatomical brain structures in **Assign Regions** using the GOUHFI 2.0 network. Works on any slice across MRI contrasts, resolutions, and field strengths. |
-| **MedNet-PVS T2w (19.7MB)** | Segments white-matter perivascular spaces (PVS) into **Assign Regions**. Requires a T2-weighted slice with `t2` or `tse` in its name; otherwise disabled with `(need T2w)`. |
-| **U-Net Studio Human Tissue (13MB)** | Segments human brain MRI into five major tissue regions in **Assign Regions**. Enabled on any slice across T1w, T2w, FLAIR, and related structural contrasts. |
-| **U-Net Studio Human T1w Tissue (1.2MB)** | Segments T1-weighted human brain MRI into five major tissue regions using a lightweight model. Requires `t1` or `mpr` in the slice name; otherwise disabled with `(need T1w)`. |
-| **U-Net Studio Human T2w Tissue (1.2MB)** | Segments T2-weighted human brain MRI into five major tissue regions using a lightweight model. Requires `t2` or `tse` in the slice name; otherwise disabled with `(need T2w)`. |
-| **U-Net Studio Human FLAIR Tissue (1.3MB)** | Segments human FLAIR MRI into five major brain-tissue regions using a lightweight model. Requires `flair` or `t2f` in the slice name; otherwise disabled with `(need FLAIR)`. |
+| <span class="gui-menu-item">SynthSeg V2 (10.5MB)</span> | Segments human brain MRI into 32 anatomical regions—including cortex, white matter, ventricles, CSF, brainstem, thalamus, basal ganglia, hippocampus, and amygdala—at native slice resolution. Works on any slice regardless of MRI contrast or resolution. |
+| <span class="gui-menu-item">SIAM Model 1 (64.1MB)</span> | Segments unstripped human head MRI into 39 intracerebral and extracerebral head-tissue regions in **Assign Regions**. Works on any slice across contrasts, resolutions, and pathology. |
+| <span class="gui-menu-item">SIAM Model 2 (51.8MB)</span> | Segments unstripped human head MRI into 12 brain-tissue regions plus extracerebral head, skull, dura, and vessel regions. Works on any slice across contrasts, resolutions, and pathology. |
+| <span class="gui-menu-item">SIAM Model 3 (21.5MB)</span> | Segments unstripped human head MRI into the 12 brain and extracerebral head, skull, dura, and vessel regions of **SIAM Model 2 (51.8MB)** plus an abnormal-tissue anomaly region. Works on any slice across contrasts and resolutions. |
+| <span class="gui-menu-item">GOUHFI (79.6MB)</span> | Segments whole-brain human MRI into 35 anatomical brain structures in **Assign Regions** using the GOUHFI 2.0 network. Works on any slice across MRI contrasts, resolutions, and field strengths. |
+| <span class="gui-menu-item">MedNet-PVS T2w (19.7MB)</span> | Segments white-matter perivascular spaces (PVS) into **Assign Regions**. Requires a T2-weighted slice with `t2` or `tse` in its name; otherwise disabled with `(need T2w)`. |
+| <span class="gui-menu-item">U-Net Studio Human Tissue (13MB)</span> | Segments human brain MRI into five major tissue regions in **Assign Regions**. Enabled on any slice across T1w, T2w, FLAIR, and related structural contrasts. |
+| <span class="gui-menu-item">U-Net Studio Human T1w Tissue (1.2MB)</span> | Segments T1-weighted human brain MRI into five major tissue regions using a lightweight model. Requires `t1` or `mpr` in the slice name; otherwise disabled with `(need T1w)`. |
+| <span class="gui-menu-item">U-Net Studio Human T2w Tissue (1.2MB)</span> | Segments T2-weighted human brain MRI into five major tissue regions using a lightweight model. Requires `t2` or `tse` in the slice name; otherwise disabled with `(need T2w)`. |
+| <span class="gui-menu-item">U-Net Studio Human FLAIR Tissue (1.3MB)</span> | Segments human FLAIR MRI into five major brain-tissue regions using a lightweight model. Requires `flair` or `t2f` in the slice name; otherwise disabled with `(need FLAIR)`. |
 
 ## Human lesion and disease models
 
@@ -29,15 +29,15 @@ Listed below the human anatomy models when the `human` template is active.
 
 | Menu item | Behavior |
 |---|---|
-| **TumorSynth (20.7MB)** | Segments whole-tumor extent as a single combined `Tumor` region in **Assign Regions**. Enabled on any slice across T1w, contrast-enhanced T1w, T2w, and FLAIR; use **U-Net Studio Human Tumor Lesion V2 (13MB)** for separate tumor subcompartments. |
-| **MindGlide MS Lesion (25MB)** | Segments multiple sclerosis (MS) lesions alongside major brain structures (19 regions total) into **Assign Regions**. Works on any slice across clinical MRI contrasts and scan qualities. |
-| **U-Net Studio Human Tumor Lesion V2 (13MB)** | Segments brain tumors into separate `Enhancing Tumor`, `Necrosis`, and `Peritumoral Edema` regions alongside five surrounding brain-tissue regions. Enabled on any slice across T1w, contrast-enhanced T1w, T2w, and FLAIR. |
-| **U-Net Studio Human T1w Tumor Lesion (1.3MB)** | Segments brain-tumor compartments and surrounding tissues on non-contrast T1-weighted MRI using a lightweight model. Requires `t1` or `mpr` in the slice name; otherwise disabled with `(need T1w)`. |
-| **U-Net Studio Human T1w-gd Tumor (1.3MB)** | Segments brain-tumor compartments on gadolinium contrast-enhanced T1-weighted MRI using a lightweight model. Requires `t1` or `mpr` in the slice name (`(need T1w)` otherwise); confirm manually that the T1w scan is contrast-enhanced. |
-| **U-Net Studio Human FLAIR Tumor (1.3MB)** | Segments brain tumors and peritumoral hyperintensity on FLAIR MRI using a lightweight model. Requires `flair` or `t2f` in the slice name; otherwise disabled with `(need FLAIR)`. |
-| **U-Net Studio Human Stroke Lesion V2 (13MB)** | Segments acute or chronic stroke lesions into **Assign Regions**. Enabled on any slice across T1w, T2w, FLAIR, and related structural stroke MRI. |
-| **U-Net Studio Human MS Lesion V2 (13MB)** | Segments multiple sclerosis white-matter and parenchymal lesions into **Assign Regions**. Enabled on any slice across T1w, T2w, FLAIR, and related structural MRI. |
-| **U-Net Studio Human T1w Stroke Lesion (1.2MB)** | Segments stroke lesions on human T1-weighted MRI using a lightweight model. Requires `t1` or `mpr` in the slice name; otherwise disabled with `(need T1w)`. |
+| <span class="gui-menu-item">TumorSynth (20.7MB)</span> | Segments whole-tumor extent as a single combined `Tumor` region in **Assign Regions**. Enabled on any slice across T1w, contrast-enhanced T1w, T2w, and FLAIR; use **U-Net Studio Human Tumor Lesion V2 (13MB)** for separate tumor subcompartments. |
+| <span class="gui-menu-item">MindGlide MS Lesion (25MB)</span> | Segments multiple sclerosis (MS) lesions alongside major brain structures (19 regions total) into **Assign Regions**. Works on any slice across clinical MRI contrasts and scan qualities. |
+| <span class="gui-menu-item">U-Net Studio Human Tumor Lesion V2 (13MB)</span> | Segments brain tumors into separate `Enhancing Tumor`, `Necrosis`, and `Peritumoral Edema` regions alongside five surrounding brain-tissue regions. Enabled on any slice across T1w, contrast-enhanced T1w, T2w, and FLAIR. |
+| <span class="gui-menu-item">U-Net Studio Human T1w Tumor Lesion (1.3MB)</span> | Segments brain-tumor compartments and surrounding tissues on non-contrast T1-weighted MRI using a lightweight model. Requires `t1` or `mpr` in the slice name; otherwise disabled with `(need T1w)`. |
+| <span class="gui-menu-item">U-Net Studio Human T1w-gd Tumor (1.3MB)</span> | Segments brain-tumor compartments on gadolinium contrast-enhanced T1-weighted MRI using a lightweight model. Requires `t1` or `mpr` in the slice name (`(need T1w)` otherwise); confirm manually that the T1w scan is contrast-enhanced. |
+| <span class="gui-menu-item">U-Net Studio Human FLAIR Tumor (1.3MB)</span> | Segments brain tumors and peritumoral hyperintensity on FLAIR MRI using a lightweight model. Requires `flair` or `t2f` in the slice name; otherwise disabled with `(need FLAIR)`. |
+| <span class="gui-menu-item">U-Net Studio Human Stroke Lesion V2 (13MB)</span> | Segments acute or chronic stroke lesions into **Assign Regions**. Enabled on any slice across T1w, T2w, FLAIR, and related structural stroke MRI. |
+| <span class="gui-menu-item">U-Net Studio Human MS Lesion V2 (13MB)</span> | Segments multiple sclerosis white-matter and parenchymal lesions into **Assign Regions**. Enabled on any slice across T1w, T2w, FLAIR, and related structural MRI. |
+| <span class="gui-menu-item">U-Net Studio Human T1w Stroke Lesion (1.2MB)</span> | Segments stroke lesions on human T1-weighted MRI using a lightweight model. Requires `t1` or `mpr` in the slice name; otherwise disabled with `(need T1w)`. |
 
 ## Animal template models
 
@@ -45,14 +45,14 @@ Shown when `rhesus`, `marmoset`, `rat`, or `mouse` is selected as the template i
 
 | Menu item | Behavior |
 |---|---|
-| **U-Net Studio Rhesus Tissue V2 (13MB)** | Segments rhesus macaque brain MRI into tissue regions in **Assign Regions**. Shown for the `rhesus` template and enabled on any slice across contrasts. |
-| **U-Net Studio Marmoset Tissue V2 (13MB)** | Segments marmoset brain MRI into tissue regions in **Assign Regions**. Shown for the `marmoset` template and enabled on any slice across T1w, T2w, and FLAIR. |
-| **U-Net Studio Marmoset T1w Tissue (1.3MB)** | Segments T1-weighted marmoset brain MRI into tissue regions using a lightweight model. Shown for the `marmoset` template; requires `t1` or `mpr` in the slice name (`(need T1w)` otherwise). |
-| **U-Net Studio Marmoset T2w Tissue (1.2MB)** | Segments T2-weighted marmoset brain MRI into tissue regions using a lightweight model. Shown for the `marmoset` template; requires `t2` or `tse` in the slice name (`(need T2w)` otherwise). |
-| **U-Net Studio Rat Tissue V2 (13MB)** | Segments rat brain MRI into tissue regions in **Assign Regions**. Shown for the `rat` template and enabled on any slice across contrasts. |
-| **U-Net Studio Rat T2w Tissue (1.2MB)** | Segments T2-weighted rat brain MRI into tissue regions using a lightweight model. Shown for the `rat` template; requires `t2` or `tse` in the slice name (`(need T2w)` otherwise). |
-| **U-Net Studio Mouse Tissue V2 (13MB)** | Segments mouse brain MRI into tissue regions in **Assign Regions**. Shown for the `mouse` template and enabled on any slice across contrasts. |
-| **U-Net Studio Mouse T2w Tissue (1.3MB)** | Segments T2-weighted mouse brain MRI into tissue regions using a lightweight model. Shown for the `mouse` template; requires `t2` or `tse` in the slice name (`(need T2w)` otherwise). |
+| <span class="gui-menu-item">U-Net Studio Rhesus Tissue V2 (13MB)</span> | Segments rhesus macaque brain MRI into tissue regions in **Assign Regions**. Shown for the `rhesus` template and enabled on any slice across contrasts. |
+| <span class="gui-menu-item">U-Net Studio Marmoset Tissue V2 (13MB)</span> | Segments marmoset brain MRI into tissue regions in **Assign Regions**. Shown for the `marmoset` template and enabled on any slice across T1w, T2w, and FLAIR. |
+| <span class="gui-menu-item">U-Net Studio Marmoset T1w Tissue (1.3MB)</span> | Segments T1-weighted marmoset brain MRI into tissue regions using a lightweight model. Shown for the `marmoset` template; requires `t1` or `mpr` in the slice name (`(need T1w)` otherwise). |
+| <span class="gui-menu-item">U-Net Studio Marmoset T2w Tissue (1.2MB)</span> | Segments T2-weighted marmoset brain MRI into tissue regions using a lightweight model. Shown for the `marmoset` template; requires `t2` or `tse` in the slice name (`(need T2w)` otherwise). |
+| <span class="gui-menu-item">U-Net Studio Rat Tissue V2 (13MB)</span> | Segments rat brain MRI into tissue regions in **Assign Regions**. Shown for the `rat` template and enabled on any slice across contrasts. |
+| <span class="gui-menu-item">U-Net Studio Rat T2w Tissue (1.2MB)</span> | Segments T2-weighted rat brain MRI into tissue regions using a lightweight model. Shown for the `rat` template; requires `t2` or `tse` in the slice name (`(need T2w)` otherwise). |
+| <span class="gui-menu-item">U-Net Studio Mouse Tissue V2 (13MB)</span> | Segments mouse brain MRI into tissue regions in **Assign Regions**. Shown for the `mouse` template and enabled on any slice across contrasts. |
+| <span class="gui-menu-item">U-Net Studio Mouse T2w Tissue (1.3MB)</span> | Segments T2-weighted mouse brain MRI into tissue regions using a lightweight model. Shown for the `mouse` template; requires `t2` or `tse` in the slice name (`(need T2w)` otherwise). |
 
 ## Practical recommendations and cautions
 
