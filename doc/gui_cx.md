@@ -27,7 +27,7 @@ Select <span class="gui-action">Correlational Tractography</span> from the left 
 
 A connectometry database combines diffusion measurements from multiple subjects in a common template space for population analysis.
 
-For population connectometry, reconstruct all subjects with **QSDR using the same template space and resolution** before database creation. Native-space GQI remains appropriate for individual/native-space analyses, but should not be treated as interchangeable input for a common-space connectometry cohort.
+For population connectometry, [reconstruct all subjects with QSDR](/doc/gui_t2.html#q-space-diffeomorphic-reconstruction-qsdr) using **the same template space and resolution** before database creation. Native-space GQI remains appropriate for individual/native-space analyses, but should not be treated as interchangeable input for a common-space connectometry cohort.
 
 ### Add subject FIB files
 
