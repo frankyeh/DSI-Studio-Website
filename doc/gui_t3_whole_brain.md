@@ -4,7 +4,7 @@
 
 From the main window, select <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> to open an `.fz` file in the fiber tracking window, then click <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Fiber Tracking</span></span> to generate a whole-brain tractogram.
 
-Whole-brain tracking is the first quality check before ROI tracking, AutoTrack, differential tractography, or tract-based quantitative analysis. Major pathways should look anatomically plausible before more restrictive analyses are attempted.
+Whole-brain tracking is the first quality check before [ROI tracking](/doc/gui_t3_roi_tracking.html), [AutoTrack](/doc/gui_t3_atk.html), [differential tractography](/doc/gui_t3_dt.html), or [tractometry](/doc/gui_t3_atk.html#tractometry). Major pathways should look anatomically plausible before more restrictive analyses are attempted.
 
 A streamline is a computational trajectory reconstructed from diffusion orientations, not an observed axon. Streamline/tract count should not be interpreted directly as axon count or biological connection strength.
 
