@@ -8,7 +8,7 @@ Reconstruction processes an SRC file (`.sz`; legacy `.src.gz`) and creates an FI
 
 ## Open SRC File(s)
 
-In the current main window, choose **Tractography → 2 Reconstruct → SRC File(s) (*.sz)** and select one or more SRC files. The **▸ More…** section contains **Batch SRC → FIB** and **SRC quality control...**. The reconstruction window opens after selecting SRC data. Older videos may show the previous main-window layout.
+In the current main window, choose <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">SRC File(s) (*.sz)</span></span> and select one or more SRC files. The **▸ More…** section contains <span class="gui-menu-path"><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> and **SRC quality control...**. The reconstruction window opens after selecting SRC data. Older videos may show the previous main-window layout.
 
 Multiple SRC files can be reconstructed as a batch. Processing steps configured on the first file can be applied to the remaining selected files.
 
@@ -24,7 +24,7 @@ The reconstruction window has five top-level menus. Their actions operate on the
 | **Corrections** | Runs TOPUP/EDDY, T1w-guided distortion correction, motion/orientation correction, or bias-field correction as appropriate for the acquisition. |
 | **QSDR** | Provides template-registration options, including manual alignment and partial-field-of-view controls for template-space reconstruction. |
 
-These are the menus **inside the SRC reconstruction window**, not the main window's **Tractography → 2 Reconstruct** entries.
+These are the menus **inside the SRC reconstruction window**, not the main window's <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span></span> entries.
 
 ## Visual quality inspection
 
@@ -36,7 +36,7 @@ Use the b-table/image list to move through the diffusion volumes and look for mo
 
 ### Bad slices
 
-Use **Show bad slice** to highlight detected problematic slices. Sagittal and coronal views can make slice artifacts easier to identify.
+Use <span class="gui-action">Show bad slice</span> to highlight detected problematic slices. Sagittal and coronal views can make slice artifacts easier to identify.
 
 
 
@@ -56,13 +56,13 @@ Only apply corrections that are appropriate for the acquisition and study design
 
 ### TOPUP/EDDY and motion correction
 
-For reverse-phase-encoding acquisitions, use **Corrections → TOPUP/EDDY**. DSI Studio first looks for the matching `.rz` companion file. If one is not found, it can accept another reverse-phase-encoding `.sz`, `.rz`, legacy `.src.gz`, or NIfTI file.
+For reverse-phase-encoding acquisitions, use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">TOPUP/EDDY</span></span>. DSI Studio first looks for the matching `.rz` companion file. If one is not found, it can accept another reverse-phase-encoding `.sz`, `.rz`, legacy `.src.gz`, or NIfTI file.
 
 For acquisitions without a reverse-phase pair, use the applicable EDDY/motion-correction workflow.
 
 ### T1w distortion correction
 
-When there is no reverse-phase pair but a T1w image of the same subject is available, use **Corrections → T1w Distortion Correction...** to correct susceptibility distortion. Select the T1w file, then choose the output resolution (**Native**, **1.5 mm isotropic**, or **1.0 mm isotropic**).
+When there is no reverse-phase pair but a T1w image of the same subject is available, use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">T1w Distortion Correction...</span></span> to correct susceptibility distortion. Select the T1w file, then choose the output resolution (**Native**, **1.5 mm isotropic**, or **1.0 mm isotropic**).
 
 DSI Studio converts the first b0 image to a T1-like contrast and extracts the brain from the T1w using U-Net, followed by bias field correction. It then registers the T1w rigidly to the b0 and estimates a nonlinear deformation restricted to the anterior–posterior (y) axis. Every DWI volume is warped once from the original data using T1w-guided interpolation and Jacobian signal modulation, and the mask is regenerated from the corrected images. The correction is recorded in the methods report.
 
@@ -72,7 +72,7 @@ These corrections may take substantial processing time. Save the corrected sourc
 
 ### Volume orientation correction for animal scans
 
-Animal datasets may need orientation adjustment before template-based analysis. Use **Corrections → Volume Orientation Correction** to align the volume orientation with the selected template.
+Animal datasets may need orientation adjustment before template-based analysis. Use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Volume Orientation Correction</span></span> to align the volume orientation with the selected template.
 
 <img width="800" alt="template orientation image" src="https://github.com/user-attachments/assets/d64d99dc-33f9-45ec-ad84-1431473bf6ab" />
 
@@ -84,7 +84,7 @@ Use the image-editing tools to remove irrelevant background signal or crop exces
 
 ### Check b-table orientation
 
-An incorrect b-table produces incorrect fiber orientations. Use **B-table → Check b-table** and inspect the result anatomically. Low-SNR or unusual animal acquisitions may require manual verification.
+An incorrect b-table produces incorrect fiber orientations. Use <span class="gui-menu-path"><span class="gui-menu-item">B-table</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Check b-table</span></span> and inspect the result anatomically. Low-SNR or unusual animal acquisitions may require manual verification.
 
 ### Make isotropic
 
@@ -122,12 +122,12 @@ Saving unnecessary outputs increases `.fz` file size and processing time.
 
 ## Batch reconstruction
 
-Use **Tractography → 2 Reconstruct → ▸ More… → Batch SRC → FIB** to process multiple `.sz` files. **SRC quality control...** is in the same expanded section. Batch execution applies the configured reconstruction to a group of subjects, but it does not replace inspecting representative images and evaluating [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) first.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> to process multiple `.sz` files. **SRC quality control...** is in the same expanded section. Batch execution applies the configured reconstruction to a group of subjects, but it does not replace inspecting representative images and evaluating [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) first.
 
 The resulting reconstructed files use `.fz`. For population studies, use **QSDR with the same template and output resolution** across subjects before preparing a [correlational tractography database](/doc/gui_cx.html#create-a-connectometry-database). For longitudinal or cross-sectional differential analysis, see [Differential Tractography](/doc/gui_t3_dt.html).
 
 ## Reconstruct
 
-After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting `.fz` file can be opened via **Tractography → 3 Track → FIB File (*.fz)** or used by the corresponding command-line and population-analysis workflows.
+After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting `.fz` file can be opened via <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> or used by the corresponding command-line and population-analysis workflows.
 
 For command-line reconstruction, see [Reconstruction CLI](/doc/cli_t2.html).
