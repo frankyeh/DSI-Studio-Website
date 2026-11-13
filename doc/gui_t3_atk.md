@@ -88,31 +88,12 @@ Use **Tracts → Tract Profile** to examine how a measurement changes along a pa
 
 Profiles can be parameterized by image axes or by fiber orientation. Keep the same profile definition and bandwidth when comparing subjects.
 
-## Tract-to-Region (T2R) Connectome
-
-The **tract-to-region (T2R) connectome** represents connectivity as an *n × m* matrix, where rows are named white-matter tracts and columns are parcellation regions. This keeps the identity of the connecting white-matter pathway, unlike a conventional region-to-region matrix that summarizes connectivity only between region pairs.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/7Ns9vHl21J8?si=GxfaKk8cz4FCpGMQ" title="Tract-to-region connectome tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-## Generate a T2R connectome
-
-### 1. Map named tract bundles
-
-Use AutoTrack to map the tract bundles included in the analysis. T2R is designed around identifiable pathways, so use named bundles rather than an undifferentiated whole-brain tractogram when the goal is an atlas-based T2R representation.
-
-### 2. Load a brain parcellation
-
-Use **Step T3a: Assign Regions → Atlas...** to load the desired parcellation, such as HCP-MMP or another atlas appropriate for the study.
-
-### 3. Create the matrix
-
-Use **Regions → Tract-to-Region Connectome** to calculate the tract-by-region matrix.
-
-Keep the tract set and parcellation identical across subjects when comparing T2R matrices.
+For region-to-region (R2R) or tract-to-region (T2R) connectivity analysis, see the separate [Connectome guide](/doc/gui_connectome.html).
 
 ## Command-line workflows
 
 - [Automatic Fiber Tracking CLI](/doc/cli_atk.html)
+- [Connectome GUI (R2R / T2R)](/doc/gui_connectome.html)
 - [Fiber Tracking / Connectome CLI](/doc/cli_t3.html)
 
 For current tractography and intermediate file formats, see [DSI Studio File Formats](/doc/cli_data.html).
