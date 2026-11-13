@@ -2,7 +2,7 @@
 
 DSI Studio converts diffusion MRI source data into an SRC file. Current SRC files use the `.sz` extension; legacy `.src.gz` files remain supported.
 
-An SRC file stores the diffusion-weighted image volumes together with the b-table and other information needed for reconstruction.
+An SRC file stores the diffusion-weighted image volumes together with the b-table and other information needed for [reconstruction](/doc/gui_t2.html).
 
 Older tutorial videos on this page may show the former main-window layout. The instructions below use current controls.
 
