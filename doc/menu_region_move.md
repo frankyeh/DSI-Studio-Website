@@ -6,26 +6,26 @@ Use **[Region Move]** to mirror regions across voxel axes, nudge them in 1-voxel
 
 | Menu item | Behavior |
 |---|---|
-| **Flip X** | Shortcut: `Ctrl+7`. Mirrors the highlighted region (or all checked regions when **Region Edit › Modify All Checked** is enabled) left–right across the `X`-axis center of the voxel grid. Undoable via **Regions › Undo**. |
-| **Flip Y** | Shortcut: `Ctrl+8`. Mirrors the highlighted region (or all checked regions) anterior–posterior across the `Y`-axis center of the voxel grid. Undoable via **Regions › Undo**. |
-| **Flip Z** | Shortcut: `Ctrl+9`. Mirrors the highlighted region (or all checked regions) superior–inferior across the `Z`-axis center of the voxel grid. Undoable via **Regions › Undo**. |
+| <span class="gui-menu-item">Flip X</span> | Shortcut: `Ctrl+7`. Mirrors the highlighted region (or all checked regions when **Region Edit › Modify All Checked** is enabled) left–right across the `X`-axis center of the voxel grid. Undoable via **Regions › Undo**. |
+| <span class="gui-menu-item">Flip Y</span> | Shortcut: `Ctrl+8`. Mirrors the highlighted region (or all checked regions) anterior–posterior across the `Y`-axis center of the voxel grid. Undoable via **Regions › Undo**. |
+| <span class="gui-menu-item">Flip Z</span> | Shortcut: `Ctrl+9`. Mirrors the highlighted region (or all checked regions) superior–inferior across the `Z`-axis center of the voxel grid. Undoable via **Regions › Undo**. |
 
 ## Axis shifts
 
 | Menu item | Behavior |
 |---|---|
-| **Shift +X** | Shortcut: `Ctrl+1`. Shifts the highlighted region (or all checked regions when **Region Edit › Modify All Checked** is enabled) by `1` voxel along `+X` (subject Left). Cannot be undone with **Regions › Undo**. |
-| **Shift -X** | Shortcut: `Ctrl+2`. Shifts the highlighted region (or all checked regions) by `1` voxel along `-X` (subject Right). Cannot be undone with **Regions › Undo**. |
-| **Shift +Y** | Shortcut: `Ctrl+3`. Shifts the highlighted region (or all checked regions) by `1` voxel along `+Y` (subject Posterior). Cannot be undone with **Regions › Undo**. |
-| **Shift -Y** | Shortcut: `Ctrl+4`. Shifts the highlighted region (or all checked regions) by `1` voxel along `-Y` (subject Anterior). Cannot be undone with **Regions › Undo**. |
-| **Shift +Z** | Shortcut: `Ctrl+5`. Shifts the highlighted region (or all checked regions) by `1` voxel along `+Z` (subject Superior). Cannot be undone with **Regions › Undo**. |
-| **Shift -Z** | Shortcut: `Ctrl+6`. Shifts the highlighted region (or all checked regions) by `1` voxel along `-Z` (subject Inferior). Cannot be undone with **Regions › Undo**. |
+| <span class="gui-menu-item">Shift +X</span> | Shortcut: `Ctrl+1`. Shifts the highlighted region (or all checked regions when **Region Edit › Modify All Checked** is enabled) by `1` voxel along `+X` (subject Left). Cannot be undone with **Regions › Undo**. |
+| <span class="gui-menu-item">Shift -X</span> | Shortcut: `Ctrl+2`. Shifts the highlighted region (or all checked regions) by `1` voxel along `-X` (subject Right). Cannot be undone with **Regions › Undo**. |
+| <span class="gui-menu-item">Shift +Y</span> | Shortcut: `Ctrl+3`. Shifts the highlighted region (or all checked regions) by `1` voxel along `+Y` (subject Posterior). Cannot be undone with **Regions › Undo**. |
+| <span class="gui-menu-item">Shift -Y</span> | Shortcut: `Ctrl+4`. Shifts the highlighted region (or all checked regions) by `1` voxel along `-Y` (subject Anterior). Cannot be undone with **Regions › Undo**. |
+| <span class="gui-menu-item">Shift +Z</span> | Shortcut: `Ctrl+5`. Shifts the highlighted region (or all checked regions) by `1` voxel along `+Z` (subject Superior). Cannot be undone with **Regions › Undo**. |
+| <span class="gui-menu-item">Shift -Z</span> | Shortcut: `Ctrl+6`. Shifts the highlighted region (or all checked regions) by `1` voxel along `-Z` (subject Inferior). Cannot be undone with **Regions › Undo**. |
 
 ## Interactive placement
 
 | Menu item | Behavior |
 |---|---|
-| **Move Region at 3D** | Shortcut: `Ctrl+A`. Enables a one-shot crosshair drag to move any visible checked region in whole-voxel steps parallel to the camera-facing slice plane, then restores normal camera control. Requires 3D region display and cannot be undone with **Regions › Undo**. |
+| <span class="gui-menu-item">Move Region at 3D</span> | Shortcut: `Ctrl+A`. Enables a one-shot crosshair drag to move any visible checked region in whole-voxel steps parallel to the camera-facing slice plane, then restores normal camera control. Requires 3D region display and cannot be undone with **Regions › Undo**. |
 
 ### Coordinate, undo, and 3D picking cautions
 
