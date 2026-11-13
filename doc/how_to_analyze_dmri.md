@@ -1,47 +1,39 @@
 # How to Analyze dMRI
 
-Start with your diffusion MRI scans, reconstruct fiber orientations, and then choose an analysis that answers your research question. The current DSI Studio main window organizes these operations under **Tractography**, **Correlational Tractography**, **Image Processing**, and **Settings**.
-
 ## Prepare your data
 
-<ol class="ana-flow" aria-label="Diffusion MRI preparation stages">
-  <li id="import"><span class="ana-num">1</span><h3>Import</h3><p class="ana-path">Tractography › 1 Import</p><p>NIfTI · DICOM · 2dseq/FDF</p><span class="ana-file">Output: .sz</span>
+<ol class="ana-flow" aria-label="Diffusion MRI preparation stages" markdown="1">
+  <li id="import" markdown="1"><span class="ana-num">1</span><h3>Import</h3><p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">1 Import</span></p><p>NIfTI · DICOM · 2dseq/FDF</p><span class="ana-file">Output: .sz</span>
     <details markdown="1"><summary>Options &amp; quality checks</summary>
-Select **NIfTI file(s)...** or **NIfTI folder...** (the latter detects BIDS datasets with `sub-*` directories and otherwise handles an ordinary NIfTI folder). For DICOM choose **DICOM file(s)...** or **DICOM folder...**. The **Rename DICOM** section contains file-moving/renaming operations, not conversion.
+Set the working directory using the **Work Dir** bar and **Browse...** at the bottom of the main window. Select **NIfTI file(s)...** or **NIfTI folder...** (the latter detects BIDS datasets with `sub-*` directories and otherwise handles an ordinary NIfTI folder). For DICOM choose **DICOM file(s)...** or **DICOM folder...**. The **Rename DICOM** section contains file-moving/renaming operations, not conversion.
 When needed, use **[Tractography][1 Import][More...][NIFTI quality control...]**. Review [SRC quality control](/doc/gui_t1.html) before group analyses; it is available under **[Tractography][2 Reconstruct][More...][SRC quality control...]**.
     </details></li>
-  <li id="reconstruct"><span class="ana-num">2</span><h3>Reconstruct</h3><p class="ana-path">Tractography › 2 Reconstruct</p><p>GQI or QSDR</p><span class="ana-file">Output: .fz</span>
+  <li id="reconstruct" markdown="1"><span class="ana-num">2</span><h3>Reconstruct</h3><p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">2 Reconstruct</span></p><p>GQI or QSDR</p><span class="ana-file">Output: .fz</span>
     <details markdown="1"><summary>Options &amp; quality checks</summary>
 Click **SRC File(s) (*.sz)**. Choose [GQI or QSDR reconstruction](/doc/gui_t2.html), inspect the b-table, mask, orientation, and processing choices, and save the resulting FIB file (`.fz`). **More...** also offers batch SRC-to-FIB reconstruction.
     </details></li>
-  <li id="track"><span class="ana-num">3</span><h3>Track &amp; analyze</h3><p class="ana-path">Tractography › 3 Track</p><p>Whole-brain · ROI · AutoTrack · connectome</p><span class="ana-file">Input: .fz</span>
+  <li id="track" markdown="1"><span class="ana-num">3</span><h3>Track &amp; analyze</h3><p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">3 Track</span></p><p>Whole-brain · ROI · AutoTrack · connectome</p><span class="ana-file">Input: .fz</span>
     <details markdown="1"><summary>Options &amp; quality checks</summary>
 Click **FIB File (*.fz)** to open the **fiber tracking window**, where you can perform whole-brain, ROI-based, automatic, differential, and connectome analyses. **More...** contains **T1W/T2W image...**, **Automatic tracking**, and **FIB quality control...**. The **Recent FIB / Recent SRC / Template FIB** controls below the stages reopen recent data or templates.
     </details></li>
 </ol>
 
-<aside class="ana-setup" role="note" markdown="1">
-**Before starting.** Set the working directory using the persistent **Work Dir** bar and **Browse...** at the bottom of the main window. **AI Agents**, **Fiber Data Hub**, **XNAT Download**, and **Console...** are below the navigation list.
-</aside>
-
 ## Choose an analysis workflow
-
-Choose a workflow based on your scientific question. Each option links to a procedure or a more detailed guide.
 
 <nav class="ana-pick" aria-label="Analysis workflows">
   <div class="ana-pick-group"><span class="step-eyebrow">ONE SUBJECT</span>
-    <a class="ana-card" href="/doc/gui_t3_whole_brain.html"><strong>Fiber pathways</strong><span>Tractography › Track · whole-brain / ROI</span><b aria-hidden="true">→</b></a>
+    <a class="ana-card" href="/doc/gui_t3_whole_brain.html"><strong>Fiber pathways</strong><span>Tractography / 3 Track · whole-brain / ROI</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#region-based-analysis"><strong>Region measures</strong><span>FIB file · region statistics</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#tractometry"><strong>Bundle metrics &amp; profiles</strong><span>FIB file · tract statistics</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#structural-connectome-r2r-and-t2r"><strong>Connectivity (R2R / T2R)</strong><span>FIB file · parcellation / bundles</span><b aria-hidden="true">→</b></a>
   </div>
   <div class="ana-pick-group"><span class="step-eyebrow">CHANGE &amp; COHORTS</span>
-    <a class="ana-card" href="/doc/gui_t3_atk.html"><strong>Named bundles across subjects</strong><span>Tractography › Track › Automatic tracking</span><b aria-hidden="true">→</b></a>
+    <a class="ana-card" href="/doc/gui_t3_atk.html"><strong>Named bundles across subjects</strong><span>Tractography / 3 Track / Automatic tracking</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#differential-tractography"><strong>Individual change</strong><span>Differential tractography</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#correlational-tractography--connectometry"><strong>Diffusion–behavior association</strong><span>Correlational Tractography sidebar</span><b aria-hidden="true">→</b></a>
   </div>
   <div class="ana-pick-group"><span class="step-eyebrow">IMAGES</span>
-    <div class="ana-card ana-static"><strong>Inspect or register structural images</strong><span>Image Processing › Image Editor › Open image...</span><span>Linear Registration › Linear registration...</span><span>Nonlinear Registration › Nonlinear registration...</span></div>
+    <div class="ana-card ana-static"><strong>Inspect or register structural images</strong><span>Image Processing / Image Editor / Open image...</span><span>Linear Registration / Linear registration...</span><span>Nonlinear Registration / Nonlinear registration...</span></div>
   </div>
 </nav>
 
@@ -49,7 +41,7 @@ Choose a workflow based on your scientific question. Each option links to a proc
 
 Use region-based analysis when the question concerns diffusion measurements within an anatomical region.
 
-1. On **Tractography → 3 Track**, open the subject `.fz` file.
+1. On **[Tractography][3 Track]**, open the subject `.fz` file.
 2. [Load or define regions](/doc/gui_t3_roi_tracking.html#load-regions-from-built-in-atlases). Built-in atlases are useful for standardized regions, provided they match the image space.
 3. If needed, use **[Slices][Insert Other Images]** in the tracking window to add registered measurements such as DKI, NODDI, PET, or other NIfTI data.
 4. Use **[Regions][Statistics]** to obtain measurements for selected regions.
