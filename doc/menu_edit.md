@@ -22,7 +22,7 @@ Use **[Tracts][Filter Tracks by ROI/ROA/End]** first to isolate or exclude pathw
 |---|---|
 | <span class="gui-menu-item">Select</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>S</kbd></kbd>. Arms a one-shot 3D crosshair stroke that keeps intersected streamlines across all **checked** bundles and moves non-intersected streamlines to the deleted buffer. Note that <kbd><kbd>Ctrl</kbd>+<kbd>S</kbd></kbd> selects fibers rather than saving files; use **Tracts › Save Current Tract As...** to save. |
 
-All four 3D stroke tools (**Select**, **Delete**, **Paint**, and **Cut**) use **Left-drag** for a straight line, **`Shift` + drag** for a freehand curve, and **Right-drag** to restrict the stroke to fibers crossing near perpendicular (adjusted by **Tract Rendering › Tract Selection Angle** in **Options**).
+All four 3D stroke tools (**Select**, **Delete**, **Paint**, and **Cut**) use **Left-drag** for a straight line, **<kbd>Shift</kbd> + drag** for a freehand curve, and **Right-drag** to restrict the stroke to fibers crossing near perpendicular (adjusted by **Tract Rendering › Tract Selection Angle** in **Options**).
 
 ## Delete
 
@@ -62,4 +62,4 @@ The **[Tract Edit][Cut By Slice]** submenu crops all **checked** bundles at the 
 
 ## Shortcuts
 
-Streamline edits in **[Tract Edit]** use plain `Ctrl` shortcuts, whereas whole-bundle actions in [Tracts](/doc/menu_tracts.html) use <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd></kbd> and region-mask operations in [Regions](/doc/menu_regions.html) and [Region Edit](/doc/menu_region_edit.html) use <kbd><kbd>Ctrl</kbd>+<kbd>Shift</kbd></kbd>. Deterministic edits (**Trim**, endpoint cuts, and **Cut By Slice**) are also logged in **[Records][Command History...]**; see the [Records menu](/doc/menu_records.html).
+Streamline edits in **[Tract Edit]** use plain <kbd>Ctrl</kbd> shortcuts, whereas whole-bundle actions in [Tracts](/doc/menu_tracts.html) use <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd></kbd> and region-mask operations in [Regions](/doc/menu_regions.html) and [Region Edit](/doc/menu_region_edit.html) use <kbd><kbd>Ctrl</kbd>+<kbd>Shift</kbd></kbd>. Deterministic edits (**Trim**, endpoint cuts, and **Cut By Slice**) are also logged in **[Records][Command History...]**; see the [Records menu](/doc/menu_records.html).
