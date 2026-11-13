@@ -12,7 +12,7 @@
     <details>
       <summary>Options &amp; quality checks</summary>
       <p>Set the working directory using the <strong>Work Dir</strong> bar and <strong>Browse...</strong> at the bottom of the main window. Select <strong>NIfTI file(s)...</strong> or <strong>NIfTI folder...</strong> (the latter detects BIDS datasets with <code>sub-*</code> directories and otherwise handles an ordinary NIfTI folder). For DICOM choose <strong>DICOM file(s)...</strong> or <strong>DICOM folder...</strong>. The <strong>Rename DICOM</strong> section contains file-moving/renaming operations, not conversion.</p>
-      <p>When needed, use <strong>Tractography › 1 Import › More... › NIFTI quality control...</strong>. Review <a href="/doc/gui_t1.html">SRC quality control</a> before group analyses; it is available under <strong>Tractography › 2 Reconstruct › More... › SRC quality control...</strong>.</p>
+      <p>When needed, use <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">1 Import</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">NIFTI quality control...</span>. Review <a href="/doc/gui_t1.html">SRC quality control</a> before group analyses; it is available under <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">2 Reconstruct</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">SRC quality control...</span>.</p>
     </details>
   </li>
   <li id="reconstruct">
@@ -43,18 +43,18 @@
 
 <nav class="ana-pick" aria-label="Analysis workflows">
   <div class="ana-pick-group"><span class="step-eyebrow">ONE SUBJECT</span>
-    <a class="ana-card" href="/doc/gui_t3_whole_brain.html"><strong>Fiber pathways</strong><span>Tractography / 3 Track · whole-brain / ROI</span><b aria-hidden="true">→</b></a>
+    <a class="ana-card" href="/doc/gui_t3_whole_brain.html"><strong>Fiber pathways</strong><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span> · whole-brain / ROI</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#region-based-analysis"><strong>Region measures</strong><span>FIB file · region statistics</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#tractometry"><strong>Bundle metrics &amp; profiles</strong><span>FIB file · tract statistics</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#structural-connectome-r2r-and-t2r"><strong>Connectivity (R2R / T2R)</strong><span>FIB file · parcellation / bundles</span><b aria-hidden="true">→</b></a>
   </div>
   <div class="ana-pick-group"><span class="step-eyebrow">CHANGE &amp; COHORTS</span>
-    <a class="ana-card" href="/doc/gui_t3_atk.html"><strong>Named bundles across subjects</strong><span>Tractography / 3 Track / Automatic tracking</span><b aria-hidden="true">→</b></a>
+    <a class="ana-card" href="/doc/gui_t3_atk.html"><strong>Named bundles across subjects</strong><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Automatic tracking</span></span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#differential-tractography"><strong>Individual change</strong><span>Differential tractography</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#correlational-tractography--connectometry"><strong>Diffusion–behavior association</strong><span>Correlational Tractography sidebar</span><b aria-hidden="true">→</b></a>
   </div>
   <div class="ana-pick-group"><span class="step-eyebrow">IMAGES</span>
-    <div class="ana-card ana-static"><strong>Inspect or register structural images</strong><span>Image Processing / Image Editor / Open image...</span><span>Linear Registration / Linear registration...</span><span>Nonlinear Registration / Nonlinear registration...</span></div>
+    <div class="ana-card ana-static"><strong>Inspect or register structural images</strong><span><span class="ui-key">Image Processing</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Image Editor</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Open image...</span></span><span><span class="ui-key">Linear Registration</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Linear registration...</span></span><span><span class="ui-key">Nonlinear Registration</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Nonlinear registration...</span></span></div>
   </div>
 </nav>
 
@@ -86,8 +86,6 @@ Example study of **bundle-level** QA tractometry (not a 100-node along-tract pro
 
 Differential tractography maps pathway segments showing changes in diffusion measurements between scans or relative to a reference population. It is configured within the fiber tracking window after opening the appropriate FIB, rather than in the main window's Correlational Tractography page.
 
-Four workflows compare the study design and coordinate space:
-
 <div class="ana-four" aria-label="Differential tractography workflow options">
   <span><strong>Longitudinal</strong> · Native space</span>
   <span><strong>Longitudinal</strong> · Template space</span>
@@ -95,11 +93,11 @@ Four workflows compare the study design and coordinate space:
   <span><strong>Cross-sectional</strong> · Template space</span>
 </div>
 
-See the [full Differential Tractography guide](/doc/gui_t3_dt.html).
+[Full guide →](/doc/gui_t3_dt.html)
 
 <aside class="ana-note" role="note"><p><strong>Check.</strong> The input images and reference maps must be appropriately aligned; scan/protocol differences can mimic biological change.</p></aside>
 
-Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
+Example study: [PubMed 31472253](https://pubmed.ncbi.nlm.nih.gov/31472253/)
 
 ## Correlational Tractography / Connectometry
 
@@ -109,7 +107,7 @@ Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
   <li>
     <span class="ana-num">1</span><h3>FIB files</h3>
     <p>QSDR/template-space FIB inputs</p><span class="ana-file">.fz</span>
-    <details><summary>Options &amp; QC</summary><p>Select <strong>FIB File(s) (*.fz)...</strong> or <strong>FIB Folder (*.fz)...</strong> to populate the database-creation workflow. The import stage also offers <strong>More... › Create population average...</strong> for reference-population workflows.</p></details>
+    <details><summary>Options &amp; QC</summary><p>Select <strong>FIB File(s) (*.fz)...</strong> or <strong>FIB Folder (*.fz)...</strong> to populate the database-creation workflow. The import stage also offers <span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Create population average...</span> for reference-population workflows.</p></details>
   </li>
   <li>
     <span class="ana-num">2</span><h3>Prepare database</h3>
@@ -125,7 +123,7 @@ Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
 
 <aside class="ana-note" role="note"><p><strong>Check.</strong> For cohort data, use compatible QSDR/template-space FIB files with consistent resolution. A current <code>.dz</code> database can store several diffusion indices, so separate database files are generally not required for QA, FA, RDI and other available metrics. A <strong>Recent Database</strong> list is shown beneath the stages.</p></aside>
 
-See the [full connectometry tutorial](/doc/gui_cx.html).
+[Full guide →](/doc/gui_cx.html)
 
 Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-abstract/143/8/2532/5875734) · [NeuroImage: Clinical study](https://www.sciencedirect.com/science/article/pii/S2213158220301571#b0275) · [NeuroImage study](https://www.sciencedirect.com/science/article/pii/S1875957218301797)
 
@@ -137,8 +135,8 @@ Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-a
   <div>
     <h3>R2R: Region to region</h3>
     <ol>
-      <li>Open a FIB with <strong>Tractography › 3 Track › FIB File (*.fz)</strong>, and generate or load the tracts to be analyzed.</li>
-      <li>In the tracking window, open <strong>Tracts › Connectivity Matrix</strong>.</li>
+      <li>Open a FIB with <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">FIB File (*.fz)</span>, and generate or load the tracts to be analyzed.</li>
+      <li>In the tracking window, open <span class="ui-key">Tracts</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Connectivity Matrix</span>.</li>
       <li>Choose a parcellation in the <strong>same coordinate space</strong> as the tractography, and select endpoint/pass-through rules and matrix values.</li>
       <li>Calculate and export the matrix, connectogram, or network measures.</li>
     </ol>
@@ -148,13 +146,13 @@ Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-a
     <ol>
       <li>Map named bundles using <a href="/doc/gui_t3_atk.html">AutoTrack</a> or load an appropriate set of named tracts.</li>
       <li>Load a matching parcellation using the <strong>Regions</strong> atlas controls in the fiber tracking window.</li>
-      <li>Select <strong>Regions › Tract-to-Region Connectome</strong> to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.</li>
+      <li>Select <span class="ui-key">Regions</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Tract-to-Region Connectome</span> to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.</li>
     </ol>
   </div>
 </div>
 
 <aside class="ana-note" role="note"><p><strong>Check.</strong> Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.</p></aside>
 
-For more information, see [Whole-Brain Tractography and Connectivity Matrices](/doc/gui_t3_whole_brain.html) and [AutoTrack / T2R](/doc/gui_t3_atk.html).
+Full guides: [R2R →](/doc/gui_t3_whole_brain.html) · [T2R →](/doc/gui_t3_atk.html)
 
 Example study: [Yeh FC, *Nature Communications* 13, 4933 (2022)](https://www.nature.com/articles/s41467-022-32595-4).
