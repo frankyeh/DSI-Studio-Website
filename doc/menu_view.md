@@ -21,10 +21,10 @@ Set orthogonal views and save or recall camera positions.
 
 | Menu item | Shortcut / GUI command hint |
 |---|---|
-| **Store Camera Position 3** submenu | — |
-| **Recall Camera Position 2** submenu | — |
+| **Store Camera Position** submenu | — |
+| **Recall Camera Position** submenu | — |
 
-### Store Camera Position 3 submenu
+### Store Camera Position submenu
 
 | Menu item | Shortcut / GUI command hint |
 |---|---|
@@ -33,7 +33,7 @@ Set orthogonal views and save or recall camera positions.
 | Slot 3  | Shortcut: `Alt+3` · `run store_camera3` |
 | Slot 4 | Shortcut: `Alt+4` · `run store_camera4` |
 
-### Recall Camera Position 2 submenu
+### Recall Camera Position submenu
 
 | Menu item | Shortcut / GUI command hint |
 |---|---|
