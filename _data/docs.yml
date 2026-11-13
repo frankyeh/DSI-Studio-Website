@@ -18,8 +18,10 @@
       slug: gui_t2
     - title: "Track: whole-brain tractography"
       slug: gui_t3_whole_brain
-    - title: "AutoTrack & T2R connectome"
+    - title: "AutoTrack"
       slug: gui_t3_atk
+    - title: "Connectome (R2R / T2R)"
+      slug: gui_connectome
     - title: "ROI-based tracking"
       slug: gui_t3_roi_tracking
     - title: "Differential tractography"
