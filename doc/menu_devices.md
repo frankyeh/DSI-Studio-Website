@@ -40,7 +40,7 @@ Reconstruct or resample datasets to isotropic voxel spacing before evaluating su
 
 ## CT-guided device placement
 
-Load a co-registered postoperative CT or anatomical MRI via **[Slices][Insert Other Images...]**, verify alignment across axial, coronal, and sagittal views, and match the device tip and shaft to the trajectory artifact using 3D slice placement, <kbd><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd> dragging, and <kbd><kbd>Ctrl</kbd>+<kbd>=</kbd></kbd> / <kbd><kbd>Ctrl</kbd>+<kbd>-</kbd></kbd> stepping. Because DSI Studio does not automatically detect electrodes on CT, confirm contact positions visually before running **Leads to ROI...** or **Statistics...**.
+Load a co-registered postoperative CT or anatomical MRI via **[Slices][Insert Other Images...]**, verify alignment across axial, coronal, and sagittal views, and match the device tip and shaft to the trajectory artifact using 3D slice placement, <kbd><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd> dragging, and <kbd><kbd>Ctrl</kbd>+<kbd>=</kbd></kbd> / <kbd><kbd>Ctrl</kbd>+<kbd>-</kbd></kbd> stepping. Because DSI Studio does not automatically detect electrodes on CT, confirm contact positions visually before running **[Devices][Leads to ROI...]** or **[Devices][Statistics...]**.
 
 ## Save devices
 
