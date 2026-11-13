@@ -293,8 +293,6 @@ article .ana-flow p { margin:6px 0; font-size:13.5px; line-height:1.5; }
 .ana-flow details { border-top:1px solid var(--line); margin-top:14px; padding-top:10px; font-size:13px; }
 .ana-flow summary { cursor:pointer; font-weight:600; color:var(--accent); }
 .ana-flow details p { margin:10px 0 0; overflow-wrap:anywhere; }
-.ana-setup { background:var(--soft); border-left:3px solid var(--accent); padding:13px 16px; border-radius:0 9px 9px 0; margin:0 0 28px; font-size:14px; line-height:1.55; }
-.ana-setup p { margin:0; }
 .ana-pick { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin:17px 0 32px; }
 .ana-pick-group { min-width:0; }
 .ana-pick-group .step-eyebrow { margin:0 0 10px; }
@@ -312,4 +310,4 @@ a.ana-card:hover, a.ana-card:focus-visible { border-color:#2a78d6; text-decorati
 .ana-four { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:12px 0 18px; }
 .ana-four > span { background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-size:13px; }
 #source, #import, #reconstruct, #track { scroll-margin-top:80px; }
-@media(max-width:720px) { .ana-flow,.ana-pick,.ana-two { grid-template-columns:1fr; } .ana-flow > li:not(:last-child)::after { content:"⌄"; top:auto; bottom:-19px; right:calc(50% - 7px); } .ana-flow { gap:18px; } .ana-card { margin-bottom:8px; } }
+@media(max-width:760px) { .ana-flow,.ana-pick,.ana-two { grid-template-columns:1fr; } .ana-flow > li:not(:last-child)::after { content:"⌄"; top:auto; bottom:-19px; right:calc(50% - 7px); } .ana-flow { gap:18px; } .ana-card { margin-bottom:8px; } }
