@@ -453,3 +453,24 @@ article.doc-menu-reference td { overflow-wrap: anywhere; }
 .aq-params span { margin-top: 3px; color: var(--muted); font-size: 12.5px; line-height: 1.5; }
 @media (max-width: 850px) { .aq-params { grid-template-columns: repeat(2,minmax(0,1fr)); } .aq-facts { grid-template-columns: 1fr; } .aq-facts > div + div { border-left: 0; border-top: 1px solid var(--line); } .aq-spec { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 550px) { .aq-chooser { grid-template-columns: 1fr; } .aq-files, .aq-params { grid-template-columns: repeat(2,minmax(0,1fr)); } .aq-params > .aq-wide { grid-column: 1 / -1; } .aq-choice { padding: 17px; } }
+
+
+/* GUI tutorial references: menu navigation is a soft breadcrumb; GUI controls are static pills.
+   Match the site's 8px nav corners and rounded CTA without implying these labels are clickable. */
+article .gui-menu-path {
+  font: 500 .91em/1.85 var(--sans); color: var(--ink);
+  background: var(--soft); border-radius: 8px; padding: 3px 8px;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+article .gui-menu-item { white-space: nowrap; }
+article .gui-menu-sep { display: inline; margin: 0 5px; color: var(--muted); font-weight: 400; }
+article .gui-action {
+  display: inline-block; font: 500 .88em/1.45 var(--sans);
+  color: var(--ink); background: #fff; border: 1px solid #cfd4dc;
+  border-radius: 999px; padding: 2px 10px; cursor: default;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.05); vertical-align: baseline;
+  max-width: 100%; overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  article .gui-action { white-space: normal; }
+}
