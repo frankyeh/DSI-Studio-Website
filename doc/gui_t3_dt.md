@@ -23,7 +23,7 @@ Differential tractography can be applied to DTI, multi-shell, and DSI acquisitio
 
 The **Type 1–4 number describes the study design and analysis space**. It is separate from the numeric `dt_threshold_type`, which selects the mathematical formula used to compare Metric 1 (`m1`) and Metric 2 (`m2`).
 
-Current files use `.sz` for SRC and `.fz` for FIB. A `.dz` connectometry database is useful for cohort-level correlational tractography, but it is no longer the preferred default reference for Type 3 differential tractography.
+Current files use <span class="gui-file-ext">.sz</span> for SRC and <span class="gui-file-ext">.fz</span> for FIB. A <span class="gui-file-ext">.dz</span> connectometry database is useful for cohort-level correlational tractography, but it is no longer the preferred default reference for Type 3 differential tractography.
 
 ## Type 1: Longitudinal change in native space
 
@@ -55,7 +55,7 @@ This produces a file such as `subject_followup.fz.dti_fa.nii.gz`.
 ### Check whole-brain tracking first
 {: .dt-step data-step="3"}
 
-Open the baseline `.fz` using <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
+Open the baseline <span class="gui-file-ext">.fz</span> using <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span></span> and confirm that conventional whole-brain tracking is anatomically reasonable. Resolve acquisition, b-table, reconstruction, or tracking problems before interpreting differential findings.
 
 ### Add the follow-up metric and wait for registration
 {: .dt-step data-step="4"}
@@ -131,7 +131,7 @@ Use the template appropriate for the species/study. Inspect the alignment of bot
 
 Type 3 compares an individual patient's native-space metric with a control reference while keeping tractography in the patient's native diffusion space.
 
-The current preferred reference is a **direct population-average scalar map** rather than an age/sex-matched `.dz` model. Age/sex matching alone can introduce model assumptions without necessarily providing a better estimate of the expected control value.
+The current preferred reference is a **direct population-average scalar map** rather than an age/sex-matched <span class="gui-file-ext">.dz</span> model. Age/sex matching alone can introduce model assumptions without necessarily providing a better estimate of the expected control value.
 
 ### Reconstruct the patient and controls
 {: .dt-step data-step="1"}

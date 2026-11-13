@@ -8,7 +8,7 @@ Reconstruction processes an SRC file (<span class="gui-file-ext">.sz</span>; leg
 
 ## Open SRC File(s)
 
-In the current main window, choose <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">SRC File(s) (*.sz)</span></span> and select one or more SRC files. The <span class="gui-action">▸ More…</span> section contains <span class="gui-menu-path"><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> and <span class="gui-action">SRC quality control...</span>. The reconstruction window opens after selecting SRC data. Older videos may show the previous main-window layout.
+In the current main window, choose <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">SRC File(s) (*.sz)</span></span> and select one or more SRC files. The <span class="gui-action">▸ More…</span> section contains <span class="gui-action">Batch SRC → FIB</span> and <span class="gui-action">SRC quality control...</span>. The reconstruction window opens after selecting SRC data. Older videos may show the previous main-window layout.
 
 Multiple SRC files can be reconstructed as a batch. Processing steps configured on the first file can be applied to the remaining selected files.
 
@@ -24,7 +24,7 @@ The reconstruction window has five top-level menus. Their actions operate on the
 | **Corrections** | Runs TOPUP/EDDY, T1w-guided distortion correction, motion/orientation correction, or bias-field correction as appropriate for the acquisition. |
 | **QSDR** | Provides template-registration options, including manual alignment and partial-field-of-view controls for template-space reconstruction. |
 
-These are the menus **inside the SRC reconstruction window**, not the main window's <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span></span> entries.
+These are the menus **inside the SRC reconstruction window**, not the main window's <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Reconstruct</span></span> entries.
 
 ## Visual quality inspection
 
@@ -122,12 +122,12 @@ Saving unnecessary outputs increases <span class="gui-file-ext">.fz</span> file 
 
 ## Batch reconstruction
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> to process multiple <span class="gui-file-ext">.sz</span> files. <span class="gui-action">SRC quality control...</span> is in the same expanded section. Batch execution applies the configured reconstruction to a group of subjects, but it does not replace inspecting representative images and evaluating [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) first.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Batch SRC → FIB</span></span> to process multiple <span class="gui-file-ext">.sz</span> files. <span class="gui-action">SRC quality control...</span> is in the same expanded section. Batch execution applies the configured reconstruction to a group of subjects, but it does not replace inspecting representative images and evaluating [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) first.
 
 The resulting reconstructed files use <span class="gui-file-ext">.fz</span>. For population studies, use **QSDR with the same template and output resolution** across subjects before preparing a [correlational tractography database](/doc/gui_cx.html#create-a-connectometry-database). For longitudinal or cross-sectional differential analysis, see [Differential Tractography](/doc/gui_t3_dt.html).
 
 ## Reconstruct
 
-After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting <span class="gui-file-ext">.fz</span> file can be opened via <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> or used by the corresponding command-line and population-analysis workflows.
+After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting <span class="gui-file-ext">.fz</span> file can be opened via <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span></span> or used by the corresponding command-line and population-analysis workflows.
 
 For command-line reconstruction, see [Reconstruction CLI](/doc/cli_t2.html).

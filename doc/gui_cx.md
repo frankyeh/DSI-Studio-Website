@@ -13,7 +13,7 @@ Correlational tractography is a **cohort-level** analysis. For a single subject'
 
 ## Current main-window workflow
 
-Select <span class="gui-action">Correlational Tractography</span> from the left sidebar. Its three cards are <span class="gui-menu-path"><span class="gui-menu-item">1 FIB files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Prepare database</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Correlational Tractography</span></span>. In the first card, <span class="gui-action">FIB File(s) (*.fz)...</span> and <span class="gui-action">FIB Folder (*.fz)...</span> open database creation with the selected QSDR FIB data preloaded. <span class="gui-action">Database (*.dz)...</span> in the second card opens a database for inspection/editing; <span class="gui-action">Database (*.dz)</span> in the third card launches correlational tractography analysis. A **Recent Database** list is located below.
+Select <span class="gui-menu-item">Correlational Tractography</span> from the left sidebar. Its three cards are <span class="gui-menu-path"><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>FIB files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Prepare database</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Correlational Tractography</span></span>. In the first card, <span class="gui-action">FIB File(s) (*.fz)...</span> and <span class="gui-action">FIB Folder (*.fz)...</span> open database creation with the selected QSDR FIB data preloaded. <span class="gui-action">Database (*.dz)...</span> in the second card opens a database for inspection/editing; <span class="gui-action">Database (*.dz)</span> in the third card launches correlational tractography analysis. A **Recent Database** list is located below.
 
 ## Current workflow
 
@@ -31,7 +31,7 @@ For population connectometry, [reconstruct all subjects with QSDR](/doc/gui_t2.h
 
 ### Add subject FIB files
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 FIB files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File(s) (*.fz)...</span></span> or <span class="gui-action">FIB Folder (*.fz)...</span> to open Create Database with the input list populated.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>FIB files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File(s) (*.fz)...</span></span> or <span class="gui-action">FIB Folder (*.fz)...</span> to open Create Database with the input list populated.
 
 Use <span class="gui-action">Add</span>, <span class="gui-action">Search in Directory...</span>, or <span class="gui-action">Open List</span> to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
 
@@ -65,7 +65,7 @@ Database construction reports registration quality for each subject. Review subj
 
 ## View or modify a database
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Prepare database</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Database (*.dz)...</span></span> when you need to inspect subjects, remove problematic data, load demographics, or prepare a longitudinal database.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Prepare database</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Database (*.dz)...</span></span> when you need to inspect subjects, remove problematic data, load demographics, or prepare a longitudinal database.
 
 Demographics can be stored inside the database. After loading a demographic CSV/TSV file, save the database if you want those values to be available automatically the next time it is opened.
 
@@ -103,7 +103,7 @@ After creating any derived or longitudinal database, **re-check its demographics
 
 ## Group connectometry analysis
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Database (*.dz)</span></span> to open the group analysis for a <span class="gui-file-ext">.dz</span> database.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Database (*.dz)</span></span> to open the group analysis for a <span class="gui-file-ext">.dz</span> database.
 
 ### Load and verify demographics
 

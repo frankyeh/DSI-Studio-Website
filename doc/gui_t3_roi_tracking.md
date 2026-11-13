@@ -8,7 +8,7 @@ ROI-based fiber tracking uses anatomical regions to include, exclude, start, or 
 
 ## Step T3a: Assign Regions
 
-Open the subject <span class="gui-file-ext">.fz</span> file using <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> in the main window; this opens the separate fiber tracking window. Regions can be added from:
+Open the subject <span class="gui-file-ext">.fz</span> file using <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span></span> in the main window; this opens the separate fiber tracking window. Regions can be added from:
 
 - NIfTI region files;
 - built-in atlases;
@@ -52,7 +52,7 @@ A very thin ROA can be skipped when the tracking step size is large enough to ju
 
 ## Load regions from built-in atlases
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Assign Regions</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Atlas...</span></span> to select anatomical regions from an atlas appropriate for the subject/template. DSI Studio maps atlas regions into the tracking space as needed.
+Use <span class="gui-menu-path"><span class="gui-card">Assign Regions</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Atlas...</span></span> to select anatomical regions from an atlas appropriate for the subject/template. DSI Studio maps atlas regions into the tracking space as needed.
 
 Atlas regions are convenient anatomical references, but the selected ROI/ROA roles still define the tracking hypothesis. Inspect the transformed region before using it as a constraint.
 

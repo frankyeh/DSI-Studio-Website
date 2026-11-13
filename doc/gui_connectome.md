@@ -68,7 +68,7 @@ Use [AutoTrack](/doc/gui_t3_atk.html) to map the tract bundles included in the a
 
 #### 2. Load a brain parcellation
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Assign Regions</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Atlas...</span></span> to load the desired parcellation, such as HCP-MMP or another atlas appropriate for the study.
+Use <span class="gui-menu-path"><span class="gui-card">Assign Regions</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Atlas...</span></span> to load the desired parcellation, such as HCP-MMP or another atlas appropriate for the study.
 
 #### 3. Create the matrix
 

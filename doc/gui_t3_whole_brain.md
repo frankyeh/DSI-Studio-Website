@@ -2,7 +2,7 @@
 
 > **Starting here?** First [import diffusion data](/doc/gui_t1.html) to create <span class="gui-file-ext">.sz</span>, run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control), then [reconstruct SRC to FIB](/doc/gui_t2.html) to obtain <span class="gui-file-ext">.fz</span>. This page begins with that FIB file; inspect whole-brain tracking before moving to [ROI tracking](/doc/gui_t3_roi_tracking.html), [AutoTrack](/doc/gui_t3_atk.html), or [Connectome](/doc/gui_connectome.html).
 
-From the main window, select <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> to open an <span class="gui-file-ext">.fz</span> file in the fiber tracking window, then click <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Fiber Tracking</span></span> to generate a whole-brain tractogram.
+From the main window, select <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span></span> to open an <span class="gui-file-ext">.fz</span> file in the fiber tracking window, then click <span class="gui-menu-path"><span class="gui-card">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Fiber Tracking</span></span> to generate a whole-brain tractogram.
 
 Whole-brain tracking is the first quality check before [ROI tracking](/doc/gui_t3_roi_tracking.html), [AutoTrack](/doc/gui_t3_atk.html), [differential tractography](/doc/gui_t3_dt.html), or [tractometry](/doc/gui_t3_atk.html#tractometry). Major pathways should look anatomically plausible before more restrictive analyses are attempted.
 
@@ -45,7 +45,7 @@ For command-line equivalents, see [Fiber Tracking CLI](/doc/cli_t3.html).
 
 ## Saving tractography
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Save Current Tract As...</span></span> to save the selected tract group. Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Save All Tracts As</span></span> when multiple loaded/segmented tract groups should be saved together.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Save Current Tract As...</span></span> to save the selected tract group. Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Save All Tracts As</span></span> when multiple loaded/segmented tract groups should be saved together.
 
 DSI Studio's current compact tractography format is <span class="gui-file-ext">.tt.gz</span>. Other formats can be exported when interoperability with other software is needed.
 
