@@ -1,10 +1,10 @@
 # Reconstruct: SRC to FIB
 
-> **Before reconstruction:** Start with [Import: generate SRC files](/doc/gui_t1.html) to create an `.sz` file and review the diffusion images and b-table. Run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) before reconstructing a study cohort. This page begins with an existing SRC file and produces a tractography-ready `.fz` file.
+> **Before reconstruction:** Start with [Import: generate SRC files](/doc/gui_t1.html) to create an <span class="gui-file-ext">.sz</span> file and review the diffusion images and b-table. Run [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) before reconstructing a study cohort. This page begins with an existing SRC file and produces a tractography-ready <span class="gui-file-ext">.fz</span> file.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=215" title="SRC reconstruction tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Reconstruction processes an SRC file (`.sz`; legacy `.src.gz`) and creates an FIB file (`.fz`) for [tractography](/doc/gui_t3_whole_brain.html), [diffusion measurements](/doc/how_to_interpret_dmri.html), [connectome analysis](/doc/gui_connectome.html), and other downstream workflows.
+Reconstruction processes an SRC file (<span class="gui-file-ext">.sz</span>; legacy <span class="gui-file-ext">.src.gz</span>) and creates an FIB file (<span class="gui-file-ext">.fz</span>) for [tractography](/doc/gui_t3_whole_brain.html), [diffusion measurements](/doc/how_to_interpret_dmri.html), [connectome analysis](/doc/gui_connectome.html), and other downstream workflows.
 
 ## Open SRC File(s)
 
@@ -56,7 +56,7 @@ Only apply corrections that are appropriate for the acquisition and study design
 
 ### TOPUP/EDDY and motion correction
 
-For reverse-phase-encoding acquisitions, use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">TOPUP/EDDY</span></span>. DSI Studio first looks for the matching `.rz` companion file. If one is not found, it can accept another reverse-phase-encoding `.sz`, `.rz`, legacy `.src.gz`, or NIfTI file.
+For reverse-phase-encoding acquisitions, use <span class="gui-menu-path"><span class="gui-menu-item">Corrections</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">TOPUP/EDDY</span></span>. DSI Studio first looks for the matching `.rz` companion file. If one is not found, it can accept another reverse-phase-encoding <span class="gui-file-ext">.sz</span>, `.rz`, legacy <span class="gui-file-ext">.src.gz</span>, or NIfTI file.
 
 For acquisitions without a reverse-phase pair, use the applicable EDDY/motion-correction workflow.
 
@@ -68,7 +68,7 @@ DSI Studio converts the first b0 image to a T1-like contrast and extracts the br
 
 The correction assumes AP–PA phase encoding. Run EDDY or motion correction before it, because the same deformation is applied to all volumes. The selected output resolution replaces a separate resampling step.
 
-These corrections may take substantial processing time. Save the corrected source data as a new `.sz` file if you want to preserve the corrected dataset for later reconstruction.
+These corrections may take substantial processing time. Save the corrected source data as a new <span class="gui-file-ext">.sz</span> file if you want to preserve the corrected dataset for later reconstruction.
 
 ### Volume orientation correction for animal scans
 
@@ -114,7 +114,7 @@ Additional images can be attached when they are needed by the reconstruction/tem
 
 Select only the additional diffusion measurements needed for the analysis. Available outputs depend on the reconstruction method and DSI Studio version and can include tensor measures, GQI-derived measures, restricted-diffusion measures, and ODF-related outputs.
 
-Saving unnecessary outputs increases `.fz` file size and processing time.
+Saving unnecessary outputs increases <span class="gui-file-ext">.fz</span> file size and processing time.
 
 ### DTI high-b option
 
@@ -122,12 +122,12 @@ Saving unnecessary outputs increases `.fz` file size and processing time.
 
 ## Batch reconstruction
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> to process multiple `.sz` files. <span class="gui-menu-path"><span class="gui-menu-item">SRC quality control...</span></span> is in the same expanded section. Batch execution applies the configured reconstruction to a group of subjects, but it does not replace inspecting representative images and evaluating [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) first.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">▸ More…</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Batch SRC</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB</span></span> to process multiple <span class="gui-file-ext">.sz</span> files. <span class="gui-menu-path"><span class="gui-menu-item">SRC quality control...</span></span> is in the same expanded section. Batch execution applies the configured reconstruction to a group of subjects, but it does not replace inspecting representative images and evaluating [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) first.
 
-The resulting reconstructed files use `.fz`. For population studies, use **QSDR with the same template and output resolution** across subjects before preparing a [correlational tractography database](/doc/gui_cx.html#create-a-connectometry-database). For longitudinal or cross-sectional differential analysis, see [Differential Tractography](/doc/gui_t3_dt.html).
+The resulting reconstructed files use <span class="gui-file-ext">.fz</span>. For population studies, use **QSDR with the same template and output resolution** across subjects before preparing a [correlational tractography database](/doc/gui_cx.html#create-a-connectometry-database). For longitudinal or cross-sectional differential analysis, see [Differential Tractography](/doc/gui_t3_dt.html).
 
 ## Reconstruct
 
-After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting `.fz` file can be opened via <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> or used by the corresponding command-line and population-analysis workflows.
+After checking the mask, corrections, reconstruction method, template settings, and requested outputs, start reconstruction. The resulting <span class="gui-file-ext">.fz</span> file can be opened via <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File (*.fz)</span></span> or used by the corresponding command-line and population-analysis workflows.
 
 For command-line reconstruction, see [Reconstruction CLI](/doc/cli_t2.html).
