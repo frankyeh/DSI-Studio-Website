@@ -316,4 +316,4 @@ a.ana-card:hover, a.ana-card:focus-visible { border-color:#2a78d6; text-decorati
 .ana-four > span { background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-size:13px; }
 #source, #import, #reconstruct, #track { scroll-margin-top:80px; }
 article h2[id] { scroll-margin-top:80px; }
-@media(max-width:760px) { .ana-pick,.ana-two { grid-template-columns:1fr; } .ana-flow { gap:18px; } .ana-flow > li { padding:14px; } .ana-card { margin-bottom:8px; } }
+@media(max-width:760px) { article h2[id] { scroll-margin-top:120px; } .ana-pick,.ana-two { grid-template-columns:1fr; } .ana-flow { gap:18px; } .ana-flow > li { padding:14px; } .ana-card { margin-bottom:8px; } }
