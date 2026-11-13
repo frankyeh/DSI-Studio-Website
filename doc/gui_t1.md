@@ -6,12 +6,6 @@ An SRC file stores the diffusion-weighted image volumes together with the b-tabl
 
 Older tutorial videos on this page may show the former main-window layout. The instructions below use current controls.
 
-## XNAT download
-
-In the DSI Studio main window, select <span class="gui-action">XNAT Download</span> in the left sidebar to connect to an XNAT server, browse project data, and select a local download directory. This retrieves data before SRC creation; review the downloaded series and their b-tables before importing them.
-
-*Older XNAT screenshots may show the previous main-window layout.*
-
 ## DICOM to SRC
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-J8qBMiHQHk?start=65" title="DICOM to SRC tutorial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -131,3 +125,9 @@ dsi_studio --action=src \
 ```
 
 Do not combine acquisitions that require inter-scan spatial realignment as if they were already in the same image space. Process alignment/motion appropriately for the study design first.
+
+## XNAT download
+
+In the DSI Studio main window, select <span class="gui-action">XNAT Download</span> in the left sidebar to connect to an XNAT server, browse project data, and select a local download directory. This retrieves data before SRC creation; review the downloaded series and their b-tables before importing them.
+
+*Older XNAT screenshots may show the previous main-window layout.*
