@@ -5,7 +5,7 @@
 
 <details class="dl6-notes"><summary>Versioning and reproducibility</summary><p>DSI Studio is updated frequently, and computational results may differ between versions. For reproducibility, keep a local copy of the DSI Studio version used for each research project. It is usually best to update DSI Studio when starting a new project, not in the middle of an ongoing analysis.</p></details>
 
-## "Sun" Versions (2026-) — Recommended
+## "Sun" Versions (2026-)
 
 <style>
 /* Download v6 only: page-scoped styles, intentionally independent from site-wide CSS. */
