@@ -1,18 +1,15 @@
 # How to Acquire dMRI
 
-## Introduction
+Diffusion MRI acquisition is a tradeoff among angular sampling, diffusion weighting, signal-to-noise ratio, scan time, and scanner capabilities. These are two example protocols for advanced diffusion MRI; adapt parameters to the study and validate them locally.
 
-Multi-shell acquisition, particularly the HCP-style three-shell protocol, is widely adopted for advanced diffusion MRI beyond DTI. This protocol samples b-values of 1,000, 2,000, and 3,000 s/mm², each with 90 directions.
+<div class="aq-chooser" aria-label="Choose an acquisition protocol">
+  <a class="aq-choice" href="#recommendation-1-multi-shell-acquisition-using-a-built-in-dti-sequence"><span class="aq-choice-tag">Practical option</span><strong>Two-shell DTI sequence</strong><span>90 diffusion directions · b = 1,500 / 3,000</span><small>Uses a built-in diffusion sequence. Match geometry and TE across both scans.</small><span class="aq-choice-link">View protocol →</span></a>
+  <a class="aq-choice" href="#recommendation-2-23-shell-dsi-acquisition-b-value--0-to-4000-across-258-directions"><span class="aq-choice-tag">Advanced option</span><strong>258-direction grid sampling</strong><span>23 b-values · up to b = 4,000</span><small>Designed for broader q-space coverage; requires appropriate sequence support.</small><span class="aq-choice-link">View protocol →</span></a>
+</div>
 
-However, this approach has two key limitations:
-
-* **Suboptimal Sampling Distribution**: The low b-value shell (b = 1,000) is oversampled, resulting in redundant measurements that can be interpolated from neighboring directions. In contrast, the high b-value shell has lower angular redundancy despite requiring denser directional sampling because neighboring high-b signals are less correlated. **An optimal design should maintain similar redundancy across shells**, allocating more directions to higher b-values and fewer to lower b-values.
-
-* **Orientation Bias**: The 90 directions per shell are not uniformly distributed on the sphere, introducing orientation bias and reducing reproducibility when head positioning varies. This results from the HCP scheme's attempt to avoid repeating directions across shells, a constraint that is unnecessary. Each shell represents a different diffusion sensitivity, and ensuring uniform angular sampling within each shell is more important for achieving rotation invariance and reproducibility.
-
-This document outlines recommended acquisition strategies, including (1) a practical two-shell protocol using the built-in DTI sequence and (2) an advanced 23-shell DSI protocol with 258 directions.
-
----
+<details class="aq-context"><summary>Why use a different sampling distribution?</summary>
+<p>HCP-style three-shell acquisitions commonly use b = 1,000, 2,000, and 3,000 s/mm² with 90 directions per shell. Higher b-values can benefit from denser angular sampling, whereas lower-b measurements often have greater directional redundancy. The distribution of directions within each shell also matters for orientation dependence. These considerations motivate nonuniform shell allocation or grid sampling, but the best protocol depends on the target measures, scanner, and sequence.</p>
+</details>
 
 ## Recommendation 1: Multi-Shell Acquisition Using a Built-In DTI Sequence
 
@@ -20,26 +17,15 @@ The built-in DTI protocol supports multi-shell acquisition compatible with advan
 
 ### Step 1: b = 3000 s/mm² (60 Directions, Minimum TE)
 
-* **Geometry**: FOV 256 mm, matrix 128 × 128, slice thickness 2 mm, gap 0 mm, axial oblique (AC-PC), whole-brain coverage.
-* **Diffusion**: b = 3000 s/mm², 60 directions, 2 b = 0 images.
-* **Timing**: TR 8000–12000 ms; TE set to *Minimum TE* (record the value, e.g., 89.3 ms).
-* **Parallel Imaging**: GE ASSET 2×; Siemens SMS 3–4×.
+<div class="aq-step"><div class="aq-step-head"><span class="aq-number">1</span><div><strong>High-b shell</strong><small>60 directions · b = 3,000 s/mm²</small></div></div>
+<div class="aq-facts"><div><small>Geometry</small><strong>2 mm isotropic</strong><span>FOV 256 mm · matrix 128 × 128 · 0 mm gap · AC–PC axial oblique · whole brain</span></div><div><small>Timing</small><strong>Minimum TE</strong><span>TR 8,000–12,000 ms; record the TE (e.g. 89.3 ms)</span></div><div><small>Baseline</small><strong>2 b0 images</strong><span>GE ASSET 2× or Siemens SMS 3–4×, if supported</span></div></div></div>
 
 ### Step 2: b = 1500 s/mm² (30 Directions, Same TE)
 
-* Clone the b = 3000 protocol.
-* **Diffusion**: b = 1500 s/mm², 30 directions, 2 b = 0 images.
-* **Timing** (**Important**): Manually set TE to exactly match the b = 3000 scan (e.g., 89.3 ms); do **not** use "Min TE".
-* **Geometry**: Verify that all geometry settings remain identical.
+<div class="aq-step"><div class="aq-step-head"><span class="aq-number">2</span><div><strong>Lower-b shell</strong><small>30 directions · b = 1,500 s/mm²</small></div></div>
+<div class="aq-facts"><div><small>Start from</small><strong>Clone the first scan</strong><span>Keep FOV, matrix, slice geometry, and coverage identical</span></div><div><small>Timing — essential</small><strong>Match the first TE exactly</strong><span>Enter the recorded TE manually; do not leave this scan at “Min TE”</span></div><div><small>Baseline</small><strong>2 b0 images</strong><span>Adjust NEX if additional SNR is needed</span></div></div></div>
 
-### Final Checks
-
-Ensure identical coverage and TE; adjust NEX if needed for SNR. Save the protocols as, for example:
-
-* `DTI_b3000_60dir_2mm_TE89`
-* `DTI_b1500_30dir_2mm_TE89`
-
----
+<div class="aq-check"><strong>Before scanning</strong><p>Confirm identical coverage, geometry, and TE across the two shells. Save clearly named protocols so the shared TE is identifiable.</p><code>DTI_b3000_60dir_2mm_TE89</code><code>DTI_b1500_30dir_2mm_TE89</code></div>
 
 ## Recommendation 2: 23-Shell DSI Acquisition (b-value = 0 to 4,000 across 258 Directions)
 
@@ -47,7 +33,7 @@ An advanced option is the 12-minute **grid-258** acquisition, sampling 23 b-valu
 
 This grid scheme directly addresses the sampling and orientation-bias issues of HCP-style acquisitions.
 
-> **With a multiband sequence (e.g., Siemens SMS or CMRR) at MB factor 4, this 2-mm, 258-direction acquisition completes in about 12 minutes.**
+<div class="aq-spec"><div><small>Directions</small><strong>258</strong></div><div><small>b-value shells</small><strong>23</strong></div><div><small>Maximum b-value</small><strong>4,000</strong></div><div><small>Example duration</small><strong>~12 min</strong><span>2 mm, multiband factor 4; scanner-dependent</span></div></div>
 
 **Benefits of Grid Sampling:**
 
@@ -56,19 +42,20 @@ This grid scheme directly addresses the sampling and orientation-bias issues of 
 * Compatible with DTI, ball-and-stick, NODDI, GQI, and other applicable models.
 * Samples a continuous range of diffusion weightings that can improve sensitivity to complex tissue changes such as edema and cellular infiltration.
 
-**Limitations:**
-
-* Requires bipolar diffusion encoding to correct eddy currents at the sequence level; standard *eddy* correction is insufficient because of the low directional redundancy of grid sampling.
-* Not compatible with spherical-harmonic shell methods that require repeated directions on discrete shells (e.g., conventional CSD or MSMT-CSD workflows).
+<div class="aq-warning"><strong>Sequence compatibility matters</strong><p>Grid sampling calls for bipolar diffusion encoding to limit eddy-current effects; relying only on post-processing correction is not recommended here. The grid is not directly suitable for shell-based spherical-harmonic workflows that require repeated measurements on discrete shells, including conventional CSD or MSMT-CSD.</p></div>
 
 ## Steps to Install the 12-Minute Grid Scheme on Siemens Prisma Scanners
 
 Use the following files to set up the 12-minute 258-direction scan on Siemens Prisma. For faster acquisition, consider the 5-minute 101-direction scan.
 
-* [EXAR File](/files/QSI258.exar1)
-* [EXAR Journal](/files/QSI258.exar1-journal)
-* Protocol PDF: [Siemens SMS Version](/files/QSI258_SMS.pdf) or [CMRR Version](/files/QSI258.pdf)
-* b-Table: [Grid-258 (Recommended)](/files/GRID258_VECTOR_TABLE.txt) or [Grid-101](/files/GRID101_VECTOR_TABLE.txt)
+<div class="aq-files">
+<a href="/files/QSI258.exar1"><strong>EXAR file</strong><small>Sequence configuration</small></a>
+<a href="/files/QSI258.exar1-journal"><strong>EXAR journal</strong><small>Companion file</small></a>
+<a href="/files/QSI258_SMS.pdf"><strong>Siemens SMS protocol</strong><small>PDF</small></a>
+<a href="/files/QSI258.pdf"><strong>CMRR protocol</strong><small>PDF</small></a>
+<a href="/files/GRID258_VECTOR_TABLE.txt"><strong>Grid-258 table</strong><small>Recommended · TXT</small></a>
+<a href="/files/GRID101_VECTOR_TABLE.txt"><strong>Grid-101 table</strong><small>Shorter option · TXT</small></a>
+</div>
 
 ### Acquisition Notes
 
@@ -96,8 +83,6 @@ Convert the [Grid-258 b-table](/files/GRID258_BVAL_BVEC.txt) to the required for
 7. Pixel bandwidth: approximately **1700 Hz/pixel**.
 8. Phase encoding: **anterior-to-posterior (A>>P)**.
 9. Acquire an additional b0 image with **reversed phase encoding (P>>A)** for distortion correction. Only the b0 image is needed for the reverse-phase acquisition.
-
----
 
 ## Quality Check for Preliminary Results
 
