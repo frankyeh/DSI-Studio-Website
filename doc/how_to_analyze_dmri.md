@@ -95,6 +95,36 @@ Tractometry quantifies diffusion or other measurements along white-matter pathwa
 
 Example study of **bundle-level** QA tractometry (not a 100-node along-tract profile): [Pritschet et al., *Nature Neuroscience* (2024)](https://doi.org/10.1038/s41593-024-01741-0).
 
+## Structural Connectome (R2R and T2R)
+
+**R2R** represents connectivity between pairs of brain regions. **T2R** records the relationship between named white-matter pathways and regions; both are distinct from the group-level diffusion association tested by Correlational Tractography.
+
+<div class="ana-two">
+  <div>
+    <h3>R2R: Region to region</h3>
+    <ol>
+      <li>Open a FIB with <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">FIB File (*.fz)</span>, and generate or load the tracts to be analyzed.</li>
+      <li>In the tracking window, open <span class="ui-key">Tracts</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Connectivity Matrix</span>.</li>
+      <li>Choose a parcellation in the <strong>same coordinate space</strong> as the tractography, and select endpoint/pass-through rules and matrix values.</li>
+      <li>Calculate and export the matrix, connectogram, or network measures.</li>
+    </ol>
+  </div>
+  <div>
+    <h3>T2R: Tract to region</h3>
+    <ol>
+      <li>Map named bundles using <a href="/doc/gui_t3_atk.html">AutoTrack</a> or load an appropriate set of named tracts.</li>
+      <li>Load a matching parcellation using the <strong>Regions</strong> atlas controls in the fiber tracking window.</li>
+      <li>Select <span class="ui-key">Regions</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Tract-to-Region Connectome</span> to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.</li>
+    </ol>
+  </div>
+</div>
+
+<aside class="ana-note" role="note"><p><strong>Check.</strong> Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.</p></aside>
+
+Full guides: [R2R →](/doc/gui_t3_whole_brain.html) · [T2R →](/doc/gui_t3_atk.html)
+
+Example study: [Yeh FC, *Nature Communications* 13, 4933 (2022)](https://www.nature.com/articles/s41467-022-32595-4).
+
 ## Named Bundles Across Subjects
 
 Use AutoTrack to identify corresponding named white-matter pathways in multiple subjects and support consistent tractometry.
@@ -153,36 +183,6 @@ Example study: [PubMed 31472253](https://pubmed.ncbi.nlm.nih.gov/31472253/)
 
 Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-abstract/143/8/2532/5875734) · [NeuroImage: Clinical study](https://www.sciencedirect.com/science/article/pii/S2213158220301571#b0275) · [NeuroImage study](https://www.sciencedirect.com/science/article/pii/S1875957218301797)
 
-## Structural Connectome (R2R and T2R)
-
-**R2R** represents connectivity between pairs of brain regions. **T2R** records the relationship between named white-matter pathways and regions; both are distinct from the group-level diffusion association tested by Correlational Tractography.
-
-<div class="ana-two">
-  <div>
-    <h3>R2R: Region to region</h3>
-    <ol>
-      <li>Open a FIB with <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">FIB File (*.fz)</span>, and generate or load the tracts to be analyzed.</li>
-      <li>In the tracking window, open <span class="ui-key">Tracts</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Connectivity Matrix</span>.</li>
-      <li>Choose a parcellation in the <strong>same coordinate space</strong> as the tractography, and select endpoint/pass-through rules and matrix values.</li>
-      <li>Calculate and export the matrix, connectogram, or network measures.</li>
-    </ol>
-  </div>
-  <div>
-    <h3>T2R: Tract to region</h3>
-    <ol>
-      <li>Map named bundles using <a href="/doc/gui_t3_atk.html">AutoTrack</a> or load an appropriate set of named tracts.</li>
-      <li>Load a matching parcellation using the <strong>Regions</strong> atlas controls in the fiber tracking window.</li>
-      <li>Select <span class="ui-key">Regions</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Tract-to-Region Connectome</span> to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.</li>
-    </ol>
-  </div>
-</div>
-
-<aside class="ana-note" role="note"><p><strong>Check.</strong> Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.</p></aside>
-
-Full guides: [R2R →](/doc/gui_t3_whole_brain.html) · [T2R →](/doc/gui_t3_atk.html)
-
-Example study: [Yeh FC, *Nature Communications* 13, 4933 (2022)](https://www.nature.com/articles/s41467-022-32595-4).
-
 ## Inspect or Register Structural Images
 
 Use the **Image Processing** sidebar to inspect anatomical images and align additional modalities with diffusion MRI data.
@@ -194,5 +194,5 @@ Use the **Image Processing** sidebar to inspect anatomical images and align addi
 
 <aside class="ana-note" role="note"><p><strong>Check.</strong> Registration quality depends on image contrast, anatomy, and transformation direction. Inspect the result before applying regions or measurements in another image space; an incorrectly aligned overlay can produce misleading tract or regional statistics.</p></aside>
 
-For registered measurements in the tracking window, see [Region-Based Analysis](#region-based-analysis) and [Tractometry](#tractometry) below.
+For registered measurements in the tracking window, see [Region-Based Analysis](#region-based-analysis) and [Tractometry](#tractometry) above.
 
