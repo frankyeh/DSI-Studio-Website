@@ -121,7 +121,7 @@
         </details>
         {%- endfor -%}
       </aside>
-      <article id="content">
+      <article id="content"{% if cur_slug contains "menu_" %} class="doc-menu-reference"{% endif %}>
         <a class="section-chip" href="#sheet"><span>{{ cur_group }} › <b>{{ cur_nav_title }}</b></span><span>▾</span></a>
         <div class="crumbs">Docs › {{ cur_group }}</div>
         {{ content }}
