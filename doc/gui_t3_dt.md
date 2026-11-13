@@ -60,7 +60,7 @@ Open the baseline <span class="gui-file-ext">.fz</span> using <span class="gui-m
 ### Add the follow-up metric and wait for registration
 {: .dt-step data-step="4"}
 
-Insert the exported follow-up map using <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Insert Other Images</span></span>. DSI Studio may run rigid-body registration even when the scans have the same matrix size and voxel size. Wait until registration is complete before selecting the differential metrics.
+Insert the exported follow-up map using <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Insert Other Images...</span></span>. DSI Studio may run rigid-body registration even when the scans have the same matrix size and voxel size. Wait until registration is complete before selecting the differential metrics.
 
 Metric names used by differential tracking are the names shown by the current tracking window, not arbitrary abbreviations. For a NIfTI custom slice, the name is derived from the file stem. Verify the displayed names before a batch run.
 
@@ -157,7 +157,7 @@ The source images must already be QSDR/MNI aligned. Do not average native-space 
 ### Compare the native-space patient with the MNI control average
 {: .dt-step data-step="3"}
 
-When the tracking FIB is GQI/native space, the control average is an MNI-space reference and must be mapped into the patient diffusion space. In the GUI, load it as an **MNI-space slice** and verify the mapped alignment before differential tracking.
+When the tracking FIB is GQI/native space, the control average is an MNI-space reference and must be mapped into the patient diffusion space. In the GUI, use <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Insert MNI Images...</span></span> to load the reference, then verify alignment before differential tracking.
 
 For command-line tracking, including `.mni.` in the control-average filename marks it as an MNI-space image so DSI Studio maps it to the native patient space:
 
