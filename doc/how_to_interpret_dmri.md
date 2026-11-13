@@ -6,31 +6,98 @@ Diffusion metrics can be broadly categorized as model-based or model-free. Model
 
 Each approach has advantages and limitations. Model-based methods generally require fewer diffusion samples and often provide parameters with familiar physical interpretations, but their results depend on how well the model assumptions fit the tissue. Model-free methods generally require more diffusion samples, and biological interpretation still requires tissue validation, but they avoid imposing a specific tissue model.
 
-The following table summarizes commonly used diffusion metrics and their interpretation.
-
-|  | Metrics | Model/Method | Interpretation | Changes | Explanation |
-|----|-----|-------|-----------------|----------|-------------|
-| **FA** | fractional anisotropy | Diffusion tensor | FA is nonspecifically associated with axonal integrity | decreases: demyelination (Chang, 2017), inflammation, edema, axonal loss | Fractional anisotropy (FA) measures the degree of directional dependence of diffusion. It ranges from 0 for isotropic diffusion to 1 for highly anisotropic diffusion. FA is widely used to characterize white-matter microstructure but is sensitive to multiple biological and geometric factors, including crossing fibers. |
-| **AD** | axial diffusivity* | Diffusion tensor | AD is nonspecifically associated with axonal density | decreases: axonal loss (Budde et al., 2007; Song et al., 2003) | Axial diffusivity is the principal diffusivity of the diffusion tensor and is represented by the largest eigenvalue, λ₁. It describes diffusion along the tensor's primary direction. |
-| **RD** | radial diffusivity* | Diffusion tensor | RD is nonspecifically associated with myelination | increases: demyelination (Budde et al., 2007; Song et al., 2002; Song et al., 2005) | Radial diffusivity describes diffusion perpendicular to the tensor's primary direction and is defined as the mean of the two smaller eigenvalues: RD = (λ₂ + λ₃)/2. |
-| **MD** | mean diffusivity* | Diffusion tensor | MD is associated with edema and cell infiltration | increases: vasogenic edema; decreases: cytotoxic edema | Mean diffusivity is the average of the three diffusion-tensor eigenvalues: MD = (λ₁ + λ₂ + λ₃)/3. It summarizes the overall magnitude of diffusion within a voxel. |
-| **QA** | quantitative anisotropy | Q-space imaging | QA is associated with axonal density | decreases: axonal loss (Yeh 2019; Shen 2015) | Quantitative anisotropy (QA) measures anisotropic diffusion associated with each resolved fiber orientation. It is less affected by isotropic diffusion such as edema than FA (Yeh, 2013). |
-| **ISO** | isotropy | Q-space imaging | ISO is associated with edema | increases: edema | ISO measures isotropic diffusion (Yeh, 2010). It represents background isotropic diffusion contributed by CSF or edema, including both restricted and non-restricted isotropic diffusion. |
-| **RDI** | restricted diffusion imaging | Q-space imaging | RDI is associated with cell infiltration during inflammation (Yeh 2017; Garic 2021) | increases: cell infiltration associated with inflammation or tumor infiltration | RDI quantifies restricted diffusion regardless of orientation (Yeh, 2017). |
-| **NRDI** | non-restricted diffusion imaging | Q-space imaging | NRDI is associated with edema (Yeh 2017) | increases: edema due to inflammation | NRDI quantifies non-restricted diffusion regardless of orientation (Yeh, 2017). |
-| **QIR** (introduced in 2025) | QA-to-ISO ratio (QA/ISO) | Q-space imaging | QIR is a measure of axonal integrity | reduced QIR may suggest inflammation or demyelination | QIR is derived from QA and ISO and is intended to improve comparability across scans by reducing the effect of B1 inhomogeneity. |
-| **VOL** (introduced in 2025) | template-space volume | Nonlinear spatial normalization | VOL is a volumetric measure | reduced VOL may suggest tissue atrophy | VOL reflects relative tissue size in template space after nonlinear spatial normalization. |
-
+<div class="di-overview">
+<p>Read each metric as a measurement of diffusion, not a diagnosis. Changes can reflect multiple tissue processes, acquisition differences, and crossing-fiber geometry. Use complementary metrics and clinical context.</p>
+</div>
+<section class="di-group" aria-label="Diffusion tensor metrics">
+<h2>Diffusion tensor metrics</h2>
+<p class="di-group-intro">Directionality and magnitude of diffusion estimated by the diffusion tensor model.</p>
+<div class="di-grid">
+<article class="di-metric" id="metric-fa">
+  <div class="di-metric-head"><div><span class="di-abbr">FA</span><h3>fractional anisotropy</h3></div></div>
+  <p class="di-role">FA is nonspecifically associated with axonal integrity</p>
+  <p class="di-change"><span>Reported change</span>decreases: demyelination (Chang, 2017), inflammation, edema, axonal loss</p>
+  <details><summary>Interpretation and limitations</summary><p>Fractional anisotropy (FA) measures the degree of directional dependence of diffusion. It ranges from 0 for isotropic diffusion to 1 for highly anisotropic diffusion. FA is widely used to characterize white-matter microstructure but is sensitive to multiple biological and geometric factors, including crossing fibers.</p></details>
+</article>
+<article class="di-metric" id="metric-ad">
+  <div class="di-metric-head"><div><span class="di-abbr">AD</span><h3>axial diffusivity</h3></div></div>
+  <p class="di-role">AD is nonspecifically associated with axonal density</p>
+  <p class="di-change"><span>Reported change</span>decreases: axonal loss (Budde et al., 2007; Song et al., 2003)</p>
+  <details><summary>Interpretation and limitations</summary><p>Axial diffusivity is the principal diffusivity of the diffusion tensor and is represented by the largest eigenvalue, λ₁. It describes diffusion along the tensor's primary direction.</p></details>
+</article>
+<article class="di-metric" id="metric-rd">
+  <div class="di-metric-head"><div><span class="di-abbr">RD</span><h3>radial diffusivity</h3></div></div>
+  <p class="di-role">RD is nonspecifically associated with myelination</p>
+  <p class="di-change"><span>Reported change</span>increases: demyelination (Budde et al., 2007; Song et al., 2002; Song et al., 2005)</p>
+  <details><summary>Interpretation and limitations</summary><p>Radial diffusivity describes diffusion perpendicular to the tensor's primary direction and is defined as the mean of the two smaller eigenvalues: RD = (λ₂ + λ₃)/2.</p></details>
+</article>
+<article class="di-metric" id="metric-md">
+  <div class="di-metric-head"><div><span class="di-abbr">MD</span><h3>mean diffusivity</h3></div></div>
+  <p class="di-role">MD is associated with edema and cell infiltration</p>
+  <p class="di-change"><span>Reported change</span>increases: vasogenic edema; decreases: cytotoxic edema</p>
+  <details><summary>Interpretation and limitations</summary><p>Mean diffusivity is the average of the three diffusion-tensor eigenvalues: MD = (λ₁ + λ₂ + λ₃)/3. It summarizes the overall magnitude of diffusion within a voxel.</p></details>
+</article>
+</div>
+</section>
+<section class="di-group" aria-label="Q-space metrics">
+<h2>Q-space metrics</h2>
+<p class="di-group-intro">Diffusion measurements derived from Q-space imaging and related reconstructions.</p>
+<div class="di-grid">
+<article class="di-metric" id="metric-qa">
+  <div class="di-metric-head"><div><span class="di-abbr">QA</span><h3>quantitative anisotropy</h3></div></div>
+  <p class="di-role">QA is associated with axonal density</p>
+  <p class="di-change"><span>Reported change</span>decreases: axonal loss (Yeh 2019; Shen 2015)</p>
+  <details><summary>Interpretation and limitations</summary><p>Quantitative anisotropy (QA) measures anisotropic diffusion associated with each resolved fiber orientation. It is less affected by isotropic diffusion such as edema than FA (Yeh, 2013).</p></details>
+</article>
+<article class="di-metric" id="metric-iso">
+  <div class="di-metric-head"><div><span class="di-abbr">ISO</span><h3>isotropy</h3></div></div>
+  <p class="di-role">ISO is associated with edema</p>
+  <p class="di-change"><span>Reported change</span>increases: edema</p>
+  <details><summary>Interpretation and limitations</summary><p>ISO measures isotropic diffusion (Yeh, 2010). It represents background isotropic diffusion contributed by CSF or edema, including both restricted and non-restricted isotropic diffusion.</p></details>
+</article>
+<article class="di-metric" id="metric-rdi">
+  <div class="di-metric-head"><div><span class="di-abbr">RDI</span><h3>restricted diffusion imaging</h3></div></div>
+  <p class="di-role">RDI is associated with cell infiltration during inflammation (Yeh 2017; Garic 2021)</p>
+  <p class="di-change"><span>Reported change</span>increases: cell infiltration associated with inflammation or tumor infiltration</p>
+  <details><summary>Interpretation and limitations</summary><p>RDI quantifies restricted diffusion regardless of orientation (Yeh, 2017).</p></details>
+</article>
+<article class="di-metric" id="metric-nrdi">
+  <div class="di-metric-head"><div><span class="di-abbr">NRDI</span><h3>non-restricted diffusion imaging</h3></div></div>
+  <p class="di-role">NRDI is associated with edema (Yeh 2017)</p>
+  <p class="di-change"><span>Reported change</span>increases: edema due to inflammation</p>
+  <details><summary>Interpretation and limitations</summary><p>NRDI quantifies non-restricted diffusion regardless of orientation (Yeh, 2017).</p></details>
+</article>
+<article class="di-metric" id="metric-qir">
+  <div class="di-metric-head"><div><span class="di-abbr">QIR</span><h3>QA-to-ISO ratio (QA/ISO)</h3></div><span class="di-new">Introduced 2025</span></div>
+  <p class="di-role">QIR is a measure of axonal integrity</p>
+  <p class="di-change"><span>Reported change</span>reduced QIR may suggest inflammation or demyelination</p>
+  <details><summary>Interpretation and limitations</summary><p>QIR is derived from QA and ISO and is intended to improve comparability across scans by reducing the effect of B1 inhomogeneity.</p></details>
+</article>
+</div>
+</section>
+<section class="di-group" aria-label="Spatial normalization">
+<h2>Spatial normalization</h2>
+<p class="di-group-intro">A volume-related measure obtained from nonlinear spatial normalization.</p>
+<div class="di-grid">
+<article class="di-metric" id="metric-vol">
+  <div class="di-metric-head"><div><span class="di-abbr">VOL</span><h3>template-space volume</h3></div><span class="di-new">Introduced 2025</span></div>
+  <p class="di-role">VOL is a volumetric measure</p>
+  <p class="di-change"><span>Reported change</span>reduced VOL may suggest tissue atrophy</p>
+  <details><summary>Interpretation and limitations</summary><p>VOL reflects relative tissue size in template space after nonlinear spatial normalization.</p></details>
+</article>
+</div>
+</section>
 *The diffusivity values (AD, RD, and MD) reported by DSI Studio use units of 10^-3 mm²/s.*
 
 ## Change of metrics in neurological disorders
 
-↓: decrease; ↑: increase; -: no change
+<p class="di-legend">↓ decrease &nbsp; · &nbsp; ↑ increase &nbsp; · &nbsp; – no consistent change</p>
 
-| Condition | Example | FA | AD | RD | MD | QA | ISO | RDI | NRDI |
-|----------|---------|----|----|----|----|----|----|----|----|
-| Acute axonal injury with inflammation | stroke (< 3 months), TBI (< 3 months), MS relapse, tumor mass effect | ↓ | ↑ or - | ↑ | ↑ | - | ↑ | ↑ (at locations with cell infiltration) | ↑ (at edema locations) |
-| Axonal loss without inflammation | ALS, Huntington's disease, TBI (> 6 months), stroke (> 6 months) | ↓ | ↓ | ↑ | - | ↓ | - | - | - |
+<div class="di-comparisons">
+<section class="di-condition"><h3>Acute axonal injury with inflammation</h3><p class="di-examples">stroke (&lt; 3 months), TBI (&lt; 3 months), MS relapse, tumor mass effect</p><dl class="di-signals"><div><dt>FA</dt><dd>↓</dd></div><div><dt>AD</dt><dd>↑ or -</dd></div><div><dt>RD</dt><dd>↑</dd></div><div><dt>MD</dt><dd>↑</dd></div><div><dt>QA</dt><dd>-</dd></div><div><dt>ISO</dt><dd>↑</dd></div><div><dt>RDI</dt><dd>↑ (at locations with cell infiltration)</dd></div><div><dt>NRDI</dt><dd>↑ (at edema locations)</dd></div></dl></section>
+<section class="di-condition"><h3>Axonal loss without inflammation</h3><p class="di-examples">ALS, Huntington's disease, TBI (&gt; 6 months), stroke (&gt; 6 months)</p><dl class="di-signals"><div><dt>FA</dt><dd>↓</dd></div><div><dt>AD</dt><dd>↓</dd></div><div><dt>RD</dt><dd>↑</dd></div><div><dt>MD</dt><dd>-</dd></div><div><dt>QA</dt><dd>↓</dd></div><div><dt>ISO</dt><dd>-</dd></div><div><dt>RDI</dt><dd>-</dd></div><div><dt>NRDI</dt><dd>-</dd></div></dl></section>
+</div>
+<p class="di-caveat">These are illustrative patterns, not diagnostic criteria. The direction and magnitude of change depend on tissue, stage, measurement method, and study design.</p>
 
 ## References
 
