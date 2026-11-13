@@ -74,7 +74,7 @@ Demographics can be stored inside the database. After loading a demographic CSV/
 For repeated scans of the same subjects:
 
 1. Make sure baseline and follow-up scans are correctly paired.
-2. Use <span class="gui-menu-path"><span class="gui-menu-item">Tools</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Longitudinal scans...</span></span> to review or define the matching.
+2. Use <span class="gui-menu-path"><span class="gui-menu-item">Tools</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Logitudinal scans...</span></span> to review or define the matching.
 3. Choose how the longitudinal change is calculated, such as `scan2-scan1`.
 4. Save the resulting longitudinal database as a new <span class="gui-file-ext">.dz</span> file.
 
