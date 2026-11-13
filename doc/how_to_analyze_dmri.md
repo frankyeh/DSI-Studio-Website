@@ -67,9 +67,7 @@ Use region-based analysis when the question concerns diffusion measurements with
 3. If needed, use **[Slices][Insert Other Images]** in the tracking window to add registered measurements such as DKI, NODDI, PET, or other NIfTI data.
 4. Use **[Regions][Statistics]** to obtain measurements for selected regions.
 
-<aside class="ana-note" role="note" markdown="1">
-**Check.** Built-in atlases must match the image space. For population/template-space region analysis, a [`.dz` connectometry database](/doc/gui_cx.html) can be opened in the tracking window with template-space regions. A `.dz` is for group diffusion/connectometry data; it is **not** a region-to-region connectivity matrix.
-</aside>
+<aside class="ana-note" role="note"><p><strong>Check.</strong> Built-in atlases must match the image space. For population/template-space region analysis, a <a href="/doc/gui_cx.html"><code>.dz</code> connectometry database</a> can be opened in the tracking window with template-space regions. A <code>.dz</code> is for group diffusion/connectometry data; it is <strong>not</strong> a region-to-region connectivity matrix.</p></aside>
 
 ## Tractometry
 
@@ -80,9 +78,7 @@ Tractometry quantifies diffusion or other measurements along white-matter pathwa
 3. Use **[Tracts][Statistics]** for bundle-level scalar and shape measurements.
 4. Use the [tract profile](/doc/gui_t3_atk.html#tract-profile) when the spatial distribution of a measurement along the pathway is important.
 
-<aside class="ana-note" role="note" markdown="1">
-**Check.** Streamline-order tract profiles use 100 sampling positions; image-axis profiles instead depend on image geometry. Keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible `.dz` database may be used with template-space pathways.
-</aside>
+<aside class="ana-note" role="note"><p><strong>Check.</strong> Streamline-order tract profiles use 100 sampling positions; image-axis profiles instead depend on image geometry. Keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible <code>.dz</code> database may be used with template-space pathways.</p></aside>
 
 Example study of **bundle-level** QA tractometry (not a 100-node along-tract profile): [Pritschet et al., *Nature Neuroscience* (2024)](https://doi.org/10.1038/s41593-024-01741-0).
 
@@ -101,9 +97,7 @@ Four workflows compare the study design and coordinate space:
 
 See the [full Differential Tractography guide](/doc/gui_t3_dt.html).
 
-<aside class="ana-note" role="note" markdown="1">
-**Check.** The input images and reference maps must be appropriately aligned; scan/protocol differences can mimic biological change.
-</aside>
+<aside class="ana-note" role="note"><p><strong>Check.</strong> The input images and reference maps must be appropriately aligned; scan/protocol differences can mimic biological change.</p></aside>
 
 Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
 
@@ -129,9 +123,7 @@ Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
   </li>
 </ol>
 
-<aside class="ana-note" role="note" markdown="1">
-**Check.** For cohort data, use compatible QSDR/template-space FIB files with consistent resolution. A current `.dz` database can store several diffusion indices, so separate database files are generally not required for QA, FA, RDI and other available metrics. A **Recent Database** list is shown beneath the stages.
-</aside>
+<aside class="ana-note" role="note"><p><strong>Check.</strong> For cohort data, use compatible QSDR/template-space FIB files with consistent resolution. A current <code>.dz</code> database can store several diffusion indices, so separate database files are generally not required for QA, FA, RDI and other available metrics. A <strong>Recent Database</strong> list is shown beneath the stages.</p></aside>
 
 See the [full connectometry tutorial](/doc/gui_cx.html).
 
@@ -141,31 +133,27 @@ Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-a
 
 **R2R** represents connectivity between pairs of brain regions. **T2R** records the relationship between named white-matter pathways and regions; both are distinct from the group-level diffusion association tested by Correlational Tractography.
 
-<div class="ana-two" markdown="1">
-<div markdown="1">
+<div class="ana-two">
+  <div>
+    <h3>R2R: Region to region</h3>
+    <ol>
+      <li>Open a FIB with <strong>Tractography › 3 Track › FIB File (*.fz)</strong>, and generate or load the tracts to be analyzed.</li>
+      <li>In the tracking window, open <strong>Tracts › Connectivity Matrix</strong>.</li>
+      <li>Choose a parcellation in the <strong>same coordinate space</strong> as the tractography, and select endpoint/pass-through rules and matrix values.</li>
+      <li>Calculate and export the matrix, connectogram, or network measures.</li>
+    </ol>
+  </div>
+  <div>
+    <h3>T2R: Tract to region</h3>
+    <ol>
+      <li>Map named bundles using <a href="/doc/gui_t3_atk.html">AutoTrack</a> or load an appropriate set of named tracts.</li>
+      <li>Load a matching parcellation using the <strong>Regions</strong> atlas controls in the fiber tracking window.</li>
+      <li>Select <strong>Regions › Tract-to-Region Connectome</strong> to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.</li>
+    </ol>
+  </div>
+</div>>
 
-### R2R: Region to region
-
-1. Open a FIB with **[Tractography][3 Track][FIB File (*.fz)]**, and generate or load the tracts to be analyzed.
-2. In the tracking window, open **[Tracts][Connectivity Matrix]**.
-3. Choose a parcellation in the **same coordinate space** as the tractography, and select endpoint/pass-through rules and matrix values.
-4. Calculate and export the matrix, connectogram, or network measures.
-
-</div>
-<div markdown="1">
-
-### T2R: Tract to region
-
-1. Map named bundles using [AutoTrack](/doc/gui_t3_atk.html) or load an appropriate set of named tracts.
-2. Load a matching parcellation using the **Regions** atlas controls in the fiber tracking window.
-3. Select **[Regions][Tract-to-Region Connectome]** to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.
-
-</div>
-</div>
-
-<aside class="ana-note" role="note" markdown="1">
-**Check.** Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.
-</aside>
+<aside class="ana-note" role="note"><p><strong>Check.</strong> Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.</p></aside>
 
 For more information, see [Whole-Brain Tractography and Connectivity Matrices](/doc/gui_t3_whole_brain.html) and [AutoTrack / T2R](/doc/gui_t3_atk.html).
 
