@@ -289,6 +289,8 @@ article h1 .ui-key, article h2 .ui-key, article h3 .ui-key { font-size: 0.72em; 
 article .ana-flow h3 { grid-column:2; margin:0 0 5px; font:600 20px/1.25 var(--serif); }
 article .ana-flow p { grid-column:2; margin:5px 0; font-size:13.5px; line-height:1.5; }
 .ana-path { color:var(--muted); }
+.ui-key.ana-step-key { display:inline-flex; align-items:center; gap:5px; }
+.ana-inline-num { display:inline-grid; place-items:center; flex:none; width:18px; height:18px; border-radius:50%; background:#2a78d6; color:#fff; font:700 11px/1 var(--sans); }
 .ana-file { grid-column:2; justify-self:start; display:inline-block; background:var(--soft); border:1px solid var(--line); border-radius:5px; padding:3px 7px; font:500 12px/1.5 monospace; }
 .ana-flow details { grid-column:2; min-width:0; border-top:1px solid var(--line); margin-top:12px; padding-top:10px; font-size:13px; }
 .ana-flow summary { cursor:pointer; font-weight:600; color:var(--accent); }
