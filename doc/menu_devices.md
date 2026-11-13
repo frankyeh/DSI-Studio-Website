@@ -20,7 +20,7 @@ Use the **[Devices]** menu in the Fiber Tracking window to place, align, render,
 | <span class="gui-menu-item">Uncheck All</span> | Unchecks every row in the **Devices** table, hiding all devices in 3D and excluding them from **Devices › Save All Devices As...** and **File › Save Workspace...**. |
 | <span class="gui-menu-item">Check All</span> | Checks every row in the **Devices** table so all devices render in 3D and are included when saving all devices or workspaces. |
 | <span class="gui-menu-item">Pull Device</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>-</kbd></kbd>. Retracts the highlighted device by `0.5` mm along its shaft toward the entry point. |
-| <span class="gui-menu-item">Push Device</span> | Shortcut: `Ctrl+=`. Advances the highlighted device by `0.5` mm deeper along its shaft toward the distal tip. |
+| <span class="gui-menu-item">Push Device</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>=</kbd></kbd>. Advances the highlighted device by `0.5` mm deeper along its shaft toward the distal tip. |
 | <span class="gui-menu-item">Set AC/PC/Inter Points</span> | Places three `2` mm `Locator` markers (`AC`, `PC`, and midline `Inter`) in subject space from standard MNI landmarks, replacing any existing rows with those names. Requires valid MNI registration on the loaded FIB file. |
 | <span class="gui-menu-item">Statistics...</span> | Opens a **Device Statistics** report listing tip coordinates, shaft direction, and per-contact distal, center, and proximal voxel positions across all devices, with an option to save `<stem>_device_stat.txt`. |
 
@@ -30,7 +30,7 @@ Choose **[Devices][New Device]** (or right-click a visible 3D slice and choose *
 
 ![New device settings](https://user-images.githubusercontent.com/275569/147839144-b4bb48b1-7aed-4774-9d14-4928d81c0cf2.png)
 
-In the 3D view, double-click a device to select its row, or right-click a slice and choose **Move Current Device Here** to jump its distal tip to that point. Enable **[Region Move][Move Region at 3D]** (<kbd><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd>) to drag near the distal tip to translate the device or drag along the shaft to rotate its trajectory, then step `0.5` mm axially with `Ctrl+=` and <kbd><kbd>Ctrl</kbd>+<kbd>-</kbd></kbd>.
+In the 3D view, double-click a device to select its row, or right-click a slice and choose **Move Current Device Here** to jump its distal tip to that point. Enable **[Region Move][Move Region at 3D]** (<kbd><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd>) to drag near the distal tip to translate the device or drag along the shaft to rotate its trajectory, then step `0.5` mm axially with <kbd><kbd>Ctrl</kbd>+<kbd>=</kbd></kbd> and <kbd><kbd>Ctrl</kbd>+<kbd>-</kbd></kbd>.
 
 ![Device displayed in 3D view](https://user-images.githubusercontent.com/275569/147839149-88ba5c23-5c45-4481-9f62-22b6a0380af5.png)
 
@@ -40,7 +40,7 @@ Reconstruct or resample datasets to isotropic voxel spacing before evaluating su
 
 ## CT-guided device placement
 
-Load a co-registered postoperative CT or anatomical MRI via **[Slices][Insert Other Images...]**, verify alignment across axial, coronal, and sagittal views, and match the device tip and shaft to the trajectory artifact using 3D slice placement, <kbd><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd> dragging, and `Ctrl+=` / <kbd><kbd>Ctrl</kbd>+<kbd>-</kbd></kbd> stepping. Because DSI Studio does not automatically detect electrodes on CT, confirm contact positions visually before running **Leads to ROI...** or **Statistics...**.
+Load a co-registered postoperative CT or anatomical MRI via **[Slices][Insert Other Images...]**, verify alignment across axial, coronal, and sagittal views, and match the device tip and shaft to the trajectory artifact using 3D slice placement, <kbd><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd> dragging, and <kbd><kbd>Ctrl</kbd>+<kbd>=</kbd></kbd> / <kbd><kbd>Ctrl</kbd>+<kbd>-</kbd></kbd> stepping. Because DSI Studio does not automatically detect electrodes on CT, confirm contact positions visually before running **Leads to ROI...** or **Statistics...**.
 
 ## Save devices
 
