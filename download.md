@@ -78,8 +78,10 @@ article .dl6-extra-body pre{margin:0 0 8px;font-size:12px}
 </div>
 <p><a href="https://github.com/frankyeh/DSI-Studio/releases">Other Chen releases</a></p>
 </details>
-- [Pre-"Chen" versions (2008-2022)](https://www.dropbox.com/sh/ectib64vhctkl8b/AADBRYp_aPLEuAOdNw393tO-a?dl=0)
-- Older CentOS 8 builds: see previous GitHub releases.
+<div class="dl6-grid dl6-legacy-grid">
+<section class="dl6-card"><div class="dl6-card-head"><h3>Pre-Chen</h3><span>2008–2022 · archive</span></div><div class="dl6-buttons"><a class="dl6-btn" href="https://www.dropbox.com/sh/ectib64vhctkl8b/AADBRYp_aPLEuAOdNw393tO-a?dl=0"><span>Browse older builds</span><small>Dropbox archive</small></a></div></section>
+<section class="dl6-card"><div class="dl6-card-head"><h3>CentOS 8</h3><span>Legacy Linux · x64</span></div><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2025.04.16/dsi_studio_centos8.zip"><span>Hou 2025.04.16</span></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2024.06.12/dsi_studio_centos8.zip"><span>Hou 2024.06.12</span></a></div></section>
+</div>
 
 ## License
 
