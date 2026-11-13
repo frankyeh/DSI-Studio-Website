@@ -300,6 +300,11 @@ article .ana-flow p { grid-column:2; margin:5px 0; font-size:13.5px; line-height
 .ana-sources strong { font-size:13.5px; line-height:1.35; }
 .ana-sources small { font-size:12.5px; line-height:1.5; color:var(--muted); }
 .ana-sources.ana-two-col { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.ana-out { margin-left:6px; font:500 14px/1 var(--sans); color:var(--muted); }
+.ana-rows { grid-column:2; display:grid; grid-template-columns:max-content minmax(0,1fr); gap:6px 14px; margin:8px 0 4px; font-size:13.5px; }
+.ana-rows dt { font-weight:600; padding-top:3px; }
+.ana-rows dd { margin:0; color:var(--muted); line-height:1.9; }
+article .ana-flow .ana-hint { color:var(--muted); }
 .ana-pick { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin:17px 0 32px; }
 .ana-pick-group { min-width:0; }
 .ana-pick-group:last-child { grid-column:1 / -1; }
@@ -321,7 +326,7 @@ a.ana-card:hover, a.ana-card:focus-visible { border-color:#2a78d6; text-decorati
 .ana-four > span { background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-size:13px; }
 #source, #import, #reconstruct, #track { scroll-margin-top:80px; }
 article h2[id] { scroll-margin-top:80px; }
-@media(max-width:760px) { article h2[id] { scroll-margin-top:120px; } .ana-pick,.ana-two,.ana-sources,.ana-sources.ana-two-col { grid-template-columns:1fr; } .ana-flow { gap:18px; } .ana-flow > li { padding:14px; } .ana-card { margin-bottom:8px; } }
+@media(max-width:760px) { .ana-rows { grid-template-columns:1fr; gap:0 0; } .ana-rows dd { margin-bottom:8px; } article h2[id] { scroll-margin-top:120px; } .ana-pick,.ana-two,.ana-sources,.ana-sources.ana-two-col { grid-template-columns:1fr; } .ana-flow { gap:18px; } .ana-flow > li { padding:14px; } .ana-card { margin-bottom:8px; } }
 
 /* How tractography works: scoped article components. */
 .tt-principle { margin: 22px 0 18px; padding: 4px 0 4px 18px; border-left: 4px solid var(--accent); font: 600 22px/1.4 var(--serif); color: var(--ink); }

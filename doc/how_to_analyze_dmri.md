@@ -2,20 +2,12 @@
 
 ## Prepare your data
 
-Every analysis starts from the same three steps: import your scans into an SRC file (<span class="gui-file-ext">.sz</span>), reconstruct it into a FIB file (<span class="gui-file-ext">.fz</span>), then open the FIB file to track and analyze.
-
 <ol class="ana-flow" aria-label="Diffusion MRI preparation stages">
   <li id="import">
     <span class="ana-num">1</span>
-    <h3>Import your scans</h3>
+    <h3>Import scans <span class="ana-out">→ <span class="gui-file-ext">.sz</span></span></h3>
     <p class="ana-path"><span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>Import</span></span></p>
-    <p>Pick the tab that matches your files:</p>
-    <div class="ana-sources">
-      <div><strong>DICOM tab</strong><span><span class="gui-menu-path"><span class="gui-action">DICOM folder...</span></span></span><small>or <span class="gui-action">DICOM file(s)...</span></small></div>
-      <div><strong>NIfTI tab</strong><small>NIfTI with .bval / .bvec</small><span><span class="gui-menu-path"><span class="gui-action">NIfTI file(s)...</span></span></span><small><span class="gui-action">NIfTI folder...</span> also detects BIDS <code>sub-*</code> folders</small></div>
-      <div><strong>2dseq/FDF tab</strong><small>Bruker / Varian</small><span><span class="gui-menu-path"><span class="gui-action">2dseq / FDF file(s)...</span></span></span></div>
-    </div>
-    <span class="ana-file">Output: .sz</span>
+    <dl class="ana-rows"><dt>DICOM</dt><dd><span class="gui-menu-item">DICOM</span> <span class="gui-action">DICOM folder...</span></dd><dt>NIfTI + .bval/.bvec</dt><dd><span class="gui-menu-item">NIfTI</span> <span class="gui-action">NIfTI file(s)...</span> or <span class="gui-action">NIfTI folder...</span> for BIDS</dd><dt>Bruker / Varian</dt><dd><span class="gui-menu-item">2dseq/FDF</span> <span class="gui-action">2dseq / FDF file(s)...</span></dd></dl>
     <details>
       <summary>Options &amp; quality checks</summary>
       <p>Set the working directory using <span class="gui-menu-item">Work Dir</span> and <span class="gui-action">Browse...</span>. <span class="gui-action">Rename DICOM</span> moves or renames files; it does not convert them.</p>
@@ -24,14 +16,10 @@ Every analysis starts from the same three steps: import your scans into an SRC f
   </li>
   <li id="reconstruct">
     <span class="ana-num">2</span>
-    <h3>Reconstruct</h3>
+    <h3>Reconstruct <span class="ana-out"><span class="gui-file-ext">.sz</span> → <span class="gui-file-ext">.fz</span></span></h3>
     <p class="ana-path"><span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">SRC File(s) (*.sz)</span></span></p>
-    <p>Review the b-table, mask, and orientation, then choose a <a href="/doc/gui_t2.html">reconstruction method</a>:</p>
-    <div class="ana-sources ana-two-col">
-      <div><strong>GQI</strong><small>Native subject space, for tracking and measuring an individual scan.</small></div>
-      <div><strong>QSDR</strong><small>Template space, for cohort comparisons and connectometry databases.</small></div>
-    </div>
-    <span class="ana-file">Output: .fz</span>
+    <dl class="ana-rows"><dt>GQI</dt><dd>one subject in native space</dd><dt>QSDR</dt><dd>a cohort in template space, or a connectometry database</dd></dl>
+    <p class="ana-hint">Check the b-table, mask and orientation first. <a href="/doc/gui_t2.html">Reconstruction guide</a></p>
     <details>
       <summary>Options &amp; quality checks</summary>
       <p>For multiple SRC files, use <span class="gui-menu-item">More...</span> for batch SRC-to-FIB reconstruction.</p>
@@ -39,10 +27,9 @@ Every analysis starts from the same three steps: import your scans into an SRC f
   </li>
   <li id="track">
     <span class="ana-num">3</span>
-    <h3>Track &amp; analyze</h3>
+    <h3>Open for tracking <span class="ana-out"><span class="gui-file-ext">.fz</span></span></h3>
     <p class="ana-path"><span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span></span></p>
-    <p>The FIB file opens in the fiber tracking window. <a href="#choose-an-analysis-workflow">Choose an analysis</a> below.</p>
-    <span class="ana-file">Input: .fz</span>
+    <p class="ana-hint">Then pick what to analyze below.</p>
     <details>
       <summary>Options &amp; quality checks</summary>
       <p>Under <span class="gui-menu-item">More...</span>, find <span class="gui-action">T1W/T2W image...</span>, <span class="gui-action">Automatic tracking</span>, and <span class="gui-action">FIB quality control...</span>. Use <span class="gui-menu-item">Recent FIB</span> / <span class="gui-menu-item">Recent SRC</span> / <span class="gui-menu-item">Template FIB</span> to reopen previous data or templates.</p>
@@ -53,18 +40,18 @@ Every analysis starts from the same three steps: import your scans into an SRC f
 ## Choose an analysis workflow
 
 <nav class="ana-pick" aria-label="Analysis workflows">
-  <div class="ana-pick-group"><span class="step-eyebrow">ONE SUBJECT</span>
+  <div class="ana-pick-group"><span class="step-eyebrow">One scan</span>
     <a class="ana-card" href="#fiber-pathways"><strong>Fiber pathways</strong><p class="ana-desc">Reconstruct and inspect white-matter pathways using whole-brain or region-guided tracking.</p><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#region-based-analysis"><strong>Region measures</strong><p class="ana-desc">Measure diffusion properties within selected anatomical regions.</p><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#tractometry"><strong>Bundle metrics &amp; profiles</strong><p class="ana-desc">Summarize tract measurements and examine how they vary along a pathway.</p><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#structural-connectome-r2r-and-t2r"><strong>Connectivity (R2R / T2R)</strong><p class="ana-desc">Map connections between brain regions or between named tracts and regions.</p><b aria-hidden="true">→</b></a>
   </div>
-  <div class="ana-pick-group"><span class="step-eyebrow">CHANGE &amp; COHORTS</span>
+  <div class="ana-pick-group"><span class="step-eyebrow">Several scans or subjects</span>
     <a class="ana-card" href="#named-bundles-across-subjects"><strong>Named bundles across subjects</strong><p class="ana-desc">Identify corresponding white-matter bundles across subjects with AutoTrack.</p><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#differential-tractography"><strong>Individual change</strong><p class="ana-desc">Find pathway segments showing diffusion changes between scans or relative to a reference.</p><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#correlational-tractography--connectometry"><strong>Diffusion–behavior association</strong><p class="ana-desc">Test associations between local diffusion measures and clinical or behavioral variables across subjects.</p><b aria-hidden="true">→</b></a>
   </div>
-  <div class="ana-pick-group"><span class="step-eyebrow">IMAGES</span>
+  <div class="ana-pick-group"><span class="step-eyebrow">Structural images</span>
     <a class="ana-card" href="#inspect-or-register-structural-images"><strong>Inspect or register structural images</strong><p class="ana-desc">View anatomical images and align them with diffusion data for accurate overlays and analysis.</p><b aria-hidden="true">→</b></a>
   </div>
 </nav>
