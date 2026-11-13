@@ -18,7 +18,7 @@ DSI Studio can derive region-to-region (R2R) connectivity matrices from tractogr
 ### Generate an R2R matrix
 
 1. Generate and inspect the [whole-brain tractography](/doc/gui_t3_whole_brain.html) used for the connectome.
-2. Open <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Connectivity Matrix</span></span>.
+2. Open <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Connectivity matrix...</span></span>.
 3. Select a built-in parcellation atlas or use loaded ROIs.
 4. Select whether connectivity is defined by streamline **endpoints** or **pass-through** regions.
 5. Select the matrix value(s) and recalculate.
@@ -72,7 +72,7 @@ Use <span class="gui-menu-path"><span class="gui-card">Assign Regions</span><spa
 
 #### 3. Create the matrix
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Regions</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Tract-to-Region Connectome</span></span> to calculate the tract-by-region matrix.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Regions</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Tract-To-Region Connectome...</span></span> to calculate the tract-by-region matrix.
 
 Keep the tract set and parcellation identical across subjects when comparing T2R matrices.
 
