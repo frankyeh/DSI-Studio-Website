@@ -6,8 +6,8 @@ Use the **[Records]** menu in the Fiber Tracking window to view or export the re
 
 | Menu item | Behavior |
 |---|---|
-| **FIB Protocol...** | Shows the numbered preprocessing and reconstruction protocol embedded in the loaded `.fib.gz` or `.fz` file, with controls to copy it, toggle a table view, or save `<stem>_fib_protocol.txt`. Externally converted files without an embedded log open blank. |
-| **Command History...** | Opens an editable table of the window's recorded GUI steps (`Action` and `Parameter 1`–`Parameter 3`). Select rows to replay locally (**Run&nbsp;Selected**), delete steps, save or load `<stem>_commands.csv` workflows, or batch-apply across datasets (**Apply to Files...**, **Apply to Folders...**). |
+| <span class="gui-menu-item">FIB Protocol...</span> | Shows the numbered preprocessing and reconstruction protocol embedded in the loaded `.fib.gz` or `.fz` file, with controls to copy it, toggle a table view, or save `<stem>_fib_protocol.txt`. Externally converted files without an embedded log open blank. |
+| <span class="gui-menu-item">Command History...</span> | Opens an editable table of the window's recorded GUI steps (`Action` and `Parameter 1`–`Parameter 3`). Select rows to replay locally (**Run&nbsp;Selected**), delete steps, save or load `<stem>_commands.csv` workflows, or batch-apply across datasets (**Apply to Files...**, **Apply to Folders...**). |
 
 ## Viewing and Saving the FIB Protocol
 
