@@ -13,7 +13,7 @@ Correlational tractography is a **cohort-level** analysis. For a single subject'
 
 ## Current main-window workflow
 
-Select **Correlational Tractography** from the left sidebar. Its three cards are **1 FIB files → 2 Prepare database → 3 Correlational Tractography**. In the first card, **FIB File(s) (*.fz)...** and **FIB Folder (*.fz)...** open database creation with the selected QSDR FIB data preloaded. **Database (*.dz)...** in the second card opens a database for inspection/editing; **Database (*.dz)** in the third card launches correlational tractography analysis. A **Recent Database** list is located below.
+Select <span class="gui-action">Correlational Tractography</span> from the left sidebar. Its three cards are **1 FIB files → 2 Prepare database → 3 Correlational Tractography**. In the first card, <span class="gui-menu-path"><span class="gui-menu-item">FIB File(s) (*.fz)...</span></span> and <span class="gui-menu-path"><span class="gui-menu-item">FIB Folder (*.fz)...</span></span> open database creation with the selected QSDR FIB data preloaded. <span class="gui-menu-path"><span class="gui-menu-item">Database (*.dz)...</span></span> in the second card opens a database for inspection/editing; <span class="gui-menu-path"><span class="gui-menu-item">Database (*.dz)</span></span> in the third card launches correlational tractography analysis. A <span class="gui-action">Recent Database</span> list is located below.
 
 ## Current workflow
 
@@ -31,7 +31,7 @@ For population connectometry, reconstruct all subjects with **QSDR using the sam
 
 ### Add subject FIB files
 
-Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 FIB files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File(s) (*.fz)...</span></span> or **FIB Folder (*.fz)...** to open Create Database with the input list populated.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 FIB files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File(s) (*.fz)...</span></span> or <span class="gui-menu-path"><span class="gui-menu-item">FIB Folder (*.fz)...</span></span> to open Create Database with the input list populated.
 
 Use <span class="gui-action">Add</span>, <span class="gui-action">Search in Directory...</span>, or <span class="gui-action">Open List</span> to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
 
