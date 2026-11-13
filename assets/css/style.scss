@@ -362,4 +362,5 @@ article.doc-menu-reference td { overflow-wrap: anywhere; }
   article.doc-menu-reference tr { margin-bottom: 12px; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; }
   article.doc-menu-reference td { border: 0; padding: 10px 12px; }
   article.doc-menu-reference td:first-child { width: 100%; font-weight: 600; background: var(--soft); border-bottom: 1px solid var(--line); }
+  article.doc-menu-reference .ui-key { white-space: normal; overflow-wrap: anywhere; }
 }
