@@ -8,21 +8,21 @@ Use the **[Devices]** menu in the Fiber Tracking window to place, align, render,
 
 | Menu item | Behavior |
 |---|---|
-| **New Device** | Adds a new checked device (`100` mm default length) near the center of the volume and opens the **Devices** dock if hidden. Warns if the loaded dataset has non-isotropic voxel spacing. |
-| **Open Device...** | Loads one or more `.dv.csv` device trajectory files into the **Devices** table as checked rows. Does not load 3D polygon meshes such as `.obj`, and shows an error if a file contains no valid devices. |
-| **Save Device As...** | Saves only the highlighted device row to a single-line `.dv.csv` trajectory file (`<Name>.dv.csv`). Does nothing if no device row is selected. |
-| **Save All Devices As...** | Saves all checked devices in table order to a single `.dv.csv` trajectory file (`<CurrentName>.dv.csv`), omitting unchecked rows. |
-| **Delete** | Removes the highlighted device row from the **Devices** table and clears it from the 3D view. |
-| **Delete All** | Clears every row from the **Devices** table and removes all devices from the 3D view. |
-| **Copy Device** | Duplicates the highlighted device with the same type, length, and orientation, offsetting its tip by `1` voxel with a new color so both remain visible. |
-| **Assign Colors** | Assigns distinct opaque colors across all rows in the **Devices** table in order and refreshes the 3D view. |
-| **Leads to ROI...** | Creates spherical regions (`1.0`–`10.0` mm radius, default `2.0` mm) in the **Regions** dock at each cylindrical electrode contact or `Locator` point of the highlighted device, ordered from distal tip to shaft. Directional segmented rings render in 3D but are not extracted. |
-| **Uncheck All** | Unchecks every row in the **Devices** table, hiding all devices in 3D and excluding them from **Devices › Save All Devices As...** and **File › Save Workspace...**. |
-| **Check All** | Checks every row in the **Devices** table so all devices render in 3D and are included when saving all devices or workspaces. |
-| **Pull Device** | Shortcut: `Ctrl+-`. Retracts the highlighted device by `0.5` mm along its shaft toward the entry point. |
-| **Push Device** | Shortcut: `Ctrl+=`. Advances the highlighted device by `0.5` mm deeper along its shaft toward the distal tip. |
-| **Set AC/PC/Inter Points** | Places three `2` mm `Locator` markers (`AC`, `PC`, and midline `Inter`) in subject space from standard MNI landmarks, replacing any existing rows with those names. Requires valid MNI registration on the loaded FIB file. |
-| **Statistics...** | Opens a **Device Statistics** report listing tip coordinates, shaft direction, and per-contact distal, center, and proximal voxel positions across all devices, with an option to save `<stem>_device_stat.txt`. |
+| <span class="gui-menu-item">New Device</span> | Adds a new checked device (`100` mm default length) near the center of the volume and opens the **Devices** dock if hidden. Warns if the loaded dataset has non-isotropic voxel spacing. |
+| <span class="gui-menu-item">Open Device...</span> | Loads one or more `.dv.csv` device trajectory files into the **Devices** table as checked rows. Does not load 3D polygon meshes such as `.obj`, and shows an error if a file contains no valid devices. |
+| <span class="gui-menu-item">Save Device As...</span> | Saves only the highlighted device row to a single-line `.dv.csv` trajectory file (`<Name>.dv.csv`). Does nothing if no device row is selected. |
+| <span class="gui-menu-item">Save All Devices As...</span> | Saves all checked devices in table order to a single `.dv.csv` trajectory file (`<CurrentName>.dv.csv`), omitting unchecked rows. |
+| <span class="gui-menu-item">Delete</span> | Removes the highlighted device row from the **Devices** table and clears it from the 3D view. |
+| <span class="gui-menu-item">Delete All</span> | Clears every row from the **Devices** table and removes all devices from the 3D view. |
+| <span class="gui-menu-item">Copy Device</span> | Duplicates the highlighted device with the same type, length, and orientation, offsetting its tip by `1` voxel with a new color so both remain visible. |
+| <span class="gui-menu-item">Assign Colors</span> | Assigns distinct opaque colors across all rows in the **Devices** table in order and refreshes the 3D view. |
+| <span class="gui-menu-item">Leads to ROI...</span> | Creates spherical regions (`1.0`–`10.0` mm radius, default `2.0` mm) in the **Regions** dock at each cylindrical electrode contact or `Locator` point of the highlighted device, ordered from distal tip to shaft. Directional segmented rings render in 3D but are not extracted. |
+| <span class="gui-menu-item">Uncheck All</span> | Unchecks every row in the **Devices** table, hiding all devices in 3D and excluding them from **Devices › Save All Devices As...** and **File › Save Workspace...**. |
+| <span class="gui-menu-item">Check All</span> | Checks every row in the **Devices** table so all devices render in 3D and are included when saving all devices or workspaces. |
+| <span class="gui-menu-item">Pull Device</span> | Shortcut: `Ctrl+-`. Retracts the highlighted device by `0.5` mm along its shaft toward the entry point. |
+| <span class="gui-menu-item">Push Device</span> | Shortcut: `Ctrl+=`. Advances the highlighted device by `0.5` mm deeper along its shaft toward the distal tip. |
+| <span class="gui-menu-item">Set AC/PC/Inter Points</span> | Places three `2` mm `Locator` markers (`AC`, `PC`, and midline `Inter`) in subject space from standard MNI landmarks, replacing any existing rows with those names. Requires valid MNI registration on the loaded FIB file. |
+| <span class="gui-menu-item">Statistics...</span> | Opens a **Device Statistics** report listing tip coordinates, shaft direction, and per-contact distal, center, and proximal voxel positions across all devices, with an option to save `<stem>_device_stat.txt`. |
 
 ## Add a device manually
 
