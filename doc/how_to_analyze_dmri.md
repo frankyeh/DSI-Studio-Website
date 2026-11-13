@@ -29,7 +29,7 @@
   <li id="track">
     <span class="ana-num">3</span>
     <h3>Track &amp; analyze</h3>
-    <p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key">3 Track</span></p>
+    <p class="ana-path"><span class="ui-key">Tractography</span><span class="ui-sep"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">3</span> Track</span></p>
     <p>Open <strong>FIB File (*.fz)</strong> to enter the fiber tracking window. Run whole-brain or ROI-based tracking, AutoTrack, differential tractography, or connectivity analyses.</p>
     <span class="ana-file">Input: .fz</span>
     <details>
@@ -43,13 +43,13 @@
 
 <nav class="ana-pick" aria-label="Analysis workflows">
   <div class="ana-pick-group"><span class="step-eyebrow">ONE SUBJECT</span>
-    <a class="ana-card" href="#fiber-pathways"><strong>Fiber pathways</strong><p class="ana-desc">Reconstruct and inspect white-matter pathways using whole-brain or region-guided tracking.</p><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span> · whole-brain / ROI</span><b aria-hidden="true">→</b></a>
+    <a class="ana-card" href="#fiber-pathways"><strong>Fiber pathways</strong><p class="ana-desc">Reconstruct and inspect white-matter pathways using whole-brain or region-guided tracking.</p><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">3</span> Track</span> · whole-brain / ROI</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#region-based-analysis"><strong>Region measures</strong><p class="ana-desc">Measure diffusion properties within selected anatomical regions.</p><span>FIB file · region statistics</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#tractometry"><strong>Bundle metrics &amp; profiles</strong><p class="ana-desc">Summarize tract measurements and examine how they vary along a pathway.</p><span>FIB file · tract statistics</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#structural-connectome-r2r-and-t2r"><strong>Connectivity (R2R / T2R)</strong><p class="ana-desc">Map connections between brain regions or between named tracts and regions.</p><span>FIB file · parcellation / bundles</span><b aria-hidden="true">→</b></a>
   </div>
   <div class="ana-pick-group"><span class="step-eyebrow">CHANGE &amp; COHORTS</span>
-    <a class="ana-card" href="#named-bundles-across-subjects"><strong>Named bundles across subjects</strong><p class="ana-desc">Identify corresponding white-matter bundles across subjects with AutoTrack.</p><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Automatic tracking</span></span><b aria-hidden="true">→</b></a>
+    <a class="ana-card" href="#named-bundles-across-subjects"><strong>Named bundles across subjects</strong><p class="ana-desc">Identify corresponding white-matter bundles across subjects with AutoTrack.</p><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">3</span> Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Automatic tracking</span></span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#differential-tractography"><strong>Individual change</strong><p class="ana-desc">Find pathway segments showing diffusion changes between scans or relative to a reference.</p><span>Differential tractography</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#correlational-tractography--connectometry"><strong>Diffusion–behavior association</strong><p class="ana-desc">Test associations between local diffusion measures and clinical or behavioral variables across subjects.</p><span>Correlational Tractography sidebar</span><b aria-hidden="true">→</b></a>
   </div>
@@ -62,7 +62,7 @@
 
 Use fiber pathway analysis to reconstruct white-matter trajectories in an individual diffusion MRI dataset.
 
-1. Open the subject FIB file with **[Tractography][3 Track][FIB File (*.fz)]** to enter the fiber tracking window.
+1. Open the subject FIB file with <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">3</span> Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">FIB File (*.fz)</span> to enter the fiber tracking window.
 2. For exploratory mapping, run [whole-brain tractography](/doc/gui_t3_whole_brain.html). Select the tracking method, seed strategy, stopping criteria, and tract length settings appropriate to the data.
 3. For a particular pathway, [define or load inclusion, exclusion, and seed regions](/doc/gui_t3_roi_tracking.html) and generate ROI-based streamlines. Inspect them against the anatomy and save the resulting tract bundle.
 4. Review the reconstructed paths in orthogonal slices and 3D before computing measurements or connectivity.
@@ -75,7 +75,7 @@ Full guides: [Whole-brain tracking →](/doc/gui_t3_whole_brain.html) · [ROI-ba
 
 Use region-based analysis when the question concerns diffusion measurements within an anatomical region.
 
-1. On **[Tractography][3 Track]**, open the subject `.fz` file.
+1. On <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">3</span> Track</span>, open the subject `.fz` file.
 2. [Load or define regions](/doc/gui_t3_roi_tracking.html#load-regions-from-built-in-atlases). Built-in atlases are useful for standardized regions, provided they match the image space.
 3. If needed, use **[Slices][Insert Other Images]** in the tracking window to add registered measurements such as DKI, NODDI, PET, or other NIfTI data.
 4. Use **[Regions][Statistics]** to obtain measurements for selected regions.
@@ -103,7 +103,7 @@ Example study of **bundle-level** QA tractometry (not a 100-node along-tract pro
   <div>
     <h3>R2R: Region to region</h3>
     <ol>
-      <li>Open a FIB with <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">FIB File (*.fz)</span>, and generate or load the tracts to be analyzed.</li>
+      <li>Open a FIB with <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">3</span> Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">FIB File (*.fz)</span>, and generate or load the tracts to be analyzed.</li>
       <li>In the tracking window, open <span class="ui-key">Tracts</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Connectivity Matrix</span>.</li>
       <li>Choose a parcellation in the <strong>same coordinate space</strong> as the tractography, and select endpoint/pass-through rules and matrix values.</li>
       <li>Calculate and export the matrix, connectogram, or network measures.</li>
@@ -129,8 +129,8 @@ Example study: [Yeh FC, *Nature Communications* 13, 4933 (2022)](https://www.nat
 
 Use AutoTrack to identify corresponding named white-matter pathways in multiple subjects and support consistent tractometry.
 
-1. Open each subject FIB file using **[Tractography][3 Track][FIB File (*.fz)]**.
-2. Select **[Tractography][3 Track][More...][Automatic tracking]** to open AutoTrack and choose the target bundles.
+1. Open each subject FIB file using <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">3</span> Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">FIB File (*.fz)</span>.
+2. Select <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key ana-step-key"><span class="ana-inline-num">3</span> Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Automatic tracking</span> to open AutoTrack and choose the target bundles.
 3. Run automatic tracking, review the resulting bundles against the subject anatomy, and save the tract files.
 4. For quantitative comparisons, use **[Tracts][Statistics]** or the [tract profile](/doc/gui_t3_atk.html#tract-profile) with the same measurement definitions and profile settings across subjects.
 
