@@ -1,5 +1,7 @@
 # Connectome: Region-to-Region (R2R) and Tract-to-Region (T2R)
 
+> **Before building a connectome:** [Import diffusion data](/doc/gui_t1.html) → [reconstruct SRC to FIB](/doc/gui_t2.html) → [inspect whole-brain tracking](/doc/gui_t3_whole_brain.html). For **R2R**, generate/load suitable tracts and use a parcellation aligned with the FIB. For **T2R**, first map/load **named bundles** using [AutoTrack](/doc/gui_t3_atk.html) (or an equivalent tract set) and load an aligned parcellation. Both workflows begin with validated tractography rather than raw DWI.
+
 DSI Studio supports two complementary structural connectome representations. **R2R** relates brain regions to other regions; **T2R** relates named white-matter pathways to parcellation regions. The two matrices answer different questions and should not be interpreted interchangeably.
 
 <div class="ana-two" aria-label="Choose a connectome representation">
