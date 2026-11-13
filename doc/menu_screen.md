@@ -50,10 +50,10 @@ Use the **[Screen]** menu in the Fiber Tracking window to save 3D and 2D slice i
 | Menu item | Behavior |
 |---|---|
 | <span class="gui-menu-item">Auto Rotate</span> | Continuously rotates the live 3D view around the vertical axis at 10° per second while keeping zoom and rendering controls interactive (checkable toggle; select again to stop). |
-| <span class="gui-menu-item">Record Video...</span> | Starts or stops live 10 fps `.avi` recording of interactive 3D motion at the current viewport size (avoid resizing the window while recording). Ignore the legacy `Ctrl+Shift+R` prompt and select **Screen › Record Video...** again to stop and save. |
+| <span class="gui-menu-item">Record Video...</span> | Starts or stops live 10 fps `.avi` recording of interactive 3D motion at the current viewport size (avoid resizing the window while recording). Ignore the legacy <kbd><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd></kbd> prompt and select **Screen › Record Video...** again to stop and save. |
 | <span class="gui-menu-item">Save Rotation Video...</span> | Renders a smooth 360° turntable `.avi` video (`1,800` frames at `30 fps`, `1980 × 1080` on Windows/Linux or current view size on macOS) and restores the camera afterward. Canceling early stops rendering and may leave a partial `.avi` file. |
 
 ## Capture and export notes
 
-- **Preserving custom viewpoints:** All **Left/Right Views** and **3 Views** commands overwrite the live 3D camera with orthogonal presets, so store custom angles first in the [View menu](/doc/menu_view.html) (`Alt+1`–`Alt+4`).
+- **Preserving custom viewpoints:** All **Left/Right Views** and **3 Views** commands overwrite the live 3D camera with orthogonal presets, so store custom angles first in the [View menu](/doc/menu_view.html) (<kbd><kbd>Alt</kbd>+<kbd>1</kbd></kbd>–<kbd><kbd>Alt</kbd>+<kbd>4</kbd></kbd>).
 - **Including devices in 3D exports:** Convert electrode contacts to spherical regions via **[Devices][Leads to ROI...]** ([Devices menu](/doc/menu_devices.html)) before selecting **[Screen][Save 3D Model...]** if you want leads included in `.glb` or `.obj` meshes.
