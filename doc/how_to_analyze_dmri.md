@@ -11,7 +11,7 @@
     <span class="ana-file">Output: .sz</span>
     <details>
       <summary>Options &amp; quality checks</summary>
-      <p>Set the working directory using <strong>Work Dir</strong> and <strong>Browse...</strong>. <strong>NIfTI folder...</strong> detects BIDS datasets with <code>sub-*</code> directories and otherwise handles an ordinary NIfTI folder. <strong>Rename DICOM</strong> moves or renames files; it does not convert them.</p>
+      <p>Set the working directory using <span class="ui-key">Work Dir</span> and <span class="ui-key">Browse...</span>. <strong>NIfTI folder...</strong> detects BIDS datasets with <code>sub-*</code> directories and otherwise handles an ordinary NIfTI folder. <strong>Rename DICOM</strong> moves or renames files; it does not convert them.</p>
       <p>When needed, use <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">1 Import</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">NIFTI quality control...</span>. Review <a href="/doc/gui_t1.html">SRC quality control</a> before group analyses; it is available under <span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">2 Reconstruct</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">More...</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">SRC quality control...</span>.</p>
     </details>
   </li>
@@ -34,7 +34,7 @@
     <span class="ana-file">Input: .fz</span>
     <details>
       <summary>Options &amp; quality checks</summary>
-      <p>Under <strong>More...</strong>, find <strong>T1W/T2W image...</strong>, <strong>Automatic tracking</strong>, and <strong>FIB quality control...</strong>. Use <strong>Recent FIB / Recent SRC / Template FIB</strong> to reopen previous data or templates.</p>
+      <p>Under <span class="ui-key">More...</span>, find <span class="ui-key">T1W/T2W image...</span>, <span class="ui-key">Automatic tracking</span>, and <span class="ui-key">FIB quality control...</span>. Use <strong>Recent FIB / Recent SRC / Template FIB</strong> to reopen previous data or templates.</p>
     </details>
   </li>
 </ol>
