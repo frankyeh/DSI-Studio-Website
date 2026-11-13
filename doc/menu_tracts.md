@@ -42,11 +42,11 @@ Lists one dynamic entry for each available fiber metric and loaded slice volume 
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Check/Uncheck All</span> | Shortcut: `Ctrl+Alt+A`. Checks all rows in the **Tracts** list when the first row is unchecked, or unchecks all rows when the first row is checked. |
-| <span class="gui-menu-item">Separate Deleted Tracts</span> | Shortcut: `Ctrl+Alt+S`. Moves streamlines from the **highlighted** bundle's deleted buffer (from trimming, cutting, or ROI filtering) into a new unchecked bundle row and clears the deleted buffer. |
-| <span class="gui-menu-item">Copy Tracts</span> | Shortcut: `Ctrl+Alt+C`. Duplicates the **highlighted** bundle—including visible streamlines, colors, and metadata—into a new checked row named `<name>_copy`. |
-| <span class="gui-menu-item">Merge All</span> | Shortcut: `Ctrl+Alt+M`. Combines all **checked** bundles (and their undo history) into the first checked row and removes the remaining checked rows; requires at least 2 checked bundles. |
-| <span class="gui-menu-item">Delete</span> | Shortcut: `Ctrl+Alt+Backspace`. Permanently removes the **highlighted** bundle row from the **Tracts** list (cannot be undone). |
+| <span class="gui-menu-item">Check/Uncheck All</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>A</kbd></kbd>. Checks all rows in the **Tracts** list when the first row is unchecked, or unchecks all rows when the first row is checked. |
+| <span class="gui-menu-item">Separate Deleted Tracts</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>S</kbd></kbd>. Moves streamlines from the **highlighted** bundle's deleted buffer (from trimming, cutting, or ROI filtering) into a new unchecked bundle row and clears the deleted buffer. |
+| <span class="gui-menu-item">Copy Tracts</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd></kbd>. Duplicates the **highlighted** bundle—including visible streamlines, colors, and metadata—into a new checked row named `<name>_copy`. |
+| <span class="gui-menu-item">Merge All</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>M</kbd></kbd>. Combines all **checked** bundles (and their undo history) into the first checked row and removes the remaining checked rows; requires at least 2 checked bundles. |
+| <span class="gui-menu-item">Delete</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Backspace</kbd></kbd>. Permanently removes the **highlighted** bundle row from the **Tracts** list (cannot be undone). |
 | <span class="gui-menu-item">Delete All</span> | Permanently removes every bundle row from the **Tracts** list (cannot be undone). |
 
 ## Tract statistics
