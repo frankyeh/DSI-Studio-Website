@@ -1,5 +1,7 @@
 # ROI-Based Fiber Tracking
 
+> **Before ROI-based tracking:** [Import diffusion data](/doc/gui_t1.html) → [reconstruct a FIB file](/doc/gui_t2.html) → [check whole-brain tractography](/doc/gui_t3_whole_brain.html). Open the resulting `.fz` in the tracking window, then add anatomical ROI/ROA/Seed/End constraints. Ensure any atlas or NIfTI region matches the subject's image space.
+
 ROI-based fiber tracking uses anatomical regions to include, exclude, start, or terminate streamlines. Use region constraints only when they are supported by the anatomical hypothesis.
 
 > **Check whole-brain tractography first.** Before adding ROI constraints, confirm that the `.fz` file has reasonable fiber orientations and that major pathways can be reconstructed with the normal tracking settings.
