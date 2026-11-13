@@ -72,7 +72,7 @@ To composite statistical maps, lesions, PET, or multimodal scans onto a base sli
 | <span class="gui-menu-item">Insert Coronal Picture...</span> | Loads a 2D image (`.jpg`, `.tif`, `.bmp`, `.png`) onto the coronal plane at the current coronal offset (in mm), shows only the coronal 3D plane, and offers automatic affine registration. |
 | <span class="gui-menu-item">Insert Axial Picture...</span> | Loads a 2D image (`.jpg`, `.tif`, `.bmp`, `.png`) onto the axial plane at the current axial offset (in mm), shows only the axial 3D plane, and offers automatic affine registration. |
 
-If you skip automatic registration when inserting a 2D picture, press `Ctrl+A` (**[Region Move][Move Region at 3D]**) to drag (left-click) or resize (right-click) the picture in 3D before refining alignment.
+If you skip automatic registration when inserting a 2D picture, press <kbd><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd> (**[Region Move][Move Region at 3D]**) to drag (left-click) or resize (right-click) the picture in 3D before refining alignment.
 
 ## Mark tracts or regions on DICOM slices
 
@@ -95,14 +95,14 @@ Save and reload visualization sessions (checked tracts, checked regions, devices
 
 - **`Q` / `A`, `W` / `S`, `E` / `D`:** Step the sagittal, coronal, or axial slice `+1` / `-1` voxel.
 - **`Z` / `X` / `C`:** Switch the 2D slice view to sagittal, coronal, or axial orientation.
-- **`F1`–`F6`:** Toggle fiber orientations (`F1`), tract intersections (`F2`), ruler/grid (`F3`), crosshair lines (`F4`), `R` label (`F5`), and region outlines (`F6`).
+- **<kbd><kbd>F1</kbd></kbd>–<kbd><kbd>F6</kbd></kbd>:** Toggle fiber orientations (<kbd><kbd>F1</kbd></kbd>), tract intersections (<kbd><kbd>F2</kbd></kbd>), ruler/grid (<kbd><kbd>F3</kbd></kbd>), crosshair lines (<kbd><kbd>F4</kbd></kbd>), `R` label (<kbd><kbd>F5</kbd></kbd>), and region outlines (<kbd><kbd>F6</kbd></kbd>).
 - **Double-click / `Ctrl` + wheel:** Jump the 3D crosshair to the clicked voxel, or zoom the 2D slice view.
 
 ## 3D view
 
 - **Left / Right / Middle drag:** Rotate (`Shift` locks horizontal; `Ctrl` slows motion), zoom (or right-click a 3D slice plane for quick actions), and pan (or use arrow keys).
-- **`Ctrl+A`:** Interactively drag 3D slice planes, regions, devices, or 2D pictures.
+- **<kbd><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd>:** Interactively drag 3D slice planes, regions, devices, or 2D pictures.
 
 ### Tract editing shortcuts
 
-- **`Ctrl+S` / `Ctrl+D` / `Ctrl+T` / `Ctrl+X` / `Ctrl+P`:** Select, delete, trim, cut, or paint tracts (`Ctrl+Z` / `Ctrl+Y` to undo or redo selection and deletion; see the [Tract Edit menu](/doc/menu_edit.html)).
+- **<kbd><kbd>Ctrl</kbd>+<kbd>S</kbd></kbd> / <kbd><kbd>Ctrl</kbd>+<kbd>D</kbd></kbd> / <kbd><kbd>Ctrl</kbd>+<kbd>T</kbd></kbd> / <kbd><kbd>Ctrl</kbd>+<kbd>X</kbd></kbd> / <kbd><kbd>Ctrl</kbd>+<kbd>P</kbd></kbd>:** Select, delete, trim, cut, or paint tracts (<kbd><kbd>Ctrl</kbd>+<kbd>Z</kbd></kbd> / <kbd><kbd>Ctrl</kbd>+<kbd>Y</kbd></kbd> to undo or redo selection and deletion; see the [Tract Edit menu](/doc/menu_edit.html)).
