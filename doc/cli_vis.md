@@ -1,6 +1,6 @@
 # Command History
 
-DSI Studio records many GUI operations in **Command History**. The recorded commands can be reviewed, repeated, saved to a CSV file, applied to other datasets, or executed from the command line.
+DSI Studio records many GUI operations in Command History. The recorded commands can be reviewed, repeated, saved to a CSV file, applied to other datasets, or executed from the command line.
 
 ## View command history
 
@@ -12,9 +12,9 @@ The history can be saved to or loaded from a CSV file. Selected commands can als
 
 ## Apply a workflow to other files
 
-<span class="gui-action">Apply to Others</span> repeats the selected commands on other files when the selected history includes a file-open command.
+<span class="gui-action">Apply to Files...</span> or <span class="gui-action">Apply to Folders...</span> repeats selected commands on other files or on files in a folder when the history contains a file-open command.
 
-For example, select a sequence containing `open_fib`, choose <span class="gui-action">Apply to Others</span>, and select the other FIB files to process with the same recorded steps.
+For example, select a sequence containing `open_fib`, choose <span class="gui-action">Apply to Files...</span>, and select the other FIB files to process with the same recorded steps.
 
 Not every GUI function is recorded. If a required operation is missing from Command History, report it on the [DSI Studio forum](https://groups.google.com/g/dsi-studio).
 
