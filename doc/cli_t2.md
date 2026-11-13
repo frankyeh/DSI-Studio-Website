@@ -1,20 +1,18 @@
 # <span class="ui-key">Step T2</span> Reconstruction
 
-> Use `--action=rec` to perform diffusion reconstruction (e.g., GQI, DTI, QSDR).
-
-This action reconstructs diffusion data (SRC/SZ format) into FIB files, with preprocessing corrections, masking, and registration options.
+> Use `--action=rec` to reconstruct diffusion MRI (GQI, DTI, QSDR) or 2D histology data into `.fz` FIB files, or to run DWI preprocessing and export `.sz` / `.nii.gz` datasets.
 
 -----
 
 ## Examples
 
-**1. Reconstruct all SRC files with GQI** using a 1.25 sampling length and write `.fz` files to `fib/`:
+**1. Batch GQI reconstruction** on all `.sz` files using a `1.25` sampling length ratio and writing `.gqi.fz` files to `fib/`:
 
 ```bash
 dsi_studio --action=rec --source=*.sz --method=4 --param=1.25 --output=fib/
 ```
 
-**2. Reconstruct a single SRC file after EDDY correction**:
+**2. Reconstruct a single `.sz` file after EDDY correction:**
 
 ```bash
 dsi_studio --action=rec --source=subject1.sz \
@@ -22,7 +20,7 @@ dsi_studio --action=rec --source=subject1.sz \
             --method=4 --param=1.25
 ```
 
-**3. Reconstruct after TOPUP+EDDY** using a reverse-PE b0 in a NIfTI file:
+**3. Batch TOPUP+EDDY + GQI** using matched reverse-phase-encoding b0 NIfTI files:
 
 ```bash
 dsi_studio --action=rec --source=*.sz \
@@ -30,7 +28,7 @@ dsi_studio --action=rec --source=*.sz \
             --method=4 --param=1.25
 ```
 
-**4. Apply TOPUP+EDDY only (no reconstruction)** and save the corrected SRC:
+**4. Run TOPUP+EDDY only (no reconstruction)** and save the preprocessed `.sz` file:
 
 ```bash
 dsi_studio --action=rec --source=raw_dwi.sz \
@@ -38,7 +36,7 @@ dsi_studio --action=rec --source=raw_dwi.sz \
             --save_src=raw_dwi_proc.sz
 ```
 
-**5. Perform QSDR reconstruction with a 1.25 sampling ratio, warping both T1w and T2w images:**
+**5. QSDR reconstruction warping native T1w and T2w images to template space:**
 
 ```bash
 dsi_studio --action=rec --source=subj1.sz \
@@ -47,34 +45,40 @@ dsi_studio --action=rec --source=subj1.sz \
             --other_image=t1w:my_t1w.nii.gz,t2w:my_t2w.nii.gz
 ```
 
-**6. Bash loop to QSDR-reconstruct every `.sz` file with ODF output:**
+To also drive QSDR nonlinear registration with an auxiliary modality pair (`<subject_nii>,<template_nii>`), add `--reg`:
+
+```bash
+dsi_studio --action=rec --source=subj1.sz \
+            --method=7 --param=1.25 \
+            --reg=my_t1w.nii.gz,mni_icbm152_t1_tal_nlin_asym_09c.nii.gz \
+            --other_image=t1w:my_t1w.nii.gz
+```
+
+**6. Bash loop to QSDR-reconstruct every `.sz` file with full ODF vectors saved (`.odf.qsdr.fz`):**
 
 ```bash
 #!/bin/bash
 exec 1>log_qsdr.out 2>&1
-method=7            # 7 = QSDR
-param="1.25"
 for sub in *.sz; do
-  echo
   dsi_studio --action=rec \
               --source="$sub" \
-              --method=$method \
-              --param=$param \
-              --odf_resolving=1
-  echo
+              --method=7 \
+              --param=1.25 \
+              --other_output=fa,md,rd,rdi,odf
 done
 ```
 
-**7. B-table Quality Check and Manual Correction:**
-Applying automatic b-table correction uniformly is not recommended when SNR is poor. Run QC first and inspect the result:
+**7. B-table quality check and manual b-vector correction:**
+
+Inspect b-table orientation with `--action=qc` before applying corrections, especially on low-SNR scans:
 
 ```bash
 dsi_studio --action=qc --source=*.sz --check_btable=1
 ```
 
-For `--action=qc`, `--check_btable=1` enables b-table checking, while the presence of `--template=<template>` determines whether the template-aware check is used. Without `--template`, QC uses the no-template check. This differs from `--action=rec`, where the numeric `--check_btable` value selects the reconstruction-time checking mode described below.
+In `--action=qc`, `--check_btable=1` uses the template-aware check when `--template=<name>` is also supplied, and the no-template check otherwise. In `--action=rec`, `--check_btable=1` runs the template-aware check and `--check_btable=2` runs the no-template check.
 
-If a representative good-quality acquisition indicates a consistent swap/flip convention (for example `021fx`), apply the corresponding **b-table-only** correction to scans known to share that acquisition/export convention. For `021fx`, swap y and z to obtain `012`, then flip x:
+When a representative scan confirms a consistent acquisition export convention (e.g., `021fx`: swap `y`/`z` to `012`, then flip `x`), apply the exact b-vector correction via `--cmd`:
 
 ```bash
 dsi_studio --action=rec --source=subject.sz \
@@ -82,145 +86,157 @@ dsi_studio --action=rec --source=subject.sz \
             --method=4 --param=1.25
 ```
 
-Do not infer a group-wide b-table correction from a low-SNR or artifact-heavy outlier.
-
 -----
 
 ## Core Reconstruction Options
 
 | **Option** | **Default** | **Description** |
-|-----------------------|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| `--source`           | *(required)* | Path to the `.sz` file to reconstruct. Legacy `.src.gz` files are also supported. |
-| `--method`           | Current/SRC setting | Reconstruction algorithm: `1`=DTI, `4`=GQI, `7`=QSDR. Specify it explicitly for reproducible command-line workflows. |
-| `--param`            | Data/current setting | Diffusion sampling length ratio for GQI/QSDR. Common explicit values are `1.25` for in-vivo and `0.6` for ex-vivo applications. |
-| `--odf_resolving`    | `0` | Enable ODF resolving during reconstruction. |
-| `--template`         | Current template | Select the QSDR template. Use the template list reported by the current DSI Studio version. |
-| `--qsdr_reso`        | Data dependent | Output resolution for QSDR. |
-| `--r2_weighted`      | `0` | Use R²-weighted SDF estimation for GQI/QSDR. |
-| `--other_output`     | Current reconstruction setting | Comma-separated diffusion metrics to compute; specify explicitly when a particular output set is required. |
+|---|---|---|
+| `--source` | *(required)* | Input `.sz`, `.src.gz`, 4D `.nii.gz` (with matching `.bval`/`.bvec`), 2D histology `.jpg`/`.tif` (writes `.hist.fz`), or QSDR `.fz` previously saved with `dwi` in `--other_output`. Wildcards (e.g., `*.sz`) automatically run in batch mode. |
+| `--method` | `4` | Reconstruction method: `1` = DTI (`.dti.fz`), `4` = GQI (`.gqi.fz`; handles single-shell, multi-shell, DSI grid, and single-DWI HGQI), `7` = QSDR (`.qsdr.fz`). |
+| `--param` | `1.25` (`max(b) < 5000`); `80/sqrt(max_b)` (`max(b) >= 5000`) | Diffusion sampling length ratio for GQI and QSDR (`--method=4` or `7`). Typical explicit values are `1.25` (in-vivo) and `0.6` (ex-vivo). |
+| `--dti_ignore_high_b` | `1` (human); `0` (non-human) | Exclude shells with `b > 1750` when calculating tensor metrics if at least 10 DWIs have `100 < b <= 1750`. |
+| `--r2_weighted` | `0` | Set `1` to weight GQI/QSDR SDF integration by squared diffusion displacement (writes `.gqi2.fz` or `.qsdr2.fz`). |
+| `--template` | Auto-matched by volume (`human` = `0`) | Species/template name under `atlas/` (e.g., `human`, `human-neonate`, `chimpanzee`, `rhesus`, `marmoset`, `rat`, `mouse`) or single-digit index (`0`–`9`), used by QSDR, U-Net/template masking, and `--check_btable=1`. |
+| `--qsdr_reso` | Human: `2.0` (`max(vx,vz) > 1.75`), `1.5` (`>= 1.5`), else `1.0`; non-human: `vz` | Output isotropic voxel size in mm for QSDR (`--method=7`). |
+| `--other_output` | `fa,md,rd,rdi` | Comma-separated output tokens: tensor metrics (`fa`, `md`, `ad`, `rd`, `rd1`, `rd2`, `helix`, `tensor`), ODF/RDI metrics (`gfa`, `rdi`, `odf`), `dwi` (stores template-space balanced DWI in QSDR when `< 5` shells), `fixel` (stores refined `fixel0`..`fixelN` fiber vectors), `debug` (writes intermediate QSDR registration NIfTIs), or `all` (enables all metrics except `dwi`, `fixel`, and `debug`). Including `odf` writes `.odf.gqi.fz` / `.odf.qsdr.fz`. |
 
 -----
 
 ## Preprocessing Options
 
 | **Option** | **Default** | **Description** |
-|-----------------------|-----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `--rev_pe`           | *(none)* | Reverse-phase-encoding NIfTI/SRC input used to run TOPUP/EDDY. |
-| `--volume_correction`| `0` | Apply automatic volume orientation correction (swap/flip axes). |
-| `--check_btable`     | `0` | For `--action=rec`, `1` calls the template-aware **Check B-table** routine (using the selected/current template when available); `2` calls the no-template 24-candidate b-vector permutation/flip check. Automatic inference can be unreliable with poor SNR or poor template registration, so inspect QC first. |
-| `--motion_correction`| `0` | Rigid-body align DWI volumes and rotate the b-table accordingly. |
-| `--bias_field_correction` | `0` for DTI; `1` for GQI/QSDR unless already corrected | Correct smooth DWI signal inhomogeneity. Specify explicitly when you need to override the reconstruction-method default. |
-| `--make_isotropic`   | Data dependent | Override the isotropic resampling resolution. If omitted, DSI Studio may choose a resolution from the input data and reconstruction workflow. |
-| `--align_acpc`       | *(none)* | Rotate/resample the volume to AC-PC alignment at the specified isotropic resolution (e.g., `--align_acpc=1.5`). |
+|---|---|---|
+| `--bval` | *(none)* | Replace b-values from an FSL-format `.bval` file before `--remove` and `--cmd`. |
+| `--bvec` | *(none)* | Replace b-vectors from an FSL-format `.bvec` file before `--remove` and `--cmd`. |
+| `--remove` | *(none)* | Comma-separated 0-based DWI indices, inclusive ranges, or b-value conditions to drop before `--cmd` (e.g., `--remove=0,5:10,20:end`, `--remove="b>3000"`, or `--remove="b<100"`). |
+| `--check_btable` | `0` | Automatic b-table check: `0` = off, `1` = template-aware check (`check_btable`), `2` (or any non-zero value `!= 1`) = no-template 24-candidate permutation/flip check (`check_btable2`). |
+| `--rev_pe` | *(none)* | Reverse-phase-encoding `.nii.gz` or `.sz` file used to run `topup_eddy`. |
+| `--volume_correction` | `0` | Set `1` to run automatic axis swap/flip volume orientation correction (`orientation_correction`). |
+| `--motion_correction` | `0` | Set `1` to rigid-body align DWI volumes and rotate b-vectors accordingly (`motion_correction`). |
+| `--bias_field_correction` | `0` (`--method=1`); `1` otherwise (unless already recorded in report) | Correct smooth DWI signal inhomogeneity. Pass `0` or `1` explicitly to override the method default. |
+| `--make_isotropic` | Human (`--method!=7`, no `--save_src`): `2.0`/`1.5`/`1.0` mm when `vz > 1.25*vx`, else `max(vs)` | Resample non-QSDR data to isotropic resolution in mm. Pass `--make_isotropic=0` to disable automatic human resampling. Ignored when `--align_acpc`, `--rotate_to`, `--align_to`, or `--method=7` is active. |
+| `--align_acpc` | `min(2.0, max(vs))` when passed without value | Rotate and resample DWI to AC-PC alignment at the specified isotropic resolution in mm (e.g., `--align_acpc=1.5`). Takes precedence over `--rotate_to`, `--align_to`, and `--make_isotropic`. |
 
-When resampling is needed, keep the original DWI geometry while applying corrections that depend on the original acquisition (for example TOPUP/EDDY, motion, or distortion correction), then resample before reconstruction.
+`--action=rec` executes steps in this fixed order: `--bval`/`--bvec` → `--remove` → `--cmd` → `--check_btable` → `--rev_pe` → `--volume_correction` → `--motion_correction` → `--mask` → `--bias_field_correction` → spatial alignment/resampling (`--align_acpc`, else `--rotate_to`/`--align_to`, else `--make_isotropic`) → reconstruction (or early save via `--save_src`/`--save_nii`).
 
 -----
 
 ## Masking
 
 | **Option** | **Description** |
-|-----------------------|--------------------------------------------------------------------------------------------------------------|
-| `--mask`            | Path to a brain mask (`.nii.gz`).<br>Use `--mask=unet` to run U-Net segmentation, or `--mask=template`.        |
-| `--apply_mask`      | If set, applies the loaded mask during reconstruction (useful after reloading via `--save_src` or `--save_nii`).|
-| `--rotate_to`       | Rigid-body rotate DWI into the specified T1w/T2w space (no scaling).                                           |
-| `--align_to`        | Affine align DWI into the specified T1w/T2w space (includes scaling/shearing).                                 |
-| `--other_image`     | Attach native-space images for QSDR to bring to template space. Format: `t1w:/path/t1w.nii.gz,t2w:/path/t2w.nii.gz`. |
+|---|---|
+| `--mask` | Load a matching-dimension `.nii.gz` mask file, `--mask=unet` (species U-Net tissue segmentation), `--mask=template` (warp template mask), or `--mask=1` (cover full image volume without masking). |
+| `--apply_mask` | Zero out-of-mask DWI signals. If the dataset is unmasked and `--mask` is omitted, `--apply_mask` (or `--save_src`) automatically generates a U-Net mask. |
+| `--rotate_to` | Rigid-body transform DWI and b-table into the space and voxel size of a target `.nii.gz` (e.g., T1w/T2w; no scaling). Takes precedence over `--align_to` if both are supplied. |
+| `--align_to` | Affine transform DWI and b-table into the space and voxel size of a target `.nii.gz` (includes scaling and shearing). |
+| `--other_image` | Comma-separated `<name>:<file.nii.gz>` or `<file.nii.gz>` entries (wildcards supported) attached to the output `.fz`—warped to template space in QSDR or registered into DWI space otherwise (e.g., `--other_image=t1w:my_t1w.nii.gz,t2w:my_t2w.nii.gz`). |
 
 ## Registration Options
 
-| **Option** | **Default**| **Description** |
-|---------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------|
-| `--reg_resolution`  | `2`    | The relative resolution used in nonlinear registration. `2` uses 2× lower resolution; use `1` for the same resolution at higher computation cost. |
-| `--reg_speed`       | `0.3`  | Deformation speed. Higher values allow larger changes per iteration. |
-| `--reg_smoothing`   | `0.05` | Smoothing applied to the deformation field. Higher values enforce greater spatial continuity. |
+| **Option** | **Default** | **Description** |
+|---|---|---|
+| `--reg` | *(none)* | Comma-separated pair `<subject_modality.nii.gz>,<template_modality.nii.gz>` used as an auxiliary registration channel in QSDR (`--method=7`). |
+| `--reg_resolution` | `2` | Relative grid factor for QSDR nonlinear registration (`2` uses 2× lower resolution; `1` uses native template grid at higher computation cost). |
+| `--reg_speed` | `0.3` | QSDR CDM deformation step speed per iteration. |
+| `--reg_smoothing` | `0.05` | Smoothing factor applied to the QSDR deformation field (`0`–`1`; higher enforces smoother warps). |
 
 -----
 
 ## I/O & Miscellaneous
 
-| **Option** | **Description** |
-|-----------------------|--------------------------------------------------------------------------------------------------------------|
-| `--output`          | Output folder or filename prefix for reconstructed files. |
-| `--save_src`        | Write out the preprocessed SRC (no reconstruction). |
-| `--save_nii`        | Write out the preprocessed 4D NIfTI instead of SRC. |
-| `--intro`           | Load a text file (`.txt`/`.md`) as the introduction embedded in the reconstruction report. |
-| `--remove`          | Comma-separated DWI indices or ranges to drop, e.g. `--remove=0,5:10` or `--remove=20:end`. |
-| `--export_r`        | Write a `.rXX` file reporting registration R² (e.g., `.r85` for 0.85). |
-| `--cmd`             | Run one or more reconstruction commands before reconstruction. Separate commands with `+` and append parameters with `=`, e.g. `--cmd="resample=1.0+save_src=out.sz"`. |
+| **Option** | **Default** | **Description** |
+|---|---|---|
+| `--output` | *(source directory & stem)* | Output folder or `.fz`/`.fib.gz` path. When omitted or set to an existing directory, appends `.dti.fz`, `.gqi.fz` (`.gqi2.fz`), `.qsdr.fz` (`.qsdr2.fz`), `.odf.<method>.fz`, or `.hist.fz` to the stripped source name. |
+| `--overwrite` | `0` | Overwrite existing `--output`, `--save_src`, or `--save_nii` target (`1` = overwrite; `0` = skip and exit `0` if target exists). |
+| `--save_src` | *(none)* | Save preprocessed DWI as `.sz`, `.src.gz`, or `.rz` and exit without running reconstruction. Unmasked inputs automatically receive a U-Net mask unless `--mask=1` is passed. |
+| `--save_nii` | *(none)* | Save preprocessed 4D DWI to `<name>.nii.gz` along with `<name>.bval` and `<name>.bvec`, then exit without reconstructing (path must end with `nii.gz`). |
+| `--intro` | *(none)* | Embed a text/Markdown file into the `intro` report field of the saved `.sz`/`.fz`. |
+| `--export_r` | `0` | Set `1` to write an empty `<source>.r<int(R2*100)>` marker file reporting QSDR registration goodness-of-fit (e.g., `subj.sz.r85` for `R² = 0.85`). |
+| `--cmd` | *(none)* | `+`-separated command sequence run after `--remove` and before `--check_btable` (e.g., `--cmd="eddy+resample=1.25"`). |
+| `--thread_count` | Max CPU threads | Worker thread count used across preprocessing and reconstruction. |
+| `--loop` | Auto when `--source` contains `*` | Explicit wildcard pattern to iterate over multiple files in batch mode. |
+| `--continue_on_error` | *(off)* | Keep processing remaining batch files if one file fails. |
 
 -----
 
 ## Available `--cmd` commands
 
-Direct `--action=rec --cmd` calls use the short command names below. Commands are chained with `+`:
+`--action=rec --cmd` splits on `+` and dispatches each `command` or `command=parameter` directly:
 
 ```text
---cmd="command[=parameter]+command2[=parameter]"
+--cmd="command1=param1+command2=param2"
 ```
 
-Older DSI Studio versions recorded processing steps using GUI-path names such as `[Step T2][Corrections][EDDY]`. Current command-line workflows should use the short names below. Saved processing histories are translated internally when they are replayed.
+Always use the short command names below on the command line. Legacy GUI step strings such as `[Step T2][Corrections][EDDY]` are not translated when passed directly via `--cmd` (they are translated only when replaying saved `steps` histories).
 
 ### Parameters
 
-- `set_param=<name>=<value>`: Set one reconstruction parameter.
-- `set_params=<name>=<value>&<name>=<value>...`: Set multiple reconstruction parameters in one command. Quote the whole `--cmd` argument in shells where `&` has special meaning.
-- `list_param[=<name>]`: Print one parameter, or all parameters when no name (or `all`) is given.
+- `set_param=<name>=<value>`: Set one reconstruction parameter (runs after initial CLI flag parsing, overriding earlier values).
+- `set_params=<name>=<value>&<name>=<value>...`: Set multiple parameters in one step (quote the `--cmd` string in shells where `&` is special).
+- `list_param` or `list_param=<name>`: Print all parameters (`all` or omitted) or one named parameter.
 
-Supported parameter names are `method`, `thread_count`, `other_output`, `dti_ignore_high_b`, `odf_resolving`, `r2_weighted`, `param`, `template`, `qsdr_reso`, `reg_resolution`, `reg_speed`, `reg_smoothing`, `hist_downsampling`, `hist_raw_smoothing`, `hist_tensor_smoothing`, and `hist_resolution`.
+Supported parameter names: `method`, `thread_count`, `other_output`, `dti_ignore_high_b`, `r2_weighted`, `param`, `template` *(0-based integer template index)*, `qsdr_reso`, `reg_resolution`, `reg_speed`, `reg_smoothing`, `hist_downsampling`, `hist_raw_smoothing`, `hist_tensor_smoothing`, and `hist_resolution`.
 
 ### File Operations
 
-- `save_src=<filename>`: Save the current data as an SRC/SZ file. Use an SRC/SZ filename extension.
-- `save_nifti=<filename>`: Save the current DWI data as a 4D NIfTI file. Use a NIfTI filename extension.
-- `save_b0=<filename>`: Save the first B0 volume as a NIfTI file.
-- `save_dwi_sum=<filename>`: Save the DWI-sum image as a NIfTI file.
+- `save_src=<file.sz|.src.gz|.rz>`: Save the current DWI dataset to an SRC/SZ/RZ file.
+- `save_nifti=<file.nii.gz>`: Save the current 4D DWI dataset to `.nii.gz` plus matching `.bval` and `.bvec` files.
+- `save_b0=<file.nii.gz>`: Save the first b0 volume as a 3D NIfTI file.
+- `save_dwi_sum=<file.nii.gz>`: Save the summed DWI volume as a 3D NIfTI file.
+- `save_b_table=<file.txt>`: Save the 4-column DSI Studio b-table (`b bx by bz`).
+- `save_bval=<file.bval>`: Save b-values in FSL `.bval` format.
+- `save_bvec=<file.bvec>`: Save b-vectors in FSL `.bvec` format.
 
 ### Mask Operations
 
-- `mask_open=<mask_file>`: Load a mask whose dimensions match the source data.
-- `mask_erosion`: Erode the current mask.
-- `mask_dilation`: Dilate the current mask.
-- `mask_unet`: Generate a mask using the U-Net model for the selected template.
-- `mask_defragment`: Keep the connected mask component after defragmentation.
-- `mask_slice_defragment`: Fill/defragment the mask slice by slice.
-- `mask_smoothing`: Smooth the current mask.
-- `mask_fit`: Fit the current mask to the DWI-sum image.
+- `mask_open=<mask_file>`: Load a mask file whose dimensions match the DWI volume.
+- `mask_from_unet`: Generate a mask using the species tissue U-Net model for the active template.
+- `mask_from_template`: Generate a mask by nonlinearly warping the active template.
+- `mask_threshold=<int_threshold>`: Set the mask to `dwi_sum > threshold` (always supply an integer value in headless CLI runs).
+- `mask_erosion`: Erode the current mask by 1 voxel.
+- `mask_dilation`: Dilate the current mask by 1 voxel.
+- `mask_defragment`: Retain the main connected component of the mask.
+- `mask_slice_defragment`: Fill 2D holes slice by slice.
+- `mask_smoothing`: Smooth the current mask boundary.
+- `mask_fit`: Fit the current mask boundary to the DWI-sum image.
 - `mask_negate`: Invert the current mask.
-- `mask_from_template`: Generate a mask by warping the selected template.
-- `mask_threshold=<threshold>`: Set the mask from `DWI sum > threshold`. Supply the threshold explicitly for noninteractive CLI use.
-- `mask_remove_background`: Zero DWI voxels outside the current mask and enable mask application.
-- `probabilistic_masking=<probability_map.nii.gz>`: Multiply DWI signals by a same-dimension probability map and set the mask to voxels with probability greater than zero.
+- `mask_remove_background`: Zero DWI voxels outside the current mask and set `apply_mask=true`.
+- `probabilistic_masking=<prob_map.nii.gz>`: Multiply all DWI volumes by a matching-dimension probability map and set the mask to `prob > 0`.
 
 ### Image Editing
 
-- `resample=<resolution>`: Resample to the specified positive isotropic resolution in mm.
-- `align_acpc[=<resolution>]`: Align to AC-PC at the specified positive isotropic resolution; if omitted, the current x voxel size is used.
-- `crop_background[=<border>]`: Crop background with an optional non-negative voxel border (default `0`).
-- `set_voxel_size="<x> <y> <z>"`: Overwrite voxel size with three positive values.
-- `smooth_signals`: Apply Gaussian smoothing to the DWI volumes.
-- `flip_x`, `flip_y`, `flip_z`: Flip image data and corresponding b-vector axis.
-- `swap_xy`, `swap_yz`, `swap_xz`: Swap image axes, voxel sizes, and corresponding b-vector axes.
+- `resample=<mm>`: Resample DWI volumes and mask to a positive isotropic voxel size in mm.
+- `align_acpc` or `align_acpc=<mm>`: Align to AC-PC at `<mm>` isotropic resolution (defaults to current `vx` when `<mm>` is omitted).
+- `crop_background` or `crop_background=<border>`: Trim empty background around the mask with an optional non-negative voxel margin (default `0`).
+- `set_voxel_size="<vx> <vy> <vz>"`: Overwrite voxel spacing in mm without resampling image data.
+- `smooth_signals`: Apply Gaussian smoothing across DWI volumes.
+- `flip_x`, `flip_y`, `flip_z`: Flip the image volume along `x`, `y`, or `z` and negate the corresponding b-vector component.
+- `swap_xy`, `swap_yz`, `swap_xz`: Swap two image axes, their voxel sizes, and the corresponding b-vector components.
+- `remove=<spec>`: Drop DWI volumes by 0-based index/range or b-value filter (`0,5:10,20:end`, `b>3000`, `b<100`).
+- `add_other_image=<file.nii.gz>` or `add_other_image=<name>:<file.nii.gz>`: Attach an auxiliary 3D NIfTI volume for reconstruction.
 
 ### B-table Operations
 
-- `check_btable`: Run the template-aware b-table check.
-- `check_btable2`: Run the no-template b-table check.
-- `flip_bx`, `flip_by`, `flip_bz`: Flip only the corresponding b-vector component.
-- `swap_bxby`, `swap_bybz`, `swap_bxbz`: Swap only the corresponding b-vector components.
+- `load_bval=<file.bval>`: Replace b-values from an FSL `.bval` file.
+- `load_bvec=<file.bvec>`: Replace b-vectors from an FSL `.bvec` file (flips `by` to match DSI Studio convention).
+- `regenerate_btable` or `regenerate_btable=<reference.sz>`: Re-estimate shell b-vectors by signal mutual information against the active template's reference `.sz` (or `<reference.sz>`).
+- `scheme_balance`: Interpolate shell DWI data (`< 5` shells) onto an evenly distributed icosahedral sampling scheme.
+- `check_btable`: Run the template-aware 24-orientation b-table check/auto-correction.
+- `check_btable2`: Run the no-template 24-orientation b-table check/auto-correction.
+- `flip_bx`, `flip_by`, `flip_bz`: Negate only the specified b-vector component (image volume unchanged).
+- `swap_bxby`, `swap_bybz`, `swap_bxbz`: Swap only the specified b-vector components (image volume unchanged).
 
 ### Corrections
 
-- `topup[=<reverse_phase_file>]`: Apply TOPUP. If the reverse-PE file is omitted, DSI Studio searches for a matching reverse-phase input.
-- `topup_eddy[=<reverse_phase_file>]`: Apply TOPUP followed by EDDY. If no usable reverse-PE input is found, TOPUP is skipped and EDDY is still attempted.
-- `eddy`: Apply FSL EDDY correction.
-- `motion_correction`: Perform rigid-body DWI motion correction and rotate the b-table accordingly.
-- `bias_field_correction`: Correct smooth DWI signal inhomogeneity.
-- `correct_by_t1w=<T1_file>[|<resolution>]`: Correct AP–PA susceptibility distortion using the subject's T1w image. The optional resolution sets the isotropic output voxel size in mm (e.g. `|1.5`); `0` or no value keeps the native resolution. The legacy `correct_by_t2w=<file>` is accepted as an alias and runs the same correction at native resolution.
-- `orientation_correction`: Automatically correct volume orientation using image symmetry/axis heuristics.
+- `topup` or `topup=<rev_pe_file>`: Run FSL TOPUP susceptibility correction (auto-searches for a matching reverse-PE file if omitted).
+- `topup_eddy` or `topup_eddy=<rev_pe_file>`: Run TOPUP followed by EDDY (skips TOPUP with a warning and still runs EDDY if no reverse-PE file is found).
+- `eddy`: Run TinyFSL/FSL EDDY distortion and motion correction.
+- `motion_correction`: Rigid-body register DWI volumes and rotate b-vectors accordingly.
+- `bias_field_correction`: Estimate and remove smooth DWI bias field inhomogeneity.
+- `correct_by_t1w=<t1w.nii.gz>` or `correct_by_t1w=<t1w.nii.gz>|<mm>`: Correct AP–PA susceptibility distortion by nonlinearly warping an inverted b0 to `<t1w.nii.gz>`, optionally resampling to `<mm>` isotropic (`0` or omitted keeps native resolution; `correct_by_t2w=<file>` is accepted as an alias).
+- `orientation_correction`: Automatically swap/flip volume axes to standard orientation using symmetry heuristics.
 
 ### Reconstruction Geometry
 
-- `partial_fov="<xmin> <ymin> <zmin> <xmax> <ymax> <zmax>"`: Set the partial-FOV bounds used by reconstruction.
-
-Reconstruction itself runs after the `--cmd` sequence. The legacy saved-step label `[Step T2][Reconstruction]` is a history marker rather than a direct `--cmd` operation.
+- `partial_fov="<xmin> <ymin> <zmin> <xmax> <ymax> <zmax>"`: Set partial-FOV bounding coordinates used during QSDR registration.

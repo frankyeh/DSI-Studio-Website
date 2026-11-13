@@ -1,105 +1,131 @@
 # Generating SRC Files
 
-> Use `--action=src` to generate SRC files from NIFTI or DICOM files.
-
-The `src` action converts NIFTI or DICOM diffusion data into the current `.sz` SRC format. Legacy `.src.gz` files remain supported for compatibility.
+Use `--action=src` to convert diffusion NIfTI (`.nii`, `.nii.gz`), DICOM (`.dcm`), Bruker `2dseq`, Varian/Agilent `.fdf`, or NRRD/NHDR (`.nhdr`, `.nrrd`) data into `.sz` source files. Legacy `.src.gz` files remain readable in downstream steps.
 
 ---
 
 ## Examples
 
-**1. Convert a single 4D NIFTI file to an SRC file:**
+**1. Convert a single 4D NIfTI file (auto-detecting sidecar `bval`/`bvec`):**
 ```bash
-dsi_studio --action=src --source=c:\subject001.nii.gz
+dsi_studio --action=src --source=subject001.nii.gz --output=subject001.sz
 ```
 
-**2. Specify the location of bval and bvec files for a 4D NIFTI file (when DSI Studio cannot find them automatically):**
+**2. Specify FSL `bval` and `bvec` files explicitly (both flags required together):**
 ```bash
-dsi_studio --action=src --source=c:\subject001.nii.gz --bval=bval --bvec=bvec
+dsi_studio --action=src --source=c:\subject001.nii.gz --bval=c:\bval.txt --bvec=c:\bvec.txt --output=c:\subject001.sz
 ```
 
-**3. Convert DWI NIFTI files in a BIDS folder and output all SRC files to a specified folder:**
+**3. Replace the gradient table using a 4-column DSI Studio `b_table` file (`bval bx by bz` per volume):**
 ```bash
-dsi_studio --action=src --source=./bids_root_folder --output=/src_files
+dsi_studio --action=src --source=subject001.nii.gz --b_table=b_table.txt --output=subject001.sz
 ```
 
-**4. Parse a BIDS session folder and generate an `.sz` file, with an `.rz` companion when reverse-phase data are present:**
+**4. Convert a BIDS root directory (`sub-*` hierarchy) and save outputs to a folder:**
+```bash
+dsi_studio --action=src --source=./bids_root_folder --output=./src_files
+```
+
+**5. Convert a single BIDS `dwi` directory explicitly (saving `.rz` when reverse-phase data exist):**
 ```bash
 dsi_studio --action=src --source=./sub-01/ses-01/dwi --bids=1
 ```
 
-**5. Combine two 4D NIFTI files into one SRC file:**
+**6. Convert all 4D NIfTI DWI files in a directory into separate `.sz` files:**
 ```bash
-dsi_studio --action=src --source=HCA9992517_V1_MR_dMRI_dir98_AP.nii.gz --other_source=HCA9992517_V1_MR_dMRI_dir99_AP.nii.gz
+dsi_studio --action=src --source=./nifti_folder --output=./src_folder
+```
+Pass the directory path (`./nifti_folder`) rather than `--source="*.nii.gz"` when generating one `.sz` per scan: `--action=src` does not auto-loop on `--source=*`, so a wildcard without `--loop` merges all matched files into a single `.sz`.
+
+**7. Combine multiple NIfTI scans in the same image space into one `.sz` file:**
+```bash
+dsi_studio --action=src \
+  --source=HCA9992517_V1_MR_dMRI_dir98_AP.nii.gz \
+  --other_source=HCA9992517_V1_MR_dMRI_dir99_AP.nii.gz \
+  --output=HCA9992517_AP.sz
+```
+Wildcard patterns also merge matched files when `--loop` is omitted (quote wildcards in POSIX shells):
+```bash
+dsi_studio --action=src --source="*98_AP.nii.gz" --other_source="*99_AP.nii.gz"
 ```
 
-**6. Search a DICOM directory and convert the detected DICOM studies:**
+**8. Convert DICOM studies (parent folder vs. single series):**
+
+Parent directory containing series subfolders (writes `<patient>_s<seq_num>_<sequence>.sz` or `.nii.gz`):
 ```bash
-dsi_studio --action=src --source=C:\DICOM_folder
+dsi_studio --action=src --source=C:\DICOM_study_root
 ```
 
-For a directory containing no usable NIFTI diffusion data, DSI Studio falls back to its DICOM-directory conversion workflow. That route organizes/converts the detected studies and does not use `--output` as a single `.sz` filename.
-
-**7. Find and combine specific files based on a pattern to create a combined SRC file:**
+Single DICOM series folder (using a `.dcm` wildcard):
 ```bash
-dsi_studio --action=src --source=*98_AP.nii.gz --other_source=*99_AP.nii.gz
+dsi_studio --action=src --source="C:\DICOM_series\*.dcm" --output=C:\subject001.sz
 ```
 
-**8. Parse 4D NIFTI files from a folder, each with associated bval and bvec files, and generate SRC files in a new folder:**
+**9. Batch loop across subjects or `.zip` archives (`--loop`):**
 ```bash
-dsi_studio --action=src --source=*.nii.gz --output=/src_folder
-```
-
-**9. Batch process using a loop to create SRC files from zip archives and associated files:**
-```bash
-dsi_studio --action=src --loop=MGH_*_all.zip --source=mgh_*/diff/preproc/mri/diff_preproc.nii.gz --bval=mgh_*/diff/preproc/bvals.txt --bvec=mgh_*/diff/preproc/bvecs_fsl_moco_norm.txt --output=sub-*_dwi.sz
+dsi_studio --action=src \
+  --loop="MGH_*_all.zip" \
+  --source="mgh_*/diff/preproc/mri/diff_preproc.nii.gz" \
+  --bval="mgh_*/diff/preproc/bvals.txt" \
+  --bvec="mgh_*/diff/preproc/bvecs_fsl_moco_norm.txt" \
+  --output="sub-*_dwi.sz"
 ```
 
 ---
 
 ## Core Functions
 
-| **Parameter**   | **Description**                                                                 |
-|------------------|---------------------------------------------------------------------------------|
-| `source`        | Specify the directory containing DICOM/NIFTI files or the filename of a 4D NIFTI file. |
+| Option | Default | Description |
+|:--|:--|:--|
+| `--action` | *(required)* | Must be `src`. |
+| `--source` | *(required)* | Directory path (BIDS root, NIfTI folder, or DICOM parent folder) or file/pattern (`.nii`, `.nii.gz`, `.dcm`, Bruker `2dseq`, `.fdf`, `.nhdr`, `.nrrd`). Multiple comma-separated files or wildcards merge into one `.sz` unless `--loop` is set. |
 
 ---
 
 ## Optional Functions
 
-| **Parameter**      | **Description**                                                                 |
-|---------------------|---------------------------------------------------------------------------------|
-| `other_source`      | Specify additional files to be included in the SRC file. Multiple files can be assigned using a comma-separated list (e.g., `--other_source=1.nii.gz,2.nii.gz`). |
-| `output`           | For single-file or NIFTI/BIDS conversion, assign the output `.sz` filename or output folder. If not specified, output is written next to the input. The DICOM-directory fallback manages its own output organization rather than treating `--output` as one `.sz` filename. Legacy `.src.gz` remains readable. |
-| `b_table`          | Assign a text file to replace the b-table. The file must match the loaded images in size. |
-| `bval`             | Specify the location of the FSL bval file. *(DSI Studio usually detects this automatically.)* |
-| `bvec`             | Specify the location of the FSL bvec file. *(DSI Studio usually detects this automatically.)* |
-| `intro`            | Specify a `README` file to include as an introduction for the SRC file. |
+| Option | Default | Description |
+|:--|:--|:--|
+| `--output` | `<stem>.sz` in CWD (file mode) or input folder (directory NIfTI/BIDS mode) | **File/pattern mode:** Output `.sz` (or `.rz`) file path, or an existing directory (`<output>/<stem>.sz`); appends `.sz` if the path does not end in `.sz` or `.rz`. **Directory NIfTI/BIDS mode:** Output directory (created if missing); writes beside each input NIfTI when omitted. Ignored by DICOM directory fallback. |
+| `--other_source` | *(none)* | *(File/pattern mode only)* Additional DWI file(s), comma-separated paths, wildcard pattern, or NIfTI directory to append into the same `.sz` file. |
+| `--b_table` | *(none)* | *(File/pattern mode only)* Whitespace-delimited text file containing `4 * N` numbers (`bval bx by bz` per volume) that replaces the loaded b-table directly without flipping axes. |
+| `--bval` | Auto-detected (NIfTI) | *(File/pattern mode only; must pair with `--bvec`)* FSL b-value file(s) (single path, comma-separated list, or wildcard). |
+| `--bvec` | Auto-detected (NIfTI) | *(File/pattern mode only; must pair with `--bval`)* FSL b-vector file(s) (`3 x N` or `N x 3`); negates `bvec_y` from FSL convention and sets `bval = 0`, `bvec = (0,0,0)` where `bval < 100`. Overrides `--b_table` if both are supplied. |
+| `--intro` | Auto `README` if present | *(File/pattern mode only)* Text file embedded as the `intro` metadata string inside the `.sz` file. |
+
+For NIfTI inputs without `--bval`/`--bvec`, DSI Studio automatically checks `<stem>.bval`, `<stem>.bvals`, `<stem>.bval.txt`, `<stem>.bvals.txt` and `<stem>.bvec`, `<stem>.bvecs`, `<stem>.bvec.txt`, `<stem>.bvecs.txt`. When present in the same directory as a 4D NIfTI, `nodif_brain_mask.nii.gz` is loaded as the mask and `grad_dev.nii.gz` (9-volume gradient-nonlinearity tensor; requires `b0` and `bval`/`bvec`) is applied automatically.
 
 ---
 
 ## Accessory Functions
 
-| **Parameter**      | **Default**     | **Description**                                                                 |
-|---------------------|-----------------|---------------------------------------------------------------------------------|
-| `bids`             | Auto | BIDS parsing is selected automatically when a BIDS structure is detected. Use `--bids=1` to request BIDS handling explicitly. |
-| `overwrite`         | `0` | Overwrite existing output files when set to `1`. |
-| `topup_eddy`        | `0` | Run TOPUP and EDDY during directory/BIDS conversion when reverse-phase data are available. |
-| `sort_b_table`      | `0` | Sort the b-table when creating an SRC file from explicitly supplied images. |
+| Option | Default | Description |
+|:--|:--|:--|
+| `--bids` | `1` if `sub-*` DWI found, else `0` | *(Directory NIfTI mode)* Enable (`1`) or disable (`0`) BIDS folder grouping and reverse-phase pairing. Set `--bids=1` when `--source` points directly to a `dwi` or session folder. |
+| `--overwrite` | `0` | Skip existing outputs when `0`; replace existing `.sz` (and DICOM `.nii.gz`) files when `1`. |
+| `--topup_eddy` | `0` | *(BIDS directory mode only, `bids=1`)* When `1`, runs TOPUP (if reverse-phase data exist) and EDDY before saving `.sz` instead of saving a companion `.rz`. Ignored when `bids=0` or in file mode. |
+| `--sort_b_table` | `0` | *(File/pattern mode only)* When non-zero (`1`), sorts volumes by ascending `b-value` (then `b-vector`) and averages duplicate volumes with identical `b-value` and `b-vector`. |
+| `--loop` | *(none)* | *(Global dispatcher)* Explicit file/archive wildcard pattern that runs `--action=src` once per match and substitutes `*` in other options. |
+| `--continue_on_error` | *(not set)* | *(Global dispatcher)* Continue remaining `--loop` iterations after an error instead of stopping on the first failure. |
+| `--thread_count` | `tipl::max_thread_count` | *(Global dispatcher)* Maximum CPU thread count used by parallel NIfTI directory conversion and gradient-deviation correction. |
 
 ---
 
 ## Directory behavior
 
-1. **BIDS/NIFTI detection**:
-   - For a directory source, DSI Studio first looks for BIDS DWI data, then other NIFTI DWI files.
-   - `--bids=1` can be used to request BIDS handling explicitly.
+When `--source` is an existing directory, `--other_source`, `--b_table`, `--bval`, `--bvec`, `--sort_b_table`, and `--intro` are not used. DSI Studio processes the directory in the following order:
 
-2. **NIFTI output directory**:
-   - For directory-based NIFTI/BIDS conversion, `--output` is an output directory. If omitted, SRC files are written next to the NIFTI inputs.
+1. **BIDS/NIfTI detection**:
+   - Searches `sub-*/dwi` and `sub-*/ses-*/dwi` for NIfTI files with matching `bval`/`bvec` (`--bids` defaults to `1` when found).
+   - If none are found, searches `--source` directly for `*.nii.gz` and `*.nii` (`--bids` defaults to `0` unless `--bids=1` is specified).
 
-3. **Reverse phase encoding**:
-   - Reverse-phase data detected during directory/BIDS conversion are saved as an `.rz` companion when TOPUP/EDDY is not run during SRC generation.
+2. **BIDS phase-encoding pairing (`bids=1`)**:
+   - Within each folder, NIfTI files (excluding `*.sz.*`) are sorted from largest to smallest volume count and grouped by 3D dimensions and `PhaseEncodingDirection` from `<stem>.json` (or filename markers `_ap`, `ap_`, `_pa`, `pa_`, `_lr`, `lr_`, `_rl`, `rl_`, `rev` when JSON metadata are absent).
+   - Same-phase runs merge into `<main_stem>.sz` (embedding `README` from up to three parent directories or the working directory). Opposite-phase runs are saved as `<main_stem>.rz` when `--topup_eddy=0`, or used to run TOPUP + EDDY directly when `--topup_eddy=1` (a single reverse-phase NIfTI does not require `bval`/`bvec`).
 
-4. **DICOM fallback**:
-   - If no NIFTI diffusion data are found under the directory, DSI Studio attempts DICOM conversion using the directory-based DICOM workflow.
+3. **Plain NIfTI folder conversion (`bids=0`)**:
+   - Converts each 4D NIfTI with matching `bval`/`bvec` in parallel to `<stem>.sz` inside `--output` (created if needed), or beside each input NIfTI when `--output` is omitted.
+
+4. **DICOM directory fallback**:
+   - If no NIfTI files are found, DSI Studio recursively scans subdirectories of `--source` for `*.dcm` series (point `--source` at the parent study folder containing series subfolders, or use `--source="series_dir\*.dcm"` for a single leaf series folder).
+   - Diffusion series with a b-table are saved as `<series_parent>/<patient>_s<seq_num>_<sequence>.sz`; structural or non-b-table series are saved as `<series_parent>/<patient>_s<seq_num>_<sequence>.nii.gz`. Only `--overwrite` applies (`--output` is ignored).
