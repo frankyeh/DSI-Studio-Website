@@ -1,4 +1,4 @@
-# <span class="ui-key">Step T2</span> Reconstruction
+# Reconstruction CLI
 
 > Use `--action=rec` to reconstruct diffusion MRI (GQI, DTI, QSDR) or 2D histology data into `.fz` FIB files, or to run DWI preprocessing and export `.sz` / `.nii.gz` datasets.
 
