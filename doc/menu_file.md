@@ -6,7 +6,7 @@ The **[File]** menu manages the loaded FIB dataset, saves or restores multi-obje
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Open FIB Directory...</span> | Shortcut: `Ctrl+O`. Opens the folder containing the loaded `.fz` or `.fib.gz` file in your system file manager rather than opening a new FIB file dialog. |
+| <span class="gui-menu-item">Open FIB Directory...</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>O</kbd></kbd>. Opens the folder containing the loaded `.fz` or `.fib.gz` file in your system file manager rather than opening a new FIB file dialog. |
 | <span class="gui-menu-item">Save FIB As...</span> | Saves the loaded fiber orientations, metrics, template mapping, and report metadata to a compact `.fz` file (converting `.fib.gz` if needed). Tracked bundles, regions, external slices, and view settings are excluded; use **File › Save Workspace...** to save session overlays. |
 
 ## Workspace
