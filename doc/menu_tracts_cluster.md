@@ -21,7 +21,7 @@ The **[Tracts Cluster]** menu renames, sorts, colors, and splits tract bundles i
 | Menu item | Behavior |
 |---|---|
 | <span class="gui-menu-item">Open Cluster Colors...</span> | Reads `R G B` integer triplets (`0–255`) from a `.txt` file, assigns each color in list order to the checked bundles (skipping unchecked rows), and switches **Tract Color › Style** to **Assigned**. |
-| <span class="gui-menu-item">Open Cluster Labels...</span> | Splits the highlighted bundle into checked `cluster0`, `cluster1`, ... rows using one non-negative integer ID per visible streamline from a `.txt` file, then recolors all bundles. Replacing the selected row cannot be undone with **Tract Edit › Undo**. |
+| <span class="gui-menu-item">Open Cluster Labels...</span> | Splits the highlighted bundle into checked `cluster0`, `cluster1`, ... rows using one non-negative integer ID per visible streamline from a `.txt` file, then recolors all bundles. Replacing the selected row cannot be undone with **[Tract Edit][Undo]**. |
 | <span class="gui-menu-item">Open Cluster Values...</span> | Loads one scalar per checked bundle from a `.txt` file (count must match checked rows) and sets **Tract Color › Style** to **Loaded Value**. Adjust **Tract Color › Min Value** and **Max Value** outside `0–1`; per-streamline values take precedence. |
 | <span class="gui-menu-item">Save Cluster Colors...</span> | Saves the RGB color (`0–255` per channel) of every checked bundle in list order to a `.txt` file (`R G B` per line), omitting unchecked rows. |
 
