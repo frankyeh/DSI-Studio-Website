@@ -54,7 +54,9 @@ Use region-based analysis when the question concerns diffusion measurements with
 3. If needed, use **[Slices][Insert Other Images]** in the tracking window to add registered measurements such as DKI, NODDI, PET, or other NIfTI data.
 4. Use **[Regions][Statistics]** to obtain measurements for selected regions.
 
-For population/template-space region analysis, a [`.dz` connectometry database](/doc/gui_cx.html) can be opened in the tracking window with template-space regions. A `.dz` is for group diffusion/connectometry data; it is **not** a region-to-region connectivity matrix.
+<aside class="ana-note" role="note" markdown="1">
+**Check.** Built-in atlases must match the image space. For population/template-space region analysis, a [`.dz` connectometry database](/doc/gui_cx.html) can be opened in the tracking window with template-space regions. A `.dz` is for group diffusion/connectometry data; it is **not** a region-to-region connectivity matrix.
+</aside>
 
 ## Tractometry
 
@@ -65,7 +67,9 @@ Tractometry quantifies diffusion or other measurements along white-matter pathwa
 3. Use **[Tracts][Statistics]** for bundle-level scalar and shape measurements.
 4. Use the [tract profile](/doc/gui_t3_atk.html#tract-profile) when the spatial distribution of a measurement along the pathway is important.
 
-Streamline-order tract profiles use 100 sampling positions; image-axis profiles instead depend on image geometry. Keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible `.dz` database may be used with template-space pathways.
+<aside class="ana-note" role="note" markdown="1">
+**Check.** Streamline-order tract profiles use 100 sampling positions; image-axis profiles instead depend on image geometry. Keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible `.dz` database may be used with template-space pathways.
+</aside>
 
 Example study of **bundle-level** QA tractometry (not a 100-node along-tract profile): [Pritschet et al., *Nature Neuroscience* (2024)](https://doi.org/10.1038/s41593-024-01741-0).
 
@@ -73,19 +77,42 @@ Example study of **bundle-level** QA tractometry (not a 100-node along-tract pro
 
 Differential tractography maps pathway segments showing changes in diffusion measurements between scans or relative to a reference population. It is configured within the fiber tracking window after opening the appropriate FIB, rather than in the main window's Correlational Tractography page.
 
-See [Differential Tractography](/doc/gui_t3_dt.html) for the four workflows: longitudinal native space, longitudinal template space, cross-sectional native space, and cross-sectional template space. The input images and reference maps must be appropriately aligned; scan/protocol differences can mimic biological change.
+Four workflows compare the study design and coordinate space:
+
+<div class="ana-four" aria-label="Differential tractography workflow options">
+  <span><strong>Longitudinal</strong> · Native space</span>
+  <span><strong>Longitudinal</strong> · Template space</span>
+  <span><strong>Cross-sectional</strong> · Native space</span>
+  <span><strong>Cross-sectional</strong> · Template space</span>
+</div>
+
+See the [full Differential Tractography guide](/doc/gui_t3_dt.html).
+
+<aside class="ana-note" role="note" markdown="1">
+**Check.** The input images and reference maps must be appropriately aligned; scan/protocol differences can mimic biological change.
+</aside>
 
 Example study: <https://pubmed.ncbi.nlm.nih.gov/31472253/>
 
 ## Correlational Tractography / Connectometry
 
-**Correlational Tractography** is a separate sidebar page for cohort-level associations between local diffusion measures and study variables. Its three stages are:
+**Correlational Tractography** is a separate sidebar page for cohort-level associations between local diffusion measures and study variables.
 
-1. **FIB files:** Select QSDR FIB inputs via **FIB File(s) (*.fz)...** or **FIB Folder (*.fz)...** to populate the database-creation workflow. The import stage also offers **▸ More... → Create population average...** for reference-population workflows.
-2. **Prepare database:** Open **Database (*.dz)...** to inspect or edit a connectometry database, subjects, and demographics.
-3. **Correlational Tractography:** Select **Database (*.dz)** to open group correlational tractography/connectometry analysis. Choose variables, covariates and diffusion index, then review association tracts and permutation-derived FDR.
+<ol class="ana-flow ana-flow-small" aria-label="Correlational tractography analysis stages">
+  <li><span class="ana-num">1</span><h3>FIB files</h3><p>QSDR/template-space FIB inputs</p><span class="ana-file">.fz</span><details markdown="1"><summary>Options &amp; QC</summary>
+Select **FIB File(s) (*.fz)...** or **FIB Folder (*.fz)...** to populate the database-creation workflow. The import stage also offers **More... → Create population average...** for reference-population workflows.
+</details></li>
+  <li><span class="ana-num">2</span><h3>Prepare database</h3><p>Subjects and demographics</p><span class="ana-file">.dz</span><details markdown="1"><summary>Options &amp; QC</summary>
+Open **Database (*.dz)...** to inspect or edit a connectometry database, subjects, and demographics.
+</details></li>
+  <li><span class="ana-num">3</span><h3>Correlational tractography</h3><p>Variables, covariates, diffusion index</p><span class="ana-file">FDR</span><details markdown="1"><summary>Options &amp; QC</summary>
+Select **Database (*.dz)** to open group correlational tractography/connectometry analysis. Choose variables, covariates and diffusion index, then review association tracts and permutation-derived FDR.
+</details></li>
+</ol>
 
-For cohort data, use compatible QSDR/template-space FIB files with consistent resolution. A current `.dz` database can store several diffusion indices, so separate database files are generally not required for QA, FA, RDI and other available metrics. A **Recent Database** list is shown beneath the stages.
+<aside class="ana-note" role="note" markdown="1">
+**Check.** For cohort data, use compatible QSDR/template-space FIB files with consistent resolution. A current `.dz` database can store several diffusion indices, so separate database files are generally not required for QA, FA, RDI and other available metrics. A **Recent Database** list is shown beneath the stages.
+</aside>
 
 See the [full connectometry tutorial](/doc/gui_cx.html).
 
@@ -95,20 +122,31 @@ Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-a
 
 **R2R** represents connectivity between pairs of brain regions. **T2R** records the relationship between named white-matter pathways and regions; both are distinct from the group-level diffusion association tested by Correlational Tractography.
 
-**R2R workflow:**
+<div class="ana-two" markdown="1">
+<div markdown="1">
 
-1. Open a FIB with **Tractography → 3 Track → FIB File (*.fz)**, and generate or load the tracts to be analyzed.
+### R2R: Region to region
+
+1. Open a FIB with **[Tractography][3 Track][FIB File (*.fz)]**, and generate or load the tracts to be analyzed.
 2. In the tracking window, open **[Tracts][Connectivity Matrix]**.
 3. Choose a parcellation in the **same coordinate space** as the tractography, and select endpoint/pass-through rules and matrix values.
 4. Calculate and export the matrix, connectogram, or network measures.
 
-**T2R workflow:**
+</div>
+<div markdown="1">
+
+### T2R: Tract to region
 
 1. Map named bundles using [AutoTrack](/doc/gui_t3_atk.html) or load an appropriate set of named tracts.
 2. Load a matching parcellation using the **Regions** atlas controls in the fiber tracking window.
 3. Select **[Regions][Tract-to-Region Connectome]** to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.
 
-Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.
+</div>
+</div>
+
+<aside class="ana-note" role="note" markdown="1">
+**Check.** Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.
+</aside>
 
 For more information, see [Whole-Brain Tractography and Connectivity Matrices](/doc/gui_t3_whole_brain.html) and [AutoTrack / T2R](/doc/gui_t3_atk.html).
 
