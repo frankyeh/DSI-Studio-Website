@@ -13,7 +13,7 @@ Correlational tractography is a **cohort-level** analysis. For a single subject'
 
 ## Current main-window workflow
 
-Select <span class="gui-action">Correlational Tractography</span> from the left sidebar. Its three cards are **1 FIB files → 2 Prepare database → 3 Correlational Tractography**. In the first card, <span class="gui-menu-path"><span class="gui-menu-item">FIB File(s) (*.fz)...</span></span> and <span class="gui-menu-path"><span class="gui-menu-item">FIB Folder (*.fz)...</span></span> open database creation with the selected QSDR FIB data preloaded. <span class="gui-menu-path"><span class="gui-menu-item">Database (*.dz)...</span></span> in the second card opens a database for inspection/editing; <span class="gui-menu-path"><span class="gui-menu-item">Database (*.dz)</span></span> in the third card launches correlational tractography analysis. A <span class="gui-action">Recent Database</span> list is located below.
+Select <span class="gui-action">Correlational Tractography</span> from the left sidebar. Its three cards are **1 FIB files → 2 Prepare database → 3 Correlational Tractography**. In the first card, <span class="gui-menu-path"><span class="gui-menu-item">FIB File(s) (*.fz)...</span></span> and <span class="gui-menu-path"><span class="gui-menu-item">FIB Folder (*.fz)...</span></span> open database creation with the selected QSDR FIB data preloaded. <span class="gui-menu-path"><span class="gui-menu-item">Database (*.dz)...</span></span> in the second card opens a database for inspection/editing; <span class="gui-menu-path"><span class="gui-menu-item">Database (*.dz)</span></span> in the third card launches correlational tractography analysis. A **Recent Database** list is located below.
 
 ## Current workflow
 
