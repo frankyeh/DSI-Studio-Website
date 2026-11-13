@@ -280,17 +280,36 @@ article h1 .ui-key, article h2 .ui-key, article h3 .ui-key { font-size: 0.72em; 
 .shot figcaption { left: 0; right: 0; bottom: 0; padding: 18px 14px 10px;
   background: linear-gradient(transparent, rgba(0,0,0,.65)); border-radius: 0 0 16px 16px; }
 
-/* Diffusion MRI analysis tutorial — scoped navigation and overview. */
-.dmri-journey { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:22px 0 20px; }
-.dmri-stage { display:flex; flex-direction:column; min-width:0; gap:7px; padding:18px 16px; border:1px solid var(--line); border-radius:12px; background:var(--soft); color:var(--ink); text-decoration:none; }
-.dmri-stage:hover, .dmri-stage:focus-visible { border-color:var(--accent); text-decoration:none; outline-offset:3px; }
-.dmri-stage-num { font:600 12px/1 var(--sans); letter-spacing:.08em; color:var(--accent); }
-.dmri-stage strong { font:600 20px/1.2 var(--serif); }
-.dmri-stage > span:last-child { color:var(--muted); font-size:13px; line-height:1.5; }
-.dmri-stage code { font-size:12px; }
-.dmri-note { border-left:3px solid var(--accent); background:var(--soft); border-radius:0 9px 9px 0; padding:14px 17px; margin:20px 0 26px; font-size:14px; line-height:1.6; }
-.dmri-jump { display:flex; flex-wrap:wrap; gap:8px; margin:15px 0 20px; }
-.dmri-jump a { display:inline-flex; align-items:center; border:1px solid var(--line); border-radius:999px; padding:7px 12px; background:var(--soft); color:var(--ink); font-size:13px; text-decoration:none; }
-.dmri-jump a:hover, .dmri-jump a:focus-visible { border-color:var(--accent); text-decoration:underline; }
-article #import, article #reconstruct, article #track { scroll-margin-top:80px; }
-@media (max-width:760px) { .dmri-journey { grid-template-columns:1fr; } .dmri-stage { padding:14px 16px; } .dmri-jump a { padding:7px 11px; } }
+
+/* Analyze dMRI tutorial: responsive instructional navigation, scoped to this page. */
+.ana-flow { list-style:none; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; margin:20px 0 24px; padding:0; counter-reset:none; }
+.ana-flow > li { position:relative; min-width:0; border:1px solid var(--line); border-radius:14px; background:#fff; padding:18px; }
+.ana-flow > li:not(:last-child)::after { content:"›"; position:absolute; right:-14px; top:38px; font-size:24px; color:var(--accent); z-index:1; line-height:1; }
+.ana-num { display:grid; place-items:center; width:24px; height:24px; border-radius:50%; font:700 12px/1 var(--sans); color:#fff; background:#2a78d6; margin-bottom:10px; }
+article .ana-flow h3 { margin:0 0 5px; font:600 21px/1.25 var(--serif); }
+article .ana-flow p { margin:6px 0; font-size:13.5px; line-height:1.5; }
+.ana-path { color:var(--muted); }
+.ana-file { display:inline-block; background:var(--soft); border:1px solid var(--line); border-radius:5px; padding:3px 7px; font:500 12px/1.5 monospace; }
+.ana-flow details { border-top:1px solid var(--line); margin-top:14px; padding-top:10px; font-size:13px; }
+.ana-flow summary { cursor:pointer; font-weight:600; color:var(--accent); }
+.ana-flow details p { margin:10px 0 0; overflow-wrap:anywhere; }
+.ana-setup { background:var(--soft); border-left:3px solid var(--accent); padding:13px 16px; border-radius:0 9px 9px 0; margin:0 0 28px; font-size:14px; line-height:1.55; }
+.ana-setup p { margin:0; }
+.ana-pick { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin:17px 0 32px; }
+.ana-pick-group { min-width:0; }
+.ana-pick-group .step-eyebrow { margin:0 0 10px; }
+.ana-card { position:relative; display:flex; flex-direction:column; gap:6px; min-width:0; border:1px solid var(--line); border-radius:12px; background:#fff; padding:15px 32px 15px 16px; color:var(--ink); text-decoration:none; margin-bottom:10px; }
+.ana-card strong { font-size:15px; line-height:1.35; }
+.ana-card span { color:var(--muted); font-size:12.5px; line-height:1.45; overflow-wrap:anywhere; }
+.ana-card b { position:absolute; right:14px; top:16px; font-size:17px; color:var(--accent); }
+a.ana-card:hover, a.ana-card:focus-visible { border-color:#2a78d6; text-decoration:none; outline:2px solid #2a78d6; outline-offset:2px; }
+.ana-static { background:var(--soft); padding-right:16px; }
+.ana-note { background:#fff8eb; border-left:3px solid #d99a00; border-radius:0 8px 8px 0; padding:10px 14px; margin:15px 0 20px; font-size:14px; line-height:1.6; }
+.ana-note p { margin:0; }
+.ana-two { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:15px 0 20px; }
+.ana-two > div { min-width:0; background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+.ana-two h3 { margin-top:0; }
+.ana-four { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:12px 0 18px; }
+.ana-four > span { background:var(--soft); border:1px solid var(--line); border-radius:8px; padding:10px 12px; font-size:13px; }
+#source, #import, #reconstruct, #track { scroll-margin-top:80px; }
+@media(max-width:720px) { .ana-flow,.ana-pick,.ana-two { grid-template-columns:1fr; } .ana-flow > li:not(:last-child)::after { content:"⌄"; top:auto; bottom:-19px; right:calc(50% - 7px); } .ana-flow { gap:18px; } .ana-card { margin-bottom:8px; } }
