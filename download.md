@@ -66,7 +66,7 @@ Troubleshooting instructions are available in the Windows, macOS and Linux downl
 
 ## Previous Versions
 
-<details class="dl6-legacy"><summary>Previous Versions — Chen, Pre-Chen and CentOS 8</summary>
+<details class="dl6-legacy"><summary>Chen, Pre‑Chen and CentOS 8</summary>
 <p><strong>Chen 2024.05.22 — archived downloads</strong></p>
 <div class="dl6-grid dl6-legacy-grid">
 <section class="dl6-card"><div class="dl6-card-head"><h3>Windows</h3><span>x64</span></div><div class="dl6-buttons"><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_win_cpu.zip"><span>CPU</span></a><a class="dl6-btn" href="https://github.com/frankyeh/DSI-Studio/releases/download/2023.12.06/dsi_studio_win.zip"><span>NVIDIA GPU</span></a></div></section>
