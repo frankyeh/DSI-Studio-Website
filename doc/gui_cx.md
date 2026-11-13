@@ -13,7 +13,7 @@ Correlational tractography is a **cohort-level** analysis. For a single subject'
 
 ## Current main-window workflow
 
-Select <span class="gui-menu-item">Correlational Tractography</span> from the left sidebar. Its three cards are <span class="gui-menu-path"><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>FIB files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Prepare database</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Correlational Tractography</span></span>. In the first card, <span class="gui-action">FIB File(s) (*.fz)...</span> and <span class="gui-action">FIB Folder (*.fz)...</span> open database creation with the selected QSDR FIB data preloaded. <span class="gui-action">Database (*.dz)...</span> in the second card opens a database for inspection/editing; <span class="gui-action">Database (*.dz)</span> in the third card launches correlational tractography analysis. A **Recent Database** list is located below.
+Select <span class="gui-menu-item">Correlational Tractography</span> from the left sidebar. Its three cards are <span class="gui-menu-path"><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>FIB files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Prepare database</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Correlational Tractography</span></span>. In the first card, <span class="gui-action">FIB File(s) (*.fz)...</span> and <span class="gui-action">FIB Folder (*.fz)...</span> open database creation with the selected QSDR FIB data preloaded. <span class="gui-action">Database (*.dz)...</span> in the second card opens a database for inspection/editing; <span class="gui-action">Database (*.dz)</span> in the third card launches correlational tractography analysis. A <span class="gui-menu-item">Recent Database</span> list is located below.
 
 ## Current workflow
 
@@ -21,7 +21,7 @@ Select <span class="gui-menu-item">Correlational Tractography</span> from the le
 2. **Prepare database (optional):** inspect/modify the database or calculate longitudinal change.
 3. **Correlational tractography:** load/verify demographics, select the model and study variable, and run correlational tractography/connectometry.
 
-> **Version compatibility:** Use the current **Sun** version to create <span class="gui-file-ext">.dz</span> databases. The pinned Hou release dated **2025-04-16** predates <span class="gui-file-ext">.dz</span> support; some later Hou builds introduced <span class="gui-file-ext">.dz</span> support but had database-creation issues. Older `.db.fz` and `.db.fib.gz` databases remain supported for compatibility.
+> **Version compatibility:** Use the current **Sun** version to create <span class="gui-file-ext">.dz</span> databases. The pinned Hou release dated **2025-04-16** predates <span class="gui-file-ext">.dz</span> support; some later Hou builds introduced <span class="gui-file-ext">.dz</span> support but had database-creation issues. Older <span class="gui-file-ext">.db.fz</span> and <span class="gui-file-ext">.db.fib.gz</span> databases remain supported for compatibility.
 
 ## Create a connectometry database
 
@@ -160,7 +160,7 @@ Use **Whole brain** for an exploratory analysis. If the hypothesis is anatomical
 
 ### Cohort selection
 
-Use **Select Cohort** when the analysis applies only to a subset of subjects. Always verify the selected subjects before running the permutation analysis.
+Use the <span class="gui-menu-item">Cohort</span> tab when the analysis applies only to a subset of subjects. Always verify the selected subjects before running the permutation analysis.
 
 ### Run and review results
 
