@@ -484,3 +484,7 @@ article .gui-file-ext {
   display: inline; font: 600 .9em/1.4 monospace; color: var(--muted);
   background: transparent; border: 0; border-radius: 0; padding: 0; white-space: nowrap;
 }
+
+/* Keep long menu choices readable inside compact mobile tables. */
+@media (max-width: 760px) { article td .gui-menu-item { white-space: normal; } }
+article .gui-menu-path .gui-action { margin-left: 2px; }
