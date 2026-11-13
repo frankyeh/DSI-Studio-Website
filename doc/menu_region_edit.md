@@ -8,7 +8,7 @@ Edit region masks and apply morphology or set operations.
 |---|---|
 | Modify All Checked | — |
 
-## Morphology
+## Dilation and erosion
 
 | Menu item | Shortcut / GUI command hint |
 |---|---|
@@ -18,14 +18,14 @@ Edit region masks and apply morphology or set operations.
 | Erosioin By Threshold... | `run region_action_erosion_by_threshold` |
 | Erosion | Shortcut: `Ctrl+Shift+E` · `run region_action_erosion` |
 
-## Shape cleanup
+## Opening and closing
 
 | Menu item | Shortcut / GUI command hint |
 |---|---|
 | Opening | Shortcut: `Ctrl+Shift+O` · `run region_action_opening` |
 | Closing | Shortcut: `Ctrl+Shift+C` · `run region_action_closing` |
 
-## Threshold
+## Smoothing and mask structure
 
 | Menu item | Shortcut / GUI command hint |
 |---|---|
@@ -34,13 +34,13 @@ Edit region masks and apply morphology or set operations.
 | Separate | Shortcut: `Ctrl+Shift+P` · `run region_action_separate` |
 | Negate | Shortcut: `Ctrl+Shift+N` · `run region_action_negate` |
 
-## Set operations
+## Threshold
 
 | Menu item | Shortcut / GUI command hint |
 |---|---|
 | Threshold | Shortcut: `Ctrl+Shift+T` · `run region_action_threshold_current` |
 
-## Other actions
+## Region set operations
 
 | Menu item | Shortcut / GUI command hint |
 |---|---|
