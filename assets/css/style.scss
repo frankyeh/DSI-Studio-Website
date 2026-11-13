@@ -402,3 +402,48 @@ article.doc-menu-reference td { overflow-wrap: anywhere; }
   .di-metric, .di-condition { padding: 14px; }
   .di-signals { grid-template-columns: 1fr; }
 }
+
+
+/* dMRI acquisition guide: protocol chooser and readable parameter cards. */
+.aq-chooser { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin: 23px 0; }
+.aq-choice { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; gap: 7px; padding: 21px; color: var(--ink); border: 1px solid var(--line); border-radius: 12px; transition: border-color .15s; }
+.aq-choice:hover, .aq-choice:focus-visible { border-color: var(--accent); text-decoration: none; }
+.aq-choice-tag { font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.aq-choice strong { font-size: 19px; line-height: 1.35; }
+.aq-choice > span:not(.aq-choice-tag):not(.aq-choice-link) { font-size: 14px; font-weight: 600; }
+.aq-choice small { font-size: 13px; line-height: 1.5; color: var(--muted); }
+.aq-choice-link { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--accent); }
+.aq-context { padding: 13px 17px; background: var(--soft); border-radius: 9px; margin: 0 0 25px; }
+.aq-context summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+.aq-context p { margin: 10px 0 0; font-size: 14px; }
+.aq-step { margin: 12px 0 24px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.aq-step-head { display: flex; gap: 12px; align-items: center; padding: 15px 18px; background: var(--soft); }
+.aq-number { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; }
+.aq-step-head strong, .aq-step-head small { display: block; line-height: 1.4; }
+.aq-step-head small { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.aq-facts { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0; }
+.aq-facts > div { min-width: 0; padding: 16px; }
+.aq-facts > div + div { border-left: 1px solid var(--line); }
+.aq-facts small, .aq-facts strong, .aq-facts span { display: block; }
+.aq-facts small { color: var(--muted); text-transform: uppercase; letter-spacing: .045em; font-size: 10.5px; font-weight: 700; }
+.aq-facts strong { font-size: 15px; line-height: 1.4; margin: 6px 0; }
+.aq-facts span { color: var(--muted); font-size: 13px; line-height: 1.55; }
+.aq-check { margin: 20px 0 26px; padding: 15px 17px; border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; background: var(--accent-soft); }
+.aq-check p { font-size: 14px; margin: 6px 0 10px; }
+.aq-check code { display: inline-block; max-width: 100%; margin: 4px 8px 4px 0; overflow-wrap: anywhere; white-space: normal; font-size: 12px; }
+.aq-spec { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; margin: 20px 0; }
+.aq-spec > div { min-width: 0; padding: 13px; background: var(--soft); border-radius: 9px; }
+.aq-spec small, .aq-spec strong, .aq-spec span { display: block; }
+.aq-spec small { font-size: 11px; color: var(--muted); }
+.aq-spec strong { font-size: 22px; line-height: 1.5; }
+.aq-spec span { font-size: 11px; color: var(--muted); }
+.aq-files { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin: 15px 0 22px; }
+.aq-files a { min-width: 0; padding: 13px 15px; border: 1px solid var(--line); border-radius: 9px; }
+.aq-files a:hover { border-color: var(--accent); text-decoration: none; }
+.aq-files strong, .aq-files small { display: block; }
+.aq-files strong { font-size: 14px; line-height: 1.45; }
+.aq-files small { margin-top: 3px; font-size: 12px; color: var(--muted); }
+.aq-warning { margin: 16px 0; padding: 14px 17px; border-left: 3px solid #b56a24; border-radius: 0 8px 8px 0; background: #fff8f0; }
+.aq-warning p { margin: 5px 0 0; font-size: 14px; line-height: 1.6; }
+@media (max-width: 850px) { .aq-facts { grid-template-columns: 1fr; } .aq-facts > div + div { border-left: 0; border-top: 1px solid var(--line); } .aq-spec { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 550px) { .aq-chooser, .aq-files { grid-template-columns: 1fr; } .aq-choice { padding: 17px; } }
