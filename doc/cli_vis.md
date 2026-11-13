@@ -4,7 +4,7 @@ DSI Studio records many GUI operations in **Command History**. The recorded comm
 
 ## View command history
 
-After opening an `.fz` file, inspect recorded operations at **[Options][Command History]**.
+After opening an `.fz` file, inspect recorded operations at <span class="gui-menu-path"><span class="gui-menu-item">Options</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Command History</span></span>.
 
 ![DSI Studio Command History interface](https://github.com/user-attachments/assets/ef9b62f5-bc29-4b3d-b22f-f7ce9a4e56d7)
 
@@ -12,9 +12,9 @@ The history can be saved to or loaded from a CSV file. Selected commands can als
 
 ## Apply a workflow to other files
 
-**Apply to Others** repeats the selected commands on other files when the selected history includes a file-open command.
+<span class="gui-action">Apply to Others</span> repeats the selected commands on other files when the selected history includes a file-open command.
 
-For example, select a sequence containing `open_fib`, choose **Apply to Others**, and select the other FIB files to process with the same recorded steps.
+For example, select a sequence containing `open_fib`, choose <span class="gui-action">Apply to Others</span>, and select the other FIB files to process with the same recorded steps.
 
 Not every GUI function is recorded. If a required operation is missing from Command History, report it on the [DSI Studio forum](https://groups.google.com/g/dsi-studio).
 
