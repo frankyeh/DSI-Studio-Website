@@ -93,14 +93,14 @@ Save and reload visualization sessions (checked tracts, checked regions, devices
 
 ## Slice/region view
 
-- **`Q` / `A`, `W` / `S`, `E` / `D`:** Step the sagittal, coronal, or axial slice `+1` / `-1` voxel.
-- **`Z` / `X` / `C`:** Switch the 2D slice view to sagittal, coronal, or axial orientation.
-- **<kbd><kbd>F1</kbd></kbd>–<kbd><kbd>F6</kbd></kbd>:** Toggle fiber orientations (<kbd><kbd>F1</kbd></kbd>), tract intersections (<kbd><kbd>F2</kbd></kbd>), ruler/grid (<kbd><kbd>F3</kbd></kbd>), crosshair lines (<kbd><kbd>F4</kbd></kbd>), `R` label (<kbd><kbd>F5</kbd></kbd>), and region outlines (<kbd><kbd>F6</kbd></kbd>).
-- **Double-click / `Ctrl` + wheel:** Jump the 3D crosshair to the clicked voxel, or zoom the 2D slice view.
+- **<kbd>Q</kbd> / <kbd>A</kbd>, <kbd>W</kbd> / <kbd>S</kbd>, <kbd>E</kbd> / <kbd>D</kbd>:** Step the sagittal, coronal, or axial slice `+1` / `-1` voxel.
+- **<kbd>Z</kbd> / <kbd>X</kbd> / <kbd>C</kbd>:** Switch the 2D slice view to sagittal, coronal, or axial orientation.
+- **<kbd><kbd>F1</kbd></kbd>–<kbd><kbd>F6</kbd></kbd>:** Toggle fiber orientations (<kbd><kbd>F1</kbd></kbd>), tract intersections (<kbd><kbd>F2</kbd></kbd>), ruler/grid (<kbd><kbd>F3</kbd></kbd>), crosshair lines (<kbd><kbd>F4</kbd></kbd>), <kbd>R</kbd> label (<kbd><kbd>F5</kbd></kbd>), and region outlines (<kbd><kbd>F6</kbd></kbd>).
+- **Double-click / <kbd>Ctrl</kbd> + wheel:** Jump the 3D crosshair to the clicked voxel, or zoom the 2D slice view.
 
 ## 3D view
 
-- **Left / Right / Middle drag:** Rotate (`Shift` locks horizontal; `Ctrl` slows motion), zoom (or right-click a 3D slice plane for quick actions), and pan (or use arrow keys).
+- **Left / Right / Middle drag:** Rotate (<kbd>Shift</kbd> locks horizontal; <kbd>Ctrl</kbd> slows motion), zoom (or right-click a 3D slice plane for quick actions), and pan (or use arrow keys).
 - **<kbd><kbd>Ctrl</kbd>+<kbd>A</kbd></kbd>:** Interactively drag 3D slice planes, regions, devices, or 2D pictures.
 
 ### Tract editing shortcuts
