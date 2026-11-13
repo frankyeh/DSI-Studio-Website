@@ -1,5 +1,7 @@
 # Differential Tractography
 
+> **Before differential tractography:** [Import and quality-check each scan](/doc/gui_t1.html) → [reconstruct comparable FIB files](/doc/gui_t2.html) → [verify whole-brain tracking](/doc/gui_t3_whole_brain.html). Prepare a baseline/follow-up or patient/reference comparison appropriate to the [study designs below](#four-common-study-designs); register the compared measurements and use consistent acquisition and reconstruction settings. Do not interpret differences before ruling out preprocessing or alignment artifacts.
+
 ![Differential tractography illustration](https://user-images.githubusercontent.com/275569/147860577-35e5b242-2991-4cdf-b6f7-91161d8b0c73.png)
 
 Differential tractography maps pathway segments showing changes in diffusion measurements between scans or relative to a reference population. Instead of tracking where anisotropy exists, it adds a tracking criterion that follows where a selected diffusion metric differs between two conditions.
