@@ -28,8 +28,6 @@
       slug: gui_t3_dt
     - title: "Correlational tractography"
       slug: gui_cx
-    - title: "Batch workflows"
-      slug: gui_bx
     - title: "Command history"
       slug: cli_vis
 - group: "Menu reference"
