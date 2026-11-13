@@ -478,3 +478,9 @@ article .gui-action {
 /* Differential tractography: numbered procedure steps rendered as H3s outside the page TOC. */
 article h3.dt-step { display: flex; align-items: center; gap: 10px; margin-top: 26px; }
 article h3.dt-step::before { content: attr(data-step); flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; font: 600 13px/1 var(--sans); }
+
+/* File extensions in GUI text: technical labels rather than clickable controls. */
+article .gui-file-ext {
+  display: inline; font: 600 .9em/1.4 monospace; color: var(--muted);
+  background: transparent; border: 0; border-radius: 0; padding: 0; white-space: nowrap;
+}
