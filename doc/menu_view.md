@@ -17,7 +17,7 @@ Use the **[View]** menu to snap the 3D viewport and **Draw Regions** slice viewe
 | <span class="gui-menu-item">Open Camera Position...</span> | Loads a saved 3D camera viewpoint from a `.txt` file and immediately updates the primary 3D viewport's rotation, zoom, and pan, overwriting the current view. Incomplete or non-numeric files leave the view unchanged. |
 | <span class="gui-menu-item">Save Camera Position...</span> | Saves the primary 3D viewport's current rotation, zoom, and pan to a `.txt` camera file for reproducible figure framing or sharing across sessions. |
 
-Camera `.txt` files store only the primary 3D viewpoint—use **[File][Save Workspace...]** in the [File menu](/doc/menu_file.html) to save slices, tracts, regions, devices, and rendering settings together. Saved viewpoints and presets align identically across datasets only when they share the same voxel grid and spacing; press `Z`, `X`, or `C` to re-center if a volume appears shifted.
+Camera `.txt` files store only the primary 3D viewpoint—use **[File][Save Workspace...]** in the [File menu](/doc/menu_file.html) to save slices, tracts, regions, devices, and rendering settings together. Saved viewpoints and presets align identically across datasets only when they share the same voxel grid and spacing; press <kbd>Z</kbd>, <kbd>X</kbd>, or <kbd>C</kbd> to re-center if a volume appears shifted.
 
 ## Camera presets
 
