@@ -4,7 +4,7 @@
 
 ROI-based fiber tracking uses anatomical regions to include, exclude, start, or terminate streamlines. Use region constraints only when they are supported by the anatomical hypothesis.
 
-> **Check whole-brain tractography first.** Before adding ROI constraints, confirm that the `.fz` file has reasonable fiber orientations and that major pathways can be reconstructed with the normal tracking settings.
+> **[Check whole-brain tractography first](/doc/gui_t3_whole_brain.html).** Before adding ROI constraints, confirm that the `.fz` file has reasonable fiber orientations and that major pathways can be reconstructed with the normal tracking settings.
 
 ## Step T3a: Assign Regions
 
