@@ -29,7 +29,7 @@ For one scan:
 
 1. Open <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">NIfTI file(s)...</span></span> and select one 4D diffusion NIfTI file. To process multiple scans, use <span class="gui-action">NIfTI folder...</span>.
 2. DSI Studio looks for matching `bval` and `bvec` files in the same directory.
-3. If they are not found automatically, use <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open bval</span></span> and <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open bvec</span></span> in the **source-image / b-table parser window** opened by NIfTI import (not the DSI Studio main window).
+3. If they are not found automatically, use <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open bval...</span></span> and <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open bvec...</span></span> in the **source-image / b-table parser window** opened by NIfTI import (not the DSI Studio main window).
 4. Create the <span class="gui-file-ext">.sz</span> file and inspect the loaded b-table before continuing.
 
 For folder conversion, choose <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">NIfTI</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">NIfTI folder...</span></span>. The program detects a BIDS dataset from its `sub-*` directories and creates SRC outputs under `derivatives`; otherwise, it processes an ordinary NIfTI folder and places an SRC file beside each diffusion NIfTI. The older separate BIDS/single-folder buttons have been consolidated.
@@ -52,7 +52,7 @@ Example:
 3000 -0.985100  0.130800  0.111300
 ```
 
-Load it using <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open b-table</span></span> in that same **source-image / b-table parser window**.
+Load it using <span class="gui-menu-path"><span class="gui-menu-item">Files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Open b-table...</span></span> in that same **source-image / b-table parser window**.
 
 When present in the NIFTI directory, DSI Studio can also use `grad_dev.nii.gz` for gradient-nonlinearity information and `nodif_brain_mask.nii.gz` as a brain mask.
 
