@@ -31,15 +31,15 @@ For population connectometry, reconstruct all subjects with **QSDR using the sam
 
 ### Add subject FIB files
 
-Use **Correlational Tractography → 1 FIB files → FIB File(s) (*.fz)...** or **FIB Folder (*.fz)...** to open Create Database with the input list populated.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">1 FIB files</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">FIB File(s) (*.fz)...</span></span> or **FIB Folder (*.fz)...** to open Create Database with the input list populated.
 
-Use **[Add]**, **[Search in Directory...]**, or **[Open List]** to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
+Use <span class="gui-action">Add</span>, <span class="gui-action">Search in Directory...</span>, or <span class="gui-action">Open List</span> to load the subject QSDR FIB files. Check the subject list before creating the database. For longitudinal studies, keeping repeat scans of each subject adjacent makes later pairing easier.
 
 ### Create the `.dz` file
 
 The current database format is `.dz`. A new `.dz` database stores the available diffusion indices from the FIB files in one database, so a separate database is no longer needed for each metric.
 
-Confirm the output name and click **[Create Database]**.
+Confirm the output name and click <span class="gui-action">Create Database</span>.
 
 Command-line equivalent:
 
@@ -65,7 +65,7 @@ Database construction reports registration quality for each subject. Review subj
 
 ## View or modify a database
 
-Use **Correlational Tractography → 2 Prepare database → Database (*.dz)...** when you need to inspect subjects, remove problematic data, load demographics, or prepare a longitudinal database.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">2 Prepare database</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Database (*.dz)...</span></span> when you need to inspect subjects, remove problematic data, load demographics, or prepare a longitudinal database.
 
 Demographics can be stored inside the database. After loading a demographic CSV/TSV file, save the database if you want those values to be available automatically the next time it is opened.
 
@@ -74,7 +74,7 @@ Demographics can be stored inside the database. After loading a demographic CSV/
 For repeated scans of the same subjects:
 
 1. Make sure baseline and follow-up scans are correctly paired.
-2. Use **Tools → Longitudinal scans...** to review or define the matching.
+2. Use <span class="gui-menu-path"><span class="gui-menu-item">Tools</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Longitudinal scans...</span></span> to review or define the matching.
 3. Choose how the longitudinal change is calculated, such as `scan2-scan1`.
 4. Save the resulting longitudinal database as a new `.dz` file.
 
@@ -103,7 +103,7 @@ After creating any derived or longitudinal database, **re-check its demographics
 
 ## Group connectometry analysis
 
-Use **Correlational Tractography → 3 Correlational Tractography → Database (*.dz)** to open the group analysis for a `.dz` database.
+Use <span class="gui-menu-path"><span class="gui-menu-item">Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">3 Correlational Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Database (*.dz)</span></span> to open the group analysis for a `.dz` database.
 
 ### Load and verify demographics
 
