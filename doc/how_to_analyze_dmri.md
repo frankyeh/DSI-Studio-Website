@@ -7,11 +7,11 @@
     <span class="ana-num">1</span>
     <h3>Import</h3>
     <p class="ana-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>Import</span></p>
-    <p>Choose <strong>NIfTI file(s) or folder</strong>, <strong>DICOM file(s) or folder</strong>, or <strong>2dseq/FDF</strong> to import diffusion scans and create an SRC file (<code>.sz</code>).</p>
+    <p>Choose <span class="gui-action">NIfTI file(s) or folder</span>, <span class="gui-action">DICOM file(s) or folder</span>, or <span class="gui-menu-item">2dseq/FDF</span> to import diffusion scans and create an SRC file (<span class="gui-file-ext">.sz</span>).</p>
     <span class="ana-file">Output: .sz</span>
     <details>
       <summary>Options &amp; quality checks</summary>
-      <p>Set the working directory using <span class="gui-menu-item">Work Dir</span> and <span class="gui-action">Browse...</span>. <strong>NIfTI folder...</strong> detects BIDS datasets with <code>sub-*</code> directories and otherwise handles an ordinary NIfTI folder. <strong>Rename DICOM</strong> moves or renames files; it does not convert them.</p>
+      <p>Set the working directory using <span class="gui-menu-item">Work Dir</span> and <span class="gui-action">Browse...</span>. <span class="gui-action">NIfTI folder...</span> detects BIDS datasets with <code>sub-*</code> directories and otherwise handles an ordinary NIfTI folder. <span class="gui-action">Rename DICOM</span> moves or renames files; it does not convert them.</p>
       <p>When needed, use <span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">More...</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">NIFTI quality control...</span>. Review <a href="/doc/gui_t1.html">SRC quality control</a> before group analyses; it is available under <span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">More...</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">SRC quality control...</span>.</p>
     </details>
   </li>
@@ -19,7 +19,7 @@
     <span class="ana-num">2</span>
     <h3>Reconstruct</h3>
     <p class="ana-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Reconstruct</span></p>
-    <p>Open the imported <code>.sz</code> with <strong>SRC File(s) (*.sz)</strong>. Choose <a href="/doc/gui_t2.html">GQI or QSDR</a> and review the b-table, mask, and orientation before generating the FIB file (<code>.fz</code>).</p>
+    <p>Open the imported <span class="gui-file-ext">.sz</span> with <span class="gui-action">SRC File(s) (*.sz)</span>. Choose <a href="/doc/gui_t2.html">GQI or QSDR</a> and review the b-table, mask, and orientation before generating the FIB file (<span class="gui-file-ext">.fz</span>).</p>
     <span class="ana-file">Output: .fz</span>
     <details>
       <summary>Options &amp; quality checks</summary>
@@ -30,7 +30,7 @@
     <span class="ana-num">3</span>
     <h3>Track &amp; analyze</h3>
     <p class="ana-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span></p>
-    <p>Open <strong>FIB File (*.fz)</strong> to enter the fiber tracking window. Run whole-brain or ROI-based tracking, AutoTrack, differential tractography, or connectivity analyses.</p>
+    <p>Open <span class="gui-action">FIB File (*.fz)</span> to enter the fiber tracking window. Run whole-brain or ROI-based tracking, AutoTrack, differential tractography, or connectivity analyses.</p>
     <span class="ana-file">Input: .fz</span>
     <details>
       <summary>Options &amp; quality checks</summary>
@@ -75,12 +75,12 @@ Full guides: [Whole-brain tracking →](/doc/gui_t3_whole_brain.html) · [ROI-ba
 
 Use region-based analysis when the question concerns diffusion measurements within an anatomical region.
 
-1. On <span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span>, open the subject `.fz` file.
+1. On <span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span>, open the subject <span class="gui-file-ext">.fz</span> file.
 2. [Load or define regions](/doc/gui_t3_roi_tracking.html#load-regions-from-built-in-atlases). Built-in atlases are useful for standardized regions, provided they match the image space.
 3. If needed, use <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Insert Other Images</span></span> in the tracking window to add registered measurements such as DKI, NODDI, PET, or other NIfTI data.
 4. Use <span class="gui-menu-path"><span class="gui-menu-item">Regions</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Statistics</span></span> to obtain measurements for selected regions.
 
-<aside class="ana-note" role="note"><p><strong>Check.</strong> Built-in atlases must match the image space. For population/template-space region analysis, a <a href="/doc/gui_cx.html"><code>.dz</code> connectometry database</a> can be opened in the tracking window with template-space regions. A <code>.dz</code> is for group diffusion/connectometry data; it is <strong>not</strong> a region-to-region connectivity matrix.</p></aside>
+<aside class="ana-note" role="note"><p><strong>Check.</strong> Built-in atlases must match the image space. For population/template-space region analysis, a <a href="/doc/gui_cx.html"><span class="gui-file-ext">.dz</span> connectometry database</a> can be opened in the tracking window with template-space regions. A <span class="gui-file-ext">.dz</span> is for group diffusion/connectometry data; it is <strong>not</strong> a region-to-region connectivity matrix.</p></aside>
 
 ## Tractometry
 
@@ -91,7 +91,7 @@ Tractometry quantifies diffusion or other measurements along white-matter pathwa
 3. Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Statistics</span></span> for bundle-level scalar and shape measurements.
 4. Use the [tract profile](/doc/gui_t3_atk.html#tract-profile) when the spatial distribution of a measurement along the pathway is important.
 
-<aside class="ana-note" role="note"><p><strong>Check.</strong> Streamline-order tract profiles use 100 sampling positions; image-axis profiles instead depend on image geometry. Keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible <code>.dz</code> database may be used with template-space pathways.</p></aside>
+<aside class="ana-note" role="note"><p><strong>Check.</strong> Streamline-order tract profiles use 100 sampling positions; image-axis profiles instead depend on image geometry. Keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible <span class="gui-file-ext">.dz</span> database may be used with template-space pathways.</p></aside>
 
 Example study of **bundle-level** QA tractometry (not a 100-node along-tract profile): [Pritschet et al., *Nature Neuroscience* (2024)](https://doi.org/10.1038/s41593-024-01741-0).
 
@@ -162,7 +162,7 @@ Example study: [PubMed 31472253](https://pubmed.ncbi.nlm.nih.gov/31472253/)
 <ol class="ana-flow ana-flow-small" aria-label="Correlational tractography analysis stages">
   <li>
     <span class="ana-num">1</span><h3>FIB files</h3>
-    <p>Select QSDR/template-space <strong>FIB File(s) (*.fz)...</strong> or <strong>FIB Folder (*.fz)...</strong> to collect subjects for a connectometry database.</p><span class="ana-file">.fz</span>
+    <p>Select QSDR/template-space <span class="gui-action">FIB File(s) (*.fz)...</span> or <span class="gui-action">FIB Folder (*.fz)...</span> to collect subjects for a connectometry database.</p><span class="ana-file">.fz</span>
     <details><summary>Optional: reference population</summary><p>For reference-population workflows, use <span class="gui-menu-item">More...</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Create population average...</span>.</p></details>
   </li>
   <li>
@@ -172,12 +172,12 @@ Example study: [PubMed 31472253](https://pubmed.ncbi.nlm.nih.gov/31472253/)
   </li>
   <li>
     <span class="ana-num">3</span><h3>Correlational tractography</h3>
-    <p>Select <strong>Database (*.dz)</strong> to run group correlational tractography. Choose the study variable, covariates and diffusion index, then assess association tracts and permutation-derived FDR.</p><span class="ana-file">FDR</span>
+    <p>Select <span class="gui-action">Database (*.dz)</span> to run group correlational tractography. Choose the study variable, covariates and diffusion index, then assess association tracts and permutation-derived FDR.</p><span class="ana-file">FDR</span>
     
   </li>
 </ol>
 
-<aside class="ana-note" role="note"><p><strong>Check.</strong> For cohort data, use compatible QSDR/template-space FIB files with consistent resolution. A current <code>.dz</code> database can store several diffusion indices, so separate database files are generally not required for QA, FA, RDI and other available metrics. A <strong>Recent Database</strong> list is shown beneath the stages.</p></aside>
+<aside class="ana-note" role="note"><p><strong>Check.</strong> For cohort data, use compatible QSDR/template-space FIB files with consistent resolution. A current <span class="gui-file-ext">.dz</span> database can store several diffusion indices, so separate database files are generally not required for QA, FA, RDI and other available metrics. A <strong>Recent Database</strong> list is shown beneath the stages.</p></aside>
 
 [Full guide →](/doc/gui_cx.html)
 
