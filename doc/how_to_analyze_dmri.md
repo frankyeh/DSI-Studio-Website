@@ -43,20 +43,33 @@
 
 <nav class="ana-pick" aria-label="Analysis workflows">
   <div class="ana-pick-group"><span class="step-eyebrow">ONE SUBJECT</span>
-    <a class="ana-card" href="/doc/gui_t3_whole_brain.html"><strong>Fiber pathways</strong><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span> · whole-brain / ROI</span><b aria-hidden="true">→</b></a>
+    <a class="ana-card" href="#fiber-pathways"><strong>Fiber pathways</strong><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span> · whole-brain / ROI</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#region-based-analysis"><strong>Region measures</strong><span>FIB file · region statistics</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#tractometry"><strong>Bundle metrics &amp; profiles</strong><span>FIB file · tract statistics</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#structural-connectome-r2r-and-t2r"><strong>Connectivity (R2R / T2R)</strong><span>FIB file · parcellation / bundles</span><b aria-hidden="true">→</b></a>
   </div>
   <div class="ana-pick-group"><span class="step-eyebrow">CHANGE &amp; COHORTS</span>
-    <a class="ana-card" href="/doc/gui_t3_atk.html"><strong>Named bundles across subjects</strong><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Automatic tracking</span></span><b aria-hidden="true">→</b></a>
+    <a class="ana-card" href="#named-bundles-across-subjects"><strong>Named bundles across subjects</strong><span><span class="ui-key">Tractography</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">3 Track</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Automatic tracking</span></span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#differential-tractography"><strong>Individual change</strong><span>Differential tractography</span><b aria-hidden="true">→</b></a>
     <a class="ana-card" href="#correlational-tractography--connectometry"><strong>Diffusion–behavior association</strong><span>Correlational Tractography sidebar</span><b aria-hidden="true">→</b></a>
   </div>
   <div class="ana-pick-group"><span class="step-eyebrow">IMAGES</span>
-    <div class="ana-card ana-static"><strong>Inspect or register structural images</strong><span><span class="ui-key">Image Processing</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Image Editor</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Open image...</span></span><span><span class="ui-key">Linear Registration</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Linear registration...</span></span><span><span class="ui-key">Nonlinear Registration</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Nonlinear registration...</span></span></div>
+    <a class="ana-card" href="#inspect-or-register-structural-images"><strong>Inspect or register structural images</strong><span><span class="ui-key">Image Processing</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Image Editor</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Open image...</span></span><span><span class="ui-key">Linear Registration</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Linear registration...</span></span><span><span class="ui-key">Nonlinear Registration</span><span class="ui-sep" aria-hidden="true"></span><span class="ui-key">Nonlinear registration...</span></span><b aria-hidden="true">→</b></a>
   </div>
 </nav>
+
+## Fiber Pathways
+
+Use fiber pathway analysis to reconstruct white-matter trajectories in an individual diffusion MRI dataset.
+
+1. Open the subject FIB file with **[Tractography][3 Track][FIB File (*.fz)]** to enter the fiber tracking window.
+2. For exploratory mapping, run [whole-brain tractography](/doc/gui_t3_whole_brain.html). Select the tracking method, seed strategy, stopping criteria, and tract length settings appropriate to the data.
+3. For a particular pathway, [define or load inclusion, exclusion, and seed regions](/doc/gui_t3_roi_tracking.html) and generate ROI-based streamlines. Inspect them against the anatomy and save the resulting tract bundle.
+4. Review the reconstructed paths in orthogonal slices and 3D before computing measurements or connectivity.
+
+<aside class="ana-note" role="note"><p><strong>Check.</strong> Fiber tracking estimates plausible streamline trajectories rather than individual axons. Check image orientation, region alignment, and reconstruction quality before interpreting anatomy. Tracking thresholds and ROI placement can change the resulting pathway.</p></aside>
+
+Full guides: [Whole-brain tracking →](/doc/gui_t3_whole_brain.html) · [ROI-based tracking →](/doc/gui_t3_roi_tracking.html)
 
 ## Region-Based Analysis
 
@@ -81,6 +94,19 @@ Tractometry quantifies diffusion or other measurements along white-matter pathwa
 <aside class="ana-note" role="note"><p><strong>Check.</strong> Streamline-order tract profiles use 100 sampling positions; image-axis profiles instead depend on image geometry. Keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible <code>.dz</code> database may be used with template-space pathways.</p></aside>
 
 Example study of **bundle-level** QA tractometry (not a 100-node along-tract profile): [Pritschet et al., *Nature Neuroscience* (2024)](https://doi.org/10.1038/s41593-024-01741-0).
+
+## Named Bundles Across Subjects
+
+Use AutoTrack to identify corresponding named white-matter pathways in multiple subjects and support consistent tractometry.
+
+1. Open each subject FIB file using **[Tractography][3 Track][FIB File (*.fz)]**.
+2. Select **[Tractography][3 Track][More...][Automatic tracking]** to open AutoTrack and choose the target bundles.
+3. Run automatic tracking, review the resulting bundles against the subject anatomy, and save the tract files.
+4. For quantitative comparisons, use **[Tracts][Statistics]** or the [tract profile](/doc/gui_t3_atk.html#tract-profile) with the same measurement definitions and profile settings across subjects.
+
+<aside class="ana-note" role="note"><p><strong>Check.</strong> Automatic bundle identification still requires quality review. Compare homologous bundles in compatible image spaces and use consistent reconstruction, tracking, and tractometry settings. Missing or incomplete bundles should not be interpreted as an anatomical absence without checking the data.</p></aside>
+
+[Full guide →](/doc/gui_t3_atk.html)
 
 ## Differential Tractography
 
@@ -156,3 +182,17 @@ Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-a
 Full guides: [R2R →](/doc/gui_t3_whole_brain.html) · [T2R →](/doc/gui_t3_atk.html)
 
 Example study: [Yeh FC, *Nature Communications* 13, 4933 (2022)](https://www.nature.com/articles/s41467-022-32595-4).
+
+## Inspect or Register Structural Images
+
+Use the **Image Processing** sidebar to inspect anatomical images and align additional modalities with diffusion MRI data.
+
+1. Select **[Image Processing][Image Editor][Open image...]** to inspect a structural image.
+2. Use **[Image Processing][Linear Registration][Linear registration...]** to align images with a linear transform when appropriate.
+3. Use **[Image Processing][Nonlinear Registration][Nonlinear registration...]** when deformable registration is needed.
+4. Verify the alignment visually, including anatomical landmarks and orientation, before using the registered image for region definition, tract visualization, or measurement overlays.
+
+<aside class="ana-note" role="note"><p><strong>Check.</strong> Registration quality depends on image contrast, anatomy, and transformation direction. Inspect the result before applying regions or measurements in another image space; an incorrectly aligned overlay can produce misleading tract or regional statistics.</p></aside>
+
+For registered measurements in the tracking window, see [Region-Based Analysis](#region-based-analysis) and [Tractometry](#tractometry) below.
+
