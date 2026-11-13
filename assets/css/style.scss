@@ -19,7 +19,7 @@ a:hover { text-decoration: underline; }
 .brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: var(--ink); white-space: nowrap; font-family: Georgia, 'Times New Roman', serif; font-size: 22px; font-weight: 600; }
 .brand img { height: 30px; width: 30px; display: block; flex: none; }
 .nav { display: flex; gap: 4px; flex: 1; }
-.nav > a, .nav > span { color: var(--ink); font-size: 15px; font-weight: 500; padding: 7px 12px; border-radius: 8px; cursor: pointer; }
+.nav > a, .nav .nav-item { color: var(--ink); font: 500 15px/1.65 var(--sans); padding: 7px 12px; border-radius: 8px; cursor: pointer; text-decoration: none; }
 .nav > a:hover, .nav > span:hover, .nav .on { background: var(--soft); text-decoration: none; }
 .nav .caret { color: var(--muted); font-size: 11px; margin-left: 3px; }
 .cta { background: var(--ink); color: #fff !important; font-weight: 600; font-size: 14px; padding: 8px 16px; border-radius: 999px; }
@@ -159,7 +159,7 @@ article code { background: var(--soft); border: 1px solid var(--line); border-ra
 .skip-link:focus { top: 8px; }
 
 .nav-dd { display: flex; align-items: center; }
-.nav .nav-item { color: var(--ink); font-size: 15px; font-weight: 500; padding: 7px 12px; border-radius: 8px; cursor: pointer; text-decoration: none; }
+
 .nav .nav-item:hover, .nav-dd:hover > .nav-item, .nav-dd:focus-within > .nav-item, .nav .nav-item.on { background: var(--soft); text-decoration: none; }
 .nav-dd:hover > .mega, .nav-dd:focus-within > .mega { display: block; }
 .mega::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
