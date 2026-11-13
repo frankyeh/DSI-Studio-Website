@@ -7,7 +7,7 @@ The **[File]** menu manages the loaded FIB dataset, saves or restores multi-obje
 | Menu item | Behavior |
 |---|---|
 | <span class="gui-menu-item">Open FIB Directory...</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>O</kbd></kbd>. Opens the folder containing the loaded `.fz` or `.fib.gz` file in your system file manager rather than opening a new FIB file dialog. |
-| <span class="gui-menu-item">Save FIB As...</span> | Saves the loaded fiber orientations, metrics, template mapping, and report metadata to a compact `.fz` file (converting `.fib.gz` if needed). Tracked bundles, regions, external slices, and view settings are excluded; use **File › Save Workspace...** to save session overlays. |
+| <span class="gui-menu-item">Save FIB As...</span> | Saves the loaded fiber orientations, metrics, template mapping, and report metadata to a compact `.fz` file (converting `.fib.gz` if needed). Tracked bundles, regions, external slices, and view settings are excluded; use **[File][Save Workspace...]** to save session overlays. |
 
 ## Workspace
 
@@ -16,7 +16,7 @@ A workspace folder bundles checked tracts, checked regions, devices, the active 
 | Menu item | Behavior |
 |---|---|
 | <span class="gui-menu-item">Load Workspace...</span> | Restores saved tracts (`.tt.gz`), regions (`.nii.gz`), devices (`.dv.csv`), external slices, Options settings (`setting.ini`), slice positions, and camera view from a workspace folder onto the open FIB dataset. Existing tracts, regions, or devices are replaced when matching subfolders are present. |
-| <span class="gui-menu-item">Save Workspace...</span> | Exports **checked** tracts, **checked** regions, devices, the active external slice, camera view, slice positions, and all Options settings into a workspace folder. Unchecked tracts/regions and inactive external slices are omitted; keep default `.tt.gz` and `.nii.gz` output formats so **File › Load Workspace...** can reload them. |
+| <span class="gui-menu-item">Save Workspace...</span> | Exports **checked** tracts, **checked** regions, devices, the active external slice, camera view, slice positions, and all Options settings into a workspace folder. Unchecked tracts/regions and inactive external slices are omitted; keep default `.tt.gz` and `.nii.gz` output formats so **[File][Load Workspace...]** can reload them. |
 
 ## Tracking settings
 
@@ -31,6 +31,6 @@ A workspace folder bundles checked tracts, checked regions, devices, the active 
 
 | Menu item | Behavior |
 |---|---|
-| <span class="gui-menu-item">Load Rendering Settings...</span> | Loads display parameters from an `.ini` file into the Options rendering groups while keeping tracking parameters and camera angle unchanged. Layer visibility checkboxes and nested **Tract Color**, **Region Color**, and **Graph Visualization** settings require **File › Load Workspace...**. |
-| <span class="gui-menu-item">Save Rendering Settings</span> | Opens a Save dialog to export direct Options display parameters to an `.ini` file. Layer visibility checkboxes, camera view, and nested **Tract Color**, **Region Color**, and **Graph Visualization** sub-groups are excluded; use **File › Save Workspace...** to preserve full color and graph states. |
+| <span class="gui-menu-item">Load Rendering Settings...</span> | Loads display parameters from an `.ini` file into the Options rendering groups while keeping tracking parameters and camera angle unchanged. Layer visibility checkboxes and nested **Tract Color**, **Region Color**, and **Graph Visualization** settings require **[File][Load Workspace...]**. |
+| <span class="gui-menu-item">Save Rendering Settings</span> | Opens a Save dialog to export direct Options display parameters to an `.ini` file. Layer visibility checkboxes, camera view, and nested **Tract Color**, **Region Color**, and **Graph Visualization** sub-groups are excluded; use **[File][Save Workspace...]** to preserve full color and graph states. |
 | <span class="gui-menu-item">Restore Rendering Settings</span> | Resets all 2D and 3D display options—including nested **Tract Color**, **Region Color**, and **Graph Visualization** settings—to defaults while keeping layer visibility checkboxes, camera angle, and tracking parameters unchanged. |
