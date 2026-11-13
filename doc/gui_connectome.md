@@ -77,6 +77,8 @@ Use <span class="gui-menu-path"><span class="gui-menu-item">Regions</span><span 
 Keep the tract set and parcellation identical across subjects when comparing T2R matrices.
 
 
+To repeat R2R or T2R processing across datasets, use [Records › Command History](/doc/cli_vis.html) to inspect the corresponding commands after completing a GUI workflow.
+
 ## Further resources
 
 - [Whole-Brain Fiber Tracking](/doc/gui_t3_whole_brain.html) — inspect and save whole-brain tractography before constructing R2R.
