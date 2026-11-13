@@ -118,7 +118,7 @@ Saving unnecessary outputs increases `.fz` file size and processing time.
 
 ### DTI high-b option
 
-<span class="gui-menu-path"><span class="gui-menu-item">Ignore High b for DTI</span></span> restricts tensor estimation to lower b-values when appropriate for the acquisition. Use the same rule across subjects in a group study.
+**Ignore High b for DTI** restricts tensor estimation to lower b-values when appropriate for the acquisition. Use the same rule across subjects in a group study.
 
 ## Batch reconstruction
 
