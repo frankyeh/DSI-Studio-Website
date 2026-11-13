@@ -16,8 +16,8 @@ Use the **[Devices]** menu in the Fiber Tracking window to place, align, render,
 | <span class="gui-menu-item">Delete All</span> | Clears every row from the **Devices** table and removes all devices from the 3D view. |
 | <span class="gui-menu-item">Copy Device</span> | Duplicates the highlighted device with the same type, length, and orientation, offsetting its tip by `1` voxel with a new color so both remain visible. |
 | <span class="gui-menu-item">Assign Colors</span> | Assigns distinct opaque colors across all rows in the **Devices** table in order and refreshes the 3D view. |
-| <span class="gui-menu-item">Leads to ROI...</span> | Creates spherical regions (`1.0`–`10.0` mm radius, default `2.0` mm) in the **Regions** dock at each cylindrical electrode contact or `Locator` point of the highlighted device, ordered from distal tip to shaft. Directional segmented rings render in 3D but are not extracted. |
-| <span class="gui-menu-item">Uncheck All</span> | Unchecks every row in the **Devices** table, hiding all devices in 3D and excluding them from **Devices › Save All Devices As...** and **File › Save Workspace...**. |
+| <span class="gui-menu-item">Leads to ROI...</span> | Creates spherical regions (`1.0`–`10.0` mm radius, default `2.0` mm) in the **Assign Regions** dock at each cylindrical electrode contact or `Locator` point of the highlighted device, ordered from distal tip to shaft. Directional segmented rings render in 3D but are not extracted. |
+| <span class="gui-menu-item">Uncheck All</span> | Unchecks every row in the **Devices** table, hiding all devices in 3D and excluding them from **[Devices][Save All Devices As...]** and **[File][Save Workspace...]**. |
 | <span class="gui-menu-item">Check All</span> | Checks every row in the **Devices** table so all devices render in 3D and are included when saving all devices or workspaces. |
 | <span class="gui-menu-item">Pull Device</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>-</kbd></kbd>. Retracts the highlighted device by `0.5` mm along its shaft toward the entry point. |
 | <span class="gui-menu-item">Push Device</span> | Shortcut: <kbd><kbd>Ctrl</kbd>+<kbd>=</kbd></kbd>. Advances the highlighted device by `0.5` mm deeper along its shaft toward the distal tip. |
@@ -26,7 +26,7 @@ Use the **[Devices]** menu in the Fiber Tracking window to place, align, render,
 
 ## Add a device manually
 
-Choose **[Devices][New Device]** (or right-click a visible 3D slice and choose **New Device** to place the distal tip at that point), then configure **Name**, **Color**, **Length** (`0.5`–`512.0` mm), **Type**, **Coordinate** (`Native Image` voxels vs `AC/PC/MCP` millimeters), and spherical shaft angles (**phi**, **theta**) in the **Devices** dock. Visibility, lighting, and proximal 3D labels for checked devices are controlled under **Device Rendering** and **Label Rendering** in **Rendering Options**.
+Choose **[Devices][New Device]** (or right-click a visible 3D slice and choose **New Device** to place the distal tip at that point), then configure **Name**, **Color**, **Length** (`0.5`–`512.0` mm), **Type**, **Coordinate** (`Native Image` voxels vs `AC/PC/MCP` millimeters), and spherical shaft angles (**phi**, **theta**) in the **Devices** dock. Visibility, lighting, and proximal 3D labels for checked devices are controlled under **Device Rendering** and **Label Rendering** in **Options**.
 
 ![New device settings](https://user-images.githubusercontent.com/275569/147839144-b4bb48b1-7aed-4774-9d14-4928d81c0cf2.png)
 
