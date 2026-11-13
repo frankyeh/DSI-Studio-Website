@@ -29,6 +29,8 @@ The **Assign Regions** dock lists loaded regions with checkboxes (controlling 2D
 | **Statistics...** | Reports voxel count, volume (`mm^3`), diffusion-grid voxel bounds, MNI `mm` coordinates (once template mapping is active), and nonzero scalar metrics (`<stem>_region_stat.txt`) across all checked regions, including per-subject means for connectometry databases. |
 | **Region-Atlas Intersection Statistics...** | Intersects the highlighted region with a chosen built-in atlas and reports full statistics and MNI coordinates (`<stem>_region_overlap_stat.txt`) for every overlapping parcel without adding rows to **Assign Regions**. |
 
+For the complete tract-to-region workflow, see [Connectome (R2R / T2R)](/doc/gui_connectome.html#tract-to-region-t2r-connectome).
+
 ### File Formats and Coordinate Alignment
 
 Multi-label and 4D NIfTI volumes resolve parcel names from companion `<stem>.txt` or `<stem>.json` files (or built-in FreeSurfer `aparc`/`aseg` tables), while `.txt` files store 0-based `x y z` voxel coordinates and `.mat` files store 3D masks. On native-space datasets, mismatched non-MNI NIfTIs require a matching structural slice loaded first via **[Slices][Insert Other Images...]**; on template-space datasets, NIfTI header transforms must match MNI space.
