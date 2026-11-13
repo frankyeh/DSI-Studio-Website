@@ -21,7 +21,7 @@ DSI Studio can derive region-to-region (R2R) connectivity matrices from tractogr
 2. Open <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Connectivity matrix...</span></span>.
 3. Select a built-in parcellation atlas or use loaded ROIs.
 4. Select whether connectivity is defined by streamline **endpoints** or **pass-through** regions.
-5. Select the matrix value(s) and recalculate.
+5. Select the matrix value(s), then click <span class="gui-action">Recalculate</span>.
 6. Export the matrix, connectogram, or network measures as needed.
 
 Do not use a white-matter tract atlas as the node parcellation for a conventional region-to-region connectome.
@@ -49,9 +49,9 @@ See [Fiber Tracking CLI](/doc/cli_t3.html) for the current connectivity options.
 
 ### Network measures and graph visualization
 
-Network measures can be calculated from a connectivity matrix in the connectivity interface. When comparing subjects or groups, use the same parcellation, tractography strategy, connectivity definition, matrix value, and thresholding rule for every dataset.
+Use the <span class="gui-menu-item">Network measures</span> tab to calculate measures from a connectivity matrix. When comparing subjects or groups, use the same parcellation, tractography strategy, connectivity definition, matrix value, and thresholding rule for every dataset.
 
-Saved connectivity matrices can also be visualized in the tracking window using the graph-visualization functions.
+Saved connectivity matrices can also be visualized through <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Visualize Graph...</span></span>.
 
 
 ## Tract-to-Region (T2R) Connectome
