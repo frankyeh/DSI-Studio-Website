@@ -14,7 +14,7 @@
 .dl6-card-head{display:flex;justify-content:space-between;align-items:baseline;gap:9px;margin-bottom:16px}
 /* One centered calligraphy watermark spans each edition's full card grid. */
 .dl6-era-grid{position:relative;isolation:isolate}
-.dl6-era-grid::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(520px,68%);aspect-ratio:378/416;background:var(--era-image) center/contain no-repeat;opacity:var(--era-opacity);mix-blend-mode:multiply;pointer-events:none;z-index:2}
+.dl6-era-grid::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(1.5);width:min(520px,68%);aspect-ratio:378/416;background:var(--era-image) center/contain no-repeat;opacity:var(--era-opacity);mix-blend-mode:multiply;pointer-events:none;z-index:2}
 .dl6-era-sun{--era-image:url('/images/calligraphy/sun.svg');--era-opacity:.05}
 .dl6-era-hou{--era-image:url('/images/calligraphy/hou.svg');--era-opacity:.06}
 .dl6-era-chen{--era-image:url('/images/calligraphy/chen.svg');--era-opacity:.05}
