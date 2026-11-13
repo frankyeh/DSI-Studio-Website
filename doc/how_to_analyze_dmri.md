@@ -1,19 +1,27 @@
 # How to Analyze dMRI
 
-DSI Studio's current main window uses a **left navigation sidebar** rather than the older Step T1 / Step T2 / Step T3 buttons. Select **Tractography** to see the three stages **1 Import → 2 Reconstruct → 3 Track**. Other sidebar pages are **Correlational Tractography**, **Image Processing**, and **Settings**.
+Start with your diffusion MRI scans, reconstruct fiber orientations, and then choose an analysis that answers your research question. The current DSI Studio main window organizes these operations under **Tractography**, **Correlational Tractography**, **Image Processing**, and **Settings**.
 
-The **AI Agents**, **Fiber Data Hub**, **XNAT Download**, and **Console...** buttons are located below the navigation list. Select the working directory using the persistent **Work Dir** bar and **Browse...** button at the bottom of the main window. Some videos and screenshots in the detailed tutorials show an earlier main-window layout; the underlying SRC, reconstruction, and tracking operations remain applicable.
+<div class="dmri-journey" aria-label="Three stages of the diffusion MRI analysis workflow">
+  <a class="dmri-stage" href="#import"><span class="dmri-stage-num">01</span><strong>Import</strong><span>Raw DICOM, NIfTI, or 2dseq/FDF → <code>.sz</code></span></a>
+  <a class="dmri-stage" href="#reconstruct"><span class="dmri-stage-num">02</span><strong>Reconstruct</strong><span>Check inputs; estimate orientations → <code>.fz</code></span></a>
+  <a class="dmri-stage" href="#track"><span class="dmri-stage-num">03</span><strong>Track &amp; analyze</strong><span>Fiber pathways, regional metrics, and connections</span></a>
+</div>
 
-## Start here: Import → Reconstruct → Track
+<div class="dmri-note"><strong>Before starting:</strong> Set the working directory using the <strong>Work Dir</strong> bar and <strong>Browse...</strong> button at the bottom of the main window. <strong>AI Agents</strong>, <strong>Fiber Data Hub</strong>, <strong>XNAT Download</strong>, and <strong>Console...</strong> are below the navigation list.</div>
 
-1. **Import diffusion data:** On **Tractography → 1 Import**, choose **NIfTI**, **DICOM**, or **2dseq/FDF**. Select **NIfTI file(s)...** or **NIfTI folder...** (the latter detects BIDS datasets with `sub-*` directories and otherwise handles an ordinary NIfTI folder). For DICOM choose **DICOM file(s)...** or **DICOM folder...**. The **▸ Rename DICOM** section contains file-moving/renaming operations, not conversion. The output is an SRC file (`.sz`).
-2. **Review input quality:** On the NIfTI import section, expand **▸ More… → NIFTI quality control...** when needed. Review [SRC quality control](/doc/gui_t1.html#step-t1a-quality-control) before group analyses; it is available under **Tractography → 2 Reconstruct → ▸ More… → SRC quality control...**.
-3. **Reconstruct:** On **Tractography → 2 Reconstruct**, click **SRC File(s) (*.sz)**. Choose [GQI or QSDR reconstruction](/doc/gui_t2.html), inspect the b-table, mask, orientation, and processing choices, and save the resulting FIB file (`.fz`). **▸ More…** also offers batch SRC-to-FIB reconstruction.
-4. **Track:** On **Tractography → 3 Track**, click **FIB File (*.fz)** to open the **fiber tracking window**, where you can perform whole-brain, ROI-based, automatic, differential, and connectome analyses. **▸ More…** contains **T1W/T2W image...**, **Automatic tracking**, and **FIB quality control...**. The **Recent FIB / Recent SRC / Template FIB** controls below the stages reopen recent data or templates.
+## Prepare your data: Import → Reconstruct → Track
 
-The **Step T3** labels used below refer to controls *inside the fiber tracking window*, not to a separate Step T3 tab in the new main window.
+1. <span id="import"></span>**Import diffusion data:** On **Tractography → 1 Import**, choose **NIfTI**, **DICOM**, or **2dseq/FDF**. Select **NIfTI file(s)...** or **NIfTI folder...** (the latter detects BIDS datasets with `sub-*` directories and otherwise handles an ordinary NIfTI folder). For DICOM choose **DICOM file(s)...** or **DICOM folder...**. The **▸ Rename DICOM** section contains file-moving/renaming operations, not conversion. The output is an SRC file (`.sz`).
+2. **Review input quality:** On the NIfTI import section, expand **▸ More… → NIFTI quality control...** when needed. Review [SRC quality control](/doc/gui_t1.html) before group analyses; it is available under **Tractography → 2 Reconstruct → ▸ More… → SRC quality control...**.
+3. <span id="reconstruct"></span>**Reconstruct:** On **Tractography → 2 Reconstruct**, click **SRC File(s) (*.sz)**. Choose [GQI or QSDR reconstruction](/doc/gui_t2.html), inspect the b-table, mask, orientation, and processing choices, and save the resulting FIB file (`.fz`). **▸ More…** also offers batch SRC-to-FIB reconstruction.
+4. <span id="track"></span>**Track:** On **Tractography → 3 Track**, click **FIB File (*.fz)** to open the **fiber tracking window**, where you can perform whole-brain, ROI-based, automatic, differential, and connectome analyses. **▸ More…** contains **T1W/T2W image...**, **Automatic tracking**, and **FIB quality control...**. The **Recent FIB / Recent SRC / Template FIB** controls below the stages reopen recent data or templates.
 
 ## Choose an analysis workflow
+
+Choose a workflow based on the measurement or scientific question, rather than the file type. The links below lead to the detailed procedure.
+
+<nav class="dmri-jump" aria-label="Jump to analysis workflows"><a href="#region-based-analysis">Region measures</a><a href="#tractometry">Tractometry</a><a href="#differential-tractography">Individual changes</a><a href="#correlational-tractography--connectometry">Group associations</a><a href="#structural-connectome-r2r-and-t2r">Structural connectivity</a></nav>
 
 | Scientific question | Where to start | Further instructions |
 |:--|:--|:--|
@@ -86,7 +94,7 @@ Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-a
 **T2R workflow:**
 
 1. Map named bundles using [AutoTrack](/doc/gui_t3_atk.html) or load an appropriate set of named tracts.
-2. Load a matching parcellation from **[Step T3a: Assign Regions][Atlas...]** within the tracking window.
+2. Load a matching parcellation using the **Regions** atlas controls in the fiber tracking window.
 3. Select **[Regions][Tract-to-Region Connectome]** to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.
 
 Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.
