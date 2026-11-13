@@ -1,6 +1,6 @@
-# Step T3: Whole-Brain Tractography
+# Whole-Brain Tractography
 
-From the main window, select **Tractography → 3 Track → FIB File (*.fz)** to open an `.fz` file in the fiber tracking window, then click **Step T3d: Tracts → Fiber Tracking** to generate a whole-brain tractogram.
+From the main window, select **Tractography → 3 Track → FIB File (*.fz)** to open an `.fz` file in the fiber tracking window, then click **Tracts → Fiber Tracking** to generate a whole-brain tractogram.
 
 Whole-brain tracking is the first quality check before ROI tracking, AutoTrack, differential tractography, or tract-based quantitative analysis. Major pathways should look anatomically plausible before more restrictive analyses are attempted.
 
