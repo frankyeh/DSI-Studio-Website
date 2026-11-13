@@ -1,0 +1,8 @@
+{%- assign first_char = include.title | slice: 0, 1 -%}
+{%- if first_char == '[' -%}
+  {%- assign key = include.title | split: ']' | first | remove_first: '[' -%}
+  {%- assign suffix = include.title | remove_first: '[' | remove_first: key | remove_first: ']' -%}
+  <span class="ui-key">{{ key }}</span>{{ suffix }}
+{%- else -%}
+  {{ include.title }}
+{%- endif -%}
