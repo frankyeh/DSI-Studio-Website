@@ -24,7 +24,7 @@ Camera `.txt` files store only the primary 3D viewpoint—use **[File][Save Work
 | Menu item | Behavior |
 |---|---|
 | <span class="gui-menu-item">Store Camera Position</span> | Opens the submenu to save the current primary 3D camera viewpoint into one of four persistent local preset slots (**Slot 1**–**Slot 4**, <kbd><kbd>Alt</kbd>+<kbd>1</kbd></kbd>–<kbd><kbd>Alt</kbd>+<kbd>4</kbd></kbd>). |
-| <span class="gui-menu-item">Recall Camera Position</span> | Opens the submenu to restore a saved 3D camera viewpoint from one of four persistent local preset slots (**Slot 1**–**Slot 4**, `1`–`4`). |
+| <span class="gui-menu-item">Recall Camera Position</span> | Opens the submenu to restore a saved 3D camera viewpoint from one of four persistent local preset slots (**Slot 1**–**Slot 4**, <kbd>1</kbd>–<kbd>4</kbd>). |
 
 ### [Store Camera Position] submenu
 
@@ -44,4 +44,4 @@ Camera `.txt` files store only the primary 3D viewpoint—use **[File][Save Work
 | <span class="gui-menu-item">Slot 3</span> | Shortcut: <kbd>3</kbd>. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 3 to the primary 3D viewport, or leaves the view unchanged if slot 3 is empty. |
 | <span class="gui-menu-item">Slot 4</span> | Shortcut: <kbd>4</kbd>. Restores the 3D camera rotation, zoom, and pan saved in local preset slot 4 to the primary 3D viewport, or leaves the view unchanged if slot 4 is empty. |
 
-Presets persist across sessions on the current computer; click the 3D viewport before pressing `1`–`4` if focus is inside an input field. See the [Screen menu](/doc/menu_screen.html) for multi-angle captures and the [Layout menu](/doc/menu_layout.html) for split 3D views.
+Presets persist across sessions on the current computer; click the 3D viewport before pressing <kbd>1</kbd>–<kbd>4</kbd> if focus is inside an input field. See the [Screen menu](/doc/menu_screen.html) for multi-angle captures and the [Layout menu](/doc/menu_layout.html) for split 3D views.
