@@ -49,7 +49,7 @@ This is perhaps the most important step: tractography needs an isotropic voxel s
 ## Denoising
 {: #denoising }
 
-Denoising is generally not recommended. It smooths the signals, which blurs spatial information and can spread local structures into their neighbors. The exception is very noisy data: if denoising lowers the noise enough to retain usable DWI signals, it can turn unusable data into usable data.
+Denoising is generally not recommended for GQI and QSDR, which are relatively robust to noise. Other reconstruction methods are more sensitive to noise and may need it more. Most denoising methods, from simple smoothing to more advanced approaches, mix signals between neighboring voxels, so spatial information can change in the process. There are still cases where denoising is needed to save the data: if it lowers the noise enough to retain usable DWI signals, it can turn unusable data into usable data.
 
 ## In DSI Studio
 
