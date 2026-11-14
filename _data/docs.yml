@@ -2,6 +2,8 @@
   items:
     - title: "How to acquire dMRI"
       slug: how_to_acquire_dmri
+    - title: "How to preprocess dMRI"
+      slug: how_to_preprocess_dmri
     - title: "How to analyze dMRI"
       slug: how_to_analyze_dmri
     - title: "How to interpret dMRI"
