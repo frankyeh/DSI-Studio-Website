@@ -12,7 +12,25 @@ Every processing step modifies the diffusion signals, and the more steps are add
 
 ![Choosing preprocessing steps for diffusion MRI](/images/tutorial_preprocessing_flow.png)
 
-Answer the questions from top to bottom. The first two questions choose a column; the steps in that column, followed by the shared steps at the bottom, form the preprocessing. Dashed steps are optional and apply only when the question in the same row is answered as shown on its arrow.
+Answer the seven Yes/No questions from top to bottom. The first two
+(**Reverse phase-encoding b0?** and **Shell-based acquisition?**) select one
+of four columns. The remaining questions determine conditional processing:
+**motion issues**, **T1w distortion correction**, **bias field already
+corrected**, **need isotropic resolution**, and **eddy current correction**.
+The shell-based answer is preselected from the b-table, and isotropic
+resolution from voxel size. Confirm both against the source acquisition.
+
+The highlighted column, followed by applicable shared operations at the
+bottom, defines the path. Dashed steps are optional. Choosing **Yes** for
+a reverse-phase image or T1w correction prompts for the corresponding
+image; canceling that picker restores **No**. **Run Preprocessing** applies
+highlighted steps in order and skips those recognized as already completed
+in the SRC methods report; processing stops if an operation fails or is
+canceled. Do not use the flow to apply every available correction by
+default. Inspect the results and preserve the raw SRC.
+
+For exact question labels and instructions, see
+[Reconstruct: Preprocessing page](/doc/gui_t2.html#preprocessing).
 
 ## Susceptibility distortion
 {: #susceptibility }
