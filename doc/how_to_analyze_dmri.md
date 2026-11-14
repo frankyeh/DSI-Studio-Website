@@ -86,13 +86,6 @@ Correlational tractography tests, across a cohort, which pathway segments have l
 
 Guide: [Correlational tractography](/doc/gui_cx.html) · Examples: [*Brain*](https://academic.oup.com/brain/article-abstract/143/8/2532/5875734) · [*NeuroImage: Clinical*](https://www.sciencedirect.com/science/article/pii/S2213158220301571#b0275) · [*NeuroImage*](https://www.sciencedirect.com/science/article/pii/S1875957218301797)
 
-## Structural images
-{: #inspect-or-register-structural-images }
-
-Structural images such as T1w can be aligned to the diffusion data with linear or nonlinear registration, for region definition or overlays. Inspect the alignment before using it.
-
-<div class="aq-check"><strong>What you get</strong><p><b>Output:</b> structural images aligned to the diffusion data.</p><p><b>Used for:</b> defining regions and overlaying anatomy on tracts and measures.</p></div>
-
 ## Before interpreting results
 {: #before-interpreting }
 
