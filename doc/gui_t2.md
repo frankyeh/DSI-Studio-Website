@@ -12,13 +12,32 @@ In the current main window, choose <span class="gui-menu-path"><span class="gui-
 
 Multiple SRC files can be reconstructed as a batch. Processing steps configured on the first file can be applied to the remaining selected files.
 
+## Reconstruction dialog: page layout
+
+The reconstruction dialog has a full-height left sidebar and three numbered
+stages, followed by editing tools:
+
+| Sidebar | Purpose |
+|:--|:--|
+| **2a Mask** | Create, refine, and inspect the reconstruction mask. |
+| **2b Preprocessing** | Answer acquisition questions and run only applicable corrections. |
+| **2c Methods** | Select DTI, GQI, or QSDR and choose outputs. |
+| **▸ Edit...** | Expand to show **Edit DWI** and **Edit B-table**. |
+| **Edit DWI** | Review diffusion volumes, correct image geometry, and edit signals. |
+| **Edit B-table** | Inspect and adjust b-values and b-vectors. |
+
+The **2a**, **2b**, and **2c** circles use three different green shades.
+Expand **Edit...** to reveal the two editing pages. The output filename
+control is below the right-hand pages for a single SRC file; it is hidden
+for multi-file reconstruction. The left sidebar stays the full dialog height.
+
 ## Reconstruction window menus
 
 The reconstruction window has five top-level menus. Their actions operate on the loaded SRC image and its reconstruction settings; inspect changes before saving or reconstructing.
 
 | Top menu | What it does |
 |:--|:--|
-| <span class="gui-menu-item">File</span> | Saves the SRC dataset or exports 4D NIfTI, b0, and diffusion-weighted summary images. |
+| <span class="gui-menu-item">File</span> | **Open Mask...** and **Save Mask...**, plus SRC save and 4D NIfTI, b0, DWI-sum, and b-table exports. |
 | <span class="gui-menu-item">Edit</span> | Changes image orientation and geometry (flip/swap, AC–PC alignment, rotation, resampling), attaches other images, and offers signal/background or cropping operations. |
 | <span class="gui-menu-item">B-table</span> | Loads, saves, regenerates, checks, or flips/swaps diffusion-gradient directions. Incorrect changes alter estimated fiber orientations. |
 | <span class="gui-menu-item">Corrections</span> | Runs TOPUP/EDDY, T1w-guided distortion correction, motion/orientation correction, or bias-field correction as appropriate for the acquisition. |
@@ -48,7 +67,7 @@ The reconstruction mask limits processing to the tissue of interest. The mask ed
 
 A typical starting sequence is <span class="gui-action">Thresholding</span> → <span class="gui-action">Smoothing</span> → <span class="gui-action">Defragment</span>, followed by visual inspection and manual correction if needed.
 
-Masks can be saved or loaded as text/NIfTI files.
+Use **File → Open Mask...** to load a mask, or **File → Save Mask...** to export one. These actions have moved from buttons on the Mask page to the File menu. Use a mask with the same image dimensions as the source.
 
 ## Corrections and preprocessing
 
@@ -57,16 +76,51 @@ Only apply corrections that are appropriate for the acquisition and study design
 ### Preprocessing page
 {: #preprocessing }
 
-Select **Preprocessing** in the sidebar of the reconstruction window. The page asks the questions of the decision flow below and highlights the steps for your answers.
+Choose **2b Preprocessing** in the sidebar. The current page is a
+question-driven flow: the first two answers choose one of four branches
+(reverse-phase data present or absent × shell-based or DSI sampling).
+Optional corrections and the shared final steps depend on the other
+answers and on what has already been recorded in the SRC methods report.
 
 ![Preprocessing decision flow](/images/tutorial_preprocessing_flow.png)
 
-1. **Answer each question with Yes or No.** *Shell-based acquisition* is set from the b-table, and the detected scheme is shown in the page header. *Need isotropic resolution* is set from the voxel size. All other questions default to **No**.
-2. **Select the required images.** Choosing **Yes** for *Reverse phase-encoding b0* or *Try T1w-based distortion correction* asks for the reverse phase-encoding image or the T1w image. If no file is selected, the answer returns to **No**.
-3. **Review the highlighted path.** The steps for your answers are highlighted in green. Dashed steps run only when the question in their row is answered as shown on the arrow.
-4. **Click <span class="gui-action">Run Preprocessing</span>.** DSI Studio runs the highlighted steps in order and stops if a step fails or is canceled.
+#### The seven questions
 
-Steps already applied to the SRC file are marked with ✓ and skipped. DSI Studio identifies them from the methods report, and questions that no longer apply are grayed out. Each step can also be run on its own with its button.
+| Question shown in the dialog | What to choose |
+|:--|:--|
+| **1. Reverse phase-encoding b0?** | **Yes** when a matching reverse-phase b0 image is available; selecting it prompts for an image file. Otherwise choose **No**. |
+| **2. Shell-based acquisition?** | **Yes** for shell-based DWI; **No** for DSI-grid acquisitions. DSI Studio proposes an answer based on the b-table and displays its detected classification near the top of the page. |
+| **3. Try to save data with motion issues?** | Optional on the applicable no-EDDY routes. Consider it for important motion artifacts; avoid redundant motion correction after EDDY. |
+| **4. Try T1w-based distortion correction?** | An optional alternative on eligible paths without a reverse-phase scan. **Yes** prompts for the subject's T1w file. The result may not be perfect. |
+| **5. Bias field already corrected?** | **Yes** means skip bias-field correction. **No** selects it if the methods report does not already indicate it was applied. |
+| **6. Need isotropic resolution?** | **Yes** when resampling is appropriate for anisotropic voxels; the dialog proposes the initial answer based on voxel size. |
+| **7. Correct eddy current distortion?** | Available for shell-based data. When reverse-phase data are present, **Yes** selects combined TOPUP/EDDY and **No** selects TOPUP alone. |
+
+The defaults reflect source information: the shell-based question is
+preselected using the b-table and the isotropic-resolution question using
+voxel size; the other questions initially default to **No**. Inspect the
+acquisition and existing preprocessing before accepting those suggestions.
+
+#### Running the highlighted steps
+
+1. If choosing **Yes** for reverse-phase images or T1w correction,
+   select the appropriate file. Canceling the file picker returns that
+   answer to **No**.
+2. Read the highlighted path. Green indicates the selected branch;
+   dashed steps are conditional. Steps recognized in the SRC methods
+   report show **✓**. Ineligible questions are disabled.
+3. Choose **Run Preprocessing** to execute the active steps in order.
+   DSI Studio skips steps recognized as complete and stops if a
+   command fails or is canceled. Individual step buttons also remain
+   available.
+
+Depending on the branch, the flow can use TOPUP, TOPUP/EDDY, EDDY alone,
+motion correction, or T1w-based correction, followed by applicable
+bias-field correction and isotropic resampling. **Not every operation
+belongs in every pipeline.** The completion markers come from recorded
+processing text: verify the processing history and output rather than
+relying on the checkmark alone. Save the corrected SRC as a **new** file
+to preserve the unmodified input.
 
 ### TOPUP/EDDY and motion correction
 
@@ -100,6 +154,19 @@ Use <span class="gui-menu-item">Edit</span> › <span class="gui-menu-item">Eras
 
 An incorrect b-table produces incorrect fiber orientations. Use <span class="gui-menu-path"><span class="gui-menu-item">B-table</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Check B-table...</span></span> and inspect the result anatomically. Low-SNR or unusual animal acquisitions may require manual verification.
 
+## Edit DWI and Edit B-table
+
+Expand **▸ Edit...** in the sidebar. **Edit DWI** shows the volume list
+and image viewer, with image/signal editing sections that can be opened
+below it. **Align Selected DWI...** rigidly aligns the currently selected
+**3D DWI volume** to the first diffusion volume and adjusts its
+b-vector. It is *not* a slice-by-slice alignment tool. Use it only when
+that individual-volume registration is intended; inspect the result.
+
+**Edit B-table** is for checking and correcting diffusion gradient
+directions. Changing orientation or b-vectors affects reconstructed
+fiber directions.
+
 ## Choose a reconstruction method
 
 ### Diffusion Tensor Imaging (DTI)
@@ -120,11 +187,16 @@ Select the template appropriate for the species and study. Inspect registration 
 
 When needed by reconstruction or template registration, attach auxiliary images through <span class="gui-menu-item">Edit</span> › <span class="gui-menu-item">Attach Images...</span>.
 
+The **2c Methods** page presents the common settings first. Click
+**▸ More...** to expose additional method settings and output
+options. Method-specific controls appear only when relevant to the
+selected reconstruction method.
+
 ## Choose outputs
 
 Select only the additional diffusion measurements needed for the analysis. Available outputs depend on the reconstruction method and DSI Studio version and can include tensor measures, GQI-derived measures, restricted-diffusion measures, and ODF-related outputs.
 
-Saving unnecessary outputs increases <span class="gui-file-ext">.fz</span> file size and processing time.
+Metric checkboxes are arranged in up to **three columns per row** in the current dialog. Some advanced metrics appear only after expanding **More...**. Saving unnecessary outputs increases <span class="gui-file-ext">.fz</span> file size and processing time.
 
 ### DTI high-b option
 
