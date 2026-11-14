@@ -1,196 +1,88 @@
 # How to Analyze dMRI
 
-## Prepare your data
+Diffusion MRI analysis starts from the research question. Whether the interest is a pathway, a region, a connection pattern, or a change across scans or subjects decides the approach.
 
-<ol class="ana-flow" aria-label="Diffusion MRI preparation stages">
-  <li id="import">
-    <span class="ana-num">1</span>
-    <h3>Import scans <span class="ana-out">→ <span class="gui-file-ext">.sz</span></span></h3>
-    <p class="ana-path"><span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>Import</span></span></p>
-    <dl class="ana-rows"><dt>DICOM</dt><dd><span class="gui-menu-item">DICOM</span> <span class="gui-action">DICOM folder...</span></dd><dt>NIfTI + .bval/.bvec</dt><dd><span class="gui-menu-item">NIfTI</span> <span class="gui-action">NIfTI file(s)...</span> or <span class="gui-action">NIfTI folder...</span> for BIDS</dd><dt>Bruker / Varian</dt><dd><span class="gui-menu-item">2dseq/FDF</span> <span class="gui-action">2dseq / FDF file(s)...</span></dd></dl>
-    <details>
-      <summary>Options &amp; quality checks</summary>
-      <p>Set the working directory using <span class="gui-menu-item">Work Dir</span> and <span class="gui-action">Browse...</span>. <span class="gui-action">Rename DICOM</span> moves or renames files; it does not convert them.</p>
-      <p>When needed, use <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">1</span><span class="gui-b">1 </span>Import</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">More...</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">NIFTI quality control...</span></span>. Review <a href="/doc/gui_t1.html">SRC quality control</a> before group analyses; it is available under <span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">More...</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">SRC quality control...</span></span>.</p>
-    </details>
-  </li>
-  <li id="reconstruct">
-    <span class="ana-num">2</span>
-    <h3>Reconstruct <span class="ana-out"><span class="gui-file-ext">.sz</span> → <span class="gui-file-ext">.fz</span></span></h3>
-    <p class="ana-path"><span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">2</span><span class="gui-b">2 </span>Reconstruct</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">SRC File(s) (*.sz)</span></span></p>
-    <dl class="ana-rows"><dt>GQI</dt><dd>one subject in native space</dd><dt>QSDR</dt><dd>a cohort in template space, or a connectometry database</dd></dl>
-    <p class="ana-hint">Check the b-table, mask and orientation first. <a href="/doc/gui_t2.html">Reconstruction guide</a></p>
-    <details>
-      <summary>Options &amp; quality checks</summary>
-      <p>For multiple SRC files, use <span class="gui-menu-item">More...</span> for batch SRC-to-FIB reconstruction.</p>
-    </details>
-  </li>
-  <li id="track">
-    <span class="ana-num">3</span>
-    <h3>Open for tracking <span class="ana-out"><span class="gui-file-ext">.fz</span></span></h3>
-    <p class="ana-path"><span class="gui-menu-path"><span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span></span></p>
-    <p class="ana-hint">Then pick what to analyze below.</p>
-    <details>
-      <summary>Options &amp; quality checks</summary>
-      <p>Under <span class="gui-menu-item">More...</span>, find <span class="gui-action">T1W/T2W image...</span>, <span class="gui-action">Automatic tracking</span>, and <span class="gui-action">FIB quality control...</span>. Use <span class="gui-menu-item">Recent FIB</span> / <span class="gui-menu-item">Recent SRC</span> / <span class="gui-menu-item">Template FIB</span> to reopen previous data or templates.</p>
-    </details>
-  </li>
-</ol>
+## From scan to analysis
+{: #pipeline }
 
-## Choose an analysis workflow
+1. **Acquire** the data: [How to acquire dMRI](/doc/how_to_acquire_dmri.html)
+2. **Preprocess** only what is needed: [How to preprocess dMRI](/doc/how_to_preprocess_dmri.html)
+3. **Import and reconstruct**: [import](/doc/gui_t1.html) the scans as an SRC file (<span class="gui-file-ext">.sz</span>), then [reconstruct](/doc/gui_t2.html) a FIB file (<span class="gui-file-ext">.fz</span>). Use **GQI** for one subject in native space, and **QSDR** for a cohort in template space.
+4. **Analyze**: choose the approach that matches your question below.
 
-<nav class="ana-pick" aria-label="Analysis workflows">
-  <div class="ana-pick-group"><span class="step-eyebrow">One scan</span>
-    <a class="ana-card" href="#fiber-pathways"><strong>Fiber pathways</strong><p class="ana-desc">Reconstruct and inspect white-matter pathways using whole-brain or region-guided tracking.</p><b aria-hidden="true">→</b></a>
-    <a class="ana-card" href="#region-based-analysis"><strong>Region measures</strong><p class="ana-desc">Measure diffusion properties within selected anatomical regions.</p><b aria-hidden="true">→</b></a>
-    <a class="ana-card" href="#tractometry"><strong>Bundle metrics &amp; profiles</strong><p class="ana-desc">Summarize tract measurements and examine how they vary along a pathway.</p><b aria-hidden="true">→</b></a>
-    <a class="ana-card" href="#structural-connectome-r2r-and-t2r"><strong>Connectivity (R2R / T2R)</strong><p class="ana-desc">Map connections between brain regions or between named tracts and regions.</p><b aria-hidden="true">→</b></a>
-  </div>
-  <div class="ana-pick-group"><span class="step-eyebrow">Several scans or subjects</span>
-    <a class="ana-card" href="#named-bundles-across-subjects"><strong>Named bundles across subjects</strong><p class="ana-desc">Identify corresponding white-matter bundles across subjects with AutoTrack.</p><b aria-hidden="true">→</b></a>
-    <a class="ana-card" href="#differential-tractography"><strong>Individual change</strong><p class="ana-desc">Find pathway segments showing diffusion changes between scans or relative to a reference.</p><b aria-hidden="true">→</b></a>
-    <a class="ana-card" href="#correlational-tractography--connectometry"><strong>Diffusion–behavior association</strong><p class="ana-desc">Test associations between local diffusion measures and clinical or behavioral variables across subjects.</p><b aria-hidden="true">→</b></a>
-  </div>
-  <div class="ana-pick-group"><span class="step-eyebrow">Structural images</span>
-    <a class="ana-card" href="#inspect-or-register-structural-images"><strong>Inspect or register structural images</strong><p class="ana-desc">View anatomical images and align them with diffusion data for accurate overlays and analysis.</p><b aria-hidden="true">→</b></a>
-  </div>
-</nav>
+## Choose by question
+{: #choose }
 
-## Fiber Pathways
+| Question | Approach | Data |
+|:--|:--|:--|
+| Which pathways run through this brain? | [Fiber tracking](#fiber-pathways) | One scan |
+| What are the diffusion measures in a region? | [Region-based analysis](#region-based-analysis) | One scan or cohort |
+| How do measures vary along a bundle? | [Tractometry](#tractometry) | One scan or cohort |
+| Which regions are connected, and by which bundles? | [Connectome (R2R / T2R)](#structural-connectome-r2r-and-t2r) | One scan |
+| Where is the same named bundle in each subject? | [AutoTrack](#named-bundles-across-subjects) | Cohort |
+| Where did a subject change? | [Differential tractography](#differential-tractography) | Two scans, or a subject and a reference |
+| Which pathways relate to a clinical or behavioral variable? | [Correlational tractography](#correlational-tractography--connectometry) | Cohort |
 
-Use fiber pathway analysis to reconstruct white-matter trajectories in an individual diffusion MRI dataset.
+## Fiber tracking
+{: #fiber-pathways }
 
-1. Open the subject FIB file with <span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span> to enter the fiber tracking window.
-2. For exploratory mapping, run [whole-brain tractography](/doc/gui_t3_whole_brain.html). Select the tracking method, seed strategy, stopping criteria, and tract length settings appropriate to the data.
-3. For a particular pathway, [define or load inclusion, exclusion, and seed regions](/doc/gui_t3_roi_tracking.html) and generate ROI-based streamlines. Inspect them against the anatomy and save the resulting tract bundle.
-4. Review the reconstructed paths in orthogonal slices and 3D before computing measurements or connectivity.
+Fiber tracking estimates streamline trajectories that follow the local fiber orientations. Whole-brain tracking gives an exploratory overview of all pathways; region-guided tracking uses seed, inclusion, and exclusion regions to isolate one pathway. The result depends on the tracking thresholds and on where the regions are placed.
 
-<aside class="ana-note" role="note"><p><strong>Check.</strong> Fiber tracking estimates plausible streamline trajectories rather than individual axons. Check image orientation, region alignment, and reconstruction quality before interpreting anatomy. Tracking thresholds and ROI placement can change the resulting pathway.</p></aside>
+Guides: [Whole-brain tracking](/doc/gui_t3_whole_brain.html) · [ROI-based tracking](/doc/gui_t3_roi_tracking.html)
 
-Full guides: [Whole-brain tracking →](/doc/gui_t3_whole_brain.html) · [ROI-based tracking →](/doc/gui_t3_roi_tracking.html)
+## Region-based analysis
+{: #region-based-analysis }
 
-## Region-Based Analysis
+Region-based analysis summarizes diffusion measures, or other registered images such as DKI, NODDI, or PET, within anatomical regions. Atlas regions must be in the same space as the data. For a cohort in template space, the regions can be applied to a connectometry database (<span class="gui-file-ext">.dz</span>).
 
-Use region-based analysis when the question concerns diffusion measurements within an anatomical region.
-
-1. On <span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span>, open the subject <span class="gui-file-ext">.fz</span> file.
-2. [Load or define regions](/doc/gui_t3_roi_tracking.html#load-regions-from-built-in-atlases). Built-in atlases are useful for standardized regions, provided they match the image space.
-3. If needed, use <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Insert Other Images</span></span> in the tracking window to add registered measurements such as DKI, NODDI, PET, or other NIfTI data.
-4. Use <span class="gui-menu-path"><span class="gui-menu-item">Regions</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Statistics</span></span> to obtain measurements for selected regions.
-
-<aside class="ana-note" role="note"><p><strong>Check.</strong> Built-in atlases must match the image space. For population/template-space region analysis, a <a href="/doc/gui_cx.html"><span class="gui-file-ext">.dz</span> connectometry database</a> can be opened in the tracking window with template-space regions. A <span class="gui-file-ext">.dz</span> is for group diffusion/connectometry data; it is <strong>not</strong> a region-to-region connectivity matrix.</p></aside>
+Guide: [Load regions from atlases](/doc/gui_t3_roi_tracking.html#load-regions-from-built-in-atlases)
 
 ## Tractometry
+{: #tractometry }
 
-Tractometry quantifies diffusion or other measurements along white-matter pathways.
+Tractometry quantifies measures over a bundle, either as one summary value for the bundle or as a profile along its length. Keep the profile definition the same across subjects.
 
-1. Map the pathways using [AutoTrack](/doc/gui_t3_atk.html) or [ROI-based fiber tracking](/doc/gui_t3_roi_tracking.html).
-2. Add other registered measurements with <span class="gui-menu-path"><span class="gui-menu-item">Slices</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Insert Other Images</span></span> when needed.
-3. Use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Statistics</span></span> for bundle-level scalar and shape measurements.
-4. Use the [tract profile](/doc/gui_t3_atk.html#tract-profile) when the spatial distribution of a measurement along the pathway is important.
+Guide: [Tract profile](/doc/gui_t3_atk.html#tract-profile) · Example of bundle-level tractometry: [Pritschet et al., *Nature Neuroscience* (2024)](https://doi.org/10.1038/s41593-024-01741-0)
 
-<aside class="ana-note" role="note"><p><strong>Check.</strong> Streamline-order tract profiles use 100 sampling positions; image-axis profiles instead depend on image geometry. Keep profile definition and bandwidth consistent across subjects. For template-space tractometry, a compatible <span class="gui-file-ext">.dz</span> database may be used with template-space pathways.</p></aside>
+## Structural connectome (R2R and T2R)
+{: #structural-connectome-r2r-and-t2r }
 
-Example study of **bundle-level** QA tractometry (not a 100-node along-tract profile): [Pritschet et al., *Nature Neuroscience* (2024)](https://doi.org/10.1038/s41593-024-01741-0).
+**R2R** (region to region) maps connections between pairs of regions. **T2R** (tract to region) maps which regions each named bundle reaches. The parcellation must be in the same space as the tracts; a native-space parcellation works with native-space tracts.
 
-## Structural Connectome (R2R and T2R)
+Guide: [Connectome (R2R and T2R)](/doc/gui_connectome.html) · Example: [Yeh FC, *Nature Communications* 13, 4933 (2022)](https://www.nature.com/articles/s41467-022-32595-4)
 
-**R2R** represents connectivity between pairs of brain regions. **T2R** records the relationship between named white-matter pathways and regions; both are distinct from the group-level diffusion association tested by Correlational Tractography.
+## Named bundles across subjects
+{: #named-bundles-across-subjects }
 
-<div class="ana-two">
-  <div>
-    <h3>R2R: Region to region</h3>
-    <ol>
-      <li>Open a FIB with <span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span>, and generate or load the tracts to be analyzed.</li>
-      <li>In the tracking window, open <span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Connectivity Matrix</span>.</li>
-      <li>Choose a parcellation in the <strong>same coordinate space</strong> as the tractography, and select endpoint/pass-through rules and matrix values.</li>
-      <li>Calculate and export the matrix, connectogram, or network measures.</li>
-    </ol>
-  </div>
-  <div>
-    <h3>T2R: Tract to region</h3>
-    <ol>
-      <li>Map named bundles using <a href="/doc/gui_t3_atk.html">AutoTrack</a> or load an appropriate set of named tracts.</li>
-      <li>Load a matching parcellation using the <strong>Regions</strong> atlas controls in the fiber tracking window.</li>
-      <li>Select <span class="gui-menu-item">Regions</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Tract-to-Region Connectome</span> to generate the tract-by-region matrix and optionally visualize the parcellation using T2R values.</li>
-    </ol>
-  </div>
-</div>
+AutoTrack identifies the same named bundles in each subject, which allows consistent tractometry across a cohort. Review each bundle: a missing or incomplete bundle is not evidence of anatomical absence.
 
-<aside class="ana-note" role="note"><p><strong>Check.</strong> Native-space parcellations are supported when aligned to native-space tracts; QSDR is not universally required. Keep the tract set, parcellation and counting/weighting rules consistent for comparisons. Streamline counts do not directly measure axons or biological connection strength.</p></aside>
+Guide: [AutoTrack](/doc/gui_t3_atk.html)
 
-Full guide: [Connectome (R2R and T2R) →](/doc/gui_connectome.html)
+## Differential tractography
+{: #differential-tractography }
 
-Example study: [Yeh FC, *Nature Communications* 13, 4933 (2022)](https://www.nature.com/articles/s41467-022-32595-4).
+Differential tractography maps pathway segments whose diffusion measures changed, either between two scans of the same subject (longitudinal) or relative to a reference population (cross-sectional), in native or template space. Differences in scanner or protocol can mimic biological change.
 
-## Named Bundles Across Subjects
+Guide: [Differential tractography](/doc/gui_t3_dt.html) · Example: [PubMed 31472253](https://pubmed.ncbi.nlm.nih.gov/31472253/)
 
-Use AutoTrack to identify corresponding named white-matter pathways in multiple subjects and support consistent tractometry.
+## Correlational tractography (connectometry)
+{: #correlational-tractography--connectometry }
 
-1. Open each subject FIB file using <span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">FIB File (*.fz)</span>.
-2. Select <span class="gui-menu-item">Tractography</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-card"><span class="gui-card-num" aria-hidden="true">3</span><span class="gui-b">3 </span>Track</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">More...</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Automatic tracking</span> to open AutoTrack and choose the target bundles.
-3. Run automatic tracking, review the resulting bundles against the subject anatomy, and save the tract files.
-4. For quantitative comparisons, use <span class="gui-menu-path"><span class="gui-menu-item">Tracts</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Statistics</span></span> or the [tract profile](/doc/gui_t3_atk.html#tract-profile) with the same measurement definitions and profile settings across subjects.
+Correlational tractography tests, across a cohort, which pathway segments have local diffusion measures associated with a study variable, while controlling for covariates. The false discovery rate is estimated by permutation. It uses template-space (QSDR) data with consistent resolution, collected into a connectometry database.
 
-<aside class="ana-note" role="note"><p><strong>Check.</strong> Automatic bundle identification still requires quality review. Compare homologous bundles in compatible image spaces and use consistent reconstruction, tracking, and tractometry settings. Missing or incomplete bundles should not be interpreted as an anatomical absence without checking the data.</p></aside>
+Guide: [Correlational tractography](/doc/gui_cx.html) · Examples: [*Brain*](https://academic.oup.com/brain/article-abstract/143/8/2532/5875734) · [*NeuroImage: Clinical*](https://www.sciencedirect.com/science/article/pii/S2213158220301571#b0275) · [*NeuroImage*](https://www.sciencedirect.com/science/article/pii/S1875957218301797)
 
-[Full guide →](/doc/gui_t3_atk.html)
+## Structural images
+{: #inspect-or-register-structural-images }
 
-## Differential Tractography
+Structural images such as T1w can be aligned to the diffusion data with linear or nonlinear registration, for region definition or overlays. Inspect the alignment before using it.
 
-Differential tractography maps pathway segments showing changes in diffusion measurements between scans or relative to a reference population. It is configured within the fiber tracking window after opening the appropriate FIB, rather than in the main window's Correlational Tractography page.
+## Before interpreting results
+{: #before-interpreting }
 
-<div class="ana-four" aria-label="Differential tractography workflow options">
-  <span><strong>Longitudinal</strong> · Native space</span>
-  <span><strong>Longitudinal</strong> · Template space</span>
-  <span><strong>Cross-sectional</strong> · Native space</span>
-  <span><strong>Cross-sectional</strong> · Template space</span>
-</div>
+* **Same space:** data, regions, and parcellations are aligned in the same image space.
+* **Same settings:** reconstruction, tracking, and measurement settings are consistent across subjects.
+* **Visual review:** tracts and registrations are checked against the anatomy.
+* **Streamlines are not axons:** tracking estimates plausible trajectories, and streamline counts do not directly measure connection strength.
 
-[Full guide →](/doc/gui_t3_dt.html)
-
-<aside class="ana-note" role="note"><p><strong>Check.</strong> The input images and reference maps must be appropriately aligned; scan/protocol differences can mimic biological change.</p></aside>
-
-Example study: [PubMed 31472253](https://pubmed.ncbi.nlm.nih.gov/31472253/)
-
-## Correlational Tractography / Connectometry
-
-**Correlational Tractography** is a separate sidebar page for cohort-level associations between local diffusion measures and study variables.
-
-<ol class="ana-flow ana-flow-small" aria-label="Correlational tractography analysis stages">
-  <li>
-    <span class="ana-num">1</span><h3>FIB files</h3>
-    <p>Select QSDR/template-space <span class="gui-action">FIB File(s) (*.fz)...</span> or <span class="gui-action">FIB Folder (*.fz)...</span> to collect subjects for a connectometry database.</p><span class="ana-file">.fz</span>
-    <details><summary>Optional: reference population</summary><p>For reference-population workflows, use <span class="gui-menu-item">More...</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Create population average...</span>.</p></details>
-  </li>
-  <li>
-    <span class="ana-num">2</span><h3>Prepare database</h3>
-    <p>Open <strong>Database (*.dz)...</strong> to inspect or edit the database, including the subject list and demographic variables.</p><span class="ana-file">.dz</span>
-    
-  </li>
-  <li>
-    <span class="ana-num">3</span><h3>Correlational tractography</h3>
-    <p>Select <span class="gui-action">Database (*.dz)</span> to run group correlational tractography. Choose the study variable, covariates and diffusion index, then assess association tracts and permutation-derived FDR.</p><span class="ana-file">FDR</span>
-    
-  </li>
-</ol>
-
-<aside class="ana-note" role="note"><p><strong>Check.</strong> For cohort data, use compatible QSDR/template-space FIB files with consistent resolution. A current <span class="gui-file-ext">.dz</span> database can store several diffusion indices, so separate database files are generally not required for QA, FA, RDI and other available metrics. A <strong>Recent Database</strong> list is shown beneath the stages.</p></aside>
-
-[Full guide →](/doc/gui_cx.html)
-
-Example studies: [*Brain* cohort study](https://academic.oup.com/brain/article-abstract/143/8/2532/5875734) · [NeuroImage: Clinical study](https://www.sciencedirect.com/science/article/pii/S2213158220301571#b0275) · [NeuroImage study](https://www.sciencedirect.com/science/article/pii/S1875957218301797)
-
-## Inspect or Register Structural Images
-
-Use the **Image Processing** sidebar to inspect anatomical images and align additional modalities with diffusion MRI data.
-
-1. Select <span class="gui-menu-path"><span class="gui-menu-item">Image Processing</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Image Editor</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Open image...</span></span> to inspect a structural image.
-2. Use <span class="gui-menu-path"><span class="gui-menu-item">Image Processing</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Linear Registration</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Linear registration...</span></span> to align images with a linear transform when appropriate.
-3. Use <span class="gui-menu-path"><span class="gui-menu-item">Image Processing</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Nonlinear Registration</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-action">Nonlinear registration...</span></span> when deformable registration is needed.
-4. Verify the alignment visually, including anatomical landmarks and orientation, before using the registered image for region definition, tract visualization, or measurement overlays.
-
-<aside class="ana-note" role="note"><p><strong>Check.</strong> Registration quality depends on image contrast, anatomy, and transformation direction. Inspect the result before applying regions or measurements in another image space; an incorrectly aligned overlay can produce misleading tract or regional statistics.</p></aside>
-
-For registered measurements in the tracking window, see [Region-Based Analysis](#region-based-analysis) and [Tractometry](#tractometry) above.
-
+See [How to interpret dMRI](/doc/how_to_interpret_dmri.html) and [How to interpret tractography](/doc/how_tractography_works.html).
