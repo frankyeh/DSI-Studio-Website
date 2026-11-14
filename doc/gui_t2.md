@@ -52,7 +52,21 @@ Masks can be saved or loaded as text/NIfTI files.
 
 ## Corrections and preprocessing
 
-Only apply corrections that are appropriate for the acquisition and study design. Keep the processing consistent across subjects in a group analysis.
+Only apply corrections that are appropriate for the acquisition and study design. Keep the processing consistent across subjects in a group analysis. For the reasoning behind each correction, see [How to preprocess dMRI](/doc/how_to_preprocess_dmri.html).
+
+### Preprocessing page
+{: #preprocessing }
+
+Select **Preprocessing** in the sidebar of the reconstruction window. The page asks the questions of the decision flow below and highlights the steps for your answers.
+
+![Preprocessing decision flow](/images/tutorial_preprocessing_flow.png)
+
+1. **Answer each question with Yes or No.** *Shell-based acquisition* is set from the b-table, and the detected scheme is shown in the page header. *Need isotropic resolution* is set from the voxel size. All other questions default to **No**.
+2. **Select the required images.** Choosing **Yes** for *Reverse phase-encoding b0* or *Try T1w-based distortion correction* asks for the reverse phase-encoding image or the T1w image. If no file is selected, the answer returns to **No**.
+3. **Review the highlighted path.** The steps for your answers are highlighted in green. Dashed steps run only when the question in their row is answered as shown on the arrow.
+4. **Click <span class="gui-action">Run Preprocessing</span>.** DSI Studio runs the highlighted steps in order and stops if a step fails or is canceled.
+
+Steps already applied to the SRC file are marked with ✓ and skipped. DSI Studio identifies them from the methods report, and questions that no longer apply are grayed out. Each step can also be run on its own with its button.
 
 ### TOPUP/EDDY and motion correction
 
@@ -85,10 +99,6 @@ Use <span class="gui-menu-item">Edit</span> › <span class="gui-menu-item">Eras
 ### Check b-table orientation
 
 An incorrect b-table produces incorrect fiber orientations. Use <span class="gui-menu-path"><span class="gui-menu-item">B-table</span><span class="gui-menu-sep" aria-hidden="true">›</span><span class="gui-menu-item">Check B-table...</span></span> and inspect the result anatomically. Low-SNR or unusual animal acquisitions may require manual verification.
-
-### Make isotropic
-
-If needed, use <span class="gui-menu-item">Edit</span> › <span class="gui-menu-item">Resample to Isotropic</span> to resample the source volume before reconstruction. Resampling does not add anatomical information, so use it for a specific processing or tracking requirement rather than routinely.
 
 ## Choose a reconstruction method
 
