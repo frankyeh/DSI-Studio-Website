@@ -5,7 +5,7 @@ Preprocessing corrects artifacts in diffusion MRI before reconstruction. Not eve
 ## Principle: less processing, less information loss
 {: #principle }
 
-Every processing step modifies the diffusion signals, and the more steps are added, the more information is lost. Apply a correction mainly when it can turn unusable data into usable data, not as routine.
+Every processing step modifies the diffusion signals, and the more steps are added, the more information is lost. Preprocessing can be part of a routine pipeline, but each step should be checked for whether it is necessary. Most DWI studies apply susceptibility and eddy current correction, for example FSL topup and eddy, yet neither is absolutely needed if the sequence already handles these artifacts well. Corrections that turn unusable data into usable data are the ones most worth keeping.
 
 ## Decision flow
 {: #decision-flow }
@@ -27,7 +27,7 @@ Echo-planar imaging is sensitive to magnetic susceptibility differences at airâ€
 ## Eddy current distortion
 {: #eddy }
 
-Eddy currents from the diffusion gradients shift, shear, or scale the diffusion-weighted images, differently for each gradient direction. Correct them only if the distortion is obvious, for example when edges in different DWI volumes do not line up. Many newer sequences reduce eddy currents considerably, for instance with bipolar diffusion encoding, so this correction should not be applied by default.
+Eddy currents from the diffusion gradients shift, shear, or scale the diffusion-weighted images, differently for each gradient direction. Correct them only if the distortion is obvious, for example when edges in different DWI volumes do not line up. Many newer sequences reduce eddy currents considerably, for instance with bipolar diffusion encoding, so check whether it is needed for your sequence.
 
 FSL eddy requires shell-based acquisitions; grid (DSI) sampling relies on eddy-current compensation at acquisition instead (see [How to acquire dMRI](/doc/how_to_acquire_dmri.html)).
 
@@ -46,10 +46,10 @@ The bias field is a smooth brightness variation across the image caused by the r
 
 This is perhaps the most important step: tractography needs an isotropic voxel size and fails when the resolution differs greatly between directions. If the voxels are not isotropic, resample the data to an isotropic resolution.
 
-## Signal smoothing
-{: #smoothing }
+## Denoising
+{: #denoising }
 
-Signal smoothing is generally not recommended. It blurs spatial information and can spread local structures into their neighbors. The exception is very noisy data: if smoothing lowers the noise enough to retain usable DWI signals, it can turn unusable data into usable data.
+Denoising is generally not recommended. It smooths the signals, which blurs spatial information and can spread local structures into their neighbors. The exception is very noisy data: if denoising lowers the noise enough to retain usable DWI signals, it can turn unusable data into usable data.
 
 ## In DSI Studio
 
